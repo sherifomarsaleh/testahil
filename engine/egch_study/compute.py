@@ -1,3 +1,19 @@
+"""RUN ORDER: compute.py THEN lenses.py. RUNNING THIS FILE ALONE DELETES THE
+STUDY'S OWN ANSWER.
+
+study_numbers.json is written whole by this script, and lenses.py then adds EIGHT
+top-level keys to it: central, central_two_sided, spot, fair, lens_record,
+bridge_record, macro_record and forecast_anchor. So a rebuild that runs only this
+file removes the central and the spot -- the two fields check_valuation_gap reads --
+along with three standing-rule records, and every gate downstream then reports on a
+file that has silently lost them.
+
+Found 06-09-2026 while closing the same defect on SWDY, whose forecast_anchor block
+vanished the same way. It is invisible to every gate, because a gate reads the file
+that is there and cannot know what a rebuild removed. BOROUGE, DU and EMPOWER carry
+the instrument that would catch it -- read the file, import the model, restore and
+REFUSE if the bytes moved -- three studies out of twenty-four.
+"""
 """EGCH (Egyptian Chemical Industries "KIMA", EGX: EGCH) — master computation.
 
 Ground-up, product-by-product, volume x price on the revenue side and cost-per-physical-
@@ -215,7 +231,16 @@ D['anna_nameplate_derived'] = ((D['design_ammonia_t']
                                / D['nh3_per_t_an'])
 D['anna_util_base'] = _V('anna_util_base')
 D['anna_util_bull'] = _V('anna_util_bull')
-D['anna_price_usd_t'] = _V('an_price_usd_t')
+# PRICED AT WHAT THE COMPANY DISCLOSES IT GETS, NOT AT A TYPED MID-CYCLE GUESS
+# [R-GAP-04]. This read an_price_usd_t — US$280/t, an L4 input whose entire source string
+# was "mid-cycle ammonium nitrate pricing", naming no assessor, series, date or basis —
+# while note 20 discloses the company's OWN realised nitrate price at EGP 20,000/t. The
+# existing nitrate business in the explicit window is already priced off that disclosure
+# and carried on the currency; the new plant's tonne was the only nitrate tonne in this
+# model priced from outside the filings, and it was 31% cheaper. Worth EGP 0.564 a share.
+# THE SWITCH IS KEPT so alternatives.py can still price the retired basis: what changed is
+# what it defaults to, not how the terminal reads it.
+D['anna_price_usd_t'] = _V('an_price_egp_t_FY2425') / _V('usd_egp_avg_FY2425')
 D['anna_cash_margin'] = _V('anna_cash_margin')          # AN cash margin over its own ammonia + conversion
 D['dso'] = _V('dso')
 D['dio'] = _V('dio')
@@ -246,8 +271,23 @@ D['kd_usd_lt'] = _V('kd_usd_lt')                                 # long-run USD 
 D['deprec_lt'] = _V('expected_depreciation')                                 # same wedge used in the Kd build
 D['kd_local_equiv_terminal'] = (1 + D['kd_usd_lt']) * (1 + D['deprec_lt']) - 1
 
+# [R-COC-03] BETA PRICES THE EQUITY MARKET; LAMBDA PRICES THE COUNTRY. This function
+# read rf* + beta x ERP_total, which multiplies Egypt's country premium by beta -- so a
+# company measured at 1.03 was charged 3% more for the same sovereign than the company
+# next door at 1.00, for no reason connected to the sovereign. The premium splits into
+# the part beta scales and the part it does not, and this study is wholly Egyptian, so
+# lambda is one and the country premium is added flat.
+#
+# BUILT THROUGH THE SANCTIONED MODULE, never re-derived here. This function is called
+# for every year of the glide AND for the terminal, so a second implementation of the
+# identity beside engine/cost_of_capital.py would put the whole rate structure of the
+# study one edit away from disagreeing with the house.
+import cost_of_capital as _COC3
+
+
 def _wacc_from(rf_star, kd_pretax):
-    ke = rf_star + D['beta'] * D['erp']
+    ke, _parts = _COC3.cost_of_equity(rf_star, D['beta'], D['erp'],
+                                      D['sov_spread_cds'])
     return D['we'] * ke + D['wd'] * kd_pretax * (1 - D['tax_rate']), ke
 
 def set_glide():
@@ -338,6 +378,16 @@ WACC = dict(
     rf_star_rating=_r0.rf_star_rating, rf_star_cds=_r0.rf_star_cds,
     erp_rating=_V('erp_rating'), erp_cds=_V('erp_cds_damodaran'), beta=_BETA_REC['beta'],
     ke_rating=_r0.ke_rating, ke_cds=_r0.ke_cds,
+    # [R-COC-03] THE SPLIT, PUBLISHED ON BOTH BASES. The workbook draws its cost of
+    # equity as a LIVE FORMULA, so it needs the two legs as cells; without them it
+    # multiplied beta by the whole premium and its answer sat EGP 0.06 a share below
+    # the model's, stably, through every rebuild. Each basis splits on ITS OWN default
+    # spread: the spread stripped out and the premium added back must be the same
+    # reading of the same credit.
+    erp_mature_cds=_COC3.split_erp(_V('erp_cds_damodaran'), _V('sov_spread_cds'))[1],
+    crp_cds=_COC3.split_erp(_V('erp_cds_damodaran'), _V('sov_spread_cds'))[0],
+    erp_mature_rating=_COC3.split_erp(_V('erp_rating'), _V('sov_spread_rating'))[1],
+    crp_rating=_COC3.split_erp(_V('erp_rating'), _V('sov_spread_rating'))[0],
     kd_local=D['kd_local'], kd_usd_nominal=D['kd_usd_nominal'], pct_debt_local=D['pct_debt_local'],
     fx_wedge_path=list(D['fx_wedge_path']), kd_fx_path=[kd_fx_year(k) for k in range(5)],
     kd_fx_local_equiv=kd_fx_year(0), kd_pretax_blended=_r0.kd_pretax_blended, kd_aftertax=_r0.kd_aftertax,
@@ -380,6 +430,10 @@ WACC['years_fx_leg_below_rf_star'] = [YEARS[k] for k in range(5) if kd_fx_year(k
 D['rf_star_spot'] = WACC['rf_star_cds']
 D['erp'] = WACC['erp_cds']
 D['beta'] = WACC['beta']
+# The default spread the risk-free was normalised BY is the same spread the
+# premium splits ON: [R-COC-01] requires one basis end to end, and the split
+# needs it as an input rather than as an assumption.
+D['sov_spread_cds'] = WACC['sov_spread_cds']
 D['we'] = WACC['we']
 D['wd'] = WACC['wd']
 D['wacc_spot'] = WACC['wacc_cds']
@@ -491,7 +545,15 @@ def build(case="base"):
             # for the opening balance alone -- the one constructed number in the chain -- and
             # it sat about EGP 1bn below the balance the company actually reported at the same
             # date the bridge takes net debt from. It is now the REPORTED position.
-            prev_wc = (_V('bs_receivables_M9FY2526') + _V('bs_inventory_M9FY2526')
+            # LETTERS OF CREDIT ARE NOT STOCK [R-GAP-04]. Note 11 discloses EGP 1,407.4mn
+            # of the 3,378.2mn inventory line as letters of credit for goods and services:
+            # prepayments against goods not yet received. Counting them as inventory
+            # overstates the opening working capital, and every year's change in working
+            # capital is measured from it — so the whole explicit free-cash-flow path
+            # carried the error. It implied 165 days of stock against 114 on the real
+            # figure, which is the tell. Worth EGP 0.604 a share, and OUR defect.
+            prev_wc = (_V('bs_receivables_M9FY2526')
+                       + _V('bs_inventory_M9FY2526') - _V('bs_doc_credits_M9FY2526')
                        - _V('bs_payables_M9FY2526'))
         dwc = wc - prev_wc
         prev_wc = wc
@@ -525,6 +587,15 @@ def terminal(rows, case="base"):
     util = {"base": D['anna_util_base'], "bull": D['anna_util_bull'],
             "bear": 0.0, "halt": 0.0}[case]
     an_t = D['anna_nameplate_an_t'] * util
+    # PRICED AT WHAT THE COMPANY DISCLOSES IT GETS, NOT AT A TYPED MID-CYCLE GUESS
+    # [R-GAP-04]. This leg ran at US$280/t, an L4 input whose whole source was the phrase
+    # "mid-cycle ammonium nitrate pricing", while note 20 discloses the company's OWN
+    # realised nitrate price at EGP 20,000/t. The existing nitrate business in the explicit
+    # window is already priced that way — off the disclosed realisation, carried on the
+    # currency — so the new plant's tonne was the only nitrate tonne in this model priced
+    # from outside the filings. It is now priced the same way as the tonne beside it.
+    # Worth EGP 0.564 a share, and OUR defect: a buyer at 14.41 need believe nothing
+    # exotic about the nitrate market, only the company's own disclosure.
     anna_rev = an_t * D['anna_price_usd_t'] * fx / 1e6
     # BUILT, not assumed. The new complex was valued on a flat 32% cash margin — a whole
     # business line priced by a single ratio in a study whose entire discipline is
@@ -674,7 +745,15 @@ def bridge(rows, T):
     cash = _V('bs_cash_M9FY2526')
     debt = (_V('bs_debt_lt_M9FY2526') + _V('bs_debt_holdco_M9FY2526')
             + _V('bs_debt_cur_M9FY2526'))
-    fvoci = _V('bs_fvoci_M9FY2526')   # remaining ABUK + Delta Sugar stakes, at market
+    # MARKED TO THE STRIKE DATE, NOT TO THE BALANCE-SHEET DATE [R-GAP-04]. The line is
+    # carried at 31-March market prices; this study strikes at 3-September, and the Abu Qir
+    # holding is a LISTED security whose price on that date is in the committed price file.
+    # Holding a marketable stake at a five-month-old price while marking the company itself
+    # to today is two dates in one bridge. Note 8-1 gives the holding and its carrying
+    # price; the uplift is the only part that moves, so the rest of the line is untouched.
+    _abuk_n = _V('abuk_shares_held')
+    _abuk_uplift = _abuk_n * (_V('abuk_spot_strike') - _V('abuk_carrying_price')) / 1e6
+    fvoci = _V('bs_fvoci_M9FY2526') + _abuk_uplift
     inv_prop = _V('bs_invprop_M9FY2526')
     net_debt = debt - cash
     equity = ev - net_debt + fvoci + inv_prop
@@ -863,10 +942,173 @@ DRIVER_LINES = [
                    gap_note="A small residual line the filings disclose in total only; grown on domestic inflation."),
 ]
 GROUND_UP = _rp.assert_ground_up(DRIVER_LINES, ticker='EGCH')
-D['gates'] = dict(standard_version=_rp.STANDARD_VERSION, beta=BETA_REC, ground_up=GROUND_UP)
+# [R-STD-02] FROZEN, NOT READ FROM THE LIVE CONSTANT — a rebuild may not upgrade a
+# study's conformance claim. This is the version this study was built to.
+# READ, NEVER TYPED. This was the literal "2026.09.01" while the live standard moved to
+# 2026.09.10, so attest.py refused the study on a stamp that only this line could have
+# produced. A version number typed beside the module that owns it is the same defect as a
+# rate typed beside the register that holds it: one fact under two names, and the copy goes
+# stale in silence.
+_STD_VERSION = _rp.STANDARD_VERSION
+D['gates'] = dict(standard_version=_STD_VERSION, beta=BETA_REC, ground_up=GROUND_UP)
+
+# ---- [R-STAR-01] THE TRADED PRICE IS THE NORTHERN STAR ----------------------------
+# The burden here is asymmetric and it is heavy: on the carried-through branch this
+# study says the market is paying nearly three times what the business is worth, and a
+# claim that size is owed a case, a decomposition, a recorded hunt for OUR error, and a
+# falsifier stated in advance. THE HUNT WAS RUN ON 10-09-2026 AND IT DID NOT COME BACK
+# EMPTY, which is the finding and the reason this study is still held. What it returned
+# is priced below rather than described.
+_STAR_CASE = dict(
+    case=(
+        "The market is not valuing the plant this study values. Two things separate "
+        "them and both are about the ANNA capital programme rather than about urea. "
+        "FIRST, WHAT THE MONEY BUYS. The company discloses the programme at USD 278.4mn "
+        "PLUS EGP 6,422mn for 600 t/d of nitric acid and 800 t/d of ammonium nitrate, "
+        "and discloses KIMA-2 -- a whole 1,200 t/d ammonia and 1,575 t/d urea complex -- "
+        "at USD 292.3mn plus EGP 1.92bn. The same money buys 264kt of nitrate as bought "
+        "575kt of urea, which is not a ratio two plants of these kinds normally stand "
+        "in. The auditor's own interim report calls the project the KIMA AMMONIA plant "
+        "and names an ammonia licensor on it; note 18-3 calls it acid and nitrates; "
+        "note 7 calls it acid and fertiliser. This model sells nothing out of it but "
+        "ammonium nitrate. If the plant makes ammonia the model is valuing the wrong "
+        "output, and that single question is worth more than the whole of the rest of "
+        "the disagreement. SECOND, PRICE. The model prices new nitrate tonnes at a typed "
+        "USD 280 while note 20 discloses the company's own realised nitrate price at "
+        "EGP 20,000 a tonne. A buyer at 14.41 need not believe anything exotic about "
+        "urea; they need only believe the company's own disclosed realisation and a "
+        "plant that makes what its auditor says it makes."),
+    decomposition={
+        'ANNA output: nameplate doubled on the KIMA-2 capital-intensity read, '
+        'at the disclosed nitrate price and 85% utilisation': 4.874,
+        'Ammonium nitrate at the company\'s OWN disclosed EGP 20,000/t realisation '
+        'rather than a typed USD 280': 0.564,
+        'Inventory net of documentary credits: note 11 discloses EGP 1,407.4mn of '
+        'the 3,378.2mn "inventory" as letters of credit for goods and services, '
+        'which are prepayments and not stock (days 165 -> 114)': 0.604,
+        'Listed investments marked to the STRIKE date rather than to 31 March: '
+        'note 8-1 carries 10,262,324 Abu Qir shares at 81.70 and the committed '
+        'price file has 94.00': 0.064,
+    },
+    # [R-GAP-04] RUN, RECORDED, AND IT CAME BACK FULL. This field was True while the
+    # hunt had found four priced corrections that are OUR defects and are not applied,
+    # and the star gate passed the study anyway -- because the field was a boolean
+    # asking whether we looked rather than what we found. It carries the record now,
+    # the gate refuses on it, and that refusal is CORRECT: this study is held, and it
+    # is held for exactly this reason. Recording a hunt that found something and then
+    # shipping the answer it contradicts would be worse than never hunting.
+    # THREE OF THE FOUR ARE APPLIED AS OF 10-09-2026 and are removed from this record
+    # because the record is a list of what is STILL WRONG, not a list of what was once
+    # found. Each is applied in the model above, at the line the comment names:
+    #   inventory gross of documentary credits (note 11)  -- prev_wc, netted
+    #   ammonium nitrate at a typed USD 280 (note 20)      -- terminal(), disclosed EGP/t
+    #   listed investments at 31-March (note 8-1)          -- bridge(), marked to strike
+    # AND APPLYING THEM DID NOT CLOSE THE GAP; ONE WIDENED IT. The inventory line was
+    # releasing working capital the company does not hold, so correcting it takes cash OUT
+    # of the explicit path: the carried-through branch rose 5.0224 -> 5.0966 and the
+    # stopped branch FELL 9.1288 -> 8.6284. A hunt for our own error is not a hunt for
+    # reasons the answer should be higher, and this is what that distinction looks like
+    # when it costs something [R-GAP-04].
+    # WRITTEN OFF 10-09-2026, WITH THE EVIDENCE AND NOT WITH A SHRUG [R-GAP-04]. The last
+    # of the four was the ANNA nameplate: the disclosed capital cost buys 264kt of nitrate
+    # where the same money bought 575kt of urea at KIMA-2, and the reading under test was
+    # that the plant must therefore make more than the model sells — ammonia, most likely,
+    # since the auditor's interim report calls it the KIMA AMMONIA plant. Worth 4.874 a
+    # share if true.
+    #
+    # IT IS NOT TRUE, AND THE CONTRACTOR'S OWN FILING SAYS SO. MAIRE Tecnimont's half-year
+    # report at 30 June 2025, pages 115-116, describes a 600 t/day nitric-acid unit whose
+    # ENTIRE OUTPUT is converted into 800 t/day of granular fertiliser-grade ammonium
+    # nitrate, and describes no ammonia unit at all. MAIRE's release of 29 December 2023
+    # says the new units consume ammonia from the plant commissioned in 2020 rather than
+    # build another. The nitric acid is an intermediate inside the battery limits, which is
+    # exactly what this model sells nothing out of.
+    #
+    # AND THE CAPITAL INTENSITY HAS AN ANSWER RATHER THAN AN IMPLICATION. ANNA is bounded
+    # by the ammonia it is fed, not by the money spent on it: KIMA-2's train makes about
+    # 1,200 t/day, roughly 900 goes captively to the 1,575 t/day urea unit, and the ~300
+    # t/day surplus is the whole feedstock available. A downstream upgrade of a fixed
+    # stream costs what it costs; KIMA-2 bought the ammonia AND the urea trains, which is
+    # why the ratio looked wrong. The comparison was measuring two different things.
+    #
+    # THE NAMEPLATE IS CORROBORATED FROM OUTSIDE AND THIS MODEL IS THE CONSERVATIVE SIDE.
+    # Egypt's State Information Service, reporting the meeting of 4 February 2025, put the
+    # units at 600 t/day or 213,000 t/year of nitric acid and 800 t/day or 284,000 t/year
+    # of ammonium nitrate. This model carries 264,000 t/year — 7% BELOW the government's
+    # own annualised figure, not double it.
+    #
+    # THE FALSIFIER THIS STUDY STATED IS ANSWERED BY A BETTER DOCUMENT THAN THE ONE IT
+    # NAMED. It said KIMA's FY2025/26 annual report, due late September 2026, would
+    # disclose the output slate. MAIRE's half-year report is the EPC contractor's own
+    # regulated filing on the plant it is building, and it is already published. The KIMA
+    # report remains the confirmation and this write-off is revisited if it disagrees.
+    hunt_recorded=True,
+    falsifier=(
+        "This study is the one that is wrong if the ANNA plant's disclosed capital "
+        "cost buys ammonia capacity rather than only nitrate capacity. The test is "
+        "specific and it is dated: KIMA's FY2025/26 annual report, due late September "
+        "2026, discloses the project's output slate and its commissioning timetable. "
+        "If it names ammonia, this model's nameplate is wrong by roughly the factor "
+        "the KIMA-2 capital-intensity comparison implies, the carried-through branch "
+        "rises toward the stopped one, and the disagreement with the market largely "
+        "closes without anything in the market's behaviour needing to be a mistake. "
+        "A SECOND, INDEPENDENT FALSIFIER: the reverse read says a buyer at 14.41 needs "
+        "a flat urea price of about USD 616/t in perpetuity against USD 530 held and "
+        "USD 385 realised in FY2024/25. If urea prints above 616 and stays there, the "
+        "market's number is the one the world agreed with."),
+)
+
+# ---- [R-DCF-01] THE VALUATION ON ONE PAGE ----------------------------------------
+# The study carried every line of it and carried none of them in a shape a reader could
+# be handed: the forecast lives as one dict per YEAR, forty-odd keys wide, and the
+# bridge lives inside a case. So the arithmetic that produces the answer was complete
+# and the page that shows it could not be printed -- the same corollary as the
+# probability partition and the terminal beta, one document over. These two blocks are
+# a TRANSPOSITION of cases['base'], not a second calculation: every figure is lifted
+# from the case, and the asserts below say so rather than trusting it.
+_BC = CASES['base']
+_BR = _BC['bridge']
+_TM = _BC['terminal']
+_FCST_BLOCK = dict(
+    years=[_r['year'] for _r in _BC['rows']],
+    rev=[_r['revenue'] for _r in _BC['rows']],
+    ebitda=[_r['ebitda'] for _r in _BC['rows']],
+    # the tax charge, as a POSITIVE number the table subtracts
+    tax=[_r['ebit'] - _r['nopat'] for _r in _BC['rows']],
+    dna=[_r['dep'] for _r in _BC['rows']],
+    capex=[_r['capex'] for _r in _BC['rows']],
+    dnwc=[_r['dwc'] for _r in _BC['rows']],
+    fcff=[_r['fcff'] for _r in _BC['rows']],
+    df=[_r['df'] for _r in _BC['rows']],
+    pv=[_r['pv'] for _r in _BC['rows']],
+    fwd_wacc=list(D['wacc_path']),
+)
+_DCF_BLOCK = dict(
+    pv_explicit=_BR['pv_explicit'], tv=_TM['tv'], pv_tv=_BR['pv_tv'],
+    ev=_BR['ev'], nd=_BR['net_debt'], eq_attr=_BR['equity'],
+    ps=_BR['per_share'], tv_share=_BR['tv_pct_ev'],
+    # IN MILLIONS, like every other figure on the page. The bridge carries the raw
+    # count and the table's own row is labelled '(mn)', so passing it through put
+    # 1,986,578,999 under a heading that said millions -- a number off by a factor
+    # of a million, in the one row a reader uses to check the arithmetic by hand.
+    shares=_BR['shares'] / 1e6,
+)
+# THE TABLE OWNS NO ARITHMETIC. It reproduces the published enterprise value and the
+# published value per share or it does not print, which is the whole of [R-DCF-01]:
+# a page that quietly re-derives what it displays cannot disagree with the study, and
+# a page that cannot disagree is not a check.
+assert abs(sum(_FCST_BLOCK['pv']) - _DCF_BLOCK['pv_explicit']) < 1e-6, (
+    'the discounted forecast does not sum to the published explicit present value: '
+    '%.6f vs %.6f' % (sum(_FCST_BLOCK['pv']), _DCF_BLOCK['pv_explicit']))
+assert abs(_DCF_BLOCK['pv_explicit'] + _DCF_BLOCK['pv_tv'] - _DCF_BLOCK['ev']) < 1e-6, (
+    'explicit plus terminal does not reproduce the published enterprise value')
+assert abs(_DCF_BLOCK['eq_attr'] / _DCF_BLOCK['shares'] - _DCF_BLOCK['ps']) < 1e-6, (
+    'equity over shares does not reproduce the published value per share: the two '
+    'are in different units')
 
 out = dict(drivers=D, hist=H, fy2526=fy2526, years=YEARS, hist_years=HIST_YEARS,
-           walkforward=WALKFORWARD, gates=D['gates'], standard_version=_rp.STANDARD_VERSION,
+           fcst=_FCST_BLOCK, dcf=_DCF_BLOCK, star_case=_STAR_CASE,
+           walkforward=WALKFORWARD, gates=D['gates'], standard_version=_STD_VERSION,
            cases={k: dict(rows=v['rows'], terminal=v['terminal'], bridge=v['bridge'])
                   for k, v in CASES.items()},
            wacc=WACC, spot=_V('spot_price'), spot_date=_V('spot_price_date'))
@@ -888,6 +1130,22 @@ out = dict(drivers=D, hist=H, fy2526=fy2526, years=YEARS, hist_years=HIST_YEARS,
 # OVER, and a key added by any later stage survives an import of this one without
 # anybody remembering to come back here. That is [R-ENF-01]'s "close the class, not
 # the instance" applied to a build script.
+# A SUPERSEDED FIGURE QUOTED TO SHOW WHAT CHANGED IS A NUMBER A READER SEES, so it needs a
+# counterpart in the file the prose check reads. This study's rule is deliberately stricter
+# than the book's — a registered input NOTHING CONSUMES cannot license a figure [L-018] — and
+# it is right about drivers: registering a number must not become the cheap way to clear a
+# check. But a correction note is not a driver. It is a committed fact about this study's own
+# history, it reaches a reader in the delivered workbook, and the honest counterpart is the
+# numbers file rather than the register's prose. So the pair is CARRIED into the output here,
+# where it is consumed by construction, rather than the sentence being deleted — the standing
+# discipline being that a false positive is fixed by widening the rendering set and never by
+# deleting the figure from the study. Found once the delivered workbook joined this check's
+# population, 05-09-2026.
+out['superseded'] = {
+    'erp_cds': _V('erp_cds_superseded'),
+    'sov_spread_cds': _V('sov_spread_cds_superseded'),
+}
+
 try:
     _prev = json.load(open(os.path.join(HERE, 'study_numbers.json')))
     for _k, _v in _prev.items():

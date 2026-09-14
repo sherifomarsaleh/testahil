@@ -111,6 +111,45 @@ def gate_cases():
                     rc != 0 and 'DU' in txt))
     finally:
         shutil.rmtree(d, ignore_errors=True)
+    # 15 — THE WIDENED STEM LIST. A financial-statement line whose stem the ORIGINAL
+    # list did not carry, sourced to a vendor, must now be caught. This is the shape
+    # that hid two real breaches: `ta_` and `tl_` match none of the original stems, so
+    # total assets and total liabilities sourced to trade press were never examined.
+    d, dst = sandbox()
+    try:
+        p = os.path.join(dst, 'engine', 'du_study', 'study_numbers.json')
+        j = json.load(open(p))
+        j['inputs']['ta_fy24'] = {'value': 1.0, 'date': 'd', 'ring': 'Company',
+                                  'source': 'EGX filing reported by Zawya'}
+        json.dump(j, open(p, 'w'))
+        assert 'ta_fy24' in json.load(open(p))['inputs'], 'fixture did not land'
+        rc, txt = run(dst)
+        out.append(('15 a vendor-sourced line the OLD stem list missed must FAIL',
+                    rc != 0 and 'DU' in txt))
+    finally:
+        shutil.rmtree(d, ignore_errors=True)
+
+    # 16 — AND THE BOUNDARY. These new stems are short enough to collide: a bare `ca`
+    # swallows capacity, a bare `ga` swallows gas, a bare `imp` swallows import price —
+    # every one an OPERATING quantity this gate must not touch. A widening that condemns
+    # them is worse than the gap it closed, so the clean case is the one that matters.
+    d, dst = sandbox()
+    try:
+        p = os.path.join(dst, 'engine', 'du_study', 'study_numbers.json')
+        j = json.load(open(p))
+        for k in ('capacity_fy24', 'gas_price_fy24', 'import_price_fy24'):
+            j['inputs'][k] = {'value': 1.0, 'date': 'd', 'ring': 'Industry',
+                              'source': 'Argus Media benchmark assessment'}
+        json.dump(j, open(p, 'w'))
+        got = json.load(open(p))['inputs']
+        assert all(k in got for k in ('capacity_fy24', 'gas_price_fy24',
+                                      'import_price_fy24')), 'fixture did not land'
+        rc, txt = run(dst)
+        out.append(('16 operating quantities the short stems could swallow must NOT fire',
+                    rc == 0))
+    finally:
+        shutil.rmtree(d, ignore_errors=True)
+
     # 14 — the repository as it stands must stay GREEN
     d, dst = sandbox()
     try:
@@ -129,11 +168,17 @@ def main():
         print('  %-4s %s' % ('ok' if ok else 'FAIL', name))
         if not ok:
             fails.append(name)
-    for name, ok in gate_cases():
+    gated = list(gate_cases())
+    for name, ok in gated:
         print('  %-4s %s' % ('ok' if ok else 'FAIL', name))
         if not ok:
             fails.append(name)
-    total = len(CASES) + 4
+    # COUNTED FROM WHAT ACTUALLY RAN, NOT FROM A HAND-MAINTAINED OFFSET. This line read
+    # `len(CASES) + 4` — the 4 being the sandboxed cases written by hand — and adding two
+    # more made it report "14/14" while SIXTEEN conditions had run. A control that
+    # miscounts itself is the same species as a control that never injects its condition:
+    # it prints a number and the number is not about the work.
+    total = len(CASES) + len(gated)
     print('\n%d/%d conditions behaved as required' % (total - len(fails), total))
     return 1 if fails else 0
 

@@ -40,7 +40,7 @@ PEERS = REL['peers']
 BLEND_PE_TTM = ((1 - REL['spot_weight']) * PEERS[0]['pe_ttm']
                 + REL['spot_weight'] * PEERS[1]['pe_ttm'])
 OWN_PE_FWD = D['meta']['mktcap_usd000'] / REL['npa_ord_26']
-PB_MARKET_ORD = W['mktcap'] / IN['q1_26_eqp']
+PB_MARKET_ORD = W['mktcap'] / IN['h1_26_eqp']
 NET_DEBT_TOTAL = (D['bridge']['net_debt_company'] + D['bridge']['deferred']
                   + IN['acq_2026_cost'])
 SN = D['sens']

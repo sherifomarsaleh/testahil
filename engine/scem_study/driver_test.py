@@ -25,7 +25,25 @@ import openpyxl
 import xlcalc
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-wb = openpyxl.load_workbook(os.path.join(HERE, 'SCEM_Valuation_Model_04092026_public.xlsx'))
+
+# THE CHECK OPENS THE FILE A READER RECEIVES, RESOLVED BY DATE RATHER THAN BY NAME.
+# L-066/L-067: two of ARCC's gates opened a SUPERSEDED workbook while the delivered file
+# was a later edition, and both reported clean; re-pointed, five driver assertions failed
+# immediately. THE SAME DEFECT WAS LIVE HERE on 07-09-2026 — this file named the
+# 04-09-2026 workbook while the 07-09-2026 edition was the delivered one, so the driver
+# test reported 51 green drivers against a workbook nobody ships. A check that opens a
+# delivered file BY NAME does not move with the re-issue, so it is globbed and the newest
+# is taken, and an empty glob RAISES rather than skipping [R-ENF-04].
+def _latest_workbook(here):
+    import glob as _g
+    fs = [f for f in _g.glob(os.path.join(here, 'SCEM_Valuation_Model_*_public.xlsx'))
+          if not os.path.basename(f).startswith('~$')]
+    if not fs:
+        raise SystemExit('no delivered SCEM workbook found — an empty result is not a '
+                         'clean result [R-ENF-04]')
+    return max(fs, key=lambda f: os.path.basename(f))
+
+wb = openpyxl.load_workbook(_latest_workbook(HERE))
 A = {}
 for row in wb['Assumptions'].iter_rows(min_col=1, max_col=1):
     c = row[0]
@@ -82,6 +100,10 @@ def read(overrides=None):
                 tax24=bk.cell_value('Income Statement', 'C13'),
                 ta24=bk.cell_value('Balance Sheet', 'C8'),
                 eq24=bk.cell_value('Balance Sheet', 'C12'),
+                # THE FY2023 EQUITY LINE, which the roll-back reaches through the capital
+                # increase paid in during FY2024. Until this probe existed that input fed
+                # only a printed cell and read as dead — not dead, uncovered.
+                eq23=bk.cell_value('Balance Sheet', 'B12'),
                 bvps=bk.cell_value('Relative & Normalized', 'B41'))
 
 
@@ -121,9 +143,23 @@ CASES = [
     ('Dollar-linked share of the materials line', 'B', +0.20, 'ebitda26', +1,
      'a larger dollar-linked share is CHEAPER while domestic cost inflation runs ahead '
      'of the currency, which is what the house path says'),
-    ('Weighted depreciation rate (note 3/2 on note 4)', 'B', +0.01, 'dcf', -1,
-     'a faster disclosed depreciation rate means a shorter life, a heavier terminal '
-     'maintenance charge, and a lower value'),
+    # THE ASSERTION MOVED WITH THE WIRING, AND THE OLD ONE WAS STALE RATHER THAN WRONG.
+    # Until 07-09-2026 this rate was BOTH the forward book-depreciation rate AND, through
+    # its reciprocal, the terminal's useful life, so raising it did two opposite things at
+    # once and the net was negative. The terminal now stands on the DISCLOSED MACHINERY
+    # LIFE, a separate input, so this rate drives only the book charge — and a heavier book
+    # charge RAISES value here, because free cash flow is NOPAT plus book depreciation less
+    # capital spending, so the charge comes back in full while the tax on it does not.
+    ('Weighted depreciation rate (note 3/2 on note 4)', 'B', +0.01, 'dcf', +1,
+     'this rate now drives the forward BOOK charge alone. Free cash flow adds book '
+     'depreciation back after taxing profit net of it, so a heavier charge is worth the '
+     'tax on it and the value RISES. It no longer touches the terminal maintenance '
+     'charge, which stands on the disclosed machinery life'),
+    ('Disclosed useful life, machinery (note 3/2)', 'B', +5.0, 'dcf', +1,
+     'a LONGER disclosed life spreads the replacement-cost base over more years, so the '
+     'terminal maintenance charge is smaller and the value is higher. This is the driver '
+     'the terminal actually stands on [R-TERM-01], and it is separated from the book '
+     'depreciation rate precisely so that each moves one thing'),
     ('Capex run rate (cash-flow statements)', 'B', +100.0, 'dcf', -1,
      'more capital spending is less free cash flow — which only became TRUE of this '
      'model when the explicit window was put on the same waterfall as the terminal; '

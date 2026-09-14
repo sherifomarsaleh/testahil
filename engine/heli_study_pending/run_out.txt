@@ -1,0 +1,15 @@
+QC(m) — Information Sweep [HELI, 2026-09-09]: FAIL (2 errors) — 4/4 rings, 43 findings (4 B · 19 S · 9 D · 6 C · 5 NEG), driver gate 13 rows (6 bottom-up / 7 top-down) | primary access: attempted (15) | FS years: 0 [] | IR findings: 3
+
+findings: 43 | drivers: 13 | primary-access attempts: 15
+driver modes: 6 bottom-up / 7 top-down
+company-sourced findings: 12 COMPANY_OFFICIAL + 3 COMPANY_IR
+
+VALIDATOR ERRORS (2) — disclosed, not suppressed:
+  ! FS DEPTH: only 0 distinct fiscal year(s) [] carry is_fs_data — minimum 2 required (or state the shortfall explicitly if the company genuinely discloses fewer)
+  ! QUARTER COVERAGE: study year 2026 declared ['Q1-2026', 'Q2-2026'] disclosed but no finding is tagged ['Q1-2026', 'Q2-2026'] — sweep every disclosed quarter BEFORE the build, not after
+VALIDATOR WARNINGS: none
+
+freshness (delivery 2026-09-09): OK — sweep and delivery same day
+freshness (delivery 2026-09-23): OK
+
+STOP AND INFORM: no audited or reviewed statement of any period was obtained. See the module docstring, WHAT TO ATTACH.

@@ -1,0 +1,2514 @@
+[
+ {
+  "url": "https://ir.elsewedyelectric.com/en/results-center",
+  "outcome": "OK",
+  "detail": "results centre rendered; CSRF token and year list read",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:31"
+ },
+ {
+  "url": "https://ir.elsewedyelectric.com/api/filter_results_center_sections?year=2007",
+  "outcome": "OK",
+  "detail": "section payload returned",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:32"
+ },
+ {
+  "url": "https://ir.elsewedyelectric.com/api/filter_results_center_sections?year=2008",
+  "outcome": "OK",
+  "detail": "section payload returned",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:32"
+ },
+ {
+  "url": "https://ir.elsewedyelectric.com/api/filter_results_center_sections?year=2009",
+  "outcome": "OK",
+  "detail": "section payload returned",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:33"
+ },
+ {
+  "url": "https://ir.elsewedyelectric.com/api/filter_results_center_sections?year=2010",
+  "outcome": "OK",
+  "detail": "section payload returned",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:34"
+ },
+ {
+  "url": "https://ir.elsewedyelectric.com/api/filter_results_center_sections?year=2011",
+  "outcome": "OK",
+  "detail": "section payload returned",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:35"
+ },
+ {
+  "url": "https://ir.elsewedyelectric.com/api/filter_results_center_sections?year=2012",
+  "outcome": "OK",
+  "detail": "section payload returned",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:35"
+ },
+ {
+  "url": "https://ir.elsewedyelectric.com/api/filter_results_center_sections?year=2013",
+  "outcome": "OK",
+  "detail": "section payload returned",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:36"
+ },
+ {
+  "url": "https://ir.elsewedyelectric.com/api/filter_results_center_sections?year=2014",
+  "outcome": "OK",
+  "detail": "section payload returned",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:37"
+ },
+ {
+  "url": "https://ir.elsewedyelectric.com/api/filter_results_center_sections?year=2015",
+  "outcome": "OK",
+  "detail": "section payload returned",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:38"
+ },
+ {
+  "url": "https://ir.elsewedyelectric.com/api/filter_results_center_sections?year=2016",
+  "outcome": "OK",
+  "detail": "section payload returned",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:39"
+ },
+ {
+  "url": "https://ir.elsewedyelectric.com/api/filter_results_center_sections?year=2017",
+  "outcome": "OK",
+  "detail": "section payload returned",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:39"
+ },
+ {
+  "url": "https://ir.elsewedyelectric.com/api/filter_results_center_sections?year=2018",
+  "outcome": "OK",
+  "detail": "section payload returned",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:40"
+ },
+ {
+  "url": "https://ir.elsewedyelectric.com/api/filter_results_center_sections?year=2019",
+  "outcome": "OK",
+  "detail": "section payload returned",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:41"
+ },
+ {
+  "url": "https://ir.elsewedyelectric.com/api/filter_results_center_sections?year=2020",
+  "outcome": "OK",
+  "detail": "section payload returned",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:41"
+ },
+ {
+  "url": "https://ir.elsewedyelectric.com/api/filter_results_center_sections?year=2021",
+  "outcome": "OK",
+  "detail": "section payload returned",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:42"
+ },
+ {
+  "url": "https://ir.elsewedyelectric.com/api/filter_results_center_sections?year=2022",
+  "outcome": "OK",
+  "detail": "section payload returned",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:43"
+ },
+ {
+  "url": "https://ir.elsewedyelectric.com/api/filter_results_center_sections?year=2023",
+  "outcome": "OK",
+  "detail": "section payload returned",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:44"
+ },
+ {
+  "url": "https://ir.elsewedyelectric.com/api/filter_results_center_sections?year=2024",
+  "outcome": "OK",
+  "detail": "section payload returned",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:45"
+ },
+ {
+  "url": "https://ir.elsewedyelectric.com/api/filter_results_center_sections?year=2025",
+  "outcome": "OK",
+  "detail": "section payload returned",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:46"
+ },
+ {
+  "url": "https://ir.elsewedyelectric.com/api/filter_results_center_sections?year=2026",
+  "outcome": "OK",
+  "detail": "section payload returned",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:46"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Consolidated-Financial-Statement-for-the-period-of-Jan-Mar07.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2007Q1__Consolidated-Financial-Statement-for-the-period-of-Jan-Mar07.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:46"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Consolidated-Financial-Statement-for-the-period-of-Jan-Jun-07.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2007Q2__Consolidated-Financial-Statement-for-the-period-of-Jan-Jun-07.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:46"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Consolidated-Financial-Statement-for-the-period-of-Jan-Sep-07.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2007Q3__Consolidated-Financial-Statement-for-the-period-of-Jan-Sep-07.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:46"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Consolildated-Financial-Statement-for-the-year-ending-Dec-07.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2007Q4__Consolildated-Financial-Statement-for-the-year-ending-Dec-07.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:46"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Consolidated-Financial-Statement-for-the-period-of-Jan-Mar-08.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2008Q1__Consolidated-Financial-Statement-for-the-period-of-Jan-Mar-08.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:46"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Elsewedy-Cables-Audited-Consolidated-Results-for-Q1-08.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2008Q1__Elsewedy-Cables-Audited-Consolidated-Results-for-Q1-08.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:46"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Consolidated-Financial-Statement-for-the-period-Jan-Jun-08.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2008Q2__Consolidated-Financial-Statement-for-the-period-Jan-Jun-08.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:46"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Consolidated-Financial-Statement-for-the-period-Jan-Sep-08.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2008Q3__Consolidated-Financial-Statement-for-the-period-Jan-Sep-08.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:46"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Consolidated-Financial-Statement-for-the-year-ended-Dec-08-and-Auditor-Report.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2008Q4__Consolidated-Financial-Statement-for-the-year-ended-Dec-08-and-Auditor-Report.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:46"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Consolidated-Financial-Statement-for-the-period-of-Jan-Mar-09.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2009Q1__Consolidated-Financial-Statement-for-the-period-of-Jan-Mar-09.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:46"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Consolidated-Financail-Statement-for-the-period-of-Jan-Jun-09.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2009Q2__Consolidated-Financail-Statement-for-the-period-of-Jan-Jun-09.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:46"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Quarter-three-2009.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:46"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Year-End-2009-consolidated.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2009Q4__Year-End-2009-consolidated.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:46"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/standalone-Q1-2010.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:46"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Consolidated-Q1-2010.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2010Q1__Consolidated-Q1-2010.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:46"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/\u0627\u0644\u0642\u0648\u0627\u0626\u0645-\u0627\u0644\u0645\u0627\u0644\u064a\u0629-\u0627\u0644\u062f\u0648\u0631\u064a\u0629-\u063a\u064a\u0631-\u0627\u0644\u0645\u062c\u0645\u0639\u0629-\u0645\u0646-\u064a\u0646\u0627\u064a\u0631-2010-\u062d\u062a\u064a-\u064a\u0648\u064a\u0646\u064a\u0648-2010.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:46"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Consolidated-Financial-Statement-for-the-period-of-Jan-Jun-2010.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2010Q2__Consolidated-Financial-Statement-for-the-period-of-Jan-Jun-2010.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:46"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Elsewedy-Electric-reports-second-quarter-2010-results.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2010Q2__Elsewedy-Electric-reports-second-quarter-2010-results.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:46"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/\u0627\u0644\u0642\u0648\u0627\u0626\u0645-\u0627\u0644\u0645\u0627\u0644\u064a\u0629-\u063a\u064a\u0631-\u0627\u0644\u0645\u062c\u0645\u0639\u0629-\u0627\u0644\u0633\u0648\u064a\u062f\u064a-\u0625\u0644\u064a\u0643\u062a\u0631\u064a\u0643-\u0645\u0646-\u0627\u0648\u0644-\u064a\u0646\u0627\u064a\u0631-\u062d\u062a\u064a-30-\u0633\u0628\u062a\u0645\u0628\u0631-2010.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:46"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Consolidated-Q3-2010.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2010Q3__Consolidated-Q3-2010.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:46"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/El-Sewedy-Electric-reports-third-quarter-2010-results.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2010Q3__El-Sewedy-Electric-reports-third-quarter-2010-results.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:46"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/\u0627\u0644\u0642\u0648\u0627\u0626\u0645-\u0627\u0644\u0645\u0627\u0644\u064a\u0629-\u063a\u064a\u0631-\u0627\u0644\u0645\u062c\u0645\u0639\u0629-\u0627\u0644\u0633\u0648\u064a\u062f\u064a-\u0625\u0644\u064a\u0643\u062a\u0631\u064a\u0643-2010.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:46"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Year-End-2010-Consolidated.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2010Q4__Year-End-2010-Consolidated.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:46"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/El-Sewedy-Electric-reports-year-end-2010-results.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:46"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/stanalone-31-march-2011.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:46"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/consolidated-Q1-2011.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2011Q1__consolidated-Q1-2011.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:46"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Q1-2011-Earnings-Press-release.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2011Q1__Q1-2011-Earnings-Press-release.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:46"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Consolidated-Q2-2011.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2011Q2__Consolidated-Q2-2011.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:46"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Q2-2011-Earnings-Press-release.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2011Q2__Q2-2011-Earnings-Press-release.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:46"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-financials-Sep-2011.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2011Q3__EE-financials-Sep-2011.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:46"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Consolidated-Q3-2011.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2011Q3__Consolidated-Q3-2011.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:46"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Q3-2011-Earnings-Press-release.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2011Q3__Q3-2011-Earnings-Press-release.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:46"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Standalone-FY-2011.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:46"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Consolidated-Q4-2011-English.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2011Q4__Consolidated-Q4-2011-English.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:46"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/FY-2011-Earnings-Press-Release.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2011Q4__FY-2011-Earnings-Press-Release.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:46"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Standalone-Q1-2012-Arabic.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:46"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Consolidated-Q1-2012.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2012Q1__Consolidated-Q1-2012.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:46"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Q1-2012-Earnings-Press-release.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2012Q1__Q1-2012-Earnings-Press-release.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:46"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/RAP-Quarter-Investrors-Q1-2012.pdf",
+  "outcome": "OK",
+  "detail": "19121 bytes",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:47"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Q2-2012-standalone-Arabic.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:47"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Consolidated-Q2-2012.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2012Q2__Consolidated-Q2-2012.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:47"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Q2-2012-Earnings-Press-Release.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2012Q2__Q2-2012-Earnings-Press-Release.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:47"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/RAP-Quarter-Investrors-Q2-2012.pdf",
+  "outcome": "OK",
+  "detail": "19545 bytes",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:47"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Standalone-sep-2012.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:47"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Consolidated-Q3-2012.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2012Q3__Consolidated-Q3-2012.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:47"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Q3-2012-Earnings-Press-Release.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2012Q3__Q3-2012-Earnings-Press-Release.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:47"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/RAP-Quarter-Investors-Q3-2012.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2012Q3__RAP-Quarter-Investors-Q3-2012.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:47"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/standalone-FY-2012.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:47"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/FY-2012-Earnings-Press-Release.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2012Q4__FY-2012-Earnings-Press-Release.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:47"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/RAP-Quarter-Investors-FY-2012.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2012Q4__RAP-Quarter-Investors-FY-2012.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:47"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/consolidated-Q1-2013-eng.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2013Q1__consolidated-Q1-2013-eng.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:47"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Q1-2013-Earnings-Press-Release.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2013Q1__Q1-2013-Earnings-Press-Release.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:47"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/RAP-Quarter-Investors-Q1-2013.pdf",
+  "outcome": "OK",
+  "detail": "18591 bytes",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:48"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Standalone-H1-2013.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:48"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-consolidated-Q2-2013-eng.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2013Q2__EE-consolidated-Q2-2013-eng.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:48"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Q2-2013-Earnings-Press-Release-final.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2013Q2__Q2-2013-Earnings-Press-Release-final.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:48"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/RAP-Quarter-Investors-Q2-2013.pdf",
+  "outcome": "OK",
+  "detail": "17640 bytes",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:48"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Standalone-Q3-2013.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:48"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Consolidated-Eng.-Q3-2013.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2013Q3__EE-Consolidated-Eng.-Q3-2013.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:48"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Q3-2013-Earnings-Press-Release.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2013Q3__Q3-2013-Earnings-Press-Release.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:48"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/RAP-Quarter-Investors-Q3-2013.pdf",
+  "outcome": "OK",
+  "detail": "17715 bytes",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:49"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Standalone-Q4-2013-.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:49"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-consolidated-Q4-2013-eng.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2013Q4__EE-consolidated-Q4-2013-eng.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:49"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/FY-2013-Earnings-Press-Release.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2013Q4__FY-2013-Earnings-Press-Release.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:49"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/RAP-Sheets-FY2013.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2013Q4__RAP-Sheets-FY2013.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:49"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-consolidated-eng-Q1-2014.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2014Q1__EE-consolidated-eng-Q1-2014.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:49"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Q1-2014-Earnings-Press-Release.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2014Q1__Q1-2014-Earnings-Press-Release.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:49"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/RAP-Quarter-Investors-Q1-2014.pdf",
+  "outcome": "OK",
+  "detail": "19825 bytes",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:49"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Standalone-EE-Q2-2014.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:49"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Consolidated-EE-Q2-2014-eng.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2014Q2__Consolidated-EE-Q2-2014-eng.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:49"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/H1-2014-Earnings-Press-Release.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2014Q2__H1-2014-Earnings-Press-Release.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:49"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/RAP-Quarter-Investors-Q2-2014.pdf",
+  "outcome": "OK",
+  "detail": "17391 bytes",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:49"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Standalone-FS-Q3-2014.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:49"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Consolidated-english-Q3-2014.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2014Q3__EE-Consolidated-english-Q3-2014.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:49"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/9M-2014-Earnings-Press-Release.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2014Q3__9M-2014-Earnings-Press-Release.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:49"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/RAP-Quarter-Investors-Q3-2014.pdf",
+  "outcome": "OK",
+  "detail": "17333 bytes",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:49"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Standalone-Q4-2014-.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:49"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-consolidation-english-Q4-2014.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2014Q4__EE-consolidation-english-Q4-2014.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:49"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/FY-2014-Earnings-Press-Release.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2014Q4__FY-2014-Earnings-Press-Release.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:49"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/RAP-Investors-FY-2014.pdf",
+  "outcome": "OK",
+  "detail": "19171 bytes",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:49"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Segment-analysis-FY-2014.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2014Q4__Segment-analysis-FY-2014.pdf",
+  "tier": "A",
+  "kind": "segment_analysis",
+  "at": "2026-09-07T16:47:49"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Standalone-Q1-2015.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:49"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Consolidated-Q1-2015-eng.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2015Q1__EE-Consolidated-Q1-2015-eng.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:49"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Q1-2015-Earnings-Press-Release.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2015Q1__Q1-2015-Earnings-Press-Release.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:49"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/RAP-Quarter-Investors-Q1-2015.pdf",
+  "outcome": "OK",
+  "detail": "18253 bytes",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:50"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Segment-analysis-Q1-2015.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2015Q1__Segment-analysis-Q1-2015.pdf",
+  "tier": "A",
+  "kind": "segment_analysis",
+  "at": "2026-09-07T16:47:50"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Standalone-Q2-2015.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:50"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Consolidated-Q2-2015-eng.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2015Q2__EE-Consolidated-Q2-2015-eng.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:50"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/ELSEWEDY-ELECTRIC-Q2-2015-Earnings-Press-Release.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2015Q2__ELSEWEDY-ELECTRIC-Q2-2015-Earnings-Press-Release.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:50"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/RAP-Quarter-Investors-Q2-2015.pdf",
+  "outcome": "OK",
+  "detail": "17471 bytes",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:50"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Segment-analysis-H1-2015.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2015Q2__Segment-analysis-H1-2015.pdf",
+  "tier": "A",
+  "kind": "segment_analysis",
+  "at": "2026-09-07T16:47:50"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Standalone-Q3-2015-amended.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:50"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Consolidated-Q3-2015-eng.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2015Q3__EE-Consolidated-Q3-2015-eng.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:50"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Q3-2015-ELSewedy-Electric-Earnings.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2015Q3__Q3-2015-ELSewedy-Electric-Earnings.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:50"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/RAP-Quarter-Investors-Q3-2015.pdf",
+  "outcome": "OK",
+  "detail": "17437 bytes",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:50"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Segment-analysis-Q3-2015.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2015Q3__Segment-analysis-Q3-2015.pdf",
+  "tier": "A",
+  "kind": "segment_analysis",
+  "at": "2026-09-07T16:47:50"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Standalone-Q4-2015.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:50"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Consolidated-Q4-2015-eng.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2015Q4__Consolidated-Q4-2015-eng.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:50"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/FY-2015-Earnings-Press-Release.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2015Q4__FY-2015-Earnings-Press-Release.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:50"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/RAP-Sheet-Investors-FY-2015.pdf",
+  "outcome": "OK",
+  "detail": "19323 bytes",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:50"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Segment-Analysis-FY-2015.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2015Q4__Segment-Analysis-FY-2015.pdf",
+  "tier": "A",
+  "kind": "segment_analysis",
+  "at": "2026-09-07T16:47:50"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Standalone-Q1-2016.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:50"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Consolidated-Q1-2016-eng.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2016Q1__EE-Consolidated-Q1-2016-eng.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:50"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Q1-2016-Earnings-Press-Release.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2016Q1__Q1-2016-Earnings-Press-Release.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:50"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/RAP-Sheet-Investors-Q1-2016.pdf",
+  "outcome": "OK",
+  "detail": "15131 bytes",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:50"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Segment-analysis-Q1-2016.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2016Q1__Segment-analysis-Q1-2016.pdf",
+  "tier": "A",
+  "kind": "segment_analysis",
+  "at": "2026-09-07T16:47:50"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Standalone-Q2-2016.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:50"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Consolidated-Q2-2016-eng.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2016Q2__EE-Consolidated-Q2-2016-eng.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:50"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/El-Sewedy-Electric-Q2-2016-Earnings-Release.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2016Q2__El-Sewedy-Electric-Q2-2016-Earnings-Release.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:50"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/RAP-Sheet-Investors-H1-2016.pdf",
+  "outcome": "OK",
+  "detail": "16999 bytes",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:51"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Segment-analysis-H1-2016.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2016Q2__Segment-analysis-H1-2016.pdf",
+  "tier": "A",
+  "kind": "segment_analysis",
+  "at": "2026-09-07T16:47:51"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Standalone-Q3-2016.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:51"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Consolidated-eng-Q3-2016.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2016Q3__EE-Consolidated-eng-Q3-2016.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:51"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/El-Sewedy-9M-2016-Earnings-Release.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2016Q3__El-Sewedy-9M-2016-Earnings-Release.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:51"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/RAP-Sheet-Investors-9M-2016.pdf",
+  "outcome": "OK",
+  "detail": "19592 bytes",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:51"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Segment-Analysis-9M-2016.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2016Q3__Segment-Analysis-9M-2016.pdf",
+  "tier": "A",
+  "kind": "segment_analysis",
+  "at": "2026-09-07T16:47:51"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/FS-EE-Standalone-Fy-2016.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:51"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Elsewedy-Electric-FY-2016-FS.Eng.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2016Q4__Elsewedy-Electric-FY-2016-FS.Eng.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:51"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/El-Sewedy-FY-2016-Earnings-Release.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2016Q4__El-Sewedy-FY-2016-Earnings-Release.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:51"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/RAP-Sheet-Investors-FY-2016.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2016Q4__RAP-Sheet-Investors-FY-2016.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:51"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Segment-analysis-FY-2016.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2016Q4__Segment-analysis-FY-2016.pdf",
+  "tier": "A",
+  "kind": "segment_analysis",
+  "at": "2026-09-07T16:47:51"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/FSSQ1-17.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:51"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/El-Sewedy-Q1-2017-Earnings-Release.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2017Q1__El-Sewedy-Q1-2017-Earnings-Release.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:51"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/RAP-Sheet-Investors-Q1-2017.pdf",
+  "outcome": "OK",
+  "detail": "17655 bytes",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:51"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Segment-analysis-Q1-2017.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2017Q1__Segment-analysis-Q1-2017.pdf",
+  "tier": "A",
+  "kind": "segment_analysis",
+  "at": "2026-09-07T16:47:51"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Elsewedy-Electric-H1-2017-Financial-Statements-002-.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2017Q2__Elsewedy-Electric-H1-2017-Financial-Statements-002-.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:51"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/El-Sewedy-2Q-2017-Earnings-Release-Final-2.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2017Q2__El-Sewedy-2Q-2017-Earnings-Release-Final-2.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:51"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/RAP-Sheet-Investors-H1-2017.pdf",
+  "outcome": "OK",
+  "detail": "16984 bytes",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:51"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Segment-analysis-H1-2017.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2017Q2__Segment-analysis-H1-2017.pdf",
+  "tier": "A",
+  "kind": "segment_analysis",
+  "at": "2026-09-07T16:47:51"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Standalone-Q3-2017.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:51"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Consolidated-Q3-2017-eng.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2017Q3__EE-Consolidated-Q3-2017-eng.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:51"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/El-Sewedy-3Q-2017-Earnings-Release-Final-1.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2017Q3__El-Sewedy-3Q-2017-Earnings-Release-Final-1.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:51"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/RAP-Sheet-Investors-9M-2017.pdf",
+  "outcome": "OK",
+  "detail": "17618 bytes",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:52"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Segment-Analysis-9M-2017.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2017Q3__Segment-Analysis-9M-2017.pdf",
+  "tier": "A",
+  "kind": "segment_analysis",
+  "at": "2026-09-07T16:47:52"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/El-Sewedy-4Q-2017-Earnings-Release-E-FINAL-2.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2017Q4__El-Sewedy-4Q-2017-Earnings-Release-E-FINAL-2.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:52"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/RAP-Sheet-Investors-FY-2017..pdf",
+  "outcome": "OK",
+  "detail": "19597 bytes",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:52"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Segment-Analysis-FY-2017.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2017Q4__Segment-Analysis-FY-2017.pdf",
+  "tier": "A",
+  "kind": "segment_analysis",
+  "at": "2026-09-07T16:47:52"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Standalone-Q1-2018.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:52"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Consolidated-Q1-2018-eng-1-.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2018Q1__EE-Consolidated-Q1-2018-eng-1-.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:52"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/El-Sewedy-1Q-2018-Earnings-Release-Final-1.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2018Q1__El-Sewedy-1Q-2018-Earnings-Release-Final-1.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:52"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/RAP-Sheet-Investors-Q1-2018..pdf",
+  "outcome": "OK",
+  "detail": "16670 bytes",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:52"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Segment-analysis-Q1-2018.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2018Q1__Segment-analysis-Q1-2018.pdf",
+  "tier": "A",
+  "kind": "segment_analysis",
+  "at": "2026-09-07T16:47:52"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/ElSewedy-Electric-Consolidation-30-6-2018.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2018Q2__ElSewedy-Electric-Consolidation-30-6-2018.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:52"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/El-Sewedy-1h-2018-Earnings-Release-Final.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2018Q2__El-Sewedy-1h-2018-Earnings-Release-Final.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:52"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/RAP-Sheet-Investors-H1-2018.pdf",
+  "outcome": "OK",
+  "detail": "17358 bytes",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Segment-Analysis-H1-2018.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2018Q2__Segment-Analysis-H1-2018.pdf",
+  "tier": "A",
+  "kind": "segment_analysis",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Standalone-Q3-2018.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Elsewedy-Electric-9M-2018-Cons..pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2018Q3__Elsewedy-Electric-9M-2018-Cons..pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/3Q-Earnings-Release-E-7.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2018Q3__3Q-Earnings-Release-E-7.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/RAP-Sheet-Investors-9M-2018.pdf",
+  "outcome": "OK",
+  "detail": "19189 bytes",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Segment-Analysis-9M-2018.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2018Q3__Segment-Analysis-9M-2018.pdf",
+  "tier": "A",
+  "kind": "segment_analysis",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Elsewedy-Electric-FY-2018-Standalone.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Elsewedy%20Electric%20FY-2018%20Cons.ENG.pdf",
+  "outcome": "OK",
+  "detail": "14265615 bytes",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/4Q-Earnings-Release-E-FINAL.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2018Q4__4Q-Earnings-Release-E-FINAL.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/RAP-Investors-FY-2018.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2018Q4__RAP-Investors-FY-2018.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Segment-Analysis-FY-2018..pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2018Q4__Segment-Analysis-FY-2018..pdf",
+  "tier": "A",
+  "kind": "segment_analysis",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Elsewedy-ELectric-Standalone-Q1-2019.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/ELSewedy-Electric-Q1-2019-Cons.En..pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2019Q1__ELSewedy-Electric-Q1-2019-Cons.En..pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/1Q19-Earnings-Release-E-FINAL.pdf.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2019Q1__1Q19-Earnings-Release-E-FINAL.pdf.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/RAP-Sheet-Investors-Q1-2019.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2019Q1__RAP-Sheet-Investors-Q1-2019.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Segment-Analysis-Q1-2019.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2019Q1__Segment-Analysis-Q1-2019.pdf",
+  "tier": "A",
+  "kind": "segment_analysis",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Standalone-Q2-2019.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Consolidated-Q2-2019.En-1-.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2019Q2__EE-Consolidated-Q2-2019.En-1-.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/1H19-Earnings-Release-E-FINAL.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2019Q2__1H19-Earnings-Release-E-FINAL.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/RAP-Sheet-Investors-H1-2019.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2019Q2__RAP-Sheet-Investors-H1-2019.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Segment-Analysis-H1-2019.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2019Q2__Segment-Analysis-H1-2019.pdf",
+  "tier": "A",
+  "kind": "segment_analysis",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Standalone-Q3-2019.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Consolidated-Q3-2019.En-1-.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2019Q3__EE-Consolidated-Q3-2019.En-1-.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/El-Sewedy-9M-2019-Earnings-Release.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2019Q3__El-Sewedy-9M-2019-Earnings-Release.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/RAP-Sheet-Investors-9M-2019-sent.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2019Q3__RAP-Sheet-Investors-9M-2019-sent.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Segment-Analysis-9M-2019.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2019Q3__Segment-Analysis-9M-2019.pdf",
+  "tier": "A",
+  "kind": "segment_analysis",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-standalone-31-12-2019.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Elsewedy-Electric-Consolidated-English-31-12-2019.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2019Q4__Elsewedy-Electric-Consolidated-English-31-12-2019.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/El-Sewedy-FY-2019-Earnings-Release-E-Final1.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2019Q4__El-Sewedy-FY-2019-Earnings-Release-E-Final1.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/RAP-Sheet-Investors-FY-2019.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2019Q4__RAP-Sheet-Investors-FY-2019.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Segment-Analysis-FY-2019.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2019Q4__Segment-Analysis-FY-2019.pdf",
+  "tier": "A",
+  "kind": "segment_analysis",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-standalone-Q1-2020.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Elsewedy-Electric-Cons-English-31-3-2020-1-.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2020Q1__Elsewedy-Electric-Cons-English-31-3-2020-1-.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/El-Sewedy-1Q20-Earnings-Release-E-Final.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2020Q1__El-Sewedy-1Q20-Earnings-Release-E-Final.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/RAP-Sheet-Investors-Q1-2020.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2020Q1__RAP-Sheet-Investors-Q1-2020.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Segment-Analysis-Q1-2020.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2020Q1__Segment-Analysis-Q1-2020.pdf",
+  "tier": "A",
+  "kind": "segment_analysis",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Standalone-H1-2020.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/01-Elsewedy-Electric-Cons-F-S-30-6-2020-1-.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2020Q2__01-Elsewedy-Electric-Cons-F-S-30-6-2020-1-.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/El-Sewedy-2Q20-Earnings-Release-E-Final.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2020Q2__El-Sewedy-2Q20-Earnings-Release-E-Final.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/RAP-Sheet-Investors-H1-2020...pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2020Q2__RAP-Sheet-Investors-H1-2020...pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Segment-Analysis-H1-2020...pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2020Q2__Segment-Analysis-H1-2020...pdf",
+  "tier": "A",
+  "kind": "segment_analysis",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-standalone-Q3-2020.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Cons.-English-Q3-2020.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2020Q3__EE-Cons.-English-Q3-2020.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/El-Sewedy-3Q20-Earnings-Release-E-Final-1.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2020Q3__El-Sewedy-3Q20-Earnings-Release-E-Final-1.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/RAP-Sheet-Investors-9M-2020.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2020Q3__RAP-Sheet-Investors-9M-2020.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Segment-Analysis-9M-2020.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2020Q3__Segment-Analysis-9M-2020.pdf",
+  "tier": "A",
+  "kind": "segment_analysis",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/English-EE-standalone-Dec-20.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Cons.-English-FY-2020.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2020Q4__EE-Cons.-English-FY-2020.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/El-Sewedy-4Q20-Earnings-Release-E-Final.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2020Q4__El-Sewedy-4Q20-Earnings-Release-E-Final.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/RAP-Sheet-Investors-FY-2020.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2020Q4__RAP-Sheet-Investors-FY-2020.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Segment-Analysis-FY-2020.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2020Q4__Segment-Analysis-FY-2020.pdf",
+  "tier": "A",
+  "kind": "segment_analysis",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Standalone-Q1-2021-English.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Cons.-Q1-2021.En.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2021Q1__EE-Cons.-Q1-2021.En.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/El-Sewedy-1Q21-Earnings-Release-E-Final-1.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2021Q1__El-Sewedy-1Q21-Earnings-Release-E-Final-1.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/RAP-Sheet-Investors-Q1-2021.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2021Q1__RAP-Sheet-Investors-Q1-2021.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Segment-Analysis-Q1-2021.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2021Q1__Segment-Analysis-Q1-2021.pdf",
+  "tier": "A",
+  "kind": "segment_analysis",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Standalone-Q2-2021-English.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Consolidated-English-FS-H1-2021..pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2021Q2__EE-Consolidated-English-FS-H1-2021..pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/El-Sewedy-2Q21-Earnings-Release-E-Final-3.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2021Q2__El-Sewedy-2Q21-Earnings-Release-E-Final-3.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/RAP-Sheet-Investors-H1-2021.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2021Q2__RAP-Sheet-Investors-H1-2021.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Segment-Analysis-H1-2021.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2021Q2__Segment-Analysis-H1-2021.pdf",
+  "tier": "A",
+  "kind": "segment_analysis",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Standalone-Q3-2021-English.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Cons.-English-9M-2021.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2021Q3__EE-Cons.-English-9M-2021.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/El-Sewedy-3Q21-Earnings-Release-E-Final.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2021Q3__El-Sewedy-3Q21-Earnings-Release-E-Final.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/RAP-Sheet-Investors-9M-2021.xlsx.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2021Q3__RAP-Sheet-Investors-9M-2021.xlsx.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Segment-Analysis-9M-2021.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2021Q3__Segment-Analysis-9M-2021.pdf",
+  "tier": "A",
+  "kind": "segment_analysis",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Standalone-Q4-2021-English.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Cons.-English-FY-2021.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2021Q4__EE-Cons.-English-FY-2021.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Elsewedy-Electric-FY-2021-ER-En-.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2021Q4__Elsewedy-Electric-FY-2021-ER-En-.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/RAP-Sheet-Investors-FY-2021-Final.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2021Q4__RAP-Sheet-Investors-FY-2021-Final.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Segment-Analysis-FY-2021-Final.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2021Q4__Segment-Analysis-FY-2021-Final.pdf",
+  "tier": "A",
+  "kind": "segment_analysis",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Standalone-Eng.-Q1-2022.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Cons.-Financials-Q1-2022-En-.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2022Q1__EE-Cons.-Financials-Q1-2022-En-.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Elsewedy-Electric-ER-1Q2022-En-.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2022Q1__Elsewedy-Electric-ER-1Q2022-En-.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Quarterly-A-I-Presentation-Q1-22.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2022Q1__Quarterly-A-I-Presentation-Q1-22.pdf",
+  "tier": "A",
+  "kind": "ir_presentation",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Q1-2022-RAP-Sheet.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2022Q1__Q1-2022-RAP-Sheet.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Segment-Analysis-Q1-22.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2022Q1__Segment-Analysis-Q1-22.pdf",
+  "tier": "A",
+  "kind": "segment_analysis",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Standalone-Eng.-Q2-2022.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/SWDY-H1-2022-Consolidated-Financial-Statements-En-.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2022Q2__SWDY-H1-2022-Consolidated-Financial-Statements-En-.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Elsewedy-Electric-ER-2Q2022-En-final.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2022Q2__Elsewedy-Electric-ER-2Q2022-En-final.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Quarterly-A-I-Presentation-Q2-22.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2022Q2__Quarterly-A-I-Presentation-Q2-22.pdf",
+  "tier": "A",
+  "kind": "ir_presentation",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Q2-2022-RAP-Sheet.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2022Q2__Q2-2022-RAP-Sheet.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Segment-Analysis-2Q-2022.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2022Q2__Segment-Analysis-2Q-2022.pdf",
+  "tier": "A",
+  "kind": "segment_analysis",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Standalone-Eng.-Q3-2022.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Cosolidated-FSs-English.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2022Q3__EE-Cosolidated-FSs-English.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Elsewedy-Electric-ER-3Q2022-En-.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2022Q3__Elsewedy-Electric-ER-3Q2022-En-.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Quarterly-Earnings-Presentation-Q3-2022.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2022Q3__Quarterly-Earnings-Presentation-Q3-2022.pdf",
+  "tier": "A",
+  "kind": "ir_presentation",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Q3-2022-RAP-sheet.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2022Q3__Q3-2022-RAP-sheet.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Q3-2022-Segment-analysis.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2022Q3__Q3-2022-Segment-analysis.pdf",
+  "tier": "A",
+  "kind": "segment_analysis",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Standalone-Eng.-Q4-2022.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Consolidated-FS-FY2022-Eng.-.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2022Q4__EE-Consolidated-FS-FY2022-Eng.-.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Elsewedy-Electric-ER-FY2022-En-.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2022Q4__Elsewedy-Electric-ER-FY2022-En-.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Quarterly-Earnings-Presentation-Q4-2022.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2022Q4__Quarterly-Earnings-Presentation-Q4-2022.pdf",
+  "tier": "A",
+  "kind": "ir_presentation",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Standalone-Eng.-Q1-2023.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/CFSQ123.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2023Q1__CFSQ123.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Elsewedy-Electric-ER-1Q2023-En-.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2023Q1__Elsewedy-Electric-ER-1Q2023-En-.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Earnings-Presentation-Q1-2023.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2023Q1__Earnings-Presentation-Q1-2023.pdf",
+  "tier": "A",
+  "kind": "ir_presentation",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Seperate-FS-June-23-English.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Cons-FS-June-23-English.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2023Q2__EE-Cons-FS-June-23-English.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Elsewedy-Electric-ER-2Q2023-En-.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2023Q2__Elsewedy-Electric-ER-2Q2023-En-.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Earnings-Presentation-Q2-2023.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2023Q2__Earnings-Presentation-Q2-2023.pdf",
+  "tier": "A",
+  "kind": "ir_presentation",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Separate-FS-Q3-2023-English.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Consolidation-Q3-2023-English.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2023Q3__EE-Consolidation-Q3-2023-English.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Elsewedy-Electric-ER-3Q2023-En-.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2023Q3__Elsewedy-Electric-ER-3Q2023-En-.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Earnings-Presentation-Q3-2023.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2023Q3__Earnings-Presentation-Q3-2023.pdf",
+  "tier": "A",
+  "kind": "ir_presentation",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Separate-FS-31-December-2023.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Consolidation-English-31-12-2023.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2023Q4__EE-Consolidation-English-31-12-2023.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Elsewedy-Electric-ER-4Q2023-E-Final.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2023Q4__Elsewedy-Electric-ER-4Q2023-E-Final.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Earnings-Presentation-Q4-2023.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2023Q4__Earnings-Presentation-Q4-2023.pdf",
+  "tier": "A",
+  "kind": "ir_presentation",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Separate-English-Q1-2024.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Consolidation-Englsih-FS-Q1-2024.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2024Q1__EE-Consolidation-Englsih-FS-Q1-2024.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Elsewedy-Electric-ER-1Q24-En-.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2024Q1__Elsewedy-Electric-ER-1Q24-En-.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Earnings-Presentation-Q1-2024.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2024Q1__Earnings-Presentation-Q1-2024.pdf",
+  "tier": "A",
+  "kind": "ir_presentation",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Separate-FS-30-June-2024-En-.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-consalidation-FS-30-June-2024-En-.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2024Q2__EE-consalidation-FS-30-June-2024-En-.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Elsewedy-Electric-ER-2Q2024-En.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2024Q2__Elsewedy-Electric-ER-2Q2024-En.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Earnings-Presentation-Q2-2024.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2024Q2__EE-Earnings-Presentation-Q2-2024.pdf",
+  "tier": "A",
+  "kind": "ir_presentation",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Signed-Separate-FS-Q3-2024-English.-Final.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Consalidated-English-FS-30-September-2024.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2024Q3__EE-Consalidated-English-FS-30-September-2024.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Elsewedy-Electric-ER-3Q2024-En-.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2024Q3__Elsewedy-Electric-ER-3Q2024-En-.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Earnings-Presentation-Q3-2024.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2024Q3__EE-Earnings-Presentation-Q3-2024.pdf",
+  "tier": "A",
+  "kind": "ir_presentation",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/English-FS-standalone.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Consalidated-English-FS-31-December-2024.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2024Q4__EE-Consalidated-English-FS-31-December-2024.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Elsewedy-Electric-ER-4Q2024-En.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2024Q4__Elsewedy-Electric-ER-4Q2024-En.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Earnings-Presentation-Q4-2024.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2024Q4__EE-Earnings-Presentation-Q4-2024.pdf",
+  "tier": "A",
+  "kind": "ir_presentation",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/English-FS-Separate-Q1-2025.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Consolidated-FS-English-31-march-2025.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2025Q1__EE-Consolidated-FS-English-31-march-2025.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Elsewedy-Electric-ER-1Q2025-E-.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2025Q1__Elsewedy-Electric-ER-1Q2025-E-.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Earnings-Presentation-Q1-2025.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2025Q1__EE-Earnings-Presentation-Q1-2025.pdf",
+  "tier": "A",
+  "kind": "ir_presentation",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-English-Separate-FS-30-June-2025.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Consalidated-English-FS-30-June-2025.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2025Q2__EE-Consalidated-English-FS-30-June-2025.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Elsewedy-Electric-ER-2Q2025-E-.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2025Q2__Elsewedy-Electric-ER-2Q2025-E-.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Earnings-Presentation-Q2-2025.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2025Q2__EE-Earnings-Presentation-Q2-2025.pdf",
+  "tier": "A",
+  "kind": "ir_presentation",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Separate-FS-Q3-Signed-English.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Signed-English-consolidated-FS-30-September-2025.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2025Q3__EE-Signed-English-consolidated-FS-30-September-2025.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Elsewedy-Electric-ER-3Q2025-E-.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2025Q3__Elsewedy-Electric-ER-3Q2025-E-.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Separate-English-Final-FS-31-December-2025.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Consolidated-En-FS-31-December-2025.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2025Q4__EE-Consolidated-En-FS-31-December-2025.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Elsewedy-Electric-ER-4Q2025-E-.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2025Q4__Elsewedy-Electric-ER-4Q2025-E-.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Earnings-Presentation-Q4-2025.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2025Q4__EE-Earnings-Presentation-Q4-2025.pdf",
+  "tier": "A",
+  "kind": "ir_presentation",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-English-Separate-Q1-2026-Final.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Consolidation-FS-31-3-26-EN.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2026Q1__EE-Consolidation-FS-31-3-26-EN.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Elsewedy-Electric-ER-1Q2026-E-.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2026Q1__Elsewedy-Electric-ER-1Q2026-E-.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Earnings-Presentation-Q1-2026.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2026Q1__EE-Earnings-Presentation-Q1-2026.pdf",
+  "tier": "A",
+  "kind": "ir_presentation",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Separate-English-FS.pdf",
+  "outcome": "SKIPPED",
+  "detail": "standalone/separate or non-financial document",
+  "tier": null,
+  "kind": null,
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Consolidation-FS-EN-30-6-2026.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2026Q2__EE-Consolidation-FS-EN-30-6-2026.pdf",
+  "tier": "A",
+  "kind": "financial_statements",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/Elsewedy-Electric-ER-2Q2026-E-v2.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2026Q2__Elsewedy-Electric-ER-2Q2026-E-v2.pdf",
+  "tier": "A",
+  "kind": "earnings_release",
+  "at": "2026-09-07T16:47:53"
+ },
+ {
+  "url": "https://irfiles.technologyverse.com/swdy2/EE-Earnings-Presentation-Q2-2026-v2.pdf",
+  "outcome": "CACHED",
+  "detail": "/home/user/testahil/engine/swdy_walkforward/filings/2026Q2__EE-Earnings-Presentation-Q2-2026-v2.pdf",
+  "tier": "A",
+  "kind": "ir_presentation",
+  "at": "2026-09-07T16:47:53"
+ }
+]

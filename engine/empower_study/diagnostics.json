@@ -1,0 +1,44 @@
+{
+ "ticker": "EMPOWER",
+ "as_of": "2026-09-03",
+ "spot": 1.57,
+ "spot_date": "2026-09-03",
+ "published_central": 1.835329801482165,
+ "published_spot": 1.57,
+ "published_branches": [
+  1.835329801482165,
+  1.7219692731019103,
+  1.806139352528684,
+  1.6944153515913674
+ ],
+ "why_this_file": "The reverse read — what the traded price must believe — is a DIAGNOSTIC and lives outside the numbers file every builder reads. A quantity solved from a price and then used anywhere in the valuation is the reverse-engineered rate the protocol prohibits outright, arriving through a side door. Nothing in this file is an input to anything: no builder in this study reads it, this generator asserts before writing that none of its solved values appears in study_numbers.json, and it restores that file byte-for-byte if importing the model moves it.",
+ "implied": {
+  "quantity": "the average annual change in connected capacity, thousand refrigeration tonnes a year, over the explicit window",
+  "value": -18.78060727851266,
+  "study_value": 89.0,
+  "value_capex_floored": -13.597567510407908,
+  "value_primary_lens_only": -25.70870671238972,
+  "company_disclosed": {
+   "guidance_2026_additions_k_rt": [
+    100.0,
+    110.0
+   ],
+   "first_half_2026_additions_k_rt": 51.0,
+   "first_half_2026_annualised_k_rt": 102.0,
+   "connected_capacity_k_rt_by_year": {
+    "2021": 1368.0,
+    "2022": 1405.0,
+    "2024": 1566.0,
+    "2025": 1656.0,
+    "H1_2026": 1707.0
+   },
+   "contracted_not_yet_connected_k_rt": 311.0
+  },
+  "solved_on": "this study's own model, by importing compute.py and calling its own revenue_path, ebitda_build, capital_block, nwc_block and dcf, holding every driver at its published value and moving only the connection pipeline until the published four-lens central reproduces the traded price; the solver is asserted to reproduce the published central and the published cash-flow lens exactly at the published pipeline before it is used to solve anything",
+  "value_other_framing": 0.09461065515900169,
+  "study_value_other_framing": 0.07636850226977589,
+  "other_framing_quantity": "the single flat discount rate reproducing the price on the same model — this study already runs one flat rate, because the dirham is pegged and the explicit-window and terminal rates are the same number. Solved by re-running the study's own dcf() rather than through the shared instrument, whose terminal identity TV = FCFF/(WACC - g) does not hold on this two-stage terminal and would have put a real error into a number that looked comparable",
+  "value_other_framing_primary_lens": 0.0945659526093739,
+  "reading": "At AED 1.57 the price is paying for a network that SHRINKS: connected capacity falling by about 18.8 thousand refrigeration tonnes a year across the window, against this study's 89.0. Three disclosures bear on that number and all three point the other way — the company guides 100 to 110 thousand tonnes of additions for 2026, it actually connected 51 in the first half (102 annualised), and 311 thousand tonnes sit CONTRACTED and not yet connected, 18% above what is connected today. Connected capacity has risen in every year the company has disclosed. The solve is conservative in the one place it could flatter: letting the study's own per-tonne capital driver run negative CREDITS a shrinking network with releasing capital, and holding capital expenditure at the maintenance charge instead still requires 13.6 thousand tonnes a year of disconnection. The same disagreement read as a discount rate is 9.46% against the study's 7.64%, 182 basis points — but that number has no disclosure to check it against, and the pipeline has three. What this rules out is that the price is a view on the connection pipeline; where the disagreement actually sits is in the cost of capital, or in whether an 80%-owned utility with a fifth of its shares in issue is priced on its cash flows at all."
+ }
+}

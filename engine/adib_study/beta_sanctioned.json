@@ -1,0 +1,33 @@
+{
+ "ticker": "ADIB",
+ "market": "EG",
+ "exchange": "EGX",
+ "beta": 1.0746932506913658,
+ "r2": 0.24825949171362327,
+ "se": 0.16344242722101457,
+ "n": 256,
+ "ci90": [
+  0.8058304579127968,
+  1.3435560434699347
+ ],
+ "usable": true,
+ "gate_msg": "passes minimum usability gate",
+ "dimson": true,
+ "frequency": "weekly",
+ "weak": false,
+ "warnings": [],
+ "window_years": 4.94,
+ "first_obs": "2021-09-09",
+ "last_obs": "2026-08-20",
+ "blume_crosscheck": 1.0497955004609105,
+ "index_file": "raw_indices/EG/EGX30.csv",
+ "index_asof": "2026-09-08",
+ "index_dq": [],
+ "stock_dq": [],
+ "week_rule": "W-THU",
+ "interim_note": null,
+ "conforming": true,
+ "asof": null,
+ "_": "Own-stock first-tier weekly regression against the PUBLISHED INDEX OF THE EXCHANGE THIS STOCK IS LISTED ON, produced by beta_regression.own_stock_beta(\"ADIB\",\"EG\",\"EGX\"). Never a study-local composite. The regressor file is index_file below and it is under raw_indices/, which is deliberately outside raw_ohlc/ so an index can never enter a calibration panel as a covered name.",
+ "company": "Abu Dhabi Islamic Bank \u2013 Egypt S.A.E., EGX: ADIB \u2014 the Cairo listing. NOT ADIB Group PJSC (ADX: ADIB), which is the covered name ADIBUAE and would regress against a different index on a different exchange."
+}

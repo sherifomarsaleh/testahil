@@ -90,15 +90,27 @@ def token_cm(tok, bold=False, size=BASE_PT):
     return round(PAD + ink * (BOLD if bold else 1.0), 4)
 
 
+# Whitespace, or a zero-width space: both are places the renderer may break a line.
+_BREAK = re.compile(r"[\s\u200b]+")
+
+
 def required_cm(text, bold=False, size=BASE_PT):
     """The width a cell needs so that it breaks only at spaces.
 
     A cell may wrap — "Profit attributable to TMG's shareholders" over three lines reads
     perfectly well. What it may not do is break INSIDE a token, so the requirement is set
     by the widest token, never by the whole string.
+
+    A ZERO-WIDTH SPACE IS A TOKEN BOUNDARY, because the renderer treats it as one. It was
+    not, here: str.split() does not split on U+200B and the character is not whitespace to
+    Python, so a URL marked up with break opportunities measured WIDER than the same URL
+    without them — the fix made the column worse, which per [R-COC-01] means the diagnosis
+    was wrong rather than the intent. It costs no width of its own and it is the one way
+    a long unbreakable token (a result-centre link) can be placed without squeezing a
+    column that prints figures.
     """
-    toks = str(text).split()
-    return max((token_cm(t, bold, size) for t in toks), default=PAD)
+    toks = _BREAK.split(str(text))
+    return max((token_cm(t, bold, size) for t in toks if t), default=PAD)
 
 
 def column_minimums(headers, rows, size=BASE_PT):

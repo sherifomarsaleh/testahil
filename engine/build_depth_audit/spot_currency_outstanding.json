@@ -1,0 +1,44 @@
+{
+ "why": "[R-GAP-01] with the ratchet of [R-ENF-02]. Measured 08-09-2026, the first time anything held a study's committed spot to the latest supplied price and to its own date: of 24 study directories TWELVE commit no readable spot date and SIX are struck against a price that is no longer the latest. The rule has required both since 03-Sep-2026 and nothing was checking either — check_valuation_gap reads each study's OWN committed spot, which is the right question for whether a study was audited before it shipped and is satisfied just as happily by a month-old price. THE TWO FAILURES ARE LISTED APART BECAUSE THEY ARE REPAIRED APART: a missing date on a current price is a RECORD fix that moves no number, and a superseded price is a RE-STRIKE that moves the gap and can push a gap review out of its own tolerance. Every entry carries its measurement rather than a bare name, so the debt is countable rather than remembered, and the list may only ever SHORTEN (--prune).",
+ "adopted": "2026-09-08",
+ "outstanding": {},
+ "pruned_on": [
+  {
+   "removed": [
+    "AIRARABIA",
+    "AMOC",
+    "DU",
+    "EMPOWER",
+    "MODON",
+    "RIYADHCABLE",
+    "SWDY"
+   ]
+  },
+  {
+   "removed": [
+    "TMGH"
+   ]
+  },
+  {
+   "removed": [
+    "ADNOCDIST",
+    "FERTIGLOBE"
+   ]
+  },
+  {
+   "removed": [
+    "AMR"
+   ]
+  },
+  {
+   "removed": [
+    "ADNOCDRILL"
+   ]
+  },
+  {
+   "removed": [
+    "ELEC"
+   ]
+  }
+ ]
+}

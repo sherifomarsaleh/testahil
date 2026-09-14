@@ -1,0 +1,12 @@
+{
+ "rule": "R-TERM-01 \u2014 the spread a terminal reinvests at",
+ "note": "Two groups, NOT interchangeable: one excuses an undeclared negative spread, the other a terminal that cannot be read. Both may only SHORTEN.",
+ "outstanding": [
+  "ARCC",
+  "PHAR"
+ ],
+ "unreadable": [
+  "ADNOCDRILL",
+  "BOROUGE"
+ ]
+}

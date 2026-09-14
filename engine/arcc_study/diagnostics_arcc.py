@@ -66,7 +66,15 @@ def build():
 
     r_price = r["implied_rate_at_price"]
     r_study = r["implied_rate_at_study_value"]
-    biggest = max(c["effect"] for c in d["contested"])
+    # THE BIGGEST CONTESTED JUDGEMENT IS FOUND, NOT TYPED. This line used to compute the
+    # largest effect and the sentence below used to NAME beta as the judgement it belonged
+    # to -- true when written and false the moment a larger one was added, which is what
+    # [R-DOC-02] says about any status sentence in a standing artefact. The name and the
+    # number now come from the same place.
+    _big = max(d["contested"], key=lambda c: abs(c["effect"]))
+    biggest = _big["effect"]
+    _big_name = _big["choice"].split(":")[0].strip().lower()
+    _big_is_rate = _big_name.startswith(("beta", "cost of debt", "cost of capital"))
 
     diag = {
         "ticker": meta["ticker"],
@@ -99,12 +107,14 @@ def build():
                 "equivalent to a flat %.2f%%. The study's own explicit-window rate "
                 "is %.2f%% gliding to a terminal %.2f%%, so the market and the "
                 "study disagree by about %.0f basis points on the price of time and "
-                "risk — not on the business. The study's own record names beta as "
-                "its most consequential contested judgement, worth %.1f%% of value, "
-                "and beta enters through exactly this rate."
+                "risk — not on the business. The study's largest contested judgement "
+                "is %s, worth %.1f%% of value, and it %s."
                 % (float(meta["spot"]), 100 * r_price, 100 * r_study,
                    100 * float(coc["wacc_exp"]), 100 * float(coc["wacc_terminal"]),
-                   10000 * (r_study - r_price), 100 * biggest)),
+                   10000 * (r_study - r_price), _big_name, 100 * biggest,
+                   ("enters through exactly this rate" if _big_is_rate else
+                    "enters the terminal rather than the discount rate, so it is a "
+                    "SEPARATE disagreement from the one this reverse read measures"))),
         },
         "construction": dict(r, discounting_times=t_mid, times_resolved=how),
     }

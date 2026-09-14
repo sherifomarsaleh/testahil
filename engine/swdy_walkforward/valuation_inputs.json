@@ -1,0 +1,2540 @@
+{
+ "_": "SWDY valuation-input block per origin [R-FCAL-01 AMENDED 03-Sep-2026]. INTERNAL. Built as the run went, not retro-fitted.",
+ "built": "2026-09-07",
+ "ticker": "SWDY",
+ "currency": "EGP",
+ "capital_recital": [
+  {
+   "effective": "2017-01-01",
+   "capital_egp": 2234180000,
+   "shares": 223418000,
+   "par": 10.0,
+   "event": "issued and fully paid-up capital as of 1 January 2017"
+  },
+  {
+   "effective": "2017-05-04",
+   "capital_egp": 2184180000,
+   "shares": 218418000,
+   "par": 10.0,
+   "event": "EGM of 4 May 2017 wrote off 5 million treasury shares"
+  },
+  {
+   "effective": "2018-05-22",
+   "capital_egp": 2184180000,
+   "shares": 2184180000,
+   "par": 1.0,
+   "event": "EGM of 22 May 2018 split the par value to EGP 1 from EGP 10; annotated in the commercial register on 8 August 2018"
+  },
+  {
+   "effective": "2022-10-17",
+   "capital_egp": 2170777876,
+   "shares": 2170777876,
+   "par": 1.0,
+   "event": "13,402,124 treasury shares purchased Jun-Sep 2020 retired; the commercial register was annotated on 17 October 2022"
+  },
+  {
+   "effective": "2024-04-18",
+   "capital_egp": 2140777876,
+   "shares": 2140777876,
+   "par": 1.0,
+   "event": "30,000,000 treasury shares retired at a par value of EGP 30,000,000"
+  }
+ ],
+ "capital_recital_source": "Elsewedy Electric Company, audited consolidated financial statements for the year ended 31 December 2025, note 29 (share capital)",
+ "origins": {
+  "2014": {
+   "cash": {
+    "value": 1597610616.0,
+    "line": "Cash & Cash Equivalents                1,578,909,178       1,945,068,439    1,933,690,932    1,597,610,616",
+    "source": "2014Q4__FY-2014-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "inventories": {
+    "value": 3343933055.0,
+    "line": "Inventories                            3,203,412,162       3,964,448,499    3,969,970,224    3,343,933,055",
+    "source": "2014Q4__FY-2014-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "receivables": {
+    "value": 3988300921.0,
+    "line": "Receivables                            4,456,290,141       4,371,580,693    3,827,468,403    3,988,300,921",
+    "source": "2014Q4__FY-2014-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "payables": {
+    "value": 1427475437.0,
+    "line": "Accounts Payable                       1,452,074,148       1,487,334,790    1,551,843,802    1,427,475,437",
+    "source": "2014Q4__FY-2014-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "total_equity": {
+    "value": 5734064334.0,
+    "line": "Total Equity                           5,443,458,712       5,553,669,002    5,561,519,862    5,734,064,334",
+    "source": "2014Q4__FY-2014-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "issued_capital": {
+    "value": 2234180000.0,
+    "line": "Issued and Paid Capital                2,234,180,000       2,234,180,000    2,234,180,000    2,234,180,000",
+    "source": "2014Q4__FY-2014-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ppe_or_fixed_assets": {
+    "value": 3121801039.0,
+    "line": "Fixed Assets                           3,302,369,051       3,180,465,322    3,085,259,802    3,121,801,039",
+    "source": "2014Q4__FY-2014-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "interest_bearing_debt": {
+    "value": 4563492738.0,
+    "lines": [
+     "Bank Overdraft & Short Term loans      4,405,409,388       4,918,251,839    4,897,092,048    4,278,293,304",
+     "Long Term Loans                         358,972,469         353,353,906      381,035,279      285,199,434"
+    ],
+    "components": [
+     "st_debt",
+     "lt_debt"
+    ],
+    "source": "2014Q4__FY-2014-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "note": "bank overdraft and short-term loans plus long-term loans. Accounts payable, other credit balances, amounts due to affiliates and provisions are EXCLUDED - none bears interest [R-FCAL-01 trap (i)]."
+   },
+   "depreciation_and_amortisation": {
+    "value": 386219435.0,
+    "line": "Depreciation & Amortization          (105,241,781)           (103,707,811)      (386,219,435)      (387,172,938)",
+    "source": "2014Q4__FY-2014-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "share_count": {
+    "shares": 223418000.0,
+    "par_value_egp": 10.0,
+    "issued_capital_egp": 2234180000.0,
+    "footing": "issued capital 2234180000 / par 10 = 223418000",
+    "foots": true,
+    "source": "2014Q4__FY-2014-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "established_by": "the par value in force at this date is EGP 10, established by note 29 of the FY2025 audited statements, which records the split to EGP 1 as taking effect on 22 May 2018"
+   },
+   "capex": {
+    "value": 157527306.0,
+    "disclosed": false,
+    "derived": true,
+    "formula": "capex = dPP&E + D&A",
+    "identity": "capex = dPPE + D&A",
+    "source": "DERIVED from this run's own committed property, plant and equipment and depreciation for 2013 and 2014: 2014Q4__FY-2014-Earnings-Press-Release.txt and 2014Q4__FY-2014-Earnings-Press-Release.txt",
+    "route": "derived_from_committed_figures",
+    "note": "DERIVED. The cash-flow statement for this year is not in the archive as a machine-readable filing; the identity is not an assumption and this label is what keeps the two apart.",
+    "tier": "DERIVED"
+   },
+   "debt": {
+    "value": 4563492738.0,
+    "lines": [
+     "Bank Overdraft & Short Term loans      4,405,409,388       4,918,251,839    4,897,092,048    4,278,293,304",
+     "Long Term Loans                         358,972,469         353,353,906      381,035,279      285,199,434"
+    ],
+    "components": [
+     "st_debt",
+     "lt_debt"
+    ],
+    "source": "2014Q4__FY-2014-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "note": "bank overdraft and short-term loans plus long-term loans. Accounts payable, other credit balances, amounts due to affiliates and provisions are EXCLUDED - none bears interest [R-FCAL-01 trap (i)]."
+   },
+   "ppe": {
+    "value": 3121801039.0,
+    "line": "Fixed Assets                           3,302,369,051       3,180,465,322    3,085,259,802    3,121,801,039",
+    "source": "2014Q4__FY-2014-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "dep": {
+    "value": 386219435.0,
+    "line": "Depreciation & Amortization          (105,241,781)           (103,707,811)      (386,219,435)      (387,172,938)",
+    "source": "2014Q4__FY-2014-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "wc": {
+    "value": 5904758539.0,
+    "components": {
+     "inventories": 3343933055.0,
+     "receivables": 3988300921.0,
+     "payables": 1427475437.0
+    },
+    "source": "2014Q4__FY-2014-Earnings-Press-Release.txt",
+    "route": "text_layer",
+    "note": "inventories plus trade and other receivables less trade and other payables, each line kept beside the total"
+   },
+   "shares": {
+    "value": 223418000.0,
+    "issued_capital": 2234180000.0,
+    "par_value": 10.0,
+    "source": "2014Q4__FY-2014-Earnings-Press-Release.txt",
+    "route": "text_layer",
+    "footing": "issued capital 2234180000 / par 10 = 223418000",
+    "established_by": "the par value in force at this date is EGP 10, established by note 29 of the FY2025 audited statements, which records the split to EGP 1 as taking effect on 22 May 2018"
+   },
+   "_missing": []
+  },
+  "2015": {
+   "cash": {
+    "value": 3822485581.0,
+    "line": "Cash & Cash Equivalents                1,597,610,616    3,113,568,215    3,975,979,249    3,822,485,581",
+    "source": "2015Q4__FY-2015-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "inventories": {
+    "value": 3321729077.0,
+    "line": "Inventories                            3,343,933,055    3,311,233,349    3,398,391,710    3,321,729,077",
+    "source": "2015Q4__FY-2015-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "receivables": {
+    "value": 7635272168.0,
+    "line": "Receivables                            3,988,300,921    7,623,261,298    7,347,400,310    7,635,272,168",
+    "source": "2015Q4__FY-2015-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "payables": {
+    "value": 1979477915.0,
+    "line": "Accounts Payable                       1,427,475,437    2,848,179,244    2,012,159,530    1,979,477,915",
+    "source": "2015Q4__FY-2015-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "total_equity": {
+    "value": 6535026774.0,
+    "line": "Total Equity                           5,734,064,334    6,290,826,367    6,407,558,595    6,535,026,774",
+    "source": "2015Q4__FY-2015-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "issued_capital": {
+    "value": 2234180000.0,
+    "line": "Issued and Paid Capital                2,234,180,000    2,234,180,000    2,234,180,000    2,234,180,000",
+    "source": "2015Q4__FY-2015-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ppe_or_fixed_assets": {
+    "value": 3193178501.0,
+    "line": "Fixed Assets                           3,121,801,039    3,147,627,501    3,152,171,847    3,193,178,501",
+    "source": "2015Q4__FY-2015-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "interest_bearing_debt": {
+    "value": 6262434103.0,
+    "lines": [
+     "Bank Overdraft & Short Term loans      4,278,293,304    5,087,395,962    5,654,607,996    6,095,557,461",
+     "Long Term Loans                         285,199,434      229,289,143      220,686,223      166,876,642"
+    ],
+    "components": [
+     "st_debt",
+     "lt_debt"
+    ],
+    "source": "2015Q4__FY-2015-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "note": "bank overdraft and short-term loans plus long-term loans. Accounts payable, other credit balances, amounts due to affiliates and provisions are EXCLUDED - none bears interest [R-FCAL-01 trap (i)]."
+   },
+   "depreciation_and_amortisation": {
+    "value": 363608716.0,
+    "line": "Depreciation & Amortization           (92,955,853)       (105,241,781)      (363,608,716)      (386,219,435)",
+    "source": "2015Q4__FY-2015-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "share_count": {
+    "shares": 223418000.0,
+    "par_value_egp": 10.0,
+    "issued_capital_egp": 2234180000.0,
+    "footing": "issued capital 2234180000 / par 10 = 223418000",
+    "foots": true,
+    "source": "2015Q4__FY-2015-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "established_by": "the par value in force at this date is EGP 10, established by note 29 of the FY2025 audited statements, which records the split to EGP 1 as taking effect on 22 May 2018"
+   },
+   "capex": {
+    "value": 434986178.0,
+    "disclosed": false,
+    "derived": true,
+    "formula": "capex = dPP&E + D&A",
+    "identity": "capex = dPPE + D&A",
+    "source": "DERIVED from this run's own committed property, plant and equipment and depreciation for 2014 and 2015: 2015Q4__FY-2015-Earnings-Press-Release.txt and 2015Q4__FY-2015-Earnings-Press-Release.txt",
+    "route": "derived_from_committed_figures",
+    "note": "DERIVED. The cash-flow statement for this year is not in the archive as a machine-readable filing; the identity is not an assumption and this label is what keeps the two apart.",
+    "tier": "DERIVED"
+   },
+   "debt": {
+    "value": 6262434103.0,
+    "lines": [
+     "Bank Overdraft & Short Term loans      4,278,293,304    5,087,395,962    5,654,607,996    6,095,557,461",
+     "Long Term Loans                         285,199,434      229,289,143      220,686,223      166,876,642"
+    ],
+    "components": [
+     "st_debt",
+     "lt_debt"
+    ],
+    "source": "2015Q4__FY-2015-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "note": "bank overdraft and short-term loans plus long-term loans. Accounts payable, other credit balances, amounts due to affiliates and provisions are EXCLUDED - none bears interest [R-FCAL-01 trap (i)]."
+   },
+   "ppe": {
+    "value": 3193178501.0,
+    "line": "Fixed Assets                           3,121,801,039    3,147,627,501    3,152,171,847    3,193,178,501",
+    "source": "2015Q4__FY-2015-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "dep": {
+    "value": 363608716.0,
+    "line": "Depreciation & Amortization           (92,955,853)       (105,241,781)      (363,608,716)      (386,219,435)",
+    "source": "2015Q4__FY-2015-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "wc": {
+    "value": 8977523330.0,
+    "components": {
+     "inventories": 3321729077.0,
+     "receivables": 7635272168.0,
+     "payables": 1979477915.0
+    },
+    "source": "2015Q4__FY-2015-Earnings-Press-Release.txt",
+    "route": "text_layer",
+    "note": "inventories plus trade and other receivables less trade and other payables, each line kept beside the total"
+   },
+   "shares": {
+    "value": 223418000.0,
+    "issued_capital": 2234180000.0,
+    "par_value": 10.0,
+    "source": "2015Q4__FY-2015-Earnings-Press-Release.txt",
+    "route": "text_layer",
+    "footing": "issued capital 2234180000 / par 10 = 223418000",
+    "established_by": "the par value in force at this date is EGP 10, established by note 29 of the FY2025 audited statements, which records the split to EGP 1 as taking effect on 22 May 2018"
+   },
+   "_missing": []
+  },
+  "2016": {
+   "cash": {
+    "value": 8522477000.0,
+    "line": "Cash & Cash Equivalents                 3,666,405    4,259,891    4,593,189        8,522,477",
+    "source": "2016Q4__El-Sewedy-FY-2016-Earnings-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "inventories": {
+    "value": 6085344000.0,
+    "line": "Inventories                             3,038,000    4,170,222    4,147,618        6,085,344",
+    "source": "2016Q4__El-Sewedy-FY-2016-Earnings-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "receivables": {
+    "value": 10428542000.0,
+    "line": "Receivables                             7,187,713    5,953,256    5,212,491       10,428,542",
+    "source": "2016Q4__El-Sewedy-FY-2016-Earnings-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "payables": {
+    "value": 3140412000.0,
+    "line": "Accounts Payable                        1,263,384    1,390,281    1,256,940        3,140,412",
+    "source": "2016Q4__El-Sewedy-FY-2016-Earnings-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "total_assets": {
+    "value": 38538829000.0,
+    "line": "Total Assets                           19,452,942   22,744,177   23,449,146       38,538,829",
+    "source": "2016Q4__El-Sewedy-FY-2016-Earnings-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "total_equity": {
+    "value": 11569560000.0,
+    "line": "Total Equity                            6,483,492    7,526,648    8,187,870       11,569,560",
+    "source": "2016Q4__El-Sewedy-FY-2016-Earnings-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "issued_capital": {
+    "value": 2234180000.0,
+    "line": "Issued and Paid Capital                 2,234,180    2,234,180    2,234,180        2,234,180",
+    "source": "2016Q4__El-Sewedy-FY-2016-Earnings-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ppe_or_fixed_assets": {
+    "value": 4358662000.0,
+    "line": "Fixed Assets                            2,955,917    3,087,163    3,210,945        4,358,662",
+    "source": "2016Q4__El-Sewedy-FY-2016-Earnings-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "interest_bearing_debt": {
+    "value": 11218177000.0,
+    "lines": [
+     "Bank Overdraft & Short Term loans       5,646,852    7,150,148    6,336,928        9,797,606",
+     "Long Term Loans                          166,877      184,498       993,429        1,420,571"
+    ],
+    "components": [
+     "st_debt",
+     "lt_debt"
+    ],
+    "source": "2016Q4__El-Sewedy-FY-2016-Earnings-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "note": "bank overdraft and short-term loans plus long-term loans. Accounts payable, other credit balances, amounts due to affiliates and provisions are EXCLUDED - none bears interest [R-FCAL-01 trap (i)]."
+   },
+   "depreciation_and_amortisation": {
+    "value": 386820000.0,
+    "line": "Depreciation & Amortization             (123,328)      (84,625)              (386,820)      (330,808)",
+    "source": "2016Q4__El-Sewedy-FY-2016-Earnings-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "capex": {
+    "value": 514117061.0,
+    "line": "Acquisition of fixed assets and project under progress (514 117 061) (395 956 494)",
+    "source": "2016Q4__Elsewedy-Electric-FY-2016-FS.Eng.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer_or_ocr",
+    "disclosed": true
+   },
+   "share_count": {
+    "shares": 223418000.0,
+    "par_value_egp": 10.0,
+    "issued_capital_egp": 2234180000.0,
+    "footing": "issued capital 2234180000 / par 10 = 223418000",
+    "foots": true,
+    "source": "2016Q4__El-Sewedy-FY-2016-Earnings-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "established_by": "the par value in force at this date is EGP 10, established by note 29 of the FY2025 audited statements, which records the split to EGP 1 as taking effect on 22 May 2018"
+   },
+   "debt": {
+    "value": 11218177000.0,
+    "lines": [
+     "Bank Overdraft & Short Term loans       5,646,852    7,150,148    6,336,928        9,797,606",
+     "Long Term Loans                          166,877      184,498       993,429        1,420,571"
+    ],
+    "components": [
+     "st_debt",
+     "lt_debt"
+    ],
+    "source": "2016Q4__El-Sewedy-FY-2016-Earnings-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "note": "bank overdraft and short-term loans plus long-term loans. Accounts payable, other credit balances, amounts due to affiliates and provisions are EXCLUDED - none bears interest [R-FCAL-01 trap (i)]."
+   },
+   "ppe": {
+    "value": 4358662000.0,
+    "line": "Fixed Assets                            2,955,917    3,087,163    3,210,945        4,358,662",
+    "source": "2016Q4__El-Sewedy-FY-2016-Earnings-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "dep": {
+    "value": 386820000.0,
+    "line": "Depreciation & Amortization             (123,328)      (84,625)              (386,820)      (330,808)",
+    "source": "2016Q4__El-Sewedy-FY-2016-Earnings-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "wc": {
+    "value": 13373474000.0,
+    "components": {
+     "inventories": 6085344000.0,
+     "receivables": 10428542000.0,
+     "payables": 3140412000.0
+    },
+    "source": "2016Q4__El-Sewedy-FY-2016-Earnings-Release.txt",
+    "route": "text_layer",
+    "note": "inventories plus trade and other receivables less trade and other payables, each line kept beside the total"
+   },
+   "shares": {
+    "value": 223418000.0,
+    "issued_capital": 2234180000.0,
+    "par_value": 10.0,
+    "source": "2016Q4__El-Sewedy-FY-2016-Earnings-Release.txt",
+    "route": "text_layer",
+    "footing": "issued capital 2234180000 / par 10 = 223418000",
+    "established_by": "the par value in force at this date is EGP 10, established by note 29 of the FY2025 audited statements, which records the split to EGP 1 as taking effect on 22 May 2018"
+   },
+   "_missing": []
+  },
+  "2017": {
+   "cash": {
+    "value": 9072732756.0,
+    "line": "Cash & Cash Equivalents                 8,522,476,523    8,822,577,679     9,072,732,756",
+    "source": "2017Q4__El-Sewedy-4Q-2017-Earnings-Release-E-FINAL-2.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "inventories": {
+    "value": 7818948364.0,
+    "line": "Inventories                             6,085,344,359    7,953,803,967     7,818,948,364",
+    "source": "2017Q4__El-Sewedy-4Q-2017-Earnings-Release-E-FINAL-2.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "receivables": {
+    "value": 12006589372.0,
+    "line": "Receivables                            10,428,542,123   10,944,263,571    12,006,589,372",
+    "source": "2017Q4__El-Sewedy-4Q-2017-Earnings-Release-E-FINAL-2.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "payables": {
+    "value": 3139495170.0,
+    "line": "Accounts Payable                        3,140,412,300    2,700,154,420     3,139,495,170",
+    "source": "2017Q4__El-Sewedy-4Q-2017-Earnings-Release-E-FINAL-2.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "total_assets": {
+    "value": 42427485367.0,
+    "line": "Total Assets                           38,538,828,557   41,411,393,442    42,427,485,367",
+    "source": "2017Q4__El-Sewedy-4Q-2017-Earnings-Release-E-FINAL-2.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "total_equity": {
+    "value": 14155728764.0,
+    "line": "Total Equity                           11,569,560,136   12,936,454,549    14,155,728,764",
+    "source": "2017Q4__El-Sewedy-4Q-2017-Earnings-Release-E-FINAL-2.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "issued_capital": {
+    "value": 2184180000.0,
+    "line": "Issued and Paid Capital                 2,234,180,000    2,184,180,000     2,184,180,000",
+    "source": "2017Q4__El-Sewedy-4Q-2017-Earnings-Release-E-FINAL-2.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ppe_or_fixed_assets": {
+    "value": 4723555823.0,
+    "line": "Fixed Assets                            4,358,661,645    4,617,960,401     4,723,555,823",
+    "source": "2017Q4__El-Sewedy-4Q-2017-Earnings-Release-E-FINAL-2.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "interest_bearing_debt": {
+    "value": 9569528601.0,
+    "lines": [
+     "Bank Overdraft & Short-Term loans       9,797,606,073    7,803,544,988     8,390,195,283",
+     "Long Term Loans                         1,420,570,790    1,374,589,887     1,179,333,318"
+    ],
+    "components": [
+     "st_debt",
+     "lt_debt"
+    ],
+    "source": "2017Q4__El-Sewedy-4Q-2017-Earnings-Release-E-FINAL-2.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "note": "bank overdraft and short-term loans plus long-term loans. Accounts payable, other credit balances, amounts due to affiliates and provisions are EXCLUDED - none bears interest [R-FCAL-01 trap (i)]."
+   },
+   "depreciation_and_amortisation": {
+    "value": 548205034.0,
+    "line": "Depreciation & / (122,120,027)      (123,327,556)               (548,205,034)      (386,819,675)",
+    "source": "2017Q4__El-Sewedy-4Q-2017-Earnings-Release-E-FINAL-2.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "share_count": {
+    "shares": 218418000,
+    "par_value_egp": 10.0,
+    "issued_capital_egp": 2184180000,
+    "footing": "issued capital 2184180000 / par 10 = 218418000, which is the count the same note states",
+    "foots": true,
+    "established_by": "EGM of 4 May 2017 wrote off 5 million treasury shares",
+    "effective": "2017-05-04",
+    "source": "Elsewedy Electric Company, audited consolidated financial statements for the year ended 31 December 2025, note 29 (share capital)",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "capex": {
+    "value": 913098857.0,
+    "disclosed": false,
+    "derived": true,
+    "formula": "capex = dPP&E + D&A",
+    "identity": "capex = dPPE + D&A",
+    "source": "DERIVED from this run's own committed property, plant and equipment and depreciation for 2016 and 2017: 2017Q4__El-Sewedy-4Q-2017-Earnings-Release-E-FINAL-2.txt and 2017Q4__El-Sewedy-4Q-2017-Earnings-Release-E-FINAL-2.txt",
+    "route": "derived_from_committed_figures",
+    "note": "DERIVED. The cash-flow statement for this year is not in the archive as a machine-readable filing; the identity is not an assumption and this label is what keeps the two apart.",
+    "tier": "DERIVED"
+   },
+   "debt": {
+    "value": 9569528601.0,
+    "lines": [
+     "Bank Overdraft & Short-Term loans       9,797,606,073    7,803,544,988     8,390,195,283",
+     "Long Term Loans                         1,420,570,790    1,374,589,887     1,179,333,318"
+    ],
+    "components": [
+     "st_debt",
+     "lt_debt"
+    ],
+    "source": "2017Q4__El-Sewedy-4Q-2017-Earnings-Release-E-FINAL-2.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "note": "bank overdraft and short-term loans plus long-term loans. Accounts payable, other credit balances, amounts due to affiliates and provisions are EXCLUDED - none bears interest [R-FCAL-01 trap (i)]."
+   },
+   "ppe": {
+    "value": 4723555823.0,
+    "line": "Fixed Assets                            4,358,661,645    4,617,960,401     4,723,555,823",
+    "source": "2017Q4__El-Sewedy-4Q-2017-Earnings-Release-E-FINAL-2.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "dep": {
+    "value": 548205034.0,
+    "line": "Depreciation & / (122,120,027)      (123,327,556)               (548,205,034)      (386,819,675)",
+    "source": "2017Q4__El-Sewedy-4Q-2017-Earnings-Release-E-FINAL-2.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "wc": {
+    "value": 16686042566.0,
+    "components": {
+     "inventories": 7818948364.0,
+     "receivables": 12006589372.0,
+     "payables": 3139495170.0
+    },
+    "source": "2017Q4__El-Sewedy-4Q-2017-Earnings-Release-E-FINAL-2.txt",
+    "route": "text_layer",
+    "note": "inventories plus trade and other receivables less trade and other payables, each line kept beside the total"
+   },
+   "shares": {
+    "value": 218418000,
+    "issued_capital": 2184180000,
+    "par_value": 10.0,
+    "source": "Elsewedy Electric Company, audited consolidated financial statements for the year ended 31 December 2025, note 29 (share capital)",
+    "route": "text_layer",
+    "footing": "issued capital 2184180000 / par 10 = 218418000, which is the count the same note states",
+    "established_by": "EGM of 4 May 2017 wrote off 5 million treasury shares"
+   },
+   "_missing": []
+  },
+  "2018": {
+   "cash": {
+    "value": 8685415249.0,
+    "line": "Cash & Cash Equivalents                 9,072,732,756    8,351,279,894            8,685,415,249",
+    "source": "2018Q4__4Q-Earnings-Release-E-FINAL.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "inventories": {
+    "value": 9334088479.0,
+    "line": "Inventories                             7,818,948,364    8,677,174,839            9,334,088,479",
+    "source": "2018Q4__4Q-Earnings-Release-E-FINAL.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "receivables": {
+    "value": 11318561524.0,
+    "line": "Receivables                            12,006,589,372   10,686,502,701           11,318,561,524",
+    "source": "2018Q4__4Q-Earnings-Release-E-FINAL.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "payables": {
+    "value": 4749888548.0,
+    "line": "Accounts Payable                        3,139,495,170    3,846,789,307            4,749,888,548",
+    "source": "2018Q4__4Q-Earnings-Release-E-FINAL.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "total_assets": {
+    "value": 46128218440.0,
+    "line": "Total Assets                           42,427,485,367   44,316,117,245           46,128,218,440",
+    "source": "2018Q4__4Q-Earnings-Release-E-FINAL.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "total_equity": {
+    "value": 16137815702.0,
+    "line": "Total Equity                           14,155,728,764   15,098,562,598           16,137,815,702",
+    "source": "2018Q4__4Q-Earnings-Release-E-FINAL.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "issued_capital": {
+    "value": 2184180000.0,
+    "line": "Issued and Paid Capital                 2,184,180,000    2,184,180,000            2,184,180,000",
+    "source": "2018Q4__4Q-Earnings-Release-E-FINAL.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ppe_or_fixed_assets": {
+    "value": 5842598123.0,
+    "line": "Fixed Assets                            4,723,555,823    5,660,854,277            5,842,598,123",
+    "source": "2018Q4__4Q-Earnings-Release-E-FINAL.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "interest_bearing_debt": {
+    "value": 8673410190.0,
+    "lines": [
+     "Bank Overdraft & Short Term loans       8,390,195,283    9,188,917,556            8,422,374,380",
+     "Long Term Loans                         1,179,333,318       93,473,591              251,035,810"
+    ],
+    "components": [
+     "st_debt",
+     "lt_debt"
+    ],
+    "source": "2018Q4__4Q-Earnings-Release-E-FINAL.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "note": "bank overdraft and short-term loans plus long-term loans. Accounts payable, other credit balances, amounts due to affiliates and provisions are EXCLUDED - none bears interest [R-FCAL-01 trap (i)]."
+   },
+   "depreciation_and_amortisation": {
+    "value": 649093910.0,
+    "line": "Depreciation & Amortization             (173,242,121)    (122,120,027)               (649,093,910)        (548,205,034)",
+    "source": "2018Q4__4Q-Earnings-Release-E-FINAL.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "capex": {
+    "value": 1563691320.0,
+    "line": "= Paid for acquisition of fixed assets and project under progress (1 563 691 320) (1 133 485 689)",
+    "source": "2018Q4__Elsewedy_Electric_FY-2018_Cons.ENG.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer_or_ocr",
+    "disclosed": true
+   },
+   "share_count": {
+    "shares": 2184180000,
+    "par_value_egp": 1.0,
+    "issued_capital_egp": 2184180000,
+    "footing": "issued capital 2184180000 / par 1 = 2184180000, which is the count the same note states",
+    "foots": true,
+    "established_by": "EGM of 22 May 2018 split the par value to EGP 1 from EGP 10; annotated in the commercial register on 8 August 2018",
+    "effective": "2018-05-22",
+    "source": "Elsewedy Electric Company, audited consolidated financial statements for the year ended 31 December 2025, note 29 (share capital)",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "debt": {
+    "value": 8673410190.0,
+    "lines": [
+     "Bank Overdraft & Short Term loans       8,390,195,283    9,188,917,556            8,422,374,380",
+     "Long Term Loans                         1,179,333,318       93,473,591              251,035,810"
+    ],
+    "components": [
+     "st_debt",
+     "lt_debt"
+    ],
+    "source": "2018Q4__4Q-Earnings-Release-E-FINAL.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "note": "bank overdraft and short-term loans plus long-term loans. Accounts payable, other credit balances, amounts due to affiliates and provisions are EXCLUDED - none bears interest [R-FCAL-01 trap (i)]."
+   },
+   "ppe": {
+    "value": 5842598123.0,
+    "line": "Fixed Assets                            4,723,555,823    5,660,854,277            5,842,598,123",
+    "source": "2018Q4__4Q-Earnings-Release-E-FINAL.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "dep": {
+    "value": 649093910.0,
+    "line": "Depreciation & Amortization             (173,242,121)    (122,120,027)               (649,093,910)        (548,205,034)",
+    "source": "2018Q4__4Q-Earnings-Release-E-FINAL.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "wc": {
+    "value": 15902761455.0,
+    "components": {
+     "inventories": 9334088479.0,
+     "receivables": 11318561524.0,
+     "payables": 4749888548.0
+    },
+    "source": "2018Q4__4Q-Earnings-Release-E-FINAL.txt",
+    "route": "text_layer",
+    "note": "inventories plus trade and other receivables less trade and other payables, each line kept beside the total"
+   },
+   "shares": {
+    "value": 2184180000,
+    "issued_capital": 2184180000,
+    "par_value": 1.0,
+    "source": "Elsewedy Electric Company, audited consolidated financial statements for the year ended 31 December 2025, note 29 (share capital)",
+    "route": "text_layer",
+    "footing": "issued capital 2184180000 / par 1 = 2184180000, which is the count the same note states",
+    "established_by": "EGM of 22 May 2018 split the par value to EGP 1 from EGP 10; annotated in the commercial register on 8 August 2018"
+   },
+   "_missing": []
+  },
+  "2019": {
+   "cash": {
+    "value": 9556478691.0,
+    "line": "Cash & Cash Equivalents                 8,685,415,249               9,556,478,691",
+    "source": "2019Q4__El-Sewedy-FY-2019-Earnings-Release-E-Final1.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "inventories": {
+    "value": 9148634900.0,
+    "line": "Inventories                             9,334,088,479               9,148,634,900",
+    "source": "2019Q4__El-Sewedy-FY-2019-Earnings-Release-E-Final1.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "receivables": {
+    "value": 12536743336.0,
+    "line": "Receivables                            11,318,561,524              12,536,743,336",
+    "source": "2019Q4__El-Sewedy-FY-2019-Earnings-Release-E-Final1.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "payables": {
+    "value": 3936191619.0,
+    "line": "Accounts Payable                        4,749,888,548               3,936,191,619",
+    "source": "2019Q4__El-Sewedy-FY-2019-Earnings-Release-E-Final1.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "total_assets": {
+    "value": 53397692834.0,
+    "line": "Total Assets                           46,168,409,356              53,397,692,834",
+    "source": "2019Q4__El-Sewedy-FY-2019-Earnings-Release-E-Final1.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "total_equity": {
+    "value": 17298522006.0,
+    "line": "Total Equity                           16,168,963,661              17,298,522,006",
+    "source": "2019Q4__El-Sewedy-FY-2019-Earnings-Release-E-Final1.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "issued_capital": {
+    "value": 2184180000.0,
+    "line": "Issued and Paid Capital                 2,184,180,000               2,184,180,000",
+    "source": "2019Q4__El-Sewedy-FY-2019-Earnings-Release-E-Final1.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ppe_or_fixed_assets": {
+    "value": 8450827455.0,
+    "line": "Fixed Assets                            5,882,789,039               8,450,827,455",
+    "source": "2019Q4__El-Sewedy-FY-2019-Earnings-Release-E-Final1.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "interest_bearing_debt": {
+    "value": 8787463490.0,
+    "lines": [
+     "Bank Overdraft & Short-term loans       8,422,374,380               6,774,718,608",
+     "Long-term Loans                          251,035,810                2,012,744,882"
+    ],
+    "components": [
+     "st_debt",
+     "lt_debt"
+    ],
+    "source": "2019Q4__El-Sewedy-FY-2019-Earnings-Release-E-Final1.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "note": "bank overdraft and short-term loans plus long-term loans. Accounts payable, other credit balances, amounts due to affiliates and provisions are EXCLUDED - none bears interest [R-FCAL-01 trap (i)]."
+   },
+   "depreciation_and_amortisation": {
+    "value": 831001518.0,
+    "line": "Depreciation & Amortization     (283,856,428)      (174,216,446)                 (831,001,518)      (650,068,235)",
+    "source": "2019Q4__El-Sewedy-FY-2019-Earnings-Release-E-Final1.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "capex": {
+    "value": 2928864236.0,
+    "line": "Paid for acquisition of fixed assets and project under progress (2 928 864 236) {1 563 691 320)",
+    "source": "2019Q4__Elsewedy-Electric-Consolidated-English-31-12-2019.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer_or_ocr",
+    "disclosed": true
+   },
+   "share_count": {
+    "shares": 2184180000,
+    "par_value_egp": 1.0,
+    "issued_capital_egp": 2184180000,
+    "footing": "issued capital 2184180000 / par 1 = 2184180000, which is the count the same note states",
+    "foots": true,
+    "established_by": "EGM of 22 May 2018 split the par value to EGP 1 from EGP 10; annotated in the commercial register on 8 August 2018",
+    "effective": "2018-05-22",
+    "source": "Elsewedy Electric Company, audited consolidated financial statements for the year ended 31 December 2025, note 29 (share capital)",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "debt": {
+    "value": 8787463490.0,
+    "lines": [
+     "Bank Overdraft & Short-term loans       8,422,374,380               6,774,718,608",
+     "Long-term Loans                          251,035,810                2,012,744,882"
+    ],
+    "components": [
+     "st_debt",
+     "lt_debt"
+    ],
+    "source": "2019Q4__El-Sewedy-FY-2019-Earnings-Release-E-Final1.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "note": "bank overdraft and short-term loans plus long-term loans. Accounts payable, other credit balances, amounts due to affiliates and provisions are EXCLUDED - none bears interest [R-FCAL-01 trap (i)]."
+   },
+   "ppe": {
+    "value": 8450827455.0,
+    "line": "Fixed Assets                            5,882,789,039               8,450,827,455",
+    "source": "2019Q4__El-Sewedy-FY-2019-Earnings-Release-E-Final1.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "dep": {
+    "value": 831001518.0,
+    "line": "Depreciation & Amortization     (283,856,428)      (174,216,446)                 (831,001,518)      (650,068,235)",
+    "source": "2019Q4__El-Sewedy-FY-2019-Earnings-Release-E-Final1.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "wc": {
+    "value": 17749186617.0,
+    "components": {
+     "inventories": 9148634900.0,
+     "receivables": 12536743336.0,
+     "payables": 3936191619.0
+    },
+    "source": "2019Q4__El-Sewedy-FY-2019-Earnings-Release-E-Final1.txt",
+    "route": "text_layer",
+    "note": "inventories plus trade and other receivables less trade and other payables, each line kept beside the total"
+   },
+   "shares": {
+    "value": 2184180000,
+    "issued_capital": 2184180000,
+    "par_value": 1.0,
+    "source": "Elsewedy Electric Company, audited consolidated financial statements for the year ended 31 December 2025, note 29 (share capital)",
+    "route": "text_layer",
+    "footing": "issued capital 2184180000 / par 1 = 2184180000, which is the count the same note states",
+    "established_by": "EGM of 22 May 2018 split the par value to EGP 1 from EGP 10; annotated in the commercial register on 8 August 2018"
+   },
+   "_missing": []
+  },
+  "2020": {
+   "cash": {
+    "value": 10811687255.0,
+    "line": "Cash & Cash Equivalents                 9,556,478,691    10,064,866,213             10,811,687,255",
+    "source": "2020Q4__El-Sewedy-4Q20-Earnings-Release-E-Final.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "inventories": {
+    "value": 7150239877.0,
+    "line": "Inventories                             9,148,634,900     7,025,787,670              7,150,239,877",
+    "source": "2020Q4__El-Sewedy-4Q20-Earnings-Release-E-Final.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "receivables": {
+    "value": 13283549306.0,
+    "line": "Receivables                            12,536,743,336    11,834,247,667             13,283,549,306",
+    "source": "2020Q4__El-Sewedy-4Q20-Earnings-Release-E-Final.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "payables": {
+    "value": 5733816805.0,
+    "line": "Accounts Payable                        3,936,191,619     4,116,762,995              5,733,816,805",
+    "source": "2020Q4__El-Sewedy-4Q20-Earnings-Release-E-Final.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "total_assets": {
+    "value": 54934126013.0,
+    "line": "Total Assets                           53,397,692,834    51,785,376,574             54,934,126,013",
+    "source": "2020Q4__El-Sewedy-4Q20-Earnings-Release-E-Final.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "total_equity": {
+    "value": 17890963532.0,
+    "line": "Total Equity                           17,298,522,006    16,440,945,726             17,890,963,532",
+    "source": "2020Q4__El-Sewedy-4Q20-Earnings-Release-E-Final.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "issued_capital": {
+    "value": 2184180000.0,
+    "line": "Issued and Paid Capital                 2,184,180,000     2,184,180,000              2,184,180,000",
+    "source": "2020Q4__El-Sewedy-4Q20-Earnings-Release-E-Final.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ppe_or_fixed_assets": {
+    "value": 8814664639.0,
+    "line": "Fixed Assets                            8,450,827,455     8,548,326,210              8,814,664,639",
+    "source": "2020Q4__El-Sewedy-4Q20-Earnings-Release-E-Final.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "interest_bearing_debt": {
+    "value": 10249183002.0,
+    "lines": [
+     "Bank Overdraft & Short-term loans       6,774,718,608     8,276,419,737              8,268,089,866",
+     "Long-term Loans                         2,012,744,882     1,770,223,250              1,981,093,136"
+    ],
+    "components": [
+     "st_debt",
+     "lt_debt"
+    ],
+    "source": "2020Q4__El-Sewedy-4Q20-Earnings-Release-E-Final.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "note": "bank overdraft and short-term loans plus long-term loans. Accounts payable, other credit balances, amounts due to affiliates and provisions are EXCLUDED - none bears interest [R-FCAL-01 trap (i)]."
+   },
+   "depreciation_and_amortisation": {
+    "value": 953251429.0,
+    "line": "Depreciation & Amortization            (257,344,675)     (283,856,428)               (953,251,429)       (831,001,518)",
+    "source": "2020Q4__El-Sewedy-4Q20-Earnings-Release-E-Final.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "share_count": {
+    "shares": 2184180000,
+    "par_value_egp": 1.0,
+    "issued_capital_egp": 2184180000,
+    "footing": "issued capital 2184180000 / par 1 = 2184180000, which is the count the same note states",
+    "foots": true,
+    "established_by": "EGM of 22 May 2018 split the par value to EGP 1 from EGP 10; annotated in the commercial register on 8 August 2018",
+    "effective": "2018-05-22",
+    "source": "Elsewedy Electric Company, audited consolidated financial statements for the year ended 31 December 2025, note 29 (share capital)",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "capex": {
+    "value": 1317088613.0,
+    "disclosed": false,
+    "derived": true,
+    "formula": "capex = dPP&E + D&A",
+    "identity": "capex = dPPE + D&A",
+    "source": "DERIVED from this run's own committed property, plant and equipment and depreciation for 2019 and 2020: 2020Q4__El-Sewedy-4Q20-Earnings-Release-E-Final.txt and 2020Q4__El-Sewedy-4Q20-Earnings-Release-E-Final.txt",
+    "route": "derived_from_committed_figures",
+    "note": "DERIVED. The cash-flow statement for this year is not in the archive as a machine-readable filing; the identity is not an assumption and this label is what keeps the two apart.",
+    "tier": "DERIVED"
+   },
+   "debt": {
+    "value": 10249183002.0,
+    "lines": [
+     "Bank Overdraft & Short-term loans       6,774,718,608     8,276,419,737              8,268,089,866",
+     "Long-term Loans                         2,012,744,882     1,770,223,250              1,981,093,136"
+    ],
+    "components": [
+     "st_debt",
+     "lt_debt"
+    ],
+    "source": "2020Q4__El-Sewedy-4Q20-Earnings-Release-E-Final.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "note": "bank overdraft and short-term loans plus long-term loans. Accounts payable, other credit balances, amounts due to affiliates and provisions are EXCLUDED - none bears interest [R-FCAL-01 trap (i)]."
+   },
+   "ppe": {
+    "value": 8814664639.0,
+    "line": "Fixed Assets                            8,450,827,455     8,548,326,210              8,814,664,639",
+    "source": "2020Q4__El-Sewedy-4Q20-Earnings-Release-E-Final.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "dep": {
+    "value": 953251429.0,
+    "line": "Depreciation & Amortization            (257,344,675)     (283,856,428)               (953,251,429)       (831,001,518)",
+    "source": "2020Q4__El-Sewedy-4Q20-Earnings-Release-E-Final.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "wc": {
+    "value": 14699972378.0,
+    "components": {
+     "inventories": 7150239877.0,
+     "receivables": 13283549306.0,
+     "payables": 5733816805.0
+    },
+    "source": "2020Q4__El-Sewedy-4Q20-Earnings-Release-E-Final.txt",
+    "route": "text_layer",
+    "note": "inventories plus trade and other receivables less trade and other payables, each line kept beside the total"
+   },
+   "shares": {
+    "value": 2184180000,
+    "issued_capital": 2184180000,
+    "par_value": 1.0,
+    "source": "Elsewedy Electric Company, audited consolidated financial statements for the year ended 31 December 2025, note 29 (share capital)",
+    "route": "text_layer",
+    "footing": "issued capital 2184180000 / par 1 = 2184180000, which is the count the same note states",
+    "established_by": "EGM of 22 May 2018 split the par value to EGP 1 from EGP 10; annotated in the commercial register on 8 August 2018"
+   },
+   "_missing": []
+  },
+  "2021": {
+   "cash": {
+    "value": 11842589348.0,
+    "line": "Cash & Cash Equivalents                10,811,687,255      8,637,371,359            11,842,589,348",
+    "source": "2021Q4__Elsewedy-Electric-FY-2021-ER-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "inventories": {
+    "value": 13320680704.0,
+    "line": "Inventories                             7,490,676,915     11,315,334,021            13,320,680,704",
+    "source": "2021Q4__Elsewedy-Electric-FY-2021-ER-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "receivables": {
+    "value": 15043335953.0,
+    "line": "Receivables                            13,599,623,740     13,694,958,569            15,043,335,953",
+    "source": "2021Q4__Elsewedy-Electric-FY-2021-ER-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "payables": {
+    "value": 8678197095.0,
+    "line": "Accounts Payable                        5,733,816,805      6,787,623,173             8,678,197,095",
+    "source": "2021Q4__Elsewedy-Electric-FY-2021-ER-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "total_assets": {
+    "value": 67693572437.0,
+    "line": "Total Assets                           54,934,126,012     61,773,966,248            67,693,572,437",
+    "source": "2021Q4__Elsewedy-Electric-FY-2021-ER-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "total_equity": {
+    "value": 20205894214.0,
+    "line": "Total Equity                           17,890,963,536     19,096,144,061            20,205,894,214",
+    "source": "2021Q4__Elsewedy-Electric-FY-2021-ER-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "issued_capital": {
+    "value": 2184180000.0,
+    "line": "Issued and Paid Capital                 2,184,180,000      2,184,180,000             2,184,180,000",
+    "source": "2021Q4__Elsewedy-Electric-FY-2021-ER-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ppe_or_fixed_assets": {
+    "value": 10175907881.0,
+    "line": "Fixed Assets & Goodwill                 8,814,664,639      9,509,509,830            10,175,907,881",
+    "source": "2021Q4__Elsewedy-Electric-FY-2021-ER-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "interest_bearing_debt": {
+    "value": 17958532733.0,
+    "lines": [
+     "Bank Overdraft & Short-term loans       8,268,089,866     11,781,160,771            15,032,238,908",
+     "Long-term Loans                         1,981,093,136      2,796,196,904             2,926,293,825"
+    ],
+    "components": [
+     "st_debt",
+     "lt_debt"
+    ],
+    "source": "2021Q4__Elsewedy-Electric-FY-2021-ER-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "note": "bank overdraft and short-term loans plus long-term loans. Accounts payable, other credit balances, amounts due to affiliates and provisions are EXCLUDED - none bears interest [R-FCAL-01 trap (i)]."
+   },
+   "depreciation_and_amortisation": {
+    "value": 1089435978.0,
+    "line": "Depreciation & Amortization            (296,899,578)      (257,344,675)                 (1,089,435,978)     (953,251,429)",
+    "source": "2021Q4__Elsewedy-Electric-FY-2021-ER-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "share_count": {
+    "shares": 2184180000,
+    "par_value_egp": 1.0,
+    "issued_capital_egp": 2184180000,
+    "footing": "issued capital 2184180000 / par 1 = 2184180000, which is the count the same note states",
+    "foots": true,
+    "established_by": "EGM of 22 May 2018 split the par value to EGP 1 from EGP 10; annotated in the commercial register on 8 August 2018",
+    "effective": "2018-05-22",
+    "source": "Elsewedy Electric Company, audited consolidated financial statements for the year ended 31 December 2025, note 29 (share capital)",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "capex": {
+    "value": 2450679220.0,
+    "disclosed": false,
+    "derived": true,
+    "formula": "capex = dPP&E + D&A",
+    "identity": "capex = dPPE + D&A",
+    "source": "DERIVED from this run's own committed property, plant and equipment and depreciation for 2020 and 2021: 2021Q4__Elsewedy-Electric-FY-2021-ER-En-.txt and 2021Q4__Elsewedy-Electric-FY-2021-ER-En-.txt",
+    "route": "derived_from_committed_figures",
+    "note": "DERIVED. The cash-flow statement for this year is not in the archive as a machine-readable filing; the identity is not an assumption and this label is what keeps the two apart.",
+    "tier": "DERIVED"
+   },
+   "debt": {
+    "value": 17958532733.0,
+    "lines": [
+     "Bank Overdraft & Short-term loans       8,268,089,866     11,781,160,771            15,032,238,908",
+     "Long-term Loans                         1,981,093,136      2,796,196,904             2,926,293,825"
+    ],
+    "components": [
+     "st_debt",
+     "lt_debt"
+    ],
+    "source": "2021Q4__Elsewedy-Electric-FY-2021-ER-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "note": "bank overdraft and short-term loans plus long-term loans. Accounts payable, other credit balances, amounts due to affiliates and provisions are EXCLUDED - none bears interest [R-FCAL-01 trap (i)]."
+   },
+   "ppe": {
+    "value": 10175907881.0,
+    "line": "Fixed Assets & Goodwill                 8,814,664,639      9,509,509,830            10,175,907,881",
+    "source": "2021Q4__Elsewedy-Electric-FY-2021-ER-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "dep": {
+    "value": 1089435978.0,
+    "line": "Depreciation & Amortization            (296,899,578)      (257,344,675)                 (1,089,435,978)     (953,251,429)",
+    "source": "2021Q4__Elsewedy-Electric-FY-2021-ER-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "wc": {
+    "value": 19685819562.0,
+    "components": {
+     "inventories": 13320680704.0,
+     "receivables": 15043335953.0,
+     "payables": 8678197095.0
+    },
+    "source": "2021Q4__Elsewedy-Electric-FY-2021-ER-En-.txt",
+    "route": "text_layer",
+    "note": "inventories plus trade and other receivables less trade and other payables, each line kept beside the total"
+   },
+   "shares": {
+    "value": 2184180000,
+    "issued_capital": 2184180000,
+    "par_value": 1.0,
+    "source": "Elsewedy Electric Company, audited consolidated financial statements for the year ended 31 December 2025, note 29 (share capital)",
+    "route": "text_layer",
+    "footing": "issued capital 2184180000 / par 1 = 2184180000, which is the count the same note states",
+    "established_by": "EGM of 22 May 2018 split the par value to EGP 1 from EGP 10; annotated in the commercial register on 8 August 2018"
+   },
+   "_missing": []
+  },
+  "2022": {
+   "cash": {
+    "value": 20618815089.0,
+    "line": "Cash & Cash Equivalents                11,842,589,348        20,618,815,089",
+    "source": "2022Q4__Elsewedy-Electric-ER-FY2022-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "inventories": {
+    "value": 24179747573.0,
+    "line": "Inventories                            13,320,680,704        24,179,747,573",
+    "source": "2022Q4__Elsewedy-Electric-ER-FY2022-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "receivables": {
+    "value": 26055681734.0,
+    "line": "Receivables                            15,043,335,953        26,055,681,734",
+    "source": "2022Q4__Elsewedy-Electric-ER-FY2022-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "payables": {
+    "value": 13720319033.0,
+    "line": "Accounts Payable                        8,678,197,095        13,720,319,033",
+    "source": "2022Q4__Elsewedy-Electric-ER-FY2022-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "total_assets": {
+    "value": 113954544097.0,
+    "line": "Total Assets                           67,693,572,437       113,954,544,097",
+    "source": "2022Q4__Elsewedy-Electric-ER-FY2022-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "total_equity": {
+    "value": 27645303626.0,
+    "line": "Total Equity                           20,205,894,214        27,645,303,626",
+    "source": "2022Q4__Elsewedy-Electric-ER-FY2022-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "issued_capital": {
+    "value": 2170777876.0,
+    "line": "Issued and Paid Capital                 2,184,180,000         2,170,777,876",
+    "source": "2022Q4__Elsewedy-Electric-ER-FY2022-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ppe_or_fixed_assets": {
+    "value": 16812757881.0,
+    "line": "Fixed Assets & Goodwill                10,175,907,881        16,812,757,881",
+    "source": "2022Q4__Elsewedy-Electric-ER-FY2022-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "interest_bearing_debt": {
+    "value": 35740648345.0,
+    "lines": [
+     "Bank Overdraft & Short-term loans      15,032,238,908        30,142,888,481",
+     "Long-term Loans                         2,926,293,825         5,597,759,864"
+    ],
+    "components": [
+     "st_debt",
+     "lt_debt"
+    ],
+    "source": "2022Q4__Elsewedy-Electric-ER-FY2022-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "note": "bank overdraft and short-term loans plus long-term loans. Accounts payable, other credit balances, amounts due to affiliates and provisions are EXCLUDED - none bears interest [R-FCAL-01 trap (i)]."
+   },
+   "depreciation_and_amortisation": {
+    "value": 1485012746.0,
+    "line": "Depreciation & Amortization            (452,632,476)      (296,899,578)               (1,485,012,746)    (1,089,435,978)",
+    "source": "2022Q4__Elsewedy-Electric-ER-FY2022-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "share_count": {
+    "shares": 2170777876,
+    "par_value_egp": 1.0,
+    "issued_capital_egp": 2170777876,
+    "footing": "issued capital 2170777876 / par 1 = 2170777876, which is the count the same note states",
+    "foots": true,
+    "established_by": "13,402,124 treasury shares purchased Jun-Sep 2020 retired; the commercial register was annotated on 17 October 2022",
+    "effective": "2022-10-17",
+    "source": "Elsewedy Electric Company, audited consolidated financial statements for the year ended 31 December 2025, note 29 (share capital)",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "capex": {
+    "value": 8121862746.0,
+    "disclosed": false,
+    "derived": true,
+    "formula": "capex = dPP&E + D&A",
+    "identity": "capex = dPPE + D&A",
+    "source": "DERIVED from this run's own committed property, plant and equipment and depreciation for 2021 and 2022: 2022Q4__Elsewedy-Electric-ER-FY2022-En-.txt and 2022Q4__Elsewedy-Electric-ER-FY2022-En-.txt",
+    "route": "derived_from_committed_figures",
+    "note": "DERIVED. The cash-flow statement for this year is not in the archive as a machine-readable filing; the identity is not an assumption and this label is what keeps the two apart.",
+    "tier": "DERIVED"
+   },
+   "debt": {
+    "value": 35740648345.0,
+    "lines": [
+     "Bank Overdraft & Short-term loans      15,032,238,908        30,142,888,481",
+     "Long-term Loans                         2,926,293,825         5,597,759,864"
+    ],
+    "components": [
+     "st_debt",
+     "lt_debt"
+    ],
+    "source": "2022Q4__Elsewedy-Electric-ER-FY2022-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "note": "bank overdraft and short-term loans plus long-term loans. Accounts payable, other credit balances, amounts due to affiliates and provisions are EXCLUDED - none bears interest [R-FCAL-01 trap (i)]."
+   },
+   "ppe": {
+    "value": 16812757881.0,
+    "line": "Fixed Assets & Goodwill                10,175,907,881        16,812,757,881",
+    "source": "2022Q4__Elsewedy-Electric-ER-FY2022-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "dep": {
+    "value": 1485012746.0,
+    "line": "Depreciation & Amortization            (452,632,476)      (296,899,578)               (1,485,012,746)    (1,089,435,978)",
+    "source": "2022Q4__Elsewedy-Electric-ER-FY2022-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "wc": {
+    "value": 36515110274.0,
+    "components": {
+     "inventories": 24179747573.0,
+     "receivables": 26055681734.0,
+     "payables": 13720319033.0
+    },
+    "source": "2022Q4__Elsewedy-Electric-ER-FY2022-En-.txt",
+    "route": "text_layer",
+    "note": "inventories plus trade and other receivables less trade and other payables, each line kept beside the total"
+   },
+   "shares": {
+    "value": 2170777876,
+    "issued_capital": 2170777876,
+    "par_value": 1.0,
+    "source": "Elsewedy Electric Company, audited consolidated financial statements for the year ended 31 December 2025, note 29 (share capital)",
+    "route": "text_layer",
+    "footing": "issued capital 2170777876 / par 1 = 2170777876, which is the count the same note states",
+    "established_by": "13,402,124 treasury shares purchased Jun-Sep 2020 retired; the commercial register was annotated on 17 October 2022"
+   },
+   "_missing": []
+  },
+  "2023": {
+   "ppe": {
+    "value": 18009166367.0,
+    "line": "Property, plant and equipment                               (17)(45-2)                          27 543 762 675",
+    "source": "2024Q4__EE-Consalidated-English-FS-31-December-2024.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "ocr_200dpi"
+   },
+   "inventories": {
+    "value": 30881822082.0,
+    "line": "Inventories                                             (23)(45-5)                      56 795 884 068        ",
+    "source": "2024Q4__EE-Consalidated-English-FS-31-December-2024.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "ocr_200dpi"
+   },
+   "cash": {
+    "value": 25552044800.0,
+    "line": "Cash and cash equivalents                                       (28)                              38 180 002 3",
+    "source": "2024Q4__EE-Consalidated-English-FS-31-December-2024.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "ocr_200dpi"
+   },
+   "total_assets": {
+    "value": 151448654828.0,
+    "line": "Total assets                                                                                    249 527 138 68",
+    "source": "2024Q4__EE-Consalidated-English-FS-31-December-2024.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "ocr_200dpi"
+   },
+   "total_equity": {
+    "value": 38108479528.0,
+    "line": "Total equity                                                                                               59 ",
+    "source": "2024Q4__EE-Consalidated-English-FS-31-December-2024.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "ocr_200dpi"
+   },
+   "payables": {
+    "value": 31938122060.0,
+    "lines": [
+     "Trade and other payables                               (33)(45-14)                      54 808 185 042        "
+    ],
+    "source": "2024Q4__EE-Consalidated-English-FS-31-December-2024.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "ocr_200dpi",
+    "note": "non-current and current halves summed"
+   },
+   "interest_bearing_debt": {
+    "value": 41766492071.0,
+    "lines": [
+     "Loans and borrowings                                       (32)(45-14)                           6 349 010 708",
+     "Loans and borrowings                                  (32)45-14)                      52 733 931 099          "
+    ],
+    "source": "2024Q4__EE-Consalidated-English-FS-31-December-2024.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "ocr_200dpi",
+    "note": "loans and borrowings, non-current plus current. Trade and other payables, contract liabilities, due to related parties and provisions are EXCLUDED: none of them bears interest, and dividing the finance charge by a total that includes them understates the borrowing rate by a multiple and manufactures a bias that looks exactly like evidence."
+   },
+   "_footing": [
+    {
+     "test": "non-current + current = total assets",
+     "residual": 0.0,
+     "verdict": "PASS"
+    },
+    {
+     "test": "equity + liabilities = total assets",
+     "residual": 0.0,
+     "verdict": "PASS"
+    },
+    {
+     "test": "balance-sheet cash = cash-flow statement's closing cash",
+     "residual": 0.0,
+     "verdict": "PASS"
+    }
+   ],
+   "receivables": {
+    "value": 2770746000.0,
+    "line": "Trade receivables                                          2,770,746         1,517,208",
+    "source": "2023Q4__Elsewedy-Electric-ER-4Q2023-E-Final.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "issued_capital": {
+    "value": 2170778000.0,
+    "line": "Issued and Paid-up Capital                                 2,170,778         2,170,778",
+    "source": "2023Q4__Elsewedy-Electric-ER-4Q2023-E-Final.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ppe_or_fixed_assets": {
+    "value": 18009166000.0,
+    "line": "Property, plant, and equipment                            18,009,166        14,733,732",
+    "source": "2023Q4__Elsewedy-Electric-ER-4Q2023-E-Final.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "depreciation_and_amortisation": {
+    "value": 2120789808.0,
+    "line": "Depreciation of property plant and equipment                                                      )17(          2 019 646 871               ",
+    "source": "2024Q4__EE-Consalidated-English-FS-31-December-2024.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer_or_ocr"
+   },
+   "capex": {
+    "value": 4748595385.0,
+    "line": "Paid for acquisition of property, plant and equipment and projects under construction                          (8 489 780 912)            (4",
+    "source": "2024Q4__EE-Consalidated-English-FS-31-December-2024.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer_or_ocr",
+    "disclosed": true
+   },
+   "share_count": {
+    "shares": 2170777876,
+    "par_value_egp": 1.0,
+    "issued_capital_egp": 2170777876,
+    "footing": "issued capital 2170777876 / par 1 = 2170777876, which is the count the same note states",
+    "foots": true,
+    "established_by": "13,402,124 treasury shares purchased Jun-Sep 2020 retired; the commercial register was annotated on 17 October 2022",
+    "effective": "2022-10-17",
+    "source": "Elsewedy Electric Company, audited consolidated financial statements for the year ended 31 December 2025, note 29 (share capital)",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "debt": {
+    "value": 41766492071.0,
+    "lines": [
+     "Loans and borrowings                                       (32)(45-14)                           6 349 010 708",
+     "Loans and borrowings                                  (32)45-14)                      52 733 931 099          "
+    ],
+    "source": "2024Q4__EE-Consalidated-English-FS-31-December-2024.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "ocr_200dpi",
+    "note": "loans and borrowings, non-current plus current. Trade and other payables, contract liabilities, due to related parties and provisions are EXCLUDED: none of them bears interest, and dividing the finance charge by a total that includes them understates the borrowing rate by a multiple and manufactures a bias that looks exactly like evidence."
+   },
+   "dep": {
+    "value": 2120789808.0,
+    "line": "Depreciation of property plant and equipment                                                      )17(          2 019 646 871               ",
+    "source": "2024Q4__EE-Consalidated-English-FS-31-December-2024.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer_or_ocr"
+   },
+   "wc": {
+    "value": 1714446022.0,
+    "components": {
+     "inventories": 30881822082.0,
+     "receivables": 2770746000.0,
+     "payables": 31938122060.0
+    },
+    "source": "2023Q4__Elsewedy-Electric-ER-4Q2023-E-Final.txt; 2024Q4__EE-Consalidated-English-FS-31-December-2024.filled.txt",
+    "route": "ocr_200dpi; text_layer",
+    "note": "inventories plus trade and other receivables less trade and other payables, each line kept beside the total"
+   },
+   "shares": {
+    "value": 2170777876,
+    "issued_capital": 2170777876,
+    "par_value": 1.0,
+    "source": "Elsewedy Electric Company, audited consolidated financial statements for the year ended 31 December 2025, note 29 (share capital)",
+    "route": "text_layer",
+    "footing": "issued capital 2170777876 / par 1 = 2170777876, which is the count the same note states",
+    "established_by": "13,402,124 treasury shares purchased Jun-Sep 2020 retired; the commercial register was annotated on 17 October 2022"
+   },
+   "_missing": []
+  },
+  "2024": {
+   "ppe": {
+    "value": 27543762675.0,
+    "line": "Property, plant and equipment                                (17)(44-2)                            35 961 076 ",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "ocr_200dpi"
+   },
+   "inventories": {
+    "value": 56795884068.0,
+    "line": "Inventories                                                      (23)\u00ab(44-5)                             59 86",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "ocr_200dpi"
+   },
+   "cash": {
+    "value": 38180002322.0,
+    "line": "Cash and cash equivalents                                           {28)                                  Al 9",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "ocr_200dpi"
+   },
+   "total_assets": {
+    "value": 249527138687.0,
+    "line": "Total assets                                                                                                  ",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "ocr_200dpi"
+   },
+   "total_equity": {
+    "value": 59526685256.0,
+    "line": "Total equity                                                                                                 7",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "ocr_200dpi"
+   },
+   "receivables": {
+    "value": 88630426475.0,
+    "lines": [
+     "Trade and other receivables                                 (21),(44-14)                            1 428 080 ",
+     "Trade and other receivables                                     (26):(44-14)                            116 25"
+    ],
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "ocr_200dpi",
+    "note": "non-current and current halves summed"
+   },
+   "payables": {
+    "value": 54808185042.0,
+    "lines": [
+     "Trade and other payables                                      (33)\u00ab(44-14)                            68 895 6"
+    ],
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "ocr_200dpi",
+    "note": "non-current and current halves summed"
+   },
+   "interest_bearing_debt": {
+    "value": 59082941807.0,
+    "lines": [
+     "Loans and borrowings                                          (32)*(44-14)                               8 620",
+     "Loans and borrowings                                          (32)\u00ab(44-14)                            53 888 4"
+    ],
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "ocr_200dpi",
+    "note": "loans and borrowings, non-current plus current. Trade and other payables, contract liabilities, due to related parties and provisions are EXCLUDED: none of them bears interest, and dividing the finance charge by a total that includes them understates the borrowing rate by a multiple and manufactures a bias that looks exactly like evidence."
+   },
+   "_footing": [
+    {
+     "test": "non-current + current = total assets",
+     "residual": 0.0,
+     "verdict": "PASS"
+    },
+    {
+     "test": "equity + liabilities = total assets",
+     "residual": 0.0,
+     "verdict": "PASS"
+    },
+    {
+     "test": "balance-sheet cash = cash-flow statement's closing cash",
+     "residual": 0.0,
+     "verdict": "PASS"
+    }
+   ],
+   "issued_capital": {
+    "value": 2140778000.0,
+    "line": "Issued and Paid-up Capital                                    2,140,778            2,170,778",
+    "source": "2024Q4__Elsewedy-Electric-ER-4Q2024-En.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ppe_or_fixed_assets": {
+    "value": 27543763000.0,
+    "line": "Property, plant, and equipment                               27,543,763           18,009,166",
+    "source": "2024Q4__Elsewedy-Electric-ER-4Q2024-En.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "depreciation_and_amortisation": {
+    "value": 2019646871.0,
+    "line": "Depreciation of property plant and equipment                                                     )17(         2 733 671 862               2 ",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer_or_ocr"
+   },
+   "capex": {
+    "value": 8489780912.0,
+    "line": "Paid for acquisition of property, plant and equipment and projects under construction                      (13 112 049 791)             (8 4",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer_or_ocr",
+    "disclosed": true
+   },
+   "share_count": {
+    "shares": 2140777876,
+    "par_value_egp": 1.0,
+    "issued_capital_egp": 2140777876,
+    "footing": "issued capital 2140777876 / par 1 = 2140777876, which is the count the same note states",
+    "foots": true,
+    "established_by": "30,000,000 treasury shares retired at a par value of EGP 30,000,000",
+    "effective": "2024-04-18",
+    "source": "Elsewedy Electric Company, audited consolidated financial statements for the year ended 31 December 2025, note 29 (share capital)",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "debt": {
+    "value": 59082941807.0,
+    "lines": [
+     "Loans and borrowings                                          (32)*(44-14)                               8 620",
+     "Loans and borrowings                                          (32)\u00ab(44-14)                            53 888 4"
+    ],
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "ocr_200dpi",
+    "note": "loans and borrowings, non-current plus current. Trade and other payables, contract liabilities, due to related parties and provisions are EXCLUDED: none of them bears interest, and dividing the finance charge by a total that includes them understates the borrowing rate by a multiple and manufactures a bias that looks exactly like evidence."
+   },
+   "dep": {
+    "value": 2019646871.0,
+    "line": "Depreciation of property plant and equipment                                                     )17(         2 733 671 862               2 ",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer_or_ocr"
+   },
+   "wc": {
+    "value": 90618125501.0,
+    "components": {
+     "inventories": 56795884068.0,
+     "receivables": 88630426475.0,
+     "payables": 54808185042.0
+    },
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "route": "ocr_200dpi",
+    "note": "inventories plus trade and other receivables less trade and other payables, each line kept beside the total"
+   },
+   "shares": {
+    "value": 2140777876,
+    "issued_capital": 2140777876,
+    "par_value": 1.0,
+    "source": "Elsewedy Electric Company, audited consolidated financial statements for the year ended 31 December 2025, note 29 (share capital)",
+    "route": "text_layer",
+    "footing": "issued capital 2140777876 / par 1 = 2140777876, which is the count the same note states",
+    "established_by": "30,000,000 treasury shares retired at a par value of EGP 30,000,000"
+   },
+   "_missing": []
+  },
+  "2025": {
+   "ppe": {
+    "value": 35961076614.0,
+    "line": "Property, plant and equipment                                (17)(44-2)                            35 961 076 ",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "ocr_200dpi"
+   },
+   "inventories": {
+    "value": 59860044570.0,
+    "line": "Inventories                                                      (23)\u00ab(44-5)                             59 86",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "ocr_200dpi"
+   },
+   "cash": {
+    "value": 41949208624.0,
+    "line": "Cash and cash equivalents at 31 December                                                         )28(        41 949 208 624             38 1",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer",
+    "superseded": {
+     "value": 949208624.0,
+     "line": "Cash and cash equivalents                                           {28)                                  Al 9",
+     "route": "ocr_200dpi"
+    },
+    "note": "THE BALANCE-SHEET FIGURE WAS REFUSED AND REPLACED. The statement of financial position is on an image-only page and its OCR renders the leading digits of cash as letters; the figure carried here is the one the consolidated statement of cash flows states as its closing balance, which sits on a text-layer page and is the same quantity. Arithmetic is the arbiter, not the extractor."
+   },
+   "total_assets": {
+    "value": 311099090775.0,
+    "line": "Total assets                                                                                                  ",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "ocr_200dpi"
+   },
+   "total_equity": {
+    "value": 71989844931.0,
+    "line": "Total equity                                                                                                 7",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "ocr_200dpi"
+   },
+   "receivables": {
+    "value": 117687877691.0,
+    "lines": [
+     "Trade and other receivables                                 (21),(44-14)                            1 428 080 ",
+     "Trade and other receivables                                     (26):(44-14)                            116 25"
+    ],
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "ocr_200dpi",
+    "note": "non-current and current halves summed"
+   },
+   "payables": {
+    "value": 68895662044.0,
+    "lines": [
+     "Trade and other payables                                      (33)\u00ab(44-14)                            68 895 6"
+    ],
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "ocr_200dpi",
+    "note": "non-current and current halves summed"
+   },
+   "interest_bearing_debt": {
+    "value": 62509211797.0,
+    "lines": [
+     "Loans and borrowings                                          (32)*(44-14)                               8 620",
+     "Loans and borrowings                                          (32)\u00ab(44-14)                            53 888 4"
+    ],
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "ocr_200dpi",
+    "note": "loans and borrowings, non-current plus current. Trade and other payables, contract liabilities, due to related parties and provisions are EXCLUDED: none of them bears interest, and dividing the finance charge by a total that includes them understates the borrowing rate by a multiple and manufactures a bias that looks exactly like evidence."
+   },
+   "_footing": [
+    {
+     "test": "non-current + current = total assets",
+     "residual": 0.0,
+     "verdict": "PASS"
+    },
+    {
+     "test": "equity + liabilities = total assets",
+     "residual": 0.0,
+     "verdict": "PASS"
+    },
+    {
+     "test": "balance-sheet cash = cash-flow statement's closing cash",
+     "residual": -41000000000.0,
+     "verdict": "FAIL"
+    }
+   ],
+   "depreciation_and_amortisation": {
+    "value": 2733671862.0,
+    "line": "Depreciation of property plant and equipment                                                     )17(         2 733 671 862               2 ",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer_or_ocr"
+   },
+   "capex": {
+    "value": 13112049791.0,
+    "line": "Paid for acquisition of property, plant and equipment and projects under construction                      (13 112 049 791)             (8 4",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer_or_ocr",
+    "disclosed": true
+   },
+   "share_count": {
+    "shares": 2140777876,
+    "par_value_egp": 1.0,
+    "issued_capital_egp": 2140777876,
+    "footing": "issued capital 2140777876 / par 1 = 2140777876, which is the count the same note states",
+    "foots": true,
+    "established_by": "30,000,000 treasury shares retired at a par value of EGP 30,000,000",
+    "effective": "2024-04-18",
+    "source": "Elsewedy Electric Company, audited consolidated financial statements for the year ended 31 December 2025, note 29 (share capital)",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "debt": {
+    "value": 62509211797.0,
+    "lines": [
+     "Loans and borrowings                                          (32)*(44-14)                               8 620",
+     "Loans and borrowings                                          (32)\u00ab(44-14)                            53 888 4"
+    ],
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "ocr_200dpi",
+    "note": "loans and borrowings, non-current plus current. Trade and other payables, contract liabilities, due to related parties and provisions are EXCLUDED: none of them bears interest, and dividing the finance charge by a total that includes them understates the borrowing rate by a multiple and manufactures a bias that looks exactly like evidence."
+   },
+   "dep": {
+    "value": 2733671862.0,
+    "line": "Depreciation of property plant and equipment                                                     )17(         2 733 671 862               2 ",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer_or_ocr"
+   },
+   "wc": {
+    "value": 108652260217.0,
+    "components": {
+     "inventories": 59860044570.0,
+     "receivables": 117687877691.0,
+     "payables": 68895662044.0
+    },
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "route": "ocr_200dpi",
+    "note": "inventories plus trade and other receivables less trade and other payables, each line kept beside the total"
+   },
+   "shares": {
+    "value": 2140777876,
+    "issued_capital": 2140777876,
+    "par_value": 1.0,
+    "source": "Elsewedy Electric Company, audited consolidated financial statements for the year ended 31 December 2025, note 29 (share capital)",
+    "route": "text_layer",
+    "footing": "issued capital 2140777876 / par 1 = 2140777876, which is the count the same note states",
+    "established_by": "30,000,000 treasury shares retired at a par value of EGP 30,000,000"
+   },
+   "_missing": []
+  }
+ },
+ "prior_year_anchor": {
+  "2009": {
+   "depreciation_and_amortisation": {
+    "value": 192179601.0,
+    "line": "  Depreciation *                                         279,085,878       192,179,601       75,971,996        71,457,54",
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "share_count": {
+    "missing": true,
+    "reason": "the capital recital in note 29 begins at 1 January 2017 and says nothing about the capital at this year end"
+   },
+   "cash": {
+    "missing": "not disclosed in a machine-readable filing held for this year"
+   },
+   "debt": {
+    "missing": "not disclosed in a machine-readable filing held for this year"
+   },
+   "capex": {
+    "missing": "not disclosed in any machine-readable filing held for this year"
+   },
+   "ppe": {
+    "missing": "not disclosed in any machine-readable filing held for this year"
+   },
+   "dep": {
+    "value": 192179601.0,
+    "line": "  Depreciation *                                         279,085,878       192,179,601       75,971,996        71,457,54",
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "wc": {
+    "missing": "no working-capital line is disclosed in any machine-readable filing held for this year"
+   },
+   "shares": {
+    "missing": "the capital recital in note 29 begins at 1 January 2017 and says nothing about the capital at this year end"
+   },
+   "_missing": [
+    {
+     "item": "share count",
+     "reason": "the capital recital in note 29 begins at 1 January 2017 and says nothing about the capital at this year end"
+    },
+    {
+     "item": "capital expenditure",
+     "reason": "the cash-flow statement is not to hand for this year and the identity capex = dPP&E + D&A cannot be closed either, because the prior year has no PP&E figure"
+    },
+    {
+     "item": "cash and equivalents",
+     "reason": "not disclosed in a machine-readable filing held for this year"
+    },
+    {
+     "item": "interest-bearing debt",
+     "reason": "not disclosed in a machine-readable filing held for this year"
+    },
+    {
+     "item": "inventories",
+     "reason": "not disclosed in a machine-readable filing held for this year"
+    },
+    {
+     "item": "trade and other receivables",
+     "reason": "not disclosed in a machine-readable filing held for this year"
+    },
+    {
+     "item": "trade and other payables",
+     "reason": "not disclosed in a machine-readable filing held for this year"
+    },
+    {
+     "item": "property, plant and equipment",
+     "reason": "not disclosed in a machine-readable filing held for this year"
+    }
+   ]
+  },
+  "2010": {
+   "cash": {
+    "value": 1569112000.0,
+    "line": "  Cash & Cash Equivalents                              1,569,112      1,026,687",
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "inventories": {
+    "value": 3699614000.0,
+    "line": "  Inventories                                          3,699,614      2,779,135",
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "receivables": {
+    "value": 4114969000.0,
+    "line": "  Receivables                                          4,114,969      2,655,520",
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "payables": {
+    "value": 2316105000.0,
+    "line": "  Accounts Payable                                     2,316,105      1,760,111",
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "total_equity": {
+    "value": 5341312000.0,
+    "line": "  Total Equity                                         5,341,312      4,583,641",
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ppe_or_fixed_assets": {
+    "value": 3814071000.0,
+    "line": "  Fixed Assets                                         3,814,071      3,728,647",
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "interest_bearing_debt": {
+    "value": 5838447000.0,
+    "lines": [
+     "  Bank Overdraft & Short term / Loans                                                4,765,411      3,624,387",
+     "  Long term loans                                      1,073,036        988,583"
+    ],
+    "components": [
+     "st_debt",
+     "lt_debt"
+    ],
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "note": "bank overdraft and short-term loans plus long-term loans. Accounts payable, other credit balances, amounts due to affiliates and provisions are EXCLUDED - none bears interest [R-FCAL-01 trap (i)]."
+   },
+   "depreciation_and_amortisation": {
+    "value": 279085878.0,
+    "line": "  Depreciation *                                         279,085,878       192,179,601       75,971,996        71,457,547",
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "share_count": {
+    "missing": true,
+    "reason": "the capital recital in note 29 begins at 1 January 2017 and says nothing about the capital at this year end"
+   },
+   "debt": {
+    "value": 5838447000.0,
+    "lines": [
+     "  Bank Overdraft & Short term / Loans                                                4,765,411      3,624,387",
+     "  Long term loans                                      1,073,036        988,583"
+    ],
+    "components": [
+     "st_debt",
+     "lt_debt"
+    ],
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "note": "bank overdraft and short-term loans plus long-term loans. Accounts payable, other credit balances, amounts due to affiliates and provisions are EXCLUDED - none bears interest [R-FCAL-01 trap (i)]."
+   },
+   "capex": {
+    "missing": "not disclosed in any machine-readable filing held for this year"
+   },
+   "ppe": {
+    "value": 3814071000.0,
+    "line": "  Fixed Assets                                         3,814,071      3,728,647",
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "dep": {
+    "value": 279085878.0,
+    "line": "  Depreciation *                                         279,085,878       192,179,601       75,971,996        71,457,547",
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "wc": {
+    "value": 5498478000.0,
+    "components": {
+     "inventories": 3699614000.0,
+     "receivables": 4114969000.0,
+     "payables": 2316105000.0
+    },
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "route": "text_layer",
+    "note": "inventories plus trade and other receivables less trade and other payables, each line kept beside the total"
+   },
+   "shares": {
+    "missing": "the capital recital in note 29 begins at 1 January 2017 and says nothing about the capital at this year end"
+   },
+   "_missing": [
+    {
+     "item": "share count",
+     "reason": "the capital recital in note 29 begins at 1 January 2017 and says nothing about the capital at this year end"
+    },
+    {
+     "item": "capital expenditure",
+     "reason": "the cash-flow statement is not to hand for this year and the identity capex = dPP&E + D&A cannot be closed either, because the prior year has no PP&E figure"
+    }
+   ]
+  },
+  "2011": {
+   "cash": {
+    "value": 1643904000.0,
+    "line": "Cash & Cash Equivalents                 1,569,112     1,342,473   1,643,904",
+    "source": "2011Q4__FY-2011-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "inventories": {
+    "value": 3553647000.0,
+    "line": "Inventories                             3,699,614     4,278,559   3,553,647",
+    "source": "2011Q4__FY-2011-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "receivables": {
+    "value": 3781384000.0,
+    "line": "Receivables                             3,549,771     3,790,575   3,781,384",
+    "source": "2011Q4__FY-2011-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "payables": {
+    "value": 1123732000.0,
+    "line": "Accounts Payable                        1,165,755     863,820     1,123,732",
+    "source": "2011Q4__FY-2011-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "total_equity": {
+    "value": 5574486000.0,
+    "line": "Total Equity                            5,341,312    5,633,667    5,574,486",
+    "source": "2011Q4__FY-2011-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "issued_capital": {
+    "value": 2234180000.0,
+    "line": "Issued and Paid Capital                 1,718,600    2,234,180    2,234,180",
+    "source": "2011Q4__FY-2011-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ppe_or_fixed_assets": {
+    "value": 3735736000.0,
+    "line": "Fixed Assets                            3,814,071    3,780,221    3,735,736",
+    "source": "2011Q4__FY-2011-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "interest_bearing_debt": {
+    "value": 5983622000.0,
+    "lines": [
+     "Bank Overdraft & Short Term loans       4,765,411    5,893,858    5,158,252",
+     "Long Term Loans                         1,073,036     809,882      825,370"
+    ],
+    "components": [
+     "st_debt",
+     "lt_debt"
+    ],
+    "source": "2011Q4__FY-2011-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "note": "bank overdraft and short-term loans plus long-term loans. Accounts payable, other credit balances, amounts due to affiliates and provisions are EXCLUDED - none bears interest [R-FCAL-01 trap (i)]."
+   },
+   "depreciation_and_amortisation": {
+    "value": 330666000.0,
+    "line": "Depreciation                          (75,972)       (88,068)      (279,086)    (330,666)",
+    "source": "2011Q4__FY-2011-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "share_count": {
+    "shares": 223418000.0,
+    "par_value_egp": 10.0,
+    "issued_capital_egp": 2234180000.0,
+    "footing": "issued capital 2234180000 / par 10 = 223418000",
+    "foots": true,
+    "source": "2011Q4__FY-2011-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "established_by": "the par value in force at this date is EGP 10, established by note 29 of the FY2025 audited statements, which records the split to EGP 1 as taking effect on 22 May 2018"
+   },
+   "capex": {
+    "value": 252331000.0,
+    "disclosed": false,
+    "derived": true,
+    "formula": "capex = dPP&E + D&A",
+    "identity": "capex = dPPE + D&A",
+    "source": "DERIVED from this run's own committed property, plant and equipment and depreciation for 2010 and 2011: 2011Q4__FY-2011-Earnings-Press-Release.txt and 2011Q4__FY-2011-Earnings-Press-Release.txt",
+    "route": "derived_from_committed_figures",
+    "note": "DERIVED. The cash-flow statement for this year is not in the archive as a machine-readable filing; the identity is not an assumption and this label is what keeps the two apart.",
+    "tier": "DERIVED"
+   },
+   "debt": {
+    "value": 5983622000.0,
+    "lines": [
+     "Bank Overdraft & Short Term loans       4,765,411    5,893,858    5,158,252",
+     "Long Term Loans                         1,073,036     809,882      825,370"
+    ],
+    "components": [
+     "st_debt",
+     "lt_debt"
+    ],
+    "source": "2011Q4__FY-2011-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "note": "bank overdraft and short-term loans plus long-term loans. Accounts payable, other credit balances, amounts due to affiliates and provisions are EXCLUDED - none bears interest [R-FCAL-01 trap (i)]."
+   },
+   "ppe": {
+    "value": 3735736000.0,
+    "line": "Fixed Assets                            3,814,071    3,780,221    3,735,736",
+    "source": "2011Q4__FY-2011-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "dep": {
+    "value": 330666000.0,
+    "line": "Depreciation                          (75,972)       (88,068)      (279,086)    (330,666)",
+    "source": "2011Q4__FY-2011-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "wc": {
+    "value": 6211299000.0,
+    "components": {
+     "inventories": 3553647000.0,
+     "receivables": 3781384000.0,
+     "payables": 1123732000.0
+    },
+    "source": "2011Q4__FY-2011-Earnings-Press-Release.txt",
+    "route": "text_layer",
+    "note": "inventories plus trade and other receivables less trade and other payables, each line kept beside the total"
+   },
+   "shares": {
+    "value": 223418000.0,
+    "issued_capital": 2234180000.0,
+    "par_value": 10.0,
+    "source": "2011Q4__FY-2011-Earnings-Press-Release.txt",
+    "route": "text_layer",
+    "footing": "issued capital 2234180000 / par 10 = 223418000",
+    "established_by": "the par value in force at this date is EGP 10, established by note 29 of the FY2025 audited statements, which records the split to EGP 1 as taking effect on 22 May 2018"
+   },
+   "_missing": []
+  },
+  "2012": {
+   "cash": {
+    "value": 1323955322.0,
+    "line": "Cash & Cash Equivalents                1,460,540,430      1,240,131,190    994,966,942    1,323,955,322",
+    "source": "2012Q4__FY-2012-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "inventories": {
+    "value": 3439641354.0,
+    "line": "Inventories                            3,649,065,217      3,705,809,976   3,801,075,170   3,439,641,354",
+    "source": "2012Q4__FY-2012-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "receivables": {
+    "value": 4000316720.0,
+    "line": "Receivables                            3,839,123,470      3,754,346,943   3,596,191,363   4,000,316,720",
+    "source": "2012Q4__FY-2012-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "payables": {
+    "value": 1131545177.0,
+    "line": "Accounts Payable                        980,453,711       1,162,114,298   1,124,898,534   1,131,545,177",
+    "source": "2012Q4__FY-2012-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "total_equity": {
+    "value": 5245396836.0,
+    "line": "Total Equity                           5,625,158,767      5,250,740,191   5,282,076,197   5,245,396,836",
+    "source": "2012Q4__FY-2012-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "issued_capital": {
+    "value": 2234180000.0,
+    "line": "Issued and Paid Capital                2,234,180,000      2,234,180,000   2,234,180,000   2,234,180,000",
+    "source": "2012Q4__FY-2012-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ppe_or_fixed_assets": {
+    "value": 3485689429.0,
+    "line": "Fixed Assets                           3,673,473,888      3,555,322,921   3,483,559,289   3,485,689,429",
+    "source": "2012Q4__FY-2012-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "interest_bearing_debt": {
+    "value": 5183687040.0,
+    "lines": [
+     "Bank Overdraft & Short Term loans      5,054,168,183      4,699,263,557   4,775,144,690   4,594,482,479",
+     "Long Term Loans                        738,679,591        681,190,475     702,068,254     589,204,561"
+    ],
+    "components": [
+     "st_debt",
+     "lt_debt"
+    ],
+    "source": "2012Q4__FY-2012-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "note": "bank overdraft and short-term loans plus long-term loans. Accounts payable, other credit balances, amounts due to affiliates and provisions are EXCLUDED - none bears interest [R-FCAL-01 trap (i)]."
+   },
+   "depreciation_and_amortisation": {
+    "value": 328716611.0,
+    "line": "Depreciation                          (328,716,611)      (330,665,869)    (82,072,093)     (88,067,776)",
+    "source": "2012Q4__FY-2012-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "share_count": {
+    "shares": 223418000.0,
+    "par_value_egp": 10.0,
+    "issued_capital_egp": 2234180000.0,
+    "footing": "issued capital 2234180000 / par 10 = 223418000",
+    "foots": true,
+    "source": "2012Q4__FY-2012-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "established_by": "the par value in force at this date is EGP 10, established by note 29 of the FY2025 audited statements, which records the split to EGP 1 as taking effect on 22 May 2018"
+   },
+   "capex": {
+    "value": 78670040.0,
+    "disclosed": false,
+    "derived": true,
+    "formula": "capex = dPP&E + D&A",
+    "identity": "capex = dPPE + D&A",
+    "source": "DERIVED from this run's own committed property, plant and equipment and depreciation for 2011 and 2012: 2012Q4__FY-2012-Earnings-Press-Release.txt and 2012Q4__FY-2012-Earnings-Press-Release.txt",
+    "route": "derived_from_committed_figures",
+    "note": "DERIVED. The cash-flow statement for this year is not in the archive as a machine-readable filing; the identity is not an assumption and this label is what keeps the two apart.",
+    "tier": "DERIVED"
+   },
+   "debt": {
+    "value": 5183687040.0,
+    "lines": [
+     "Bank Overdraft & Short Term loans      5,054,168,183      4,699,263,557   4,775,144,690   4,594,482,479",
+     "Long Term Loans                        738,679,591        681,190,475     702,068,254     589,204,561"
+    ],
+    "components": [
+     "st_debt",
+     "lt_debt"
+    ],
+    "source": "2012Q4__FY-2012-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "note": "bank overdraft and short-term loans plus long-term loans. Accounts payable, other credit balances, amounts due to affiliates and provisions are EXCLUDED - none bears interest [R-FCAL-01 trap (i)]."
+   },
+   "ppe": {
+    "value": 3485689429.0,
+    "line": "Fixed Assets                           3,673,473,888      3,555,322,921   3,483,559,289   3,485,689,429",
+    "source": "2012Q4__FY-2012-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "dep": {
+    "value": 328716611.0,
+    "line": "Depreciation                          (328,716,611)      (330,665,869)    (82,072,093)     (88,067,776)",
+    "source": "2012Q4__FY-2012-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "wc": {
+    "value": 6308412897.0,
+    "components": {
+     "inventories": 3439641354.0,
+     "receivables": 4000316720.0,
+     "payables": 1131545177.0
+    },
+    "source": "2012Q4__FY-2012-Earnings-Press-Release.txt",
+    "route": "text_layer",
+    "note": "inventories plus trade and other receivables less trade and other payables, each line kept beside the total"
+   },
+   "shares": {
+    "value": 223418000.0,
+    "issued_capital": 2234180000.0,
+    "par_value": 10.0,
+    "source": "2012Q4__FY-2012-Earnings-Press-Release.txt",
+    "route": "text_layer",
+    "footing": "issued capital 2234180000 / par 10 = 223418000",
+    "established_by": "the par value in force at this date is EGP 10, established by note 29 of the FY2025 audited statements, which records the split to EGP 1 as taking effect on 22 May 2018"
+   },
+   "_missing": []
+  },
+  "2013": {
+   "cash": {
+    "value": 1528874240.0,
+    "line": "       Cash & Cash Equivalents                1,715,332,488       1,970,685,322    1,089,202,564    1,528,874,240",
+    "source": "2013Q4__FY-2013-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "inventories": {
+    "value": 3699178762.0,
+    "line": "       Inventories                            3,492,459,663       3,807,180,410    3,831,372,842    3,699,178,762",
+    "source": "2013Q4__FY-2013-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "receivables": {
+    "value": 4180729048.0,
+    "line": "       Receivables                            4,252,340,834       4,387,118,943    4,734,005,601    4,180,729,048",
+    "source": "2013Q4__FY-2013-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "payables": {
+    "value": 1315833852.0,
+    "line": "       Accounts Payable                       1,339,779,354       1,099,626,442    1,017,209,604    1,315,833,852",
+    "source": "2013Q4__FY-2013-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "total_equity": {
+    "value": 5287040065.0,
+    "line": "       Total Equity                           5,354,765,112       5,303,733,398    5,349,356,097    5,287,040,065",
+    "source": "2013Q4__FY-2013-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "issued_capital": {
+    "value": 2234180000.0,
+    "line": "       Issued and Paid Capital                2,234,180,000       2,234,180,000    2,234,180,000    2,234,180,000",
+    "source": "2013Q4__FY-2013-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ppe_or_fixed_assets": {
+    "value": 3350493168.0,
+    "line": "       Fixed Assets                           3,425,573,028       3,358,368,622    3,325,582,966    3,350,493,168",
+    "source": "2013Q4__FY-2013-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "interest_bearing_debt": {
+    "value": 5422762662.0,
+    "lines": [
+     "       Bank Overdraft & Short Term loans      5,084,563,356       6,101,105,802    5,663,254,153    4,918,073,216",
+     "       Long Term Loans                         591,403,894         512,157,256      469,361,178      504,689,446"
+    ],
+    "components": [
+     "st_debt",
+     "lt_debt"
+    ],
+    "source": "2013Q4__FY-2013-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "note": "bank overdraft and short-term loans plus long-term loans. Accounts payable, other credit balances, amounts due to affiliates and provisions are EXCLUDED - none bears interest [R-FCAL-01 trap (i)]."
+   },
+   "depreciation_and_amortisation": {
+    "value": 387172938.0,
+    "line": "           Depreciation & Amortization           (85,115,260)             (103,707,811)      (339,532,720)      (387,172,938)",
+    "source": "2013Q4__FY-2013-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "share_count": {
+    "shares": 223418000.0,
+    "par_value_egp": 10.0,
+    "issued_capital_egp": 2234180000.0,
+    "footing": "issued capital 2234180000 / par 10 = 223418000",
+    "foots": true,
+    "source": "2013Q4__FY-2013-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "established_by": "the par value in force at this date is EGP 10, established by note 29 of the FY2025 audited statements, which records the split to EGP 1 as taking effect on 22 May 2018"
+   },
+   "capex": {
+    "value": 251976677.0,
+    "disclosed": false,
+    "derived": true,
+    "formula": "capex = dPP&E + D&A",
+    "identity": "capex = dPPE + D&A",
+    "source": "DERIVED from this run's own committed property, plant and equipment and depreciation for 2012 and 2013: 2013Q4__FY-2013-Earnings-Press-Release.txt and 2013Q4__FY-2013-Earnings-Press-Release.txt",
+    "route": "derived_from_committed_figures",
+    "note": "DERIVED. The cash-flow statement for this year is not in the archive as a machine-readable filing; the identity is not an assumption and this label is what keeps the two apart.",
+    "tier": "DERIVED"
+   },
+   "debt": {
+    "value": 5422762662.0,
+    "lines": [
+     "       Bank Overdraft & Short Term loans      5,084,563,356       6,101,105,802    5,663,254,153    4,918,073,216",
+     "       Long Term Loans                         591,403,894         512,157,256      469,361,178      504,689,446"
+    ],
+    "components": [
+     "st_debt",
+     "lt_debt"
+    ],
+    "source": "2013Q4__FY-2013-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "note": "bank overdraft and short-term loans plus long-term loans. Accounts payable, other credit balances, amounts due to affiliates and provisions are EXCLUDED - none bears interest [R-FCAL-01 trap (i)]."
+   },
+   "ppe": {
+    "value": 3350493168.0,
+    "line": "       Fixed Assets                           3,425,573,028       3,358,368,622    3,325,582,966    3,350,493,168",
+    "source": "2013Q4__FY-2013-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "dep": {
+    "value": 387172938.0,
+    "line": "           Depreciation & Amortization           (85,115,260)             (103,707,811)      (339,532,720)      (387,172,938)",
+    "source": "2013Q4__FY-2013-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "wc": {
+    "value": 6564073958.0,
+    "components": {
+     "inventories": 3699178762.0,
+     "receivables": 4180729048.0,
+     "payables": 1315833852.0
+    },
+    "source": "2013Q4__FY-2013-Earnings-Press-Release.txt",
+    "route": "text_layer",
+    "note": "inventories plus trade and other receivables less trade and other payables, each line kept beside the total"
+   },
+   "shares": {
+    "value": 223418000.0,
+    "issued_capital": 2234180000.0,
+    "par_value": 10.0,
+    "source": "2013Q4__FY-2013-Earnings-Press-Release.txt",
+    "route": "text_layer",
+    "footing": "issued capital 2234180000 / par 10 = 223418000",
+    "established_by": "the par value in force at this date is EGP 10, established by note 29 of the FY2025 audited statements, which records the split to EGP 1 as taking effect on 22 May 2018"
+   },
+   "_missing": []
+  }
+ },
+ "missing_summary": [
+  {
+   "year": 2009,
+   "missing": [
+    "share count",
+    "capital expenditure",
+    "cash and equivalents",
+    "interest-bearing debt",
+    "inventories",
+    "trade and other receivables",
+    "trade and other payables",
+    "property, plant and equipment"
+   ]
+  },
+  {
+   "year": 2010,
+   "missing": [
+    "share count",
+    "capital expenditure"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,502 @@
+{
+ "_rule": "[R-FCAL-01 AMENDED 03-09-2026] — a run commits the inputs a VALUE is rebuilt from",
+ "_unit": "EGP million, except shares (a count) and issued_capital (EGP)",
+ "_entity": "GB Corp S.A.E (formerly GB Auto S.A.E), EGX: GBCO — CONSOLIDATED group figures",
+ "_note": "GB Corp is an operating company with a CAPTIVE LENDER. These are GROUP figures; the segmented GB Auto / GB Capital split of every line from FY2020 is in the run's panel and in the releases named here, and the two legs are valued separately because a lender's borrowings are its raw material and an assembler's are its working capital.",
+ "prior_year_anchor": {
+  "2015": {
+   "cash": {
+    "value": 1188.704,
+    "source": "engine/gbco_study/src/GB_Annual_Report_2016.pdf comparative column, \"Cash on hand and at banks\"",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "debt": {
+    "value": 5233.274,
+    "source": "engine/gbco_study/src/GB_Annual_Report_2016.pdf comparative, loans 898,473 + loans/borrowings/overdrafts 4,334,801",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": "interest-bearing borrowings only; trade payables and provisions excluded"
+   },
+   "ppe": {
+    "value": 3175.486,
+    "source": "engine/gbco_study/src/GB_Annual_Report_2016.pdf comparative, PP&E and projects under construction (net)",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "dep": {
+    "value": 254.724,
+    "source": "engine/gbco_study/src/GB_Annual_Report_2016.pdf cash-flow statement comparative, \"Depreciation and amortization for the year\"",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "capex": {
+    "value": 1259.383,
+    "source": "engine/gbco_study/src/GB_Annual_Report_2016.pdf cash-flow comparative, \"Acquisition of property, plant, equipment and projects under constructions\"",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "wc": {
+    "value": 2813.7290000000003,
+    "source": "engine/gbco_study/src/GB_Annual_Report_2016.pdf comparative: inventories 2,950,981 + accounts and notes receivable 1,649,624 - trade payables and other credit balances 1,786,876",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "shares": {
+    "value": 1094009733,
+    "issued_capital": 1094010000.0,
+    "par_value": 1.0,
+    "source": "engine/gbco_study/src/GB_Annual_Report_2016.pdf balance sheet \"Issued and paid in capital\" 1,094,010 (EGP thousand) and note 19; capital registered in the commercial register 31 May 2015",
+    "route": "PDF text layer (pymupdf)",
+    "note": "issued capital / par = the count the same note states; par EGP 1.00"
+   }
+  }
+ },
+ "origins": {
+  "2016": {
+   "cash": {
+    "value": 1225.3,
+    "source": "engine/gbco_study/src/GB_Annual_Report_2016.pdf",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "debt": {
+    "value": 8732.109,
+    "source": "engine/gbco_study/src/GB_Annual_Report_2016.pdf loans 1,663,490 + loans/borrowings/overdrafts 7,068,619",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "ppe": {
+    "value": 4898.939,
+    "source": "engine/gbco_study/src/GB_Annual_Report_2016.pdf",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "dep": {
+    "value": 320.759,
+    "source": "engine/gbco_study/src/GB_Annual_Report_2016.pdf cash-flow statement",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "capex": {
+    "value": 1385.345,
+    "source": "engine/gbco_study/src/GB_Annual_Report_2016.pdf cash-flow statement",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "wc": {
+    "value": 5376.333,
+    "source": "engine/gbco_study/src/GB_Annual_Report_2016.pdf inventories + receivables - trade payables",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "shares": {
+    "value": 1094009733,
+    "issued_capital": 1094010000.0,
+    "par_value": 1.0,
+    "source": "engine/gbco_study/src/GB_Annual_Report_2016.pdf balance sheet \"Issued and paid in capital\" 1,094,010 (EGP thousand) and note 19; capital registered in the commercial register 31 May 2015",
+    "route": "PDF text layer (pymupdf)",
+    "note": "issued capital / par = the count the same note states; par EGP 1.00"
+   }
+  },
+  "2017": {
+   "cash": {
+    "value": 1242.776,
+    "source": "engine/gbco_study/src/GB_Annual_Report_2017.pdf",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "debt": {
+    "value": 9614.792,
+    "source": "engine/gbco_study/src/GB_Annual_Report_2017.pdf loans 2,573,823 + loans/borrowings/overdrafts 7,040,969",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "ppe": {
+    "value": 5602.626,
+    "source": "engine/gbco_study/src/GB_Annual_Report_2017.pdf",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "dep": {
+    "value": 434.762,
+    "source": "engine/gbco_study/src/GB_Annual_Report_2017.pdf cash-flow statement",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "capex": {
+    "value": 1429.438,
+    "source": "engine/gbco_study/src/GB_Annual_Report_2017.pdf cash-flow statement",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "wc": {
+    "value": 4465.203,
+    "source": "engine/gbco_study/src/GB_Annual_Report_2017.pdf inventories + receivables - trade payables",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "shares": {
+    "value": 1094009733,
+    "issued_capital": 1094010000.0,
+    "par_value": 1.0,
+    "source": "engine/gbco_study/src/GB_Annual_Report_2016.pdf balance sheet \"Issued and paid in capital\" 1,094,010 (EGP thousand) and note 19; capital registered in the commercial register 31 May 2015",
+    "route": "PDF text layer (pymupdf)",
+    "note": "issued capital / par = the count the same note states; par EGP 1.00"
+   }
+  },
+  "2018": {
+   "cash": {
+    "missing": "GB Auto's FY2018 and FY2019 annual reports lay the audited statements out NUMBERS-FIRST in a split two-column form whose values cannot be attached to their labels from the text layer, and the standalone audited PDFs for those years are not on GB Corp's IR filings index, whose statement archive starts at 31 March 2020. Recorded as missing rather than estimated."
+   },
+   "debt": {
+    "missing": "GB Auto's FY2018 and FY2019 annual reports lay the audited statements out NUMBERS-FIRST in a split two-column form whose values cannot be attached to their labels from the text layer, and the standalone audited PDFs for those years are not on GB Corp's IR filings index, whose statement archive starts at 31 March 2020. Recorded as missing rather than estimated."
+   },
+   "ppe": {
+    "missing": "GB Auto's FY2018 and FY2019 annual reports lay the audited statements out NUMBERS-FIRST in a split two-column form whose values cannot be attached to their labels from the text layer, and the standalone audited PDFs for those years are not on GB Corp's IR filings index, whose statement archive starts at 31 March 2020. Recorded as missing rather than estimated."
+   },
+   "dep": {
+    "missing": "GB Auto's FY2018 and FY2019 annual reports lay the audited statements out NUMBERS-FIRST in a split two-column form whose values cannot be attached to their labels from the text layer, and the standalone audited PDFs for those years are not on GB Corp's IR filings index, whose statement archive starts at 31 March 2020. Recorded as missing rather than estimated."
+   },
+   "capex": {
+    "missing": "GB Auto's FY2018 and FY2019 annual reports lay the audited statements out NUMBERS-FIRST in a split two-column form whose values cannot be attached to their labels from the text layer, and the standalone audited PDFs for those years are not on GB Corp's IR filings index, whose statement archive starts at 31 March 2020. Recorded as missing rather than estimated."
+   },
+   "wc": {
+    "missing": "GB Auto's FY2018 and FY2019 annual reports lay the audited statements out NUMBERS-FIRST in a split two-column form whose values cannot be attached to their labels from the text layer, and the standalone audited PDFs for those years are not on GB Corp's IR filings index, whose statement archive starts at 31 March 2020. Recorded as missing rather than estimated."
+   },
+   "shares": {
+    "value": 1094009733,
+    "issued_capital": 1094010000.0,
+    "par_value": 1.0,
+    "source": "engine/gbco_study/src/GB_Annual_Report_2016.pdf balance sheet \"Issued and paid in capital\" 1,094,010 (EGP thousand) and note 19; capital registered in the commercial register 31 May 2015",
+    "route": "PDF text layer (pymupdf)",
+    "note": "issued capital / par = the count the same note states; par EGP 1.00"
+   }
+  },
+  "2019": {
+   "cash": {
+    "value": 1408.948,
+    "source": "engine/gbco_study/src/GB_Auto_Consolidated_E_31_December_2020.pdf comparative column",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "debt": {
+    "missing": "the FY2020 audited statements' comparative column carries the FY2019 asset side in a form the text layer resolves, and its liability side splits loans across two note references the layout does not attach to values; the FY19 earnings release predates GB Corp's IR release archive, which starts at 1Q20. Recorded as missing."
+   },
+   "ppe": {
+    "value": 4043.219,
+    "source": "engine/gbco_study/src/GB_Auto_Consolidated_E_31_December_2020.pdf comparative column",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "dep": {
+    "value": 654.742,
+    "source": "engine/gbco_study/src/GB_Auto_Consolidated_E_31_December_2020.pdf cash-flow comparative",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "capex": {
+    "value": 1736.04,
+    "source": "engine/gbco_study/src/GB_Auto_Consolidated_E_31_December_2020.pdf cash-flow comparative, acquisition of PP&E and PUC",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "wc": {
+    "value": 7079.637000000001,
+    "source": "engine/gbco_study/src/GB_Auto_Consolidated_E_31_December_2020.pdf comparative inventories and receivables; trade payables from the 4Q20 release segmented balance sheet",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "shares": {
+    "value": 1094009733,
+    "issued_capital": 1094010000.0,
+    "par_value": 1.0,
+    "source": "engine/gbco_study/src/GB_Annual_Report_2016.pdf balance sheet \"Issued and paid in capital\" 1,094,010 (EGP thousand) and note 19; capital registered in the commercial register 31 May 2015",
+    "route": "PDF text layer (pymupdf)",
+    "note": "issued capital / par = the count the same note states; par EGP 1.00"
+   }
+  },
+  "2020": {
+   "cash": {
+    "value": 1797.83,
+    "source": "engine/gbco_study/src/GB_Auto_Consolidated_E_31_December_2020.pdf",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "debt": {
+    "value": 14041.7,
+    "source": "engine/gbco_study/src/GB_Corp_ER_4Q20_-_E_-_FINAL.pdf Table 6, loans and overdraft 10,459.3 + loans 3,582.4",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "ppe": {
+    "value": 4167.572,
+    "source": "engine/gbco_study/src/GB_Auto_Consolidated_E_31_December_2020.pdf",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "dep": {
+    "value": 310.19,
+    "source": "engine/gbco_study/src/GB_Auto_Consolidated_E_31_December_2020.pdf cash-flow statement",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "capex": {
+    "value": 707.765,
+    "source": "engine/gbco_study/src/GB_Auto_Consolidated_E_31_December_2020.pdf cash-flow statement",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "wc": {
+    "value": 7330.271999999999,
+    "source": "engine/gbco_study/src/GB_Auto_Consolidated_E_31_December_2020.pdf inventories and receivables; payables from the 4Q20 release Table 6",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "shares": {
+    "value": 1094009733,
+    "issued_capital": 1094010000.0,
+    "par_value": 1.0,
+    "source": "engine/gbco_study/src/GB_Annual_Report_2016.pdf balance sheet \"Issued and paid in capital\" 1,094,010 (EGP thousand) and note 19; capital registered in the commercial register 31 May 2015",
+    "route": "PDF text layer (pymupdf)",
+    "note": "issued capital / par = the count the same note states; par EGP 1.00"
+   }
+  },
+  "2021": {
+   "cash": {
+    "value": 1935.644,
+    "source": "engine/gbco_study/src/GB_Auto_Consolidated_E_31_December_2021.pdf",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "debt": {
+    "value": 17143.2,
+    "source": "engine/gbco_study/src/GB_Corp_ER_4Q21_-_E_-_FINAL.pdf Table 6, 13,628.2 + 3,515.0",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "ppe": {
+    "value": 4208.324,
+    "source": "engine/gbco_study/src/GB_Auto_Consolidated_E_31_December_2021.pdf",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "dep": {
+    "value": 420.369,
+    "source": "engine/gbco_study/src/GB_Auto_Consolidated_E_31_December_2021.pdf cash-flow statement",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": "AS ORIGINALLY REPORTED. The FY2022 annual report restates the FY2021 comparative to 426,281; the restatement is noted beside and never substituted."
+   },
+   "capex": {
+    "value": 467.981,
+    "source": "engine/gbco_study/src/GB_Auto_Consolidated_E_31_December_2021.pdf cash-flow statement",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": "AS ORIGINALLY REPORTED; restated to 485,789 in the FY2022 comparative"
+   },
+   "wc": {
+    "value": 9024.217999999999,
+    "source": "engine/gbco_study/src/GB_Auto_Consolidated_E_31_December_2021.pdf inventories and receivables; payables from the 4Q21 release Table 6",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "shares": {
+    "value": 1094009733,
+    "issued_capital": 1094010000.0,
+    "par_value": 1.0,
+    "source": "engine/gbco_study/src/GB_Annual_Report_2016.pdf balance sheet \"Issued and paid in capital\" 1,094,010 (EGP thousand) and note 19; capital registered in the commercial register 31 May 2015",
+    "route": "PDF text layer (pymupdf)",
+    "note": "issued capital / par = the count the same note states; par EGP 1.00"
+   }
+  },
+  "2022": {
+   "cash": {
+    "value": 4098.1,
+    "source": "engine/gbco_study/src/GB_Corp_ER_4Q22_-_E_-_FINAL.pdf Table 12",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "debt": {
+    "value": 8980.5,
+    "source": "engine/gbco_study/src/GB_Corp_ER_4Q22_-_E_-_FINAL.pdf Table 12, 6,040.2 + 2,940.3",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "ppe": {
+    "value": 4945.2,
+    "source": "engine/gbco_study/src/GB_Corp_ER_4Q22_-_E_-_FINAL.pdf Table 12",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "dep": {
+    "value": 451.098,
+    "source": "engine/gbco_study/src/GB_Annual_Report_2022.pdf cash-flow statement",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "capex": {
+    "value": 1160.574,
+    "source": "engine/gbco_study/src/GB_Annual_Report_2022.pdf cash-flow statement",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "wc": {
+    "value": 1168.2000000000007,
+    "source": "engine/gbco_study/src/GB_Corp_ER_4Q22_-_E_-_FINAL.pdf Table 12",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "shares": {
+    "value": 1085500000,
+    "issued_capital": 1085500000.0,
+    "par_value": 1.0,
+    "source": "engine/gbco_study/src/GB_Corp_Annual_Report_2025.pdf note 20 — issued and paid capital 1,085,500,000 shares of par EGP 1 each, after the 8,509,733-share treasury cancellation registered 15 August 2022",
+    "route": "PDF text layer (pymupdf)",
+    "note": "issued capital / par = the count the same note states; par EGP 1.00"
+   }
+  },
+  "2023": {
+   "cash": {
+    "value": 4504.2,
+    "source": "engine/gbco_study/src/GB_Corp_ER_4Q23_-_ER_-_FINAL.pdf Table 14",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "debt": {
+    "value": 12237.7,
+    "source": "engine/gbco_study/src/GB_Corp_ER_4Q23_-_ER_-_FINAL.pdf Table 14, 7,674.5 + 4,563.2",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "ppe": {
+    "value": 5965.7,
+    "source": "engine/gbco_study/src/GB_Corp_ER_4Q23_-_ER_-_FINAL.pdf Table 14",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "dep": {
+    "value": 531.403,
+    "source": "engine/gbco_study/src/GB_Annual_Report_2023.pdf cash-flow statement",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "capex": {
+    "value": 2055.957,
+    "source": "engine/gbco_study/src/GB_Annual_Report_2023.pdf cash-flow statement",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "wc": {
+    "value": 3298.3999999999996,
+    "source": "engine/gbco_study/src/GB_Corp_ER_4Q23_-_ER_-_FINAL.pdf Table 14",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "shares": {
+    "value": 1085500000,
+    "issued_capital": 1085500000.0,
+    "par_value": 1.0,
+    "source": "engine/gbco_study/src/GB_Corp_Annual_Report_2025.pdf note 20 — issued and paid capital 1,085,500,000 shares of par EGP 1 each, after the 8,509,733-share treasury cancellation registered 15 August 2022",
+    "route": "PDF text layer (pymupdf)",
+    "note": "issued capital / par = the count the same note states; par EGP 1.00"
+   }
+  },
+  "2024": {
+   "cash": {
+    "value": 7420.9,
+    "source": "engine/gbco_study/src/GB_Corp_ER_4Q24-_E_-_Final.pdf Table 14",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "debt": {
+    "value": 22608.7,
+    "source": "engine/gbco_study/src/GB_Corp_Annual_Report_2025.pdf comparative column: loans 6,835,835 + bonds 120,000 + loans/borrowings/overdrafts 15,572,866 + bonds 80,000",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "ppe": {
+    "value": 8193.2,
+    "source": "engine/gbco_study/src/GB_Corp_ER_4Q24-_E_-_Final.pdf Table 14",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "dep": {
+    "value": 1138.459,
+    "source": "engine/gbco_study/src/GB_Annual_Report_2024.pdf cash-flow statement",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "capex": {
+    "value": 3171.932,
+    "source": "engine/gbco_study/src/GB_Annual_Report_2024.pdf cash-flow statement",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "wc": {
+    "value": 9382.399999999998,
+    "source": "engine/gbco_study/src/GB_Corp_ER_4Q24-_E_-_Final.pdf Table 14",
+    "route": "PDF text layer (pymupdf)",
+    "unit": "EGP mn",
+    "note": ""
+   },
+   "shares": {
+    "value": 1085500000,
+    "issued_capital": 1085500000.0,
+    "par_value": 1.0,
+    "source": "engine/gbco_study/src/GB_Corp_Annual_Report_2025.pdf note 20 — issued and paid capital 1,085,500,000 shares of par EGP 1 each, after the 8,509,733-share treasury cancellation registered 15 August 2022",
+    "route": "PDF text layer (pymupdf)",
+    "note": "issued capital / par = the count the same note states; par EGP 1.00"
+   }
+  }
+ }
+}

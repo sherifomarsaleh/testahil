@@ -1,8 +1,8 @@
 {
  "nci_equity_share": 0.45213466600049246,
  "nci_profit_share": 0.20976266344357763,
- "case_published": 53.045527467810885,
- "case_both_corrections": 89.47392715663152,
+ "case_published": 138.21184982642288,
+ "case_both_corrections": 138.2321539592412,
  "model_vs_walkforward_2026": {
   "new_sales": [
    300000.0,
@@ -26,7 +26,7 @@
   ]
  },
  "implied_rate": {
-  "capacity": 0.230888996245817,
-  "recovery": 0.19434626592683724
+  "capacity": 0.32319862322727555,
+  "recovery": 0.17579140380351516
  }
 }

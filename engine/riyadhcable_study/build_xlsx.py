@@ -1,4 +1,5 @@
-"""RIYADHCABLE_Valuation_Model_18082026_public.xlsx — 16 sheets, formula-driven.
+import sys
+"""RIYADHCABLE_Valuation_Model_{edition}_public.xlsx — 16 sheets, formula-driven.
 Blue = inputs · black = formulas · green = cross-sheet links.
 
 Every quantity arithmetically derivable from a driver is a live Excel formula, so the
@@ -16,6 +17,8 @@ Assumptions driver and asserts the headline moves in the right direction.
 """
 import json, os
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
 from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment
 from openpyxl.utils import get_column_letter
@@ -1031,7 +1034,7 @@ for ws in wb.worksheets:
     ws.sheet_properties.pageSetUpPr = PageSetupProperties(fitToPage=True)
     ws.print_options.horizontalCentered = False
 
-OUT_XLSX = os.path.join(HERE, 'RIYADHCABLE_Valuation_Model_18082026_public.xlsx')
+OUT_XLSX = os.path.join(HERE, _ed.MODEL_XLSX)
 wb.save(OUT_XLSX)
 ANCH['seg_rev_tot'] = seg['rev']; ANCH['seg_ebitda'] = seg['ebitda']
 json.dump({'expected': EXPECT, 'anchors': {k: (v if not isinstance(v, dict) else v) for k, v in ANCH.items() if k in ('summary_mktcap', 'ev', 'tv_share', 'dcf_ps', 'term_fcff', 'term_tv')}},

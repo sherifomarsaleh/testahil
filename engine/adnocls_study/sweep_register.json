@@ -1,7 +1,7 @@
 {
  "ticker": "ADNOCLS",
  "asset_class": "STOCK",
- "sweep_date": "2026-08-09",
+ "sweep_date": "2026-09-07",
  "findings": [
   {
    "fid": "F01",
@@ -104,7 +104,7 @@
    "source_date": "2026-07-24",
    "detail": "",
    "url": "",
-   "model_impact": "The regressor in the beta estimate, and therefore the largest single input to the cost of equity. It is resolved from the exchange the share is listed on rather than chosen by the study: 159 weekly observations from 2023-06-16 to 2026-07-17 give a beta of 1.1032; against an equal-weight composite of the same exchange's names it is 0.705. Both are published, and the index is what is adopted.",
+   "model_impact": "The regressor in the beta estimate, and therefore the largest single input to the cost of equity. It is resolved from the exchange the share is listed on rather than chosen by the study: 159 weekly observations from 2023-06-16 to 2026-07-17 give a beta of 1.1032; against an equal-weight composite of the same exchange's names it is 0.690. Both are published, and the index is what is adopted.",
    "is_fs_data": false,
    "fiscal_period": ""
   },
@@ -248,18 +248,78 @@
    "ring": "COMPANY",
    "category": "regular disclosures",
    "klass": "DRIVER_UNLOCK",
-   "headline": "Reviewed interim financial information for the three months to 31 March 2026 \u2014 the only quarter of the study year disclosed at the time of writing; the second-quarter results were scheduled for 11 August 2026. It gives revenue of USD 1,083 million, earnings of USD 368 million, net profit of USD 222 million, net debt of USD 420 million and a full segment schedule.",
+   "headline": "Reviewed interim financial information for the three months to 31 March 2026. It gives revenue of USD 1,083 million, earnings of USD 368 million, net profit of USD 222 million, net debt of USD 420 million and a full segment schedule.",
    "source_name": "ADNOC L&S condensed consolidated interim financial information, three months ended 31 March 2026",
    "source_type": "COMPANY_OFFICIAL",
    "source_date": "2026-05-14",
    "detail": "",
    "url": "",
-   "model_impact": "Every forecast unit is anchored on its own first-quarter outcome annualised, and the balance sheet at that date is the valuation date.",
+   "model_impact": "Superseded as the anchor by the six-month information below, and kept because the second quarter is read as the difference between them.",
    "is_fs_data": true,
    "fiscal_period": "Q1 2026"
   },
   {
    "fid": "F18",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "BASE_CHANGER",
+   "headline": "Reviewed condensed consolidated interim financial information for the SIX MONTHS to 30 June 2026, review report signed 10 August 2026. Revenue USD 3,666.674 million against 2,438.936 million; earnings before interest, tax, depreciation and amortisation USD 1,474.868 million against 743.859 million; net profit USD 1,172.932 million against 420.388 million; net debt USD 257.318 million against 419.867 million at 31 March; a full segment schedule with each unit's own depreciation; and the property, plant and equipment roll-forward. THE DELIVERED EDITION OF THIS STUDY DID NOT HOLD THIS DOCUMENT: it ended its information set at the first quarter while this had been public for twenty-seven days.",
+   "source_name": "ADNOC L&S condensed consolidated interim financial information, six months ended 30 June 2026 (reviewed)",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-08-10",
+   "detail": "",
+   "url": "",
+   "model_impact": "THE ANCHOR FOR EVERY DRIVER IN THIS STUDY. Each unit is built as the reported half plus a second half at that unit's own measured margin; the tanker cost stack is solved from this half together with the audited 2025 year; and the bridge stands on this balance sheet.",
+   "is_fs_data": true,
+   "fiscal_period": "Q2 2026"
+  },
+  {
+   "fid": "F19",
+   "ring": "COMPANY",
+   "category": "IR communications (calls, presentations, releases)",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "Management discussion and analysis for the first half of 2026, dated 11 August 2026, with the earnings release of the same date. It carries the quarterly and half-year segment tables, the free-cash-flow reconciliation, the USD 2.0 billion parent revolving facility that replaces the previous term and revolving facilities, the second-half delivery schedule of fourteen vessels, forward-contracted revenue of about USD 25 billion, an interim dividend of USD 85.3 million on a record date of 20 August 2026, and RAISED full-year guidance. It also DISCLOSES A BASIS BREAK: first, second and third quarter 2025 Tankers revenue and direct costs are re-presented, with no effect on gross profit, net profit or earnings \u2014 which is why its prior-year revenue of USD 2,507 million differs from the statements' own 2,438.936 million.",
+   "source_name": "ADNOC L&S management discussion and analysis, first half 2026; ADNOC L&S first-half 2026 earnings release",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-08-11",
+   "detail": "",
+   "url": "",
+   "model_impact": "Supplies the quarterly segment split, the free-cash-flow definition the valuation date removes, the declared dividend the bridge deducts and the guidance the build is SCORED against. The statements, not this document, supply every figure the model consumes.",
+   "is_fs_data": false,
+   "fiscal_period": "Q2 2026"
+  },
+  {
+   "fid": "F20",
+   "ring": "COMPANY",
+   "category": "IR communications (calls, presentations, releases)",
+   "klass": "BASE_CHANGER",
+   "headline": "First-half 2026 earnings presentation, 11 August 2026. It carries the published time-charter-equivalent rate by vessel class by quarter THROUGH THE THIRD QUARTER OF 2026 to the presentation date, each with the share of available vessel days already contracted; the owned shipping fleet at 30 June 2026 by class, 52 tankers, 22 gas carriers, 11 dry bulk and 3 container vessels footing to a stated 88; the charter-out book with each fixture's rate, period and latest expiry, EIGHT OF THE ELEVEN CARRYING LATER EXPIRIES than the April deck; and the gas fleet contract table quarter by quarter to 2029, whose own total row foots to its component rows in all sixteen quarters.",
+   "source_name": "ADNOC L&S first-half 2026 earnings presentation",
+   "source_type": "COMPANY_IR",
+   "source_date": "2026-08-11",
+   "detail": "",
+   "url": "",
+   "model_impact": "Supplies the second and third quarter 2026 rates that replace the delivered edition's estimates of them, the re-read charter book, the fleet vintage the asset base is stated at, and the gas contract table read as a cross-check on the adopted vessel-year path.",
+   "is_fs_data": false,
+   "fiscal_period": "Q2 2026"
+  },
+  {
+   "fid": "F21",
+   "ring": "COMPANY",
+   "category": "strategic plans & guidance",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "Guidance for 2026 was RAISED AGAIN on 11 August 2026, the second raise of the year: group revenue growth from low single digit to mid 20 per cent, earnings from high 20 per cent to mid 60 per cent and net profit from high 60 per cent to high 110 per cent; Shipping revenue from mid-to-high teens to mid 80 per cent and Shipping earnings from mid-to-high 50 per cent to low 190 per cent; Integrated Logistics revenue from a mid-to-high 20 per cent reduction to a mid 20 per cent reduction. Medium-term parameters are stated to be under review.",
+   "source_name": "ADNOC L&S management discussion and analysis, first half 2026",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-08-11",
+   "detail": "",
+   "url": "",
+   "model_impact": "SCORED AND NEVER CONSUMED. The build is compared with it and the disagreement is published \u2014 this build runs above the raised guidance on both revenue and earnings for 2026 \u2014 and no driver takes it as an input.",
+   "is_fs_data": false,
+   "fiscal_period": "Q2 2026"
+  },
+  {
+   "fid": "F22",
    "ring": "COMPANY",
    "category": "strategic plans & guidance",
    "klass": "DRIVER_UNLOCK",
@@ -274,7 +334,7 @@
    "fiscal_period": "Q1 2026"
   },
   {
-   "fid": "F19",
+   "fid": "F23",
    "ring": "COMPANY",
    "category": "IR communications (calls, presentations, releases)",
    "klass": "DRIVER_UNLOCK",
@@ -289,7 +349,7 @@
    "fiscal_period": "Q1 2026"
   },
   {
-   "fid": "F20",
+   "fid": "F24",
    "ring": "COMPANY",
    "category": "one-off base-resetting transactions",
    "klass": "BASE_CHANGER",
@@ -304,7 +364,7 @@
    "fiscal_period": "FY2025"
   },
   {
-   "fid": "F21",
+   "fid": "F25",
    "ring": "COMPANY",
    "category": "management & capital actions",
    "klass": "DRIVER_UNLOCK",
@@ -319,7 +379,7 @@
    "fiscal_period": "Q1 2026"
   },
   {
-   "fid": "F22",
+   "fid": "F26",
    "ring": "COMPANY",
    "category": "ownership / stake changes (named-transaction rule)",
    "klass": "STRUCTURAL",
@@ -334,7 +394,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F23",
+   "fid": "F27",
    "ring": "COMPANY",
    "category": "regular disclosures",
    "klass": "DRIVER_UNLOCK",
@@ -349,7 +409,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F24",
+   "fid": "F28",
    "ring": "COMPANY",
    "category": "official financial statements",
    "klass": "STRUCTURAL",
@@ -364,7 +424,7 @@
    "fiscal_period": "FY2022"
   },
   {
-   "fid": "F25",
+   "fid": "F29",
    "ring": "INDUSTRY",
    "category": "pricing",
    "klass": "NEGATIVE_SEARCH",
@@ -379,7 +439,7 @@
    "fiscal_period": ""
   },
   {
-   "fid": "F26",
+   "fid": "F30",
    "ring": "COMPANY",
    "category": "strategic plans & guidance",
    "klass": "NEGATIVE_SEARCH",
@@ -413,7 +473,7 @@
     "F02",
     "F04",
     "F10",
-    "F25"
+    "F29"
    ]
   },
   {
@@ -422,7 +482,7 @@
    "justification": "Consolidated vessel-years read off the published contract table quarter by quarter to 2029, at an average revenue per vessel per day implied by reported 2025 revenue over 2025 vessel-years. Per-vessel rates are not disclosed, so the implied group average is the finest level the disclosure supports and the gap is flagged.",
    "sweep_refs": [
     "F09",
-    "F19"
+    "F23"
    ]
   },
   {
@@ -431,7 +491,7 @@
    "justification": "Each unit anchored on its own first-quarter 2026 revenue annualised, then grown on the fleet deployment the company has disclosed. Margins are set from the first quarter's own outcome before the one-off receivable provision.",
    "sweep_refs": [
     "F17",
-    "F19"
+    "F23"
    ]
   },
   {
@@ -439,9 +499,9 @@
    "mode": "TOP_DOWN",
    "justification": "The company's own stated range of USD 100-150 million for 2026 after the large island project completed. Beyond that no award pipeline is disclosed, so the recovery is a judgement and is named as the least visible line in the model.",
    "sweep_refs": [
-    "F18",
-    "F19",
-    "F26"
+    "F22",
+    "F23",
+    "F30"
    ]
   },
   {
@@ -450,7 +510,7 @@
    "justification": "The company's own published path for 2026 to 2028, which totals about USD 7 billion across the programme and matches the disclosed order book and remaining committed spend. Beyond 2028 it falls toward the stated USD 100-150 million a year of maintenance spending plus continuing fleet renewal.",
    "sweep_refs": [
     "F09",
-    "F18"
+    "F22"
    ]
   },
   {
@@ -485,7 +545,7 @@
    "mode": "BOTTOM_UP",
    "justification": "Three constructions averaged in the workbook rather than asserted: the marginal drawdown rate on the parent facility, the weighted blend of the instruments actually outstanding, and the midpoint of the disclosed third-party bank-loan range. The result sits above the local sovereign yield, as it must.",
    "sweep_refs": [
-    "F21",
+    "F25",
     "F05"
    ]
   },
@@ -502,7 +562,7 @@
    "mode": "BOTTOM_UP",
    "justification": "The weight between a contracted-fleet multiple and a spot-fleet multiple is the company's own disclosed share of earnings exposed to spot rates, not a judgement about which peer looks closest.",
    "sweep_refs": [
-    "F23",
+    "F27",
     "F11"
    ]
   }
@@ -525,11 +585,18 @@
    "reachable": false,
    "attempt_date": "2026-08-09",
    "note": "Returned a 503 from this environment. The same documents were reached through the results-reports and annual-reports pages, so nothing was lost; logged because a failed attempt is still a fact about how the record was assembled."
+  },
+  {
+   "url": "https://adnocls.ae/en/investors/results-reports",
+   "reachable": true,
+   "attempt_date": "2026-09-07",
+   "note": "Re-attempted for the half-year. The reviewed six-month statements to 30 June 2026, the management discussion, the earnings release and the first-half earnings presentation \u2014 all four dated 10 or 11 August 2026 \u2014 are held and read. LOGGED AS A CORRECTION AS WELL AS AN ACCESS: the edition of this study delivered on 7 September 2026 declared its information set closed at the first quarter while these four documents had been public for twenty-seven days. The rule is that every disclosed quarter is swept in BEFORE the build starts, and it was not."
   }
  ],
  "study_year": "FY2026",
  "study_quarters_disclosed": [
-  "Q1 2026"
+  "Q1 2026",
+  "Q2 2026"
  ],
- "qc_line": "QC(m) \u2014 Information Sweep [ADNOCLS, 2026-08-09]: PASS \u2014 4/4 rings, 26 findings (1 B \u00b7 8 S \u00b7 12 D \u00b7 2 C \u00b7 3 NEG), driver gate 12 rows (10 bottom-up / 2 top-down) | primary access: attempted (3) | FS years: 4 ['FY2022', 'FY2023', 'FY2024', 'FY2025'] | IR findings: 8"
+ "qc_line": "QC(m) \u2014 Information Sweep [ADNOCLS, 2026-09-07]: PASS \u2014 4/4 rings, 30 findings (3 B \u00b7 8 S \u00b7 14 D \u00b7 2 C \u00b7 3 NEG), driver gate 12 rows (10 bottom-up / 2 top-down) | primary access: attempted (4) | FS years: 4 ['FY2022', 'FY2023', 'FY2024', 'FY2025'] | IR findings: 10"
 }

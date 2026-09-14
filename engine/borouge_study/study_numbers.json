@@ -1014,7 +1014,17 @@
   "class": "petrochemical",
   "primary": {
    "kind": "dcf",
-   "value": 2.5542948237696477,
+   "two_sided": true,
+   "branches": [
+    {
+     "label": "Cash-flow lens, navigation normalises during 2026",
+     "value": 2.5542948237696477
+    },
+    {
+     "label": "Cash-flow lens, disruption persists into 2027",
+     "value": 2.35239131496106
+    }
+   ],
    "range": {
     "low": 2.35239131496106,
     "high": 2.5542948237696477
@@ -1056,7 +1066,6 @@
    "low": 2.35239131496106,
    "high": 2.5542948237696477
   },
-  "central": 2.5542948237696477,
   "retired": {
    "construction": "the median of nine lens readings across two orthogonal framings",
    "value": 1.4781943678941736,
@@ -1073,6 +1082,48 @@
    },
    "book_value_floor": 2.3897784314647748
   }
+ },
+ "forecast_anchor": {
+  "rate_name": "EBITDA margin, prolonged-disruption framing",
+  "latest_reviewed_period": "H1 2026, reviewed (six months ended 30 June 2026)",
+  "latest_reviewed_date": "2026-06-30",
+  "latest_reviewed_rate": 0.2882660167265816,
+  "latest_reviewed_source": "Borouge plc condensed consolidated interim financial statements for the six months ended 30 June 2026, reviewed by Ernst & Young under ISRE 2410 with an unmodified conclusion signed 30 July 2026: operating profit of USD 537.606 million plus depreciation and amortisation of USD 200.019 million from the interim statement of cash flows plus the impairment loss of USD 6.436 million, over revenue of USD 2,581.161 million. That reconstruction is USD 744.061 million against the USD 744 million the company publishes as adjusted EBITDA in its own Q2 2026 Management Discussion & Analysis \u2014 a difference of USD 0.061 million, which is that document's own rounding to the nearest million. THE MARGIN IS STRUCK ON THE RECONSTRUCTION AND IS NOT READ OFF THE DOCUMENT: the register carries the adjusted EBITDA figure and the revenue and no published margin, so quoting a printed margin here would attribute this study's own arithmetic to the filing.",
+  "first_forecast_rate": 0.33149798205238395,
+  "forecast_path": [
+   0.33149798205238395,
+   0.27135809677898826,
+   0.2789815175503219,
+   0.3193203583225427,
+   0.3446916116785172
+  ],
+  "mechanism": {
+   "name": "input_cost_outpacing_price",
+   "disclosure": "THE TWO COST LEGS THAT MOVED IN THE LATEST REVIEWED HALF ARE SET BY THE SHIPPING ROUTE AND BY THE PROPYLENE MARKET, NOT BY THE POLYMER PRICE THIS COMPANY REALISES, so when the benchmark path gives back its shortage premium they do not give it back with it. The Q2 2026 Management Discussion & Analysis reports feedstock cost of USD 761 million for the half, up 33 per cent year on year, on higher purchased propylene prices after the Olefins Conversion Unit was idled for want of ethane; the company states it buys propylene linked to market prices, so that leg is priced off propylene rather than off polyethylene. The reviewed statements report selling and distribution expenses of USD 346.738 million against USD 191.307 million in the comparative half, on 18 per cent fewer tonnes sold \u2014 USD 177.09 a tonne against USD 80.04 \u2014 while alternative routes are in use. OVER THE SAME HALF THE REALISED PRICE ROSE RATHER THAN FELL: the company's own average selling price ran USD 1,240 a tonne against USD 1,062 a tonne, +16.8%. The cost stack therefore moved against the price in the company's own most recent filed period, which is the decoupling the forecast carries forward.",
+   "like_for_like": {
+    "measures": "cash operating cost per unit of revenue \u2014 revenue less adjusted EBITDA, over revenue \u2014 for the six months ended 30 June, read off the reviewed interim statements and their own comparative column",
+    "period_a": "H1 2025 (six months ended 30 June 2025)",
+    "period_b": "H1 2026 (six months ended 30 June 2026)",
+    "value_a": 0.6307821939656659,
+    "value_b": 0.7117339832734184,
+    "higher_is_worse": true,
+    "note": "THE DIRECTION, AND WHY IT IS NOT A PRICE EFFECT. Cost per unit of revenue went from 0.630782 to 0.711734, +8.10 points, WHILE THE REALISED PRICE ROSE +16.8% over the same pair. A cost ratio that rises into a rising price cannot be a price effect; per tonne sold the cash cost went from USD 719.16 to USD 938.25, +30.5%, against realised price at +16.8%. THE OPPOSITE EVIDENCE IS PUBLISHED BESIDE IT RATHER THAN LEFT OUT, because a relationship that only held in one direction would not be one: on the audited full years the same measure is NOT monotone \u2014 FY2023 0.625118, FY2024 0.589014, FY2025 0.628608, falling and then rising. What the reviewed half adds is a level well above all three, and the mechanism claimed is about the disruption that produced it rather than about a trend through the cycle."
+   }
+  },
+  "other_framing": {
+   "label": "Normalisation \u2014 navigation restored during the second half of 2026",
+   "first_forecast_rate": 0.36146063758738356,
+   "forecast_path": [
+    0.36146063758738356,
+    0.3585223726696349,
+    0.3475105029232656,
+    0.34797960038865,
+    0.3501559090426925
+   ],
+   "note": "The normalisation branch opens at 0.361461, +25.4% relative to the reviewed half, and its low is 0.347511 in 2028, -3.9% from its own opening year \u2014 inside the materiality line, so it owes no mechanism and none is claimed. THE TWO BRANCHES SHARE AN IDENTICAL PRICE PATH: the benchmark ladder, the premium ladder, the cost of capital, the terminal growth and the terminal rate are the same in both, and they differ only in utilisation, in distribution cost per tonne and in how much of the feedstock is bought at market prices. That is why the same price reversion compresses one branch and not the other \u2014 in the normalisation branch the disruption cost stack unwinds with the price, and in the prolonged branch it does not.",
+   "value_aed": 2.5542948237696477
+  },
+  "note": "BOTH BRANCHES OPEN WELL ABOVE THE LATEST REVIEWED PERIOD AND THAT IS THE FIRST THING A READER SHOULD SEE, because a record that only catches declines would say nothing about it. The reviewed six months to 30 June 2026 carried an adjusted EBITDA margin of 28.83%, below every period this study holds on that basis \u2014 H1 2025 36.92% from the same statements' own comparative column, the second half of 2025 37.33% DERIVED by identity as the audited full year less that filed half, and the three audited years set out next. The register carries two filed halves and no more, so nothing is claimed about halves this study does not hold. The prolonged branch opens FY2026 at 33.15%, +15.0% relative, and the normalisation branch at 36.15%, +25.4%. THE FILED RECORD ON THE SAME BASIS IS FY2023 37.49%, FY2024 41.10%, FY2025 37.14% AND H1 2026 28.83%, so every forecast year in both branches sits below every audited year and above the reviewed half. The half is the event rather than the run rate \u2014 production ran 1,929 kt against 2,528 kt at half the prior year's rate, on a plant damaged on 5 April 2026 with the Strait of Hormuz closed \u2014 and a forecast that opens above it is the ordinary consequence of not projecting a blockade for ever.\n\nTHE CLAIM THIS RECORD TESTS IS THE ONE INSIDE THE WINDOW. The prolonged branch falls from 33.15% in 2026 to 27.14% in 2027, -18.1% from its own opening year, and then recovers to 34.47% by 2030. It is a trough rather than a decline, and it is entirely a cost-against-price effect that can be shown in one line: revenue per tonne sold falls -12.1% between 2026 and 2027 as the benchmark gives back its shortage premium, while cash cost per tonne sold falls only -4.2%. Had the cost stack given back what the price gave back, the margin would not have moved at all.\n\nWHICH BRANCH THE STUDY PUBLISHES AS ITS CENTRAL IS NOT WHICH BRANCH THIS RECORD GOVERNS, and saying so is the point. The published central is the normalisation branch at AED 2.5543, with the prolonged branch at AED 2.3524; the two are published side by side and never averaged. The anchor is recorded on the prolonged branch because that is the branch making a claim this record exists to test, and the normalisation branch is printed beside it in full so nothing is hidden by the choice."
  },
  "fair_low": 2.35239131496106,
  "fair_high": 2.5542948237696477,
@@ -3199,6 +3250,90 @@
    "source": "Borouge plc audited consolidated financial statements for the year ended 31 December 2025 (statutory), Ernst & Young note 17 and Borouge plc condensed consolidated interim financial statements for the six months ended 30 June 2026 (unaudited), reviewed notes 10 and 11(iv) \u2014 every borrowing in the book, before and after the April 2026 refinancing, is denominated in US dollars, which is also the Group's presentation and functional currency. There is no foreign-currency tranche to carry at a local-equivalent cost",
    "date": "2026-06-30",
    "ring": "Company"
+  },
+  "dep_ppe_h126": {
+   "value": 184569,
+   "source": "Borouge plc condensed consolidated interim financial statements for the six months ended 30 June 2026 (unaudited), reviewed, statement of cash flows \u2014 depreciation on property, plant and equipment, six months",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "dep_rou_h126": {
+   "value": 3548,
+   "source": "Borouge plc condensed consolidated interim financial statements for the six months ended 30 June 2026 (unaudited), reviewed, statement of cash flows \u2014 depreciation on right-of-use assets, six months",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "amort_h126": {
+   "value": 11902,
+   "source": "Borouge plc condensed consolidated interim financial statements for the six months ended 30 June 2026 (unaudited), reviewed, statement of cash flows \u2014 amortisation of intangible assets, six months",
+   "date": "2026-06-30",
+   "ring": "Company"
+  },
+  "rev_h125": {
+   "value": 2724874,
+   "source": "Borouge plc condensed consolidated interim financial statements for the six months ended 30 June 2026 (unaudited), reviewed \u2014 revenue for the six-month period ended 30 June 2025, comparative column of the statement of profit or loss",
+   "date": "2025-06-30",
+   "ring": "Company"
+  },
+  "ebit_h125": {
+   "value": 731680,
+   "source": "Borouge plc condensed consolidated interim financial statements for the six months ended 30 June 2026 (unaudited), reviewed \u2014 operating profit for the six-month period ended 30 June 2025, comparative column",
+   "date": "2025-06-30",
+   "ring": "Company"
+  },
+  "sd_h125": {
+   "value": 191307,
+   "source": "Borouge plc condensed consolidated interim financial statements for the six months ended 30 June 2026 (unaudited), reviewed \u2014 selling and distribution expenses for the six-month period ended 30 June 2025, comparative column",
+   "date": "2025-06-30",
+   "ring": "Company"
+  },
+  "imp_h125": {
+   "value": 0,
+   "source": "Borouge plc condensed consolidated interim financial statements for the six months ended 30 June 2026 (unaudited), reviewed \u2014 impairment loss for the six-month period ended 30 June 2025: the comparative column reports nil",
+   "date": "2025-06-30",
+   "ring": "Company"
+  },
+  "dep_ppe_h125": {
+   "value": 261537,
+   "source": "Borouge plc condensed consolidated interim financial statements for the six months ended 30 June 2026 (unaudited), reviewed, statement of cash flows \u2014 depreciation on property, plant and equipment, comparative six months",
+   "date": "2025-06-30",
+   "ring": "Company"
+  },
+  "dep_rou_h125": {
+   "value": 1777,
+   "source": "Borouge plc condensed consolidated interim financial statements for the six months ended 30 June 2026 (unaudited), reviewed, statement of cash flows \u2014 depreciation on right-of-use assets, comparative six months",
+   "date": "2025-06-30",
+   "ring": "Company"
+  },
+  "amort_h125": {
+   "value": 11078,
+   "source": "Borouge plc condensed consolidated interim financial statements for the six months ended 30 June 2026 (unaudited), reviewed, statement of cash flows \u2014 amortisation of intangible assets, comparative six months",
+   "date": "2025-06-30",
+   "ring": "Company"
+  },
+  "ebitda_adj_h125": {
+   "value": 1006,
+   "source": "Borouge plc Q2 2026 Management Discussion & Analysis \u2014 adjusted EBITDA, H1 2025 comparative, USD million",
+   "date": "2025-06-30",
+   "ring": "Company"
+  },
+  "vol_tot_h125": {
+   "value": 2390,
+   "source": "Borouge plc Q2 2026 Management Discussion & Analysis \u2014 total sales volume, H1 2025, kt (polyethylene 1,365, polypropylene 1,012, ethylene and others 13)",
+   "date": "2025-06-30",
+   "ring": "Company"
+  },
+  "asp_h125": {
+   "value": 1062,
+   "source": "Borouge plc Q2 2026 Management Discussion & Analysis \u2014 average selling price, H1 2025, USD per tonne, defined by the company as revenue over sales volumes including commissions",
+   "date": "2025-06-30",
+   "ring": "Company"
+  },
+  "asp_h126": {
+   "value": 1240,
+   "source": "Borouge plc Q2 2026 Management Discussion & Analysis \u2014 average selling price, H1 2026, USD per tonne, up 17 per cent year on year",
+   "date": "2026-06-30",
+   "ring": "Company"
   }
  },
  "log": [
@@ -3222,6 +3357,7 @@
   "   own_stock_beta           normalisation=2.55  prolonged=2.35",
   "   bottom_up_sector_beta    normalisation=1.48  prolonged=1.31",
   "Cash-flow lens on the adopted own-stock beta: AED 2.5543 if navigation normalises and AED 2.3524 if the disruption persists, against a close of AED 2.35.",
-  "  cross-checks span AED 1.30 to AED 2.55; the retired nine-lens median was AED 1.4782 and is published unused."
+  "  cross-checks span AED 1.30 to AED 2.55; the retired nine-lens median was AED 1.4782 and is published unused.",
+  "Forecast anchor: adjusted EBITDA margin of 28.83% in the reviewed six months to 30 June 2026 against a forecast opening at 33.15% (prolonged) and 36.15% (normalisation); the prolonged path troughs at 27.14% in 2027, -18.1% from its own opening year."
  ]
 }

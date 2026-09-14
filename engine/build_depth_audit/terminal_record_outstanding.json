@@ -1,0 +1,5 @@
+{
+ "rule": "R-ENF-01/R-TERM-01",
+ "note": "Studies whose committed terminal record is short of the field set engine/terminal_value.py emits today. EMPTY AT ADOPTION (07-09-2026): the three that were short — FERTIGLOBE, PHAR, SCEM — were CONFORMED rather than listed, because regenerating adds the fields, deletes nothing, and moved no valued figure in any of them. The list may only ever SHORTEN [R-ENF-02].",
+ "outstanding": []
+}

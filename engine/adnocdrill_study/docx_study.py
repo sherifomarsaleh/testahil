@@ -1,3 +1,4 @@
+import sys
 """ADNOC Drilling Company P.J.S.C. — the delivered valuation study.
 
 Sixteen sections, in order. Every financial numeral is read from
@@ -8,6 +9,8 @@ import json, os
 from docx_base import Doc, INK, GREY, BRASS, GOLD, F_CREAM, F_PANEL, F_PANEL2
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 ST = json.load(open(os.path.join(HERE, 'strike_result.json')))
 EX = json.load(open(os.path.join(HERE, 'experts.json')))
@@ -1362,7 +1365,7 @@ P('Past performance and past accuracy are not guarantees of future results. Read
   'their own view and, where appropriate, take professional advice.')
 P('© 2026 Testahil. All rights reserved.', size=9, color=GREY)
 
-OUT = os.path.join(HERE, 'ADNOCDRILL_Valuation_Study_09-08-2026.docx')
+OUT = os.path.join(HERE, _ed.STUDY_DOCX)
 d.save(OUT)
 print(f'wrote {OUT}')
 print(f'  {len(d.doc.paragraphs)} paragraphs, {len(d.tables)} tables, '

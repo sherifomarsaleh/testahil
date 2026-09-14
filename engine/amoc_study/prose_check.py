@@ -18,12 +18,35 @@ import os
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
 sys.path.insert(0, os.path.join(HERE, '..'))
 os.chdir(HERE)
 import prose_figures as PF                                             # noqa: E402
 
-DOCS = ['AMOC_Valuation_Study_03-09-2026_public.docx',
-        'AMOC_Bibliography_03-09-2026.docx']
+
+
+def latest_ddmmyyyy(pat):
+    """The workbook names its edition DDMMYYYY with no separators, so the date is PARSED
+    rather than the filenames sorted as text — 03092026 sorts below 09082026 as a string and
+    would pick a superseded edition (the trap ADNOCLS's resolver records)."""
+    import re
+    c = []
+    for f in os.listdir('.'):
+        if re.match(pat, f) and not f.startswith('~$'):
+            m = re.findall(r'_(\d{2})(\d{2})(\d{4})_', f)
+            c.append(((m[-1][2] + m[-1][1] + m[-1][0]) if m else '', f))
+    return sorted(c)[-1][1] if c else None
+
+
+# THE WORKBOOK IS A DELIVERED DOCUMENT AND WAS IN NO STUDY'S POPULATION IN THE BOOK [L-350].
+# A reader receives three files and this list named two, so the third was read by nothing.
+# prose_figures.texts_of() reads a workbook's STRING cells only: a numeric cell is a model
+# output the recalculation gate already reconciles, and a numeral inside a label is prose
+# that happens to live in a spreadsheet.
+DOCS = [d for d in (_ed.STUDY_DOCX,
+                    _ed.BIBLIO_DOCX,
+                    latest_ddmmyyyy(r'AMOC_Valuation_Model_\d{8}_public\.xlsx$')) if d]
 
 SN = json.load(open('study_numbers.json'))
 vals = PF.numbers_from(HERE)
@@ -42,9 +65,22 @@ vals += PF.relative_to(PF.numbers_from(HERE, files=['technicals.json']),
 vals += PF.ratios_against(PF.numbers_from(HERE, files=['study_numbers.json']),
                           (SN.get('spot'),))
 
+# THE BAND RECORD IS THE OTHER LEGITIMATE SOURCE ON THIS STUDY'S PAGES, and until
+# 08-09-2026 nothing told this check so. [R-CAL-02] is explicit that the record a reader
+# is shown is resolved from the committed panel rather than from the study's own numbers,
+# so its figures are correct and reach no study_numbers.json — the width ratio of 1.194x
+# was reported unmatched for exactly that reason. It is read here through the SAME
+# resolver the document uses, never re-derived: a checker that models what a document
+# ought to say rather than reading what it reads is checking a different document.
+sys.path.insert(0, os.path.join(HERE, '..'))
+import band_record as _br                                             # noqa: E402
+_BR = _br.resolve('AMOC', _br.by_key())
+
 RENDER = PF.rendering_set(vals, extra=[
     # the statutory rate and the tax basis a reader sees quoted directly
     SN['inputs']['tax_stat']['value'] if 'tax_stat' in SN['inputs'] else 0.225,
+    # the published band record, which the study quotes and does not own
+    _BR.n, _BR.hits, _BR.cov50, _BR.cov80, _BR.cov90, _BR.width,
 ])
 
 if __name__ == '__main__':

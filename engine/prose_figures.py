@@ -120,7 +120,33 @@ def relative_to(values, denominators):
 
 
 def texts_of(path):
-    """Every paragraph and cell a reader sees, minus the input register printed verbatim."""
+    """Every paragraph and cell a reader sees, minus the input register printed verbatim.
+
+    A WORKBOOK IS A DELIVERED DOCUMENT AND WAS OUTSIDE EVERY POPULATION IN THE BOOK. Each
+    study declared DOCS = [study.docx, bibliography.docx] and the third file the reader
+    receives was reached by nothing: STC's own builder carried a spot of 43.58 against a
+    delivered 43.86, a share count of 4,989.8mn against 4,993.024mn, a market capitalisation
+    of 217,455 against 218,994, an equity weight of 90.6% against 90.3%, a balance sheet
+    named as the first quarter's when the bridge stands on the reviewed half-year, and a
+    caption still promising a four-lens blend the standing rule retired.
+
+    ONLY STRING CELLS ARE READ, AND THAT IS THE WHOLE POINT: a numeric cell is a model
+    output or a declared input and other instruments already reconcile it, while a numeral
+    inside a LABEL, a caption or a source note is prose that happens to live in a
+    spreadsheet — the shape this check exists for. A formula is skipped for the same
+    reason, since data_only=False hands back its text and a formula is not a sentence.
+    """
+    if path.lower().endswith(('.xlsx', '.xlsm')):
+        import openpyxl
+        wb = openpyxl.load_workbook(path, data_only=False, read_only=True)
+        out = []
+        for ws in wb.worksheets:
+            for row in ws.iter_rows(values_only=True):
+                for v in row:
+                    if isinstance(v, str) and not v.startswith('='):
+                        out.append(v)
+        wb.close()
+        return out
     import docx
     d = docx.Document(path)
     out = [p.text for p in d.paragraphs]

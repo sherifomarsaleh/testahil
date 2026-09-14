@@ -39,6 +39,7 @@ Read the queue:   python3 engine/campaign_queue.py
 """
 
 import json
+import re
 import os
 import subprocess
 import sys
@@ -59,10 +60,12 @@ MARKET_ORDER = (
     ('US', ('NASDAQ',),         'United States / NASDAQ'),
 )
 
-# A study directory stem that is not its ticker.  Kept explicit: a silent
-# mismatch would put a rebuilt name in the first-build tier and nobody would
-# see it.  Mirrors build_depth_audit/outstanding.json's own alias table.
-STUDY_ALIAS = {'FERTIGLOBE': 'FERTIGLB'}
+# A study directory stem that is not its ticker. IMPORTED, NOT COPIED: this file
+# carried its own copy and the two were compared only when study_population ran as
+# a script, so the consumer that never imported either got no alias at all and
+# listed a studied name as unstudied for three days. One table, every consumer
+# imports it, nothing left to drift.
+from study_aliases import DIR_ALIAS as STUDY_ALIAS  # noqa: E402
 
 # Study directories that intentionally resolve to no equity in the queue.
 STUDY_NOT_IN_QUEUE = {'XPT': 'metals study - no issuer, no statements, no drivers'}
@@ -89,6 +92,9 @@ def load_register(path=DATA_JS):
     return d['tickers'], d['metals']
 
 
+STAMP_SOURCE = {}
+
+
 def study_standards():
     """ticker -> standard_version stamped by its study, or None if unstamped.
     Absent from the dict means no study directory at all."""
@@ -100,19 +106,68 @@ def study_standards():
             continue
         tk = d[:-len('_study')].upper()
         tk = STUDY_ALIAS.get(tk, tk)
-        version = None
-        for f in sorted(os.listdir(os.path.join(ENGINE, d))):
-            if not f.endswith('.json'):
+        # THE STUDY'S OWN NUMBERS FILE IS THE ANSWER, NOT WHICHEVER JSON SORTS FIRST
+        # [corrected 13-09-2026]. This scanned every .json in the directory in
+        # ALPHABETICAL ORDER and took the first one carrying a standard_version. On AMOC
+        # that is beta_result.json, stamped 2026.09.01 when the beta was last re-derived,
+        # while study_numbers.json beside it says 2026.09.10 -- so a study rebuilt to the
+        # live standard went on being listed as needing a reissue because 'b' sorts before
+        # 's'. The queue's answer depended on filename order, which is not a fact about
+        # any study.
+        #
+        # A SIDE RECORD IS NOT THE STUDY. The numbers file is what every other gate in
+        # this book reads and it is what this one reads now; the fallback scan is kept for
+        # a study that genuinely keeps its record elsewhere, and it now SAYS which file it
+        # took the answer from rather than leaving that to be guessed.
+        version, src = None, None
+        sdir = os.path.join(ENGINE, d)
+        for primary in ('study_numbers.json', 'numbers.json'):
+            fp = os.path.join(sdir, primary)
+            if not os.path.exists(fp):
                 continue
             try:
-                j = json.load(open(os.path.join(ENGINE, d, f), encoding='utf-8'))
+                j = json.load(open(fp, encoding='utf-8'))
             except Exception:
                 continue
             if isinstance(j, dict) and 'standard_version' in j:
-                version = j['standard_version']
-                break
+                version, src = j['standard_version'], primary
+            break
+        if version is None:
+            for f in sorted(os.listdir(sdir)):
+                if not f.endswith('.json'):
+                    continue
+                try:
+                    j = json.load(open(os.path.join(sdir, f), encoding='utf-8'))
+                except Exception:
+                    continue
+                if isinstance(j, dict) and 'standard_version' in j:
+                    version, src = j['standard_version'], f
+                    break
+        STAMP_SOURCE[tk] = src
         out[tk] = version
     return out, STANDARD_VERSION
+
+
+def _delivered_note(tk):
+    """What a tier-2 name actually has: a delivered study, and no engine directory.
+
+    Resolved through study_population, the same source the valuation-gap gate reads, so
+    the queue and that gate cannot disagree about whether a document exists. If the
+    population cannot be read at all the note says SO rather than falling back to a
+    cheerful default -- an unreadable population is not an absent study [R-ENF-04].
+    """
+    try:
+        sys.path.insert(0, ENGINE)
+        import study_population as _sp
+        entry = _sp.population().get(tk) or {}
+        docs = [f for f in entry.get('delivered', []) if f.lower().endswith('.docx')]
+        if docs:
+            m = re.search(r'(\d{2}-\d{2}-\d{4})', docs[0])
+            return ('delivered %s; no engine directory' % m.group(1)) if m else \
+                   'study delivered; no engine directory'
+        return 'NO DELIVERED STUDY FOUND; no engine directory'
+    except Exception as exc:
+        return 'delivered-study lookup FAILED (%s); no engine directory' % type(exc).__name__
 
 
 def build_queue(path=DATA_JS):
@@ -141,7 +196,18 @@ def build_queue(path=DATA_JS):
                 tier = 3 if stamps[tk] == current else 1
             else:
                 tier = 2
-            tiers[tier].append((tk, ex, stamps.get(tk, '(no study)')))
+            # THE LABEL SAYS WHAT IS ACTUALLY MISSING, WHICH IS THE ENGINE DIRECTORY AND
+            # NOT THE STUDY. It read "(no study)" and that is false for every name in this
+            # tier: this queue's own tier-2 definition says the name "carries a published
+            # fair value", and study_population resolves a delivered .docx and .pdf for all
+            # of them -- KABO's is dated 06-07-2026, ABUK's 01-07-2026, COMI's 29-06-2026.
+            # A session reading "(no study)" concludes no study exists, which is a claim
+            # about the world that is wrong, and it decides the KIND of work: building a
+            # study from nothing and re-issuing a delivered document to the current
+            # standard are different jobs under different rules. This label has already
+            # produced exactly that wrong claim once, to the principal, on 09-09-2026, and
+            # the correction came from the principal rather than from any check.
+            tiers[tier].append((tk, ex, stamps.get(tk, _delivered_note(tk))))
         for tier in (1, 2, 3):
             for tk, ex, stamp in sorted(tiers[tier]):
                 seen.add(tk)

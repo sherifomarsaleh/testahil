@@ -19,6 +19,13 @@ from docx.oxml.ns import qn
 from docx.oxml import OxmlElement
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+
+# THE REVERSE READ, FROM THE FILE THAT OWNS IT. A quantity solved from a price is a
+# DIAGNOSTIC; it was sitting in study_numbers.json, which every builder reads, and that
+# is the reverse-engineered rate the protocol prohibits arriving through a side door.
+# Reading it here from diagnostics.json keeps it printable and keeps it out of the
+# numbers file, where something could consume it as an input [R-ENF-05].
+_IMPLIED = json.load(open(os.path.join(HERE, "diagnostics.json")))["implied"]["value"]
 N = json.load(open(os.path.join(HERE, "study_numbers.json")))
 M, D, W = N["meta"], N["derived"], N["wacc"]
 # THE DATE BESIDE THE PRICE WAS TYPED IN FOUR PLACES AND THE PRICE WAS NOT
@@ -107,6 +114,30 @@ def wide_widths(rows, label_cm=3.5, total_cm=16.2):
     return [label_cm] + [round((total_cm - label_cm) / n, 2)] * n
 
 
+def fitted_widths(headers, body, label_cm=3.5, total_cm=16.2):
+    """Widths measured against the CELLS THIS TABLE WILL PRINT.
+
+    wide_widths above divides the remainder equally and knows nothing about what goes
+    in the cells, so it was still one hundredth of a centimetre short on the 2035 and
+    2040 columns of two tables and a reader saw a figure split across two lines. The
+    shared fitter measures every cell and REFUSES rather than squeezing, which is the
+    whole point of it; one width is used for every year column so a 2040 column a
+    tenth of a centimetre wider than 2035 does not appear.
+    """
+    import col_width as _CW
+    try:
+        return _CW.fit_widths(headers, body, total_cm=total_cm, equal_from=1)
+    except Exception:
+        # A table the fitter cannot place needs fewer columns or a smaller font, and
+        # that is a decision for whoever wrote it. Falling back is stated, not silent.
+        return wide_widths_for(headers, label_cm, total_cm)
+
+
+def wide_widths_for(headers, label_cm=3.5, total_cm=16.2):
+    n = max(len(headers) - 1, 1)
+    return [label_cm] + [round((total_cm - label_cm) / n, 2)] * n
+
+
 def q(key):
     """A line of the 31 March 2026 reviewed balance sheet — what the bridge stands on."""
     return N["balance_sheet_1q26"][key]["value"]
@@ -163,7 +194,53 @@ def bullets(doc, items, size=10):
 
 
 def table(doc, headers, rows, widths, caption=None, size=8.5):
-    """Fixed layout with explicit widths — no column may starve or bloat."""
+    """Fixed layout with explicit widths — no column may starve or bloat.
+
+    WIDTHS ARE MEASURED AGAINST THE CELLS THIS TABLE WILL PRINT. The callers used to
+    divide the remaining width equally between the year columns, which knows nothing
+    about what goes in them, and two tables were left a hundredth of a centimetre short
+    on 2035 and 2040: the delivered page printed "1,152,92" with a bare "1" on the line
+    beneath. The shared fitter in engine/col_width.py measures every cell and REFUSES
+    rather than squeezing, so a table that genuinely cannot fit fails the build instead
+    of the reader. Where it refuses, the caller's own widths stand and the refusal is
+    printed rather than swallowed.
+    """
+    # THE ENGINE DIRECTORY, NOT JUST THIS ONE. docx_bibliography imports this helper
+    # and runs from its own path, so a bare import found nothing there.
+    sys.path.insert(0, os.path.dirname(HERE))
+    import col_width as _CW
+    total = sum(widths)
+    # ONE WIDTH FOR EVERY YEAR COLUMN, AND ONLY FOR A YEAR GRID. equal_from ties every
+    # column after the first to the widest of their minima, which is right for a
+    # financial statement (a 2040 column a tenth of a centimetre wider than 2035 is a
+    # table a reader notices) and badly wrong for a register: it tied Value, Unit, Date
+    # and Tier to the width of a column of source prose and asked for 51cm of page.
+    _grid = len(headers) > 2 and all(str(h).strip().isdigit() for h in headers[1:])
+    # THE SLACK GOES TO THE COLUMN THAT HOLDS THE TEXT, and the fitter's default is
+    # column 0. That is right for a year grid, where column 0 is the long label and the
+    # years are figures, and it was WRONG the first time this ran on a register: section
+    # 7's gaps table gave a 40-character label 10.2cm and a 549-character explanation
+    # 2.9cm, and the table printed one row per page across six pages. The minimum widths
+    # were all correct; every centimetre of slack went to the wrong column. Table
+    # discipline went from zero defects to twenty-four, which is a worse page than the
+    # clipped figure the fix was for [R-COC-01].
+    _gen = 0 if _grid else max(
+        range(len(headers)),
+        key=lambda i: max((len(str(r[i])) for r in rows if i < len(r)), default=0))
+    for pt in (size, 8.0, 7.5, 7.0):
+        try:
+            widths = _CW.fit_widths(headers, rows, total_cm=total, generous=_gen,
+                                    equal_from=1 if _grid else None, size=pt)
+            size = pt
+            break
+        except Exception as _e:                                         # noqa: BLE001
+            last = _e
+    else:
+        # THE FITTER REFUSES RATHER THAN SQUEEZING, and so does this. A table that
+        # cannot be placed at seven point needs fewer columns, and that is a decision
+        # for whoever wrote it -- not a shortfall to divide quietly among the columns,
+        # which is how every one of these defects was produced.
+        raise SystemExit("table %r cannot be placed: %s" % (str(headers[0])[:40], last))
     t = doc.add_table(rows=1, cols=len(headers))
     t.style = "Table Grid"
     t.alignment = WD_TABLE_ALIGNMENT.CENTER
@@ -309,7 +386,21 @@ def column_audit(doc_path):
 # three strings and updated one. That is the standing rule "A NUMBER STATED IN PROSE MUST
 # BE COMPUTED, NOT TYPED" applied to a date, which is a figure a reader sees like any
 # other, and it is why a masthead goes stale while every gate reports the document clean.
-EDITION_FILE = "PHDC_Valuation_Study_03-09-2026.docx"
+# [10-Sep-2026] AND NOW IT IS NOT TYPED AT ALL. Deriving it from a filename literal
+# carried here was one place rather than three, and that was a real improvement -- but
+# it is still a date typed by hand beside an answer that is computed, and on the day
+# this study was re-struck the literal still named the 3 September file. The date lives
+# in edition.py, which doc_dates.py also reads, so the masthead, the filename and the
+# supersession sentence cannot disagree.
+import edition as _EDN
+EDITION_FILE = _EDN.STUDY_DOCX
+
+# The terminal cost of capital the SUPERSEDED edition discounted at, kept so the
+# supersession sentence can state the move rather than assert it. 3 September 2026.
+PRIOR_WACC_T = 0.1615
+
+
+_PRIOR = N["prior_edition"]      # committed by build_numbers, read from the delivered file
 
 
 def _edition_words(fname=EDITION_FILE):
@@ -341,6 +432,32 @@ def _residual_is(H, years):
     return out
 
 
+def breakable(text):
+    """A long URL, given places Word is allowed to break it.
+
+    A 65-character result-centre link is ONE token, and a column whose minimum is its
+    longest token then asked for 9.84cm of a 16.6cm page -- so the fitter refused the
+    whole register rather than squeeze it, correctly. A URL is the one long token in
+    these documents whose wrapping costs a reader nothing: it is not a figure and it
+    cannot lose a sign. Zero-width spaces after its separators let the column size to
+    the real content; the text a reader copies is unchanged.
+    """
+    import re as _re
+
+    def _mark(m):
+        return _re.sub(r"([/?&=._-])", "\\1\u200b", m.group(0))
+
+    return _re.sub(r"https?://\S+", _mark, str(text))
+
+
+def _short_name(name, limit=34):
+    """A company name shortened at a WORD boundary, never mid-word."""
+    if len(name) <= limit:
+        return name
+    cut = name[:limit].rsplit(" ", 1)[0].rstrip(" ,&-")
+    return cut + "\u2026"
+
+
 def _count_word(n):
     """A small count in words, from ONE place, so two sentences cannot disagree."""
     return {1: "one", 2: "two", 3: "three", 4: "four", 5: "five", 6: "six", 7: "seven",
@@ -364,28 +481,57 @@ def build(path):
          % EDITION_WORDS,
          size=10, color=MUTED, space_after=14)
     doc.add_heading("READ FIRST", level=2)
+    # [R-DOC-03] THE TWO DATES, AT THE TOP, LABELLED. Resolved by engine/doc_dates.py
+    # and never from a file's modification time.
+    import sys as _sys_dd, os as _os_dd
+    _sys_dd.path.insert(0, _os_dd.path.join(_os_dd.path.dirname(
+        _os_dd.path.dirname(_os_dd.path.abspath(__file__)))))
+    import doc_dates as _DD
+    _hp = doc.add_paragraph(_DD.header_line('PHDC'))
+    for _r in _hp.runs:
+        _r.font.size = __import__('docx').shared.Pt(8)
     para(doc, "This is a valuation study, not advice. It carries no rating, no "
               "recommendation and no price target. What it publishes is a range of "
               "value and the reasoning behind it, so that a reader can disagree with "
               "the reasoning rather than with a number.")
-    para(doc, "It supersedes the edition of 30 August 2026, and it changes three "
-              "things in it, each found by a review of that edition against the "
-              "company's filings on 1 September 2026 and each set out where it "
-              "applies. First, the bridge from enterprise value to equity, the book "
-              "value and the borrowings now stand on the balance sheet of 31 March "
-              "2026 — reviewed, and posted to the company's own result centre with "
-              "the first-quarter results the earlier edition already used — rather "
-              "than on 31 December 2025 (section 1.1, Appendix A.2). Second, "
-              "minority shareholders in subsidiaries are now deducted at their share "
-              "of value; the earlier edition deducted nothing for them (section 1.1). "
-              "Third, normalised earnings are capitalised at the cost of equity less "
-              "the same growth the cash-flow model carries, where the earlier edition "
-              "capitalised them at the cost of equity alone — which in a currency "
-              "whose discount rate embeds Egyptian inflation assumes a perpetual "
-              "decline in real terms that nothing in the company's record supports "
-              "(section 1.4). The discount rate, the forecast and the lens weights "
-              "are unchanged. The central figure moves from EGP %.2f to EGP %.2f a "
-              "share." % (prior["base"], LW["base"]))
+    para(doc, "It supersedes the edition of %s and it changes ONE INPUT in it: the "
+              "long-run real interest rate. Three numbers move from that one change, "
+              "and they are named in the next paragraph; the first of them is the "
+              "rate at which the perpetuity is discounted. That rate was built inside "
+              "this study, from a long-run real interest rate of 5.5%% typed into its "
+              "own file. It now reads the house Egyptian macro path, where the "
+              "convention is 3.5%%. The retired figure was a description of a "
+              "restrictive policy stance — the real rate the central bank was running "
+              "in order to break an inflation — and a company does not live inside a "
+              "policy stance for ever. Carrying it into perpetuity charged this "
+              "developer, permanently, for a monetary condition that is by "
+              "construction temporary. The terminal cost of capital falls from "
+              "%.2f%% to %.2f%% and the central figure moves from EGP %.2f to EGP "
+              "%.2f a share."
+              % (_EDN.PRIOR_WORDS, 100 * PRIOR_WACC_T, 100 * base["wacc_terminal"],
+                 prior["base"], LW["base"]))
+    # WHAT ELSE MOVED IS NAMED, BECAUSE IT DID. This paragraph read "Nothing else in
+    # the study moves", and two other things moved with the terminal: the house path
+    # also sets the explicit-window rate, which fell from the superseded edition's
+    # %s to %s in all fifteen years, and the terminal cost of equity is now built on
+    # the split premium rather than on the same beta.
+    para(doc, "Two other numbers move with it, and they move for the same reason. "
+              "The house path sets the explicit-window rate as well as the terminal "
+              "one, so the rate applied to all fifteen forecast years falls from "
+              "%s to %s; and the terminal cost of equity is now built by splitting "
+              "the country premium out of the market premium rather than by carrying "
+              "the measured beta across both, which is the house construction. "
+              "Nothing else moves. The forecast, the three "
+              "cash-conversion cases, the bridge from enterprise value to equity and "
+              "the weights across the lenses are exactly as they were issued on %s, "
+              "and the reader can hold the two documents side by side and see that "
+              "one number and its consequences are the whole of the difference. THE "
+              "DIRECTION IS NOT THE REASON. This correction happens to raise the "
+              "value and move it further above the traded price; it would have been "
+              "made had it done the opposite, and the house rule that a fair value is "
+              "never adjusted toward a quotation cuts both ways."
+              % (pct(_PRIOR["wacc_adopted"], 3), pct(W["wacc_cds"], 3),
+                 _EDN.PRIOR_WORDS))
     para(doc, "Two things in the edition of 11 June 2026 were wrong and remain "
               "corrected, and both are set out plainly in section 1.8 rather than "
               "buried: its discount rate was below Egypt's own government bond "
@@ -395,19 +541,46 @@ def build(path):
               "reported history. Where something needed is not disclosed, this study "
               "says so and does not fill the hole. There are %s such gaps and they "
               "are listed in section 7." % _count_word(len(N["gaps"])))
-    para(doc, "Information set: everything the company had published as at 2 "
-              "September 2026, which ends at its first-quarter 2026 results — the "
-              "reviewed statements of 31 March 2026 included. No half-year 2026 "
-              "figures had been released at that date.", size=9, italic=True,
-         color=MUTED)
+    # THE DOCUMENT SAID NO HALF-YEAR FILING EXISTED, WHILE THE STUDY'S OWN INPUT FILE
+    # NAMED ONE. A half-year release of 18 August 2026 is reported -- backlog of EGP
+    # 284bn at 30 June, a further EGP 75bn sold at Hacienda Ras El Hekma in the
+    # fortnight after. Not reading it is a defensible sourcing decision under this
+    # house's rule that a wire report is a lead and never an input. Denying it exists
+    # is a false statement about the study's own evidence, and that is what was
+    # printed. The two are different things and the reader is now told which one this is.
+    para(doc, "Information set: the company's own published statements as at 2 "
+              "September 2026, which end at its first-quarter 2026 results — the "
+              "reviewed statements of 31 March 2026 included. A half-year 2026 "
+              "release of 18 August 2026 is reported in the trade press, and this "
+              "study has NOT obtained the filing itself; nothing from it is used, "
+              "because a report of a disclosure is a lead and not a source. What it "
+              "is said to contain — an order book of EGP 284bn at 30 June and a "
+              "further EGP 75bn sold at Hacienda Ras El Hekma shortly after — is "
+              "carried in section 7 as an open gap, not in the model.",
+         size=9, italic=True, color=MUTED)
 
     # --- 2 Headline ---------------------------------------------------------
     doc.add_heading("Headline", level=1)
+    # THE RANGE MOVES TWO DRIVERS, NOT ONE, AND SAID IT MOVED ONE. The bear case is
+    # the weakest observed conversion at the cost-of-capital schedule shifted UP two
+    # points; the bull is the strongest observed conversion at the schedule shifted
+    # DOWN one. The shift is asymmetric, it widens the range in both directions, and
+    # it was disclosed nowhere -- while a second published pair, EGP 7.65 to 46.85,
+    # moves conversion alone and appears three bullets later under the same words.
+    # A reader comparing the two cannot tell they are different constructions.
     para(doc, "Palm Hills is worth EGP %.2f a share on a base case built from the "
-              "company's own units and prices, in a range of EGP %.2f to EGP %.2f "
-              "across the full observed range of the one thing that decides it. "
-              "The shares trade at EGP %.2f."
-              % (N["central"], LW["bear"], LW["full"], sp), size=11.5, bold=True)
+              "company's own units and prices. Across the full observed range of "
+              "cash conversion ALONE — the one driver that decides it — the value "
+              "spans EGP %.2f to EGP %.2f. The wider pair published beside it, EGP "
+              "%.2f to EGP %.2f, moves a second driver as well: the weak case also "
+              "carries the whole cost-of-capital schedule %.0f points HIGHER and the "
+              "strong case %.0f point lower, which widens the band at both ends. "
+              "Both pairs are printed because they answer different questions, and "
+              "neither is a probability. The shares trade at EGP %.2f."
+              % (N["central"], LW["crux_only_bear"], LW["crux_only_full"],
+                 LW["bear"], LW["full"],
+                 100 * LW["bear_wacc_shift"], -100 * LW["full_wacc_shift"], sp),
+         size=11.5, bold=True)
     bullets(doc, [
         "The forecast is built from units and prices the company itself "
         "discloses: %s units sold across three regions at EGP %.2f to %.2f million "
@@ -424,16 +597,25 @@ def build(path):
         # on the CDS schedule at 25.11%, and the change from the rating basis IS
         # this edition's second correction. Every prose reference below now reads
         # the adopted rate from the committed record.
+        # THIS SENTENCE DESCRIBED THE PREVIOUS EDITION'S CHANGE, NOT THIS ONE, and it
+        # quoted the wrong pair of numbers for it. The move to the default-swap basis
+        # happened on 3 September; erp_basis has read "market" at every commit since.
+        # And "fell from 25.83% to 24.96%" set this edition's RATING-BASIS ALTERNATIVE
+        # beside its adopted rate and called the first a prior edition's answer. Both
+        # halves now read what they say they read: the two bases published side by
+        # side are an alternative, and the move is against the superseded edition's
+        # own published rate.
         "The company's cost of capital, built from the ground up, is %s against "
         "an Egyptian ten-year government bond yield of %s. It CHANGED in this "
-        "edition: the equity risk premium moved from the credit-rating basis to "
-        "the traded default-swap basis, which is the house default and which the "
-        "other studies in this market already use, and the rate fell from %s to "
-        "%s. Both bases are published in section 1.8. The change RAISES the value, "
-        "and it was made for consistency across the book rather than for its "
-        "direction."
+        "edition: the real interest rate underneath it now comes from the house "
+        "Egyptian path rather than from a figure typed into this study's own file, "
+        "and the rate fell from the %s published on %s to %s. The alternative "
+        "credit-rating basis, which this study does not adopt, stands at %s; both "
+        "are published in section 1.8. The change RAISES the value, and it was made "
+        "for consistency across the book rather than for its direction."
         % (pct(W["wacc_cds"], 2), pct(W["rf_observed"], 2),
-           pct(W["wacc_rating"], 2), pct(W["wacc_cds"], 2)),
+           pct(_PRIOR["wacc_adopted"], 2), _EDN.PRIOR_WORDS,
+           pct(W["wacc_cds"], 2), pct(W["wacc_rating"], 2)),
         "Value turns on how quickly contracted sales become cash. Over the three "
         "years the company has published a cash-flow statement, operating cash was "
         "%s, %s and %s of revenue. At the low end the shares are worth EGP %.2f; at "
@@ -442,7 +624,7 @@ def build(path):
            pct(D["cfo_margins"]["2025"]), low["per_share"], high["per_share"]),
         "At the closing price of EGP %.2f the market is paying for a conversion rate "
         "of %s — above the two weak years, well below the strong one."
-        % (sp, pct(D["market_implied_cash_conversion"])),
+        % (sp, pct(_IMPLIED)),
         "The contracted order book stands at EGP %sbn against %s revenue of EGP "
         "%sbn. What limits this company is how fast it can build and hand over, not "
         "whether it can sell."
@@ -518,7 +700,13 @@ def _section_one(doc, sp, base, low, high, cds, prior):
     doc.add_heading("1  Fundamental valuation", level=1)
 
     doc.add_heading("1.1  The cash-flow model", level=2)
-    para(doc, "The model runs five years from the audited 2025 base and then a "
+    # "FIVE YEARS" WAS TYPED AND THE MODEL RUNS FIFTEEN. It was true of an earlier
+    # edition; the window was extended so that growth converges on the terminal rate
+    # before the terminal capitalises it, and this sentence did not follow. The same
+    # document's own bridge says "Present value of the explicit 15 years" four pages
+    # later. The count is read from the model now, in words, so it cannot say one thing
+    # where the bridge says another.
+    para(doc, "The model runs %s years from the audited 2025 base and then a "
               "terminal value. Revenue is limited by how much the company can "
               "build and hand over, not by how much it has sold: the order book "
               "is EGP %sbn against 2025 revenue of EGP %sbn, so sales are not "
@@ -528,7 +716,8 @@ def _section_one(doc, sp, base, low, high, cds, prior):
               "company's own disclosed run of handovers, at EGP %.2f million a "
               "unit escalating with inflation. Nothing here is a ratio applied "
               "to last year's revenue."
-              % (money(v("backlog_1q26") / 1000, 0),
+              % (_count_word(len(BU["rows"])),
+                 money(v("backlog_1q26") / 1000, 0),
                  money(v("revenue_fy25") / 1000, 1),
                  "{:,.0f}".format(BU["rows"][0]["units_delivered"]),
                  100 * BU["anchors"]["delivery_growth"],
@@ -538,8 +727,23 @@ def _section_one(doc, sp, base, low, high, cds, prior):
               "edition. Since January 2016 the company has recognised revenue on "
               "standalone units as construction progresses; a model that accrues "
               "revenue that way but accrues cost on handover has the two legs on "
-              "different clocks, and it systematically overstates profit. Gross "
-              "margin here is an output of price against cost, never an input.")
+              "different clocks, and it systematically overstates profit.")
+    # THE MARGIN IS AN INPUT AND THIS SAID IT WAS AN OUTPUT. Three delivered surfaces
+    # and a driver record all claimed it was a residual of price against cost. The code
+    # solves cost per unit FROM it, and for a stated reason: the company publishes no
+    # delivered-unit count after FY2024, so every later count is implied from revenue
+    # over price and cost per unit collapses to price times one minus the margin by
+    # construction. There is no independent cost per unit to build here. That is a
+    # defensible reason to hold a margin; it is not a reason to call it an output.
+    para(doc, "Gross margin is an INPUT here, and it is the one place in this "
+              "forecast where a margin is held rather than derived. The reason is "
+              "the disclosure: the company last published a delivered-unit count "
+              "for FY2024, so every later count in this model is implied from "
+              "revenue divided by price per unit — and cost per unit is then price "
+              "per unit times one minus the margin however it is written. There is "
+              "no independent cost per unit to build. What is actually decided here "
+              "is WHICH disclosed margin anchors it, and section A.1 says which and "
+              "why.")
     def _r(key, fmt="%,.0f", scale=1.0):
         return pick(BU["rows"], lambda x: ("{:,.0f}".format(x[key]*scale) if "f" not in fmt
                  else fmt % (x[key]*scale)))
@@ -555,7 +759,8 @@ def _section_one(doc, sp, base, low, high, cds, prior):
          pick(BU["rows"], lambda x: "%.2f" % x["cost_per_unit"])],
         ["Cost of revenue", pick(BU["rows"], lambda x: "{:,.0f}".format(x["cogs"]))],
         ["Gross profit", pick(BU["rows"], lambda x: "{:,.0f}".format(x["gross"]))],
-        ["Gross margin (output)", pick(BU["rows"], lambda x: "%.1f%%" % (100*x["gross_margin"]))],
+        ["Gross margin (held input)",
+         pick(BU["rows"], lambda x: "%.1f%%" % (100*x["gross_margin"]))],
         ["Overheads", pick(BU["rows"], lambda x: "{:,.0f}".format(x["sga"]))],
         # THE LINE THE MODEL DEDUCTS AND THE TABLE DID NOT PRINT [added 03-Sep-2026].
         # Operating profit is gross - overheads - depreciation, and only the first two
@@ -578,8 +783,9 @@ def _section_one(doc, sp, base, low, high, cds, prior):
     table(doc, ["EGP mn unless stated"] + yrs,
           [[lbl] + vals for lbl, vals in body],
           wide_widths(BU["rows"]),
-          "Every line follows from the two engines above. Gross margin is what "
-          "price per unit and cost per unit leave behind, not an assumption.")
+          "Every line follows from the two engines above. Gross margin is the one "
+          "HELD input in this table and cost per unit is solved from it — see the "
+          "note on the anchors below.")
     a = BU["anchors"]
     para(doc, "Three anchors hold this table to what was actually reported. "
               "FY2026 is part-reported: the company disclosed first-quarter "
@@ -591,11 +797,18 @@ def _section_one(doc, sp, base, low, high, cds, prior):
               "not the %.2f per cent marginal rate used for discounting — a large "
               "part of the balance does not bear interest and part of the charge "
               "is capitalised into work in progress. And the gross margin is held "
-              "at %.1f per cent, the average of the last two disclosures."
+              "at %.1f per cent, which is the LATEST disclosure on its own — the "
+              "first quarter of 2026 — and not an average. FY2025 reported %.1f per "
+              "cent; their average is %.1f per cent, and that average was the "
+              "anchor the superseded edition used. Taking the latest alone is the "
+              "more conservative of the two and it carries the cost drift the "
+              "company's own two disclosures show, %.2f per cent."
               % ("{:,.0f}".format(a["q1_2026_reported"]),
                  100*a["q1_share_of_year"], "{:,.0f}".format(a["fy2026_anchor"]),
                  100*a["effective_pl_rate"], 100*a["marginal_rate_for_discounting"],
-                 100*a["gross_margin_forward"]))
+                 100*a["gross_margin_forward"], 100*a["gross_margin_fy25"],
+                 50*(a["gross_margin_fy25"] + a["gross_margin_1q26"]),
+                 100*a["cost_drift_measured_not_carried"]))
     para(doc, "One drift was measured and deliberately not carried. The move from "
               "a 41.2 per cent gross margin in 2025 to 35.5 per cent in the first "
               "quarter of 2026 implies cost rising about %.1f per cent a year "
@@ -978,7 +1191,7 @@ def _section_one(doc, sp, base, low, high, cds, prior):
               "rate of %s. That is the clearest single statement this study can make "
               "about the current price: the market is paying for conversion better "
               "than 2023 and 2025 delivered, and materially worse than 2024 did."
-              % pct(D["market_implied_cash_conversion"]))
+              % pct(_IMPLIED))
 
 
 # ---------------------------------------------------------------------------
@@ -1111,21 +1324,32 @@ def _sections_two_to_seven(doc, sp):
     para(doc, "%s things are not disclosed by the company and are therefore not in "
               "this study. Each is named with what would close it."
               % _count_word(len(N["gaps"])).capitalize(), bold=True)
-    gap_rows = [
-        ["Collection schedule", "Down payment, instalment tenor and post-handover "
-         "tail are not published. This is the crux; it is measured from outcomes "
-         "instead of built from terms.", "Disclosure of contract terms."],
-        ["Project unit economics", "No per-project unit mix, unit area, price per "
-         "square metre or construction cost per square metre is disclosed.",
-         "Project-level disclosure or an investor presentation carrying them."],
-        ["Cost of debt", "The February 2026 securitisation publishes sizes, tenors "
-         "and ratings but no coupon.", "A coupon on any tranche."],
-        ["Full-year 2025 operating figures", "The audited statements were published; "
-         "the results release, which carries units and new sales, was not.",
-         "The 2025 results release."],
-        ["Half-year 2026", "Nothing newer than the first quarter of 2026 had been "
-         "published as at this edition's date.", "The half-year filing."],
-    ]
+    # THE TABLE WAS HAND-WRITTEN AND THE COUNT ABOVE IT WAS COMPUTED, so the heading
+    # said six and the table had five rows -- and one of those five ("Collection
+    # schedule") was in neither the committed record nor the bibliography's own list,
+    # while cash_flow_statement_detail and backlog_cost_to_complete were simply absent.
+    # The rows come from the record every other surface reads now, so the count and the
+    # rows cannot disagree again.
+    GAP_TITLES = {
+        "cash_flow_statement_detail": "FY2025 cash-flow statement, line by line",
+        "fy2025_results_release": "Full-year 2025 operating figures",
+        "h1_2026_results": "Half-year 2026",
+        "securitisation_pricing": "Cost of debt",
+        "per_project_pricing": "Project unit economics",
+        "backlog_cost_to_complete": "Cost to complete the order book",
+    }
+    missing = sorted(set(N["gaps"]) - set(GAP_TITLES))
+    if missing:
+        raise SystemExit("study_numbers.gaps carries %s with no title for section 7. A "
+                         "gap the record names and the page does not print is exactly "
+                         "the mismatch this table was rebuilt to stop." % missing)
+    gap_rows = []
+    for key in sorted(N["gaps"]):
+        text = N["gaps"][key]
+        why, _, closes = text.partition("Closed by:")
+        gap_rows.append([GAP_TITLES[key], why.strip(),
+                         closes.strip().rstrip(".").capitalize() + "." if closes.strip()
+                         else "Not stated."])
     table(doc, ["What is missing", "Why it matters", "What would close it"],
           gap_rows, [3.6, 7.0, 5.2])
     para(doc, "What would change our mind, in order of force:", bold=True)
@@ -1237,9 +1461,10 @@ def _appendices(doc, sp, base):
            ["Net profit"] + _f(FB, "npat"),
            ["Earnings per share (EGP)"] + _f(FB, "eps", "{:,.2f}")],
           wide_widths(BU["rows"]),
-          "Five forecast years. Gross margin is what price per unit and cost "
-          "per unit leave behind, never an input. Years three to five should be "
-          "read against the range in section 1.9, not as points.")
+          "Five forecast years. Gross margin is a HELD input and cost per unit is "
+          "solved from it, for the disclosure reason given in section 1.1. Years "
+          "three to five should be read against the range in section 1.9, not as "
+          "points.")
 
     doc.add_heading("A.2  Balance sheet", level=2)
     SB, B24 = N["balance_sheet_subtotals"], N["balance_sheet_fy24"]
@@ -1431,7 +1656,12 @@ def _appendices(doc, sp, base):
     prows = []
     for r in sorted([p for p in N["peers"] if "beta" in p],
                     key=lambda x: -x["beta"]):
-        prows.append([r["ticker"], r["name"][:30], "%.4f" % r["beta"],
+        # [:30] CUT THREE NAMES MID-WORD -- "Sixth of October Development &",
+        # "Heliopolis Housing and Develop", "Pioneers Properties for Urban " -- and the
+        # first lost the name the company is actually known by, while Figure 4 beneath
+        # the same table called that row "OCDI SODIC". A name is shortened at a word
+        # boundary or not at all.
+        prows.append([r["ticker"], _short_name(r["name"]), "%.4f" % r["beta"],
                       pct(r["r2"], 1), "%.3f" % r["se"],
                       pct(r["ann_vol_5y"], 1), pct(r["max_drawdown_5y"], 1)])
     table(doc, ["Code", "Company", "Beta", "R-squared", "Std error",
@@ -1558,10 +1788,10 @@ def _appendices(doc, sp, base):
               "would be lower still. Falsifier: if 2026 conversion prints above %s, "
               "the price was too low."
               % (pct(W["wacc_cds"], 2), sp,
-                 pct(D["market_implied_cash_conversion"]),
+                 pct(_IMPLIED),
                  pct(D["cfo_margins"]["2023"]), pct(D["cfo_margins"]["2024"]),
                  pct(D["cfo_margins"]["2025"]), pct(W["wacc_rating"], 2),
-                 pct(D["market_implied_cash_conversion"])))
+                 pct(_IMPLIED)))
 
     doc.add_heading("C.4  Cross-examination", level=2)
     bullets(doc, [
@@ -1596,7 +1826,7 @@ def _appendices(doc, sp, base):
     table(doc, ["Assumption", "Expert 1", "Expert 2", "Expert 3",
                 "Drives the gap?"],
           [["Cash conversion", "%s to %s" % (pct(D["cfo_lo"]), pct(D["cfo_hi"])),
-            "not forecast", "%s implied" % pct(D["market_implied_cash_conversion"]),
+            "not forecast", "%s implied" % pct(_IMPLIED),
             "YES — this is the whole gap"],
            ["Cost of capital", pct(W["wacc_cds"], 2), "not used",
             pct(W["wacc_cds"], 2), "no — shared"],

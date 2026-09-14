@@ -38,7 +38,45 @@ RECORD_KEYS = ("lens_record", "lens_design")
 
 
 def studies():
-    return sorted(glob.glob(os.path.join(ENGINE, "*_study")))
+    """The record directories a record-reading gate can inspect, resolved through
+    engine/study_population.py rather than by globbing engine/*_study.
+
+    THE GLOB WAS THE WRONG POPULATION. All 90 covered names carry a delivered
+    valuation study; 23 commit a record. This gate globbed the directories and
+    printed a count with NO DENOMINATOR, which is why 24 looked like the book.
+    The names with no record are DEFERRED to the shared no-record ratchet, which
+    the valuation-gap gate reports on — they are not re-listed here, because ten
+    gates reporting one fact is the duplication this refactor exists to avoid.
+
+    The import is LAZY so a sandbox that copies this script without engine/
+    beside it does not die on an import it never needed.
+    """
+    global _DEFERRED, _POP_LINE
+    # A SANDBOXED FIXTURE SUPPLIES ITS OWN POPULATION, AND SAYS SO OUT LOUD.
+    # Several negative controls copy this script into a temp tree holding a fake
+    # ENGINE and run it as a subprocess, so the resolver is not importable there —
+    # and it should not be, because the whole point of those fixtures is a
+    # population they control. The escape is an explicit environment variable that
+    # CI never sets, and taking it PRINTS that it was taken: a switch that quietly
+    # restored the directory glob would reinstate the defect this replaced.
+    if os.environ.get('TESTAHIL_FIXTURE_POPULATION'):
+        dirs = sorted(glob.glob(os.path.join(ENGINE, '*_study')))
+        _DEFERRED, _POP_LINE = [], ('population: FIXTURE — %d study directories under a '
+                                    'sandboxed ENGINE, not the book' % len(dirs))
+        print(_POP_LINE)
+        return dirs
+    if ENGINE not in sys.path:
+        sys.path.insert(0, ENGINE)
+    import study_population
+    dirs, _DEFERRED, _POP_LINE = study_population.examinable()
+    # printed HERE so the ten gates have exactly ONE edit site each and the line
+    # cannot be forgotten in one of them: a denominator that appears in nine gates
+    # and not the tenth is the drift this refactor exists to stop
+    print(_POP_LINE)
+    return dirs
+
+
+_DEFERRED, _POP_LINE = [], ""
 
 
 def ticker_of(sdir):
@@ -87,6 +125,64 @@ def audit(sdir):
         return "fail", str(e).replace("\n", " ")
     except Exception as e:                                   # noqa: BLE001
         return "fail", "%s: %s" % (type(e).__name__, e)
+    # THE IDENTITY CLAUSE IS THE STRONGEST THING THIS RULE SAYS AND IT DOES NOT ALWAYS RUN.
+    # assert_lens_design() tests "the primary IS the central" only where the record EXPOSES a
+    # central or a containing range; where it exposes neither, the clause is skipped and the
+    # study returns ok. That skip is correct in the assertion — `central` is optional in this
+    # record's shape and an assertion may not invent a field requirement — and it is NOT
+    # correct to then count the study as conforming, because the clause that would have
+    # caught a blend never ran.
+    #
+    # MEASURED 06-09-2026, and the correlation is the finding rather than the count: NINE
+    # studies carry a record exposing no central, SEVEN carry no record at all, and only
+    # SEVEN of twenty-three were held to the identity test — while a book-wide census found
+    # NINE studies still publishing a weighted central, EVERY ONE of them in the unheld
+    # group. A study with nothing to be tested on is not a study that passed [R-ENF-04].
+    # THE CONDITION MUST MATCH THE ONE THAT ACTUALLY GATES THE CLAUSE. A first draft of this
+    # check asked for a missing central AND a missing primary value, and caught two studies
+    # where the real number is nine — because assert_lens_design() wraps the WHOLE identity
+    # test in `if central is not None`, so a record carrying a primary value and no central
+    # skips it just as completely. A check whose condition is narrower than the skip it is
+    # detecting reports most of the hole as clean, which is the failure it exists to close.
+    # ---- A TWO-SIDED ANSWER IS HELD BRANCH-WISE [added 06-09-2026]. The clause
+    # above was firing on work that was right: a study whose answer turns on a
+    # contested judgement publishes BOTH framings and is forbidden to average
+    # them, so it has no scalar central and demanding one demands the midpoint
+    # the dual-framing rule prohibits. Re-pointed per [R-COC-01], and the test
+    # is harder than the one it replaces rather than looser.
+    #
+    # THE SPLIT IS FORCED BY WHAT EACH INSTRUMENT CAN SEE. assert_lens_design()
+    # receives the RECORD and so tests the record's own shape — two_sided implies
+    # branches, distinct, labelled, no scalar beside them. Only this gate holds
+    # the DOCUMENT, so only this gate can ask the question that matters: are the
+    # branches the record declares the branches the study actually publishes?
+    _pub_ts = (doc.get("central_two_sided") or {}).get("branches")
+    _pub_vals = sorted(round(float(b["value"]), 9) for b in (_pub_ts or [])
+                       if isinstance((b or {}).get("value"), (int, float)))
+    if out.get("two_sided"):
+        _rec_vals = sorted(round(v, 9) for v in out.get("branches") or [])
+        if not _pub_vals:
+            return ("fail", "the record declares a two-sided primary and the study "
+                            "publishes no two-sided answer for it to describe")
+        if _rec_vals != _pub_vals:
+            return ("fail", "the record's branches %s are not the branches the study "
+                            "publishes %s. THE IDENTITY CLAUSE, BRANCH-WISE: each answer a "
+                            "reader is given is a lens read, and a branch nothing produced "
+                            "is the blend arriving one framing at a time."
+                            % (_rec_vals, _pub_vals))
+        return "ok", "two-sided primary %s, branches %s, %d cross-checks" % (
+            out["primary"], _rec_vals, len(out["cross_checks"]))
+    if _pub_vals:
+        return ("fail", "the study publishes a TWO-SIDED answer (%s) and its lens record "
+                        "declares a single-sided primary. The record understates the answer "
+                        "the study gives, and everything downstream reads the one branch it "
+                        "names." % _pub_vals)
+    _c = rec.get("central")
+    if _c is None:
+        return ("no_central",
+                "record present and everything testable passes, but it exposes NO CENTRAL, "
+                "so THE IDENTITY CLAUSE NEVER RAN — the one clause that catches a weighted "
+                "blend")
     return "ok", "primary %s, %d cross-checks" % (out["primary"], len(out["cross_checks"]))
 
 
@@ -128,8 +224,12 @@ def main():
         else:
             (still if listed else hard).append((tk, detail))
 
-    print("studies examined: %d   conforming: %d   outstanding (allowed): %d"
-          % (len(sdirs), len(ok) + len(fixed), len(still)))
+    _untested = [t for t, d in still + hard if d.startswith("record present and")]
+    print("studies examined: %d   conforming AND held to the identity clause: %d   "
+          "outstanding (allowed): %d" % (len(sdirs), len(ok) + len(fixed), len(still)))
+    if _untested:
+        print("   of the outstanding, %d carry a record whose identity clause could not "
+              "run: %s" % (len(_untested), ", ".join(sorted(_untested))))
     for tk, detail in sorted(ok):
         print("   %-12s %s" % (tk, detail))
     if fixed:

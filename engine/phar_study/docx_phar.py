@@ -1,4 +1,5 @@
-"""EIPICO_Valuation_Study_09-08-2026.docx — the 16-section study.
+import datetime as _dt
+"""EIPICO_Valuation_Study_{edition}.docx — the 16-section study.
 
 Written for an EXTERNAL reader: no internal procedure vocabulary anywhere, no verdict
 tokens, no calibration appendix. The calibration evidence appears inside section 3 as
@@ -7,7 +8,11 @@ plain-language sentences with the statistics inline. Experts are labelled Expert
 import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
+import edition as _ed                      # the edition date, written once
+sys.path.insert(0, HERE)
+sys.path.insert(0, os.path.join(HERE, '..'))
 import docx_base as B
+import range_disclosure as RD    # the sentence a range built on a handful of readings owes
 from docx.shared import Pt, Inches
 
 doc, P, H1, H2, rich, table, figure, box, bullet, caption, masthead = (
@@ -44,6 +49,13 @@ def tnum():
     return _TN[0]
 
 
+def _words(iso):
+    """An ISO date as a reader reads it. The masthead states the edition and the price
+    date, and both are records: neither is ever typed here again."""
+    d = _dt.date.fromisoformat(str(iso))
+    return '%d %s %d' % (d.day, d.strftime('%B'), d.year)
+
+
 def n0(x): return f'{x:,.0f}'
 def n1(x): return f'{x:,.1f}'
 def n2(x): return f'{x:,.2f}'
@@ -56,10 +68,27 @@ P('Egyptian International Pharmaceutical Industries Company (EIPICO)', size=21, 
   space_after=1)
 P('Independent valuation study · The Egyptian Exchange · ticker PHAR · Egyptian pounds',
   size=11.5, color=GREY, space_after=2)
-P(f'Prepared 9 August 2026 · share price EGP {n2(SPOT)} at the close of 6 August 2026 · '
-  f'{SH:,.3f} million shares in issue', size=10, color=GREY, space_after=12)
+# BOTH DATES WERE TYPED, ON THE ONE LINE A READER SEES FIRST. The edition and the
+# price date were derived into the filename and into the meta block, and this line
+# still said "Prepared 9 August 2026 ... at the close of 6 August 2026" on a September
+# edition anchored to a September price. An outside audit found it; the same shape was
+# found in ARCC's bibliography the same hour. A date a reader reads is the last place
+# to leave one typed, not the first.
+P(f'Prepared {_words(M["study_date"])} · share price EGP {n2(SPOT)} at the close of '
+  f'{_words(M["price_date"])} · {SH:,.3f} million shares in issue',
+  size=10, color=GREY, space_after=12)
 
 H1('Read first')
+
+# [R-DOC-03] THE TWO DATES, AT THE TOP, LABELLED. A valuation states a number struck
+# against a price, and those are two facts with two dates that are not the same date.
+# Resolved by engine/doc_dates.py and never from a file's modification time.
+import sys as _sys_dd
+import os as _os_dd
+_sys_dd.path.insert(0, _os_dd.path.dirname(_os_dd.path.dirname(_os_dd.path.abspath(__file__))))
+import doc_dates as _DD
+P(_DD.header_line('PHAR'), size=8, color=GREY)
+
 box([('What this is. ',
       'An independent, educational valuation of a listed Egyptian pharmaceutical '
       'manufacturer, built from the company\'s own audited financial statements. It contains '
@@ -219,7 +248,7 @@ caption(f'Table {tnum()} — the figures a reader needs before anything else. En
 H1('Company overview')
 P('EIPICO was founded in 1980 in Tenth of Ramadan City with capital of EGP 7 million and '
   'began producing in 1985. It is today the largest operating subsidiary of the Arab Company '
-  'for Drug Industries and Medical Appliances, which holds 51.34% of its shares. The '
+  'for Drug Industries and Medical Appliances, which holds ' + pc(V['parent_stake'], 2) + ' of its shares. The '
   'rest of the share list is dominated by medical-profession institutions — an investment '
   'company, the professions federation and its pension fund together hold a further 12.02% — '
   'with 36.64% in other hands.')
@@ -532,6 +561,16 @@ P(f'The same arithmetic read the other way is worth stating, because it is the p
   f'{(SPOT - A["per_share"]) * SH / (V["plant_cost_usd_mn"] * FC["fx"][-1]):.1f} times what '
   f'the plant cost to build. That is the proposition, stated as a multiple of an observable '
   f'outlay rather than as a valuation.')
+P('And the lead molecule is not first into its own market, which makes the hurdle harder '
+  'than the contribution margin above makes it look. The Egyptian Drug Authority approved a '
+  'competing adalimumab biosimilar — Alvotech\'s AVT02, marketed in Egypt as Adalimumab-EVA '
+  'and commercialised by Bioventure — on 29 August 2023. That is twenty-seven months before '
+  'this company launched its own adalimumab in December 2025, and adalimumab is the one '
+  'molecule of the fourteen in the published pipeline that has actually reached the market. '
+  'So the revenue above has to be won against an approved rival rather than into an empty '
+  'field, and the 45% contribution margin the solve assumes should be read as a ceiling. '
+  'This changes nothing in the answer, because the crux is stated rather than forecast. It '
+  'raises the bar a reader has to clear before agreeing with the market.', bold=True)
 box([('Why this number is useful. ',
       f'It is observable. Roughly USD {n0(CRUX["required_rev_usd_mn"])} million a year of '
       f'biosimilar revenue by 2030 is a figure the company will eventually disclose, and a '
@@ -568,8 +607,11 @@ rows += [
      n0(FC['capex'][0]), 'reset upward to the quarter'],
     ['Attributable profit (EGP m)', n0(V['q1_parent']),
      n0(V['q1_parent'] / V['q1_share_of_year_profit']), n0(FC['parent'][0]),
-     f"the study is {pc(FC['parent'][0] / (V['q1_parent'] / V['q1_share_of_year_profit']) - 1, 0)} "
-     f"below the quarter's seasonal read"],
+     # THE NUMBER WAS READ AND THE DIRECTION WAS TYPED. It printed "5% below" where
+     # its own arithmetic gives +5.4%: ABOVE. A word is a figure too.
+     (lambda _d: f"the study is {pc(abs(_d), 0)} "
+                 f"{'above' if _d > 0 else 'below'} the quarter's seasonal read")(
+         FC['parent'][0] / (V['q1_parent'] / V['q1_share_of_year_profit']) - 1)],
     ['Attributable earnings per share (EGP)', n2(V['q1_parent'] / SH),
      n2(V['q1_parent'] / V['q1_share_of_year_profit'] / SH), n2(FC['parent'][0] / SH),
      'the two lines the appendix must reproduce, checked here'],
@@ -626,9 +668,18 @@ rows += [
      'The dataset\'s separate COUNTRY risk premium column, shown so a reader checking that '
      'column finds the same numbers this study calls by that name. It is NOT added to the '
      'cost of equity — the total premium above already contains it'],
+    # EVERY STATISTIC IN THIS CELL IS NOW READ OFF THE BETA RECORD, AND THAT IS A REPAIR.
+    # It used to be typed, and it described the WITHDRAWN composite regression — "a 36-name
+    # local composite, five years; R-squared 0.235, n = 257, standard error 0.071" — beside
+    # the LIVE coefficient in the same row. So the document paired the number this study
+    # uses with the diagnostics of the method this study withdrew, which is a false
+    # statement of provenance and exactly the shape a typed figure takes when the record
+    # beneath it moves.
     ['Beta', f"{V['beta']:.3f}", f"{V['beta']:.3f}",
-     'Own-stock weekly regression against a 36-name local composite, five years; '
-     'R-squared 0.235, n = 257, standard error 0.071'],
+     f"Own-stock weekly regression against the published "
+     f"{os.path.basename(BETAJ['index_file']).replace('.csv', '')} index of the exchange "
+     f"this share is listed on, {BETAJ['window_years']} years; R-squared "
+     f"{BETAJ['r2']:.3f}, n = {BETAJ['n']}, standard error {BETAJ['se']:.3f}"],
     ['COST OF EQUITY', pc(W['ke'], 2), pc(W['ke_rating'], 2),
      f"The two bases agree to {abs(W['ke'] - W['ke_rating']) * 1e4:.0f} basis points"],
     ['Cost of debt, local currency', pc(V['kd_egp'], 2), pc(V['kd_egp'], 2),
@@ -763,21 +814,23 @@ caption(f'Table {tnum()} — the level-touch ladder. Touching a level at any poi
         'is far more likely than finishing beyond it.')
 figure(os.path.join(HERE, 'fig5_cone.png'), 6.9,
        'Figure 7 — the price history and the one- and three-month bands.')
+# THE COMPARISON AGAINST A RANDOM WALK IS GONE, AND WHAT REPLACES IT SAYS LESS.
+# [R-CAL-02] retires that verdict from every public surface, and a delivered study is as
+# public as a web page. This paragraph published it three times — five-year, full-history
+# and post-break — with the number on each. The three window sets and their honesty tests
+# stay, because those are what the rule says a reader gets: how often the outcome landed
+# inside the band, whether it landed uniformly within it, and how wide the band is against
+# a naive one. What goes is the claim that the method beat, matched or lost to anything.
 P(f'How much should a reader trust this? The method was tested by re-running it every quarter '
   f'across the whole cleaned price history, without ever letting it see the future, and '
-  f'scoring each forecast against what actually happened. Over the last five years of those '
-  f'tests — 19 non-overlapping three-month windows — it scored marginally better than a '
-  f'random walk anchored on the same carry, by {BT["five_year"]["skill_norm"]:+.4f} on a '
-  f'scale where zero means no better and one means perfect. Over the full '
-  f'{BT["full"]["span_years"]:.1f}-year history and {BT["full"]["windows"]} windows it scored '
-  f'{BT["full"]["skill_norm"]:+.4f}. A third set was run on the period AFTER the currency '
-  f'break that dominates the older history — {BT["production"]["windows"]} windows from '
-  f'{BT["production"]["first_origin"]} to {BT["production"]["last_origin"]}, scoring '
-  f'{BT["production"]["skill_norm"]:+.4f} — and it is published here because it is the set '
-  f'that matches the period the bands shown above are built on. All three are reported '
-  f'together; reporting only two of three would be a choice about which evidence a reader '
-  f'sees. In plain terms: on this single share the method is indistinguishable from a random '
-  f'walk, and this study says so rather than claiming an edge it cannot demonstrate.')
+  f'checking each forecast against what actually happened. Three window sets are reported: '
+  f'the last five years, {BT["five_year"]["windows"]} non-overlapping three-month windows; '
+  f'the full {BT["full"]["span_years"]:.1f}-year history, {BT["full"]["windows"]} windows; '
+  f'and the period AFTER the currency break that dominates the older history — '
+  f'{BT["production"]["windows"]} windows from {BT["production"]["first_origin"]} to '
+  f'{BT["production"]["last_origin"]}. The third is published because it is the set that '
+  f'matches the period the bands shown above are built on. All three are reported together; '
+  f'reporting only two of three would be a choice about which evidence a reader sees.')
 P(f'What the tests DO show is that the bands are honestly sized, which is the property that '
   f'matters for reading them. Across the five-year window set the outcome fell inside the 90% '
   f'band {pc(BT["five_year"]["cov90"], 0)} of the time and inside the 50% band '
@@ -918,87 +971,26 @@ bullet(f'the bands here are wide — the three-month 90% band runs from EGP '
        f'moved 44% in two sessions would be a lie.', bold_head='Width is information: ')
 bullet(f'the bands describe where the PRICE may go. The valuation describes what the '
        f'BUSINESS appears to be worth. They are different questions and this study keeps them '
-       f'apart on purpose. BOTH fundamental centres — EGP {n2(LN["centre_A"])} and EGP '
-       f'{n2(LN["centre_B"])} — sit below the entire three-month band, and that is worth '
-       f'noticing rather than reconciling away.',
+       # "BOTH CENTRES SIT BELOW THE ENTIRE BAND" WAS TYPED, and the band's own floor
+       # is printed two bullets above: centre B sits inside it. Computed now.
+       + (lambda lo, a, b: (
+           f'apart on purpose. Both fundamental centres — EGP {n2(a)} and EGP {n2(b)} — '
+           f'sit below the entire three-month band, and that is worth noticing rather '
+           f'than reconciling away.' if max(a, b) < lo else
+           f'apart on purpose. The lower fundamental centre, EGP {n2(min(a, b))}, sits '
+           f'below the entire three-month band, whose floor is EGP {n2(lo)}; the higher, '
+           f'EGP {n2(max(a, b))}, sits inside it. That is worth noticing rather than '
+           f'reconciling away.'))(STRIKE["horizons"]["3M"]["pct"]["p5"], LN["centre_A"], LN["centre_B"]),
        bold_head='These are not a valuation: ')
 
 # ============ 11. SECTION 7 — CAVEATS AND WHAT WOULD CHANGE OUR MIND ===========
 H1('7. Caveats, and what would change our mind')
-H2('7.1 What changed in this edition, and by how much')
-rows = [['Change', 'Effect']]
-rows += [
-    ['FY2026 revenue growth reset from 17.5% to the quarter\'s 10.1%',
-     'the largest single change; it lowers the base every later year compounds from'],
-    ['FY2026 capital expenditure raised to the quarter\'s run-rate',
-     'more cash out of free cash flow in the first forecast year'],
-    ['Finance cost charged to profit reset to the quarter, and separated from the marginal '
-     'cost of debt used in the discount rate',
-     'raises forecast earnings; the two were being conflated and are now distinct rows'],
-    ['Normalised associate contribution cut from EGP 320m to EGP 250m, the like-for-like '
-     'three-year average', 'lowers the bridge; the quarter reported only EGP 13.1m, but the '
-     'auditor states the associates\' statements were not received, so it is not decisive'],
-    ['The active-ingredient company added to the bridge at carrying cost, and the '
-     'non-controlling interest deducted there replaced with the post-deconsolidation figure',
-     'both POSITIVE, and they are two halves of one event: that company left the consolidation '
-     'in the quarter, taking EGP 284.7m of minorities out and adding EGP 228.5m of associate '
-     'carrying value'],
-    ['Dividend-distribution tax given its own line in all three history years, following the '
-     'separately issued statements', 'lifts FY2023 operating profit by EGP 4.1m (0.34%); worth '
-     'about EGP 0.12 a share'],
-    ['THE SINGLE WEIGHTED CENTRE IS WITHDRAWN',
-     'the first edition weighted Frame A and Frame B at a quarter each inside one number. '
-     'Weighting both frames inside one number IS averaging them, which this study says five '
-     'times that it never does. Each frame now carries the cash-flow weight in full, on its '
-     'own, and TWO centres are published'],
-    ['The terminal return on invested capital is now COMPUTED, not assumed',
-     f"it was asserted at 20% against a forecast that reaches "
-     f"{pc(A['roic_term'], 2)} in FY2030E. It now READS the model's own final year, so "
-     f"terminal reinvestment rises from 25.0% to {pc(A['reinvest_rate'], 1)} of terminal "
-     f"operating profit after tax"],
-    ['The terminal year is charged the depreciation the forecast never charged',
-     f"EGP {n0(FC['cip'][-1])} million of construction is still parked at FY2030E and had "
-     f"never entered the depreciable base. A perpetuity cannot capitalise profit on capital it "
-     f"never charges, so EGP {n0(A['term_dep_catchup'])} million a year is now deducted before "
-     f"the terminal value is struck"],
-    ['The terminal debt weight is now DERIVED and published on both bases',
-     f"it was 20%, described as reconciled to the forecast balance sheet. It reconciled to "
-     f"neither reading of that sheet: {pc(W['wd_term_market'], 1)} on today's market values, "
-     f"{pc(W['wd_term_book'], 1)} on the funded forecast book. The market reading is used and "
-     f"both are shown"],
-    ['Free cash flow is taxed at the EFFECTIVE rate, not the statutory rate',
-     f"the model conceded a {pc(W['tax_fcff'], 1)} effective burden in one place and applied "
-     f"{pc(W['tax_stat'], 1)} in the cash-flow engine. One rate now runs both"],
-    ['The forecast balance sheet is FUNDED and now balances',
-     'cash and gross borrowings were frozen at their audited levels for five years while '
-     'equity compounded, so the statement was out by up to 6.6% of total assets and no '
-     'balance check was ever computed. Gross borrowings are now the funding plug, a total '
-     'liabilities-and-equity row and a balance check have been added, and both are zero in '
-     'every forecast column'],
-    ['The trailing multiples are applied to TRAILING earnings',
-     'two of the three legs of the relative lens were labelled trailing and applied to FY2026E '
-     'earnings, which are BELOW trailing because of the depreciation step. Each leg now takes '
-     'the earnings of its own period'],
-    ['The peer anchor is relabelled a struck reference and moved to the midpoint',
-     f"it was called a peer median at 19.5 times. Only two observations are disclosed, "
-     f"{PEER_HI:.1f}x and {PEER_MID:.1f}x, whose midpoint is {V['peer_pe_regional']:.2f}x. It "
-     f"is now that midpoint and it is not called a median"],
-    ['The risk-free rate and the share price are struck on ONE date',
-     'the yield carried a 21 July 2026 print against a 6 August 2026 share price. Both are now '
-     '6 August, and the country-risk dataset moves to its mid-year vintage'],
-    ['The sustainable return and the book lens are live in the workbook',
-     'the book-value lens was a constant multiple typed inside a formula, so that lens did not '
-     'move for any driver. Both the multiple and the return behind it now read the forecast'],
-    ['The appendix income statement prints what the model computes',
-     'its attributable-profit row printed retained earnings and its finance-cost row was a '
-     'first-edition artefact. Both now come from the model rows the valuation uses'],
-    ['NET EFFECT ON THE CENTRE',
-     f"a single EGP 79.64 becomes a PAIR: EGP {n2(LN['centre_A'])} on Frame A "
-     f"({pc(LN['centre_A'] / 79.64 - 1, 0)}) and EGP {n2(LN['centre_B'])} on Frame B "
-     f"({pc(LN['centre_B'] / 79.64 - 1, 0)})"],
-]
-table(rows, [2.7, 4.2], band_rows={7, len(rows) - 1}, size=8.4)
-caption(f'Table {tnum()} — every change from the first edition, and its direction.')
+# SECTION 7.1 WAS THE EDITION HISTORY, AND THE MODEL REPORT EXISTS TO EXCLUDE IT.
+# Edition history is internal QC evidence: it tells a reader what a superseded
+# document said, which is a fact about this desk's process and not about the
+# company. Removed 13-09-2026; the record of what changed lives in the QC gate
+# and in the commit that made each change.
+
 
 rows = [['Caveat', 'What it costs the study', 'What would settle it']]
 rows += [
@@ -1060,17 +1052,22 @@ rows += [
      f'report. The later filing is used. It affects a utilisation statistic, not a valuation '
      f'input',
      'a company explanation of the restatement'],
-    ['The beta composite contains the subject itself',
-     f'the {BETAJ["composite_names"]}-name equal-weighted local composite the beta is '
-     f'regressed against includes this company at about '
-     f'{100 / BETAJ["composite_names"]:.1f}% weight, which biases the coefficient toward one. '
-     f'Removing it gives {BETAJ["beta_ex_subject"]:.3f} rather than {BETAJ["beta"]:.3f}, which '
-     f'would RAISE the two centres by about EGP '
-     f'{(XBJ["beta_ex_subject_centre_A"] - LN["centre_A"]):,.2f} and EGP '
-     f'{(XBJ["beta_ex_subject_centre_B"] - LN["centre_B"]):,.2f} a share. The in-index '
-     f'coefficient is carried because it is the more conservative of the two and because it '
-     f'is what a real local index produces; both are published in the bibliography',
-     'a published local index that excludes the constituent under study'],
+    ['The market index explains little of this share\u2019s week-to-week movement',
+     f'the beta is regressed against the published index of the exchange the shares are '
+     f'listed on, and that index explains {BETAJ["r2"] * 100:.1f}% of the weekly variation '
+     f'over {BETAJ["n"]} observations. The coefficient is {BETAJ["beta"]:.3f} with a 90% '
+     f'range of {BETAJ["ci90"][0]:.3f} to {BETAJ["ci90"][1]:.3f}, and that range is wide '
+     f'enough to matter to the valuation. A previous edition regressed against an equal-'
+     f'weighted basket of {BETAJ["withdrawn_composite"]["composite_names"] if "composite_names" in BETAJ["withdrawn_composite"] else 36} '
+     f'local names, which fit better \u2014 '
+     f'{BETAJ["withdrawn_composite"]["r2"] * 100:.1f}% \u2014 and gave '
+     f'{BETAJ["withdrawn_composite"]["beta"]:.3f}. That basket is not a market: it changes '
+     f'whenever a share is added to it and it shares members with the very set it is used to '
+     f'price, so it tracks any one of them more closely than a real index does. A better fit '
+     f'against the wrong yardstick is not a reason to use the wrong yardstick. Both figures '
+     f'and their statistics are published in the bibliography',
+     'a longer price history, or a defensible set of listed peers whose own betas clear the '
+     'same usability test'],
     ['The pre-2020 portion of the price history is thin',
      'the price export carries 162–195 sessions a year before 2020 against roughly 245 real '
      'exchange sessions. It affects only the longest calibration window, not the live bands, '
@@ -1194,6 +1191,72 @@ caption(f'Table {tnum()} — the asset-conversion cycle, projected rather than p
         'inventory position is a stated policy: the company holds a strategic raw-material '
         'stockpile it says covers at least eight months.')
 
+
+H2('A.4 The far forecast years as ranges, and the years that carry none')
+P('The method behind this forecast has been replayed on the company\'s own past — rebuilt '
+  'year-end by year-end under the same mechanical rules, projected forward and scored '
+  'against what the company later reported. That exercise measures how far out this method '
+  'has been, and the far forecast years are published here as the RANGE that measurement '
+  'supports rather than as points. It covers one, two and three years ahead, so the third '
+  'forecast year carries a measured range and the fourth and fifth carry NONE. No range is '
+  'invented for them: an invented one would corrupt the very error it is scored against.')
+_FY = json.load(open(os.path.join(HERE, 'far_year_ranges.json')))
+_FLINES = [('revenue', 'Revenue'), ('cogs', 'Cost of sales'),
+           ('gross_profit', 'Gross profit'), ('net_profit', 'Profit for the year'),
+           ('dna', 'Depreciation and amortisation'), ('capex', 'Capital expenditure')]
+_FCOLS = [e for e in _FY['far_years']]
+_NOBAND = 'no measured range'
+_POINTS = {'revenue': FC['revenue'], 'cogs': FC['cogs'], 'gross_profit': FC['gross_profit'],
+           'net_profit': [p + V['nci_fwd'] for p in FC['parent']],
+           'dna': FC['dna'], 'capex': FC['capex']}
+rows = [['EGP million'] + [e['year'].replace('FY', '') for e in _FCOLS]
+        + ['Basis of the range', 'Readings behind it']]
+for _k, _lab in _FLINES:
+    _cells = [_FY['far_years'][0]['lines'][_k] if _FY['far_years'][0]['band'] else None]
+    _basis = _cells[0]['basis'] if _cells[0] else _NOBAND
+    _n = str(_cells[0]['n']) if _cells[0] else _NOBAND
+    rows.append([f'{_lab} — as published']
+                + [n0(_POINTS[_k][e['index']]) for e in _FCOLS] + ['—', '—'])
+    for _side in ('low', 'high'):
+        rows.append([f'{_lab} — {_side} of the range']
+                    + [(n0(_FY['far_years'][i]['lines'][_k][_side])
+                        if e['band'] else _NOBAND) for i, e in enumerate(_FCOLS)]
+                    + [_basis, _n])
+table(rows, [2.30, 1.02, 1.02, 1.02, 0.94, 0.70], size=7.9,
+      band_rows={1, 4, 7, 10, 13, 16})
+_H3 = _FY['far_years'][0]
+_BYN = {}
+for _k, _lab in _FLINES:
+    _BYN.setdefault(_H3['lines'][_k]['n'], []).append(_lab.lower())
+
+
+def _andlist(xs):
+    return xs[0] if len(xs) == 1 else ', '.join(xs[:-1]) + ' and ' + xs[-1]
+
+
+# ONE SENTENCE PER COUNT, not one sentence quoting the smallest. Four of these lines rest
+# on three readings and two on two, and a single sentence naming the lower count would
+# under-state four of them while a single sentence naming the higher would over-state two.
+_SENT = ' '.join(RD.sentence(_n, 'the third forecast year on ' + _andlist(_BYN[_n]))
+                 for _n in sorted(_BYN, reverse=True))
+caption(f'Table {tnum()} — the third forecast year as a range, and the fourth and fifth '
+        f'stated as carrying none. The range is the point projection MULTIPLIED by how far '
+        f'the outturn came in from the projection at each replayed year-end, so a factor '
+        f'above one means the outturn came in ABOVE the projection — which is the direction '
+        f'almost every reading runs, because the method under-stated the scale of this '
+        f'company in a decade of currency moves rather than mis-stating its shape. Reading '
+        f'the multiplier the other way up would move a forecast the wrong way, and both '
+        f'values look equally ordinary on a page, which is why the direction is stated here '
+        f'rather than left to be inferred. The basis is a SPAN and is not called anything '
+        f'else: it is the widest and the narrowest of the readings behind it, not a '
+        f'percentile, because a percentile needs more readings than this record holds. '
+        f'{_SENT} The fourth and fifth forecast '
+        f'years are shown as published in Appendix A.1 and are marked here as carrying no '
+        f'measured range, because the replay covers three years ahead and no further. '
+        f'Nothing in this table changes the valuation: the fair-value range in the summary '
+        f'is struck on the point path above it, and this is the disclosure of how wide the '
+        f'method\'s own error has been around that path.')
+
 # ============ 13. APPENDIX B — PEERS, RISK REGISTER, RESEARCH RECORD ===========
 H1('Appendix B — peers, risks and the research record')
 H2('B.1 Peers')
@@ -1245,7 +1308,7 @@ rows += [
      'Medium'],
     ['Refinancing', f"EGP {n0(W['gross_debt'])} million of gross borrowings against EGP "
      f"{n0(V['cash_fy25'])} million of cash, half of it hard-currency", 'Medium'],
-    ['Controlling shareholder', 'a 51.34% holder whose interests may not align with the '
+    ['Controlling shareholder', 'a ' + pc(V['parent_stake'], 2) + ' holder whose interests may not align with the '
      'minority on capital allocation', 'Low to medium']]
 table(rows, [1.85, 3.55, 0.95], size=8.4)
 H2('B.3 The research record')
@@ -1392,8 +1455,17 @@ P(f'Put together, the disagreement narrows to a single question, which is a good
   f'65% capacity utilisation, a growing export book earned in hard currency, an administered '
   f'domestic price that at least tracks inflation — their own worked values run from EGP '
   f'{n2(min(A["per_share"], LN["book_ps"]))} to EGP '
-  f'{n2(max(A["per_share"], LN["book_ps"]))} a share, and the study\'s own two centres, EGP '
-  f'{n2(LN["centre_A"])} and EGP {n2(LN["centre_B"])}, sit inside that. Those are the numbers; '
+  f'{n2(max(A["per_share"], LN["book_ps"]))} a share. '
+  # "THE STUDY'S OWN TWO CENTRES SIT INSIDE THAT" WAS TYPED, and one of them is outside
+  # the pair of numbers printed in the same sentence. Computed.
+  + (lambda lo, hi, a, b: (
+      f'The study\'s own two centres, EGP {n2(a)} and EGP {n2(b)}, both sit inside that. '
+      if lo <= min(a, b) and max(a, b) <= hi else
+      f'The study\'s own lower centre, EGP {n2(min(a, b))}, sits inside that; the higher, '
+      f'EGP {n2(max(a, b))}, sits above it. '))(
+      min(A["per_share"], LN["book_ps"]), max(A["per_share"], LN["book_ps"]),
+      LN["centre_A"], LN["centre_B"])
+  + f'Those are the numbers; '
   f'no wider claim is made for the business than its own lenses support.')
 P(f'Where they part is what the new plant is worth today. Expert 1 says: nothing until it '
   f'produces cash, so EGP {n2(A["per_share"])}. Expert 2 says: nothing until it produces a '
@@ -1439,8 +1511,9 @@ P('This is an independent, educational valuation study. It was prepared from the
   'and each input was perturbed in place to confirm the answer moves in the right direction.')
 P('The probability map in section 3 comes from a simulation engine calibrated on the Egyptian '
   'market as a whole and tested by re-running it across the full price history without '
-  'letting it see the future. Its performance on this individual share is reported honestly '
-  'in section 3, including where it is no better than a random walk.')
+  'letting it see the future. What that testing establishes about this individual share — how '
+  'often the outcome fell inside the band, whether it fell uniformly within it, and how wide '
+  'the band is — is reported in section 3, with the window counts behind each figure.')
 
 # ================================ 16. DISCLOSURE ===============================
 H1('Disclosure')
@@ -1461,6 +1534,6 @@ P('Past performance and back-tested performance are not guides to future results
   'probability band is not a guarantee: one outcome in ten is designed to fall outside a 90% '
   'band.', size=9.4)
 
-OUT = os.path.join(HERE, 'EIPICO_Valuation_Study_09-08-2026.docx')
+OUT = os.path.join(HERE, _ed.STUDY_DOCX)
 doc.save(OUT)
 print('wrote', os.path.basename(OUT))

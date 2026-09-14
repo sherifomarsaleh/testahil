@@ -29,10 +29,18 @@ def sandbox():
     return d
 
 
+# THIS FIXTURE SUPPLIES ITS OWN POPULATION [06-09-2026]. The gate resolves the
+# book through engine/study_population.py; this control runs it against a
+# sandboxed tree holding studies it planted, which is the point of the control.
+# The escape is explicit and the gate PRINTS that it took it, so a fixture
+# population can never be mistaken for the real one.
+_FIXTURE_ENV = dict(os.environ, TESTAHIL_FIXTURE_POPULATION='1')
+
+
 def run(d):
     r = subprocess.run([sys.executable,
                         os.path.join(d, 'scripts', 'check_rebuild_ledger.py')],
-                       capture_output=True, text=True)
+                       capture_output=True, text=True, env=_FIXTURE_ENV)
     return r.returncode, r.stdout + r.stderr
 
 

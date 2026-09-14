@@ -1,4 +1,5 @@
-"""SAVOLA_Valuation_Model_19082026_public.xlsx — 16 sheets mirroring the house canonical
+import sys
+"""SAVOLA_Valuation_Model_{edition}_public.xlsx — 16 sheets mirroring the house canonical
 model (operating-company variant). SECOND EDITION (19-Aug-2026, critique response).
 Blue = inputs · black = formulas · green = cross-sheet links.
 
@@ -20,6 +21,8 @@ recalc.py evaluates the workbook independently and asserts the two agree.
 """
 import json, os
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
 from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment
 from openpyxl.utils import get_column_letter
@@ -1775,7 +1778,7 @@ for wsx in wb.worksheets:
     wsx.page_setup.fitToHeight = 0
     wsx.sheet_properties.pageSetUpPr.fitToPage = True
 
-XLSX = os.path.join(HERE, 'SAVOLA_Valuation_Model_19082026_public.xlsx')
+XLSX = os.path.join(HERE, _ed.MODEL_XLSX)
 wb.save(XLSX)
 n_form = sum(len(v) for v in EXPECT.values())
 json.dump(dict(expected=EXPECT, anchors=ANCH),

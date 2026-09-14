@@ -17,7 +17,23 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 DOCS = ['AMR_Valuation_Study_09-08-2026_public.docx', 'AMR_Bibliography_09-08-2026.docx']
 PDFS = ['AMR_Valuation_Study_09-08-2026_public.pdf', 'AMR_Bibliography_09-08-2026.pdf',
         'AMR_Valuation_Model_09082026_public.pdf']
-XLSX = 'AMR_Valuation_Model_09082026_public.xlsx'
+# THE WORKBOOK NAMES ITS EDITION DDMMYYYY WITH NO SEPARATORS, so the latest edition is found
+# by PARSING the date, never by sorting the names: "03092026" sorts below "09082026" as text
+# and a text sort would scrub a superseded edition and report it as current [L-067, L-350].
+_XLSX_DATE = re.compile(r'_(\d{2})(\d{2})(\d{4})_')
+
+
+def _latest_xlsx():
+    c = []
+    for f in os.listdir(HERE):
+        if f.startswith('AMR_Valuation_Model_') and f.endswith('.xlsx') and not f.startswith('~$'):
+            m = _XLSX_DATE.findall(f)
+            c.append(((m[-1][2] + m[-1][1] + m[-1][0]) if m else '', f))
+    assert c, 'no delivered workbook found — an empty result is not a clean result'
+    return sorted(c)[-1][1]
+
+
+XLSX = _latest_xlsx()
 
 # ---- 1. external-reader scrub ---------------------------------------------
 # Internal procedure vocabulary. The reader is an outside party: nothing about how the

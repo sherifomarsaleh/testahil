@@ -147,7 +147,22 @@ def has_instrument(sdir):
     it must actually READ a .docx — a file that only prints a report is not the check."""
     for p in glob.glob(os.path.join(sdir, '*prose*.py')):
         src = open(p, encoding='utf-8', errors='replace').read()
-        if '.docx' in src and ('Document(' in src or 'docx' in src):
+        # OPENING A DOCUMENT IS THE TEST, NOT SPELLING ITS NAME OUT [R-COC-01].
+        # This required the literal '.docx' to appear in the source, which was true
+        # while every study typed its delivered filenames. On 09-09-2026 those names
+        # moved into each study's edition module, so ARCC's and AMOC's prose checks
+        # stopped containing the string while still reading exactly the same files --
+        # and this gate reported "no script reconciles the delivered documents", which
+        # is confidently wrong and sends the next reader looking for a deleted file.
+        # A python-docx Document() call IS the act of reading one.
+        # AND THE HOUSE'S OWN SHARED INSTRUMENT COUNTS, which is the case that
+        # actually broke. ARCC and AMOC do not touch python-docx at all: they
+        # import engine/prose_figures.py, the module every study is supposed to
+        # use rather than hand-roll, and it does the reading for them. A detector
+        # that recognises only the hand-rolled shapes penalises the studies that
+        # followed the instruction.
+        if ('prose_figures' in src or 'Document(' in src
+                or ('.docx' in src and 'docx' in src)):
             return os.path.basename(p)
     return None
 
@@ -197,7 +212,17 @@ def main(argv):
     on_disk = {os.path.basename(d)[:-len('_study')].upper() for d in dirs}
     stranded = sorted(set(known) - on_disk)
 
-    have, lack, detail = [], [], {}
+    # THE TWO WAYS OF LACKING ARE NOT THE SAME AND THE MESSAGE MUST SAY WHICH.
+    # Both belong in `lack` — a red instrument is not conformance, which is this gate's
+    # own rule that it RUNS the instrument rather than counting the file. But they are
+    # different facts about the study and they send a reader to different places. On
+    # 05-09-2026 EGCH's own prose check went red on one unmatched figure and this gate
+    # reported "no prose check and no entry either way" — a study that has carried the
+    # book's ORIGINAL implementation since 01-09-2026. The next reader went looking for a
+    # deleted file. A MESSAGE THAT MISDESCRIBES WHY A CHECK FAILED IS THE COMMENT
+    # ASSERTING A CHECK THAT DOES NOT EXIST, one layer out: it is confidently wrong, and
+    # it stops the reader looking where the defect actually is.
+    have, lack, detail, red = [], [], {}, set()
     for sdir in dirs:
         tk = os.path.basename(sdir)[:-len('_study')].upper()
         script = has_instrument(sdir)
@@ -210,6 +235,8 @@ def main(argv):
         except Exception as e:                                          # noqa: BLE001
             ok, line = False, '%s: %s' % (type(e).__name__, e)
         detail[tk] = line
+        if not ok:
+            red.add(tk)
         (have if ok else lack).append(tk)
 
     print('PROSE-FIGURE VERIFICATION — the instrument, not a book-wide threshold')
@@ -221,6 +248,40 @@ def main(argv):
         print('\nDO NOT (%d):' % len(lack))
         for tk in lack:
             print('   %-12s %s' % (tk, detail.get(tk, '')[:110]))
+
+    # [R-ENF-08] THE LIST EXCUSED BY NAME, SO A STUDY COULD GET WORSE AND STAY EXCUSED.
+    # A listed study going from 4 unmatched figures to 40 read exactly like one holding
+    # steady, which is the third gate today found excusing more than it recorded. It is
+    # also worse than it looks: eight of the nine entries recorded "no script reconciles
+    # the delivered documents" and ALL EIGHT of those studies carry a prose_check.py that
+    # runs — so the recorded failure had been fixed and the entry went on excusing a
+    # different one that was never written down.
+    #
+    # WHY NOT ratchet_shape.worsened(): it speaks in percentage deviations, and an
+    # unmatched figure is a discrete thing rather than a measurement with noise. One more
+    # unmatched figure is one more typed number a reader cannot check, so the comparison
+    # is on the COUNT and the tolerance is zero. An entry with no recorded count behaves
+    # exactly as before, so this makes no existing list red on adoption.
+    def _count(line):
+        m = re.search(r'unmatched:\s*(\d+)', line or '')
+        return int(m.group(1)) if m else None
+
+    worse = []
+    for tk in sorted(red):
+        e = known.get(tk)
+        if not isinstance(e, dict):
+            continue
+        rec = e.get('unmatched')
+        now = _count(detail.get(tk, ''))
+        if isinstance(rec, int) and isinstance(now, int) and now > rec:
+            worse.append((tk, rec, now))
+    if worse:
+        print()
+        print('WORSE THAN THE RATCHET RECORDS (%d):' % len(worse))
+        for tk, rec, now in worse:
+            print('   %-12s the list excuses %d unmatched figure(s); there are now %d. '
+                  'A study that got worse on a listed failure is a NEW breach [R-ENF-08].'
+                  % (tk, rec, now))
 
     now_have = sorted(set(known) & set(have))
     if now_have:
@@ -282,10 +343,49 @@ def main(argv):
         print('\nFAIL — %d listed study/studies no longer resolve on disk: %s'
               % (len(stranded), ', '.join(stranded)))
         rc = 1
-    unlisted = [tk for tk in lack if tk not in known]
+    # [R-ENF-08] — AN ENTRY EXCUSES THE FAILURE IT RECORDED, NOT EVERY FAILURE OF ITS
+    # CLASS. This read `tk not in known`, so BARE PRESENCE on the ratchet excused a
+    # study having no prose check AT ALL, whatever the entry actually recorded. Seeding
+    # an unknown ticker into the list turned this gate green — caught by the new-study
+    # gauntlet's negative control, and invisible to this gate's own control, because the
+    # shape-verification elsewhere covers a name whose script RUNS and gets worse and
+    # says nothing about a name with no script.
+    #
+    # THE TWO FAILURES ARE NOT THE SAME AND THE TEST MUST NOT LUMP THEM. A study whose
+    # check is RED is excused by an entry recording a count — that is the failure the
+    # entry is about, and the worse-than-recorded test above already governs it. A study
+    # with NO SCRIPT may only be excused by an entry that recorded THAT, and an entry
+    # carrying `checked` is a claim that a check ran, which contradicts there being none.
+    # A first draft tested only for `checked` and made SWDY red for carrying a red check
+    # its entry legitimately records — the right answer to the wrong question.
+    # AN ENTRY THAT RECORDS NOTHING EXCUSES NOTHING. A real entry carries the day it was
+    # MEASURED; the gauntlet's control seeds a bare string, which is precisely the
+    # one-line edit anybody could make in good faith and which --prune would then
+    # preserve. A ratchet is a record of measured debt, so an entry with no measurement
+    # behind it is anchored on nothing [R-ENF-04] and cannot buy silence.
+    def _excuses_absence(tk):
+        e = known.get(tk) if isinstance(known, dict) else None
+        if not isinstance(e, dict) or not e.get('measured_on'):
+            return False                  # records nothing
+        return e.get('checked') is None   # a count claims a check RAN; there is none
+
+    unlisted = []
+    for tk in lack:
+        if tk not in known:
+            unlisted.append(tk)
+        elif tk in red:
+            pass                          # a recorded red check; the shape test governs it
+        elif not _excuses_absence(tk):
+            unlisted.append(tk)
     if unlisted:
-        print('\nFAIL — %d study/studies with no prose check and no entry either way: %s'
-              % (len(unlisted), ', '.join(unlisted)))
+        _red = [tk for tk in unlisted if tk in red]
+        _none = [tk for tk in unlisted if tk not in red]
+        if _none:
+            print('\nFAIL — %d study/studies with NO prose check and no entry either '
+                  'way: %s' % (len(_none), ', '.join(_none)))
+        for tk in _red:
+            print('\nFAIL — %s CARRIES a prose check and it is RED, which is not the same '
+                  'fact as having none: %s' % (tk, detail.get(tk, '')))
         print('\nA typed word does not look like a figure. "four", "close to", "revision 3" '
               'and "514 basis points" all reached readers this week in studies that passed '
               'every other gate, because every other gate examines how a number was BUILT.')

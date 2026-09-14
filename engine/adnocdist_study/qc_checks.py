@@ -11,14 +11,16 @@ Four gates, all run on what actually ships:
 """
 import json, os, re, sys, glob
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
 import docx
 import openpyxl
 from PIL import Image
 import numpy as np
 
-STUDY = os.path.join(HERE, 'ADNOCDIST_Valuation_Study_09-08-2026.docx')
-BIB = os.path.join(HERE, 'ADNOCDIST_Bibliography_09-08-2026.docx')
-XLSX = os.path.join(HERE, 'ADNOCDIST_Valuation_Model_09082026.xlsx')
+STUDY = os.path.join(HERE, _ed.STUDY_DOCX)
+BIB = os.path.join(HERE, _ed.BIBLIO_DOCX)
+XLSX = os.path.join(HERE, _ed.MODEL_XLSX)
 
 # ---- 1. external-reader scrub -------------------------------------------------
 BANNED = [

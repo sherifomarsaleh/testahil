@@ -136,7 +136,7 @@ def main():
             import check_publish_block as blk
             blk.ENGINE = eng
             blk.gap = gap
-            blk.phase1_proven = lambda: (True, "stubbed proven for the gap cases")
+            blk.phase1_proven = lambda _tk=None: (True, "stubbed proven for the gap cases")
             got, why, _ = blk.verdict("TK")
             if got != must:
                 failures.append("%-32s expected %s, got %s (%s)"
@@ -165,7 +165,7 @@ def main():
             import check_publish_block as blk
             blk.ENGINE = eng
             blk.gap = gap
-            blk.phase1_proven = lambda p=proven: (
+            blk.phase1_proven = lambda _tk=None, p=proven: (
                 p, "stubbed" if p else "Phase 1 is not proven — stubbed")
             got, why, _ = blk.verdict("TK")
             if got != must:
@@ -207,7 +207,7 @@ def main():
             blk.ENGINE = eng
             blk.gap = gap
             blk._metal_keys = lambda r=roster: r
-            blk.phase1_proven = lambda: (False, "Phase 1 is not proven — stubbed")
+            blk.phase1_proven = lambda _tk=None: (False, "Phase 1 is not proven — stubbed")
             assert not os.path.isdir(os.path.join(eng, "%s_study" % tk.lower())), \
                 "fixture did not land: %s_study exists" % tk.lower()
             got, why, _ = blk.verdict(tk)
@@ -290,7 +290,7 @@ def main():
             blk.ENGINE = eng
             blk.gap = gap
             blk._published_pair = pair(here, there)
-            blk.phase1_proven = lambda: (False, "Phase 1 is not proven — stubbed")
+            blk.phase1_proven = lambda _tk=None: (False, "Phase 1 is not proven — stubbed")
             # the mutation must have LANDED: the two sides must stand in the
             # relationship this case is about, before the gate is asked anything.
             a, b = blk._published_pair()
@@ -321,7 +321,7 @@ def main():
         def _boom():
             raise RuntimeError("node is not available")
         blk._published_pair = _boom
-        blk.phase1_proven = lambda: (False, "Phase 1 is not proven — stubbed")
+        blk.phase1_proven = lambda _tk=None: (False, "Phase 1 is not proven — stubbed")
         ok_po, why_po = blk.price_only_publish("TK")
         assert not ok_po and "not an exemption" in why_po, \
             "an unreadable comparison did not fall to the strict side: %s" % why_po
@@ -375,7 +375,7 @@ def main():
             blk._published_pair = lambda: (
                 {here_key: dict(LIVE, spot=98.52)},
                 ({there_key: LIVE} if there_key else {}))
-            blk.phase1_proven = lambda: (False, "Phase 1 is not proven — stubbed")
+            blk.phase1_proven = lambda _tk=None: (False, "Phase 1 is not proven — stubbed")
             # THE MUTATION MUST HAVE LANDED: the stem must not resolve to itself
             # where an alias is set, or this case tests nothing.
             resolved, _ = gap._resolve_ticker("TKLONG")
@@ -415,7 +415,7 @@ def main():
         blk.ENGINE = eng
         blk.gap = gap
         blk._published_pair = pair(dict(LIVE, spot=98.52), LIVE)
-        blk.phase1_proven = lambda: (False, "Phase 1 is not proven — stubbed")
+        blk.phase1_proven = lambda _tk=None: (False, "Phase 1 is not proven — stubbed")
         # the two spellings must land on ONE directory
         assert blk._study_dir("TKLONG") == blk._study_dir("TK") is not None, \
             "the stem and the ticker did not resolve to one study directory"

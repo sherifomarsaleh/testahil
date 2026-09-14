@@ -40,7 +40,7 @@ HEADLINES = ['fv', 'fv_beta_alt', 'central', 'central_beta_alt', 'pv_expl', 'tv'
              'normalized', 'book', 'book_bear', 'book_bull', 'book_equity', 'roe_sust',
              'sotp', 'nd30', 'bvps30', 'nwc26', 'ppe26', 'ppe30', 'npa26', 'ordn26',
              'eps26', 'eps26_pre', 'eveb_bridge',
-             'tnk_spot_vlcc_q1', 'tnk_tce26', 'tnk_tce30', 'tnk_opexday',
+             'tnk_spot_vlcc_q1', 'tnk_tce26', 'tnk_tce30', 'tnk_fixed_solved',
              'tnk_chrev26', 'tnk_sprev26', 'tnk_acqdays26',
              'gas_rate_solved', 'gas_vy27', 'dso', 'dso_reported']
 
@@ -201,9 +201,19 @@ CASES = [
      'the total deduction, because the value-based part it leaves behind was the dearer of '
      'the two — decomposed, not assumed'),
     # ---- the book lens is a residual-income build, so its own fade must bite -----------
+    # THE SIGN IS RE-DERIVED AND IT REVERSED, FOR A REASON THE RECORD ITSELF STATES. A
+    # faster fade shortens the life of whatever the final year earns ABOVE the cost of
+    # equity — and after the charter-rate reversion this model's final year earns BELOW
+    # it. The committed book record carries pv_terminal at -416.9, so the terminal residual
+    # income is NEGATIVE, and shortening the life of a negative quantity RAISES the lens.
+    # The mechanism is unchanged; what changed is the sign of the thing it acts on, and
+    # that is a finding about the forecast rather than about the fade.
     ('Rate at which the return above the cost of equity fades beyond the forecast (the '
-     'book lens)', 'C', +0.05, 'book', -1,
-     'a faster fade shortens the life of the excess return and must lower the book lens'),
+     'book lens)', 'C', +0.05, 'book', +1,
+     'a faster fade shortens the life of the final year\'s excess return over the cost of '
+     'equity — and that excess is NEGATIVE after the rate reversion, so shortening it '
+     'RAISES the book lens. The committed record carries the present value of that '
+     'terminal at -416.9'),
     ('Rate at which the return above the cost of equity fades beyond the forecast (the '
      'book lens)', 'C', +0.05, 'central', 0,
      'and must NOT reach the central at all: book value is a disclosed floor published '
@@ -235,10 +245,10 @@ CASES = [
     # pinned by the disclosed 2026 quarters. So the cost side wins: 2026 tanker earnings
     # fall 0.64% and fair value falls 0.60%. Both channels are asserted separately below so
     # neither can go quiet.
-    (lab, 'B', +5000.0, 'tnk_opexday', +1,
+    (lab, 'B', +5000.0, 'tnk_fixed_solved', +1,
      f'the solve channel: a higher published 2025 blend for the {name} class raises the '
-     f'charter-equivalent revenue the running cost is solved from, and since 2025 earnings '
-     f'are a disclosed fixed number the whole increase lands in the cost per vessel-day')
+     f'charter-equivalent revenue the cost stack is solved from, and since 2025 earnings '
+     f'are a disclosed fixed number the whole increase lands in the fixed base')
     for lab, name in BLEND25
 ] + [
     (lab, 'B', +5000.0, 'tnk_tce30', +1,
@@ -246,17 +256,35 @@ CASES = [
      f'for the {name} class, the mid-cycle anchor and therefore 2030 revenue')
     for lab, name in BLEND25
 ] + [
-    (lab, 'B', +5000.0, 'fv', -1,
-     f'net of the two the cost side wins, because the solved cost is charged on the whole '
-     f'2025 fleet for every forecast year while the extra revenue reaches only the spot '
-     f'vessel-days of the smaller fleet that remains — decomposed, not assumed')
+    # THE NET IS NOT ASSERTED, BECAUSE IT FLIPS SIGN BETWEEN CLASSES AND ASSERTING ONE
+    # SIGN WOULD BE ASSERTING SOMETHING UNTRUE OF THREE OF THE FOUR. Measured on this
+    # build: medium range +0.165%, long range 1 -0.287%, long range 2 -0.497%, very large
+    # crude carrier -0.076%. The two channels above are real, uniform and asserted; which
+    # of them wins depends on how much of that class's charter-equivalent revenue sits in
+    # the 2025 year against the 2026 half, and that is a fact about each class's own rate
+    # history rather than a property of the model. A DRIVER WHOSE NET SIGN DEPENDS ON
+    # WHICH CLASS IT IS APPLIED TO IS REPORTED, NOT ASSERTED — the same discipline this
+    # house applies to a bias whose sign depends on where the boundary was drawn.
+    (lab, 'B', +5000.0, 'tnk_tce30', +1,
+     f'the rate channel: the same figure raises the implied 2025 spot rate for the {name} '
+     f'class and therefore the mid-cycle anchor the path reverts to')
     for lab, name in BLEND25
 ] + [
-    # The 2026 published quarters are outside the 2025 solve, so they move revenue only.
-    (lab, 'B', +5000.0, 'fv', +1,
-     f'a higher published first-quarter 2026 blend for the {name} class raises the implied '
-     f'spot rate that quarter, the 2026 rate and the whole path, and must raise the '
-     f'valuation')
+    # THE SIGN IS RE-DERIVED WITH THE CONSTRUCTION, NOT DELETED. Under the delivered
+    # edition the 2026 published quarters sat OUTSIDE the solve — the running cost was
+    # solved on 2025 alone — so a higher first-quarter rate simply raised the path and the
+    # valuation. It does not any more, and the reason is that the first HALF of 2026 is now
+    # a REPORTED period: the cost stack is solved from the audited 2025 year AND that half
+    # TOGETHER, so the half's earnings are a fixed disclosed number on both sides of the
+    # equation. Raising the rate that half is credited with therefore means the fleet
+    # earned the SAME reported profit off a LARGER charter-equivalent revenue, which is a
+    # LOWER earnings leverage — and the leverage governs every forecast year. Priced:
+    # a 5,000 dollar-a-day rise in the medium-range first quarter cuts fair value 0.53%.
+    (lab, 'B', +5000.0, 'fv', -1,
+     f'the solve channel: a higher published 2026 blend for the {name} class raises the '
+     f'charter-equivalent revenue the REPORTED half is credited with, and the half\'s '
+     f'earnings are a fixed disclosed number, so the solved earnings leverage falls and '
+     f'with it every forecast year')
     for lab, name in BLEND26
 ] + [
     # THE CHARTER TABLE, AND WHAT THE SOLVE IS FOR. The published rate is a BLEND across
@@ -294,9 +322,23 @@ CASES = [
      'cuts the implied spot rate that sets the MID-CYCLE ANCHOR — and the anchor governs '
      'the far end of the rate path, where most of the value sits'),
 ] + [
-    ('Less vessels sold between the year end and the valuation date', 'F', +1.0, 'fv', -1,
-     'a vessel sold before the valuation date is one fewer earning through the forecast, '
-     'and must lower the valuation'),
+    # RE-DERIVED, AND THE SIGN IS UNCOMFORTABLE ENOUGH TO STATE PLAINLY. Selling one more
+    # vessel before the valuation date removes it from the forecast fleet — which lowers
+    # value — and ALSO removes it from the charter-equivalent revenue the REPORTED half is
+    # credited with, which RAISES the solved earnings leverage, because the half's profit
+    # is a disclosed fixed number achieved off a smaller fleet. The second channel wins, by
+    # 0.248%. This is a property of solving a leverage parameter on a reported period and
+    # it is written down rather than buried: it is small, it is mechanical, and it is why
+    # the fleet count is a contested judgement rather than a fact the model is indifferent
+    # to. Both channels are asserted so neither can go quiet.
+    ('Less vessels sold between the year end and the valuation date', 'F', +1.0,
+     'tnk_tce26', -1,
+     'the fleet channel: one fewer vessel earns through the forecast, so 2026 '
+     'charter-equivalent revenue falls'),
+    ('Less vessels sold between the year end and the valuation date', 'F', +1.0, 'fv', +1,
+     'the solve channel wins: the reported half\'s profit is a fixed disclosed number, so '
+     'a smaller fleet behind it is a HIGHER earnings leverage, and the leverage reaches '
+     'every forecast year — decomposed, not assumed'),
     # DECOMPOSED, NOT ASSUMED. Adding a vessel to the fleet as it stood at the end of 2025
     # adds it to the forecast fleet too, but it also enlarges the 2025 charter-equivalent
     # revenue the running cost is solved from — and because tanker earnings for 2025 are
@@ -306,25 +348,28 @@ CASES = [
     # cost was solved on. By 2030 the cost escalation has caught up and the far end of the
     # path is worth less, which is why fair value rises only 0.06% against 0.97% on the
     # weighted central figure, where the multiple lenses give 2026 more weight.
-    ('Vessels owned at 31 December 2025', 'F', +1.0, 'tankers26', +1,
-     'one more vessel earns at the implied spot rate, which is above the class blend the '
-     'running cost was solved on, so 2026 tanker earnings rise'),
-    ('Vessels owned at 31 December 2025', 'F', +1.0, 'tnk_opexday', +1,
-     'the opposing channel: it also enlarges the 2025 revenue the running cost is solved '
-     'from, and 2025 earnings are fixed, so the cost per vessel-day rises'),
+    ('Vessels owned at 31 December 2025', 'F', +1.0, 'tankers26', -1,
+     'the leverage channel: one more vessel enlarges the charter-equivalent revenue BOTH '
+     'disclosed periods are credited with, and both periods\' earnings are fixed numbers, '
+     'so the solved earnings leverage falls — and 2026 is the year where the leverage '
+     'matters most because its charter-equivalent revenue is largest'),
+    ('Vessels owned at 31 December 2025', 'F', +1.0, 'tnk_fixed_solved', -1,
+     'the fixed base falls with it: it is the leverage applied to 2025 charter-equivalent '
+     'revenue less the 2025 earnings the accounts disclose, so a lower leverage on a '
+     'larger revenue nets to a smaller base'),
     ('Vessels owned at 31 December 2025', 'F', +1.0, 'tankers30', -1,
      'the third channel, and the one that decides it: the vessel count is the DENOMINATOR '
-     'of the implied-spot solve, so one more vessel means a LOWER implied spot rate — and '
-     'that lower rate is now earned by the six crude carriers bought in August 2026 as '
-     'well, which is a larger fleet than the one extra vessel it adds'),
+     'of the implied-spot solve, so one more vessel means a LOWER implied spot rate, and '
+     'that lower rate is earned by the whole enlarged fleet including the six crude '
+     'carriers bought in August 2026 — which by 2030 outweighs the smaller fixed base'),
     ('Vessels owned at 31 December 2025', 'F', +1.0, 'central', -1,
-     'THE SIGN IS RE-DERIVED WITH THE ARCHITECTURE, NOT DELETED. Under the retired blend '
-     'the central was three parts multiple lens to two parts cash flow, and the multiple '
-     'lenses value 2026 earnings, which rise with the fleet — so the blend rose. The '
-     'central is now the cash-flow lens alone, and there one more vessel in the '
-     'denominator of the implied-spot solve means a LOWER implied spot rate earned by '
-     'the whole fleet, which is worth more than the one vessel adds. The blend was '
-     'reporting the opposite sign to its own primary lens and nothing said so'),
+     'THE SIGN IS RE-DERIVED WITH THE CONSTRUCTION, NOT DELETED, AND IT SURVIVED THE '
+     'REBUILD. It is a NET of three channels of similar size rather than a weak effect, '
+     'and the two-period cost stack changed two of the three: 2026 earnings now FALL on an '
+     'extra vessel where they used to rise, because the leverage is solved on periods '
+     'whose earnings are disclosed, and the fixed base falls with it. What decides the '
+     'answer is unchanged — the implied spot rate falls across an enlarged fleet and the '
+     'far end of the path, where the terminal sits, is worth less'),
 
     # DECOMPOSED, NOT ASSUMED — AND RE-DECOMPOSED AFTER THE FLEET GREW. The cash-flow lens
     # used to rise 0.06% on this bump and now falls 0.20%. Nothing about the mechanism
@@ -334,10 +379,15 @@ CASES = [
     # 0.64% and the far end of the path, where most of the discounted value sits, is worth
     # less. The weighted central figure, which leans on 2026, still rises 0.40%.
     ('Vessels owned at 31 December 2025', 'F', +1.0, 'fv', -1,
-     'net of the three the far end of the rate path wins in the cash-flow lens — '
-     'decomposed, not assumed'),
-    ('All-in running cost per vessel per day (USD)', 'C', +500.0, 'fv', -1,
-     'a higher running cost per vessel-day must lower tanker earnings and the valuation'),
+     'net of the three the far end of the path wins in the cash-flow lens — decomposed, '
+     'not assumed'),
+    ('Tanker cost stack — fixed base a year before escalation (USD 000)', 'C', +50000.0,
+     'fv', -1,
+     'a larger fixed cost base must lower tanker earnings and the valuation'),
+    ('Tanker cost stack — variable cost per unit of charter-equivalent revenue', 'C', +0.05,
+     'fv', -1,
+     'a higher variable cost per unit of the fleet\'s own charter-equivalent revenue must '
+     'lower tanker earnings and the valuation'),
     # ---- the eleven vessels bought on 7 August 2026 ------------------------------------
     # The price lands in TWO places, and both are asserted: it is carried in net debt,
     # because the purchase is committed and funded, and it is capitalised in the asset
@@ -403,7 +453,7 @@ CASES = [
      'Handysize DOWN 21% against medium range UP 29%, so the two smallest classes moved '
      'in OPPOSITE directions and the medium-range rate cannot stand in for the smallest '
      'unadjusted. It scales the medium-range rate in every window and on both sides of '
-     'the mid-cycle average', 'C', +0.10, 'tnk_opexday', +1,
+     'the mid-cycle average', 'C', +0.10, 'tnk_fixed_solved', +1,
      'the solve channel: a higher handysize rate raises the 2025 revenue the running cost '
      'is solved from, and 2025 earnings are fixed, so the cost per vessel-day rises'),
     ('Handysize rate as a proportion of the medium-range rate — the company disclosed '
@@ -599,6 +649,15 @@ RETIRED_INPUTS = {
     'Weight — relative multiples',
     'Weight — normalised earnings power',
     'Weight — book value and sustainable return',
+    # STRUCTURALLY DEAD, WITH ITS REASON. Every unit's 2026 earnings are the REPORTED half
+    # plus the built half at that unit's own margin, so the half's revenue enters only
+    # through the term (year revenue less half revenue) x margin. Offshore Projects carries
+    # a margin of exactly zero — the large island project completed and no new award is
+    # disclosed — so that term is zero however the half's revenue moves. The cell is kept
+    # because the half IS the anchor and a reader is entitled to see it beside the other
+    # six units; it is declared here rather than deleted, because deleting a disclosed
+    # figure to satisfy a checker is the offence this house refuses everywhere else.
+    'Offshore Projects — revenue, six months to 30 June 2026 (USD 000)',
 }
 dead = []
 for label, rr in sorted(A.items(), key=lambda kv: kv[1]):

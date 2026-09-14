@@ -1,0 +1,599 @@
+                                                                               FY 2021 EARNINGS RELEASE
+                                                                                                        Cairo | 9 February 2022
+
+
+
+
+ELSEWEDY ELECTRIC Reports FY 2021 Results; Closes Year With
+Robust Top-Line Growth at EGP 60.5BN
+FY 2021 Consolidated Financial Highlights
+ Revenues                        Gross Profit                     EBITDA                          Net Profit after Minority
+
+ EGP 60,541 million              EGP 8,435 million                EGP 6,267 million               EGP 3,534 million
+ ▲ 30.5 y-o-y                    ▲ 19.6% y-o-y                    ▲ 18.0% y-o-y                   ▲ 16.7% y-o-y
+
+Q4 2021 Consolidated Financial Highlights
+ Revenues                        Gross Profit                     EBITDA                          Net Profit after Minority
+
+ EGP 19,655 million              EGP 2,920 million                EGP 2,027 million               EGP 1,240 million
+ ▲ 31.6% y-o-y                   ▲ 3.8% y-o-y                     ▼ 2.9% y-o-y                    ▼ 4.3% y-o-y
+
+
+ELSEWEDY ELECTRIC (SWDY.CA on the Egyptian stock exchange), the leading Wires & Cables and Integrated Energy Solution Provider
+in the Middle East and Africa, announces its consolidated financial results for the full year ending 31 December 2021, reporting
+revenues of EGP 60,541 million, up by 30.5% year-on-year (y-o-y). The company’s net profit after minority interest was recorded at
+EGP 3,534 million, up by 16.7% y-o-y and representing a net profit margin of 5.8%.
+
+Note from Our CEO
+I am pleased to share the robust performance results of Elsewedy Electric in 2021. Working through another year of the
+pandemic was not easy, but we were able to fulfil our promises and meet our targets. Our results are a testament to our
+ability to perform under pressure, and our strategy has proven to be resilient in the face of crises.
+
+Our remarkable 2021 full year revenues capped off a strong double-digit growth of 30% reaching just over EGP 60 billion,
+exceeding our revenue target while delivering on our profitability guidance. We maintained our net profit margins, nearly
+stable around 6%. Elsewedy’s growth has extended across all its segments, and I expect our recent investments to yield
+good returns in 2022 and beyond.
+
+As we proceed, I would like to recognize the hard work and motivation of Elsewedy’s employees. Their commitment during
+such challenging times is truly remarkable and is at the foundation of our future success. I would also like to express
+appreciation to our Board, who has been the Company’s backbone in lending its support to help us attain new prospects
+in 2021. By the same token, we thank our customers for their trust and confidence in our ability to serve them.
+
+The Egyptian presidency has communicated a clear and futuristic vision for the country, which knows no bounds. Egypt is
+undertaking ambitious development plans that are truly extraordinary and we are humbled to be taking part in this vision.
+As a proud Egyptian, I am full of pride reviewing the role Elsewedy Electric has been playing in the execution of the Egyptian
+government’s development plans. We have always been there to partake in any endeavours as needed, from contributing
+to mega projects, to addressing the challenges of urbanization and streamlining traffic, while keeping an eye on
+sustainability and the environment. We are well positioned for growth in the years ahead and possess all the necessary
+resources to seize opportunities and expansion, even during these uncertain times. Therefore, I look to the future with
+
+
+ ELSEWEDY ELECTRIC | EARNINGS RELEASE                                                                                          1
+                                                                             FY 2021 EARNINGS RELEASE
+                                                                                                    Cairo | 9 February 2022
+
+
+
+
+confidence. I can assure you that my team and I will continue to take full advantage of every prospect to drive profitability,
+and at the same time, serve our community.
+
+We have expanded our presence outside of Egypt, as well, through the new acquisition of factories in Pakistan and
+Indonesia. As a leading sustainable energy solutions provider, we will continue to enhance the company’s digital
+transformation to keep up with the future demands of the business, while ensuring cost efficient operations and strong
+management control across our global presence. We will carry on with investing in best-in-class systems and governance
+functions, alongside enhancing and nurturing Elsewedy Electric’s human capital. We invest a lot in our people and see
+them as a catalyst to unlocking shared value in the future. Elsewedy Academy is a cornerstone of our capability building
+strategy for the upcoming generation and we have supported it in tandem with our Graduate Development Plan. Together,
+these programs will provide a pipeline for talent that will allow us deliver on our promise of innovation, while remaining
+true to our values and purpose in the years ahead.
+
+Ahmed El Sewedy
+
+
+Summary Income Statement
+                                            Q4-2021      Q4-2020       % Change        FY-2021          FY-2020    % Change
+ Revenue                                  19,654,518   14,931,567         31.6%     60,541,422       46,401,571       30.5%
+    Wires & Cables                         9,364,333    5,520,497         69.6%     29,629,001       18,533,412       59.9%
+    Turnkey Projects                       8,760,751    8,153,042          7.5%     25,393,588       22,779,858       11.5%
+    Meters                                   637,227      649,911         -2.0%      2,395,263        2,722,802      -12.0%
+    Transformers                             596,196      430,274         38.6%      2,027,282        1,483,399       36.7%
+    Electrical Products                      198,241       95,996        106.5%        725,778          519,305       39.8%
+    Renewables – IPP                          97,770       81,846         19.5%        370,511          362,795        2.1%
+ Gross Profit                              2,920,048    2,812,962          3.8%      8,435,300        7,054,014       19.6%
+    Wires & Cables                           929,649      730,955         27.2%      3,141,012        2,300,230       36.6%
+    Turnkey Projects                       1,574,247    1,603,497         -1.8%      3,685,519        3,162,670       16.5%
+    Meters                                   203,438      219,449         -7.3%        717,061          703,159        2.0%
+    Transformers                              60,669      165,457        -63.3%        371,945          459,278      -19.0%
+    Electrical Products                      101,251       59,836         69.2%        334,839          232,716       43.9%
+    Renewables – IPP                          50,793       33,767         50.4%        184,923          195,960       -5.6%
+ Gross Profit Margin                          14.9%        18.8%                        13.9%            15.2%
+ EBITDA                                    2,027,274    2,088,587         -2.9%      6,266,748        5,309,460       18.0%
+ EBITDA Margin                                10.3%        14.0%                        10.4%            11.4%
+ Net Income After Minority                 1,240,411    1,295,781         -4.3%      3,533,862        3,027,533       16.7%
+ Net Income After Minority Margin               6.3%        8.7%                          5.8%            6.5%
+
+
+
+
+ ELSEWEDY ELECTRIC | EARNINGS RELEASE                                                                                         2
+                                                                                  FY 2021 EARNINGS RELEASE
+                                                                                                             Cairo | 9 February 2022
+
+
+
+
+Financial and Operational Highlights
+    •   Revenues grew by 30.5% y-o-y to EGP 60,541 million in FY 2021 on the back of the strong performance of Elsewedy’s cables
+        segment and the solid growth in turnkey projects. Aside from meters, all other segments showed promising growth for the
+        period.
+    •   Gross Profit increased by 19.6% y-o-y to reach EGP 8,435 million in FY 2021, driven mainly by the improved profitability of
+        turnkey projects coupled with the solid performance of the wires and cables segment.
+    •   SG&A expenses reflected the Company’s expansion efforts, increasing by 21.2% y-o-y, amounting to EGP 3,410 million, while
+        improving as percentage of revenues at 5.6% (-0.4 pp vs the previous year).
+    •   EBITDA increased by 18.0% y-o-y to EGP 6,267 million in FY 2021, while the EBITDA margin was 10.4% compared to the 11.4%
+        one year previously.
+    •   Net Income after Minority Interest grew 16.7% y-o-y to EGP 3,534 million in FY 2021, up from the net income of EGP 3,028
+        million posted in FY 2020. Net profit margin came in at 5.8% in FY 2021 against 6.5% in the previous year.
+    •   Elsewedy reported a net debt position of EGP 6,115 million as at 31 December 2021 compared to a net cash position of EGP
+        562.5 million booked at 31 December 2020, as part of an effort to curtail commodity delays and operational interruptions
+        that could impact growth plans. The proceeds have been used towards raw material stocking, related advance payments and
+        the coverage of associated freight costs. In addition, the financing was used towards the acquisition costs associated with our
+        new investments.
+    •   Inventory came in at EGP 13,321 million as at 31 December 2021, up by 78% from the EGP 7,491 million booked at the end
+        of 2020. Accounts receivable booked EGP 15,043 million as at 31 December 2021, while accounts payable rose by 51.4%
+        between year-end 2020 and 2021, to reach EGP 8,678 million.
+
+Financial and Operational Review
+Revenues grew by 30.5% y-o-y to EGP 60,541 million in FY 2021 on the back of the strong performance of Elsewedy’s cables segment
+and the solid growth in turnkey projects.
+
+
+
+             Revenue by Segment                                                           Revenue by Segment
+                  (FY 2021)                                                                    (FY 2020)
+                            1% 1%                                                                        1% 1%
+
+                          3%                                                                           3%
+                     4%                                                                           6%
+
+
+                                                                                                                       40%
+
+                      EGP   60.5 bn        49%
+                                                                                                   EGP   46.4 bn
+             42%
+                                                                                            49%
+
+
+
+
+         Wires & Cables             Turnkey                                           Wires & Cables             Turnkey
+         Meters                     Transformers                                      Meters                     Transformers
+         Electrical Products        Renewables - IPP                                  Electrical Products        Renewables - IPP
+
+
+    •   Wires and cables segment contributed 49% to consolidated revenues (+9 pp vs FY20), remaining Elsewedy’s largest top-line
+        contributor and growing 59.9% y-o-y to EGP 29,629 million.
+
+
+
+ ELSEWEDY ELECTRIC | EARNINGS RELEASE                                                                                               3
+                                                                                 FY 2021 EARNINGS RELEASE
+                                                                                                            Cairo | 9 February 2022
+
+
+
+
+    •   Turnkey projects brought in 42% (-7pp vs FY20), increasing by 11.5% y-o-y to reach revenues of EGP 25,394 million and a
+        record backlog of EGP 70 billion.
+    •   Meters segment contributed 4% (-2 pp vs FY20) and was adversely impacted by materials shortages and supply chain issues,
+        which led to a 12.0% y-o-y decline to EGP 2,395 million. At present, the shortage of marine cargo carriers is being addressed
+        to support supply chain continuity. On a quarterly basis, the segment recorded a q-o-q increase of 11.3% and 35% in terms
+        of volume and revenues respectively.
+    •   Transformers segment reported a contribution of 3% (stable vs FY20), growing by 36.7% y-o-y to reach revenues of EGP 2,027
+        million. The successful acquisitions made throughout 2021 have also laid the foundation for future growth in the coming
+        years.
+    •   Other electrical products recorded a contribution of 1%, witnessing a considerable hike in revenues of 39.8% y-o-y at EGP
+        726 million.
+    •   Renewables segment generated 1% of consolidated revenues for the period (stable vs FY20), corresponding to a 2.1%
+        increase in revenues to EGP 370 million.
+
+Gross Profit increased by 19.6% y-o-y to reach EGP 8,435 million in FY 2021, backed by strong growth in turnkey projects and followed
+by wires and cables. Consolidated gross profit margin decreases to 13.9% versus the 15.2% recorded in FY 2020, due to the decline in
+margins for wires and cables, as well as transformers.
+
+           Gross Profit by Segment                                                   Gross Profit by Segment
+                  (FY 2021)                                                                 (FY 2020)
+
+                          4% 2%                                                                    3%3%
+                     4%                                                                       6%
+               9%                                                                                                33%
+                                        37%                                            10%
+
+                      EGP   8.4 bn                                                              EGP    7.1 bn
+
+
+                    44%
+                                                                                                 45%
+
+         Wires & Cables           Turnkey                                          Wires & Cables           Turnkey
+         Meters                   Transformers                                     Meters                   Transformers
+         Electrical Products      Renewables - IPP                                 Electrical Products      Renewables - IPP
+
+
+    •   Wires and cables was the second-largest contributor at 37% (+4 pp vs FY20) with a gross profit of EGP 3,141 million (+36.6%
+        y-o-y vs FY20)
+    •   Turnkey projects was the largest contributor at EGP 3,685 million (+16.5% vs FY20), equivalent to 44% (stable vs FY20) of
+        consolidated gross profit.
+    •   Meters segment generated a gross profit of EGP 717 million (+2.0% vs FY20), with its contribution shrinking slightly to 9% (-1
+        pp vs FY20).
+    •   Transformers segment reached EGP 372 million (-19.0% y-o-y vs FY20) with a gross profit contribution of 4% (-2 pp vs FY20).
+    •   Other electrical products gross profit grew to EGP 335 million (+43.9% vs FY20) and yielded a contribution to consolidated
+        gross profit of 4%.
+    •   Renewables segment gross profits amounted to EGP 185 million, representing a 2% contribution to total gross profit.
+
+ ELSEWEDY ELECTRIC | EARNINGS RELEASE                                                                                              4
+                                                                                                   FY 2021 EARNINGS RELEASE
+                                                                                                                             Cairo | 9 February 2022
+
+
+
+
+Segment Review
+Wires and Cables
+
+                                                                       Q4-2021       Q4-2020      % Change    FY-2021        FY-2020        % Change
+Revenues Before Intercompany Sales (EGP 000’s)                          12,229,429    7,797,932       56.8%     38,148,502     27,225,719        40.1%
+Revenues After Intercompany Sales (EGP 000’s)                            9,364,333    5,520,497       69.6%     29,629,001     18,533,412        59.9%
+Gross Profit (EGP 000’s)                                                   929,649      730,955       27.2%      3,141,012      2,300,230        36.6%
+GP Margin Before Intercompany Sales                                           7.6%         9.4%                       8.2%           8.4%
+GP Margin After Intercompany Sales                                            9.9%        13.2%                      10.6%          12.4%
+Cables Sales Volumes (Tons)                                                 34,296       33,191        3.3%        133,426        120,897        10.4%
+Cables Gross profit per ton (EGP)                                           16,985       13,927       22.0%         16,045         13,490        18.9%
+
+        Wires & Cables Revenue and Profitability                                       •    Sales volumes recorded an aggregate of 133,426 tons
+                                                                                            (+10.4% y-o-y vs FY20) and were coupled with price
+         13.5%      11.9%      12.4%                                                        increases which resulted in higher revenues for the year
+                                             10.6%
+                                                                                            2021.
+                                                                                       •    The segment was the second-largest contributor to
+            23.6       21.7          18.5          29.6                                     gross profit at 37% (+4 pp vs FY20) equivalent to EGP
+                                                                                            3,141 million (+36.6% y-o-y vs FY20).
+          2018       2019          2020          2021
+                                                                                       •    With a strong base for 2020, particularly the last
+                     Revenues (bn)                GP Margin                                 quarter, the segment registered a decline in gross profit
+                                                                                            margin to 10.6% for FY 2021, which was additionally
+                                                                                            impacted by the effect of exports evolution throughout
+                                                                                            the year.
+
+
+Turnkey Projects and Awards
+
+                                                                                       •    Turnkey projects brought in 42% of revenues,
+                 Turnkey Revenue and Profitability                                          increasing by 11.5% y-o-y to reach EGP 25,394 million.
+                                                                                       •    Awards for FY21 reached EGP 43.7 billion, securing
+         18.0%         20.2%          13.9%             14.5%                               future profits through civil and network infrastructure
+                                                                                            projects in Egypt.
+                                                                                       •    Backlog amounted to a record EGP 70 billion in 2021.
+             13.2           19.1            22.7                25.4
+                                                                                       •    Gross profit came in at EGP 3,685 million (+16.5% vs
+          2018         2019               2020            2021                              FY20), becoming the main contributing segment at 44%
+                     Revenues (bn)                GP Margin                                 and leading to a turnkey gross profit margin of 14.5%
+                                                                                            (+0.6 pp vs FY20).
+
+
+
+
+ELSEWEDY ELECTRIC | EARNINGS RELEASE                                                                                                               5
+                                                                                         FY 2021 EARNINGS RELEASE
+                                                                                                                       Cairo | 9 February 2022
+
+
+
+
+                 Backlog by Sector                                                              Backlog by Region
+             (As of 31 December 2021)                                                       (As of 31 December 2021)
+                                                                                                         7%
+                                       29%
+                   35%
+                                                                                               27%
+                         EGP     70 bn                                                               EGP   70 bn
+                                                                                                                       66%
+
+                                 36%
+                Power Generation
+                Transmission & Distribution HV                                             Egypt              Africa           GCC
+                Civil & Networks
+
+
+
+                 Awards by Sector                                                               Awards by Region
+             (As of 31 December 2021)                                                       (As of 31 December 2021)
+                                                                                                         7%
+                                                                                                   11%
+                   38%
+                         EGP     44 bn                                                               EGP   44 bn
+                                          62%
+
+                                                                                                                 82%
+
+
+     Transmission & Distribution HV             Civil & Networks                           Egypt              Africa           GCC
+
+
+Meters
+
+                                                                   Q4-2021    Q4-2020    % Change          FY-2021           FY-2020   % Change
+Revenues Before Intercompany Sales (EGP 000’s)                     955,961     920,534        3.8%       3,080,362       3,267,385        -5.7%
+Revenues After Intercompany Sales (EGP 000’s)                      637,227     649,911       -2.0%       2,395,263       2,722,802       -12.0%
+Gross Profit (EGP 000’s)                                           203,438     219,449       -7.3%         717,061         703,159         2.0%
+GP Margin Before Intercompany Sales                                  21.3%       23.8%                       23.3%           21.5%
+GP Margin After Intercompany Sale                                    31.9%       33.8%                       29.9%           25.8%
+Sales Volumes (meters)                                             867,166   1,080,690      -19.8%       3,648,837       5,484,366       -33.5%
+Gross profit per meter (EGP)                                           235         203       15.5%             197             128        53.3%
+
+             Meters Revenue and Profitability
+                                                                               •    Meters segment contributed 4%, with a 12.0% y-o-y
+                                                   29.9%                            decline to EGP 2,395 million, due to a decrease in
+     25.8%         26.8%          25.8%                                             volumes for 2021.
+                                                       2.4                     •    The segment generated a gross profit of EGP 717
+             3.2           3.3            2.7
+                                                                                    million (+2.0% vs FY20), with its contribution
+         2018        2019           2020           2021                             shrinking slightly to 9%.
+                                                                               •    While the shortage of raw materials and marine
+                   Revenues (bn)                 GP Margin
+                                                                                    cargo carriers proved challenging for the full year
+                                                                                    performance, the rebound of ship supply has shown
+
+
+ELSEWEDY ELECTRIC | EARNINGS RELEASE                                                                                                          6
+                                                                                      FY 2021 EARNINGS RELEASE
+                                                                                                                Cairo | 9 February 2022
+
+
+
+
+                                                                                  a q-o-q increase of 35% and 68% for revenues and
+                                                                                  gross profit respectively, as well as improving meter
+                   Meters Backlog
+                                                                                  volumes (+11% vs Q3 21).
+              (As of 31 December 2021)
+                                                                            •     Gross profit per meter improved to EGP 197 (+53%
+                                                                                  y-o-y) on the back of price increases, with a gross
+
+                       EUR   152 mn                                         •
+                                                                                  profit margin of 29.9%.
+                                                                                  Backlog recorded EUR 152 million at the close of FY
+                                                                                  2021, around 1.7x last year’s backlog of EUR 90
+          \
+                                                                                  million.
+
+
+
+
+Transformers
+
+                                                              Q4-2021   Q4-2020      % Change        FY-2021       FY-2020      % Change
+Revenues Before Intercompany Sales (EGP 000’s)                761,744   542,096          40.5%     2,415,326     1,831,670          31.9%
+Revenues After Intercompany Sales (EGP 000’s)                 596,196   430,274          38.6%     2,027,282     1,483,399          36.7%
+Gross Profit (EGP 000’s)                                       60,669   165,457         -63.3%       371,945       459,278         -19.0%
+GP Margin Before Intercompany Sales                              8.0%     30.5%                        15.4%         25.1%
+GP Margin After Intercompany Sale                               10.2%     38.5%                        18.3%         31.0%
+Sales Volumes (MVA)                                             3,500     2,880          21.5%        12,655         9,203          37.5%
+Gross profit per MVA (EGP)                                     17,334    57,453         -69.8%        29,390        49,907         -41.1%
+
+              Transformers Revenue and Profitability                        •     Transformers segment reported a contribution of
+                         29.8%          31.0%                                     3% (stable vs FY20), growing by 36.7% y-o-y to reach
+         25.0%                                        18.3%                       revenues of EGP 2,027 million, as a result of higher
+                                                                                  volumes sold, which reached 12,655 MVA (+37.5% vs
+               1.7            1.8           1.5           2.0                     FY20).
+                                                                            •     Acquisitions in Indonesia and Pakistan required
+         2018            2019           2020           2021                       restructuring,     which    challenged    otherwise
+                        Revenues (bn)             GP Margin                       consistent profitability for the segment.
+                                                                                  Additionally, a slowdown in the Algerian market also
+                                                                                  contributed to the reduction in gross profit margins
+                       Transformers Backlog
+                                                                                  for the transformers segment.
+                     (As of 31 December 2021)
+                                                                            •     Gross profit margin stood at 18.3%, instead of 31%
+                                                                                  had restructuring costs associated with Pakistan and
+                          USD    119 mn                                     •
+                                                                                  Indonesia been excluded.
+                                                                                  Backlog booked was USD 119 million at the close of FY
+                                                                                  2021 up from the USD 78 million of the previous year.
+              \
+
+
+
+
+ ELSEWEDY ELECTRIC | EARNINGS RELEASE                                                                                                     7
+                                                                          FY 2021 EARNINGS RELEASE
+                                                                                                    Cairo | 9 February 2022
+
+
+
+
+Renewables - IPPs
+
+            Renewables Revenue and Profitability
+                                                                  •   The segment includes investments in solar PV power
+                           54.0%                49.9%
+          43.3%                                                       plants in Benban, Aswan, three wind energy companies
+                                                                      and a hydroelectric energy company in Greece.
+                                                                  •   Renewables segment generated 1% of consolidated
+                                                                      revenues for the period (stable vs FY20), corresponding
+                0.24              0.36              0.37              to a 2.1% growth in revenues to EGP 370 million.
+           2019            2020                  2021             •   During 2021, gross profits amounted to EGP 185
+                                                                      million, representing a 2.2% contribution to total gross
+                  Revenues (bn)              GP Margin
+                                                                      profit with a gross profit margin for the segment of
+                                                                      49.9%.
+
+
+
+
+Other Electrical Products
+
+       Other Electrical Products Revenue and Profitability        •   Other electrical products recorded a contribution of
+        48.9%                                                         1%, witnessing an increase in revenues of 39.8% y-o-y
+                                                        46.1%
+                   43.0%                 44.8%                        to reach EGP 726 million.
+                                                                  •   Its gross profit grew to EGP 335 million (+43.9% vs FY20)
+            0.82           0.76             0.52           0.73       and yielded a contribution to consolidated gross profit
+                                                                      of 4% with a gross profit margin for the segment of
+         2018          2019              2020           2021
+                                                                      46.1%.
+                    Revenues (bn)                 GP Margin
+
+
+
+
+ ELSEWEDY ELECTRIC | EARNINGS RELEASE                                                                                        8
+                                                                                   FY 2021 EARNINGS RELEASE
+                                                                                                              Cairo | 9 February 2022
+
+
+
+
+About Elsewedy Electric
+Established in 1938 by the Elsewedy family, Elsewedy Electric has since grown to become a regional and tactically global integrated
+cables and electrical products manufacturer and a turn-key services provider with more than 15,000 employees working at 22
+production facilities in 15 countries. Structured to face the challenges of the world’s fastest growing markets and the complexity of
+the critical electricity industry, Elsewedy Electric capitalizes on its deep product and sector specialization and unprecedented insight
+into local markets. www.elsewedyelectric.com
+
+ Shareholders Structure
+ (as at 31 December 2021)                                        Share Information
+
+                                          67.7%                    SWDY.CA on the EGX
+                                                                   Number of Shares                        2,184,180,000
+                                                                   Share Price (31 December 2021)          EGP 9.83
+                                                                   Market Cap (31 December 2021)           EGP 21.5 bn
+
+
+
+                                                                 Investor Relations Contact Information:
+                 32.3%                                           Ms. Noha Agaiby, Investor Relations Director and Board Secretary
+                                                                 Email: noha.agaiby@elsewedy.com
+                                                                 Address: Plot 27, 1st district, 5th settlement, New Cairo.
+                                                                 Tel: +202 27599700 – 701
+              El Sewedy Family             Free Float
+                                                                 Fax: +202 27599731
+
+
+
+Forward-looking Statements
+This document may contain certain forward-looking statements relating to the company’s business. These may be identified in part
+through the use of forward-looking terminology such as “will”, “planned”, “expected” and “forecast”. Any such statements reflect the
+current views of the company with respect to future events and are subject to certain risks, uncertainties and assumptions. Many
+factors could cause the actual results, performance, decisions or achievements of the company to be materially different from any
+future results that may be expressed or implied by such forward-looking statements.
+
+
+
+
+ ELSEWEDY ELECTRIC | EARNINGS RELEASE                                                                                                9
+                                                                                   FY 2021 EARNINGS RELEASE
+                                                                                                               Cairo | 9 February 2022
+
+
+
+
+Consolidated Income Statement
+EGP                                       Q4-2021            Q4-2020       % Change          FY-2021            FY-2020      % Change
+Sales
+Wires & Cables                         9,364,333,337      5,520,496,850                 29,629,000,620     18,533,412,130
+Electrical Products                    1,431,663,829      1,234,616,384                  5,148,322,060      4,725,506,025
+Turnkey Projects                       8,858,521,292      8,176,453,402                 25,764,098,932     23,142,652,613
+
+
+Total Sales                           19,654,518,459     14,931,566,636        31.6%    60,541,421,612     46,401,570,767        30.5%
+
+
+
+COGS                                 (16,734,470,696)   (12,118,604,656)               (52,106,121,564)   (39,347,557,392)
+
+Gross Profit                           2,920,047,763      2,812,961,980         3.8%     8,435,300,047      7,054,013,374        19.6%
+
+
+
+Gross Profit Margin                            14.9%              18.8%                          13.9%              15.2%
+
+SG&A                                  (1,087,248,364)     (760,011,228)                 (3,409,596,075)    (2,812,885,615)
+
+Other Operating Income                   155,501,802        129,620,540                    470,252,797        497,104,317
+
+Other Operating Expense                (310,893,932)      (429,229,454)                  (567,183,442)      (704,279,904)
+
+Income from Investments                   52,967,339         77,900,554                    248,538,462        322,256,736
+
+EBITDA                                 2,027,274,187      2,088,587,067        -2.9%     6,266,747,767      5,309,460,336        18.0%
+
+
+
+EBITDA Margin                                  10.3%              14.0%                          10.4%              11.4%
+
+Depreciation & Amortization            (296,899,578)      (257,344,675)                 (1,089,435,978)     (953,251,429)
+
+FX Gain / (Loss)                         (38,312,754)        14,797,447                    (40,056,070)       (23,052,455)
+
+
+
+EBIT                                   1,692,061,855      1,846,039,839        -8.3%     5,137,255,718      4,333,156,453        18.6%
+
+
+
+Interest Expense                       (243,410,239)      (171,955,202)                  (729,230,425)      (558,406,883)
+
+Interest Income                           88,031,776         78,769,804                    424,915,986        491,440,521
+
+Interest Income / (Expenses)           (155,378,463)        (93,185,398)                 (304,314,439)        (66,966,362)
+
+EBT                                    1,536,683,392      1,752,854,441       -12.3%     4,832,941,280      4,266,190,091        13.3%
+
+
+
+Tax                                    (245,802,130)      (381,935,109)                 (1,024,111,242)     (959,865,299)
+
+Net Income                             1,290,881,263      1,370,919,332        -5.8%     3,808,830,038      3,306,324,791        15.2%
+
+
+
+Minority Interest                        (50,470,512)       (75,138,759)                 (274,968,512)      (278,791,550)
+
+Net Income After Minority Interest     1,240,410,751      1,295,780,574        -4.3%     3,533,861,526      3,027,533,242        16.7%
+
+Net Income Margin                               6.3%               8.7%                           5.8%               6.5%
+
+
+
+
+ELSEWEDY ELECTRIC | EARNINGS RELEASE                                                                                               10
+                                                        FY 2021 EARNINGS RELEASE
+                                                                           Cairo | 9 February 2022
+
+
+
+
+Consolidated Balance Sheet
+EGP                                       31/12/2020         30/09/2021                31/12/2021
+Long Term Assets
+Fixed Assets & Goodwill                 8,814,664,639      9,509,509,830            10,175,907,881
+Investments                             1,524,731,301      2,498,818,920             2,151,957,073
+Other long-term Assets                   436,434,058        274,084,979                262,400,576
+Other long-term Receivables             2,360,964,510      2,525,747,897             1,202,254,015
+Total Long-term Assets                 13,136,794,508     14,808,161,626            13,792,519,545
+Current Assets
+Inventories                             7,490,676,915     11,315,334,021            13,320,680,704
+Receivables                            13,599,623,740     13,694,958,569            15,043,335,953
+Other Debit balance                     9,249,566,625     12,491,375,232            12,518,534,412
+Due from Related Parties                 645,776,969        826,765,441              1,175,912,475
+Cash & Cash Equivalents                10,811,687,255      8,637,371,359            11,842,589,348
+Total Current Assets                   41,797,331,504     46,965,804,622            53,901,052,892
+Total Assets                           54,934,126,012     61,773,966,248            67,693,572,437
+Current Liabilities
+Bank Overdraft & Short-term loans       8,268,089,866     11,781,160,771            15,032,238,908
+Accounts Payable                        5,733,816,805      6,787,623,173             8,678,197,095
+Other Credit balance                   16,783,796,473     17,101,046,005            16,185,004,870
+Due to Affiliates                        588,944,840        644,494,076                546,964,145
+Provisions                              1,497,155,181      1,484,466,083             1,960,889,007
+Total Current Liabilities              32,871,803,165     37,798,790,108            42,403,294,025
+Issued and Paid Capital                 2,184,180,000      2,184,180,000             2,184,180,000
+Retained Earnings                      13,209,556,139     15,355,425,383            16,504,538,981
+Others                                  1,628,194,204       498,112,032                422,339,981
+Total Parent's Shareholders' Equity    17,021,930,343     18,037,717,415            19,111,058,962
+Minority Interest                        869,033,193       1,058,426,646             1,094,835,252
+Total Equity                           17,890,963,536     19,096,144,061            20,205,894,214
+Long-term Loans                         1,981,093,136      2,796,196,904             2,926,293,825
+Other long-term Liabilities             2,190,266,175      2,082,835,175             2,158,090,373
+Total Long-term Liabilities             4,171,359,311      4,879,032,079             5,084,384,198
+
+
+Total Liabilities & Equity             54,934,126,012     61,773,966,248            67,693,572,437
+
+
+
+
+ELSEWEDY ELECTRIC | EARNINGS RELEASE                                                           11
+

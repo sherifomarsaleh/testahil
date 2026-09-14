@@ -1,23 +1,26 @@
 {
- "central": 0.3357186228503667,
- "spot": 2.19,
- "spot_date": "2026-08-05",
+ "adopted_corrections": [],
+ "adopted_corrections_note": "the walk-forward on this name is a SCOPE SKIP under [R-FCAL-01] \u2014 four sourceable fiscal years against the five a LIGHT scope needs, recorded in engine/elec_walkforward/skip_record.json in the rule's own words. It scores nothing, so it adopts nothing, and this list is EMPTY rather than ABSENT: silence and 'none adopted' are the same file to a reader and different facts about the work.",
+ "central": 0.32291115401779547,
+ "spot": 2.08,
+ "spot_date": "2026-09-03",
+ "tech_anchor_date": "2026-08-05",
  "shares": 3313.540373,
- "mktcap": 7256.653416869999,
+ "mktcap": 6892.16397584,
  "fx": 49.8,
  "tax": 0.225,
  "inputs": {
   "spot": {
-   "value": 2.19,
-   "source": "uploaded EGX daily history, last close",
-   "date": "2026-08-05",
+   "value": 2.08,
+   "source": "uploaded EGX daily history, last close \u2014 the latest price supplied to this repository (SUPPLIED_03-09-2026.json). Superseded: EGP 2.19 of 5 August 2026, on which every edition before this one was struck",
+   "date": "2026-09-03",
    "ring": "Market"
   },
   "shares_mn": {
    "value": 3313.540373,
    "source": "Mubasher ELEC profile (paid-in capital EGP 662,708,074.60 / par 0.20); verified 3 ways: SWS holder sum; FY24 EPS 0.40=1,327.8/3,313.5; FY25 EPS 0.15=500.3/3,313.5",
    "date": "2026 (mid)",
-   "ring": "Company"
+   "ring": "Vendor"
   },
   "tax": {
    "value": 0.225,
@@ -35,67 +38,67 @@
    "value": 8673.4,
    "source": "MarketScreener/Mubasher FY2024 results note (comparative)",
    "date": "2025-03",
-   "ring": "Company"
+   "ring": "Vendor"
   },
   "rev_fy24": {
    "value": 13778.2,
    "source": "MarketScreener/Mubasher FY2024 consolidated results",
    "date": "2025-03",
-   "ring": "Company"
+   "ring": "Vendor"
   },
   "rev_fy25": {
    "value": 10819.0,
    "source": "Arab Finance/Zawya FY2025 results (net sales EGP 10.81bn)",
    "date": "2026-03",
-   "ring": "Company"
+   "ring": "Vendor"
   },
   "np_fy23": {
    "value": 1248.0,
    "source": "Zawya/MarketScreener (FY23 consolidated NP)",
    "date": "2024-03",
-   "ring": "Company"
+   "ring": "Vendor"
   },
   "np_fy24": {
    "value": 1327.8,
    "source": "Mubasher FY2024 consolidated results",
    "date": "2025-03",
-   "ring": "Company"
+   "ring": "Vendor"
   },
   "np_fy25": {
    "value": 500.31,
    "source": "Arab Finance FY2025 (attributable; Reuters flash 501.4 incl. NCI)",
    "date": "2026-03",
-   "ring": "Company"
+   "ring": "Vendor"
   },
   "ebit_fy24": {
    "value": 3400.0,
    "source": "Simply Wall St health page: 'EBIT is EGP3.4B, interest coverage 2x'",
    "date": "2025-05-22",
-   "ring": "Company"
+   "ring": "Vendor"
   },
   "ebitda_fy24": {
    "value": 3490.0,
    "source": "Investing.com financial summary ('EBITDA 3.49B') \u2014 single aggregator, period attributed to FY2024; flagged",
    "date": "2026 capture",
-   "ring": "Company"
+   "ring": "Vendor"
   },
   "int_cover_fy24": {
    "value": 2.0,
    "source": "Simply Wall St health page (interest coverage 2x EBIT)",
    "date": "2025-05-22",
-   "ring": "Company"
+   "ring": "Vendor"
   },
   "q1_26_rev": {
    "value": 2094.0,
    "source": "Zawya/Arab Finance Q1-2026 (consolidated net sales)",
    "date": "2026-05",
-   "ring": "Company"
+   "ring": "Vendor"
   },
   "q1_26_np": {
    "value": -241.6,
    "source": "Zawya/Arab Finance Q1-2026 (consolidated net LOSS)",
    "date": "2026-05",
-   "ring": "Company"
+   "ring": "Vendor"
   },
   "q1_25_rev": {
    "value": 3723.0,
@@ -113,43 +116,43 @@
    "value": 4960.0,
    "source": "Zawya 9M-2023 results note (comparative, 31-Dec-2022)",
    "date": "2023-11",
-   "ring": "Company"
+   "ring": "Vendor"
   },
   "assets_fy24": {
    "value": 14970.0,
    "source": "Zawya/Decypha FY2025 note (comparative) + SWS (15.0bn)",
    "date": "2026-03",
-   "ring": "Company"
+   "ring": "Vendor"
   },
   "assets_fy25": {
    "value": 16460.0,
    "source": "Zawya/Decypha FY2025 results (total assets, +9.9%)",
    "date": "2026-03",
-   "ring": "Company"
+   "ring": "Vendor"
   },
   "debt_fy24": {
    "value": 8960.0,
    "source": "Company's own FY25-filing comparative ('vs 8.96bn in 2024'); SWS independent print ~9.0bn corroborates. Standardized on the filing comparative so every FY24 net-debt reference in the study is the same number (8,132)",
    "date": "2026-03-18",
-   "ring": "Company"
+   "ring": "Vendor"
   },
   "cash_fy24": {
    "value": 827.6,
    "source": "Simply Wall St health page (cash & ST investments)",
    "date": "2025-05-22",
-   "ring": "Company"
+   "ring": "Vendor"
   },
   "equity_fy24": {
    "value": 3600.0,
    "source": "Simply Wall St health page (total shareholder equity)",
    "date": "2025-05-22",
-   "ring": "Company"
+   "ring": "Vendor"
   },
   "liab_fy24": {
    "value": 11300.0,
    "source": "Simply Wall St health page (total liabilities)",
    "date": "2025-05-22",
-   "ring": "Company"
+   "ring": "Vendor"
   },
   "assets_fy23_est": {
    "value": 10000.0,
@@ -209,7 +212,7 @@
    "value": 4700.0,
    "source": "FY25 standalone sales EGP 4.7bn vs 7.69bn FY24 (Arab Finance AR) \u2014 the consolidated subsidiaries carry most of group revenue",
    "date": "2026-03",
-   "ring": "Company"
+   "ring": "Vendor"
   },
   "agm_no_dividend": {
    "value": "FY25 profits carried forward, no cash distribution; new board elected",
@@ -436,9 +439,9 @@
    "ring": "House"
   },
   "rf_term": {
-   "value": 0.105,
-   "source": "Terminal rf norm-built: CBE's own stated Q4-2028 inflation target 5%% (+/-2pp) + ~5.5pp EM real-rate convention (house standing construction)",
-   "date": "2026-08-05",
+   "value": 0.10500000000000001,
+   "source": "Terminal risk-free rate, READ FROM THE HOUSE EGYPTIAN PATH rather than typed: terminal inflation 7.0% plus the structural real rate 3.5% = 10.5%. THE RETIRED ENTRY WAS RIGHT BY ACCIDENT AND THAT IS WHY NOTHING CAUGHT IT. It typed 10.5% and justified it as the CBE's Q4-2028 inflation target of 5% plus a ~5.5pp emerging-market real-rate convention. BOTH components were wrong against the house path, which holds 7.0% inflation and, from 10-09-2026, a 3.5% structural real rate - and they cancelled exactly: 5 + 5.5 = 7 + 3.5 = 10.5. A number that is correct for two offsetting wrong reasons survives every check that looks at the number.",
+   "date": "2026-09-10",
    "ring": "House"
   },
   "erp_term": {
@@ -460,9 +463,9 @@
    "ring": "House"
   },
   "g_term": {
-   "value": 0.05,
-   "source": "Terminal growth center 5%% \u2014 standing convention for established Egyptian names post-disinflation; grid 3-7%%",
-   "date": "2026-08-05",
+   "value": 0.07000000000000006,
+   "source": "Terminal NOMINAL growth, DERIVED from the house path and not typed: zero STATED real growth on 7.0% long-run Egyptian inflation. THE RETIRED 5.0% was a standing convention for established Egyptian names that named no inflation rate at all - and against the house path's 7.0% it was a REAL DECLINE of about 1.9% a year in perpetuity, on the line carrying most of the value. The same defect was found and corrected on another Egyptian study earlier the same day.",
+   "date": "2026-09-10",
    "ring": "House"
   },
   "ev_ebitda_base": {
@@ -816,13 +819,13 @@
   "kd_at": 0.1705,
   "kd_eff_fy24": 0.235,
   "kd_eff_fy25": 0.221,
-  "we": 0.40947947949157393,
-  "wd": 0.5905205205084261,
-  "wacc_exp": 0.2152611846539747,
-  "wacc_exp_rating": 0.2209812853988884,
-  "rf_term": 0.105,
+  "we": 0.3970789228835671,
+  "wd": 0.6029210771164328,
+  "wacc_exp": 0.21390565004981762,
+  "wacc_exp_rating": 0.21945252493936276,
+  "rf_term": 0.10500000000000001,
   "erp_term": 0.07,
-  "ke_term": 0.17248,
+  "ke_term": 0.17248000000000002,
   "kd_term": 0.15,
   "wd_term": 0.4,
   "we_term": 0.6,
@@ -842,18 +845,18 @@
    1.0
   ],
   "fwd_wacc": [
-   0.2152611846539747,
-   0.19517712783736713,
-   0.1801140852249114,
-   0.16304263693079496,
+   0.21390565004981762,
+   0.19423868080371992,
+   0.17948845386914658,
+   0.16277153000996353,
    0.149988
   ],
   "df": [
-   0.822868378113083,
-   0.6884907340906329,
-   0.5834103182993678,
-   0.5016241879480492,
-   0.4361994976887143
+   0.82378725229507,
+   0.6898011809001723,
+   0.5848308040976375,
+   0.5029627824587573,
+   0.43736350506158084
   ]
  },
  "dcf": {
@@ -874,9 +877,9 @@
     "util": 0.41600000000000004,
     "ebitda_per_t": 40.0,
     "margin": 0.040871912331382924,
-    "fwd_wacc": 0.2152611846539747,
-    "df": 0.822868378113083,
-    "pv": 800.3674624899226
+    "fwd_wacc": 0.21390565004981762,
+    "df": 0.82378725229507,
+    "pv": 801.2612105266023
    },
    {
     "year": "FY27E",
@@ -894,9 +897,9 @@
     "util": 0.47600000000000003,
     "ebitda_per_t": 90.0,
     "margin": 0.08913220881497737,
-    "fwd_wacc": 0.19517712783736713,
-    "df": 0.6884907340906329,
-    "pv": -492.35554035667997
+    "fwd_wacc": 0.19423868080371992,
+    "df": 0.6898011809001723,
+    "pv": -493.2926709745258
    },
    {
     "year": "FY28E",
@@ -914,9 +917,9 @@
     "util": 0.536,
     "ebitda_per_t": 115.0,
     "margin": 0.11069794573490438,
-    "fwd_wacc": 0.1801140852249114,
-    "df": 0.5834103182993678,
-    "pv": -123.07685958051137
+    "fwd_wacc": 0.17948845386914658,
+    "df": 0.5848308040976375,
+    "pv": -123.37652677124494
    },
    {
     "year": "FY29E",
@@ -934,9 +937,9 @@
     "util": 0.5920000000000001,
     "ebitda_per_t": 128.0,
     "margin": 0.11985130946918979,
-    "fwd_wacc": 0.16304263693079496,
-    "df": 0.5016241879480492,
-    "pv": 147.61827056539823
+    "fwd_wacc": 0.16277153000996353,
+    "df": 0.5029627824587573,
+    "pv": 148.01219297067016
    },
    {
     "year": "FY30E",
@@ -955,25 +958,25 @@
     "ebitda_per_t": 135.0,
     "margin": 0.12304977500120771,
     "fwd_wacc": 0.149988,
-    "df": 0.4361994976887143,
-    "pv": 361.9647097754839
+    "df": 0.43736350506158084,
+    "pv": 362.9306200828746
    }
   ],
-  "pv_sum": 694.5180428936134,
-  "tv": 7150.199785774294,
-  "pv_tv": 3118.9135549286993,
-  "ev": 3813.4315978223126,
-  "tv_pct": 0.8178758356934414,
-  "fcff_T1": 714.9341761800001,
+  "pv_sum": 695.5348258343764,
+  "tv": 4740.646215282283,
+  "pv_tv": 2073.385644972777,
+  "ev": 2768.9204708071534,
+  "tv_pct": 0.7488064994399696,
+  "fcff_T1": 379.19480946799905,
   "roic_T": 0.09170814583433977,
-  "rr_T": 0.5452078389014566,
+  "rr_T": 0.7632909744620399,
   "ic_T": 16325.10096,
   "net_debt": 9805.0,
   "nci": 0.0,
   "eq": 0.0,
   "ps": 0.01,
-  "eq_unfloored": -5991.568402177687,
-  "ps_unfloored": -1.8082074541778,
+  "eq_unfloored": -7036.079529192846,
+  "ps_unfloored": -2.1234325637090543,
   "nd_fy26": 10925.615545600001
  },
  "is_fcst": [
@@ -1076,7 +1079,7 @@
   "dcf": {
    "bear": 0.01,
    "base": 0.01,
-   "bull": 1.0111328937976913
+   "bull": 1.0206323702420181
   },
   "relative": {
    "bear": 0.05,
@@ -1089,14 +1092,14 @@
    "bull": 1.3584880639171257
   },
   "book": {
-   "bear": 0.6061465852656549,
-   "base": 0.9092198778984824,
-   "bull": 1.3133176014089187
+   "bear": 0.4829614478489287,
+   "base": 0.8451825337356259,
+   "bull": 1.328143981584555
   },
   "central": {
-   "bear": 0.1825753729383991,
-   "base": 0.3357186228503667,
-   "bull": 0.9488142905842855
+   "bear": 0.15793834545505386,
+   "base": 0.32291115401779547,
+   "bull": 0.9555793571971434
   }
  },
  "weights": {
@@ -1152,49 +1155,49 @@
   ],
   "table": [
    [
-    -1.314380037865019,
-    -1.4000321056905622,
-    -1.5127252766667463,
-    -1.6640505820349138,
-    -1.8733279529772948
+    -1.3102243859587954,
+    -1.3961060662190454,
+    -1.5091013402736444,
+    -1.660832312109423,
+    -1.8706707049616198
    ],
    [
-    -1.4764583748488633,
-    -1.5645042047563182,
-    -1.6770047999694724,
-    -1.82313207326488,
-    -2.0172999290614073
+    -1.472745878430214,
+    -1.5610271967129719,
+    -1.673828687294087,
+    -1.8203467942520544,
+    -2.0150339735979843
    ],
    [
-    -1.6110816694371166,
-    -1.698729416179643,
-    -1.8082074541778,
-    -1.946793517548012,
-    -2.1254047533768636
+    -1.6077369979922442,
+    -1.6956186345580373,
+    -1.8053888169627605,
+    -1.9443447001067098,
+    -2.123432563709053
    ],
    [
-    -1.7245960337982182,
-    -1.81027620752561,
-    -1.9153566383756975,
-    -2.0456581019783653,
-    -2.2095887303354065
+    -1.7215612784723586,
+    -1.8074695743553355,
+    -1.9128297802496659,
+    -2.043478169511559,
+    -2.2078452606660055
    ],
    [
-    -1.82153394410829,
-    -1.9043839221367003,
-    -2.0044676865285087,
-    -2.1264858736340617,
-    -2.2770196000014686
+    -1.8187636384706698,
+    -1.9018337076942387,
+    -2.0021833448822166,
+    -2.1245256736383795,
+    -2.2754592932651008
    ]
   ]
  },
  "sens_expl": {
   "expl_grid": [
-   0.1952611846539747,
-   0.2052611846539747,
-   0.2152611846539747,
-   0.2252611846539747,
-   0.2352611846539747
+   0.19390565004981763,
+   0.20390565004981762,
+   0.21390565004981762,
+   0.22390565004981763,
+   0.23390565004981761
   ],
   "term_grid": [
    0.12998800000000002,
@@ -1205,39 +1208,39 @@
   ],
   "table": [
    [
-    -1.4579567756117255,
-    -1.629008464894147,
-    -1.7656169354059967,
-    -1.8771784022773361,
-    -1.9699567309187023
+    -1.8303763571700942,
+    -1.9806776854857342,
+    -2.0935342899943707,
+    -2.1814178796426473,
+    -2.251811439841329
    ],
    [
-    -1.4856928468268773,
-    -1.6533138311670972,
-    -1.7871837925715164,
-    -1.8965100761764322,
-    -1.9874306404535464
+    -1.8507814968731586,
+    -1.998074730226166,
+    -2.1086730058536807,
+    -2.1947983260241286,
+    -2.2637838508673562
    ],
    [
-    -1.5127252766667463,
-    -1.6770047999694724,
-    -1.8082074541778,
-    -1.9153566383756975,
-    -2.0044676865285087
+    -1.8706707049616214,
+    -2.015033973597986,
+    -2.1234325637090543,
+    -2.2078452606660064,
+    -2.2754592932651017
    ],
    [
-    -1.5390764168544075,
-    -1.7001008480455224,
-    -1.8287051042881082,
-    -1.93373340360127,
-    -2.021081631914563
+    -1.8900603666990756,
+    -2.031569286549452,
+    -2.1378249477592766,
+    -2.2205691995858414,
+    -2.2868471080368518
    ],
    [
-    -1.5647677646561209,
-    -1.722620708674427,
-    -1.8486932719744416,
-    -1.951655103692155,
-    -2.037285716328487
+    -1.908966240614537,
+    -2.0476940102991485,
+    -2.151861685248712,
+    -2.232980258461594,
+    -2.2979562811413876
    ]
   ]
  },
@@ -1245,51 +1248,51 @@
   {
    "beta": 0.6,
    "ke": 0.24556,
-   "wacc_exp": 0.20123552973063755,
-   "wacc_term": 0.1347,
-   "dcf": -1.5949986002449936
+   "wacc_exp": 0.20030474395164055,
+   "wacc_term": 0.13470000000000001,
+   "dcf": -1.9442330774635495
   },
   {
    "beta": 0.78,
    "ke": 0.262498,
-   "wacc_exp": 0.20817129315426583,
+   "wacc_exp": 0.2070304667474424,
    "wacc_term": 0.14226,
-   "dcf": -1.7093315497844115
+   "dcf": -2.0422837660163133
   },
   {
    "beta": 0.8,
    "ke": 0.26438,
-   "wacc_exp": 0.20894193353466894,
+   "wacc_exp": 0.20777776928030928,
    "wacc_term": 0.1431,
-   "dcf": -1.7208807929575103
+   "dcf": -2.0519314609525083
   },
   {
    "beta": 0.964,
    "ke": 0.27981239999999996,
-   "wacc_exp": 0.2152611846539747,
+   "wacc_exp": 0.21390565004981762,
    "wacc_term": 0.149988,
-   "dcf": -1.8082074541778
+   "dcf": -2.1234325637090543
   },
   {
    "beta": 1.0,
    "ke": 0.2832,
-   "wacc_exp": 0.21664833733870037,
-   "wacc_term": 0.1515,
-   "dcf": -1.8257768043003761
+   "wacc_exp": 0.215250794608978,
+   "wacc_term": 0.15150000000000002,
+   "dcf": -2.137517803937451
   },
   {
    "beta": 1.15,
    "ke": 0.297315,
-   "wacc_exp": 0.22242814019172397,
+   "wacc_exp": 0.22085556360547956,
    "wacc_term": 0.1578,
-   "dcf": -1.8936283434563956
+   "dcf": -2.191010361912049
   },
   {
    "beta": 1.3,
    "ke": 0.31143,
-   "wacc_exp": 0.2282079430447475,
+   "wacc_exp": 0.22646033260198112,
    "wacc_term": 0.1641,
-   "dcf": -1.953912590453201
+   "dcf": -2.237377326482187
   }
  ],
  "sens_mn": {
@@ -1309,77 +1312,77 @@
   ],
   "table": [
    [
-    -3.257110745521203,
-    -3.015594406256819,
-    -2.7740780669924345,
-    -2.532561727728051,
-    -2.291045388463667
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
    ],
    [
-    -2.7741754391138853,
-    -2.532659099849501,
-    -2.2911427605851173,
-    -2.0496264213207334,
-    -1.8081100820563496
+    0.0,
+    0.0,
+    -2.702922787569136,
+    -2.403618011498717,
+    -2.1043132354282985
    ],
    [
-    -2.2912401327065677,
-    -2.049723793442184,
-    -1.8082074541778,
-    -1.566691114913416,
-    -1.3251747756490322
+    -2.722042115849892,
+    -2.4227373397794736,
+    -2.1234325637090548,
+    -1.8241277876386355,
+    -1.524823011568217
    ],
    [
-    -1.8083048262992503,
-    -1.5667884870348665,
-    -1.3252721477704825,
-    -1.0837558085060983,
-    -0.8422394692417142
+    -2.14255189198981,
+    -1.8432471159193922,
+    -1.543942339848973,
+    -1.2446375637785536,
+    -0.9453327877081354
    ],
    [
-    -1.325369519891933,
-    -1.0838531806275484,
-    -0.842336841363165,
-    -0.6008205020987807,
-    -0.35930416283439687
+    -1.5630616681297291,
+    -1.2637568920593107,
+    -0.9644521159888915,
+    -0.6651473399184725,
+    -0.3658425638480538
    ]
   ]
  },
  "sens_roic": [
   {
    "roic": 0.077,
-   "rr": 0.6493506493506493,
-   "tv": 5512.876268224915,
-   "ps": -2.023747213924967
+   "rr": 0.90909090909091,
+   "tv": 1820.664999036203,
+   "ps": -2.5088490897479736
   },
   {
    "roic": 0.085,
-   "rr": 0.5882352941176471,
-   "tv": 6473.726162468909,
-   "ps": -1.8972594714973647
+   "rr": 0.8235294117647065,
+   "tv": 3534.2320569526505,
+   "ps": -2.2826705585566174
   },
   {
    "roic": 0.09170814583433977,
-   "rr": 0.5452078389014566,
-   "tv": 7150.199785774294,
-   "ps": -1.8082074541778
+   "rr": 0.7632909744620399,
+   "tv": 4740.646215282283,
+   "ps": -2.1234325637090543
   },
   {
    "roic": 0.12,
-   "rr": 0.4166666666666667,
-   "tv": 9171.11206349762,
-   "ps": -1.5421714862448779
+   "rr": 0.5833333333333339,
+   "tv": 8344.714578915997,
+   "ps": -1.6477214527642183
   },
   {
    "roic": 0.15,
-   "rr": 0.33333333333333337,
-   "tv": 10481.270929711565,
-   "ps": -1.3697001791222412
+   "rr": 0.4666666666666671,
+   "tv": 10681.234661012484,
+   "ps": -1.3393176013793382
   }
  ],
  "nd_challenge": {
   "nd": 10386.0,
-  "ps": -1.98354861034243,
+  "ps": -2.298773719873685,
   "note": "the auditor-asserted (unverified) FY25 net-debt reading"
  },
  "scenarios": {
@@ -1392,15 +1395,15 @@
     "g": 0.04,
     "nd": 10805.0
    },
-   "pv": -642.6098608063393,
+   "pv": -645.9861908257515,
    "tv": 1602.683415527589,
-   "pv_tv": 668.2443763433162,
-   "ev": 25.634515536976892,
+   "pv_tv": 670.0195693722995,
+   "ev": 24.03337854654808,
    "nd": 10805.0,
    "roic_T": 0.05152682085286836,
    "rr_T": 0.776294740058144,
-   "eq": -10779.365484463024,
-   "ps": -3.2531263455539685
+   "eq": -10780.966621453452,
+   "ps": -3.253609555900061
   },
   "bull": {
    "knobs": {
@@ -1412,16 +1415,62 @@
     "g": 0.06,
     "nd": 8805.0
    },
-   "pv": 2988.864970907428,
+   "pv": 2995.79676575102,
    "tv": 20307.301693802212,
-   "pv_tv": 9166.564695159543,
-   "ev": 12155.429666066972,
+   "pv_tv": 9191.10979903659,
+   "ev": 12186.90656478761,
    "nd": 8805.0,
    "roic_T": 0.1576202308830134,
    "rr_T": 0.3806617948969528,
-   "eq": 3350.4296660669715,
-   "ps": 1.0111328937976913
+   "eq": 3381.9065647876105,
+   "ps": 1.0206323702420181
   }
+ },
+ "forecast_anchor": {
+  "rate_name": "EBITDA margin",
+  "latest_reviewed_period": "Q1-2026 (three months ended 31 March 2026), interim filing \u2014 the statements themselves are not held",
+  "latest_reviewed_date": "2026-03-31",
+  "latest_reviewed_rate": 0.012621298949379177,
+  "latest_reviewed_source": "THE STUDY HOLDS NO COMPANY FINANCIAL STATEMENT, AND THIS FIELD SAYS SO RATHER THAN NAMING A FILING. The Q1-2026 figures reach this model as press coverage of the interim filing lodged with the exchange \u2014 revenue EGP 2,094 mn, cost of sales EGP 1,975 mn, gross profit EGP 119.066mn and operating profit EGP 1.429mn \u2014 not as the reviewed statements. EBITDA is that operating profit plus a depreciation add-back of EGP 25.0mn, which is this study's own estimate for the quarter and not a disclosed line. The issuer's statement index lists nothing after 30 September 2025 and nothing consolidated after 31 December 2020, every consolidated file it does list sits on a host that no longer resolves, and this study models consolidated figures; the position is carried in the escalation register and was re-probed on 5 September 2026 rather than taken on report. So the anchor is recorded and its provenance is not of the class the source rule requires \u2014 a condition of the study, not of this record.",
+  "first_forecast_rate": 0.040871912331382924,
+  "forecast_path": [
+   0.040871912331382924,
+   0.08913220881497737,
+   0.11069794573490438,
+   0.11985130946918979,
+   0.12304977500120771
+  ],
+  "other_framing": {
+   "label": "operating margin \u2014 no depreciation add-back on either side",
+   "latest_reviewed_rate": 0.0006824259789875836,
+   "first_forecast_rate": 0.027871912331382927,
+   "forecast_path": [
+    0.027871912331382927,
+    0.07613220881497737,
+    0.09769794573490438,
+    0.10685130946918979,
+    0.11004977500120772
+   ],
+   "note": "RECORDED BECAUSE THE HEADLINE RATE CARRIES A HOUSE ESTIMATE AND THE VERDICT SHOULD BE SHOWN NOT TO TURN ON IT. Strip the add-back from both sides and the shape is identical: 0.0682% in the quarter against 2.7872% in the first forecast year, rising to 11.00% by FY2030E. The bound is exact \u2014 the quarterly add-back would have to exceed EGP 84.2mn, an annualised EGP 337 mn against this study's own FY2025 depreciation charge of EGP 75.7mn, before the forecast opened below the quarter at all. No treatment of depreciation available on these numbers reverses the sign."
+  },
+  "driver_rate_beside_it": {
+   "label": "conversion EBITDA per tonne (k EGP/t) \u2014 the unit rate the forecast is actually built on, margin being an output of it",
+   "latest_reviewed_rate": 11.339183096293409,
+   "forecast_path": [
+    40.0,
+    90.0,
+    115.0,
+    128.0,
+    135.0
+   ],
+   "filed_record": {
+    "FY23": 110.75661782539277,
+    "FY24": 145.57482764316092,
+    "FY25": 182.21001612305412
+   },
+   "note": "THE DRIVER TELLS THE SAME STORY AND IS NOT RECORDED AS THE GOVERNING RATE, for a reason worth stating: its denominator is a volume the company does not disclose, implied through a fabrication uplift that revenue alone does not identify, so it cannot be read off any filing. It opens at 40.0 against 11.3 in the quarter and rises to 135, while the filed years run 110.8 (FY2023), 145.6 (FY2024) and 182.2 (FY2025) \u2014 the same shape as the margin: above the quarter, far below every year."
+  },
+  "note": "THE FORECAST OPENS ABOVE THE LATEST REVIEWED PERIOD AND RISES FROM THERE, SO NEITHER CLAUSE FIRES AND NO MECHANISM IS OWED OR CLAIMED. It opens at 4.09% against 1.26% in the three months to 31 March 2026 \u2014 +224% relative \u2014 and the path's minimum IS its opening year, running 4.09% / 8.91% / 11.07% / 11.99% / 12.30%.\n\nWHAT SITS EITHER SIDE OF THAT IS THE WHOLE OF THIS STUDY AND A READER SHOULD SEE IT. The anchor quarter is the worst the company has reported: revenue EGP 2,094 mn against EGP 3,723 mn a year earlier, gross margin 5.69% against 33.12%, operating profit EGP 1.429mn against EGP 1,124 mn, and a net loss of EGP 241.6mn against a profit of EGP 451.7mn. A forecast opening above that is the ordinary consequence of not projecting the worst quarter for ever, and it is not evidence of anything. The LAST forecast year is where the answer lives: 12.30% against a reported record of 30.68% (FY2023), 25.33% (FY2024) and 26.54% (FY2025) \u2014 51% relatively below the lowest of the three \u2014 and 75% of enterprise value sits in the terminal struck off it. THIS RULE'S TWO COMPARISONS CANNOT REACH THAT NUMBER: one holds the opening year against the latest reviewed period and the other holds the path's minimum against its own opening year, and on a rising path out of a collapsed quarter both pass while the single judgement carrying the valuation goes unexamined. It is examined instead by this study's own dated gap review, which solves the traded price back through these same drivers onto a terminal margin that sits inside the reported range in all three years \u2014 a figure that review computes and this model does not, so it is described rather than quoted.\n\nAND THE RECORD IS ONLY AS GOOD AS WHAT IT IS STRUCK ON. The full-year margins quoted above are not filed rates: revenue and net profit are vendor and press prints, and everything between them is solved or typed \u2014 the FY2025 EBITDA rests on a finance cost derived to close the profit and loss to a reported net profit, and this study's own review shows the FY2025 conversion rate the forecast is calibrated against moving materially with that single unsourced input, which is that review's arithmetic and not this model's. The comparison this record draws is therefore between a forecast and a reconstruction, and it is recorded in those terms."
  },
  "step0": {
   "windows_scored": 17,
@@ -1560,18 +1609,18 @@
  },
  "mc": {
   "prob_read": {
-   "p_above": 0.6135,
-   "p_up10": 0.37465,
-   "p_dn10": 0.1777,
+   "p_above": 0.7286,
+   "p_up10": 0.5042,
+   "p_dn10": 0.11395,
    "median": 2.291864997265468,
-   "med_move": 0.046513697381492136,
+   "med_move": 0.10185817176224421,
    "band50": [
     2.0565800889314154,
     2.5517248516582463
    ],
-   "touch_up10": 0.60225,
-   "touch_dn10": 0.38515,
-   "odds": 2.1083286437816544
+   "touch_up10": 0.8048,
+   "touch_dn10": 0.2377,
+   "odds": 4.424747696358052
   },
   "zones": [
    0.0814,
@@ -1603,9 +1652,9 @@
     "t1": 0.39565,
     "t3": 0.70025
    },
-   "2.19": {
-    "t1": 1.0,
-    "t3": 1.0
+   "2.08": {
+    "t1": 0.40075,
+    "t3": 0.6178
    },
    "2.05": {
     "t1": 0.31065,
@@ -1662,7 +1711,7 @@
   "e3": {
    "method_short": "cash returns: ROIC vs the cost of capital",
    "base": 0.1,
-   "unfloored": -1.8657506129830408,
+   "unfloored": -2.1652144670377327,
    "floor": 0.1,
    "rng": [
     0.05,
@@ -1695,5 +1744,12 @@
    "roe": 0.327,
    "src": "SAR 102.70 30-Jul-26 (sa.investing) x 150mn sh; FY25 NP 1,080.4 +32% (maaal). EV/EBITDA ~12.5x derived, balance-sheet inputs unverified; prior 18x was a stale mid-June cache"
   }
+ },
+ "walkforward_scope": {
+  "scope": "SKIP",
+  "status": "run",
+  "sourceable_fiscal_years": 4,
+  "basis": "Four fiscal years are sourceable from ELEC's own audited statements on a single reporting basis: FY2020-FY2023 standalone. The consolidated basis this study models yields only FY2019-FY2020, because the company has issued no consolidated statement since FY2020 while holding a 99.99% subsidiary. FY2024 and FY2025 are unobtainable: re-probed 07-09-2026, the issuer's index lists 61 statement files and serves none of the 19 on its live host (HTTP 404, 19 of 19), the 42 consolidated ones sit on a host whose DNS does not resolve, and the index carries no period after 30-09-2025. walk-forward not run - insufficient sourceable history (4 years).",
+  "note": "walk-forward not run - insufficient sourceable history (4 years). There are also ZERO scoreable origins by construction: the last sourceable actual is FY2023, so the last possible origin is FY2022 at h=1, and an origin needs five years of history to it. The run directory records what was measured anyway - the filed record, the valuation-input block, the basis-break register and the derived useful life - because these filings are not obtainable from the issuer."
  }
 }

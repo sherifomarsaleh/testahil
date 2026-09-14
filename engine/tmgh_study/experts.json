@@ -43,8 +43,8 @@
      89772.1861480119
     ],
     [
-     "Spread over 12 years and discounted at 35.79%",
-     20368.904287738143
+     "Spread over 12 years and discounted at 31.56%",
+     22823.878208951675
     ],
     [
      "Recurring operating profit, FY2025",
@@ -64,19 +64,19 @@
     ],
     [
      "= equity value",
-     83548.71176672452
+     86003.68568793805
     ]
    ],
-   "value_per_share": 40.544759030713706,
+   "value_per_share": 41.73611583272166,
    "sensitivity": {
     "what": "the conversion period",
     "runs_opposite_to_the_study_because": "this expert discounts a FIXED pot for longer, while the study's model has the company collecting ahead of handover, so accelerating means building before collecting",
     "numbers": {
-     "8": 44.55821537788812,
-     "10": 42.260404325742726,
-     "12": 40.544759030713706,
-     "14": 39.23387538170822,
-     "18": 37.3944297730121
+     "8": 45.9930050010905,
+     "10": 43.57600269808376,
+     "12": 41.73611583272166,
+     "14": 40.30872147235356,
+     "18": 38.27440677769393
     }
    },
    "falsifier": "If TMG discloses a delivery schedule showing the book converting materially faster than twelve years AND cancellations staying below 5%, this method's number is too low and I would withdraw it."
@@ -144,7 +144,7 @@
    "name": "Expert 3 \u2014 capitalise only what recurs",
    "worldview": "Development income is a wasting asset: every unit handed over is one that will never be handed over again, and the land behind it is finite. What a long-term owner is really buying is the hotels, the clubs, the retail and the community-services annuity. Capitalise that, add the cash, and treat the development book as an option you are not paying for.",
    "when_it_works": "When the recurring leg is large enough to stand alone. TMG's is: hospitality and other recurring income were EGP 26bn of revenue in FY2025, and the company's own 1H2026 release puts recurring streams at over half of group gross profit.",
-   "when_it_fails": "When the development book is genuinely the asset \u2014 which, at EGP 491bn against a market capitalisation of EGP 202bn, is exactly the argument against this method here. It is deliberately the most conservative reading in the room.",
+   "when_it_fails": "When the development book is genuinely the asset \u2014 which, at EGP 491bn against a market capitalisation of EGP 199bn, is exactly the argument against this method here. It is deliberately the most conservative reading in the room.",
    "workings": [
     [
      "Hospitality revenue, FY2025",
@@ -187,8 +187,8 @@
      7016.876799369073
     ],
     [
-     "Capitalised at Ke 37.15% less growth 15%",
-     36436.94217327108
+     "Capitalised at Ke 32.57% less growth 15%",
+     45939.24403245772
     ],
     [
      "plus net cash",
@@ -200,27 +200,27 @@
     ],
     [
      "= equity value",
-     20064.542173271082
+     29566.84403245771
     ]
    ],
-   "value_per_share": 9.736978707083685,
+   "value_per_share": 14.348283070381695,
    "sensitivity": {
     "what": "the long-run growth rate of the recurring leg",
     "numbers": {
-     "10%": 5.852941092569308,
-     "12%": 7.597970445607636,
-     "15%": 9.736978707083685,
-     "18%": 12.420368376712208,
-     "20%": 15.88625949710321
+     "10%": 8.654010509692817,
+     "12%": 11.146414588294297,
+     "15%": 14.348283070381695,
+     "18%": 18.612808425713276,
+     "20%": 24.574266649609115
     }
    },
    "falsifier": "If recurring operating profit grew materially slower than Egyptian inflation for three consecutive years, the annuity would not be an annuity and this method would have to be abandoned rather than re-parameterised."
   }
  ],
  "values": {
-  "Expert 1 \u2014 the order book as a receivable stream": 40.544759030713706,
+  "Expert 1 \u2014 the order book as a receivable stream": 41.73611583272166,
   "Expert 2 \u2014 net asset value, goodwill excluded": 38.299009760882704,
-  "Expert 3 \u2014 capitalise only what recurs": 9.736978707083685
+  "Expert 3 \u2014 capitalise only what recurs": 14.348283070381695
  },
  "cross_examination": [
   {
@@ -240,28 +240,28 @@
    "outcome": "CONCEDED AS A LIMIT, NOT AS AN ERROR. Expert 3's number is explicitly a floor for what an owner is paying for today, and it is presented as such rather than as a central estimate."
   },
   {
-   "challenge": "All three to the study: the house discount rate of 35.79% is above anything the market appears to use \u2014 17.4% to 31.9% on the reverse calculation.",
+   "challenge": "All three to the study: the house discount rate of 31.56% is above anything the market appears to use \u2014 17.6% to 32.3% on the reverse calculation.",
    "outcome": "ACKNOWLEDGED AND PUBLISHED. The house method levers Egypt's whole country risk premium by a beta of 1.47. The implied pair STRADDLES the 23.00% sovereign \u2014 below it on the faster reading of the order book, above it on the slower \u2014 so there is no single rate the market can be said to be applying, and which reading you take decides the sign of the disagreement. The study reports both rather than picking one, and the gap IS the disagreement."
   }
  ],
- "three_in_one_room": "Put in one room, the three agree on less than they disagree on, and the disagreement is legible. All three accept the same balance sheet, the same order book and the same margin; they differ on ONE question, which is whether an order book is an asset, a receivable or neither.\n\nExpert 3's EGP 9.74 is the floor, deliberately: it gives the shareholder nothing at all for EGP 491bn of sold product, and says so. Experts 1 and 2 arrive at EGP 40.54 and EGP 38.30 by routes that share almost no arithmetic \u2014 one discounts a twelve-year net cash stream, the other reconciles a balance sheet and strips goodwill \u2014 and land within EGP 2.25 of each other. Two independent methods converging that closely is the most reassuring thing in this appendix, and it is worth more than any one of the three numbers.\n\nNone of the three reaches the traded price of EGP 97.80, and none of them is trying to. The spread across the panel is EGP 9.74 to EGP 40.54.",
+ "three_in_one_room": "Put in one room, the three agree on less than they disagree on, and the disagreement is legible. All three accept the same balance sheet, the same order book and the same margin; they differ on ONE question, which is whether an order book is an asset, a receivable or neither.\n\nExpert 3's EGP 14.35 is the floor, deliberately: it gives the shareholder nothing at all for EGP 491bn of sold product, and says so. Experts 1 and 2 arrive at EGP 41.74 and EGP 38.30 by routes that share almost no arithmetic \u2014 one discounts a twelve-year net cash stream, the other reconciles a balance sheet and strips goodwill \u2014 and land within EGP 3.44 of each other. Two independent methods converging that closely is the most reassuring thing in this appendix, and it is worth more than any one of the three numbers.\n\nNone of the three reaches the traded price of EGP 96.60, and none of them is trying to. The spread across the panel is EGP 14.35 to EGP 41.74.",
  "divergence": [
   {
    "pair": "1 vs 2",
-   "gap": 2.245749269831002,
+   "gap": 3.4371060718389543,
    "driven_by": "whether customer advances are a cash liability at face or a construction obligation at cost"
   },
   {
    "pair": "1 vs 3",
-   "gap": 30.80778032363002,
+   "gap": 27.38783276233996,
    "driven_by": "whether the development book is an asset or a wasting stream with no terminal value"
   },
   {
    "pair": "2 vs 3",
-   "gap": 28.562031053799018,
+   "gap": 23.950726690501007,
    "driven_by": "whether land and work in progress at historical cost is a better guide than capitalised recurring profit"
   }
  ],
- "published_central": 91.8305824638648,
- "published_spot": 97.8
+ "published_central": 108.19426939740487,
+ "published_spot": 96.6
 }

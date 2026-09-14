@@ -12,7 +12,6 @@
  },
  "unrunnable": [
   "engine/gbco_study/figures.py",
-  "engine/stc_study/figures_stc.py",
   "engine/xpt_study/figures_xpt.py"
  ],
  "_seeded": "03-Sep-2026: the population at adoption. ELEC clips the price line out of its HEADLINE football field and its expert figure \u2014 the same defect this gate was built on, already shipped in another study. EMPOWER clips a bar in its expert figure. AMOC's two were fixed in the pass that found them rather than listed, because that study was being re-issued. The three unrunnable scripts are listed separately: a figure script that cannot execute has not been checked, and an unchecked figure is what this gate exists to stop passing quietly.",

@@ -1,0 +1,226 @@
+{
+ "one_offs": {
+  "FY2024": [
+   {
+    "line": "gain on sale of investments",
+    "value": 1517386642,
+    "what": "the disposal of the 25.40% holding in Sinai White Portland Cement to Aalborg Portland Holding, completed 13 August 2024",
+    "share_of_pbt": 0.48170446571827563,
+    "treatment": "EXCLUDED from every driver rule and from the profit the drivers rebuild. A model that cannot foresee a stake sale should not be scored as though it should have."
+   }
+  ],
+  "FY2025": [
+   {
+    "line": "provisions other than depreciation",
+    "value": -28192283,
+    "what": "a NET RELEASE of provisions, the only year in the panel where this line is negative",
+    "share_of_pbt": -0.008393395006050127,
+    "treatment": "left in. It is inside the cost base the drivers rebuild and is small (0.8% of pre-tax profit); removing it would be a judgement at a historical origin."
+   }
+  ],
+  "FY2023": [
+   {
+    "line": "change in inventory inside cost of sales",
+    "value": 138243904,
+    "what": "the coal stock pricing policy changed from first-in-first-out to weighted average, which note 3/8 states 'resulted in the company incurring losses, and those losses were charged to the income statement'",
+    "share_of_pbt": null,
+    "treatment": "left in and RECORDED. It is a genuine change of accounting policy inside cost of sales, disclosed by the company itself, and it falls in the cost note that foots to the face of the profit and loss account."
+   }
+  ]
+ },
+ "decomposition": {
+  "FY2021 h=1": {
+   "revenue_log_error": -0.36707572343565176,
+   "from_activity_anchor": 0.05280589982293013,
+   "from_price_anchor": 0.0646213302088053,
+   "residual_company": -0.4845029534673872,
+   "note": "the residual is what the company did that the two exogenous anchors cannot explain; it is exactly zero by construction only if the origin's own base year is the actual base year, which it is, so the residual IS the anchors' joint miss",
+   "ebitda_projected": -110.23158464275409,
+   "ebitda_actual": -24.076911,
+   "pat_projected": -323.1970778023921,
+   "pat_actual": -319.80097
+  },
+  "FY2021 h=2": {
+   "revenue_log_error": -0.8471008259195971,
+   "from_activity_anchor": 0.10800879176455183,
+   "from_price_anchor": 0.13308806330922696,
+   "residual_company": -1.088197680993376,
+   "note": "the residual is what the company did that the two exogenous anchors cannot explain; it is exactly zero by construction only if the origin's own base year is the actual base year, which it is, so the residual IS the anchors' joint miss",
+   "ebitda_projected": -95.87983666850369,
+   "ebitda_actual": 283.556319,
+   "pat_projected": -310.99574059790126,
+   "pat_actual": -117.581612
+  },
+  "FY2021 h=3": {
+   "revenue_log_error": -1.1279658223564528,
+   "from_activity_anchor": 0.16388332622841853,
+   "from_price_anchor": 0.20178355725052538,
+   "residual_company": -1.4936327058353966,
+   "note": "the residual is what the company did that the two exogenous anchors cannot explain; it is exactly zero by construction only if the origin's own base year is the actual base year, which it is, so the residual IS the anchors' joint miss",
+   "ebitda_projected": -77.297351361564,
+   "ebitda_actual": 1585.462553,
+   "pat_projected": -294.7160549199203,
+   "pat_actual": 3072.361811
+  },
+  "FY2022 h=1": {
+   "revenue_log_error": -0.4615961428791036,
+   "from_activity_anchor": 0.046697499883631824,
+   "from_price_anchor": 0.09540108476325304,
+   "residual_company": -0.6036947275259885,
+   "note": "the residual is what the company did that the two exogenous anchors cannot explain; it is exactly zero by construction only if the origin's own base year is the actual base year, which it is, so the residual IS the anchors' joint miss",
+   "ebitda_projected": 21.96381830500934,
+   "ebitda_actual": 283.556319,
+   "pat_projected": -246.5042629328717,
+   "pat_actual": -117.581612
+  },
+  "FY2022 h=2": {
+   "revenue_log_error": -0.7416053612956006,
+   "from_activity_anchor": 0.0991191574299665,
+   "from_price_anchor": 0.1684052336424424,
+   "residual_company": -1.0091297523680094,
+   "note": "the residual is what the company did that the two exogenous anchors cannot explain; it is exactly zero by construction only if the origin's own base year is the actual base year, which it is, so the residual IS the anchors' joint miss",
+   "ebitda_projected": 54.346999506439154,
+   "ebitda_actual": 1585.462553,
+   "pat_projected": -216.7120539869794,
+   "pat_actual": 3072.361811
+  },
+  "FY2022 h=3": {
+   "revenue_log_error": -0.9646448524276231,
+   "from_activity_anchor": 0.15441194317867532,
+   "from_price_anchor": 0.23648902537491315,
+   "residual_company": -1.3555458209812117,
+   "note": "the residual is what the company did that the two exogenous anchors cannot explain; it is exactly zero by construction only if the origin's own base year is the actual base year, which it is, so the residual IS the anchors' joint miss",
+   "ebitda_projected": 94.78092575628784,
+   "ebitda_actual": 3455.205144,
+   "pat_projected": -179.06532727644134,
+   "pat_actual": 2284.539004
+  },
+  "FY2023 h=1": {
+   "revenue_log_error": -0.13178505519403644,
+   "from_activity_anchor": 0.042312083785616385,
+   "from_price_anchor": 0.23133788586236823,
+   "residual_company": -0.40543502484202104,
+   "note": "the residual is what the company did that the two exogenous anchors cannot explain; it is exactly zero by construction only if the origin's own base year is the actual base year, which it is, so the residual IS the anchors' joint miss",
+   "ebitda_projected": 396.61055033789114,
+   "ebitda_actual": 1585.462553,
+   "pat_projected": -14.558943929182831,
+   "pat_actual": 3072.361811
+  },
+  "FY2023 h=2": {
+   "revenue_log_error": -0.271757797322722,
+   "from_activity_anchor": 0.0932570675200537,
+   "from_price_anchor": 0.3868362286124471,
+   "residual_company": -0.7518510934552227,
+   "note": "the residual is what the company did that the two exogenous anchors cannot explain; it is exactly zero by construction only if the origin's own base year is the actual base year, which it is, so the residual IS the anchors' joint miss",
+   "ebitda_projected": 520.7259032677497,
+   "ebitda_actual": 3455.205144,
+   "pat_projected": 80.34778986883727,
+   "pat_actual": 2284.539004
+  },
+  "FY2024 h=1": {
+   "revenue_log_error": -0.13763246458582215,
+   "from_activity_anchor": 0.045092861370901044,
+   "from_price_anchor": 0.16369074265647848,
+   "residual_company": -0.3464160686132017,
+   "note": "the residual is what the company did that the two exogenous anchors cannot explain; it is exactly zero by construction only if the origin's own base year is the actual base year, which it is, so the residual IS the anchors' joint miss",
+   "ebitda_projected": 2061.11261409011,
+   "ebitda_actual": 3455.205144,
+   "pat_projected": 1496.2946283699164,
+   "pat_actual": 2284.539004
+  }
+ },
+ "cut_invariance": {
+  "capex": {
+   "n": 9,
+   "admissible_cuts": 0,
+   "flips": 0,
+   "cuts": [],
+   "verdict": "UNTESTABLE \u2014 no boundary leaves 5 cells on both sides, so this driver is too thin to cut and is never counted stable: an absence of contrary evidence is not evidence [R-ENF-04]"
+  },
+  "cogs_maintenance": {
+   "n": 9,
+   "admissible_cuts": 0,
+   "flips": 0,
+   "cuts": [],
+   "verdict": "UNTESTABLE \u2014 no boundary leaves 5 cells on both sides, so this driver is too thin to cut and is never counted stable: an absence of contrary evidence is not evidence [R-ENF-04]"
+  },
+  "cogs_wages": {
+   "n": 9,
+   "admissible_cuts": 0,
+   "flips": 0,
+   "cuts": [],
+   "verdict": "UNTESTABLE \u2014 no boundary leaves 5 cells on both sides, so this driver is too thin to cut and is never counted stable: an absence of contrary evidence is not evidence [R-ENF-04]"
+  },
+  "dna": {
+   "n": 9,
+   "admissible_cuts": 0,
+   "flips": 0,
+   "cuts": [],
+   "verdict": "UNTESTABLE \u2014 no boundary leaves 5 cells on both sides, so this driver is too thin to cut and is never counted stable: an absence of contrary evidence is not evidence [R-ENF-04]"
+  },
+  "ebitda": {
+   "n": 6,
+   "admissible_cuts": 0,
+   "flips": 0,
+   "cuts": [],
+   "verdict": "UNTESTABLE \u2014 no boundary leaves 5 cells on both sides, so this driver is too thin to cut and is never counted stable: an absence of contrary evidence is not evidence [R-ENF-04]"
+  },
+  "finance_expense": {
+   "n": 9,
+   "admissible_cuts": 0,
+   "flips": 0,
+   "cuts": [],
+   "verdict": "UNTESTABLE \u2014 no boundary leaves 5 cells on both sides, so this driver is too thin to cut and is never counted stable: an absence of contrary evidence is not evidence [R-ENF-04]"
+  },
+  "ga": {
+   "n": 9,
+   "admissible_cuts": 0,
+   "flips": 0,
+   "cuts": [],
+   "verdict": "UNTESTABLE \u2014 no boundary leaves 5 cells on both sides, so this driver is too thin to cut and is never counted stable: an absence of contrary evidence is not evidence [R-ENF-04]"
+  },
+  "interest_income": {
+   "n": 9,
+   "admissible_cuts": 0,
+   "flips": 0,
+   "cuts": [],
+   "verdict": "UNTESTABLE \u2014 no boundary leaves 5 cells on both sides, so this driver is too thin to cut and is never counted stable: an absence of contrary evidence is not evidence [R-ENF-04]"
+  },
+  "materials": {
+   "n": 9,
+   "admissible_cuts": 0,
+   "flips": 0,
+   "cuts": [],
+   "verdict": "UNTESTABLE \u2014 no boundary leaves 5 cells on both sides, so this driver is too thin to cut and is never counted stable: an absence of contrary evidence is not evidence [R-ENF-04]"
+  },
+  "pat": {
+   "n": 2,
+   "admissible_cuts": 0,
+   "flips": 0,
+   "cuts": [],
+   "verdict": "UNTESTABLE \u2014 no boundary leaves 5 cells on both sides, so this driver is too thin to cut and is never counted stable: an absence of contrary evidence is not evidence [R-ENF-04]"
+  },
+  "revenue": {
+   "n": 9,
+   "admissible_cuts": 0,
+   "flips": 0,
+   "cuts": [],
+   "verdict": "UNTESTABLE \u2014 no boundary leaves 5 cells on both sides, so this driver is too thin to cut and is never counted stable: an absence of contrary evidence is not evidence [R-ENF-04]"
+  },
+  "transport": {
+   "n": 9,
+   "admissible_cuts": 0,
+   "flips": 0,
+   "cuts": [],
+   "verdict": "UNTESTABLE \u2014 no boundary leaves 5 cells on both sides, so this driver is too thin to cut and is never counted stable: an absence of contrary evidence is not evidence [R-ENF-04]"
+  },
+  "working_capital": {
+   "n": 3,
+   "admissible_cuts": 0,
+   "flips": 0,
+   "cuts": [],
+   "verdict": "UNTESTABLE \u2014 no boundary leaves 5 cells on both sides, so this driver is too thin to cut and is never counted stable: an absence of contrary evidence is not evidence [R-ENF-04]"
+  }
+ },
+ "min_side": 5
+}

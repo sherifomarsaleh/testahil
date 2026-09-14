@@ -1,0 +1,442 @@
+{
+ "_rule": "[R-FCAL-01] expanding window only, half strength by default, applied only where the bias holds its sign at EVERY cut the data admits, and consistent with how the driver class is built across the market's book.",
+ "_pre_registered_expectation": "PRE_REGISTRATION_07-09-2026.md section 6 states, before any error was computed, that nine cells admit no cut leaving five each side, so nothing can be promoted from this run whatever the biases turn out to be.",
+ "half_strength": 0.5,
+ "candidates": {
+  "capex": {
+   "n": 9,
+   "bias": -0.8305061364394722,
+   "admissible_cuts": 0,
+   "flips": 0,
+   "clause_one": false,
+   "clause_one_reason": "no boundary leaves 5 cells on both sides \u2014 UNTESTABLE, never counted stable",
+   "clause_two": "L-063 and L-275 both say the recent capital-spending run rate is a CEILING or a deferral rather than a central estimate on an old plant. A multiplier on the run rate points the other way from the class finding.",
+   "adjusted_vs_raw": {
+    "n": 3,
+    "mae_raw": 0.8296484799793165,
+    "mae_adjusted": 0.8624089142491855,
+    "improves": false,
+    "by_origin": {
+     "FY2023": {
+      "mae_raw": 0.8145195554176987,
+      "mae_adjusted": 0.5835398199107709,
+      "improves": true
+     },
+     "FY2024": {
+      "mae_raw": 0.8599063291025518,
+      "mae_adjusted": 1.4201471029260149,
+      "improves": false
+     }
+    },
+    "factors": {
+     "FY2021": null,
+     "FY2022": null,
+     "FY2023": 1.2598337092990803,
+     "FY2024": 1.7510940671567246,
+     "FY2025": 1.5147540282963259
+    }
+   },
+   "promoted": false,
+   "disposition": "watch_flag",
+   "verdict": "WATCH FLAG \u2014 clause one UNTESTABLE at 9 cells"
+  },
+  "cogs_maintenance": {
+   "n": 9,
+   "bias": -0.5032874590142544,
+   "admissible_cuts": 0,
+   "flips": 0,
+   "clause_one": false,
+   "clause_one_reason": "no boundary leaves 5 cells on both sides \u2014 UNTESTABLE, never counted stable",
+   "clause_two": "Same as wages in shape. Admissible on clause two, and it is clause one that refuses it here.",
+   "adjusted_vs_raw": {
+    "n": 3,
+    "mae_raw": 0.6223882073490971,
+    "mae_adjusted": 0.5849216160741847,
+    "improves": true,
+    "by_origin": {
+     "FY2023": {
+      "mae_raw": 0.8447626594953093,
+      "mae_adjusted": 0.8706156268807573,
+      "improves": false
+     },
+     "FY2024": {
+      "mae_raw": 0.17763930305667266,
+      "mae_adjusted": 0.01353359446103955,
+      "improves": true
+     }
+    },
+    "factors": {
+     "FY2021": null,
+     "FY2022": null,
+     "FY2023": 0.9744783591768157,
+     "FY2024": 1.2106687556093645,
+     "FY2025": 1.286137742723771
+    }
+   },
+   "promoted": false,
+   "disposition": "watch_flag",
+   "verdict": "WATCH FLAG \u2014 clause one UNTESTABLE at 9 cells"
+  },
+  "cogs_wages": {
+   "n": 9,
+   "bias": -0.24144949491098444,
+   "admissible_cuts": 0,
+   "flips": 0,
+   "clause_one": false,
+   "clause_one_reason": "no boundary leaves 5 cells on both sides \u2014 UNTESTABLE, never counted stable",
+   "clause_two": "Consistent in shape with how wages are built elsewhere (fixed in real terms), so a level correction here would be admissible IF it ever passed clause one.",
+   "adjusted_vs_raw": {
+    "n": 3,
+    "mae_raw": 0.24065170228143717,
+    "mae_adjusted": 0.20153355611690005,
+    "improves": true,
+    "by_origin": {
+     "FY2023": {
+      "mae_raw": 0.2642200901721424,
+      "mae_adjusted": 0.2468809813079864,
+      "improves": true
+     },
+     "FY2024": {
+      "mae_raw": 0.19351492650002683,
+      "mae_adjusted": 0.11083870573472726,
+      "improves": true
+     }
+    },
+    "factors": {
+     "FY2021": null,
+     "FY2022": null,
+     "FY2023": 1.0174903038100098,
+     "FY2024": 1.086190065819565,
+     "FY2025": 1.1283142982390457
+    }
+   },
+   "promoted": false,
+   "disposition": "watch_flag",
+   "verdict": "WATCH FLAG \u2014 clause one UNTESTABLE at 9 cells"
+  },
+  "dna": {
+   "n": 9,
+   "bias": -0.024671478230606964,
+   "admissible_cuts": 0,
+   "flips": 0,
+   "clause_one": false,
+   "clause_one_reason": "no boundary leaves 5 cells on both sides \u2014 UNTESTABLE, never counted stable",
+   "clause_two": "Built off a disclosed rate and a roll-forward, and its bias is -0.025 log, which is nothing.",
+   "adjusted_vs_raw": {
+    "n": 3,
+    "mae_raw": 0.11225228864899482,
+    "mae_adjusted": 0.13320251865297028,
+    "improves": false,
+    "by_origin": {
+     "FY2023": {
+      "mae_raw": 0.11922160681597022,
+      "mae_adjusted": 0.13722325909231575,
+      "improves": false
+     },
+     "FY2024": {
+      "mae_raw": 0.09831365231504403,
+      "mae_adjusted": 0.12516103777427934,
+      "improves": false
+     }
+    },
+    "factors": {
+     "FY2021": null,
+     "FY2022": null,
+     "FY2023": 0.9699009067550101,
+     "FY2024": 0.9735098019391616,
+     "FY2025": 1.0124121381681246
+    }
+   },
+   "promoted": false,
+   "disposition": "watch_flag",
+   "verdict": "WATCH FLAG \u2014 clause one UNTESTABLE at 9 cells"
+  },
+  "ebitda": {
+   "n": 6,
+   "bias": -2.2203418552879923,
+   "admissible_cuts": 0,
+   "flips": 0,
+   "clause_one": false,
+   "clause_one_reason": "no boundary leaves 5 cells on both sides \u2014 UNTESTABLE, never counted stable",
+   "clause_two": "An AGGREGATE. Corrections are applied to drivers and aggregates are rebuilt from them; correcting an aggregate directly is forbidden.",
+   "adjusted_vs_raw": {
+    "n": 1,
+    "mae_raw": 0.5166358905086963,
+    "mae_adjusted": 0.7028529445316842,
+    "improves": false,
+    "by_origin": {
+     "FY2024": {
+      "mae_raw": 0.5166358905086963,
+      "mae_adjusted": 0.7028529445316842,
+      "improves": false
+     }
+    },
+    "factors": {
+     "FY2021": null,
+     "FY2022": null,
+     "FY2023": null,
+     "FY2024": 3.3854567643833553,
+     "FY2025": 3.0348770944959034
+    }
+   },
+   "promoted": false,
+   "disposition": "refused",
+   "verdict": "REFUSED \u2014 an aggregate; corrections apply to drivers"
+  },
+  "finance_expense": {
+   "n": 9,
+   "bias": 0.47711459101124354,
+   "admissible_cuts": 0,
+   "flips": 0,
+   "clause_one": false,
+   "clause_one_reason": "no boundary leaves 5 cells on both sides \u2014 UNTESTABLE, never counted stable",
+   "clause_two": "The house builds interest from named facilities at their own rates. The miss here is that DEBT WAS REPAID, not that the rate was wrong \u2014 a correction would be calibrating away a financing decision the model held flat by design.",
+   "adjusted_vs_raw": {
+    "n": 3,
+    "mae_raw": 1.2934919982393935,
+    "mae_adjusted": 1.4447495374515766,
+    "improves": false,
+    "by_origin": {
+     "FY2023": {
+      "mae_raw": 1.4875707705682497,
+      "mae_adjusted": 1.6770897518115147,
+      "improves": false
+     },
+     "FY2024": {
+      "mae_raw": 0.905334453581681,
+      "mae_adjusted": 0.9800691087317006,
+      "improves": false
+     }
+    },
+    "factors": {
+     "FY2021": null,
+     "FY2022": null,
+     "FY2023": 1.2086680657942834,
+     "FY2024": 1.077598177818737,
+     "FY2025": 0.7877635516530888
+    }
+   },
+   "promoted": false,
+   "disposition": "watch_flag",
+   "verdict": "WATCH FLAG \u2014 clause one UNTESTABLE at 9 cells"
+  },
+  "ga": {
+   "n": 9,
+   "bias": -0.5896222152610942,
+   "admissible_cuts": 0,
+   "flips": 0,
+   "clause_one": false,
+   "clause_one_reason": "no boundary leaves 5 cells on both sides \u2014 UNTESTABLE, never counted stable",
+   "clause_two": "Overheads are built fixed-plus-variable everywhere in the book. A blanket uplift on G&A would be consistent with nothing.",
+   "adjusted_vs_raw": {
+    "n": 3,
+    "mae_raw": 0.3696399746893966,
+    "mae_adjusted": 0.3556353971131152,
+    "improves": true,
+    "by_origin": {
+     "FY2023": {
+      "mae_raw": 0.48111917122737313,
+      "mae_adjusted": 0.29194870336364465,
+      "improves": true
+     },
+     "FY2024": {
+      "mae_raw": 0.14668158161344344,
+      "mae_adjusted": 0.4830087846120562,
+      "improves": false
+     }
+    },
+    "factors": {
+     "FY2021": null,
+     "FY2022": null,
+     "FY2023": 1.2082469021967732,
+     "FY2024": 1.3997969676519741,
+     "FY2025": 1.3428726763259953
+    }
+   },
+   "promoted": false,
+   "disposition": "watch_flag",
+   "verdict": "WATCH FLAG \u2014 clause one UNTESTABLE at 9 cells"
+  },
+  "interest_income": {
+   "n": 9,
+   "bias": -0.9530623506461,
+   "admissible_cuts": 0,
+   "flips": 0,
+   "clause_one": false,
+   "clause_one_reason": "no boundary leaves 5 cells on both sides \u2014 UNTESTABLE, never counted stable",
+   "clause_two": "L-057 already says interest income is a balance times a rate and holding either flat cannot track it. The fix is the balance path, which is a specification, not a factor.",
+   "adjusted_vs_raw": {
+    "n": 3,
+    "mae_raw": 1.6982617432091462,
+    "mae_adjusted": 1.918769336369282,
+    "improves": false,
+    "by_origin": {
+     "FY2023": {
+      "mae_raw": 1.942545388218931,
+      "mae_adjusted": 2.3037825105869705,
+      "improves": false
+     },
+     "FY2024": {
+      "mae_raw": 1.209694453189577,
+      "mae_adjusted": 1.1487429879339046,
+      "improves": true
+     }
+    },
+    "factors": {
+     "FY2021": null,
+     "FY2022": null,
+     "FY2023": 0.6968137487492589,
+     "FY2024": 1.0628473279120225,
+     "FY2025": 1.6104782350994709
+    }
+   },
+   "promoted": false,
+   "disposition": "watch_flag",
+   "verdict": "WATCH FLAG \u2014 clause one UNTESTABLE at 9 cells"
+  },
+  "materials": {
+   "n": 9,
+   "bias": -0.287115001790723,
+   "admissible_cuts": 0,
+   "flips": 0,
+   "clause_one": false,
+   "clause_one_reason": "no boundary leaves 5 cells on both sides \u2014 UNTESTABLE, never counted stable",
+   "clause_two": "One escalator per driver class is the house rule (L-009, L-110): fuel and imported inputs follow their own commodity path, not domestic inflation. This issuer does not split the line, so the right answer is the disclosure gap, not a multiplier on the blend.",
+   "adjusted_vs_raw": {
+    "n": 3,
+    "mae_raw": 0.2064813875726513,
+    "mae_adjusted": 0.4805092832934776,
+    "improves": false,
+    "by_origin": {
+     "FY2023": {
+      "mae_raw": 0.29026550827950504,
+      "mae_adjusted": 0.5925578941447935,
+      "improves": false
+     },
+     "FY2024": {
+      "mae_raw": 0.03891314615894379,
+      "mae_adjusted": 0.2564120615908457,
+      "improves": false
+     }
+    },
+    "factors": {
+     "FY2021": null,
+     "FY2022": null,
+     "FY2023": 1.3529567543146321,
+     "FY2024": 1.2429640814278102,
+     "FY2025": 1.1543731863905604
+    }
+   },
+   "promoted": false,
+   "disposition": "watch_flag",
+   "verdict": "WATCH FLAG \u2014 clause one UNTESTABLE at 9 cells"
+  },
+  "pat": {
+   "n": 2,
+   "bias": -1.8853636998044,
+   "admissible_cuts": 0,
+   "flips": 0,
+   "clause_one": false,
+   "clause_one_reason": "no boundary leaves 5 cells on both sides \u2014 UNTESTABLE, never counted stable",
+   "clause_two": "An AGGREGATE, and the same refusal.",
+   "adjusted_vs_raw": null,
+   "promoted": false,
+   "disposition": "refused",
+   "verdict": "REFUSED \u2014 an aggregate; corrections apply to drivers"
+  },
+  "revenue": {
+   "n": 9,
+   "bias": -0.5612404494907345,
+   "admissible_cuts": 0,
+   "flips": 0,
+   "clause_one": false,
+   "clause_one_reason": "no boundary leaves 5 cells on both sides \u2014 UNTESTABLE, never counted stable",
+   "clause_two": "The house builds revenue as volume x price from an exogenous anchor. A multiplier on revenue is not how that driver is built anywhere in this book, and on this name the residual is the ACTIVITY ANCHOR ITSELF missing \u2014 Egyptian real GDP growth is not Egyptian cement demand, which rose 13.4% in 2025 while GDP grew about 4%. That is a specification question, not a calibration one, and no correction factor may hide it.",
+   "adjusted_vs_raw": {
+    "n": 3,
+    "mae_raw": 0.18039177236752688,
+    "mae_adjusted": 0.10794766374408016,
+    "improves": true,
+    "by_origin": {
+     "FY2023": {
+      "mae_raw": 0.2017714262583792,
+      "mae_adjusted": 0.07752402244734621,
+      "improves": true
+     },
+     "FY2024": {
+      "mae_raw": 0.13763246458582215,
+      "mae_adjusted": 0.16879494633754802,
+      "improves": false
+     }
+    },
+    "factors": {
+     "FY2021": null,
+     "FY2022": null,
+     "FY2023": 1.322197927834426,
+     "FY2024": 1.3585628470752982,
+     "FY2025": 1.3239507047309547
+    }
+   },
+   "promoted": false,
+   "disposition": "watch_flag",
+   "verdict": "WATCH FLAG \u2014 clause one UNTESTABLE at 9 cells"
+  },
+  "transport": {
+   "n": 9,
+   "bias": -0.4515367650091436,
+   "admissible_cuts": 0,
+   "flips": 0,
+   "clause_one": false,
+   "clause_one_reason": "no boundary leaves 5 cells on both sides \u2014 UNTESTABLE, never counted stable",
+   "clause_two": "L-120, a CLASS lesson, says haulage follows the EXPORT tonne and a cost per despatched tonne misprices it. This issuer discloses no tonne at all, so the class fix is not even expressible here.",
+   "adjusted_vs_raw": {
+    "n": 3,
+    "mae_raw": 0.2795114768275188,
+    "mae_adjusted": 0.5788846569613378,
+    "improves": false,
+    "by_origin": {
+     "FY2023": {
+      "mae_raw": 0.38914268084700654,
+      "mae_adjusted": 0.6979134185041125,
+      "improves": false
+     },
+     "FY2024": {
+      "mae_raw": 0.06024906878854342,
+      "mae_adjusted": 0.34082713387578867,
+      "improves": false
+     }
+    },
+    "factors": {
+     "FY2021": null,
+     "FY2022": null,
+     "FY2023": 1.3617501366862883,
+     "FY2024": 1.3238948885984756,
+     "FY2025": 1.253285348844746
+    }
+   },
+   "promoted": false,
+   "disposition": "watch_flag",
+   "verdict": "WATCH FLAG \u2014 clause one UNTESTABLE at 9 cells"
+  },
+  "working_capital": {
+   "n": 3,
+   "bias": -0.704410965674645,
+   "admissible_cuts": 0,
+   "flips": 0,
+   "clause_one": false,
+   "clause_one_reason": "no boundary leaves 5 cells on both sides \u2014 UNTESTABLE, never counted stable",
+   "clause_two": "Working capital is built from the disclosed cycle everywhere. A multiplier is not that.",
+   "adjusted_vs_raw": null,
+   "promoted": false,
+   "disposition": "watch_flag",
+   "verdict": "WATCH FLAG \u2014 clause one UNTESTABLE at 3 cells"
+  }
+ },
+ "adopted": [],
+ "promoted": [],
+ "summary": "13 candidates measured, 0 promoted, 11 recorded as watch flags, 2 refused as aggregates. Nothing from this run enters the live drivers.",
+ "guidance_ledger": {
+  "entries": [],
+  "note": "EMPTY, and that is a finding rather than an omission. Sinai Cement publishes no forward guidance, no results presentation and no earnings call in any of its six filings or on its own website \u2014 the prior study's sweep logged that as a negative search and this run confirms it. So the guidance-is-scored-never-consumed clause has nothing to score here, and no driver in this model can have inherited a management lean, because there is no management forward number to inherit."
+ }
+}

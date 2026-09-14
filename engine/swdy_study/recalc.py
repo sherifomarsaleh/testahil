@@ -24,7 +24,14 @@ import openpyxl
 import xlcalc
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-XLSX = os.path.join(HERE, 'SWDY_Valuation_Model_05082026_public.xlsx')
+# THE RECALCULATOR OPENS THE WORKBOOK THIS STUDY DELIVERS, NOT A NAME TYPED HERE.
+# It named SWDY_Valuation_Model_05082026_public.xlsx -- the 5-AUGUST edition -- and went on
+# naming it through the 09-September rebuild. So the one check whose whole job is to prove
+# the delivered workbook reproduces the model was opening a superseded file and reporting
+# ITS agreement as the current edition's. That is [L-066] exactly, and it is why edition.py
+# exists: the edition is written once and every artefact name derives from it.
+import edition as _ed
+XLSX = os.path.join(HERE, _ed.MODEL_XLSX)
 wb = openpyxl.load_workbook(XLSX)
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 XP = json.load(open(os.path.join(HERE, 'xlsx_expected.json')))
@@ -85,10 +92,21 @@ checks = [
     ('DCF fair value per share at the anchor', g('DCF', 'C62'), DCF['ps'], 0.02),
     ('DCF cost of capital — explicit window', g('DCF', 'C46'), D['wacc']['wacc_exp'], 0.0002),
     ('DCF cost of capital — terminal', g('DCF', 'C53'), D['wacc']['wacc_term'], 0.0002),
-    ('DCF terminal return on invested capital', g('DCF', 'C21'), DCF['roic_term'], 0.001),
-    ('Bridge equity attributable', g('SOTP Bridge', 'C12'), DCF['eq_attr'], 1.0),
+    # A CHECK THAT OPENS A DELIVERED FILE BY ADDRESS MOVES WITH THE RE-ISSUE [L-066/L-067].
+    # The terminal block was rebuilt on the sanctioned construction and these five
+    # addresses moved with it; left alone they read five perfectly real cells and compare
+    # them with quantities they are not.
+    ('DCF terminal return on invested capital', g('DCF', 'C68'), DCF['roic_term'], 0.001),
+    ('DCF terminal free cash flow to the firm', g('DCF', 'C22'),
+     DCF['terminal_record']['fcff'], 1.0),
+    ('DCF terminal maintenance at replacement cost', g('DCF', 'C65'),
+     -DCF['terminal_record']['maintenance'], 1.0),
+    ('Bridge equity attributable to ordinary shareholders', g('SOTP Bridge', 'C13'),
+     DCF['eq_attr'], 1.0),
+    ("Bridge employees' statutory share of profit", g('SOTP Bridge', 'C18'),
+     D['eps_reconciliation']['charged_at'], 0.0005),
     ('Bridge enterprise value', g('SOTP Bridge', 'C7'), DCF['ev'], 1.0),
-    ('Bridge minority share of group profit', g('SOTP Bridge', 'C15'), DCF['nci_share'], 0.0005),
+    ('Bridge minority share of group profit', g('SOTP Bridge', 'C17'), DCF['nci_share'], 0.0005),
     ('Fundamental — DCF lens', g('Fundamental Valuation', 'C5'), DCF['ps'], 0.02),
     ('Fundamental — relative lens', g('Fundamental Valuation', 'C8'), LN['relative']['base'], 0.02),
     ('Fundamental — normalised lens', g('Fundamental Valuation', 'C9'), LN['normalized']['base'], 0.02),
@@ -96,8 +114,12 @@ checks = [
     ('Fundamental — panel median', g('Fundamental Valuation', 'C26'), D['panel_centre'], 0.02),
     ('Fundamental — currency alternative', g('Fundamental Valuation', 'C18'), DCF['ccy_alt_ps'], 0.02),
     ('Summary weighted central', g('Summary', 'C9'), D['central'], 0.02),
-    ('Summary terminal value share', g('Summary', 'C12'), DCF['tv_share'], 0.002),
-    ('Summary panel median', g('Summary', 'C13'), D['panel_centre'], 0.02),
+    # THESE TWO WERE ALREADY STALE BEFORE THIS RE-ISSUE and had been reporting as
+    # mismatches rather than being fixed: C12 is EMPTY and read as 0.0000, which the
+    # tolerance turned into a difference rather than an error. The Summary's terminal
+    # share sits at C14 and the expert-panel median at C15.
+    ('Summary terminal value share', g('Summary', 'C14'), DCF['tv_share'], 0.002),
+    ('Summary panel median', g('Summary', 'C15'), D['panel_centre'], 0.02),
     ('Summary market capitalisation', g('Summary', ANCH['summary_mktcap']), D['meta']['mktcap'], 1.0),
     ('Relative lens implied value', g('Relative & Normalized', 'C11'), LN['relative']['base'], 0.02),
     ('Normalised lens implied value', g('Relative & Normalized', 'C28'), LN['normalized']['base'], 0.02),

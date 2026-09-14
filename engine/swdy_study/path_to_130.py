@@ -12,8 +12,24 @@ B. CONDITIONS. If instead the question is what would have to be TRUE for the
    others at base — and the ones that cannot reach 130 within any defensible
    range are reported as unreachable rather than extrapolated.
 """
-import json, os
+import json, os, sys
 import numpy as np
+
+# THE TERMINAL COMES FROM THE SANCTIONED MODULE HERE TOO [R-TERM-01], and it did not.
+# This helper re-implemented the terminal inline as nopat x (1+g) x (1 - g/ROIC), which is
+# the g x IC reinvestment identity the rule RETIRED, and it also divided the whole equity
+# by the whole share count without the employees' statutory share the bridge deducts. Both
+# are defects the study fixed elsewhere and this file kept, which is [R-ENF-03] in
+# miniature: a scenario that re-implements what it is testing grades something other than
+# what ships. Its own assert caught the divergence the moment the base moved.
+import importlib.util as _ilu
+_spec = _ilu.spec_from_file_location(
+    'engine_terminal_value',
+    os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                 'terminal_value.py'))
+TV_MOD = _ilu.module_from_spec(_spec)
+sys.modules['engine_terminal_value'] = TV_MOD
+_spec.loader.exec_module(TV_MOD)
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
@@ -23,6 +39,8 @@ SH, SPOT = D['meta']['shares_mn'], D['meta']['spot']
 TAX = IN['tax_eff']
 TARGET = 130.0
 ND0, ASSOC, NCI_SH = DCF['nd'], DCF['assoc'], DCF['nci_share']
+EMP_RATE = D['eps_reconciliation']['charged_at']
+TR_IN = DCF['terminal_record']['inputs']
 G, ROIC_T = IN['g_term'], DCF['roic_term']
 KE_EXP, KE_TERM = W['ke_exp'], W['ke_term']
 WD_EXP, WD_TERM = W['wd_exp'], IN['wd_term']
@@ -102,11 +120,26 @@ def value(margin_shift=0.0, fx_mult=1.0, rate_shift=0.0, g=G, nwc=IN['nwc_pct'],
     ppe, p = [], F['ppe'][0] - (F['capex'][0] - F['dna'][0])
     for i in range(5):
         p += capex[i] - dna[i]; ppe.append(p)
-    roic = nopat[-1] / (nwc_l[-1] + ppe[-1] + IN['intang_fy24'])
-    rr = min(g / roic, 0.95)
-    tv = nopat[-1] * (1 + g) * (1 - rr) / max(wt - g, 0.015)
+    ic_end = nwc_l[-1] + ppe[-1] + IN['intang_fy24']
+    tv = TV_MOD.build(TV_MOD.TerminalInputs(
+        nopat=nopat[-1], wacc=max(wt, g + 0.015), inflation=IN['pi_term'],
+        real_growth=(1.0 + g) / (1.0 + IN['pi_term']) - 1.0,
+        dna_book=dna[-1],
+        useful_life_years=IN['asset_life_derived'],
+        useful_life_source=IN['asset_life_source'],
+        maintenance_basis='book_dna_escalated',
+        working_capital=nwc_l[-1],
+        incremental_capital_per_unit_growth=ic_end)).tv
     ev = sum(fcff[i] * df[i] for i in range(5)) + tv * df[-1]
-    return ((ev - ND0 + ASSOC) * (1 - NCI_SH)) / SH
+    # THE ANCHOR ROLL WAS MISSING AND TWO OTHER ERRORS WERE HIDING IT. This returned the
+    # value at 31-Dec-2025 and compared it with the study's ANCHOR-DATE figure, which is
+    # a different date - and it passed, because the retired g x IC terminal ran high and
+    # the omitted employees' share ran high too, and together they made up almost exactly
+    # the roll. Correcting the terminal alone took the rebuild from 50.62 to 46.11 against
+    # a published 52.70, which is the roll appearing from under two offsetting errors.
+    # ONE DATE, ONE PRICE OF TIME [R-COC-01].
+    ps_dec = ((ev - ND0 + ASSOC) * (1 - NCI_SH) * (1 - EMP_RATE)) / SH
+    return ps_dec * DCF['roll'] - IN['dps_fy25']
 
 chk = value()
 assert abs(chk - DCF['ps']) < 0.60, f'driver rebuild does not reproduce base: {chk} vs {DCF["ps"]}'

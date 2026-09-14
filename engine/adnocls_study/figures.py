@@ -55,8 +55,13 @@ names = [f'Cash-flow model\n(published index, beta {BETA_P:.3f})',
          'Relative multiples',
          'Normalised\nearnings power',
          'Book value and\nsustainable return',
-         'Weighted central\n(published index)',
-         'Weighted central\n(equal-weight composite)']
+         # [R-LENS-03] THE CENTRAL IS THE CASH-FLOW LENS, NOT A BLEND OF THE FIVE BARS
+         # BESIDE IT. These two rows carried the retired weighted blend's label long
+         # after the blend itself was retired and the committed central became the
+         # class primary — the figure telling a reader the answer was an average of the
+         # bars either side of it, which it is not and has not been.
+         'Central\n(cash-flow lens, published index)',
+         'Central\n(cash-flow lens, equal-weight composite)']
 # The two composite rows do NOT have bear and bull cases of their own: the committed file
 # carries the PRIMARY construction's bounds against them, because only the base was re-run
 # on the composite beta. Drawing a span there would put a bar around a base that bar does
@@ -222,10 +227,10 @@ ax.axhline(cb, color=BRASS, lw=1.5, ls='--')
 ax.axhline(cba, color=TEAL, lw=1.5, ls='--')
 ymax, ymin = max(fan[4].max(), cba), fan[0].min()
 r = ymax - ymin
-ax.text(days[-1] - 0.5, cb + 0.018 * r, f'weighted central, published index  {cb:.2f}',
+ax.text(days[-1] - 0.5, cb + 0.018 * r, f'central — cash-flow lens, published index  {cb:.2f}',
         color=BRASS, fontsize=8.6, va='bottom', ha='right')
 ax.text(days[-1] - 0.5, cba + 0.018 * r,
-        f'weighted central, equal-weight composite  {cba:.2f}',
+        f'central — cash-flow lens, equal-weight composite  {cba:.2f}',
         color=TEAL, fontsize=8.6, va='bottom', ha='right')
 ax.text(0.8, SPOT - 0.030 * r, f'market price {SPOT:.2f}', color=GREY,
         fontsize=8.6, ha='left', va='top')

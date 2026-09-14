@@ -8,7 +8,7 @@ const FV_OVERLAY = {
  "engine_configs": {
   "AE": {
    "nu": 4.5,
-   "width_cal": 0.957,
+   "width_cal": 0.965,
    "rf_live": 0.0365,
    "width_overlay_active": false
   },
@@ -529,7 +529,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.957,
+    "width_cal": 0.965,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -1173,7 +1173,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.957,
+    "width_cal": 0.965,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -1265,7 +1265,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.957,
+    "width_cal": 0.965,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -1357,7 +1357,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.957,
+    "width_cal": 0.965,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -2093,7 +2093,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.957,
+    "width_cal": 0.965,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -2185,7 +2185,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.957,
+    "width_cal": 0.965,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -2737,7 +2737,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.957,
+    "width_cal": 0.965,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -2921,7 +2921,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.957,
+    "width_cal": 0.965,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -3289,7 +3289,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.957,
+    "width_cal": 0.965,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -3381,7 +3381,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.957,
+    "width_cal": 0.965,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -3565,7 +3565,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.957,
+    "width_cal": 0.965,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -3933,7 +3933,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.957,
+    "width_cal": 0.965,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -4117,7 +4117,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.957,
+    "width_cal": 0.965,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -4669,7 +4669,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.957,
+    "width_cal": 0.965,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -5129,7 +5129,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.957,
+    "width_cal": 0.965,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -5313,7 +5313,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.957,
+    "width_cal": 0.965,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -5589,7 +5589,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.957,
+    "width_cal": 0.965,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -5773,7 +5773,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.957,
+    "width_cal": 0.965,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -5865,7 +5865,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.957,
+    "width_cal": 0.965,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -5957,7 +5957,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.957,
+    "width_cal": 0.965,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -6049,7 +6049,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.957,
+    "width_cal": 0.965,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -6116,98 +6116,6 @@ const FV_OVERLAY = {
    "market": "AE"
   },
   {
-   "ticker": "FERTIGLB",
-   "name": "Fertiglobe plc",
-   "code": "ADX:FERTIGLB",
-   "ccy": "AED",
-   "spot": 2.84,
-   "anchor_date": "2026-09-08",
-   "fv_asof": "2026-08-07",
-   "fv_lag_days": 32,
-   "fv_stale": false,
-   "fv_asof_in_closure": false,
-   "fv_bear": 1.27,
-   "fv_base": 2.15,
-   "fv_full": 2.79,
-   "gap_base_pct": -24.3,
-   "sigma_src": "quantile_inversion",
-   "engine": {
-    "nu": 4.5,
-    "width_cal": 0.957,
-    "width_overlay_active": false,
-    "n_paths": 50000,
-    "seed": 42
-   },
-   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
-   "realized_vs_fv": null,
-   "converged": null,
-   "1M": {
-    "h_sessions": 21,
-    "sigma_h": 0.084503,
-    "mu_h": 0.0,
-    "G": {
-     "bear": -9.52,
-     "base": -3.29,
-     "full": -0.21
-    },
-    "band": "OUT-OF-REACH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0001,
-     "base": 0.0044,
-     "full": 0.3952
-    },
-    "p_touch": {
-     "bear": 0.0001,
-     "base": 0.0067,
-     "full": 0.6987
-    },
-    "required_cagr": {
-     "bear": -0.9999,
-     "base": -0.9646,
-     "full": -0.192
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.0034
-   },
-   "3M": {
-    "h_sessions": 62,
-    "sigma_h": 0.141039,
-    "mu_h": 0.0,
-    "G": {
-     "bear": -5.71,
-     "base": -1.97,
-     "full": -0.13
-    },
-    "band": "STRETCH",
-    "informative": true,
-    "already_converged": false,
-    "p_term": {
-     "bear": 0.0005,
-     "base": 0.0253,
-     "full": 0.4366
-    },
-    "p_touch": {
-     "bear": 0.0006,
-     "base": 0.0417,
-     "full": 0.8163
-    },
-    "required_cagr": {
-     "bear": -0.96,
-     "base": -0.6715,
-     "full": -0.0686
-    },
-    "hurdle_rf": 0.0365,
-    "beats_cash": false,
-    "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00645
-   },
-   "market": "AE"
-  },
-  {
    "ticker": "ALDAR",
    "name": "Aldar Properties PJSC",
    "code": "ADX:ALDAR",
@@ -6225,7 +6133,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.957,
+    "width_cal": 0.965,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -6298,6 +6206,98 @@ const FV_OVERLAY = {
     "selftest_max_dev": 0.00386
    },
    "market": "AE"
+  },
+  {
+   "ticker": "SWDY",
+   "name": "Elsewedy Electric",
+   "code": "EGX:SWDY",
+   "ccy": "EGP",
+   "spot": 136.2,
+   "anchor_date": "2026-09-06",
+   "fv_asof": "2026-09-03",
+   "fv_lag_days": 3,
+   "fv_stale": false,
+   "fv_asof_in_closure": false,
+   "fv_bear": 46.85,
+   "fv_base": 87.94,
+   "fv_full": 133.83,
+   "gap_base_pct": -35.4,
+   "sigma_src": "quantile_inversion",
+   "engine": {
+    "nu": 5.0,
+    "width_cal": 0.951,
+    "width_overlay_active": true,
+    "n_paths": 50000,
+    "seed": 42
+   },
+   "overlay_status": "PROVISIONAL \u2014 value-gap IC unmeasured",
+   "realized_vs_fv": null,
+   "converged": null,
+   "1M": {
+    "h_sessions": 20,
+    "sigma_h": 0.127773,
+    "mu_h": 0.022434,
+    "G": {
+     "bear": -8.35,
+     "base": -3.42,
+     "full": -0.14
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0001,
+     "base": 0.0028,
+     "full": 0.3514
+    },
+    "p_touch": {
+     "bear": 0.0001,
+     "base": 0.0039,
+     "full": 0.7097
+    },
+    "required_cagr": {
+     "bear": -1.0,
+     "base": -0.9948,
+     "full": -0.1899
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00152
+   },
+   "3M": {
+    "h_sessions": 62,
+    "sigma_h": 0.216364,
+    "mu_h": 0.059501,
+    "G": {
+     "bear": -4.93,
+     "base": -2.02,
+     "full": -0.08
+    },
+    "band": "OUT-OF-REACH",
+    "informative": true,
+    "already_converged": false,
+    "p_term": {
+     "bear": 0.0006,
+     "base": 0.0157,
+     "full": 0.3325
+    },
+    "p_touch": {
+     "bear": 0.0008,
+     "base": 0.0295,
+     "full": 0.8045
+    },
+    "required_cagr": {
+     "bear": -0.986,
+     "base": -0.8262,
+     "full": -0.0678
+    },
+    "hurdle_rf": 0.195,
+    "beats_cash": false,
+    "asymmetry": "base below p5",
+    "selftest_max_dev": 0.00348
+   },
+   "market": "EG"
   },
   {
    "ticker": "EMFD",
@@ -6409,7 +6409,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.957,
+    "width_cal": 0.965,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -6501,7 +6501,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.957,
+    "width_cal": 0.965,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -7013,7 +7013,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.957,
+    "width_cal": 0.965,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -7164,25 +7164,25 @@ const FV_OVERLAY = {
    "market": "EG"
   },
   {
-   "ticker": "SWDY",
-   "name": "Elsewedy Electric",
-   "code": "EGX:SWDY",
-   "ccy": "EGP",
-   "spot": 136.2,
-   "anchor_date": "2026-09-06",
-   "fv_asof": "2026-08-05",
+   "ticker": "FERTIGLB",
+   "name": "Fertiglobe plc",
+   "code": "ADX:FERTIGLB",
+   "ccy": "AED",
+   "spot": 2.84,
+   "anchor_date": "2026-09-08",
+   "fv_asof": "2026-08-07",
    "fv_lag_days": 32,
    "fv_stale": false,
    "fv_asof_in_closure": false,
-   "fv_bear": 19.95,
-   "fv_base": 69.73,
-   "fv_full": 138.73,
-   "gap_base_pct": -48.8,
+   "fv_bear": 1.2691,
+   "fv_base": 1.8095,
+   "fv_full": 2.6831,
+   "gap_base_pct": -36.3,
    "sigma_src": "quantile_inversion",
    "engine": {
-    "nu": 5.0,
-    "width_cal": 0.951,
-    "width_overlay_active": true,
+    "nu": 4.5,
+    "width_cal": 0.965,
+    "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
    },
@@ -7190,13 +7190,13 @@ const FV_OVERLAY = {
    "realized_vs_fv": null,
    "converged": null,
    "1M": {
-    "h_sessions": 20,
-    "sigma_h": 0.127773,
-    "mu_h": 0.022434,
+    "h_sessions": 21,
+    "sigma_h": 0.084503,
+    "mu_h": 0.0,
     "G": {
-     "bear": -15.03,
-     "base": -5.24,
-     "full": 0.14
+     "bear": -9.53,
+     "base": -5.33,
+     "full": -0.67
     },
     "band": "NOT-EXPRESSIBLE",
     "informative": false,
@@ -7204,48 +7204,48 @@ const FV_OVERLAY = {
     "p_term": null,
     "p_touch": null,
     "required_cagr": {
-     "bear": -1.0,
-     "base": -0.9997,
-     "full": 0.2472
+     "bear": -0.9999,
+     "base": -0.9955,
+     "full": -0.4944
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00152
+    "selftest_max_dev": 0.0034
    },
    "3M": {
     "h_sessions": 62,
-    "sigma_h": 0.216364,
-    "mu_h": 0.059501,
+    "sigma_h": 0.141039,
+    "mu_h": 0.0,
     "G": {
-     "bear": -8.88,
-     "base": -3.09,
-     "full": 0.09
+     "bear": -5.71,
+     "base": -3.2,
+     "full": -0.4
     },
     "band": "OUT-OF-REACH",
     "informative": true,
     "already_converged": false,
     "p_term": {
-     "bear": 0.0,
-     "base": 0.0037,
-     "full": 0.592
+     "bear": 0.0005,
+     "base": 0.0049,
+     "full": 0.3072
     },
     "p_touch": {
-     "bear": 0.0,
-     "base": 0.0064,
-     "full": 0.9072
+     "bear": 0.0006,
+     "base": 0.0084,
+     "full": 0.5638
     },
     "required_cagr": {
-     "bear": -0.9995,
-     "base": -0.9313,
-     "full": 0.0764
+     "bear": -0.9601,
+     "base": -0.8352,
+     "full": -0.2033
     },
-    "hurdle_rf": 0.195,
+    "hurdle_rf": 0.0365,
     "beats_cash": false,
     "asymmetry": "base below p5",
-    "selftest_max_dev": 0.00348
+    "selftest_max_dev": 0.00645
    },
-   "market": "EG"
+   "market": "AE"
   },
   {
    "ticker": "PHAR",
@@ -7753,7 +7753,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.957,
+    "width_cal": 0.965,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42
@@ -7981,7 +7981,7 @@ const FV_OVERLAY = {
    "sigma_src": "quantile_inversion",
    "engine": {
     "nu": 4.5,
-    "width_cal": 0.957,
+    "width_cal": 0.965,
     "width_overlay_active": false,
     "n_paths": 50000,
     "seed": 42

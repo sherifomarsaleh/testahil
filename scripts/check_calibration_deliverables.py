@@ -44,6 +44,9 @@ import glob
 import json
 import os
 import re
+import sys as _sys
+_sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'engine'))
+import calibration_only as _cal            # [R-FCAL-01 §6 AMENDED]
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -83,13 +86,54 @@ def runs(engine=ENGINE):
     return out
 
 
+
+# THE BIBLIOGRAPHY-CLASS ARTEFACT SHIPS UNDER THREE NAMES AND THIS GATE KNEW TWO.
+# check_bibliography.BIBLIO is the one place those names are written down, NAMED from
+# what the book actually contains rather than inferred, and it already carries
+# source_register — which ELEC ships and which this gate failed it for. Two gates
+# keeping two copies of one standard is how a standard stops being tested the moment
+# one copy moves, so the pattern is IMPORTED [R-ENF-03] and matched directly instead of
+# being re-expressed as globs here. A first draft DID re-express it, as a string
+# transformation from the regex to a glob tuple, and its own cross-check caught that
+# the transformation did not round-trip — the translation layer was itself the drift it
+# existed to prevent, which is why there is no translation layer now.
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import check_bibliography as _bib  # noqa: E402
+
+BIBLIO_RX = _bib.BIBLIO
+
 REQUIRED = (
     ("report",       ("*Valuation_Study*.docx",)),
     ("report PDF",   ("*Valuation_Study*.pdf",)),
     ("workbook",     ("*Valuation_Model*.xlsx",)),
-    ("bibliography", ("*Bibliograph*.docx", "*Sources*.docx", "*Biblio*.docx")),
+    # THE BIBLIOGRAPHY-CLASS ARTEFACT SHIPS UNDER THREE NAMES AND THIS GATE KNEW TWO.
+    # check_bibliography.py holds the list, NAMED from what the book actually contains
+    # rather than inferred, and it already carries source_register — which ELEC ships and
+    # this gate failed it for. Two gates keeping two copies of one standard is how a
+    # standard stops being tested the moment one copy moves, so the pattern is IMPORTED
+    # [R-ENF-03] and the tuple below is now derived from it rather than typed a second
+    # time. A reader that guesses a naming convention silently finds nothing and reports
+    # that as a result [L-355].
+    ("bibliography", None),      # matched by BIBLIO_RX, not by glob
     ("QC gate",      ("QC_GATE_*.md",)),
 )
+
+
+
+def _latest_rx(sdir, rx, ext):
+    """The newest-dated file in `sdir` whose NAME matches `rx` and ends in `ext`.
+
+    The date comes from the filename exactly as _latest reads it, so the edition
+    comparison below is the same comparison for every deliverable.
+    """
+    best = (None, None)
+    for n in sorted(os.listdir(sdir)):
+        if not n.lower().endswith(ext) or not rx.search(n):
+            continue
+        dt = _date(n)
+        if dt and (best[1] is None or dt > best[1]):
+            best = (os.path.join(sdir, n), dt)
+    return best
 
 
 def check_study(sdir):
@@ -98,20 +142,44 @@ def check_study(sdir):
         return ["no study directory at %s" % os.path.relpath(sdir, ROOT)], {}
     bad, dates = [], {}
     for label, pats in REQUIRED:
-        p, dt = _latest(sdir, *pats)
+        if pats is None:
+            p, dt = _latest_rx(sdir, BIBLIO_RX, ".docx")
+            pats = ("a name matching %s" % BIBLIO_RX.pattern,)
+        else:
+            p, dt = _latest(sdir, *pats)
         if not p:
             bad.append("no %s (%s)" % (label, " or ".join(pats)))
             continue
         dates[label] = (os.path.basename(p), dt)
     if bad:
         return bad, dates
-    newest = max(dt for _, dt in dates.values())
-    behind = {k: v for k, v in dates.items() if v[1] != newest}
-    if behind:
-        stamp = "%04d-%02d-%02d" % newest
-        for k, (fn, dt) in sorted(behind.items()):
-            bad.append("the %s is dated %04d-%02d-%02d while the edition is %s (%s)"
-                       % (k, dt[0], dt[1], dt[2], stamp, fn))
+    # THE EDITION IS SET BY WHAT A READER RECEIVES, NOT BY WHEN WE AUDITED IT.
+    #
+    # This took max() across all four, and the QC gate is one of the four -- so auditing
+    # a delivered study a few days after issuing it moved the "edition" forward and
+    # reported the report, the PDF, the workbook and the bibliography as four separate
+    # failures. Three studies went red that way on 13-09-2026 for having been audited
+    # that morning, and the remedy the message implies -- re-date the artefacts -- would
+    # mean re-issuing an edition to a reader because this desk looked at it again. That
+    # is exactly backwards.
+    #
+    # A QC GATE IS INTERNAL EVIDENCE ABOUT A DELIVERED EDITION. It may be dated later
+    # than the edition, because auditing takes time. It may NOT be dated EARLIER: a gate
+    # older than the study it certifies certifies a document nobody received, which is
+    # the L-066/L-067 failure and is checked below rather than dropped.
+    delivered = {k: v for k, v in dates.items() if k != "QC gate"}
+    newest = max(dt for _, dt in delivered.values())
+    stamp = "%04d-%02d-%02d" % newest
+    behind = {k: v for k, v in delivered.items() if v[1] != newest}
+    for k, (fn, dt) in sorted(behind.items()):
+        bad.append("the %s is dated %04d-%02d-%02d while the edition is %s (%s)"
+                   % (k, dt[0], dt[1], dt[2], stamp, fn))
+    qc = dates.get("QC gate")
+    if qc and qc[1] < newest:
+        bad.append("the QC gate is dated %04d-%02d-%02d and the edition it certifies is "
+                   "%s (%s) — a gate older than the study it passes has measured a "
+                   "document nobody received"
+                   % (qc[1][0], qc[1][1], qc[1][2], stamp, qc[0]))
     return bad, dates
 
 
@@ -140,6 +208,12 @@ def main(argv):
     stale = [tk for tk in outstanding if tk not in found]
     ok, failed = [], {}
     for tk in sorted(found):
+        # [R-FCAL-01 §6 AMENDED 09-09-2026] — a run that DECLARES it struck no fair
+        # value ships no edition to be complete, so there is nothing here to check.
+        # Only a declaration is honoured; a run merely missing its study still fails.
+        _ok, _why = _cal.declared(tk)
+        if _ok:
+            continue
         sdir = os.path.join(engine, "%s_study" % tk.lower())
         bad, dates = check_study(sdir)
         if bad:

@@ -15,6 +15,17 @@ Two things are enforced structurally rather than remembered:
   * REVENUE AND COST SIT ON THE SAME RECOGNITION CLOCK. Development cost is a
     ratio of development revenue, both being handover quantities, so the two
     cannot drift apart and manufacture operating leverage on a thin residual.
+
+RUN ORDER, DECLARED HERE BECAUSE THIS IS THE FILE A REBUILDER OPENS FIRST:
+
+    python3 bottom_up.py     # writes bottom_up.json — the origin span everything reads
+    python3 forward.py       # forward_ranges.json
+    python3 diagnose.py      # diagnostics.json
+    python3 score.py         # error_cells.json, scores.json, the side-by-side table
+
+score.py takes its origin span from bottom_up.json rather than from this module, so a
+change HERE does not reach the scores until bottom_up.py is re-run — L-066/L-067, and
+the reason this order is written down rather than remembered.
 """
 import json, math, os, sys
 from collections import defaultdict
@@ -211,7 +222,21 @@ def project(A, cpi, urb, o, horizons=HORIZONS, foresight=False):
             a, b = sga_fit
             f["sga"] = -(a * infl(h) + b * f["total_revenue"])
         if d_rate is not None and state["ppe"] is not None:
-            da = d_rate * state["ppe"]
+            # THE MAGNITUDE, THEN THIS PANEL'S OWN SIGN. `d_rate` is fitted as
+            # da/ppe and this panel stores `da` NEGATIVE — the company's own
+            # convention — so d_rate comes out negative, `d_rate * ppe` came out
+            # negative, and `-da` then came out POSITIVE. The pbt line below ADDED
+            # depreciation to profit instead of deducting it, and the roll-forward
+            # two lines down GREW property, plant and equipment by the charge as
+            # well as by capex. score.py lists `da` in MAGNITUDE so the
+            # depreciation cells never showed it; `net_profit` and `ppe` are not in
+            # that set and are scored on the signed value. Measured across the 40
+            # cells carrying both: net_profit overstated by a mean 12.8% and by
+            # 26.7% at its worst (origin 2024, horizon 1). Found 06-09-2026 by
+            # building the valuation calibration's cash-flow lens on this run —
+            # nothing inside the run could see it, because its own scorer takes the
+            # absolute value of the one line where the sign is visible.
+            da = abs(d_rate) * state["ppe"]
             f["da"] = -da
             cx = (capex0 or 0.0) * infl(h)
             state["ppe"] = state["ppe"] + cx - da

@@ -26,19 +26,19 @@
   },
   "net_profit|gross_profit": {
    "n": 16,
-   "share_of_absolute_error": 0.5458636938297929
+   "share_of_absolute_error": 0.44639958056470297
   },
   "net_profit|sga": {
    "n": 16,
-   "share_of_absolute_error": -0.12330737254215932
+   "share_of_absolute_error": -0.12783872632994092
   },
   "net_profit|da": {
    "n": 16,
-   "share_of_absolute_error": -0.034480527427433245
+   "share_of_absolute_error": -0.06889645566645987
   },
   "net_profit|finance_cost": {
    "n": 16,
-   "share_of_absolute_error": -0.10601008095193368
+   "share_of_absolute_error": -0.11955045663886597
   }
  },
  "one_offs": [

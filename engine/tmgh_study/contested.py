@@ -21,11 +21,44 @@ mechanical, the judgement is signed.
 """
 import json
 import os
+import sys
+
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
 N = json.load(open(os.path.join(HERE, "study_numbers.json")))
 PSV = N["per_share_nci_value_share"]
 PSB = N["per_share_nci_book"]
+
+def _at_terminal_growth(g):
+    """The adopted case re-run with the terminal growth set to g. Refuses, never defaults.
+
+    A DEFAULT IS THE DEFECT. This value was read with a .get whose key was never written,
+    so the fallback published a superseded edition's number for as long as the record
+    existed and nothing could tell.
+    """
+    import importlib
+    import model as _M
+    import valuation as _V
+    was = _M.TERMINAL_GROWTH
+    try:
+        _M.TERMINAL_GROWTH = g
+        importlib.reload(_V)
+        # sotp(mode, SCHEDULE) -- the second argument is the cost-of-capital schedule,
+        # not a basis name. The adopted case is the rating premium on the slower
+        # conversion, which is what ADOPTED above reads.
+        out = _V.sotp("capacity", _V.SCHEDULES["rating"])
+        ps = out.get("per_share_nci_value_share")
+        if ps is None:
+            raise SystemExit(
+                "the model returned no per-share figure at a terminal growth of %.2f. "
+                "A contested alternative that cannot be priced is reported as "
+                "unpriceable, never defaulted to a number from another edition." % g)
+        return ps
+    finally:
+        _M.TERMINAL_GROWTH = was
+        importlib.reload(_V)
+
 
 # THE ADOPTED READING OF THIS STUDY, on its own adopted minority basis: the swap-premium
 # case on the slower conversion. Every alternative below is priced against THAT.
@@ -62,8 +95,13 @@ def judgements():
          "adopted": "inflation only, zero real, on the house macro path",
          "alternative": "the 15% the earlier editions carried",
          "value_adopted": ADOPTED,
-         "value_alternative": N["lenses"]["sensitivity"].get("terminal_growth_15pct",
-                                                             98.17),
+         # THE KEY NEVER EXISTED, so the default fired on every run and this record
+         # published edition 2's fair value as a current alternative. A .get with a
+         # numeric default is an absent answer wearing a clean one's clothes: nothing
+         # goes red, nothing is missing on the page, and the figure is from another
+         # study. It is COMPUTED now, by re-running the model's own terminal at 15%,
+         # and the run refuses rather than substituting if it cannot.
+         "value_alternative": _at_terminal_growth(0.15),
          "why": "15% nominal growth in perpetuity against a terminal rate embedding 7% "
                 "inflation is eight points of real growth a year for ever, which nothing "
                 "disclosed supports"},

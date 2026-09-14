@@ -1,5 +1,7 @@
 """ELEC_Valuation_Study_05-08-2026_public.docx — python-docx builder, TMPV house style.
 Palette: canvas 1C3A36 · panel EAF0EE/EFF3F1 · cream F6F1E6 · gold C0A45F · brass 896F36 · grey 6E7B77."""
+import os
+import re
 import json
 from docx import Document
 from docx.shared import Pt, Inches, RGBColor
@@ -134,14 +136,42 @@ def box(lines, fill=F_CREAM):
         p.paragraph_format.space_after = Pt(5)
     doc.add_paragraph().paragraph_format.space_after = Pt(2)
 
-def masthead():
+def edition_from_filename(path):
+    """The edition date this document is FILED under, read off its own filename.
+
+    A delivered document must state its own edition date in its masthead, and
+    state the right one. The date is DERIVED from the output path rather than
+    typed beside it, so the filename and the masthead cannot drift apart — which
+    is the only failure this is guarding against, and typing it twice is exactly
+    how it would happen. It is also not taken from the clock: a builder that
+    stamps the day it RAN restamps a delivered document's account of when the
+    work was done every time anybody rebuilds it.
+    """
+    m = re.search(r'_(\d{2})-(\d{2})-(\d{4})[_.]', os.path.basename(path))
+    if not m:
+        raise AssertionError(
+            'this document\'s filename carries no DD-MM-YYYY edition date, so the '
+            'masthead has nothing to state: %r' % os.path.basename(path))
+    d, mth, y = int(m.group(1)), int(m.group(2)), m.group(3)
+    months = ('January', 'February', 'March', 'April', 'May', 'June', 'July',
+              'August', 'September', 'October', 'November', 'December')
+    return '%d %s %s' % (d, months[mth - 1], y)
+
+
+def masthead(edition=None):
     t = doc.add_table(rows=1, cols=1)
     cell_margins(t, 90, 90, 160, 160)
     c = t.cell(0, 0); shade(c, F_DARK); c.width = Inches(7.0)
     p = c.paragraphs[0]
     r = p.add_run('Testahil · Independent Valuation Study — Educational Analysis')
     r.bold = True; r.font.size = Pt(11); r.font.color.rgb = WHITE
-    r2 = p.add_run('   Not investment advice')
+    if edition:
+        p.add_run('\n')
+        r3 = p.add_run('Edition of ' + edition)
+        r3.font.size = Pt(9.5); r3.font.color.rgb = RGBColor(0x9F, 0xB0, 0xAC)
+        r2 = p.add_run('   ·   Not investment advice')
+    else:
+        r2 = p.add_run('   Not investment advice')
     r2.font.size = Pt(9.5); r2.font.color.rgb = RGBColor(0x9F, 0xB0, 0xAC)
     doc.add_paragraph().paragraph_format.space_after = Pt(0)
 

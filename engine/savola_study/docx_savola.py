@@ -1,9 +1,11 @@
-"""SAVOLA_Valuation_Study_19-08-2026_public.docx — SECOND EDITION (critique response,
+"""SAVOLA_Valuation_Study_{edition}_public.docx — SECOND EDITION (critique response,
 19-Aug-2026). 16-section study, house style, model-study (SWDY) skeleton,
 operating-company lens. Every financial numeral is read from study_numbers.json;
 no number is typed into this builder."""
 import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
 sys.path.insert(0, os.path.join(HERE, '..'))
 os.chdir(HERE)
 exec(open(os.path.join(HERE, '..', 'du_study', 'docx_base.py')).read())
@@ -1198,5 +1200,5 @@ P('This document is educational analysis, not investment advice, not a recommend
   'for a reason. Do your own work or engage a licensed adviser before acting.',
   size=9.0)
 
-doc.save(os.path.join(HERE, 'SAVOLA_Valuation_Study_19-08-2026_public.docx'))
+doc.save(os.path.join(HERE, _ed.STUDY_DOCX))
 print(f'study written · {_TN[0]} tables · {_FN[0]} figures')

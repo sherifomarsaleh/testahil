@@ -1,0 +1,1143 @@
+{
+ "ticker": "EMFD",
+ "asset_class": "STOCK",
+ "sweep_date": "2026-09-09",
+ "findings": [
+  {
+   "fid": "F01",
+   "ring": "GLOBAL",
+   "category": "rate cycle & USD/FX regime",
+   "klass": "STRUCTURAL",
+   "headline": "Fed funds target range 3.50-3.75%, held 29-Jul-2026 on a divided 9-3 vote with three officials wanting a HIKE; core inflation 2.6%, above target. Next decision 16-Sep-2026",
+   "source_name": "US Federal Reserve FOMC statement 29-Jul-2026 and June 16-17 2026 minutes, via federalreserve.gov press releases",
+   "source_type": "REGULATOR_OFFICIAL",
+   "source_date": "2026-07-29",
+   "detail": "Three cuts in Sep/Oct/Dec 2025 took the range to 3.50-3.75% and it has been held since. The easing cycle has stalled rather than continued.",
+   "url": "",
+   "model_impact": "Sets the USD leg of the terminal risk-free build and the direction of the EGP carry trade that funds Egyptian portfolio inflows. A stalled global easing cycle removes the tailwind under the CBE's own cutting path, so the terminal EGP rf is built off the CBE's stated target and NOT off an assumption of continued global easing.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F02",
+   "ring": "GLOBAL",
+   "category": "commodity complex (input/output)",
+   "klass": "STRUCTURAL",
+   "headline": "Egyptian construction inputs: steel rebar EGP 39,000-40,000/tonne mid-2026 (from EGP 33,500-37,000 in Jan-2026), stabilised across most mills in Aug-2026; cement steady at EGP 3,896/tonne in Jun-2026",
+   "source_name": "Arab Iron and Steel Union rebar price archive (19-Jan-2026); jarayid rebar prices 23-Jun-2026; Techno Time August-2026 rebar stabilisation report",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-08-01",
+   "detail": "Rebar rose ~10% over H1-2026 then plateaued. Rebar and cement together are the dominant hard-cost line in an Egyptian villa/apartment build.",
+   "url": "",
+   "model_impact": "Cost-per-square-metre driver. Because EMFD's own cost-of-revenue disclosure stops at H1-2021 and no later cost line exists (F52), this is the only sourced input to a forward cost line and it is therefore a TOP-DOWN driver, flagged as such in the gate table rather than dressed as bottom-up.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F03",
+   "ring": "GLOBAL",
+   "category": "global sector demand",
+   "klass": "STRUCTURAL",
+   "headline": "Gulf sovereign capital is the marginal buyer of Egyptian coastal land: ADQ acquired Ras El Hekma development rights for USD 24bn inside a USD 35bn consortium commitment, and 10m sqm of Red Sea coast was sold to Emirati and Saudi entities in a USD 18.5bn Marassi Red Sea project announced Sep-2025 with Emaar Misr named",
+   "source_name": "ADQ newsroom 'ADQ-led consortium to invest USD 35 billion in Egypt'; Turkiye Today reporting on the Red Sea land sale; zawia3 dossier on Alabbar's Egyptian land",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2025-09-30",
+   "detail": "Emaar Misr and City Stars are named as the Marassi Red Sea contracting parties. Whether the Red Sea land sits on EMFD's own balance sheet, in a JV, or with the parent CANNOT be established from any primary document reachable here \u2014 see F35 and F44.",
+   "url": "",
+   "model_impact": "A land-monetisation and new-project optionality that a build must either model explicitly with a named source or exclude explicitly. It must NOT be smoothed into a revenue growth rate: the perimeter question is unresolved, so the correct treatment is to exclude it from the base and dual-frame it.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F04",
+   "ring": "GLOBAL",
+   "category": "trade / sanctions / supply chains",
+   "klass": "STRUCTURAL",
+   "headline": "Red Sea diversion persists through 2026: Suez container transits down 16.7% y/y in early 2026 against an already depressed 2025, Egypt losing roughly USD 800m a month in canal receipts, Asia-Europe freight 25-40% above pre-2023 with 10-14 days added per voyage; industry expects diversion to run to at least 2027",
+   "source_name": "MarineLink / Ports Directory Red Sea security review; Zencargo Red Sea reopening analysis; The Middle East Insider Red Sea disruption status 25-Apr-2026",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-04-25",
+   "detail": "Two channels into this name: imported finishing materials and fit-out cost, and the FX squeeze from lost canal receipts that feeds the EGP path.",
+   "url": "",
+   "model_impact": "Raises the imported component of build cost and tightens the FX availability that sets the EGP path (F06). Carried inside the cost inflation driver and the FX driver, not as a separate revenue leg.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F05",
+   "ring": "COUNTRY",
+   "category": "sovereign macro (inflation, policy rate, FX/deval risk)",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "CBE held rates for the fourth consecutive meeting of 2026 (April, May, July, August): deposit 19.00%, lending 20.00%, main operation 19.50%. Headline CPI 14.6% y/y in May-2026 after 14.9% in April. CBE expects inflation to ACCELERATE through Q3-2026 on base effects, regional-conflict supply pressure, exchange-rate moves and fiscal adjustment, before declining toward target",
+   "source_name": "Central Bank of Egypt monetary policy decisions 2026; CBE inflation outlook as reported by Daily News Egypt 23-May-2026; FocusEconomics CBE meeting record",
+   "source_type": "REGULATOR_OFFICIAL",
+   "source_date": "2026-08-01",
+   "detail": "The policy rate has been flat all year. The CBE's own forward statement is that inflation gets worse before it gets better.",
+   "url": "",
+   "model_impact": "UNLOCKS a bottom-up cost of equity: the explicit-window EGP risk-free rate is the CBE's own published operation rate (19.50%) and the terminal rate is normalised off the CBE's own medium-term inflation target plus a standard EM real-rate convention \u2014 never a historical average. This is the D-finding the discount-rate driver is gated on.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F06",
+   "ring": "COUNTRY",
+   "category": "sovereign macro (inflation, policy rate, FX/deval risk)",
+   "klass": "STRUCTURAL",
+   "headline": "EGP/USD: 0.0195451 USD per EGP on 02-Sep-2026 (about EGP 51.2 per USD); 2026 range 0.0214 on 16-Feb-2026 to 0.0183 on 07-Apr-2026, a 17% swing inside one year. Reuters-polled economists expect roughly EGP 49/USD by end-FY2026/27",
+   "source_name": "Wise EGP/USD rate history; exchangerates.org.uk EGP-USD 2026 spot history; Reuters FX poll as reported by TradingEconomics",
+   "source_type": "PRIMARY_MARKET_DATA",
+   "source_date": "2026-09-02",
+   "detail": "Four devaluation events bracket the study history: the Nov-2016 float and the Mar-2022, Oct-2022 and Mar-2024 steps. Only the first sits inside the window of EMFD's own published statements.",
+   "url": "",
+   "model_impact": "Two distinct effects and they must not be netted. (1) EMFD's functional currency is EGP and ALL FX differences go to profit or loss, not OCI (F29) \u2014 so translation noise lands in earnings. (2) The parent-disclosed FY2022-FY2025 series is in AED (F37-F40), so the EGP path is what turns a 47% AED revenue DECLINE into an EGP revenue INCREASE. Any build that reads the AED series as the business trend is wrong by the whole devaluation.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F07",
+   "ring": "COUNTRY",
+   "category": "regulatory environment (regulator, caps, tariffs, tax/subsidy)",
+   "klass": "BASE_CHANGER",
+   "headline": "NUCA retroactive land-assignment fee: EGP 1,000/sqm of TOTAL land area for local developers and USD 20/sqm FOR FOREIGN DEVELOPERS, on plots allocated before February 2024. Terms 20% upfront then five years at 10% interest. NUCA target EGP 45bn; EGP 15bn collected by 29-Apr-2026 across 83 targeted companies, with Mountain View (EGP 6bn) and SODIC (EGP 4bn) the named payers. Rollback of up to 50% for pre-Feb-2024 North Coast plots, recomputed on BUILT-UP area only",
+   "source_name": "EnterpriseAM Egypt, 'Established developers on the North Coast got hit by controversial retroactive land fees \u2014 Nuca is now rolling them back', 29-Apr-2026",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-04-29",
+   "detail": "Emaar Misr is a foreign-controlled developer (73.79% Emaar Properties PJSC, UAE \u2014 F39 and F42) whose flagship Marassi sits on the Western North Coast. The USD rate is the one that would apply to it. On the last land figure the company itself published, 15.46m sqm (F33), USD 20/sqm is of the order of USD 300m before any built-up-area rollback. Whether Emaar Misr settled, at what rate and on what area is NOT disclosed anywhere reachable \u2014 see F43.",
+   "url": "",
+   "model_impact": "BASE CHANGER, and a dollar-linked one on a pound revenue line. It resets the net-debt bridge (a USD-denominated payable that grows with every devaluation) and the land cost per sqm. It must be modelled as an explicit dated event with the settled/not-settled cases dual-framed, never absorbed into a cost glide.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F08",
+   "ring": "COUNTRY",
+   "category": "regulatory environment (regulator, caps, tariffs, tax/subsidy)",
+   "klass": "STRUCTURAL",
+   "headline": "NUCA relief package 13-Jul-2026: 70% off unit assignment fees and 90% off land assignment fees in 10th of Ramadan, 10th Gardens, New Obour, New October and Upper Egypt cities; 50% off land assignment fees in other new cities EXPLICITLY EXCLUDING THE WESTERN NORTH COAST; 70% waiver of late-payment penalties for clients settling within three months; up to one year of extra time for stalled projects",
+   "source_name": "EnterpriseAM Egypt, 'Nuca rolls out fee cuts and penalty waivers for real estate developers', 13-Jul-2026",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-07-13",
+   "detail": "Sheikh Zayed (Belle Vie) and New Cairo (Mivida) are neither named as covered nor named as excluded. Marassi, on the Western North Coast, is excluded by name of region.",
+   "url": "",
+   "model_impact": "Removes the relief case from the largest single exposure. The dual-framing of F07 therefore runs relief-on-Sheikh-Zayed against no-relief-on-Marassi, rather than a single blended assumption.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F09",
+   "ring": "COUNTRY",
+   "category": "fiscal / political events with sector read-through",
+   "klass": "STRUCTURAL",
+   "headline": "IMF Executive Board completed the combined fifth and sixth EFF reviews on 26-Feb-2026, releasing about USD 2bn plus USD 273m under the RSF, and extended the 46-month arrangement to 15-Dec-2026. Real GDP +4.4% in FY2024/25; inflation 11.9% in Jan-2026. S&P upgraded Egypt from B- to B, stable, in Oct-2025 \u2014 the first upgrade in seven years",
+   "source_name": "IMF press release PR26/064, 26-Feb-2026; IMF Staff Country Report 2026/069; S&P Global Ratings Egypt sovereign action Oct-2025",
+   "source_type": "REGULATOR_OFFICIAL",
+   "source_date": "2026-02-26",
+   "detail": "The IMF explicitly attributes the improvement in FDI and portfolio flows to the Ras El Hekma investment agreements.",
+   "url": "",
+   "model_impact": "Sets the sovereign spread netted out of the local-currency risk-free rate in the Ke build so the default premium is not charged twice, and sets the country risk premium add-on. The B rating and the programme end-date of 15-Dec-2026 both belong in the sensitivity, because the programme expiring inside the explicit window is itself an event.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F10",
+   "ring": "INDUSTRY",
+   "category": "demand drivers & capacity/supply balance",
+   "klass": "STRUCTURAL",
+   "headline": "Egypt's top-10 developers booked about EGP 670bn of sales in H1-2026 against about EGP 651bn in H1-2025 \u2014 +2.9% y/y in NOMINAL pounds, against a 14.6% headline inflation rate. In real terms the market contracted",
+   "source_name": "The Board Consulting, via Zawya 'Top 10 Egyptian developers' sales rise to $13.26bln in H1 2026'",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-08-15",
+   "detail": "This is the sales (contracting) measure, not recognised revenue. It is the leading indicator for a point-in-time developer whose revenue lags handover by years.",
+   "url": "",
+   "model_impact": "Caps the sales-growth driver. A build that carries EGP contracted-sales growth at or above inflation is contradicted by the only market-wide measure available, so the sales driver is set at or below nominal market growth and sensitised on share.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F11",
+   "ring": "INDUSTRY",
+   "category": "pricing",
+   "klass": "STRUCTURAL",
+   "headline": "North Coast average apartment price EGP 76,150/sqm in Dec-2025, +209% y/y. Egypt average around EGP 40,000/sqm in 2026; new-city luxury compounds EGP 45,000-85,000+/sqm; 2026 growth guided at 12-20% with branded North Coast and Red Sea product above that range",
+   "source_name": "Global Property Guide Egypt residential price history; Sands of Wealth Egypt price forecasts 2026; Buildex Egypt real estate prices 2026",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-01-15",
+   "detail": "The +209% North Coast move is the single largest price step in the dataset and it lands precisely on Marassi's segment.",
+   "url": "",
+   "model_impact": "The price leg of the volume x price build. Growth is projected in BOTH legs: this sets price, and F10/F35 bound volume. The 209% step is treated as a level shift already in the contracted book, not as a repeatable growth rate.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F12",
+   "ring": "INDUSTRY",
+   "category": "new entrants (named-competitor level)",
+   "klass": "STRUCTURAL",
+   "headline": "Two names entered the top ten on North Coast and new-city product: Madaar (the Ras El Hekma developer, ADQ-backed) at EGP 44bn of H1-2026 sales, and G Developments at EGP 30bn \u2014 neither was a top-ten name before the Ras El Hekma transaction",
+   "source_name": "The Board Consulting top-10 ranking H1-2026, via Zawya",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-08-15",
+   "detail": "",
+   "url": "",
+   "model_impact": "Adds sovereign-funded supply on the same coastline and to the same buyer as Marassi. Applied as a market-share headwind in the sales driver, and as a reason the price step of F9 is not extrapolated.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F13",
+   "ring": "INDUSTRY",
+   "category": "technology substitution",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (searched: 'Egypt real estate technology substitution modular construction 3D printing proptech disrupting developers 2026'. Result: the technology found (BIM, precast and volumetric modules at 8.92% CAGR, concrete 3D-printing pilots, e-contracts, blockchain registry pilots, Flat6Labs Egypt PropTech Challenge 2026) is ADOPTED BY the incumbent developers \u2014 TMG, Palm Hills, SODIC and Emaar Misr are named as investors in and customers of it, not as its targets. No substitute for master-planned land development was found. Category closed negative)",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-09-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F14",
+   "ring": "INDUSTRY",
+   "category": "competitor capacity / price moves (named)",
+   "klass": "STRUCTURAL",
+   "headline": "H1-2026 sales league, named: Talaat Moustafa EGP 219bn, Palm Hills EGP 94bn, Mountain View EGP 63.7bn, EMAAR MISR EGP 60.9bn (4th), Hyde Park EGP 52.9bn, Tatweer Misr EGP 50.5bn, Madaar Ras El Hekma EGP 44bn, G Developments EGP 30bn, Madinet Masr EGP 28.4bn, La Vista EGP 26.5bn",
+   "source_name": "The Board Consulting top-10 ranking H1-2026, via Zawya",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-08-15",
+   "detail": "EMFD at EGP 60.9bn is 9.1% of the top-ten total. This is the ONLY quantified EMFD contracted-sales figure available for any period after FY2017, and it is a third-party market-research estimate, not a company disclosure \u2014 see F43.",
+   "url": "",
+   "model_impact": "Anchors EMFD's market share and gives the only H1-2026 sales scale available. Because its provenance is a consultancy and not the company, it enters the build as a TOP-DOWN sanity bound on the sales driver and never as the driver itself.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F15",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "FY2017 statement of profit or loss, from the company's own filing: revenue EGP 4,511,007,479, cost of revenue EGP 2,797,505,966, gross profit EGP 1,713,501,513 (38.0%), PBT EGP 2,761,891,486, profit EGP 2,300,270,324, EPS 0.48. FY2016 comparative in the same document: revenue EGP 4,008,925,078, gross profit EGP 1,602,253,007, profit EGP 1,683,572,786",
+   "source_name": "Emaar Misr FY2017 year-end financial statements (single entity), https://www.emaarmisr.com/wp-content/uploads/2025/10/Emaar-Misr-IR-Reports-Financial-Statements-2017-Year-End-EN.pdf, page 5",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2018-02-25",
+   "detail": "INTEGRITY: scanned_filing_integrity says REFUSE for this FILE (symbol dictionary, segment types [0,6,48,50]), but the JBIG2 stream is confined to PAGE 3, the statement of financial position. The profit-or-loss page and 33 other pages are NATIVE TEXT with no image at all, so the P&L is safe and the BALANCE SHEET IS NOT. FOOTING: both columns re-add exactly \u2014 revenue less cost equals the printed gross profit, gross profit plus the eight lines below it equals the printed PBT, PBT less tax equals the printed profit.",
+   "url": "https://www.emaarmisr.com/wp-content/uploads/2025/10/Emaar-Misr-IR-Reports-Financial-Statements-2017-Year-End-EN.pdf",
+   "model_impact": "Second historical year for the reconciliation table and the last year on the pre-consolidation reporting entity. Also the licence to use the FY2016 figures: its native-text comparative column reproduces the walk-forward's OCR read of the REFUSED FY2016 filing to the pound.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2017"
+  },
+  {
+   "fid": "F16",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "FY2018 consolidated statement of profit or loss: revenue EGP 6,341,683,065, cost of revenue EGP 3,762,184,682, gross profit EGP 2,579,498,383 (40.7%), PBT EGP 3,741,491,995, profit EGP 3,418,901,347, EPS 0.72",
+   "source_name": "Emaar Misr FY2018 year-end consolidated financial statements, https://www.emaarmisr.com/wp-content/uploads/2025/10/Emaar-Misr-IR-Reports-Financial-Statements-2018-Year-End-EN-Consolidated.pdf, page 6",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2019-02-28",
+   "detail": "INTEGRITY: 'not a JBIG2 scan'. Its three image pages are DCTDecode (JPEG), where re-reading at higher resolution is the correct and sufficient remedy. FOOTING: both columns re-add exactly.",
+   "url": "https://www.emaarmisr.com/wp-content/uploads/2025/10/Emaar-Misr-IR-Reports-Financial-Statements-2018-Year-End-EN-Consolidated.pdf",
+   "model_impact": "First consolidated year and the peak margin of the published history \u2014 40.7% gross. Anchors the top of the margin range the forecast path is held against.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2018"
+  },
+  {
+   "fid": "F17",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "FY2019 consolidated statement of profit or loss AS FIRST REPORTED: revenue EGP 5,467,926,983, cost of revenue EGP 3,239,514,598, gross profit EGP 2,228,412,385 (40.8%), G&A EGP 1,372,422,425, PBT EGP 2,358,842,619, profit EGP 1,739,273,874, EPS 0.35",
+   "source_name": "Emaar Misr FY2019 year-end consolidated financial statements, https://www.emaarmisr.com/wp-content/uploads/2025/10/Emaar-Misr-IR-Reports-Financial-Statements-2019-Year-End-EN-Consolidated.pdf, page 6",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2020-03-01",
+   "detail": "INTEGRITY: 'not a JBIG2 scan'. FOOTING: both columns re-add exactly. NOTE the G&A step from EGP 456m to EGP 1,372m in one year \u2014 a 3x jump that no growth glide reproduces.",
+   "url": "https://www.emaarmisr.com/wp-content/uploads/2025/10/Emaar-Misr-IR-Reports-Financial-Statements-2019-Year-End-EN-Consolidated.pdf",
+   "model_impact": "The as-first-reported column. It is NOT the column the FY2020 filing prints for FY2019 (see F19) and a driver scored across the two would carry a +3.8% revenue step that is pure presentation.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2019"
+  },
+  {
+   "fid": "F18",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "FY2020 consolidated statements \u2014 the newest AUDITED year the company itself publishes. Profit or loss: revenue EGP 4,683,508,735, cost EGP 2,964,761,300, gross profit EGP 1,718,747,435 (36.7%), PBT EGP 2,119,925,726, profit EGP 1,678,408,560, EPS 0.34. Financial position at 31-Dec-2020: total assets EGP 48,970,762,883, total equity EGP 17,560,392,967, total liabilities EGP 31,410,369,916",
+   "source_name": "Emaar Misr FY2020 year-end consolidated financial statements (auditor EY Allied for Accounting & Auditing, report dated 4 March 2021), https://www.emaarmisr.com/wp-content/uploads/2025/10/Emaar-Misr-IR-Reports-Financial-Statements-2020-Q4-EN-Consolidated.pdf, pages 5 and 4",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2021-03-04",
+   "detail": "INTEGRITY: 'not a JBIG2 scan'; the three image pages are DCTDecode. ROUTE, recorded per figure: the P&L came off the NATIVE TEXT LAYER; the statement of financial position is an image and came by OCR of the page rendered at 400 dpi. FOOTING, and it is the reason the OCR is believed: both years' non-current assets, current assets, total assets, equity, non-current liabilities, current liabilities and total liabilities each re-add from their own printed components, and total assets equals total equity plus total liabilities in BOTH columns to the pound.",
+   "url": "https://www.emaarmisr.com/wp-content/uploads/2025/10/Emaar-Misr-IR-Reports-Financial-Statements-2020-Q4-EN-Consolidated.pdf",
+   "model_impact": "The last audited base the company itself gives. Every roll-forward either starts here or starts from the parent's five-line note (F37-F40) and says which.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2020"
+  },
+  {
+   "fid": "F19",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "STRUCTURAL",
+   "headline": "FY2019 is RESTATED in the FY2020 filing: revenue EGP 5,467,926,983 -> EGP 5,674,702,205 (+3.78%), cost EGP 3,239,514,598 -> EGP 3,416,431,687 (+5.46%), other income EGP 229,587,011 -> EGP 199,728,878 (-13.01%). Profit before tax and profit for the year are IDENTICAL on both bases",
+   "source_name": "Differencing the FY2019 filing's own column against the FY2020 filing's comparative column; FY2020 note 36 'Comparative figures'",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2021-03-04",
+   "detail": "A pure gross-up: something previously shown net inside other income was regrossed into revenue and cost, and the line was relabelled 'Net other income'. Nothing at the bottom line moves, so no profit-based check sees it.",
+   "url": "",
+   "model_impact": "A revenue driver scored across FY2019 carries a +3.8% step that has nothing to do with the business. Point-in-time discipline: each year keeps its AS-FIRST-REPORTED figure and the restatement is recorded beside it, never substituted.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2019"
+  },
+  {
+   "fid": "F20",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "H1-2021 interim condensed consolidated statements \u2014 THE NEWEST FILING THE COMPANY PUBLISHES. Six months to 30-Jun-2021: revenue EGP 3,785,296,625, cost EGP 2,235,176,297, gross profit EGP 1,550,120,328 (40.9%), PBT EGP 1,714,241,396, profit EGP 1,330,187,626, EPS 0.27. Position at 30-Jun-2021: total assets EGP 57,289,924,207, total equity EGP 19,549,350,783, total liabilities EGP 37,740,573,424",
+   "source_name": "Emaar Misr interim condensed consolidated financial statements for the three and six months ended 30 June 2021, https://www.emaarmisr.com/wp-content/uploads/2025/10/Emaar-Misr-IR-Reports-Financial-Statements-2021-Q2-EN-Consolidated.pdf",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2021-08-02",
+   "detail": "INTEGRITY: 'not a JBIG2 scan'. ROUTE: P&L from the native text layer, statement of financial position by OCR at 400 dpi. FOOTING: the P&L re-adds through every line to profit, and the balance sheet re-adds in both columns with total assets equal to equity plus liabilities to the pound.",
+   "url": "https://www.emaarmisr.com/wp-content/uploads/2025/10/Emaar-Misr-IR-Reports-Financial-Statements-2021-Q2-EN-Consolidated.pdf",
+   "model_impact": "The last primary balance-sheet base in existence. Any FY2026 opening balance sheet is five years of unobserved change away from this one, and the study must say so rather than roll it forward silently.",
+   "is_fs_data": true,
+   "fiscal_period": "H1-2021"
+  },
+  {
+   "fid": "F21",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "BASE_CHANGER",
+   "headline": "THE REVENUE-RECOGNITION BASIS AND ITS CHANGE, in the company's own words. Through FY2020, under EAS 11/EAS 8: 'The Group recognises revenue of sale of property when the risks and rewards of ownership of the property have been transferred to the buyer which occurs when the units are delivered' \u2014 the earnings releases name it the COMPLETED CONTRACT method. EAS 47/48/49 took effect 1 January 2021; the FY2020 statements say the Group 'elected not to early adopt'; the H1-2021 interim says it 'adopted EAS 47, EAS 48 and EAS 49 for the first time' and prints its 2020 comparatives '(Restated)'. Post-adoption the basis is still POINT IN TIME: 'performance obligations are satisfied at a point in time... generally when the consideration for the unit has been substantially received and there are no impediments in the handing over of the unit'",
+   "source_name": "Emaar Misr FY2020 consolidated FS notes 2.x and the significant-accounting-policies note; Emaar Misr H1-2021 interim notes 2.2 and 15",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2021-08-02",
+   "detail": "NOT over time and never percentage-of-completion. The economically important half of the change is in note 15: 'Revenue from property sales represents sales value of units handed over during the period DISCOUNTED AT THE EFFECTIVE INTEREST RATE', with payment plans running from 'till delivery' to 'extended instalments over 8 years' and the unit price varying by plan. The financing component is stripped out of revenue and unwinds through finance income.",
+   "url": "",
+   "model_impact": "BASE CHANGER, and it changes the shape of the model rather than a number in it. (1) Revenue is a lagging handover event, so the driver chain is contracted sales -> construction -> handover -> revenue, with a multi-year lag, and advances from customers (F26) is the state variable. (2) Reported revenue is a DISCOUNTED amount, so realised price per unit is not the contract price and a price driver built on contract prices overstates revenue. (3) The measured effect on the one period published on both bases (H1-2020) was revenue +2.72%, cost of revenue +8.05%, gross profit -8.42% \u2014 margin moves, so no margin series may be scored across 31-Dec-2020.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F22",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "STRUCTURAL",
+   "headline": "FY2020 IS ITSELF RESTATED on EAS 47/48/49 adoption, in the H1-2021 interim's comparative column: total assets EGP 48,970,762,883 -> EGP 49,638,873,798 (+EGP 668,110,915); retained earnings EGP 11,159,781,608 -> EGP 11,818,551,798 (+EGP 658,770,190); deferred tax assets EGP 300,022,187 -> EGP 99,104,152; prepayments and other receivables EGP 9,268,434,113 -> EGP 10,128,766,832; long-term liabilities EGP 132,366,550 -> EGP 299,810,236 net",
+   "source_name": "Emaar Misr H1-2021 interim, statement of financial position comparative column marked '(Restated)', and note 13",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2021-08-02",
+   "detail": "This closes an open item the existing walk-forward directory could not close: its BASIS_BREAKS B6 asks 'whether FY2020 is restated in the FY2021 annual accounts at all'. It is restated, and the restatement is measured here.",
+   "url": "",
+   "model_impact": "The FY2020 audited balance sheet is NOT the opening balance for any FY2021-onward roll-forward; the restated one is. Using the audited figure understates opening equity by EGP 659m.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2020"
+  },
+  {
+   "fid": "F23",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "REVENUE BY PROJECT is disclosed. H1-2021: Marassi EGP 1,868,022,114, Uptown Cairo EGP 593,843,008, Mivida EGP 1,211,862,135, Hospitality EGP 111,569,368, total EGP 3,785,296,625. H1-2020 restated: Marassi EGP 124,887,561, Uptown Cairo EGP 167,017,850, Mivida EGP 718,156,761, Hospitality EGP 27,503,762",
+   "source_name": "Emaar Misr H1-2021 interim, note 15 Revenue",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2021-08-02",
+   "detail": "FOOTING: the four project lines re-add exactly to the printed total in every one of the four columns (Q2-2021, Q2-2020, H1-2021, H1-2020).",
+   "url": "",
+   "model_impact": "UNLOCKS a project-level (segment-level) revenue build for the historical window: Marassi / Uptown Cairo / Mivida / Hospitality rather than one revenue line. IT DOES NOT UNLOCK THE FORECAST \u2014 the disclosure stops at H1-2021 and the projects that now drive the business (Belle Vie, Soul, Mivida Gardens, Cairo Gate, Marassi Red Sea) are not in it. The gate table therefore carries the historical split bottom-up and the forward split top-down, and the cliff between them is stated.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F24",
+   "ring": "COMPANY",
+   "category": "management & capital actions",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "SHARE COUNT, from the capital note rather than inferred: authorised capital EGP 10,000,000,000 in shares of EGP 1 each; issued and fully paid-up EGP 4,529,338,000; NUMBER OF SHARES 4,529,338,000, at both 30-Jun-2021 and 31-Dec-2020. The FY2020 EPS note gives the same weighted average for FY2019 and FY2020 and shows the employees' share deducted before EPS (FY2020: profit EGP 1,678,408,560 less employees' share EGP 159,448,813 = EGP 1,518,959,747; /4,529,338,000 = 0.34)",
+   "source_name": "Emaar Misr H1-2021 interim note 14 Share Capital; FY2020 consolidated FS note 30 Earnings per Share",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2021-08-02",
+   "detail": "Issued capital divided by par reproduces the stated count exactly (4,529,338,000 / 1.00), so the count is recorded rather than refused. The existing walk-forward directory explicitly REFUSED to record a share count because it had not parsed the capital note; this closes that refusal for the 2020-2021 window. It does NOT give the current count \u2014 see F39.",
+   "url": "",
+   "model_impact": "The per-share bridge for every year to H1-2021. It is superseded by the December-2024 share issuance (F39) and must not be carried into 2026.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F25",
+   "ring": "COMPANY",
+   "category": "one-off base-resetting transactions",
+   "klass": "BASE_CHANGER",
+   "headline": "LAND BOUGHT ON NUCA POST-DATED CHEQUES, from note 13. At 30-Jun-2021: Belle Vie project (Sheikh Zayed City) EGP 6,595,592,958 \u2014 NIL at 31-Dec-2020; Cairo Gate project EGP 445,300,899 (31-Dec-2020: EGP 351,761,200); discount for interest not due EGP (2,225,454,367); NET LONG-TERM LIABILITIES EGP 4,815,439,490 against EGP 299,810,236 restated at 31-Dec-2020",
+   "source_name": "Emaar Misr H1-2021 interim, note 13 Long Term Liabilities",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2021-08-02",
+   "detail": "The company's own words: the Belle Vie amount 'represents post-dated checks instalments to New Urban Communities Authority for the plot of land bought for Belle Vie project in Sheikh Zayed City'; the Cairo Gate amount is instalments 'to amend land activity license from agricultural to integrated urban and support facilities... and extended additional plot area by 5.5 feddans'. Development properties rose from EGP 22.02bn to EGP 29.84bn and cash fell from EGP 6.15bn to EGP 2.49bn over the same six months.",
+   "url": "",
+   "model_impact": "BASE CHANGER on two axes. (1) The land bank grew by a whole community after the last published land figure \u2014 see F34. (2) EMFD's 'debt' is not bank debt: it is DISCOUNTED NUCA LAND INSTALMENTS. Whether EGP 4.8bn of NUCA land payables belongs in net debt is a first-order valuation choice, it is sourced here, and the study must state which definition it uses and show the other.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F26",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "ADVANCES FROM CUSTOMERS \u2014 the collected-but-undelivered backlog, and the state variable of a point-in-time developer: EGP 17,270,405,232 at 31-Dec-2019, EGP 20,655,890,322 at 31-Dec-2020, EGP 22,055,532,044 at 30-Jun-2021. Development properties alongside it: EGP 16,495,848,060, EGP 22,017,785,039, EGP 29,843,213,356",
+   "source_name": "Emaar Misr FY2020 consolidated statement of financial position (note 17) and H1-2021 interim statement of financial position",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2021-08-02",
+   "detail": "Both series read off statements whose own subtotals re-derive. This is the closest thing EMFD publishes to a backlog and it is a balance, not a value: it is cash collected, not contracted value outstanding.",
+   "url": "",
+   "model_impact": "UNLOCKS the collections-and-handover schedule as a bottom-up driver for the historical window: revenue in year t is drawn from the advances balance built in years t-1..t-4. Forward, the balance cannot be observed after Jun-2021, so the roll-forward leg is top-down and is flagged.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2020"
+  },
+  {
+   "fid": "F27",
+   "ring": "COMPANY",
+   "category": "ownership / stake changes (named-transaction rule)",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "RELATED-PARTY STRUCTURE, from note 10. Ultimate parent Emaar Properties PJSC. FY2020 transactions: parent \u2014 payments on behalf EGP 2,948,401, IT software EGP 17,142,384, collections on behalf EGP 195,424,000 (FY2019: EGP 1,448,092 and EGP 34,976,275). Management fees to Emaar Hospitality EGP 948,764 and Emaar Hospitality and Hotels EGP 12,537,485 (FY2019: EGP 13,442,603 and EGP 17,038,012). Consultancy fees to Turner Construction International Egypt, a joint venture of the ultimate parent, EGP 53,525,533 (FY2019: EGP 217,027,083). Balances at 31-Dec-2020: due from parent EGP 178,166,803; due to subsidiaries of the ultimate parent EGP 36,868,462; trade payables to the parent's joint venture EGP 197,386,426",
+   "source_name": "Emaar Misr FY2020 consolidated FS, note 10 Related Party Disclosures; note 1 Background ('The Group's ultimate parent is Emaar Properties PJSC'; the Company owns 85% of IJADA Facility Management Company L.L.C.)",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2021-03-04",
+   "detail": "There is NO group management fee charged by the parent. The material related-party cost is construction-management consultancy to Turner, the parent's JV \u2014 EGP 217m in FY2019, i.e. about 6.7% of that year's cost of revenue \u2014 and hotel management fees to Emaar Hospitality. Pricing policies 'are approved by the boards of directors', i.e. not at arm's length by construction.",
+   "url": "",
+   "model_impact": "Sets the related-party cost line explicitly rather than inside a normalised SG&A: a Turner consultancy fee that swings from EGP 217m to EGP 54m in one year is a real cost driver tied to construction activity, and a build that averages it loses the link to the capex cycle. Also removes any parent management-fee leakage from the model.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F28",
+   "ring": "COMPANY",
+   "category": "management & capital actions",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "NO DIVIDEND. The word 'dividend' does not appear anywhere in the FY2020 consolidated financial statements. The statement of changes in equity shows only total comprehensive income and a legal-reserve transfer in FY2019 and FY2020: retained earnings run EGP 8,000,007,935 (2018) -> EGP 9,568,336,742 (2019) -> EGP 11,159,781,608 (2020) with no distribution",
+   "source_name": "Emaar Misr FY2020 consolidated FS, consolidated statement of changes in equity and full-text search of the filing",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2021-03-04",
+   "detail": "",
+   "url": "",
+   "model_impact": "Sets the payout driver to zero for the observed window and makes the cash build endogenous. A DCF that assumes a payout is contradicted by the only evidence there is; an equity value that assumes cash is distributable must say on what basis, since the company has not distributed it.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F29",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "STRUCTURAL",
+   "headline": "CURRENCY EXPOSURE, and it does NOT sit in OCI. Functional and presentation currency EGP. 'Monetary assets and liabilities denominated in foreign currencies are retranslated using the exchange rate prevailing at the financial position date. ALL DIFFERENCES ARE RECOGNIZED IN THE STATEMENT OF PROFIT OR LOSS.' Other comprehensive income is NIL in FY2019 and FY2020. 'The Group does not hold or issue derivative financial instruments.' Interest-rate sensitivity at 31-Dec-2020: +/-1% moves PBT by EGP 1,584,302 on financial assets and EGP 28,018 on financial liabilities. Net foreign exchange differences on cash: EGP 22,851,873 (2020), EGP 62,255,092 (2019)",
+   "source_name": "Emaar Misr FY2020 consolidated FS, foreign-currencies accounting policy; consolidated statement of comprehensive income; note 34 Financial Instruments Risk Management",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2021-03-04",
+   "detail": "The brief's hypothesis that a pound developer's translation story might sit in OCI is answered: there is no OCI at all on this issuer. The FX effect is in earnings, unhedged, and the interest-rate sensitivity shows a company that in 2020 was effectively debt-free \u2014 EGP 310,065,826 of interest-bearing items against EGP 6.15bn of cash and EGP 4.62bn of held-to-maturity investments.",
+   "url": "",
+   "model_impact": "Two consequences. (1) FX moves land in reported profit, so a normalised-earnings lens must strip them and say by how much. (2) The dollar-linked exposure is NOT in the FY2020 debt \u2014 it arrives later, through the NUCA fee regime (F07), which is denominated in USD for foreign developers. The currency risk in a 2026 build is a REGULATORY liability, not a borrowing.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F30",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "COLOR",
+   "headline": "Commitments on assets under construction and development properties not provided for: EGP 10,374,656,335 at 31-Dec-2020 (31-Dec-2019: EGP 12,397,371,374)",
+   "source_name": "Emaar Misr FY2020 consolidated FS, note 31 Commitments",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2021-03-04",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": true,
+   "fiscal_period": "FY2020"
+  },
+  {
+   "fid": "F31",
+   "ring": "COMPANY",
+   "category": "IR communications (calls, presentations, releases)",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "FY2015 results release: 819 units delivered, committed net sales EGP 8.6bn (+21.2% on EGP 7.1bn), CUMULATIVE NET SALES SINCE INCEPTION EGP 30.6bn, revenue EGP 3.2bn (+24.3%), gross profit EGP 978.1m (30.2% margin), net profit after tax EGP 854.7m, liquidity EGP 2.1bn, 408 units delivered in Mivida. LAND BANK 15.4 MILLION SQUARE METRES across four locations",
+   "source_name": "Emaar Misr FY2015 earnings release, 21 March 2016, https://www.emaarmisr.com/wp-content/uploads/2025/10/Emaar-Misr-IR-Reports-Earning-Releases-2015-Year-End-EN.pdf",
+   "source_type": "COMPANY_IR",
+   "source_date": "2016-03-21",
+   "detail": "TWO DEFECTS IN THE COMPANY'S OWN RELEASE, recorded rather than tidied: the body says 'Net profit for the period doubled to EGP 458.7 million from EGP 417.9 million' while the headline says EGP 854.7m (854.7/417.9 = 2.05, so the headline is right and 458.7 is a typo); and the footer prints issued capital as 'EGP 4,619,338, 000' where every filing and the FY2016 release print EGP 4,529,338,000. ALSO: this is a SAFE (non-JBIG2) document that corroborates the FY2014 and FY2015 figures the existing walk-forward read by OCR off REFUSED files \u2014 revenue EGP 2.6bn/3.2bn, gross profit EGP 777.1m/978.1m, profit EGP 417.9m/854.7m all agree at the release's own precision.",
+   "url": "https://www.emaarmisr.com/wp-content/uploads/2025/10/Emaar-Misr-IR-Reports-Earning-Releases-2015-Year-End-EN.pdf",
+   "model_impact": "UNLOCKS units delivered and contracted sales as bottom-up drivers for FY2015-FY2017 only, and gives the cumulative-sales base. It also supplies the corroboration that lets FY2014 and FY2015 stay in a history at all after the integrity refusal (F54).",
+   "is_fs_data": false,
+   "fiscal_period": "FY2015"
+  },
+  {
+   "fid": "F32",
+   "ring": "COMPANY",
+   "category": "IR communications (calls, presentations, releases)",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "FY2016 results release: 935 units delivered against 820 in 2015 (+14%), gross sales EGP 9.8bn, committed net sales EGP 8.4bn net of EGP 1,366m of cancellations, revenue EGP 4,009m (+23.8%), gross profit EGP 1,602m (40.0% margin, +63.8%), EBITDA EGP 1,363m (34.0% margin, +95.2%), net profit after tax EGP 1,684m. Revenue 'recognized according to the COMPLETED CONTRACT (CC) method'. Land bank 15.4m sqm",
+   "source_name": "Emaar Misr FY2016 earnings release, 27 February 2017, https://www.emaarmisr.com/wp-content/uploads/2025/10/Emaar-Misr-IR-Reports-Earning-Releases-2016-Year-End-EN.pdf",
+   "source_type": "COMPANY_IR",
+   "source_date": "2017-02-27",
+   "detail": "EGP 911m of cancelled/terminated inventory was RESOLD at EGP 1,102m, a 21% price uplift \u2014 the company's own measure of pricing power on repeat product. Note the unit count for 2015 is given as 820 here and 819 in the FY2015 release; both are the company's own numbers and the discrepancy is left visible.",
+   "url": "https://www.emaarmisr.com/wp-content/uploads/2025/10/Emaar-Misr-IR-Reports-Earning-Releases-2016-Year-End-EN.pdf",
+   "model_impact": "Gives EBITDA and its margin, which the financial statements never carry, and the cancellation rate (EGP 1,366m on EGP 9.8bn gross = 13.9%) that a contracted-sales driver must net down by.",
+   "is_fs_data": false,
+   "fiscal_period": "FY2016"
+  },
+  {
+   "fid": "F33",
+   "ring": "COMPANY",
+   "category": "IR communications (calls, presentations, releases)",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "FY2017 results release \u2014 THE NEWEST RESULTS RELEASE THE COMPANY HAS EVER PUBLISHED: 1,386 units delivered, gross sales EGP 11,973m, net sales EGP 10,893m, revenue EGP 4,511m recognised on the Completed Contract method, gross margin 38.0%, EBITDA EGP 1,437m (31.9% margin), net profit after tax EGP 2,300m (51% margin), net finance income EGP 1,375m. LAND BANK 15.46 MILLION SQUARE METRES across four prime locations in East, West and Central Cairo and the Mediterranean coast",
+   "source_name": "Emaar Misr FY2017 earnings release, 25 February 2018, https://www.emaarmisr.com/wp-content/uploads/2025/10/Emaar-Misr-IR-Reports-Earning-Releases-2017-Year-End-EN.pdf",
+   "source_type": "COMPANY_IR",
+   "source_date": "2018-02-25",
+   "detail": "Sales driven by the Marina Residences and Greek Village launches at Marassi. Hotel management contracts concluded with The Address and Vida; ground broken on The Address Golf Resort + Spa \u2014 the start of the recurring-revenue leg.",
+   "url": "https://www.emaarmisr.com/wp-content/uploads/2025/10/Emaar-Misr-IR-Reports-Earning-Releases-2017-Year-End-EN.pdf",
+   "model_impact": "[R-ASSET-01] ANCHOR. 15.46m sqm AS AT 25 FEBRUARY 2018 is the newest land-bank figure that can be read from any primary document. It is also the last year with a company-published unit count, so the units-delivered driver has no observation after FY2017.",
+   "is_fs_data": false,
+   "fiscal_period": "FY2017"
+  },
+  {
+   "fid": "F34",
+   "ring": "COMPANY",
+   "category": "strategic plans & guidance",
+   "klass": "STRUCTURAL",
+   "headline": "[R-ASSET-01] ORDERING FAILURE, and the ordering IS the finding. Newest readable land bank: 15.46m sqm as at 25-Feb-2018. Newest filing the company publishes: 30-Jun-2021. Sweep date: 09-Sep-2026. The asset base is 3 years and 4 months older than the newest filing and 8 years and 7 months older than the information set this sweep reads",
+   "source_name": "Ordering test over F33 (25-Feb-2018), F20 (30-Jun-2021) and this sweep (09-Sep-2026)",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-09-09",
+   "detail": "The rule is an ordering, not a threshold, so there is nothing to argue about: the operating asset base may not be older than the information set the study says it read, and here it is older by more than eight years. Four documented land events fall INSIDE that gap and none of them is in the 15.46m sqm figure: the Cairo Gate land deal (28-Nov-2019, the company's own press release), the Uptown Cairo settlement with El Nasr Housing (03-Oct-2019), the Belle Vie plot bought on EGP 6.6bn of NUCA instalments (H1-2021, F25) plus 5.5 feddans added at Cairo Gate, and the Albro North Coast acquisition (19-Dec-2024, F42) which brought AED 1,588,148k of development properties.",
+   "url": "",
+   "model_impact": "RED under [R-ASSET-01]. No land-bank-derived driver \u2014 GDV, remaining sellable area, land cost per sqm, years of inventory \u2014 may be built on 15.46m sqm. Either the current land bank is obtained from a primary document or every such driver is declared unsourced and the study says so on its face.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F35",
+   "ring": "COMPANY",
+   "category": "strategic plans & guidance",
+   "klass": "STRUCTURAL",
+   "headline": "THE ONE NEWER LAND DOCUMENT EXISTS AND CANNOT BE READ. Disclosure-2019-Landbanks.pdf is published on the company's own IR register and is exactly the document that would restate the 2018 land bank. scanned_filing_integrity: 'REFUSE \u2014 SYMBOL DICTIONARY PRESENT \u2014 do not read figures off this file'; 16 streams, segment types [0, 6, 48, 50], producer 'Xerox AltaLink C8035'. Both of its two pages are JBIG2 and it carries NO text layer at all",
+   "source_name": "python3 engine/scanned_filing_integrity.py on https://www.emaarmisr.com/wp-content/uploads/2025/10/Disclosure-2019-Landbanks.pdf, run 09-09-2026",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-09-09",
+   "detail": "The refusal is not a reading difficulty. Symbol substitution happens at scan time, so no re-read at any resolution recovers the truth, and a footing check cannot save it because the substituted digit is consistent and the column foots on the wrong number. The same verdict falls on Disclosure-2019-Mar-04-Arbitration.pdf (5 streams, same producer) and on the 2019 and 2020 Management Annual Reports (38 and 22 streams, Xerox AltaLink C8035 and WorkCentre 7835), every page of each.",
+   "url": "https://www.emaarmisr.com/wp-content/uploads/2025/10/Disclosure-2019-Landbanks.pdf",
+   "model_impact": "Closes the last company-official route to a post-2018 land bank and to the arbitration exposure. The land-bank driver is therefore TOP_DOWN by evidenced absence, not by convenience, and this finding is the evidence.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F36",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "STRUCTURAL",
+   "headline": "THE IR CHANNEL WENT DARK IN 2021 AND HAS NOT REOPENED. On the company's own register the newest financial statement is Q2-2021, the newest press release is 26-Mar-2021, the newest results release is FY2017 and the newest management annual report is FY2020. The whole 50-document archive was re-uploaded on 07-08 October 2025 without a single new period being added. Meanwhile the site itself uploaded marketing material as recently as 01-Sep-2026",
+   "source_name": "https://www.emaarmisr.com/about-emaar/ir-reports/ and the site's own WordPress media API, both read 09-09-2026",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-09-09",
+   "detail": "The media API is the check that matters: it lists every file the site hosts whether or not a page links to it, so this is not a stale page hiding fresh documents. Five complete fiscal years (FY2021-FY2025) and two 2026 quarters are absent from the company's own channel.",
+   "url": "https://www.emaarmisr.com/about-emaar/ir-reports/",
+   "model_impact": "Determines the ENTIRE gate table. No forward driver on this name can be bottom-up on the company's own current disclosure, because there is none. Every driver is either built on the pre-2021 statements and flagged as stale, or built on the parent's five-line note and flagged as coarse, or top-down against a named negative search.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F37",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "PARENT-DISCLOSED, NOT EMFD'S OWN FILING \u2014 FY2022. Emaar Misr for Development SAE, before inter-company elimination: revenue AED 2,893,441k; profit AED 1,303,091k (owners AED 1,156,364k, NCI AED 146,727k); total assets AED 10,213,119k; total liabilities AED 5,905,047k; total equity AED 4,308,072k (owners AED 3,782,406k, NCI AED 525,666k). NCI holding 11.26%",
+   "source_name": "Emaar Properties PJSC and its Subsidiaries, audited consolidated financial statements for the year ended 31 December 2023, note 35 'Subsidiaries with material NCI', as filed with the DFM",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2024-03-15",
+   "detail": "FOOTING: total assets less total liabilities equals total equity (10,213,119 - 5,905,047 = 4,308,072); owners plus NCI equals total equity (3,782,406 + 525,666 = 4,308,072); owners plus NCI equals profit (1,156,364 + 146,727 = 1,303,091). INTEGRITY: 'not a JBIG2 scan', native text, 80 pages. WHAT IT IS NOT: it is five lines, in AED thousands, on IFRS as applied by the parent, before inter-company elimination. No cost of revenue, no cash, no debt, no advances from customers, no units, no land, no segment.",
+   "url": "https://feeds.dfm.ae/documents/2024/Mar/15/93e7ffb5-5df5-4b5c-92be-aad9fdd52529/Emaar%20Properties%20PJSC%20-%20FS%202023%20-%20English.pdf",
+   "model_impact": "The only audited FY2022 figure obtainable. It anchors scale and the equity base, and it is explicitly NOT the source for margin, cash or any per-unit driver \u2014 those have no FY2022 source at all.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2022"
+  },
+  {
+   "fid": "F38",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "PARENT-DISCLOSED, NOT EMFD'S OWN FILING \u2014 FY2023. Revenue AED 1,833,529k; profit AED 799,927k (owners AED 709,856k, NCI AED 90,071k); total assets AED 9,424,812k; total liabilities AED 5,230,919k; total equity AED 4,193,893k (owners AED 3,681,083k, NCI AED 512,810k). NCI holding 11.26%",
+   "source_name": "Emaar Properties PJSC audited consolidated FS for the year ended 31 December 2023, note 35, as filed with the DFM",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2024-03-15",
+   "detail": "FOOTING: 9,424,812 - 5,230,919 = 4,193,893; 3,681,083 + 512,810 = 4,193,893; 709,856 + 90,071 = 799,927. All exact.",
+   "url": "https://feeds.dfm.ae/documents/2024/Mar/15/93e7ffb5-5df5-4b5c-92be-aad9fdd52529/Emaar%20Properties%20PJSC%20-%20FS%202023%20-%20English.pdf",
+   "model_impact": "FY2023 scale anchor. Revenue in AED fell 36.6% from FY2022 \u2014 see F41 before reading that as a business decline.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2023"
+  },
+  {
+   "fid": "F39",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "DRIVER_UNLOCK",
+   "headline": "PARENT-DISCLOSED, NOT EMFD'S OWN FILING \u2014 FY2024 and FY2025. FY2025: revenue AED 1,520,268k; profit AED 389,317k (owners AED 283,600k, NCI AED 105,717k); total assets AED 13,861,220k; total liabilities AED 8,763,816k; total equity AED 5,097,404k. FY2024: revenue AED 1,616,279k; profit AED 1,285,863k (owners AED 1,141,076k, NCI AED 144,787k); total assets AED 10,077,275k; total liabilities AED 5,689,105k; total equity AED 4,388,170k. NCI holding 26.21% in BOTH years",
+   "source_name": "Emaar Properties PJSC Integrated Annual Report 2025, consolidated financial statements note 35 'Subsidiaries with material NCI'",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-02-01",
+   "detail": "FOOTING: 13,861,220 - 8,763,816 = 5,097,404 and 3,761,420 + 1,335,984 = 5,097,404 and 283,600 + 105,717 = 389,317; 10,077,275 - 5,689,105 = 4,388,170 and 3,238,070 + 1,150,100 = 4,388,170 and 1,141,076 + 144,787 = 1,285,863. All exact. Same note also gives the subsidiary list line: 'Emaar Misr for Development SAE and its subsidiaries, Arab Republic of Egypt, Property investment and development, 73.79%'.",
+   "url": "https://uae-cms.emaar.com/uploads/Emaar_Properties_IR_2025_English_F_217e05f4f9.pdf",
+   "model_impact": "The FY2024 and FY2025 scale anchors, and the reason FY2025 is a different company from FY2023: total assets jump 47% in AED between FY2023 and FY2025 while profit falls 51%, which is the Albro acquisition (F42) plus the FY2025 earnings collapse. Both must be in the base, and neither is visible in EMFD's own disclosure.",
+   "is_fs_data": true,
+   "fiscal_period": "FY2025"
+  },
+  {
+   "fid": "F40",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "COLOR",
+   "headline": "FY2024 comparative row carried separately so the fiscal-year tag exists: revenue AED 1,616,279k, profit AED 1,285,863k, total assets AED 10,077,275k, total liabilities AED 5,689,105k, total equity AED 4,388,170k",
+   "source_name": "Emaar Properties PJSC Integrated Annual Report 2025, note 35, FY2024 comparative",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-02-01",
+   "detail": "",
+   "url": "https://uae-cms.emaar.com/uploads/Emaar_Properties_IR_2025_English_F_217e05f4f9.pdf",
+   "model_impact": "",
+   "is_fs_data": true,
+   "fiscal_period": "FY2024"
+  },
+  {
+   "fid": "F41",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "STRUCTURAL",
+   "headline": "THE PARENT SERIES IS IN AED AND THE TREND IS AN ARTEFACT OF THE POUND. Revenue in AED: FY2022 2,893.4m -> FY2023 1,833.5m -> FY2024 1,616.3m -> FY2025 1,520.3m, i.e. -47% over three years. Over the same period the EGP fell from about 19.7/USD to about 50/USD and press reporting of the company's own EGX filings has EGP revenue RISING (FY2024 EGP 19.0bn; 9M-2025 EGP 14.581bn against EGP 13.264bn)",
+   "source_name": "Comparison of F37-F40 against the EGP series in F06 and the press reports in F44-F45",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-09-09",
+   "detail": "The exchange rate implied by the Albro note is 13.84 EGP/AED at 19-Dec-2024 (EGP 9,615,044k = AED 694,648k). Applying a single rate to the whole series would be wrong: the parent translates at its own average and closing rates, which are not disclosed for the subsidiary.",
+   "url": "",
+   "model_impact": "A build that takes the AED series as the growth path concludes revenue fell 47% when the pound revenue rose. The AED series may be used ONLY for structure \u2014 equity base, asset scale, NCI split, the direction of profit \u2014 and the growth driver must be built in pounds or not at all. This is the single most likely way to get this name wrong.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F42",
+   "ring": "COMPANY",
+   "category": "ownership / stake changes (named-transaction rule)",
+   "klass": "BASE_CHANGER",
+   "headline": "THE NAMED TRANSACTION. On 19 DECEMBER 2024 Emaar Misr acquired the remaining 75% of Albro North Coast for Development S.A.E., taking full control, and PAID IN ITS OWN NEWLY ISSUED SHARES: consideration EGP 9,615,044 thousand (AED 694,648 thousand), net of transaction cost EGP 208,973 thousand (AED 15,098 thousand). 'On issuance of the new shares in Emaar Misr, the Group shareholding has been diluted.' Emaar Properties' holding fell from 88.74% to 73.79% \u2014 the NCI line in the parent's own audited note moves from 11.26% at FY2022 and FY2023 to 26.21% at FY2024 and FY2025",
+   "source_name": "Emaar Properties PJSC Integrated Annual Report 2025, note 2.1 'Acquisition of Albro North Coast for development S.A.E.' and note 35; cross-checked against the FY2023 audited FS note 35 NCI percentages",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-02-01",
+   "detail": "Identifiable assets and liabilities acquired at 19-Dec-2024 (AED'000): bank and cash 657,107; other assets and receivables 285,179; DEVELOPMENT PROPERTIES 1,588,148; investment in securities 33,667; PPE 550; intangibles 352,684; trade and other payables (535,106); ADVANCES FROM CUSTOMERS (1,195,390); deferred tax liabilities (236,472); retentions payable (6,315); fair value of identifiable net assets 944,052. Goodwill AED 2,276k. THE NAMED-TRANSACTION RULE IS SATISFIED: this is the specific transaction, dated, priced and corroborated by the NCI percentage moving in the same year. Nothing here is 'estimated'.",
+   "url": "https://uae-cms.emaar.com/uploads/Emaar_Properties_IR_2025_English_F_217e05f4f9.pdf",
+   "model_impact": "BASE CHANGER on three axes at once, and it is the reason FY2024 and FY2025 cannot be reached by any growth glide from FY2020. (1) ASSET BASE: AED 1.59bn of North Coast development properties, roughly EGP 22bn at the implied 13.84, added in one day. (2) BACKLOG: AED 1.20bn of advances from customers assumed, roughly EGP 16.5bn of pre-sold obligations. (3) SHARE COUNT AND OWNERSHIP: the count is no longer 4,529,338,000 and Emaar Properties no longer holds 88.74%. Every per-share number and every minority calculation in a 2026 build turns on this and it appears in NO document EMFD itself publishes.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F43",
+   "ring": "COMPANY",
+   "category": "one-off base-resetting transactions",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (searched: '\"Emaar Misr\" NUCA land assignment fees settlement Marassi 2025 2026 dollar' and '\"Emaar Misr\" EGX disclosure Q2 2026 results revenue net profit half year'. Whether Emaar Misr settled the NUCA retroactive land-assignment fee (F07), at the USD 20/sqm foreign rate or otherwise, over what area, and at what booked amount, is NOT disclosed in any source reached. Named settlements were found for Mountain View (EGP 6bn) and SODIC (EGP 4bn) and for Misr El-Gedida; none for Emaar Misr. Category closed negative on the company-specific question, with the regime itself closed positive at F6)",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-09-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F44",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "STRUCTURAL",
+   "headline": "Q1-2026 AS REPORTED BY THE PRESS, NOT BY A DOCUMENT WE HOLD. Consolidated revenue EGP 6.762bn (Q1-2025: EGP 5.906bn); consolidated net profit attributable to the parent EGP 7.768bn (Q1-2025: EGP 3.327bn), +133.50%; EPS 1.37 (0.59); standalone net profit EGP 7.272bn (EGP 4.036bn), standalone EPS 1.02 (0.56)",
+   "source_name": "Zawya, 'Emaar Misr records 133.5% YoY higher consolidated profits in Q1 2026', and Arab Finance carrying the same EGX filing",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-05-15",
+   "detail": "PROVENANCE EXCEPTION, DELIBERATE AND LEFT TO FIRE. This is a financial-statement line item and it is carried at is_fs_data=True with REPUTABLE_PRESS provenance, which the validator rejects. The underlying document is an EGX filing that could not be reached (see the primary-access log). Neither article names or links the filing or gives its date. PROFIT EXCEEDS REVENUE, which no ordinary developer quarter does, and neither report offers an explanation \u2014 no one-off, revaluation, land sale or FX effect is named.",
+   "url": "https://www.zawya.com/en/capital-markets/equities/emaar-misr-records-1335-yoy-higher-consolidated-profits-in-q1-2026-k1ghoqm3",
+   "model_impact": "UNUSABLE AS A HISTORICAL until the filing is obtained. Recorded so that the build cannot start without confronting it: a quarter whose profit exceeds its revenue by EGP 1bn either contains a base-changing one-off that must be modelled explicitly and dual-framed, or is misreported. Either way it cannot be smoothed into a margin path.",
+   "is_fs_data": true,
+   "fiscal_period": "Q1-2026"
+  },
+  {
+   "fid": "F45",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "STRUCTURAL",
+   "headline": "H1-2026 AS REPORTED BY THE PRESS, NOT BY A DOCUMENT WE HOLD. Consolidated revenue EGP 11.079bn (H1-2025: EGP 9.426bn); consolidated net profit after tax attributable to the parent EGP 5.555bn (H1-2025: EGP 3.914bn), +41.93%; standalone net profit EGP 5.123bn (EGP 3.946bn)",
+   "source_name": "Arab Finance, 'Emaar Misr posts 41.9% YoY hike in consolidated profits in H1 2026', 9 August 2026, citing EGX filings",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-08-09",
+   "detail": "PROVENANCE EXCEPTION, DELIBERATE AND LEFT TO FIRE \u2014 same treatment as F46. The article says it links EGX PDFs but does not state their dates.",
+   "url": "https://www.arabfinance.com/en/news/newdetails/emaar-misr-reports-hike-in-consolidated-profits-in-h1-2026",
+   "model_impact": "Gives the study-year revenue run-rate. Read against F44 it also produces the contradiction in F46, which is the thing a build must resolve before it sets a single margin.",
+   "is_fs_data": true,
+   "fiscal_period": "Q2-2026"
+  },
+  {
+   "fid": "F46",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "STRUCTURAL",
+   "headline": "THE STUDY YEAR CONTRADICTS ITSELF ON THE ONLY EVIDENCE AVAILABLE. Q1-2026 profit EGP 7.768bn and H1-2026 profit EGP 5.555bn imply a Q2-2026 LOSS of about EGP 2.21bn. The same arithmetic on 2025 works perfectly \u2014 Q1-2025 EGP 3.327bn and H1-2025 EGP 3.914bn imply Q2-2025 EGP 0.587bn, and an independent report of Q2-2025 gives EGP 587.5m \u2014 so the method is sound and the 2026 pair is the anomaly. Revenue is internally consistent across both years (Q2-2026 EGP 4.317bn, Q2-2025 EGP 3.520bn)",
+   "source_name": "Arithmetic over F46 and F47, control-tested on the 2025 pair against the independently reported Q2-2025 net income of EGP 587.5m",
+   "source_type": "REPUTABLE_PRESS",
+   "source_date": "2026-09-09",
+   "detail": "Three candidate explanations and only the filing separates them: a large Q1-2026 one-off partly reversed in Q2; a Q2 impairment, deferred-tax charge or FX loss; or a reporting error in one of the two press items. The EPS figures do not resolve it either \u2014 EGP 7.768bn at EPS 1.37 implies 5.67bn shares while EGP 7.272bn at EPS 1.02 implies 7.13bn, and one company cannot have two share counts, so at least one EPS is on a different profit base.",
+   "url": "",
+   "model_impact": "A HARD STOP before any forecast margin or base year is set. This is the ARCC failure in a worse form: not a swept-late actual that contradicts the margin path, but a study-year base that contradicts itself. The study may not adopt an FY2026 base until the Q1 and H1 filings are read and the difference is explained.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F47",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "COLOR",
+   "headline": "LISTING AND PRICE SERIES, recorded rather than regressed. Single listing: the Egyptian Exchange (EGX), ticker EMFD, currency EGP. Listing approved by the EGX listing committee on 4 March 2015; trading began 5 July 2015. The held series is engine/raw_ohlc/EG/EMFD.csv \u2014 2,710 daily bars, 05-Jul-2015 to 01-Sep-2026, first close EGP 3.940, last close EGP 13.700. No second listing anywhere, so there is no dual-listing regressor ambiguity on this name",
+   "source_name": "engine/raw_ohlc/EG/EMFD.csv; Emaar Misr FY2020 consolidated FS note 1 Background for the listing approval date",
+   "source_type": "PRIMARY_MARKET_DATA",
+   "source_date": "2026-09-01",
+   "detail": "NO BETA WAS RESOLVED, BY INSTRUCTION. When one is wanted it comes from engine/beta_regression.own_stock_beta('EMFD','EG','EGX') against the published EGX30 series at engine/raw_indices/EG/EGX30.csv \u2014 never a study-local script and never a constituent composite.",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F48",
+   "ring": "COMPANY",
+   "category": "strategic plans & guidance",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (searched: the company's own site in full (about-emaar, about-emaar/investor-relations, press-releases, latest-launches, the page sitemap and the WordPress media API), plus '\"Emaar Misr\" land bank million square meters 2025 2026 Marassi Red Sea Belle Vie Mivida Gardens'. NO management guidance, target, capital-markets-day deck, strategy statement or forward operating number published by Emaar Misr for any period after FY2017 was found on any company channel. The About page carries no land, unit or capacity figure at all. Third-party reporting of new communities exists (Marassi Red Sea with City Stars, Sep-2025, USD 18.5bn; Mivida Gardens with MIDAR, Feb-2025, ~500 acres, EGP 100bn; land attributed to Alabbar in Egypt above 17.2m sqm by 2025) and is NOT company-official. Category closed negative)",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-09-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F49",
+   "ring": "COMPANY",
+   "category": "IR communications (calls, presentations, releases)",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (searched: the IR register and the WordPress media API for any earnings release, investor presentation, webcast deck or call transcript dated after 25-Feb-2018. None exists. The register holds exactly four earnings releases (Q2-2015, FY2015, FY2016, FY2017) and no presentation or transcript of any date. The company's live IR page delegates entirely to the EGID widget whose data API (https://ir.egidegypt.com:8080) is blocked by this session's egress policy. Category closed negative for the post-2018 period; closed positive at F31-F33 for 2015-2017)",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-09-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F50",
+   "ring": "COMPANY",
+   "category": "management & capital actions",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (searched: the IR register's corporate-governance section for board decisions, general meeting invitations and resolutions, and 'Emaar Properties stake Emaar Misr percent shareholders free float 2026'. The company's published governance trail STOPS at the 31-Mar-2021 OGM resolutions and the 02-Aug-2021 board decisions summary; there is no published board composition, capital action, buyback or dividend resolution for 2022-2026. The post-Albro share count and the current free float could not be obtained from any primary source. Forbes Middle East (26-Mar-2026) states the 73.79% stake and a USD 1.05bn market value, which agrees with the parent's audited note (F39) but is not itself a primary source. Category closed negative on the current capital structure)",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-09-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F51",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (searched, for EMFD's OWN FY2021-FY2025 audited statements and its 2026 interims: the company's IR register and its WordPress media API (newest = Q2-2021); the company's live IR widget and its EGID data API on port 8080 (connection reset); data.egidegypt.com (HTTP 403); egx.com.eg on four paths including a known /downloads/News/ attachment, on both hosts and on http (F5 interstitial every time); disclosure.egx.com.eg (SSL_ERROR_SYSCALL); a headless Chromium through the proxy (ERR_CONNECTION_RESET, confirmed against an example.com control); the Wayback CDX index over egx.com.eg filtered on Emaar (200, zero rows); and the Egyptian FRA (reachable, does not host listed-company statements). NOT OBTAINED. Aggregator figures for these years are readily available on investing.com, stockanalysis.com, TradingView and Mubasher and were DELIBERATELY NOT USED: SIGCM clause 1 bars a data vendor as the source of the subject's own reported historicals. FY2022-FY2025 are instead carried from the controlling parent's audited note 35 (F37-F40) as a NAMED fallback under [R-SIGCM-03], and FY2021 is carried by nothing at all)",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-09-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F52",
+   "ring": "COMPANY",
+   "category": "regular disclosures",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (searched: every reachable source for an EMFD cost of revenue, gross profit, unit count, contracted-sales value, land bank, backlog, advances-from-customers balance, cash or debt figure for any period after 30-Jun-2021. The parent's note 35 carries revenue, profit, total assets, total liabilities and total equity AND NOTHING ELSE. The press carries revenue and profit only. Consequence stated rather than discovered: THERE IS NO SOURCED COST LINE, NO SOURCED UNIT VOLUME AND NO SOURCED BACKLOG FOR ANY PERIOD AFTER H1-2021, so gross margin cannot be produced as an output of a cost-per-unit build for the forecast window. Category closed negative)",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-09-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F53",
+   "ring": "COMPANY",
+   "category": "strategic plans & guidance",
+   "klass": "NEGATIVE_SEARCH",
+   "headline": "Negative search \u2014 nothing found (searched: the FY2020 statements and H1-2021 interim for a hedging policy, a USD-denominated borrowing, a dollar-linked receivable or any forward FX position, and the public record for any Emaar Misr statement of FX policy after 2021. The company states 'The Group does not hold or issue derivative financial instruments' and carries no foreign-currency debt in the last balance sheet it published. There is no company FX guidance of any date. The FX path must therefore be set from the macro record (F06) and not from company disclosure. Category closed negative)",
+   "source_name": "negative search",
+   "source_type": "SEARCH",
+   "source_date": "2026-09-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F54",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "STRUCTURAL",
+   "headline": "DISAGREEMENT WITH THE EXISTING WALK-FORWARD DIRECTORY, ITEM 1: its FY2012-FY2016 panel years and its FY2016 and FY2017 balance sheets were read by OCR off files that scanned_filing_integrity now REFUSES. FY2013-AR (128 streams), FY2014-AR (159, PDFlib+PDI), FY2015 Year-End (290, Xerox WorkCentre 7830) and FY2016 Year-End (253, Xerox WorkCentre 7835) are JBIG2 symbol-dictionary scans on EVERY page with ZERO text layer; FY2017 Year-End carries the symbol dictionary on page 3, which is the statement of financial position it read",
+   "source_name": "python3 engine/scanned_filing_integrity.py on all nine company scans, run 09-09-2026, against engine/emfd_walkforward_pending/panel.json, balance_sheet.json and valuation_inputs.json",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-09-09",
+   "detail": "The walk-forward's own reasoning is the exposure: it accepted those years BECAUSE THEY FOOT, re-reading at higher resolution until the subtotals re-derived. The tool's docstring names that remedy as correct only when the pixels are trustworthy, and states that on a symbol-substituted scan a column of substituted digits foots against a subtotal of substituted digits. The walk-forward could not have known: scanned_filing_integrity.py was adopted 09-09-2026, eight days after that run.",
+   "url": "",
+   "model_impact": "Removes FY2012 and FY2013 from any usable history: both come from the two refused Arabic scans and NO safe second document reproduces them. FY2014 and FY2015 SURVIVE, because the FY2015 earnings release (F33, not a JBIG2 scan) reproduces revenue, gross profit and profit for both years at its own precision. FY2016 SURVIVES, because the FY2017 filing's NATIVE-TEXT comparative column reproduces it to the pound. The FY2016 and FY2017 BALANCE SHEETS DO NOT SURVIVE \u2014 they came off refused pages and no safe document reproduces them, so the FY2016 and FY2017 rows of the walk-forward's valuation-input block should not be relied on. Its FY2016 PPE-plus-deferred-tax check already failed to foot by EGP 143,345,677 and was recorded as an uncaptured line; that is also what a damaged read looks like.",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F55",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "COLOR",
+   "headline": "AGREEMENT WITH THE EXISTING WALK-FORWARD DIRECTORY, recorded so the disagreement is not read as a blanket doubt. Its FY2017-FY2020 profit-or-loss figures came off native text layers and reproduce exactly here. Its FY2019 and FY2020 balance-sheet reads reproduce exactly: FY2019 current liabilities EGP 26,641,389,960 (which it DERIVED by identity) equals the figure the FY2020 statement prints, and FY2020 interest-bearing debt EGP 310,065,826 re-derives from credit facilities EGP 10,255,590 plus long-term liabilities EGP 132,366,550 plus current portion EGP 167,443,686. Its two basis breaks B1 (EAS 48, H1-2020 published on both bases) and B2 (FY2019 gross-up) are confirmed line by line",
+   "source_name": "Cross-check of engine/emfd_walkforward_pending/panel.json, balance_sheet.json and BASIS_BREAKS_01-09-2026.md against the filings re-read for this sweep",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-09-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  },
+  {
+   "fid": "F56",
+   "ring": "COMPANY",
+   "category": "official financial statements",
+   "klass": "COLOR",
+   "headline": "SCOPE CORRECTION ON THE BRIEF ITSELF. The walk-forward's valuation-input block covers FY2016-FY2020 HELD, with FY2021-FY2025 recorded as BLOCKED origins \u2014 not FY2016-FY2025 as the task brief describes it. valuation_inputs.json's own fields say so: origins_held = [FY2016..FY2020], origins_blocked = [FY2021..FY2025]. Its capex, depreciation and share count are recorded as MISSING with reasons; this sweep closes the share count for the 2020-2021 window (F24) and leaves capex and depreciation open, since the cash-flow statement was not parsed there and is not parsed here either",
+   "source_name": "engine/emfd_walkforward_pending/valuation_inputs.json, fields origins_held, origins_blocked, run_status",
+   "source_type": "COMPANY_OFFICIAL",
+   "source_date": "2026-09-09",
+   "detail": "",
+   "url": "",
+   "model_impact": "",
+   "is_fs_data": false,
+   "fiscal_period": ""
+  }
+ ],
+ "drivers": [
+  {
+   "driver": "Revenue by project, HISTORICAL (Marassi / Uptown Cairo / Mivida / Hospitality)",
+   "mode": "BOTTOM_UP",
+   "justification": "Note 15 of the H1-2021 interim discloses revenue by project and the four lines re-add to the printed total in all four columns. Build the history at project level. GAP FLAGGED: the disclosure exists only to 30-Jun-2021 and covers only the three legacy communities plus hospitality.",
+   "sweep_refs": [
+    "F23",
+    "F20",
+    "F18"
+   ]
+  },
+  {
+   "driver": "Revenue by project, FORECAST FY2026+",
+   "mode": "TOP_DOWN",
+   "justification": "The projects that now drive the business \u2014 Belle Vie, Soul, Mivida Gardens, Cairo Gate, Marassi Red Sea, the Albro North Coast assets \u2014 appear in no company revenue disclosure of any date. Dropping a level to a single consolidated revenue line is the finest sourced level available and the drop is stated here rather than left silent.",
+   "sweep_refs": [
+    "F52",
+    "F36",
+    "F48"
+   ]
+  },
+  {
+   "driver": "Units delivered per year",
+   "mode": "TOP_DOWN",
+   "justification": "The last unit count the company published is 1,386 for FY2017. There is none for FY2018-FY2025 or for 2026 in any document, company or third party. The volume leg of volume x price therefore cannot be built and is carried as an implied residual, flagged.",
+   "sweep_refs": [
+    "F49",
+    "F52"
+   ]
+  },
+  {
+   "driver": "Realised price per unit / per sqm",
+   "mode": "TOP_DOWN",
+   "justification": "No sourced unit count means no sourced revenue per unit. The market price series (F11) is a third-party index for the segment, not the company's realised price, and under EAS 48 the company's realised price is a DISCOUNTED amount (F21) that a market price does not approximate. Price growth is set off the market series and sensitised.",
+   "sweep_refs": [
+    "F52",
+    "F49"
+   ]
+  },
+  {
+   "driver": "Cost of revenue per unit",
+   "mode": "TOP_DOWN",
+   "justification": "The last cost-of-revenue line the company published is H1-2021. Construction input prices (F02) are the only sourced cost input and they are market-wide, not per unit.",
+   "sweep_refs": [
+    "F52"
+   ]
+  },
+  {
+   "driver": "Gross margin",
+   "mode": "TOP_DOWN",
+   "justification": "MARGINS ARE OUTPUTS WHEREVER THE FILINGS DISCLOSE ENOUGH TO BUILD COST PER UNIT. Here they do not: no cost line and no unit count exist after H1-2021, so the cost-per-unit route is closed by evidenced absence rather than by preference. The margin is therefore an INPUT, which is a departure from the standing rule, and the departure is declared on the face of the study together with this row. The historical range it is set within is sourced: 30.2% (FY2015) to 40.9% (H1-2021), and it may not be scored across 31-Dec-2020 because EAS 48 moved it (F21).",
+   "sweep_refs": [
+    "F52",
+    "F49"
+   ]
+  },
+  {
+   "driver": "Contracted sales (gross and net of cancellations)",
+   "mode": "TOP_DOWN",
+   "justification": "The last company figure is FY2017 gross EGP 11,973m / net EGP 10,893m. The only later number is EGP 60.9bn for H1-2026 from a consultancy ranking (F14), which is a third-party estimate and enters as a sanity bound, not as the driver. The FY2016 cancellation rate of 13.9% is the only sourced gross-to-net bridge.",
+   "sweep_refs": [
+    "F49",
+    "F52"
+   ]
+  },
+  {
+   "driver": "Advances from customers \u2014 historical base",
+   "mode": "BOTTOM_UP",
+   "justification": "Read off statements whose own subtotals re-derive: EGP 17.27bn (FY2019), EGP 20.66bn (FY2020), EGP 22.06bn (30-Jun-2021), with the matching development-properties balances. This is the state variable of a point-in-time developer and it is the collections-and-handover schedule's opening position.",
+   "sweep_refs": [
+    "F26",
+    "F18",
+    "F20"
+   ]
+  },
+  {
+   "driver": "Advances from customers \u2014 roll-forward FY2026+",
+   "mode": "TOP_DOWN",
+   "justification": "The balance cannot be observed after 30-Jun-2021 and the parent's five-line note does not carry it. The roll-forward is inferred from the sales and handover drivers, both of which are themselves top-down.",
+   "sweep_refs": [
+    "F52"
+   ]
+  },
+  {
+   "driver": "Land bank (sqm) and every land-derived driver",
+   "mode": "TOP_DOWN",
+   "justification": "[R-ASSET-01] RED. The newest readable figure is 15.46m sqm as at 25-Feb-2018, which is older than the newest filing (30-Jun-2021) and eight years older than this sweep. The one document that would restate it, Disclosure-2019-Landbanks.pdf, is a JBIG2 symbol-dictionary scan the integrity tool REFUSES, and four land events fall inside the gap. No GDV, remaining-sellable-area or land-cost-per-sqm driver may be built until a current land bank is obtained from a primary document.",
+   "sweep_refs": [
+    "F35",
+    "F34",
+    "F48"
+   ]
+  },
+  {
+   "driver": "NUCA land instalments and the net-debt definition",
+   "mode": "BOTTOM_UP",
+   "justification": "Note 13 of the H1-2021 interim gives the components by project and by gross, discount and net: Belle Vie EGP 6,595,592,958, Cairo Gate EGP 445,300,899, discount EGP (2,225,454,367), net EGP 4,815,439,490. The study states which net-debt definition it uses and shows the other. GAP FLAGGED: the FY2026 level is unobserved and the USD-denominated retroactive fee of F07 is a separate, unsourced addition.",
+   "sweep_refs": [
+    "F25",
+    "F20",
+    "F29"
+   ]
+  },
+  {
+   "driver": "Ownership, minority interest and the Emaar Properties relationship",
+   "mode": "BOTTOM_UP",
+   "justification": "The controlling parent's own audited note 35 gives the NCI percentage at four year-ends (11.26% FY2022 and FY2023, 26.21% FY2024 and FY2025) and note 2.1 gives the named, dated, priced transaction that moved it. Related-party pricing, management fees and the absence of a parent management charge come from EMFD's own note 10.",
+   "sweep_refs": [
+    "F42",
+    "F39",
+    "F37",
+    "F27"
+   ]
+  },
+  {
+   "driver": "Share count and every per-share figure",
+   "mode": "TOP_DOWN",
+   "justification": "4,529,338,000 shares of EGP 1 is CONFIRMED at 30-Jun-2021 from the capital note, and is WRONG for 2026: the Albro consideration of EGP 9,615,044 thousand was settled in newly issued Emaar Misr shares on 19-Dec-2024 and the post-issuance count appears in no obtainable document. The two press EPS figures for Q1-2026 imply two different counts (5.67bn and 7.13bn), which is itself the evidence that the count is unresolved.",
+   "sweep_refs": [
+    "F50",
+    "F51"
+   ]
+  },
+  {
+   "driver": "Total assets, total equity and the FY2022-FY2025 scale anchors",
+   "mode": "BOTTOM_UP",
+   "justification": "Emaar Properties PJSC's audited consolidated FS, note 35, for all four years, every figure footed against its own components. NAMED FALLBACK under [R-SIGCM-03] and labelled as such wherever it is used: five lines only, AED thousands, IFRS, before inter-company elimination.",
+   "sweep_refs": [
+    "F37",
+    "F38",
+    "F39",
+    "F40"
+   ]
+  },
+  {
+   "driver": "EGP revenue and profit path FY2022-FY2025",
+   "mode": "TOP_DOWN",
+   "justification": "The audited series exists only in AED and the parent does not disclose the translation rates it used for the subsidiary, so the EGP path cannot be recovered from it. EMFD's own EGP statements for those years could not be obtained and no aggregator may substitute.",
+   "sweep_refs": [
+    "F51",
+    "F52"
+   ]
+  },
+  {
+   "driver": "Net debt and the cash bridge FY2026",
+   "mode": "TOP_DOWN",
+   "justification": "No EMFD cash, borrowing or held-to-maturity balance is obtainable after 30-Jun-2021; the parent's note gives total liabilities only, which nets nothing. The last observed position \u2014 EGP 310,065,826 of interest-bearing items against EGP 10.77bn of cash and held-to-maturity investments at 31-Dec-2020 \u2014 is five years stale and predates EGP 4.8bn of NUCA instalments.",
+   "sweep_refs": [
+    "F51",
+    "F52"
+   ]
+  },
+  {
+   "driver": "Dividend / payout",
+   "mode": "TOP_DOWN",
+   "justification": "Zero distribution is observed in FY2019 and FY2020 from the statement of changes in equity, and no dividend resolution has been published since the 31-Mar-2021 OGM. The payout assumption is therefore unsourced for the forecast window and is set at the observed zero with the alternative sensitised.",
+   "sweep_refs": [
+    "F50",
+    "F49"
+   ]
+  },
+  {
+   "driver": "Cost of equity: risk-free rate and country risk premium",
+   "mode": "BOTTOM_UP",
+   "justification": "The CBE's own published policy rates and its own stated inflation path give the explicit-window rf and the anchor for the normalised terminal rf; the IMF programme record and the S&P action give the sovereign spread netted out of it. Both are regulator-official and dated.",
+   "sweep_refs": [
+    "F05",
+    "F09"
+   ]
+  },
+  {
+   "driver": "EGP/USD path",
+   "mode": "TOP_DOWN",
+   "justification": "The company publishes no FX guidance, holds no derivatives and carried no foreign-currency borrowing in the last balance sheet it published, so there is no company disclosure to build on. The path is set from the market series and the Reuters-polled consensus and sensitised across the 2026 range.",
+   "sweep_refs": [
+    "F53",
+    "F50"
+   ]
+  },
+  {
+   "driver": "Construction cost inflation",
+   "mode": "TOP_DOWN",
+   "justification": "No company cost disclosure after H1-2021. Rebar and cement prices are market-wide series, not the company's realised input cost, and the mix is undisclosed.",
+   "sweep_refs": [
+    "F52",
+    "F49"
+   ]
+  },
+  {
+   "driver": "FY2026 base year",
+   "mode": "TOP_DOWN",
+   "justification": "BLOCKED, NOT MERELY TOP-DOWN. The only two study-year observations are press reports of filings we do not hold, they are mutually inconsistent (implying a Q2-2026 loss of EGP 2.21bn after a Q1 whose profit exceeded its revenue), and the same arithmetic reconciles perfectly on 2025. No base year may be adopted until the Q1-2026 and H1-2026 filings are read.",
+   "sweep_refs": [
+    "F51",
+    "F52"
+   ]
+  }
+ ],
+ "primary_access": [
+  {
+   "url": "https://www.emaarmisr.com/about-emaar/ir-reports/",
+   "reachable": true,
+   "attempt_date": "2026-09-09",
+   "note": "HTTP 200, text/html, 1,270,053 bytes. 142 PDFs linked; 41 of them financial statements. NEWEST FINANCIAL STATEMENT ON THE COMPANY'S OWN REGISTER IS Q2-2021. The CDN (NitroPack over WordPress) answers the abbreviated Chrome UA with 200 and the full one with 403 \u2014 the abbreviated string was used."
+  },
+  {
+   "url": "https://www.emaarmisr.com/wp-json/wp/v2/media?per_page=100&search=Financial-Statements",
+   "reachable": true,
+   "attempt_date": "2026-09-09",
+   "note": "HTTP 200, application/json, 7,047 bytes, 41 records. The media API lists every file the site hosts whether or not a page links to it, so this is the check that the register is not merely an out-of-date page: the newest FS upload is Emaar-Misr-IR-Reports-Financial-Statements-2021-Q2-EN-Seperate.pdf, uploaded 2025-10-08T00:14:56. There is no unlinked FY2022-FY2025 filing."
+  },
+  {
+   "url": "https://www.emaarmisr.com/wp-json/wp/v2/media?per_page=60&orderby=date&order=desc",
+   "reachable": true,
+   "attempt_date": "2026-09-09",
+   "note": "HTTP 200. Newest upload of ANY kind: 2026-09-01, Belle Vie rules and regulations. The site is live and maintained; only the IR channel stopped."
+  },
+  {
+   "url": "https://www.emaarmisr.com/press-releases/",
+   "reachable": true,
+   "attempt_date": "2026-09-09",
+   "note": "HTTP 200, 734,235 bytes. Newest press release on the company's own site: 26 March 2021 (Belle Vie groundbreaking). No 2022-2026 corporate release exists on this channel."
+  },
+  {
+   "url": "https://www.emaarmisr.com/about-emaar/investor-relations/",
+   "reachable": true,
+   "attempt_date": "2026-09-09",
+   "note": "HTTP 200, 640,642 bytes. The live IR page embeds an EGID widget in 11 iframes: https://ir.egidegypt.com/en/financialstatement/grtCLq1LRjYQd1LLygQrAPAirGoZfVsT5uX7h5ISUnM! \u2014 i.e. the company's own current IR channel is that widget, not the PDF register."
+  },
+  {
+   "url": "https://ir.egidegypt.com/en/financialstatement/grtCLq1LRjYQd1LLygQrAPAirGoZfVsT5uX7h5ISUnM!",
+   "reachable": true,
+   "attempt_date": "2026-09-09",
+   "note": "HTTP 200, text/html, 22,613 bytes \u2014 but it is an Angular shell with no data. Its runtime config https://ir.egidegypt.com/assets/config.json (HTTP 200, 196 bytes) names the API: {\"frontUrl\":\"https://ir.egidegypt.com\", \"baseUrl\":\"https://ir.egidegypt.com:8080\", ...}. The shell is reachable; the data is on port 8080."
+  },
+  {
+   "url": "https://ir.egidegypt.com:8080/api/identity/Settings/getCompanySettings/grtCLq1LRjYQd1LLygQrAPAirGoZfVsT5uX7h5ISUnM!",
+   "reachable": false,
+   "attempt_date": "2026-09-09",
+   "note": "BLOCKED. curl: 'curl: (35) Recv failure: Connection reset by peer', HTTP status 000, 0 bytes. The session proxy's own log for the same second: kind=ws_closed_mid_exchange, host=ir.egidegypt.com:8080, 'tunnel closed (code 1006, Connection ended) after 6s; 517 B sent, 39 B received, client reading, 0 B still queued in the relay'. Port 8080 is not permitted by this session's egress policy. That is an environment limit, not a publication fact."
+  },
+  {
+   "url": "https://data.egidegypt.com/",
+   "reachable": false,
+   "attempt_date": "2026-09-09",
+   "note": "BLOCKED. HTTP 403, text/html, 1,233 bytes. Body verbatim: '403 - Forbidden: Access is denied. You do not have permission to view this directory or page using the credentials that you supplied.' This is the host the EGID bundle uses for document attachments whose code contains a hyphen."
+  },
+  {
+   "url": "https://www.egx.com.eg/en/CompanyProfile.aspx?companyCode=EMFD.CA",
+   "reachable": false,
+   "attempt_date": "2026-09-09",
+   "note": "BLOCKED BY PAYLOAD, NOT BY STATUS. HTTP 200, text/html, 6,020 bytes \u2014 an F5 Shape/TSPD anti-bot interstitial, not the page. Its own noscript block: 'Please enable JavaScript to view the page content. Your support ID is: 4562065020937468764.' Judging this route by status code would have recorded a success and stored a challenge page as a filing. Identical 6,020-byte interstitial returned for /getdoc/, /en/DisclosureNews.aspx and /downloads/News/171509_090244.pdf (a known Emaar Misr separate-FS attachment). egx.com.eg, www.egx.com.eg and http:// all behave the same."
+  },
+  {
+   "url": "https://disclosure.egx.com.eg/",
+   "reachable": false,
+   "attempt_date": "2026-09-09",
+   "note": "BLOCKED. HTTP status 000, 0 bytes. curl: 'curl: (35) OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to disclosure.egx.com.eg:443'."
+  },
+  {
+   "url": "chromium (playwright, /opt/pw-browsers) via HTTPS_PROXY",
+   "reachable": false,
+   "attempt_date": "2026-09-09",
+   "note": "BLOCKED, AND VERIFIED AGAINST A CONTROL so the failure is attributed correctly. https://example.com -> 'net::ERR_CONNECTION_RESET'; https://www.egx.com.eg/en/homepage.aspx -> 'net::ERR_CONNECTION_RESET'. The control fails identically, so the transport is the cause and the F5 JavaScript challenge cannot be solved from here by any browser."
+  },
+  {
+   "url": "https://web.archive.org/cdx/search/cdx?url=egx.com.eg&matchType=domain&filter=original:.*[Ee]maar.*&output=json&limit=300&collapse=urlkey",
+   "reachable": true,
+   "attempt_date": "2026-09-09",
+   "note": "REACHABLE AND EMPTY. HTTP 200, 3 bytes, ZERO rows. The Wayback Machine holds no archived Emaar-Misr document on egx.com.eg at all, so the archive is not a route to the blocked filings. (https://archive.org/wayback/available returned HTTP 429 Too Many Requests separately.) Recorded because an empty result is not a clean result."
+  },
+  {
+   "url": "https://www.fra.gov.eg/",
+   "reachable": true,
+   "attempt_date": "2026-09-09",
+   "note": "REACHABLE, HTTP 200, 282,585 bytes \u2014 and it does not carry listed-company financial statements. Its registers cover insurance and non-bank financial activities. Not a route to EMFD's filings."
+  },
+  {
+   "url": "https://feeds.dfm.ae/documents/2024/Mar/15/93e7ffb5-5df5-4b5c-92be-aad9fdd52529/Emaar%20Properties%20PJSC%20-%20FS%202023%20-%20English.pdf",
+   "reachable": true,
+   "attempt_date": "2026-09-09",
+   "note": "REACHABLE. HTTP 200, application/pdf, 7,049,395 bytes, magic %PDF-. The controlling parent's FY2023 audited consolidated financial statements as filed with the DFM. scanned_filing_integrity: 'not a JBIG2 scan'. This is the [R-SIGCM-03] NAMED fallback for EMFD FY2022 and FY2023."
+  },
+  {
+   "url": "https://uae-cms.emaar.com/uploads/Emaar_Properties_IR_2025_English_F_217e05f4f9.pdf",
+   "reachable": true,
+   "attempt_date": "2026-09-09",
+   "note": "REACHABLE. HTTP 200, 18,021,885 bytes, 223 pages, native text. Emaar Properties PJSC Integrated Annual Report 2025 including the audited consolidated FS. scanned_filing_integrity: 'not a JBIG2 scan'. The NAMED fallback for EMFD FY2024 and FY2025."
+  }
+ ],
+ "study_year": "2026",
+ "study_quarters_disclosed": [
+  "Q1-2026",
+  "Q2-2026"
+ ],
+ "qc_line": "QC(m) \u2014 Information Sweep [EMFD, 2026-09-09]: FAIL (2 errors) \u2014 4/4 rings, 56 findings (4 B \u00b7 22 S \u00b7 17 D \u00b7 5 C \u00b7 8 NEG), driver gate 21 rows (6 bottom-up / 15 top-down) | primary access: attempted (15) | FS years: 8 ['FY2017', 'FY2018', 'FY2019', 'FY2020', 'FY2022', 'FY2023', 'FY2024', 'FY2025'] | IR findings: 3"
+}

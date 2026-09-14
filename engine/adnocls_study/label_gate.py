@@ -49,7 +49,10 @@ def _charter_window(klass, a, b):
 
 
 CHD_VLCC_Q1, CHR_VLCC_Q1 = _charter_window('vlcc', '2026-01-01', '2026-04-01')
-CHD_VLCC_26, CHR_VLCC_26 = _charter_window('vlcc', '2026-01-01', '2027-01-01')
+# THE FIRST FORECAST COLUMN IS THE SECOND HALF OF 2026, NOT THE YEAR: the first half is
+# REPORTED and this model does not forecast a period the company has already filed, so the
+# column builds the half that remains and adds the half that happened.
+CHD_VLCC_26, CHR_VLCC_26 = _charter_window('vlcc', '2026-07-01', '2027-01-01')
 # the crude carriers bought on 7 August 2026 trade spot from their delivery date, so the
 # spot vessel-days of that class in 2026 are the owned fleet's days, less the charter days,
 # plus theirs — recomputed here from the committed count and that date
@@ -82,10 +85,15 @@ CASES = [
     ('Summary', f"A{SU['rel']}", f"C{SU['rel']}", ['relative'], LN['relative']['base']),
     ('Summary', f"A{SU['norm']}", f"C{SU['norm']}", ['normalised'], LN['normalized']['base']),
     ('Summary', f"A{SU['book']}", f"C{SU['book']}", ['book value'], LN['book']['base']),
-    ('Summary', f"A{SU['central']}", f"C{SU['central']}", ['weighted central'], D['central']),
+    # RE-POINTED: the row was correctly relabelled when [R-LENS-03] retired the blend and
+    # this expectation went on requiring the retired words, so the study's own gate was
+    # holding it to vocabulary the standing rule forbids. [R-COC-01]: when a check fires
+    # on work that is right, re-point it.
+    ('Summary', f"A{SU['central']}", f"C{SU['central']}",
+     ['central', 'cash-flow lens'], D['central']),
     ('Summary', f"A{SU['dcfa']}", f"C{SU['dcfa']}", ['composite-index beta'], DCFA['fv_aed']),
     ('Summary', f"A{SU['centrala']}", f"C{SU['centrala']}",
-     ['weighted central', 'composite-index beta'], D['central_beta_alt']),
+     ['central', 'composite-index beta'], D['central_beta_alt']),
     ('Summary', f"A{SU['dcf']}", f"H{SU['dcf']}", ['discounted cash flow'], DCF['tv_share']),
     ('Summary', f"A{SU['panel']}", f"C{SU['panel']}", ['expert panel'], D['panel_centre']),
     # --- SOTP Bridge ---------------------------------------------------------
@@ -99,7 +107,8 @@ CASES = [
      ['terminal value', 'share', 'enterprise value'], DCF['tv_share']),
     ('SOTP Bridge', f"A{SB['ev']}", f"C{SB['ev']}", ['enterprise value'], DCF['ev']),
     ('SOTP Bridge', f"A{SB['prenci']}", f"C{SB['prenci']}",
-     ['before the minorities'], DCF['ev'] - DCF['net_debt']),
+     ['before the minorities'],
+     DCF['ev'] - DCF['net_debt'] - DCF['dividend_declared']),
     ('SOTP Bridge', f"A{SB['nci']}", f"C{SB['nci']}",
      ['non-controlling interests', 'contracted price'], -DCF['nci']),
     ('SOTP Bridge', f"A{SB['eq']}", f"C{SB['eq']}", ['equity attributable'], DCF['equity']),
@@ -147,7 +156,7 @@ CASES = [
      CHR_VLCC_26 / 1000.0),
     ('Segments', f"A{SG['ysdb']}", f"B{SG['ysd0']+4}",
      ['spot vessel-days', 'acquired'],
-     FL['owned']['vlcc'] * 365 - CHD_VLCC_26 + ACQ_VLCC_DAYS_26),
+     FL['owned']['vlcc'] * 184 - CHD_VLCC_26 + ACQ_VLCC_DAYS_26),
     # the purchase announced on the anchor date, wherever it lands
     ('Segments', f"A{SG['yacd0']+4}", f"B{SG['yacd0']+4}", ['very large crude carrier'],
      ACQ_VLCC_DAYS_26),
@@ -157,12 +166,14 @@ CASES = [
      ['vessel-years', 'bought on 7 august 2026'], float(V['acq_2026_gas'])),
     ('Segments', f"A{SG['gasvy']}", f"C{SG['gasvy']}", ['contracted vessel-years'],
      FL['gas_vessel_years'][1]),
-    ('Segments', f"A{SG['vdays25']}", f"B{SG['vdays25']}", ['vessel-days in 2025'],
-     FL['vessel_days_25']),
     ('Segments', f"A{SG['tcerev25']}", f"B{SG['tcerev25']}",
      ['2025 charter-equivalent revenue'], FL['tce_rev_25']),
-    ('Segments', f"A{SG['opexd0']}", f"B{SG['opexd0']}", ['running cost per vessel-day'],
-     FL['opex_day']),
+    ('Segments', f"A{SG['tceh1']}", f"B{SG['tceh1']}",
+     ['first-half 2026 charter-equivalent revenue'], FL['tce_rev_h126']),
+    ('Segments', f"A{SG['lev0']}", f"B{SG['lev0']}", ['earnings leverage'],
+     FL['leverage']),
+    ('Segments', f"A{SG['fixed0']}", f"B{SG['fixed0']}", ['fixed cost base'],
+     FL['cost_fixed']),
     ('Segments', f"A{SG['gasrate0']}", f"B{SG['gasrate0']}",
      ['revenue per gas vessel-day'], FL['gas_rate_day']),
     ('Segments', f"A{SG['teb']}", f"B{SG['teb']}", ['tankers', 'ebitda'],
@@ -171,8 +182,11 @@ CASES = [
      SEGF['Tankers']['rev'][0]),
     ('Segments', f"A{SG['gaseb']}", f"B{SG['gaseb']}", ['gas carriers', 'ebitda'],
      SEGF['Gas Carriers']['ebitda'][0]),
+    # RE-POINTED: the model escalates this line on the opex PATH's first year and this
+    # expectation kept the retired scalar, so it asserted 1.020 against a cell built at
+    # 1.025. The cell is right; the expectation was a vintage behind.
     ('Segments', f"A{SG['gasjv']}", f"B{SG['gasjv']}", ['joint-venture profit'],
-     -V['jv_gas_fy25'] * (1 + V['opex_escalation'])),
+     -V['jv_gas_h126'] * (1 + V['opex_escalation_path'][0])),
     ('Segments', f"A{SG['frevt']}", f"B{SG['frevt']}", ['total revenue'], FC['revenue'][0]),
     ('Segments', f"A{SG['febt']}", f"B{SG['febt']}", ['total ebitda'], FC['ebitda'][0]),
     ('Segments', f"A{SG['fmgn']}", f"B{SG['fmgn']}", ['ebitda margin'],
@@ -193,11 +207,11 @@ CASES = [
      ['terminal value', 'share', 'enterprise value'], DCF['tv_share']),
     ('DCF', f"A{DF_['ev']}", f"C{DF_['ev']}", ['enterprise value'], DCF['ev']),
     ('DCF', f"A{DF_['prenci']}", f"C{DF_['prenci']}", ['before the minorities'],
-     DCF['ev'] - DCF['net_debt']),
+     DCF['ev'] - DCF['net_debt'] - DCF['dividend_declared']),
     ('DCF', f"A{DF_['ncinav']}", f"C{DF_['ncinav']}",
      ['tanker combination', 'contracted'], V['nci_navig8']),
     ('DCF', f"A{DF_['nciother']}", f"C{DF_['nciother']}",
-     ['remaining minorities', 'carrying value'], V['q1_26_nci'] - V['nci_navig8']),
+     ['remaining minorities', 'carrying value'], V['h1_26_nci'] - V['nci_navig8']),
     ('DCF', f"A{DF_['nci']}", f"C{DF_['nci']}",
      ['non-controlling interests', 'contracted price', 'greater of book and value'],
      -DCF['nci']),
@@ -379,8 +393,14 @@ CASES = [
     ('Relative & Normalized', f"A{RN['pe_fwd']}", f"C{RN['pe_fwd']}",
      ['price /', 'forward'], D['wacc']['mktcap'] / D['fin']['npa_ordinary'][0]),
     # --- the cost of debt, labelled for what each construction is ------------
+    # RE-POINTED: this row was REPURPOSED when the average-of-three construction was
+    # retired — it now carries the retired average as a memorandum, and the expectation
+    # went on asserting the balance-weighted figure and its old label. Both the words and
+    # the value were describing a row that had moved out from under them.
     ('DCF', f"A{DF_['kdbal']}", f"C{DF_['kdbal']}",
-     ['balance-weighted', 'method 2'], D['wacc']['kd_balance_weighted']),
+     ['retired', 'average'], D['wacc']['kd_retired_average']),
+    ('DCF', f"A{DF_['kd']}", f"C{DF_['kd']}",
+     ['method 2', 'weighted by balance'], D['wacc']['kd_balance_weighted']),
     # --- the fleet purchase, in the bridge and on the driver sheet -----------
     ('DCF', f"A{DF_['acq']}", f"C{DF_['acq']}", ['bought on 7 august 2026'],
      -V['acq_2026_cost']),

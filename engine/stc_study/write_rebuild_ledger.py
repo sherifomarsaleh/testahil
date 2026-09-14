@@ -38,7 +38,10 @@ LANDED = {
     'R-SIGCM-02:units': '4996c2f5097ef20628960e14bab1a9a00c2a2ac7',   # the unit build, SAME RULE, so it groups with it
     'R-FCAL-01': '52aade4029cfc181a84069d9e6fabcf92cf2662e',          # capex measured rather than guided
     'R-ANCHOR-01': '34e74f311f05c0e535037cee70d5111a5bbc8c27',    # lever 11
-    'R-BRIDGE-01:spectrum': None,                                # the working tree, latest
+    'R-BRIDGE-01:spectrum': '0a1e324ca29d129c25dc5da50fbcd3b9909decea',   # lever 12
+    'R-SIGCM-02:workingcapital': '61b9b6b7073fb625f3c22961ca17439205b4f292',   # lever 13
+    'R-SIGCM-02:tax': '6212d3d213f077670ff91c834a0fd4000d32fe02',   # lever 14
+    'R-SIGCM-02:coststack': None,                                # the working tree, latest
 }
 
 
@@ -63,6 +66,12 @@ def at(rev):
 
 
 PUB = at(PUBLISHED_REV)
+#: ELEVEN AGAINST TWELVE. This ledger stated the segment count twice and got it wrong
+#: both times, in the same edition whose delivered study did. It is counted from the
+#: model's own segment set now; eliminations are not a segment.
+_NSEG = len([k for k in json.load(
+    open(os.path.join(HERE, 'study_numbers.json')))['seg_forecast']
+    if 'liminat' not in k])
 AFTER_BETA = at(LANDED['R-BETA-04'])
 AFTER_MACRO = at(LANDED['R-MACRO-01'])
 AFTER_TERM = at(LANDED['R-TERM-01'])
@@ -73,12 +82,16 @@ AFTER_SEG = at(LANDED['R-SIGCM-02'])
 AFTER_UNITS = at(LANDED['R-SIGCM-02:units'])
 AFTER_CAPEX = at(LANDED['R-FCAL-01'])
 AFTER_ANCHOR = at(LANDED['R-ANCHOR-01'])
+AFTER_SPECTRUM = at(LANDED['R-BRIDGE-01:spectrum'])
+AFTER_WC = at(LANDED['R-SIGCM-02:workingcapital'])
+AFTER_TAX = at(LANDED['R-SIGCM-02:tax'])
 NOW = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 # The lever-2 intermediate, struck when the cost-of-capital schedule was in and the beta
 # was not. It is named for that lever set, so a later sensitivity run cannot overwrite the
 # number this ledger chains through — which is the stale-artefact defect [R-ENF-06] names,
 # and it would be invisible here because the file would still parse and still look computed.
 SENS = json.load(open(os.path.join(HERE, 'beta_sensitivity_after_coc.json')))
+_IS = json.load(open(os.path.join(HERE, 'income_statement.json')))
 
 led = RL.Ledger(
     ticker='STC',
@@ -361,7 +374,7 @@ led.apply(
 )
 
 led.apply(
-    name='revenue and margin rebuilt on the eleven disclosed segments',
+    name='revenue and margin rebuilt on the %d disclosed segments' % _NSEG,
     rule='R-SIGCM-02',
     after=AFTER_SEG['lenses']['central']['base'],
     why=(
@@ -390,10 +403,11 @@ led.apply(
         'eight-heading review is written and committed as GAP_REVIEW_05-09-2026.md. THE SIZE '
         'WAS DECLARED UNPREDICTED IN ADVANCE and it was: group real growth of +2.33%% '
         'trailing is close to what the delivered arrays imply in aggregate, and what changed '
-        'is the COMPOSITION, because four aggregates do not map onto eleven segments and a '
+        'is the COMPOSITION, because four aggregates do not map onto %d segments and a '
         'segment growing at its own rate compounds differently from a blend growing at an '
         'average of them.'
-        % (100 * ((AFTER_SEG['forecast']['FY30E']['rev'] / 77_818.675) ** 0.2 - 1),
+        % (_NSEG,
+           100 * ((AFTER_SEG['forecast']['FY30E']['rev'] / 77_818.675) ** 0.2 - 1),
            100 * ((93_373.0 / 77_818.675) ** 0.2 - 1),
            100 * AFTER_SEG['forecast']['FY26E']['ebitda_margin'],
            100 * 24_469.435 / 77_818.675,
@@ -530,7 +544,7 @@ led.apply(
 led.apply(
     name='the spectrum-licence liability into net debt, a claim disclosed outside borrowings',
     rule='R-BRIDGE-01',
-    after=NOW['lenses']['central']['base'],
+    after=AFTER_SPECTRUM['lenses']['central']['base'],
     why=(
         'A CLAIM AHEAD OF EQUITY WAS DISCLOSED IN A NOTE THE BRIDGE DID NOT OPEN. The '
         'bridge already stood on the latest disclosed sheet and read its borrowings, its '
@@ -554,14 +568,147 @@ led.apply(
         'liability never entered it, and the unpaid consideration is a financing claim the '
         'discounted cash flows do not service. The answer falls %.4f to %.4f, %+.2f%%, and '
         'the gap widens to %+.1f%%.'
-        % ('%.3f' % NOW['bridge_record']['net_debt_build']['spectrum_licences'],
-           '%.3f' % (NOW['bridge_record']['net_debt_build']['net']
-                     - NOW['bridge_record']['net_debt_build']['spectrum_licences']),
-           '%.3f' % NOW['bridge_record']['net_debt_build']['net'],
-           AFTER_ANCHOR['lenses']['central']['base'], NOW['lenses']['central']['base'],
-           100 * (NOW['lenses']['central']['base']
+        % ('%.3f' % AFTER_SPECTRUM['bridge_record']['net_debt_build']['spectrum_licences'],
+           '%.3f' % (AFTER_SPECTRUM['bridge_record']['net_debt_build']['net']
+                     - AFTER_SPECTRUM['bridge_record']['net_debt_build']['spectrum_licences']),
+           '%.3f' % AFTER_SPECTRUM['bridge_record']['net_debt_build']['net'],
+           AFTER_ANCHOR['lenses']['central']['base'],
+           AFTER_SPECTRUM['lenses']['central']['base'],
+           100 * (AFTER_SPECTRUM['lenses']['central']['base']
                   / AFTER_ANCHOR['lenses']['central']['base'] - 1),
-           100 * (NOW['lenses']['central']['base'] / NOW['spot'] - 1))),
+           100 * (AFTER_SPECTRUM['lenses']['central']['base'] / NOW['spot'] - 1))),
+)
+
+
+led.apply(
+    name='working capital projected from the asset-conversion cycle instead of plugged',
+    rule='R-SIGCM-02',
+    after=AFTER_WC['lenses']['central']['base'],
+    why=(
+        'SIGCM CLAUSE 4 REQUIRES THE CYCLE TO BE STUDIED AND THE BALANCE SHEET PROJECTED '
+        'FROM IT, with no unexplained plugs where the drivers are disclosed. This study '
+        'carried a typed working-capital outflow of 0.8%% of revenue falling to 0.4%% — a '
+        'number per year with no balance sheet behind it, which is the plug the clause names. '
+        'And the drivers ARE disclosed, in unusual detail: receivables with an ageing '
+        'analysis and the government share of the book, inventory with ITS OWN cost base '
+        'stated in the note, payables with a stated settlement range, and the two contract '
+        'balances a telecom actually turns over and which no cash-cycle built from three '
+        'lines would see.'),
+    evidence=(
+        'WHAT THE PLUG WAS HIDING: net working capital ran 5.9%%, 6.5%% and 13.2%% of revenue '
+        'across the filed years and 17.5%% at the reviewed half — it MORE THAN DOUBLED in '
+        'FY2025 and rose again in the half — while the plug said the outflow shrank every '
+        'year. Days sales outstanding went 108.8 to 106.9 to 125.4 on a book where '
+        'government and government-related entities owe 75%% of the gross receivable, and '
+        'days payable fell 11.6. The days are anchored on the LATEST DISCLOSED sheet and '
+        'then held flat, which matters: receivables were essentially unchanged across the '
+        'half (26,727,198 to 26,727,997) while revenue grew, so the days fall to 120.8 '
+        'without anything being assumed. Projected, the five-year outflow is %.0f against '
+        'the plug\'s %.0f. The answer rises %.4f to %.4f, %+.2f%%, and the gap narrows to '
+        '%+.1f%%. TWO THINGS ARE RECORDED RATHER THAN REPAIRED: the measured trade payable '
+        'days (161, 185, 229) do not reconcile with the 90-107 the filings state, because '
+        'trade payables are not bought only against inventory and the purchases actually on '
+        'trade terms are not disclosed — so the right denominator cannot be built and is not '
+        'invented; and the conventional cash cycle MIXES DENOMINATORS, so at 18.6 days it is '
+        'not net working capital in days of revenue, which is 64. Both are published and the '
+        'projection runs on the second.'
+        % (sum(r['dwc'] for r in AFTER_WC['dcf']['rows']),
+           sum(r['dwc'] for r in AFTER_SPECTRUM['dcf']['rows']),
+           AFTER_SPECTRUM['lenses']['central']['base'],
+           AFTER_WC['lenses']['central']['base'],
+           100 * (AFTER_WC['lenses']['central']['base']
+                  / AFTER_SPECTRUM['lenses']['central']['base'] - 1),
+           100 * (AFTER_WC['lenses']['central']['base'] / NOW['spot'] - 1))),
+)
+
+
+led.apply(
+    name='the tax rate measured on the base it is applied to, with the disclosed reversal out',
+    rule='R-SIGCM-02',
+    after=AFTER_TAX['lenses']['central']['base'],
+    why=(
+        'THE TAX RATE WAS A TYPED CONSTANT AND TWO THINGS WERE WRONG WITH IT, both found by '
+        'an arithmetic check rather than by judgement. It read 0.097 with a comment saying '
+        'FY23 9.5%, FY24 9.8%, FY25 a one-off credit — a mean of the two years that looked '
+        'ordinary, on a base the comment does not name. FIRST, WHICH YEAR IS ONE-OFF IS '
+        'DISCLOSED RATHER THAN JUDGED: note 33(a) carries "Reversal of prior years\' Zakat '
+        'provision during the year (1,324,787)" on its own line, so the FY2025 credit does '
+        "not have to be inferred from its size and the underlying charge is that year's own "
+        'additions. SECOND, THE BASE HAS TO MATCH: after-tax operating profit is EBIT times '
+        "one minus a rate, so the rate must be measured against EBIT, while the income "
+        "statement's zakat line sits on profit before zakat. The two differ because the "
+        'lines between them are a net charge on this book. THE DEBT SHIELD WAS LOOKED AT '
+        'AND DELIBERATELY LEFT ALONE, which is recorded because the opposite was tried: '
+        'the schedule shields interest at the statutory 20%%, and carrying the measured '
+        'effective rate into it on a one-model-one-rate argument was WRONG — an effective '
+        'rate is the average the filed years bore, a shield is the marginal rate an '
+        'authority allows on the income-tax portion, and the two are not required to be '
+        'equal. The span between them is worth 0.79%% of the answer, below the line this '
+        'house sets for a contested judgement.'),
+    evidence=(
+        'Measured over the three filed years together with the disclosed reversal put back: '
+        '%.2f%% on EBIT, which is what after-tax operating profit needs, and %.2f%% on '
+        'profit before zakat, which is what the income statement applies. Carrying the '
+        'reversal forward instead would read %.2f%% and would assume the company keeps '
+        'discovering it has over-provided, for ever. The answer rises %.4f to %.4f, %+.2f%%, '
+        'and the gap narrows to %+.1f%%. THE WORKBOOK RECONCILIATION IS WHAT SURFACED IT: '
+        'the sheet and the model disagreed and neither was obviously wrong until the two '
+        'denominators were named.'
+        % (100 * _IS['effective_zakat_rate_on_ebit'], 100 * _IS['effective_zakat_rate'],
+           100 * _IS['zakat_rate_carrying_the_reversal'],
+           AFTER_WC['lenses']['central']['base'], AFTER_TAX['lenses']['central']['base'],
+           100 * (AFTER_TAX['lenses']['central']['base']
+                  / AFTER_WC['lenses']['central']['base'] - 1),
+           100 * (AFTER_TAX['lenses']['central']['base'] / AFTER_TAX['spot'] - 1))),
+)
+
+
+_CD = json.load(open(os.path.join(HERE, 'cost_decomposition.json')))
+led.apply(
+    name='four of the seven disclosed cost lines onto the bases the filings name',
+    rule='R-SIGCM-02',
+    after=NOW['lenses']['central']['base'],
+    why=(
+        'A GROSS MARGIN SET AS AN INPUT IS A FAIL WHEREVER THE DISCLOSURE SUPPORTS BUILDING '
+        'COST PER UNIT INSTEAD, and note 35 discloses all seven cost lines by nature for '
+        'three years. FOUR of them have a sourced base that is NOT group revenue and the '
+        'model was charging all four against group revenue anyway: the commercial service '
+        'provisioning fee, which the sub-note levies on the SAUDI OPERATING SEGMENT and '
+        'which therefore grows more slowly than the group; the licence fee, near-fixed with '
+        'its own measured rate; repairs and maintenance, which sit on the ASSET BASE being '
+        'maintained and which the model already projects through capital expenditure '
+        'against depreciation; and contract-cost amortisation, which is subscriber '
+        'acquisition on a volume path the model already carries and which grows FASTER than '
+        'revenue. THE OFFSETS RUN BOTH WAYS, which is exactly why this had to be built '
+        'rather than argued: two lines fall and two rise. THE OTHER THREE STAY HELD AND ARE '
+        'SAID TO BE — network access has no disclosed unit rate, employee cost has no '
+        'headcount anywhere in the filings and the negative search is registered, and '
+        '"Others" is a residual of three unrelated things; the spectrum sub-line is lumpy '
+        'with the first Saudi licence expiry falling INSIDE the explicit window against no '
+        'disclosed renewal cost, which is a gap to NAME rather than a driver to build. '
+        'Inventing a driver to complete the table is worse than the gap it closes. THE '
+        'CONSTRUCTION EXISTED AND WAS CONSUMED BY NOTHING for a week: it was priced beside '
+        'the model, which is the difference between measuring what a construction would do '
+        'and building it.'),
+    evidence=(
+        'On the final forecast year the four lines cost a net SAR %.1fmn more on their own '
+        'bases than on a share of revenue, %.4f points of margin. The answer falls %.4f to '
+        '%.4f, %+.2f%%, and the gap against the latest known price goes to %+.2f%%. THE '
+        'APPROXIMATION WAS NEARLY DOUBLE THE TRUTH AND THAT IS WORTH RECORDING: priced '
+        'through the study\u2019s own committed margin-sensitivity grid the effect read '
+        '%+.3f%%, against an exact %+.3f%% once the lines were actually in the model, '
+        'because a uniform margin shift is not four cost lines each on its own base with '
+        'its own timing. A grid is a linearisation and this is the size of error it carries '
+        'on a change this small.'
+        % (_CD['value_effect']['net_cost_change_fy_final'],
+           -_CD['value_effect']['margin_shift'],
+           AFTER_TAX['lenses']['central']['base'], NOW['lenses']['central']['base'],
+           100 * (NOW['lenses']['central']['base']
+                  / AFTER_TAX['lenses']['central']['base'] - 1),
+           100 * (NOW['lenses']['central']['base'] / NOW['spot'] - 1),
+           100 * _CD['value_effect']['pct_of_central'],
+           100 * (NOW['lenses']['central']['base']
+                  / AFTER_TAX['lenses']['central']['base'] - 1))),
 )
 
 

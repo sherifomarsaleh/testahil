@@ -1,0 +1,618 @@
+                                                                                  Q2 2022 EARNINGS RELEASE
+                                                                                                             Cairo | 22 August 2022
+
+
+
+
+ELSEWEDY ELECTRIC Reports Q2 2022 Results; Records Strong
+Consolidated Top-Line Growth of 48.6% for the Second Quarter
+and 49.8% for the First Half of the Year
+H1 2022 Consolidated Financial Highlights
+ Revenues                          Gross Profit                      EBITDA                            Net Profit after Minority
+
+ EGP 38,964 million                EGP 5,253 million                 EGP 3,782 million                 EGP 1,887 million
+ ▲ 49.8% y-o-y                     ▲ 39.4% y-o-y                     ▲ 29.2% y-o-y                     ▲ 18.7% y-o-y
+
+Q2 2022 Financial Highlights
+ Revenues                          Gross Profit                      EBITDA                            Net Profit after Minority
+
+ EGP 20,391 million                EGP 2,941 million                 EGP 2,234 million                 EGP 1,126 million
+ ▲ 48.6% y-o-y                     ▲ 51.9% y-o-y                     ▲ 41.1% y-o-y                     ▲ 26.6% y-o-y
+
+
+ELSEWEDY ELECTRIC (SWDY.CA on the Egyptian stock exchange), the leading Wires & Cables and Integrated Energy Solution Provider
+in the Middle East and Africa, announces its consolidated financial results for the first half of 2022, reporting revenues of EGP 38,964
+million, up by 49.8% year-on-year (y-o-y). The company’s net profit after minority interest was recorded at EGP 1,887 million, up by
+18.7% y-o-y and representing a net profit margin of 4.8%. From a quarterly standpoint, Elsewedy Electric reported revenues of EGP
+20,391 million in Q2 2022, up by 48.6% y-o-y from revenues recorded in Q2 2021. The company’s net profit after minority interest was
+recorded at EGP 1,126 million, up by 26.6% y-o-y and representing a net profit margin of 5.5%.
+
+Note from Our CEO
+I am pleased to report a strong set of results closing out the first half of 2022. The Group continues to reap the benefits
+of its agile and adaptable business model, which has enabled us here at Elsewedy Electric to stand strong in the face of
+global uncertainty and economic volatility. Thanks to our solid foundation, the Group is able to tackle the ever-changing
+environment with an expediency and flexibility that supports us in staying the course towards our ambitious targets.
+
+Our Group is proud of its endeavours in leading efforts on sustainable, efficient, and green operations. Part of our success
+lies in our consistent focus on ramping up Elsewedy Electric’s digital capabilities. We have achieved significant milestones
+in our strategy to digitally transform the Group’s conceptual and engineering design into performance optimization. This
+transformation will not only provide the backbone for maximizing efficiencies, but also the platform for securing future
+growth and attractive returns to our shareholders.
+
+Further to our goal of becoming a leader in the transition to a low-carbon economy, Elsewedy Electric signed a landmark
+agreement with the World Bank Group’s International Finance Corporation (IFC), to further develop our sustainable
+manufacturing facilities, as well as increase access to renewable energy in Africa. We are excited to collaborate with the
+IFC on aligning our robust expansion plans with the United Nation’s Sustainable Development Goals, in addition to their
+own development guidelines and standards. We believe that this partnership will allow us to become the benchmark for
+integrated energy players across the region and leave an impact on a global scale.
+
+Ahmed El Sewedy
+
+
+ ELSEWEDY ELECTRIC | EARNINGS RELEASE                                                                                                1
+                                                                                Q2 2022 EARNINGS RELEASE
+                                                                                                           Cairo | 22 August 2022
+
+
+
+
+Summary Income Statement
+EGP (000)’s                                   Q2-2022       Q2-2021        % Change         H1-2022        H1-2021        % Change
+Revenue                                   20,391,000      13,720,240         48.6%      38,964,314      26,012,497           49.8%
+   Wires & Cables                          9,669,137     6,534,719           48.0%      18,947,705      12,824,285           47.7%
+   Turnkey Projects                         8,646,357    6,020,602           43.6%      16,200,173      10,584,424           53.1%
+   Meters                                     931,215      477,722           94.9%       1,731,520       1,287,235           34.5%
+   Transformers                              791,970       436,796           81.3%       1,410,909         802,644           75.8%
+   Electrical Products                       255,050       172,628           47.7%         474,519         332,784           42.6%
+   Renewables – IPP                           97,271        77,772           25.1%         199,488         181,125           10.1%
+Gross Profit                               2,941,269     1,936,108           51.9%       5,252,847       3,769,503           39.4%
+   Wires & Cables                          1,430,975       771,677           85.4%       2,481,527       1,543,574           60.8%
+   Turnkey Projects                         1,020,900      794,348           28.5%       1,795,062       1,372,005           30.8%
+   Meters                                    241,580       146,969           64.4%         457,611         392,767           16.5%
+   Transformers                               70,226       112,986          -37.8%         159,901         220,544          -27.5%
+   Electrical Products                       125,760         77,342          62.6%         246,185         152,319           61.6%
+   Renewables – IPP                           51,829         32,787          58.1%         112,560          88,294           27.5%
+Gross Profit Margin                            14.4%         14.1%                           13.5%           14.5%
+EBITDA                                     2,234,424     1,583,937           41.1%       3,781,716       2,927,159           29.2%
+EBITDA Margin                                  11.0%         11.5%                            9.7%           11.3%
+Net Income After Minority                  1,126,498       889,525           26.6%       1,887,365       1,589,594           18.7%
+Net Income After Minority Margin                5.5%          6.5%                            4.8%            6.1%
+
+
+Financial and Operational Highlights
+   •    Revenues increased by 48.6% y-o-y to EGP 20,391 million in Q2 2022 on the back of the strong performance delivered by
+        Elsewedy Electric’s cables and turnkey projects segments. All the company’s other segments showed promising y-o-y
+        growth for the period.
+   •    Gross Profit increased by 51.9% y-o-y to record EGP 2,941 million in Q2 2022, reflecting the strong increase in the company’s
+        top-line from the wires and cables and turnkey projects segments, which offset the impact of increased costs during the
+        period.
+   •    SG&A expenses continue to be impacted by the ongoing global market challenges, coupled with currency depreciations in
+        many regions. Moreover, SG&A partly increased due to the new hires resulting from the company’s expansion plans. SG&A
+        increased by 42.0% y-o-y to record EGP 1,112 million at the end of the second quarter of the year. Nonetheless, SG&A
+        improved as percentage of revenues, standing at 5.5% compared to the 5.7% reported in the second quarter of the previous
+        year.
+   •    EBITDA grew by 41.1% y-o-y to EGP 2,234 million in Q2 2022, recording an EBITDA margin of 11.0% compared to 11.5% one
+        year previously. The nominal decline in EBITDA margin came as a result of recent inflationary pressures which resulted in
+        rising costs.
+   •    Net Income after Minority Interest grew 26.6% y-o-y to EGP 1,126 million in Q2 2022, up from the net income of EGP 890
+        million posted in Q2 2021. Net profit margin for the period came in at 5.5% compared to 6.5% in the second quarter of the
+        previous year.
+   •    Elsewedy reported a net debt position of EGP 13,083 million as at 30 June 2022 compared to a net debt position of EGP 6,116
+        million booked at year-end 2021. The increase was driven mainly by the contingency planning efforts, deployed in anticipation
+        of delays in commodity deliveries and supply-related shortages that could potentially impact operations. This included raw
+
+
+ELSEWEDY ELECTRIC | EARNINGS RELEASE                                                                                              2
+                                                                              Q2 2022 EARNINGS RELEASE
+                                                                                                          Cairo | 22 August 2022
+
+
+
+
+        material stocking and coverage of associated freight costs. Net debt was also affected by the acceleration of advance
+        payments to suppliers.
+    •   Inventory came in at EGP 19,497 million as at 30 June 2022, up by 46.4% from the EGP 13,321 million recorded at the end of
+        2021, as Elsewedy Electric continues to build up higher stock in the midst of global supply-chain disruptions.
+    •   Accounts receivable booked EGP 20,363 million as at 30 June 2022, reflecting an increase of 35.4% compared to EGP 15,043
+        million at 31 December 2021, while accounts payable grew by 21.2% between December 2021 and June 2022, to reach EGP
+        10,521 million.
+
+Financial and Operational Review
+Revenues grew by 48.6% y-o-y to EGP 20,391 million in Q2 2022 on the back of the solid growth recorded by Elsewedy Electric’s
+turnkey projects and wires and cables segments.
+
+
+
+             Revenue by Segment                                                        Revenue by Segment
+                  (Q2 2022)                                                                 (Q2 2021)
+                               1% 0.5%                                                                1% 1%
+
+                          4%                                                                        3%
+                     5%                                                                        3%
+
+
+
+
+                                            47%                                                                      48%
+                      EGP   20.4 bn                                                             EGP   13.7 bn
+                                                                                       44%
+             42%
+
+
+
+
+         Wires & Cables              Turnkey                                       Wires & Cables             Turnkey
+         Meters                      Transformers                                  Meters                     Transformers
+         Electrical Products         Renewables - IPP                              Electrical Products        Renewables - IPP
+
+
+    •   Wires and cables contributed 47% to consolidated revenues, remaining at the forefront of Elsewedy Electric’s top-line and
+        growing by 48.0% y-o-y to reach EGP 9,669 million.
+    •   Turnkey projects represented 42% of consolidated revenues, increasing by 43.6% y-o-y to record revenues of EGP 8,646
+        million and a record backlog of EGP 74.4 billion.
+    •   Meters contributed 5% despite the unfavorable impact of raw material scarcities and supply chain challenges that have
+        lingered from 2021. The segment recorded a remarkable y-o-y increase of 94.9%, with revenues reaching EGP 931.2 million.
+        At present, the pressures imposed by the shortage of ships and other electronic components are being addressed by the
+        company to ensure operations continuity.
+    •   Transformers reported a contribution of 4%, growing by a strong 81.3% y-o-y to reach EGP 792 million. The increase in the
+        segment’s revenues was further supported by the gains generated from the strategic acquisitions that were completed in
+        2021.
+    •   Other electrical products recorded a contribution of 1%, climbing by 47.7% y-o-y to record EGP 255 million.
+    •   Renewables generated 0.5% of consolidated revenues for the second quarter of 2022, growing by 25.1% to reach EGP 97.3
+        million.
+
+
+ ELSEWEDY ELECTRIC | EARNINGS RELEASE                                                                                            3
+                                                                                 Q2 2022 EARNINGS RELEASE
+                                                                                                             Cairo | 22 August 2022
+
+
+
+
+   Gross Profit increased by 51.9% y-o-y to reach EGP 2,941 million in Q2 2022, backed by the solid growth in the wires and cables
+   segment and turnkey projects. Gross profit margin for the period increased to record 14.4% against the 14.1% recorded in the
+   second quarter of 2021.
+
+           Gross Profit by Segment                                                  Gross Profit by Segment
+                  (Q2 2022)                                                                (Q2 2021)
+
+                           4% 2%                                                                   4%2%
+                      2%                                                                      6%
+                 8%
+                                                                                       8%
+                                                                                                                   40%
+
+                      EGP   2.9 bn          49%                                                EGP   1.9 bn
+              35%
+                                                                                            41%
+
+
+         Wires & Cables              Turnkey                                      Wires & Cables             Turnkey
+         Meters                      Transformers                                 Meters                     Transformers
+         Electrical Products         Renewables - IPP                             Electrical Products        Renewables - IPP
+
+   •   The Wires and cables segment was the largest contributor to consolidated gross profit at 49%, with a gross profit of EGP
+       1,431 million, reflecting a y-o-y increase of 85.4%.
+   •   The Turnkey projects segment was the second main contributor to gross profit at 35%, with gross profit increasing by 28.5%
+       y-o-y to EGP 1,021 million.
+   •   Meters generated a gross profit of EGP 241.6 million, a y-o-y increase of 64.4% from Q2 2021, with a contribution of 8% to
+       gross profit.
+   •   Transformers recorded a gross profit of EGP 70.2 million, reflecting a decrease of 37.8% from the segment’s gross profit in
+       Q2 2021, with a contribution of 2%.
+   •   Other electrical products’ gross profit grew by 62.6% y-o-y to reach EGP 125.8 million and yielded a contribution to
+       consolidated gross profit of 4%.
+   •   The Renewables segment’s gross profit amounted to EGP 51.8 million by the end of Q2 2022, representing a 2% contribution
+       to total gross profit.
+
+Segment Review
+Wires and Cables
+                                                           Q2-2022    Q2-2021     % Change              H1-2022       H1-2021   % Change
+Revenues Before Intercompany Sales (EGP 000’s)          12,975,046   8,356,859       55.3%         24,791,944     16,612,350      49.2%
+Revenues After Intercompany Sales (EGP 000’s)            9,669,137   6,534,719       48.0%         18,947,705     12,824,285      47.7%
+Gross Profit (EGP 000’s)                                 1,430,975     771,677       85.4%          2,481,527      1,543,574      60.8%
+GP Margin Before Intercompany Sales                          11.0%        9.2%                          10.0%           9.3%
+GP Margin After Intercompany Sales                           14.8%       11.8%                          13.1%          12.0%
+Cables Sales Volumes (Tons)                                 33,864      32,573         4.0%            69,247         67,245       3.0%
+Cables Gross profit per ton (EGP)                           29,066      15,817        83.8%            23,825         15,457      54.1%
+
+
+
+ELSEWEDY ELECTRIC | EARNINGS RELEASE                                                                                               4
+                                                                                  Q2 2022 EARNINGS RELEASE
+                                                                                                              Cairo | 22 August 2022
+
+
+
+
+              Wires & Cables Revenue and Profitability
+                                                                          •   Revenues generated from the Wires and Cables
+                                                                              segment amounted to EGP 9.7 billion at the end of Q2
+                                                                 14.8%
+       13.5%                    12.7%                                         2022, reflecting an increase of 48.0% from the EGP 6.5
+                     11.9%                            11.8%
+                                           10.9%
+                                                                              billion registered at Q2 2021. The increase in revenues
+                                                                              was primarily driven by the significant increase in prices
+                                                                              coupled with the currency movement effect, as well as
+          23.6         21.7        18.5       20.3       6.5        9.7       a 4% y-o-y increase in sales volumes, which recorded
+        2018         2019       2020       2021      Q2 2021 Q2 2022
+                                                                              33,864 tons in Q2 2022.
+                                                                          •   The segment’s gross profit increased by 85.4% y-o-y,
+                             Revenues (bn)            GP Margin
+                                                                              reaching EGP 1.4 billion at the end of Q2 2022, as a
+                                                                              result of highly profitable special cable orders, paired
+                                                                              with the increase in sales outside of the Egyptian
+                      Wires & Cables Backlog                                  market backed by the impact of favorable currency
+                       (As of 30 June 2022)                                   movements.
+                                                                          •   The segment’s gross profit margin increased in the
+                                                                              second quarter of the year to record 14.8% compared
+                               EGP    11.3 bn                                 to 11.8% one year previously.
+                                                                          •   At the end of Q2 2022, wires and cables recorded a
+                 \                                                            backlog of EGP 11.3 billion, paving the way for the
+                                                                              company to anticipate higher sales from the segment in
+                                                                              the future.
+
+
+
+Turnkey Projects and Awards
+
+                Turnkey Revenue and Profitability
+                                                                          •   Turnkey projects contributed 42% to total revenues
+                 19.8%                                                        and increased 43.6% y-o-y to reach EGP 8.6 billion in
+      18.0%
+                                                                              Q2 2022 on the back of higher project executions in
+                              13.9%       14.5%
+                                                     13.2%                    Egypt and Tanzania.
+                                                               11.8%
+                                                                          •   Turnkey projects backlog grew to a record high of EGP
+                                                                              74.4 billion by the end of June 2022, as a result of
+         13.2         18.9       22.7        25.4       6.0        8.6        higher awards.
+       2018      2019          2020       2021      Q2 2021 Q2 2022
+                                                                          •   Awards for Q2 2022 reached EGP 8.3 billion, driven by
+                                                                              an increase in civil and network infrastructure projects
+                         Revenues (bn)               GP Margin
+                                                                              in Egypt.
+                                                                          •   Turnkey projects recorded a gross profit for the period
+                                                                              of EGP 1 billion (+28.5% vs Q2 2021), becoming the
+                                                                              second-largest contributing segment at 35%. The
+                                                                              segment’s gross profit margin stood at 11.8% (-1.4 pp
+                                                                              vs Q2 2021).
+
+
+
+
+ELSEWEDY ELECTRIC | EARNINGS RELEASE                                                                                                  5
+                                                                                              Q2 2022 EARNINGS RELEASE
+                                                                                                                           Cairo | 22 August 2022
+
+
+
+
+                     Backlog by Sector                                                               Backlog by Region
+                    (As of 30 June 2022)                                                            (As of 30 June 2022)
+
+                                          20%                                                             11%
+
+                                   EGP                                                                          EGP
+                                                                                                    25%
+                    52%      74.4 bn                                                                          74.4 bn
+                                            28%                                                                           64%
+
+
+                   Power Generation
+                   Transmission & Distribution HV                                                Egypt           Africa           GCC
+                   Civil & Networks
+
+
+
+                    Awards by Sector                                                                 Awards by Region
+                   (As of 30 June 2022)                                                             (As of 30 June 2022)
+                                     4%                                                                         1%
+                                            22%
+
+                             EGP
+                            EGP 44 bn
+                                8.3 bn                                                                    EGP   8.3 bn
+                       74%
+                                                                                                                99%
+
+                 Power Generation
+                 Transmission & Distribution HV                                                       Egypt                 GCC
+                 Civil & Networks
+
+Meters
+                                                                         Q2-2022    Q2-2021    % Change         H1-2022         H1-2021   % Change
+Revenues Before Intercompany Sales (EGP 000’s)                          1,306,728   626,952     108.4%        2,376,812    1,543,108        54.0%
+Revenues After Intercompany Sales (EGP 000’s)                             931,215   477,722      94.9%        1,731,520    1,287,235        34.5%
+Gross Profit (EGP 000’s)                                                  241,580   146,969      64.4%          457,611      392,767        16.5%
+GP Margin Before Intercompany Sales                                         18.5%     23.4%                       19.3%        25.5%
+GP Margin After Intercompany Sale                                          25.9%     30.8%                       26.4%           30.5%
+Sales Volumes (meters)                                                  1,010,772   871,499      16.0%        2,037,597    2,002,400         1.8%
+Gross profit per meter (EGP)                                                  239       169      41.7%              225          196        14.5%
+
+                 Meters Revenue and Profitability                                    •   The meters segment contributed 5% to Elsewedy
+                                                      30.8%
+   25.8%          26.8%                   29.2%                                          Electric’s consolidated top-line and increased by
+                              25.8%                                                      94.9% y-o-y to EGP 931.2 million. Sales volumes
+                                                                25.9%                    increased by 16.0% y-o-y, recording 1.0 million
+                                                                                         meters in Q2 2022.
+           3.2        3.3          2.7          1.8
+                                                          0.5
+                                                                   0.9               •   While the shortage of raw materials and supply
+       2018        2019       2020        2021        Q2 2021 Q2 2022                    chain disruptions remain a challenge on a global
+                                                                                         scale, the strategies adopted by Elsewedy Electric,
+                            Revenues (bn)              GP Margin
+                                                                                         such as redesigning existing products, in addition to
+
+ELSEWEDY ELECTRIC | EARNINGS RELEASE                                                                                                             6
+                                                                                             Q2 2022 EARNINGS RELEASE
+                                                                                                                        Cairo | 22 August 2022
+
+
+
+
+                                                                                          securing larger orders from suppliers in advance,
+                                                                                          have proven to be effective in mitigating associated
+                                                                                          risks.
+                                                                                    •     Despite these challenges, the meters segment
+                                                                                          generated a gross profit of EGP 241.6 million (64.4%
+                        Meters Backlog                                                    y-o-y vs Q2 2021). Gross profit margin came in at
+                      (As of 30 June 2022)                                                25.9% versus 30.8% in Q2 2021.
+                                                                                    •     Meters backlog recorded EGP 4.3 billion at the end
+                                                                                          of June 2022, compared to the backlog of EGP 1.8
+                               EGP   4.3 bn                                               billion at the end of June 2021. The increase in the
+                                                                                          meters segment’s backlog was partially driven by
+                \                                                                         the favorable impact of currency movement.
+
+
+
+
+Transformers
+                                                                   Q2-2022      Q2-2021      % Change       H1-2022       H1-2021      % Change
+Revenues Before Intercompany Sales (EGP 000’s)                     816,686      522,628          56.3%     1,521,705       931,428         63.4%
+Revenues After Intercompany Sales (EGP 000’s)                      791,970      436,796          81.3%     1,410,909       802,644         75.8%
+Gross Profit (EGP 000’s)                                            70,226      112,986         -37.8%       159,901       220,544        -27.5%
+GP Margin Before Intercompany Sales                                   8.6%        21.6%                        10.5%         23.7%
+GP Margin After Intercompany Sale                                        8.9%     25.9%                       11.3%         27.5%
+Sales Volumes (MVA)                                                  2,564        2,927         -12.4%        5,565          4,903         13.5%
+Gross profit per MVA (EGP)                                          27,385       38,605         -29.1%       28,731         44,979        -36.1%
+
+
+                                                                                    •     The Transformers segment reported a revenue
+               Transformers Revenue and Profitability
+                                                                                          contribution of 4%, growing by 81.3% y-o-y to reach
+       25.0%         29.8%      31.0%      21.8%
+                                                     25.9%                                revenues of EGP 792 million in Q2 2022, despite a
+                                                                                          decrease in volumes sold, which reached 2,564 MVA (-
+                                                                  8.9%                    12.4% vs Q2 2021) as a result of a slowdown across
+                                                                                          several of the segment’s focus markets.
+               1.7      1.8          1.5       1.4       0.4       0.8
+                                                                                    •     The restructuring costs related to the company’s
+          2018       2019        2020        2021    Q2 2021 Q2 2022
+                                                                                          acquisitions in Indonesia and Pakistan, paired with
+                             Revenues (bn)            GP Margin                           rising production costs against fixed price contracts,
+                                                                                          contributed to the decline in the segment’s
+                                                                                          profitability and gross profit margin in Q2 2022.
+                                                                                    •     Backlog for the transformers segment amounted to
+                       Transformers Backlog
+                                                                                          EGP 2.8 billion at 30 June 2022, up from the EGP 1.4
+                        (As of 30 June 2022)
+                                                                                          billion in June 2021. The increase in the
+                                                                                          Transformers’ segment backlog was partially driven
+                                                                                          by the favorable impact of currency movement.
+                               EGP   2.8 bn
+                \
+
+ ELSEWEDY ELECTRIC | EARNINGS RELEASE                                                                                                            7
+                                                                                    Q2 2022 EARNINGS RELEASE
+                                                                                                               Cairo | 22 August 2022
+
+
+
+
+Renewables - IPPs
+
+              Renewables Revenue and Profitability
+                                                                             •   The renewables segment generated 0.5% of Elsewedy’s
+                         54.0%                                  53.3%
+                                        49.2%                                    revenues in Q2 2022, with revenues ramping up by
+          43.3%                                     42.2%
+                                                                                 25.1% to record EGP 97.3 million.
+                                                                             •   At the end of the second quarter of 2022, gross profit
+                                                                                 for the segment came in at EGP 51.8 million,
+                                                                                 representing a 2% contribution to Elsewedy Electric’s
+                0.24          0.36         0.27        0.07           0.10
+                                                                                 consolidated gross profit. The significant increase of
+          2019            2020          2021       Q2 2021      Q2 2022          58.1% y-o-y boosted profitability and led to a gross
+                              Revenues (bn)            GP Margin                 profit margin of 53.3%.
+
+
+
+
+Other Electrical Products
+
+     Other Electrical Products Revenue and Profitability                     •   Electrical Products recorded a contribution of 1% to
+      48.9%
+                                                   44.8%
+                                                              49.3%              Elsewedy Electric’s consolidated revenues. The
+                 43.0%        42.4%
+                                         38.1%                                   segment recorded a y-o-y increase of 47.7% in revenues
+                                                                                 to stand at EGP 255 million.
+                                                                             •   The segment’s gross profit grew to reach EGP 125.8
+         0.82          0.76      0.58       0.70                 0.26            million (+62.6% vs Q2 2021) and yielded a contribution
+                                                      0.17
+                                                                                 to consolidated gross profit of 4%. Gross profit margin
+       2018       2019         2020      2021      Q2 2021 Q2 2022
+                                                                                 for the segment came in at 49.3% at the end of the
+                         Revenues (bn)              GP Margin                    period.
+
+
+
+
+ ELSEWEDY ELECTRIC | EARNINGS RELEASE                                                                                                 8
+                                                                                  Q2 2022 EARNINGS RELEASE
+                                                                                                               Cairo | 22 August 2022
+
+
+
+
+About Elsewedy Electric
+Established in 1938 by the Elsewedy family, Elsewedy Electric has since grown to become a regional and tactically global integrated
+cables and electrical products manufacturer and a turn-key services provider with more than 17,000 employees working at 31
+production facilities in 15 countries. Structured to face the challenges of the world’s fastest growing markets and the complexity of
+the critical electricity industry, Elsewedy Electric capitalizes on its deep product and sector specialization and unprecedented insight
+into local markets. www.elsewedyelectric.com
+
+ Shareholders Structure
+ (as at 30 June 2022)                                            Share Information
+
+                                          67.7%                    SWDY.CA on the EGX
+                                                                   Number of Shares                        2,184,180,000
+                                                                   Share Price (30 June 2022)              EGP 6.06
+                                                                   Market Cap (30 June 2022)               EGP 13.2 bn
+
+
+
+                                                                 Investor Relations Contact Information:
+                 32.3%                                           Ms. Noha Agaiby, Investor Relations Director and Board Secretary
+                                                                 Email: noha.agaiby@elsewedy.com
+                                                                 Address: Plot 27, 1st district, 5th settlement, New Cairo.
+                                                                 Tel: +202 27599700 – 701
+              El Sewedy Family             Free Float
+                                                                 Fax: +202 27599731
+
+
+
+Forward-looking Statements
+This document may contain certain forward-looking statements relating to the company’s business. These may be identified in part
+through the use of forward-looking terminology such as “will”, “planned”, “expected” and “forecast”. Any such statements reflect the
+current views of the company with respect to future events and are subject to certain risks, uncertainties and assumptions. Many
+factors could cause the actual results, performance, decisions or achievements of the company to be materially different from any
+future results that may be expressed or implied by such forward-looking statements.
+
+
+
+
+ ELSEWEDY ELECTRIC | EARNINGS RELEASE                                                                                                9
+                                                                                    Q2 2022 EARNINGS RELEASE
+                                                                                                                 Cairo | 22 August 2022
+
+
+
+
+Consolidated Income Statement
+EGP                                       Q2-2022            Q2-2021       Change            H1-2022            H1-2021        Change
+Sales
+Wires & Cables                         9,669,136,523      6,534,718,795        48.0%     18,947,704,687     12,824,285,029        47.7%
+Electrical Products                    1,978,235,354      1,072,480,348        84.5%      3,616,948,681      2,390,909,252        51.3%
+Turnkey Projects                       8,743,628,392      6,113,040,626        43.0%     16,399,660,979     10,797,303,085        51.9%
+
+
+Total Sales                           20,391,000,269     13,720,239,765        48.6%     38,964,314,347     26,012,497,366        49.8%
+
+
+
+COGS                                 (17,449,731,112)   (11,784,131,503)                (33,711,467,512)   (22,242,994,591)
+
+Gross Profit                           2,941,269,157      1,936,108,262        51.9%      5,252,846,835      3,769,502,775        39.4%
+
+
+
+Gross Profit Margin                            14.4%              14.1%                           13.5%              14.5%
+
+SG&A                                  (1,112,420,506)     (783,571,956)        42.0%     (2,039,169,654)    (1,552,031,721)       31.4%
+
+Other Operating Income                   193,726,807        126,531,615                     278,439,474        202,840,076
+
+Other Operating Expense                (220,440,722)        (39,283,840)                  (482,034,831)      (164,653,172)
+
+Income from Investments                   82,497,450         70,467,491                     110,407,312        129,239,303
+
+EBITDA                                 2,234,423,595      1,583,937,473        41.1%      3,781,716,152      2,927,159,287        29.2%
+
+
+
+EBITDA Margin                                  11.0%              11.5%                            9.7%              11.3%
+
+Depreciation & Amortization            (349,791,409)      (273,685,902)                   (661,227,016)      (542,262,027)
+
+FX Gain / (Loss)                         (30,391,104)       (32,780,088)                    (28,472,625)       (16,076,719)
+
+
+
+EBIT                                   1,854,241,082      1,277,471,484        45.1%      3,092,016,511      2,368,820,541        30.5%
+
+
+
+Interest Expense                       (391,258,706)      (156,620,514)       149.8%      (629,469,514)      (293,704,504)       114.3%
+
+Interest Income                          103,068,941        186,303,196        -44.7%       213,311,788        259,730,418       -17.9%
+
+Interest Income / (Expenses)           (288,189,765)         29,682,682                   (416,157,726)        (33,974,085)
+
+EBT                                    1,566,051,317      1,307,154,165        19.8%      2,675,858,785      2,334,846,455        14.6%
+
+
+
+Tax                                    (372,045,093)      (333,377,162)                   (653,644,015)      (591,576,151)
+
+Net Income                             1,194,006,224        973,777,003        22.6%      2,022,214,770      1,743,270,305        16.0%
+
+
+
+Minority Interest                        (67,508,676)       (84,252,436)                  (134,849,873)      (153,675,966)
+
+Net Income After Minority Interest     1,126,497,548        889,524,567        26.6%      1,887,364,897      1,589,594,339        18.7%
+
+Net Income Margin                               5.5%               6.5%                            4.8%               6.1%
+
+
+
+
+ELSEWEDY ELECTRIC | EARNINGS RELEASE                                                                                                10
+                                       Q2 2022 EARNINGS RELEASE
+                                                        Cairo | 22 August 2022
+
+
+
+
+Consolidated Balance Sheet
+EGP                                        31/12/2021            30/6/2022
+
+Long Term Assets
+Fixed Assets & Goodwill                10,175,907,881       12,146,054,163
+Investments                             2,151,957,073        2,562,372,957
+Other long-term Assets                   262,400,576           299,697,508
+Other long-term Receivables             1,202,254,015        1,242,154,685
+Total Long-term Assets                 13,792,519,545       16,250,279,313
+Current Assets
+Inventories                            13,320,680,704       19,496,862,512
+Receivables                            15,043,335,953       20,362,623,511
+Other Debit balance                    12,518,534,412       15,247,629,162
+Due from Related Parties                1,175,912,475          709,295,332
+Cash & Cash Equivalents                11,842,589,348       16,133,040,171
+Total Current Assets                   53,901,052,892       71,949,450,688
+Total Assets                           67,693,572,437       88,199,730,000
+Current Liabilities
+Bank Overdraft & Short-term loans      15,032,238,908       25,886,625,066
+Accounts Payable                        8,678,197,095       10,521,076,668
+Other Credit balance                   16,185,004,870       20,929,291,493
+Due to Affiliates                        546,964,145           930,213,882
+Provisions                              1,960,889,007        2,208,509,576
+Total Current Liabilities              42,403,294,025       60,475,716,685
+Issued and Paid Capital                 2,184,180,000        2,184,180,000
+Retained Earnings                      16,504,538,981       17,713,965,079
+Others                                   422,339,981         1,091,478,552
+Total Parent's Shareholders' Equity    19,111,058,962       20,989,623,631
+Minority Interest                       1,094,835,252        1,300,189,422
+Total Equity                           20,205,894,214       22,289,813,053
+Long-term Loans                         2,926,293,825        3,329,683,660
+Other long-term Liabilities             2,158,090,373        2,104,516,602
+Total Long-term Liabilities             5,084,384,198        5,434,200,262
+
+Total Liabilities & Equity             67,693,572,437       88,199,730,000
+
+
+
+ELSEWEDY ELECTRIC | EARNINGS RELEASE                                         11
+

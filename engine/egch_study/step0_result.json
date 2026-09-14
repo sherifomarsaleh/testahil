@@ -44,10 +44,10 @@
  "w90_ratio": 1.106277539331155,
  "market_gate": {
   "verdict": "PARITY",
-  "skill": 0.0096,
+  "skill": 0.0113,
   "ci90": [
-   -0.004,
-   0.021
+   -0.003,
+   0.023
   ],
   "fit_date": "2026-07-29",
   "panel_names": 37,

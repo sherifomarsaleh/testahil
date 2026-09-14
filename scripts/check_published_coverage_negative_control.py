@@ -6,12 +6,18 @@ published with no study, because that is the only way this number grows.
 """
 import json
 import os
+import io
+import re
 import shutil
 import subprocess
 import sys
 import tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+import sys as _sys_nc
+_sys_nc.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import nc_sandbox as _nc          # the sandbox's engine-module list, derived
+
 GATE = os.path.join('scripts', 'check_published_coverage.py')
 
 EXPECTED_CASES = 8       # a case lost to an edit is a green that proves nothing
@@ -36,6 +42,13 @@ def build(tmp, names, studies, ratchet=None, raw=None):
     os.makedirs(os.path.join(tmp, 'engine', 'build_depth_audit'), exist_ok=True)
     os.makedirs(os.path.join(tmp, 'scripts'), exist_ok=True)
     shutil.copy(os.path.join(ROOT, GATE), os.path.join(tmp, GATE))
+    # EVERY ENGINE MODULE THE GATE IMPORTS, READ OFF THE GATE ITSELF -- see
+    # scripts/nc_sandbox.py. This carried study_aliases.py by name; the gate then
+    # grew an import of engine/run_state.py and 5 of these 8 cases died before
+    # injecting a defect.
+    _nc.copy_engine_modules(os.path.join(ROOT, GATE), os.path.join(ROOT, 'engine'),
+                            os.path.join(tmp, 'engine'),
+                            required=('study_aliases',))
     if raw is not None:
         open(os.path.join(tmp, 'assets', 'data.js'), 'w').write(raw)
     elif names is not None:

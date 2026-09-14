@@ -1,0 +1,660 @@
+                                                                                 Q4 2023 EARNINGS RELEASE
+                                                                                                             Cairo | 13 March 2024
+
+
+
+
+ELSEWEDY ELECTRIC Reports FY 2023 Results; revenues up by
+65.1%, with net profit increasing almost two-fold to EGP 10.1
+billion
+FY 2023 Consolidated Financial Highlights
+ Revenues                          Gross Profit                     EBITDA                            Net Profit after Minority
+
+ EGP 152,186 million               EGP 29,077 million               EGP 20,668 million                EGP 10,116 million
+ ▲ 65.1% y-o-y                     ▲ 115.0% y-o-y                   ▲ 125.6% y-o-y                    ▲ 86.7 % y-o-y
+
+Q4 2023 Financial Highlights
+ Revenues                          Gross Profit                     EBITDA                            Net Profit after Minority
+
+ EGP 43,382 million                EGP 8,516 million                EGP 5,858 million                 EGP 2,045 million
+ ▲ 46.6% y-o-y                     ▲ 68.1% y-o-y                    ▲ 92.6% y-o-y                     ▼12.0% y-o-y
+
+
+ELSEWEDY ELECTRIC (SWDY.CA on the Egyptian stock exchange), the leading Wires & Cables and Integrated Energy Solution Provider
+in the Middle East and Africa, announces its consolidated financial results for the full year ending 31 December 2023. The company
+recorded revenues of EGP 152,186 million in FY2023, up by 65.1% year-on-year (y-o-y) and booked a net profit after minority interest
+of EGP 10,116 million over the period, up by 86.7% y-o-y with an expanded net profit margin of 6.6% versus 5.9% booked in FY2022.
+On a quarterly basis, Elsewedy Electric reported revenues of EGP 43,382 million in Q4 2023, representing an increase of 46.6% y-o-y.
+The company’s net profit after minority interest recorded EGP 2,045 million, down 12.0% y-o-y and with an associated profit margin
+of 4.7% versus 7.9% in Q4 2022.
+
+Note from Our CEO
+I am pleased to report that Elsewedy Electric ended 2023 on a very strong note, achieving substantial top and bottom-line growth.
+Our success continues to be driven by robust performances across our diverse lines of business, clearly defined growth strategies, a
+strong brand equity, and a resilient business model that allows us to successfully navigate a particularly challenging operating
+environment.
+
+On account of this strong performance, the Board of Directors has proposed a dividend distribution of EGP 0.50 per share, reflecting
+our commitment to generating strong returns for Elsewedy’s esteemed shareholders.
+
+Throughout the year, our focus remained on maximizing efficiency, optimizing our diverse portfolio, and leveraging our expansive
+geographic footprint. At our primary wires and cables segment, performance was driven by strong demand for our products, leading
+to sales growth of 88.6% y-o-y, and supported by successfully streamlining production and utilization rates through multiple efficiency
+and enhancement initiatives across all our industrial operations. Meanwhile, our turnkey projects segment continued to deliver high-
+quality, fully integrated engineering solutions that go beyond construction. This competitive edge, along with our track record on a
+regional scale, has strengthened the Group’s brand equity in the segment. Elsewedy aims to leverage this strength as we reinforce our
+presence in selected markets that offer the greatest potential for growth and impact.
+
+Overall, our strategic growth initiatives across the Group’s diverse segment and geographies along with a continuous commitment to
+improving working capital efficiency and cash management, have been key drivers of our financial success and have expanded our
+capacity to pursue new strategic opportunities.
+
+
+ ELSEWEDY ELECTRIC | EARNINGS RELEASE                                                                                               1
+                                                                                   Q4 2023 EARNINGS RELEASE
+                                                                                                               Cairo | 13 March 2024
+
+
+
+
+Meanwhile, the Group is also dedicated to embracing digital transformation within its sustainable framework, alongside a strong focus
+on prioritizing human capital as an integral part of its overarching strategy. On the digital front, we leverage cutting-edge technologies
+to enhance operations and stay ahead in an ever-evolving industry landscape. Furthermore, we invest in young talents and value the
+expertise of our employees, with a dual commitment to nurturing the next generation of industry leaders and recognizing the wealth
+of experience within our team.
+
+Looking forward, I am optimistic about Elsewedy Electric’s prospects over the coming three years, and I am confident in management’s
+ability to deliver on our growth strategies and continue generating long-term sustainable value to our stakeholders.
+
+Ahmed El Sewedy
+
+Summary Income Statement
+ LE (000)’s                                        Q4-2023         Q4-2022        % Change           FY-2023          FY-2022         % Change
+ Revenue                                       43,382,163       29,595,110           46.6%     152,186,248        92,167,519               65.1%
+    Wires & Cables                             22,871,950       13,489,989           69.5%       82,421,265       43,709,751               88.6%
+    Turnkey Projects                           16,378,926       12,884,134           27.1%       52,896,351       38,941,586               35.8%
+    Meters                                      1,742,202        1,288,596           35.2%        7,092,932        4,076,212               74.0%
+    Transformers                                1,718,704        1,330,377           29.2%        6,614,096        3,713,681               78.1%
+    Electrical Products                           545,110          490,397           11.2%        2,575,150        1,310,639               96.5%
+    Renewables – IPP                              125,271          111,617           12.2%          586,453          415,650               41.1%
+ Gross Profit                                   8,515,697        5,066,391           68.1%       29,077,289       13,523,218           115.0%
+    Wires & Cables                              4,944,961        1,938,323         155.1%        17,589,029        5,942,422           196.0%
+    Turnkey Projects                            2,040,464        2,300,606          -11.3%        6,129,962        5,002,082               22.5%
+    Meters                                        294,894          277,147            6.4%        1,694,259        1,038,094               63.2%
+    Transformers                                  894,780          284,961         214.0%         1,979,893          679,849           191.2%
+    Electrical Products                           289,463          211,284           37.0%        1,386,657          635,241           118.3%
+    Renewables – IPP                                51,135          54,071           -5.4%          297,489          225,530               31.9%
+ Gross Profit Margin                                19.6%            17.1%                            19.1%            14.7%
+ EBITDA                                         5,858,141        3,042,132           92.6%       20,667,768        9,161,016           125.6%
+ EBITDA Margin                                      13.5%            10.3%                            13.6%              9.9%
+ Net Income After Minority                      2,045,397        2,325,599          -12.0%       10,115,702        5,417,668               86.7%
+ Net Income After Minority Margin                     4.7%            7.9%                             6.6%              5.9%
+
+
+Financial and Operational Highlights
+    •    Elsewedy recorded revenues of EGP 43,382 million, representing a 46.6% y-o-y increase in Q4 2023. This growth is
+         attributable to improved pricing, healthy demand resulting in volume growth, and favourable currency translation as a
+         result of the Group’s expansive overseas operations. In Q4 2023, the majority contributors to the Group’s revenues were
+         the wires & cables segment followed by turnkey projects.
+    •    Gross profit climbed 68.1% y-o-y to reach EGP 8,516 million in Q4 2023 on the back of an enhanced product mix and improved
+         pricing, as well as effective cost management across the Group’s operations.
+
+
+
+
+ ELSEWEDY ELECTRIC | EARNINGS RELEASE                                                                                                  2
+                                                                               Q4 2023 EARNINGS RELEASE
+                                                                                                            Cairo | 13 March 2024
+
+
+
+
+    •   SG&A expenses increased 73.3% y-o-y to record EGP 2,864 million in Q4 2023, mainly driven by high inflationary pressures
+        on both a local and global level coupled with new hires increase. Meanwhile, SG&A expenses as a percentage of total revenues
+        increased from 5.6% in Q4 2022 to 6.6% in Q4 2023.
+    •   EBITDA grew 92.6% y-o-y to EGP 5,858 million in Q4 2023, yielding a margin of 13.5% compared to 10.3% in Q4 2022.
+        Expanded profitability margins came on the back of substantial top-line growth, bolstered by enhanced operational
+        efficiencies and effective cost management.
+    •   Net income after minority interest recorded a decline of 12.0% y-o-y to record EGP 2,045 million in Q4 2023 and yielded a
+        margin of 4.7 % compared to 7.9% in Q4 2022. The year-on-year fall in net income was mainly driven by increased financing
+        costs for the period.
+    •   The company reported a net bank debt of EGP 14,590 million as at 31 December 2023 compared to a net debt of EGP 14,604
+        million at year-end 2022.
+    •   Inventory reached EGP 30,882 million as at 31 December 2023, versus the EGP 24,180 million recorded at year-end 2022
+        aiming to meet the increased demand of its products. Moreover, the company continues to increase inventory to mitigate
+        the impact of inflationary prices and address market shortages, thereby securing the sustainability of its operations.
+    •   Accounts receivable booked EGP 46,592 million as at 31 December 2023, up from 34,651 million at the end of 2022, while
+        accounts payable reached EGP 31,938 million.
+
+Financial and Operational Review
+Revenues recorded EGP 43,382 million in Q4 2023, representing a 46.6% y-o-y increase on the back of solid growth across the
+company’s segments and diverse product mix, with the wires & cables followed by turnkey projects as the majority contributors to
+the company’s revenues.
+
+
+             Revenue by Segment                                                         Revenue by Segment
+                  (Q4 2023)                                                                  (Q4 2022)
+                                1% 0.3%                                                                2% 0.4%
+
+                           4%                                                                       4%
+                      4%                                                                       4%
+
+
+
+
+                                                                                                                        46%
+                      EGP   43.4 bn          53%                                                 EGP   29.6 bn
+             38%
+                                                                                         44%
+
+
+
+
+         Wires & Cables               Turnkey                                       Wires & Cables               Turnkey
+         Meters                       Transformers                                  Meters                       Transformers
+         Electrical Products          Renewables - IPP                              Electrical Products          Renewables - IPP
+
+
+    •   The wire and cables segment achieved solid top-line growth at 69.5% y-o-y to record EGP 22,872 million in Q4 2023 on the
+        back of agile pricing strategies and higher volumes. The segment attained its position as the largest contributor to
+        consolidated revenue with a 53% share in Q4 2023.
+    •   Turnkey projects recorded EGP 16,379 million in revenues, representing a 27.1% y-o-y increase in Q4 2023, attributable to
+        the segment’s expansive portfolio of both local and global projects. The segment was the second largest contributor to
+        consolidated revenues with a 38% share and recorded a solid backlog of EGP 115 billion in Q4 2023.
+
+
+
+ ELSEWEDY ELECTRIC | EARNINGS RELEASE                                                                                               3
+                                                                                Q4 2023 EARNINGS RELEASE
+                                                                                                                 Cairo | 13 March 2024
+
+
+
+
+    •   Meters recorded solid revenue growth at 35.2% y-o-y to reach EGP 1,742 million in Q4 2023, mainly driven by improved
+        pricing strategies. Moreover, the segment contributed 4% to total revenue and secured an expanded backlog of EGP 4.6
+        billion.
+    •   Transformers recorded revenues of EGP 1,719 million, representing a 29.2% y-o-y increase in Q4 2023 on the back of
+        improved pricing and higher volumes. The segment contributed 4% to consolidated revenues and maintained a solid backlog
+        of EGP 7.7 billion.
+    •   Other electrical products revenues grew 11.2% y-o-y to reach EGP 545 million in Q4 2023, mainly driven by healthy local
+        demand for the segment’s products. The segment contributed 1% to consolidated revenues in Q4 2023.
+    •   Renewables recorded revenues of EGP 125 million, representing a 12.2% increase in Q4 2023.
+
+ElSewedy recorded gross profit of EGP 8,516 million in Q4 2023, representing a 68.1% y-o-y increase on the back of solid top-line
+growth coupled with enhanced operational efficiencies and effective cost management across its segments. As such, gross profit
+margin expanded by 2.5 percentage points to reach 19.6% in Q4 2023.
+
+
+            Gross Profit by Segment                                                  Gross Profit by Segment
+                   (Q3 2023)
+                   (Q4                                                                      (Q4 2022)
+                                0.6%                                                                     1%
+
+                            3%1%
+                           5%                                                                       4%
+                      6%
+                     11%                                                                       6%
+                                                                                          5%
+                7%
+                3%
+                                                                                                                     38%
+
+                       EGP   8.5 bn                                                               EGP   5.1 bn
+              18%                            58%
+              24%
+                                             62%
+
+                                                                                            45%
+
+
+
+          Wires & Cables               Turnkey                                     Wires & Cables             Turnkey
+          Meters                       Transformers                                Meters                     Transformers
+          Electrical Products          Renewables - IPP                            Electrical Products        Renewables - IPP
+
+
+    •   The wires and cables segment’s gross profit surged 155.1% y-o-y to reach EGP 4,945 million, with the largest contribution to
+        consolidated gross profit at 58% in Q4 2023.
+    •   Turnkey projects recorded EGP 2,040 million in gross profit, representing a y-o-y decline of 11.3% in Q4 2023 compared to a
+        high base in Q4 2022. The segment contributed 24% to consolidated gross profit.
+    •   Meters gross profit grew 6.4% y-o-y to reach EGP 295 million in Q4 2023, with a contribution of 3% to consolidated gross
+        profit.
+    •   Transformers’ gross profit more than tripled y-o-y to reach EGP 895 million in Q4 2023, accounting for 11% of consolidated
+        gross profit.
+    •   Other electrical products booked gross profit of EGP 289 million, representing a 37.0% y-o-y increase and contributing 3% to
+        total gross profit.
+    •   The renewables segment’s gross profit declined by 5.4% y-o-y to record EGP 51 million in Q4 2023, contributing 1% to the
+        Group’s consolidated gross profit.
+
+
+ ELSEWEDY ELECTRIC | EARNINGS RELEASE                                                                                               4
+                                                                                          Q4 2023 EARNINGS RELEASE
+                                                                                                                   Cairo | 13 March 2024
+
+
+
+
+Segment Review
+
+Wires and Cables
+                                                                   Q4-2023      Q4-2022    % Change          FY-2023       FY-2022    % Change
+Revenues Before Intercompany Sales (EGP 000’s)                  26,922,492   16,985,717      58.5%       99,989,578    56,653,647       76.5%
+Revenues After Intercompany Sales (EGP 000’s)                   22,871,950   13,489,989      69.5%       82,421,265    43,709,751       88.6%
+Gross Profit (EGP 000’s)                                         4,944,961    1,938,323     155.1%       17,589,029     5,942,422      196.0%
+GP Margin Before Intercompany Sales                                  18.4%        11.4%                       17.6%         10.5%
+GP Margin After Intercompany Sales                                   21.6%        14.4%                       21.3%         13.6%
+Cables Sales Volumes (Tons)                                         40,926       38,630       5.9%          156,748       144,997        8.1%
+Cables Gross profit per ton (EGP)                                   95,699       33,553     185.2%           90,020        27,609      226.1%
+
+
+
+
+                                                                                •   Revenues from the wires and cables segment were up
+         Wires & Cables Revenue and Profitability                                   69.5% y-o-y to record EGP 22,872 million in Q4 2023.
+                                                                   21.6%
+                                                                                    The significant growth realized during the quarter came
+                                                       22.0%
+                                         21.0%                                      on the back of the segment’s diversified portfolio and
+                            20.6%
+              14.4%                                                                 strong global demand coupled with improved pricing
+    13.5%
+                                                                                    strategies.
+                                                                                •   The segment’s gross profit more than doubled year-on-
+                                                                                    year to reach EGP 4,945 million in Q4 2023, mainly
+     11.3         13.5       17.9         20.0          21.7       22.9             driven by solid top-line growth and blended
+    Q3 2022   Q4 2022       Q1 2023      Q2 2023      Q3 2023     Q42023            profitability associated with a mix of wires and cables
+                         Revenues (bn)             GP Margin                        products.
+                                                                                •   The segment recorded an expanded gross profit margin
+                                                                                    of 21.6% in Q4 2023 compared to 14.4% in Q4 2022,
+                                                                                    representing a 7.2 percentage point increase.
+                    Wires & Cables Backlog
+                                                                                •   Backlog recorded EGP 26 billion, highlighting the
+                   (As of 31 December 2023)
+                                                                                    significant growth opportunities within this segment.
+
+
+                              EGP     26 bn
+              \
+
+
+
+
+ELSEWEDY ELECTRIC | EARNINGS RELEASE                                                                                                     5
+                                                                                 Q4 2023 EARNINGS RELEASE
+                                                                                                                Cairo | 13 March 2024
+
+
+
+
+Turnkey Projects and Awards
+
+              Turnkey Revenue and Profitability
+
+                                                                         •   Turnkey projects booked revenues of EGP 16,379
+                                                                             million, up 27.1% y-o-y in Q4 2023 on the back of
+               17.9%                                                         increased executions of local and international projects.
+                                                               12.5%
+                                          10.6%       12.2%              •   The segment’s gross profit dropped 11.3% y-o-y to EGP
+                             10.7%
+     9.2%                                                                    2,040 million on the back of a high base effect
+                                                                             compared to Q4 2022. Gross profit margin stood at
+      9.9       12.9          11.6        11.8         13.1     16.4         12.5%, representing a 5.4 percentage point decrease in
+                                                                             Q4 2023.
+    Q3 2022    Q4 2022       Q1 2023     Q2 2023     Q3 2023   Q4 2023
+                         Revenues (bn)             GP Margin             •   The segment’s backlog reached EGP 115 billion as of 31
+                                                                             December 2023, with 49% of projects located in Egypt.
+                                                                         •   Newly awarded projects reached EGP 20 billion in Q4
+                                                                             2023.
+
+
+                  Backlog by Sector                                                         Backlog by Region
+              (As of 31 December 2023)                                                  (As of 31 December 2023)
+                                                                                              17%
+                       23%
+                                         34%
+                                EGP                                                                 EGP
+                                                                                                               49%
+                             115 bn                                                                115 bn
+                                                                                          34%
+                           43%
+                Civil & Networks
+                Transmission & Distribution HV                                       Egypt           Africa           GCC
+                Power Generation
+
+
+
+                    Awards by Sector                                                        Awards by Region
+                (As of 31 December 2023)                                                (As of 31 December 2023)
+                                2%                                                                  4%
+                       23%                                                                                    31%
+                                EGP                                                                 EGP
+                          EGP
+                             2044bnbn                                                              20 bn
+                                         76%                                                 65%
+
+
+              Civil & Networks
+              Transmission & Distribution HV                                         Egypt           GCC             Africa
+              Power Generation
+
+
+
+
+ELSEWEDY ELECTRIC | EARNINGS RELEASE                                                                                                6
+                                                                                             Q4 2023 EARNINGS RELEASE
+                                                                                                                       Cairo | 13 March 2024
+
+
+
+
+Meters
+                                                                      Q4-2023     Q4-2022    % Change       FY-2023       FY-2022    % Change
+Revenues Before Intercompany Sales (EGP 000’s)                       2,174,106   1,834,181      18.5%     9,555,455    5,644,710        69.3%
+Revenues After Intercompany Sales (EGP 000’s)                        1,742,202   1,288,596      35.2%     7,092,932    4,076,212        74.0%
+Gross Profit (EGP 000’s)                                               294,894     277,147       6.4%     1,694,259    1,038,094        63.2%
+GP Margin Before Intercompany Sales                                      13.6%       15.1%                    17.7%        18.4%
+GP Margin After Intercompany Sale                                       16.9%       21.5%                     23.9%        25.5%
+Sales Volumes (meters)                                                908,023    1,126,285     -19.4%     4,057,065    4,006,698         1.3%
+Gross profit per meter (EGP)                                              325          246      32.0%           418          259        61.2%
+
+
+              Meters Revenue and Profitability
+
+
+
+                                                                                    •   The meters segment’s revenues increased 35.2% y-
+     28.7%                                                  28.3%                       o-y to reach EGP 1,742 million in Q4 2023, driven by
+                                 25.2%
+                                              25.2%
+                   21.5%                                                                improved pricing.
+                                                                     16.9%
+                                                                                    •   Gross profit increased 6.4% y-o-y to reach EGP 295
+                                                                                        million, yielding a margin of 16.9% in Q4 2023
+      1.1            1.3           1.6         2.0           1.7       1.7              compared to 21.5% in Q4 2022 due to country and
+                                                                                        product mix.
+    Q3 2022        Q4 2022      Q1 2023      Q2 2023       Q3 2023   Q4 2023
+                                                                                    •   The segment’s backlog stood at EGP 4.6 billion as of
+                             Revenues (bn)             GP Margin                        31 December 2023.
+
+
+
+
+                        Meters Backlog
+                   (As of 31 December 2023)
+
+
+                               EGP   4.6 bn
+               \
+
+
+
+
+ELSEWEDY ELECTRIC | EARNINGS RELEASE                                                                                                           7
+                                                                                               Q4 2023 EARNINGS RELEASE
+                                                                                                                          Cairo | 13 March 2024
+
+
+
+
+Transformers
+                                                                    Q4-2023      Q4-2022       % Change       FY-2023       FY-2022     % Change
+Revenues Before Intercompany Sales (EGP 000’s)                     2,430,523    1,464,953         65.9%    7,646,831     4,194,126        82.3%
+Revenues After Intercompany Sales (EGP 000’s)                      1,718,704    1,330,377         29.2%    6,614,096     3,713,681        78.1%
+Gross Profit (EGP 000’s)                                             894,780      284,961        214.0%    1,979,893       679,849       191.2%
+GP Margin Before Intercompany Sales                                    36.8%        19.5%                      25.9%         16.2%
+GP Margin After Intercompany Sale                                     52.1%        21.4%                       29.9%         18.3%
+Sales Volumes (MVA)                                                   4,377        3,220          35.9%       14,521        11,880        22.2%
+Gross profit per MVA (EGP)                                          204,441       88,504         131.0%      136,345        57,227       138.3%
+
+
+
+             Transformers Revenue and Profitability                                   •     The transformers segment’s revenues grew 29.2% y-o-
+                                                                      52.1%                 y to reach EGP 1,719 million in Q4 2023, driven by an
+                                                                                            improved pricing strategy coupled with increased
+                                                                                            volumes.
+                                              22.8%       22.9%
+                                 23.0%                                                •     The segment’s gross profit recorded significant
+     24.2%
+                   21.4%                                                                    growth on a one-off basis to reach EGP 895 million
+                                                                                            in Q4 2023, yielding an exceptionally expanded
+                                                                                            margin of 52.1% compared to 21.4% in Q4 2022.
+      1.0            1.3          1.5          1.7          1.6         1.7
+                                                                                      •     Backlog for the segment stood at EGP 7.7 billion as
+    Q3 2022        Q4 2022      Q1 2023      Q2 2023      Q3 2023     Q4 2023               of 31 December 2023.
+                             Revenues (bn)             GP Margin
+
+
+
+
+                       Transformers Backlog
+                     (As of 31 December 2023)
+
+
+                               EGP   7.7 bn
+               \
+
+
+
+
+ ELSEWEDY ELECTRIC | EARNINGS RELEASE                                                                                                           8
+                                                                                       Q4 2023 EARNINGS RELEASE
+                                                                                                                  Cairo | 13 March 2024
+
+
+
+
+Renewables - IPPs
+
+               Renewables Revenue and Profitability
+
+                                                                            •       Revenues from the renewables segment were up 12.2%
+    56.3%                   54.8%                      57.0%                        y-o-y to reach EGP 125 million in Q4 2023.
+                48.4%                     47.5%                  40.8%      •       The segment’s gross profit recorded EGP 51 million,
+                                                                                    representing a 5.4% y-o-y decline and yielded a margin
+                                                                                    of 40.8% in Q4 2023 compared to 48.4% in Q4 2022.
+                                                                   125
+                                                        160
+
+
+     105          112         167          135
+
+   Q3 2022     Q4 2022      Q1 2023     Q2 2023       Q3 2023    Q4 2023
+
+
+                        Revenues (mn)               GP Margin
+
+
+
+
+Other Electrical Products
+
+           Other Electrical Products Revenue and Profitability
+                                                                                •    The segment’s revenues grew 11.2% y-o-y to reach
+                                                        53.7%                        EGP 545 million in Q4 2023 on the back of increased
+                                          53.3%                    53.1%
+     51.4%                   55.2%
+                                                                                     local demand.
+                 43.1%                                                          •    The segment’s gross profit recorded EGP 289 million,
+                                                                                     representing a 37.0% y-o-y increase, with an improved
+                                                                                     margin of 53.1% in Q4 2023 compared to 43.1% in Q4
+                                                                                     2022.
+     346          490         651           689          690        545
+
+    Q3 2022     Q4 2022      Q1 2023      Q2 2023      Q3 2023    Q4 2023
+
+                          Revenues (mn)             GP Margin
+
+
+
+
+ ELSEWEDY ELECTRIC | EARNINGS RELEASE                                                                                                   9
+                                                                                   Q4 2023 EARNINGS RELEASE
+                                                                                                                  Cairo | 13 March 2024
+
+
+
+
+About Elsewedy Electric
+Established in 1938 by the Elsewedy family, Elsewedy Electric has since grown to become a regional and tactically global integrated
+cables and electrical products manufacturer and a turn-key services provider with more than 19,000 employees working at 31
+production facilities in 15 countries. Structured to face the challenges of the world’s fastest growing markets and the complexity of
+the critical electricity industry, Elsewedy Electric capitalizes on its deep product and sector specialization and unprecedented insight
+into local markets. www.elsewedyelectric.com
+
+ Shareholders Structure                                          Share Information
+ (as at 31 December 2023)
+                                                                   SWDY.CA on the EGX
+                                          68.1%                    Number of Shares                            2,170,777,876
+                                                                   Share Price (31 December
+                                                                                                                 EGP 28.61
+                                                                   2023)
+                                                                   Market Cap (31 December
+                                                                                                                 EGP 62 bn
+                                                                   2023)
+
+
+                                                                 Investor Relations Contact Information:
+                31.9%                                            Ms. Noha Agaiby, Investor Relations Director and Board Secretary
+                                                                 Email: noha.agaiby@elsewedy.com
+                                                                 Address: Plot 13C03, Cairo Festival City, 5th settlement, New Cairo.
+                                                                 Tel: +202 27599700 – 701
+              El Sewedy Family             Free Float
+                                                                 Fax: +202 27599731
+
+
+
+Forward-looking Statements
+This document may contain certain forward-looking statements relating to the company’s business. These may be identified in part
+through the use of forward-looking terminology such as “will”, “planned”, “expected” and “forecast”. Any such statements reflect the
+current views of the company with respect to future events and are subject to certain risks, uncertainties and assumptions. Many
+factors could cause the actual results, performance, decisions or achievements of the company to be materially different from any
+future results that may be expressed or implied by such forward-looking statements.
+
+
+
+
+ ELSEWEDY ELECTRIC | EARNINGS RELEASE                                                                                                   10
+                                                                     Q4 2023 EARNINGS RELEASE
+                                                                                               Cairo | 13 March 2024
+
+
+
+
+Consolidated Income Statement
+
+EGP 000                        FY-2023        FY-2022       Change    Q4-2023        Q4-2022         Change
+Revenue                      152,186,248     92,167,519      65.1%   43,382,163     29,595,110        46.6%
+Costs                        (123,108,959)   (78,644,301)            (34,866,466)   (24,528,718)
+Gross Profit                  29,077,289     13,523,218     115.0%    8,515,697      5,066,391        68.1%
+
+
+Other income                  1,377,420        652,824                 895,752        262,936
+Selling and distribution
+                              (2,670,372)    (1,589,662)              (874,093)      (496,408)
+expenses
+Administrative expenses       (5,977,797)    (3,393,984)             (1,989,601)    (1,155,714)
+Impairment loss on trade
+                               (502,543)      (210,388)               (279,050)      (109,111)
+and other receivables
+Other expenses                (3,564,879)    (1,571,844)             (1,307,179)    (1,071,679)
+Operating profit              17,739,118      7,410,164               4,961,526      2,496,415
+
+
+Share of profit of equity-
+                               603,625         265,840                 265,298        93,085
+accounted investees
+Depreciation                  (2,325,025)    (1,485,013)              (631,317)      (452,632)
+
+
+EBITDA                        20,667,768      9,161,016     125.6%    5,858,141      3,042,132        92.6%
+EBITDA Margin                   13.6%           9.9%                    13.5%          10.3%
+
+
+Finance income                2,818,869       2,113,319               (250,032)      1,687,950
+Finance costs                 (4,943,231)    (1,740,385)             (1,423,742)     (598,798)
+Net finance Costs             (2,124,362)      372,935               (1,673,774)     1,089,151
+
+
+Profit before tax             16,218,381      8,048,938               3,553,050      3,678,651
+
+
+Income tax expense            (5,080,407)    (2,294,595)             (1,321,214)    (1,261,170)
+Profit for the period         11,137,974      5,754,343               2,231,836      2,417,481
+
+
+Profit attributable to:
+Owners of the company         10,115,702      5,417,668     86.7%     2,045,397      2,325,599          -12.0%
+Non-controlling interests     1,022,272        336,675                 186,439        91,883
+
+
+
+
+ELSEWEDY ELECTRIC | EARNINGS RELEASE                                                                             11
+                                                      Q4 2023 EARNINGS RELEASE
+                                                                        Cairo | 13 March 2024
+
+
+
+
+Consolidated Balance Sheet
+EGP 000                                                   31/12/2023        31/12/2022
+Assets
+Property, plant, and equipment                            18,009,166        14,733,732
+Right of use assets                                        880,980           837,379
+Real Estate Investments                                     61,033            11,733
+Equity accounted investees                                 3,802,844         2,712,904
+Due from related parties                                   111,110            61,055
+Trade receivables                                          2,770,746         1,517,208
+Intangible assets and goodwill                             1,261,762         1,229,913
+Deferred tax assets                                        726,285           342,521
+Non-current assets                                        27,623,927        21,446,446
+Inventories                                               30,881,822        24,179,748
+Contract assets                                           16,179,634        10,450,404
+Work in progress (Real Estate Development lands)           1,218,261         1,394,753
+Trade, notes, and other receivables                       46,591,885        34,650,718
+Due from related parties                                   2,553,916         1,283,144
+Financial assets at amortized cost                         847,166           903,065
+Cash & Cash Equivalents                                   25,552,045        19,715,750
+Current assets                                            123,824,728       92,577,582
+Total assets                                              151,448,655       114,024,028
+Equity
+Issued and Paid-up Capital                                 2,170,778         2,170,778
+Share-based payment                                         (1,422)           (1,422)
+Reserves                                                   3,942,000         2,516,138
+Treasury shares                                            (254,138)         (254,138)
+Retained Earnings                                         29,867,248        21,578,809
+Equity attributable to owners of the parent company       35,724,466        26,010,164
+Non-controlling interests                                  2,384,013         1,635,139
+Total equity                                              38,108,480        27,645,304
+Liabilities
+Loans and borrowings                                       6,815,682         5,597,760
+
+
+
+ELSEWEDY ELECTRIC | EARNINGS RELEASE                                                      12
+                                       Q4 2023 EARNINGS RELEASE
+                                                         Cairo | 13 March 2024
+
+
+
+
+Deferred tax liabilities                    1,809,917         1,367,772
+Due to related parties                       81,722            60,068
+Provisions                                  752,369           308,542
+Other non-current liabilities               774,053           669,937
+Non-current liabilities                    10,233,743         8,004,079
+Loans and borrowings                       34,950,810        30,142,888
+ Trade, notes, and other payables          31,938,122        25,020,771
+Contract liabilities                       25,060,328        16,951,156
+Due to related parties                      3,106,747         1,732,335
+Provisions                                  8,050,425         4,527,494
+Current liabilities                        103,106,432       78,374,645
+Total liabilities                          113,340,175       86,378,724
+Total liabilities & equity                 151,448,655       114,024,028
+
+
+
+
+ELSEWEDY ELECTRIC | EARNINGS RELEASE                                       13
+

@@ -50,6 +50,15 @@ DATE = re.compile(r'(\d{2})-(\d{2})-(\d{4})')
 # the masthead is the block before the document gets going. Ten paragraphs is generous:
 # every study that states its date correctly does so within the first four.
 MASTHEAD_PARAS = 10
+# ...AND THE HOUSE MASTHEAD IS A TABLE, WHICH doc.paragraphs DOES NOT CONTAIN. Re-pointed
+# 07-09-2026 on the first study to actually put its edition date there: the banner is a
+# single shaded cell, python-docx keeps table text out of the paragraph list entirely, so
+# this gate read straight past a correct masthead and then reported a PRICE DATE from an
+# ordinary paragraph below it as "the masthead states". A diagnostic naming the wrong
+# object is worse than one admitting it found nothing, which is this check's own recorded
+# lesson from its first draft — arriving again one layer out. Per [R-COC-01] the fix is to
+# read what the masthead actually is, not to widen what counts as a date.
+MASTHEAD_TABLES = 1
 _MONTHS = ('January', 'February', 'March', 'April', 'May', 'June', 'July',
            'August', 'September', 'October', 'November', 'December')
 
@@ -83,6 +92,21 @@ def documents():
     return out
 
 
+def masthead_text(doc):
+    """The banner block a reader meets first — paragraphs AND the banner table.
+
+    A study is free to build its masthead as a shaded table (every study here does) or as
+    plain paragraphs, and a check that reads only one of those shapes finds nothing in half
+    the book and says so as though it were a finding [L-355].
+    """
+    parts = [p.text for p in doc.paragraphs[:MASTHEAD_PARAS]]
+    for tb in doc.tables[:MASTHEAD_TABLES]:
+        for row in tb.rows:
+            for cell in row.cells:
+                parts.append(cell.text)
+    return ' | '.join(parts)
+
+
 def audit():
     from docx import Document
     examined, bad = 0, {}
@@ -96,7 +120,7 @@ def audit():
             continue
         examined += 1
         forms = renderings(dt)
-        head = ' | '.join(p.text for p in doc.paragraphs[:MASTHEAD_PARAS])
+        head = masthead_text(doc)
         if any(x in head for x in forms):
             continue
         whole = ' | '.join(p.text for p in doc.paragraphs)
@@ -227,13 +251,48 @@ def audit_masthead_agreement():
         rel = os.path.relpath(f, ROOT)
         try:
             import docx
-            head = ' '.join(p.text for p in docx.Document(f).paragraphs[:6])
+            # ONE DEFINITION OF "THE MASTHEAD" IN ONE GATE. This clause sliced the first
+            # SIX paragraphs while the clause above it calls masthead_text(), which reads
+            # further and also reads shaded masthead TABLES -- so the two halves of this
+            # file disagreed about where the masthead ends. ADIB states "PRICE DATE 3
+            # September 2026 ... ISSUE DATE 9 September 2026" in the seventh paragraph,
+            # exactly the labelled form this gate's own comment calls the clearest a
+            # masthead can take; the slice stopped one paragraph short of it, the fallback
+            # took the first date it could see, and a correct document was reported as
+            # claiming the wrong edition. Two readings of one thing is the defect this
+            # repository keeps finding under other names.
+            head = masthead_text(docx.Document(f))
         except Exception:                                             # noqa: BLE001
             continue
-        m = _LABEL.search(head)
-        if not m:
-            continue
-        seg = head[m.end():m.end() + 220]
+        # AN EXPLICITLY LABELLED ISSUE DATE OUTRANKS EVERYTHING ELSE IN THE MASTHEAD
+        # [re-pointed 13-09-2026 per R-COC-01, which says re-point a check that fires on
+        # work that is right, never widen it].
+        #
+        # engine/doc_dates.header_line() is the shared masthead of every study in this
+        # book and it prints BOTH dates, each behind its own label: "PRICE DATE 3
+        # September 2026 ... ISSUE DATE 10 September 2026 ... the two dates are stated
+        # separately because they are not the same fact." That is the clearest form a
+        # masthead can take and it is the form this gate exists to encourage.
+        #
+        # This gate failed it. _LABEL matched the words "Valuation Study" in the
+        # DOCUMENT TITLE -- "Independent Valuation Study - Educational Analysis", not a
+        # date label at all -- then took the first date in the next 220 characters, which
+        # is the PRICE date, and reported the document as claiming the wrong edition.
+        # Four delivered studies were red for stating their dates correctly and
+        # unambiguously.
+        #
+        # So an explicit issue-date label is read first. This makes the gate STRICTER,
+        # not looser: where the document names its issue date the gate now checks THAT
+        # date and can no longer be satisfied by a correct date sitting somewhere else,
+        # which is the very confusion the message below already warns about.
+        _iss = re.search(r'issue[d]?\s*date\b', head, re.I)
+        if _iss:
+            seg = head[_iss.end():_iss.end() + 120]
+        else:
+            m = _LABEL.search(head)
+            if not m:
+                continue
+            seg = head[m.end():m.end() + 220]
         # AMOC'S FORM IS BETTER THAN THE RULE REQUIRES AND MUST NOT BE PUNISHED FOR IT.
         # "valuation study as of 6 August 2026, issued 3 September 2026" states two dates
         # on purpose — the price it was struck against and the day it was issued — and the

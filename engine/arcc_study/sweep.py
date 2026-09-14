@@ -38,6 +38,13 @@ sys.path.insert(0, os.path.join(HERE, '..'))
 from research_sweep import (SweepRegister, AssetClass, Ring, FindingClass,
                             SourceType, DriverMode)
 
+# The FY2025 gross margin, read from this study's own committed audited history
+# rather than quoted from a vendor. One reader of one fact.
+_H = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                 'study_numbers.json'),
+                    encoding='utf-8'))['history']
+_GM_FY25 = _H['gross_profit'][-1] / _H['revenue'][-1]
+
 REG = "REGULATOR_OFFICIAL"
 PRESS = "REPUTABLE_PRESS"
 AGG = "DATA_AGGREGATOR"
@@ -46,10 +53,15 @@ IND = "INDUSTRY_BODY"
 HOUSE = "HOUSE_ENGINE"
 
 
-def F(fid, ring, cat, klass, headline, src, stype, date, impact, is_fs=False, detail=''):
+def F(fid, ring, cat, klass, headline, src, stype, date, impact, is_fs=False, detail='',
+      entity='', entity_is_issuer=None):
     return dict(fid=fid, ring=ring, category=cat, klass=klass, headline=headline,
                 source_name=src, source_type=stype, source_date=date, detail=detail,
-                model_impact=impact, is_fs_data=is_fs)
+                model_impact=impact, is_fs_data=is_fs,
+                # [R-NEWS-01] a forward-looking item carries the LEGAL ENTITY that
+                # announced it and whether that entity is the listed issuer. A plan
+                # announced by a founder's private vehicle is not this company's plan.
+                entity=entity, entity_is_issuer=entity_is_issuer)
 
 
 FINDINGS = [
@@ -195,13 +207,50 @@ FINDINGS = [
       'The disclosed history the whole model closes against, and the base year of the '
       'forecast.', is_fs=True),
     F('F19', 'COMPANY', 'financial history', 'DRIVER_UNLOCK',
+      # THE TRAILING GROSS MARGIN WAS 40.77% HERE AND THE AUDITED STATEMENTS SAY
+      # 40.64% [corrected 10-09-2026]. 40.77 came from S&P Global Market
+      # Intelligence, in the retired web-search build of this study, and survived
+      # into the sweep register of a study whose whole point is that a company's
+      # historicals come from its own filings -- SIGCM clause 1, in miniature and 13
+      # basis points wide. The size is not the issue: a figure nobody can find in
+      # the accounts is a figure a reader cannot check. DERIVED now.
       'Full-year 2025 operating income of EGP 4,595.82mn and a fourth-quarter EBITDA of '
       'EGP 1,393.01mn on fourth-quarter sales of EGP 3,645.60mn; trailing gross margin '
-      '40.77%',
+      + format(100 * _GM_FY25, '.2f') + '%',
       'Audited consolidated financial statements FY2025 — statement of profit or loss, and '
       'notes 5 and 6', FILING, '2025-12-31',
       'The disclosed operating-profit anchor the bottom-up cost stack is calibrated to, and '
       'one of the three legs of the depreciation triangulation.', is_fs=True),
+    F('F19b', 'COMPANY',
+      'announced projects, ventures and capacity (entity verified as the listed issuer)',
+      'STRUCTURAL',
+      'FORWARD PLANS EXIST AND THE COMPANY HAS NOT DATED ANY OF THEM. Six are '
+      'attributed to Arabian Cement Company by its own chief executive in an '
+      'International Cement Review interview, relayed by HC Securities: hydrogen '
+      'injection to a thermal substitution rate of about 55% by 2031; a multi-phase '
+      'alternative-fuel programme to 2030 raising injection capacity on both clinker '
+      'lines and adding shredding plant; 24 MWh of solar covering about 11% of power; a '
+      'waste-heat recovery unit; a cement-mill optimiser; and a silo enabling calcined '
+      'clay clinker and CEM III. THE COMPANY\'S OWN CHANNEL CARRIES NONE OF THEM: its '
+      'published timeline runs to 2024 and lists completed works only, the most recent '
+      'being a Line 1 baghouse filter and the introduction of hydrogen injection. So the '
+      'entity is the listed issuer and the plans are real, and there is no company-signed '
+      'date behind any of them.',
+      'HC Securities & Investment, "Arabian Cement shows agility amid changing industry '
+      'dynamics", relaying an International Cement Review interview with the chief '
+      'executive; checked against the company\'s own published corporate timeline at '
+      'arabiancementcompany.com/en/about-us, which carries no forward-dated announcement',
+      PRESS, '2026-09-10',
+      'NOTHING IS TAKEN INTO THE FORECAST FROM THIS FINDING and that is the point of '
+      'recording it. Every item is a cost programme rather than a volume one -- fuel '
+      'substitution, power self-supply, heat recovery -- so the place they would show is '
+      'the cost stack, which this study builds bottom-up from the audited accounts and '
+      'holds at the disclosed structure. A plan with no company-signed date and no '
+      'disclosed capital cost cannot be priced without inventing both, and the '
+      'alternative-fuel substitution already running IS in the accounts and therefore '
+      'already in the base. The reader is told the programmes exist and told they are '
+      'not in the number.',
+      entity='Arabian Cement Company S.A.E.', entity_is_issuer=True),
     F('F20', 'COMPANY', 'balance sheet', 'DRIVER_UNLOCK',
       'Total assets about EGP 8,783.72mn, total equity about EGP 4,642.73mn, total debt '
       'about EGP 1,035.19mn and cash about EGP 3,459.39mn on the latest reported balance '
@@ -410,6 +459,12 @@ for _f in FINDINGS:
         _f['source_name'], SOURCE_MAP[_f['source_type']], _f['source_date'],
         detail=_f.get('detail', ''), model_impact=_f.get('model_impact', ''),
         is_fs_data=_f.get('is_fs_data', False),
+        # [R-NEWS-01] the entity behind a forward-looking item, carried through. The
+        # loop dropped these two fields on the floor, so a finding that NAMED its
+        # entity reached the register with none and the invariant refused it -- the
+        # study saying the right thing and the pipe losing it.
+        entity=_f.get('entity', ''),
+        entity_is_issuer=_f.get('entity_is_issuer'),
         fiscal_period=FISCAL.get(_f['fid'], ''))
 
 # THE THREE NEGATIVE SEARCHES BEHIND THE TOP-DOWN DRIVERS, REGISTERED.

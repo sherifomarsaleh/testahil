@@ -373,6 +373,9 @@ def price_one(rec, lives):
         broke = []
         for i, r in enumerate(tr['_two_sided']):
             try:
+                # TERMINAL-BASIS-EXCEPTION: a REPLAY of a study's own committed
+                # record. There is no basis decision here to get wrong — whatever the
+                # study committed is rebuilt as committed, which is the point.
                 TV.build(TV.TerminalInputs(**dict(r['inputs'])))
             except Exception as e:                                   # noqa: BLE001
                 broke.append('branch %d: %s' % (i + 1, e))
@@ -385,6 +388,8 @@ def price_one(rec, lives):
     if tr and tr.get('inputs'):
         ins = dict(tr['inputs'])
         try:
+            # TERMINAL-BASIS-EXCEPTION: a REPLAY of a study's own committed record,
+            # as above. This asks whether the record still builds, not how it was fed.
             built = TV.build(TV.TerminalInputs(**ins))
         except Exception as e:                                       # noqa: BLE001
             return ('RECORD WILL NOT REBUILD',

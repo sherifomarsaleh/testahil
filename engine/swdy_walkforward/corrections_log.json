@@ -1,0 +1,961 @@
+{
+ "_": "SWDY corrections, both clauses. INTERNAL.",
+ "built": "2026-09-07",
+ "strength": 0.5,
+ "candidates": [
+  {
+   "driver": "D1_cable_volume_t",
+   "bias": 0.2497880889716174,
+   "ci": {
+    "lo": 0.06781724089952045,
+    "hi": 0.3596623006595251,
+    "blocks": [
+     2,
+     3,
+     4
+    ],
+    "resamples": 2000,
+    "seed": 42
+   },
+   "cuts": 3,
+   "strength": 0.5,
+   "by_origin": [
+    {
+     "origin": 2017,
+     "n": 3,
+     "prior_cells": 3,
+     "adjustment_log": -0.03375628475947803,
+     "raw_mae": 0.0712975991605468,
+     "adj_mae": 0.039724177275857975,
+     "improved": true
+    },
+    {
+     "origin": 2018,
+     "n": 2,
+     "prior_cells": 6,
+     "adjustment_log": -0.10777095519935449,
+     "raw_mae": 0.058843551392365405,
+     "adj_mae": 0.04892740380698909,
+     "improved": true
+    },
+    {
+     "origin": 2019,
+     "n": 1,
+     "prior_cells": 10,
+     "adjustment_log": -0.12357005613909804,
+     "raw_mae": 0.10077722837629256,
+     "adj_mae": 0.022792827762805473,
+     "improved": true
+    }
+   ],
+   "origins": 3,
+   "improved_origins": 3,
+   "mean_raw_mae": 0.07697279297640158,
+   "mean_adj_mae": 0.03714813628188418,
+   "clause_1": "PASS",
+   "clause_2": "WATCH FLAG",
+   "clause_2_reason": "Clause 1 passes and the sample does not support acting on it. The expanding window leaves THREE origins with three or more resolved cells, because the investor sheets that publish cable tonnage stop in 2022 and the unit window closes at FY2020. Three origins of one issuer is not a population, and an absence of contrary evidence is not evidence [R-ENF-04]. Recorded, graded live, acted on by nobody.",
+   "adopted": false
+  },
+  {
+   "driver": "D5_contracting_revenue",
+   "bias": -0.3261779270082824,
+   "ci": {
+    "lo": -0.530277730741523,
+    "hi": -0.031223139215858033,
+    "blocks": [
+     2,
+     3,
+     4
+    ],
+    "resamples": 2000,
+    "seed": 42
+   },
+   "cuts": 8,
+   "strength": 0.5,
+   "by_origin": [
+    {
+     "origin": 2017,
+     "n": 5,
+     "prior_cells": 3,
+     "adjustment_log": 0.34026442576559357,
+     "raw_mae": 0.1642630838606497,
+     "adj_mae": 0.4736643825310406,
+     "improved": false
+    },
+    {
+     "origin": 2018,
+     "n": 5,
+     "prior_cells": 6,
+     "adjustment_log": 0.3677277791894596,
+     "raw_mae": 0.1102544240938935,
+     "adj_mae": 0.44811864242874916,
+     "improved": false
+    },
+    {
+     "origin": 2019,
+     "n": 5,
+     "prior_cells": 10,
+     "adjustment_log": 0.28014171886522554,
+     "raw_mae": 0.17442124073997417,
+     "adj_mae": 0.16993233091160256,
+     "improved": true
+    },
+    {
+     "origin": 2020,
+     "n": 5,
+     "prior_cells": 15,
+     "adjustment_log": 0.2604710656769984,
+     "raw_mae": 0.36995621777159127,
+     "adj_mae": 0.21774010324510967,
+     "improved": true
+    },
+    {
+     "origin": 2021,
+     "n": 4,
+     "prior_cells": 20,
+     "adjustment_log": 0.21604412642407506,
+     "raw_mae": 0.6300527749029661,
+     "adj_mae": 0.4140086484788911,
+     "improved": true
+    },
+    {
+     "origin": 2022,
+     "n": 3,
+     "prior_cells": 25,
+     "adjustment_log": 0.16847699369097455,
+     "raw_mae": 0.38908000138607285,
+     "adj_mae": 0.2206030076950983,
+     "improved": true
+    },
+    {
+     "origin": 2023,
+     "n": 2,
+     "prior_cells": 30,
+     "adjustment_log": 0.15247212458400325,
+     "raw_mae": 0.09888026778981329,
+     "adj_mae": 0.053591856794189964,
+     "improved": true
+    },
+    {
+     "origin": 2024,
+     "n": 1,
+     "prior_cells": 35,
+     "adjustment_log": 0.14969991431833304,
+     "raw_mae": 0.11075816613098236,
+     "adj_mae": 0.2604580804493154,
+     "improved": false
+    }
+   ],
+   "origins": 8,
+   "improved_origins": 5,
+   "mean_raw_mae": 0.2559582720844929,
+   "mean_adj_mae": 0.2822646315667496,
+   "clause_1": "FAIL",
+   "clause_2": "DECLINED",
+   "clause_2_reason": "Clause 1 fails on the measurement that matters: five of eight origins improve while the MEAN absolute error RISES from 0.256 to 0.282. A correction that raises the average error has not passed anything.",
+   "adopted": false
+  },
+  {
+   "driver": "D8_contracting_cost",
+   "bias": -0.35764770755982006,
+   "ci": {
+    "lo": -0.5455419761710618,
+    "hi": -0.08503150268010258,
+    "blocks": [
+     2,
+     3,
+     4
+    ],
+    "resamples": 2000,
+    "seed": 42
+   },
+   "cuts": 8,
+   "strength": 0.5,
+   "by_origin": [
+    {
+     "origin": 2017,
+     "n": 5,
+     "prior_cells": 3,
+     "adjustment_log": 0.3100813493881132,
+     "raw_mae": 0.16037444301716788,
+     "adj_mae": 0.4127894190729605,
+     "improved": false
+    },
+    {
+     "origin": 2018,
+     "n": 5,
+     "prior_cells": 6,
+     "adjustment_log": 0.35285390848223336,
+     "raw_mae": 0.06356294895940717,
+     "adj_mae": 0.39244865922063243,
+     "improved": false
+    },
+    {
+     "origin": 2019,
+     "n": 5,
+     "prior_cells": 10,
+     "adjustment_log": 0.27232283651482736,
+     "raw_mae": 0.23608667372242514,
+     "adj_mae": 0.1581954920880552,
+     "improved": true
+    },
+    {
+     "origin": 2020,
+     "n": 5,
+     "prior_cells": 15,
+     "adjustment_log": 0.251319395423991,
+     "raw_mae": 0.40242469644771506,
+     "adj_mae": 0.25163305919332046,
+     "improved": true
+    },
+    {
+     "origin": 2021,
+     "n": 4,
+     "prior_cells": 20,
+     "adjustment_log": 0.21781830652608192,
+     "raw_mae": 0.676365065235782,
+     "adj_mae": 0.4585467587097,
+     "improved": true
+    },
+    {
+     "origin": 2022,
+     "n": 3,
+     "prior_cells": 25,
+     "adjustment_log": 0.17493350056017995,
+     "raw_mae": 0.42623462574292215,
+     "adj_mae": 0.25130112518274217,
+     "improved": true
+    },
+    {
+     "origin": 2023,
+     "n": 2,
+     "prior_cells": 30,
+     "adjustment_log": 0.1619957012775706,
+     "raw_mae": 0.13547490573578125,
+     "adj_mae": 0.04401615468797337,
+     "improved": true
+    },
+    {
+     "origin": 2024,
+     "n": 1,
+     "prior_cells": 35,
+     "adjustment_log": 0.16136829631080016,
+     "raw_mae": 0.04677822471253875,
+     "adj_mae": 0.20814652102333892,
+     "improved": false
+    }
+   ],
+   "origins": 8,
+   "improved_origins": 5,
+   "mean_raw_mae": 0.2684126979467174,
+   "mean_adj_mae": 0.2721346486473404,
+   "clause_1": "FAIL",
+   "clause_2": "DECLINED",
+   "clause_2_reason": "As D5, and for the same arithmetic: five of eight origins improve while the mean absolute error rises from 0.268 to 0.272.",
+   "adopted": false
+  },
+  {
+   "driver": "D11_depreciation",
+   "bias": -0.9307569269903934,
+   "ci": {
+    "lo": -1.0429454007781842,
+    "hi": -0.7250581376753036,
+    "blocks": [
+     2,
+     3,
+     4
+    ],
+    "resamples": 2000,
+    "seed": 42
+   },
+   "cuts": 5,
+   "strength": 0.5,
+   "by_origin": [
+    {
+     "origin": 2017,
+     "n": 5,
+     "prior_cells": 3,
+     "adjustment_log": 0.36653864781602613,
+     "raw_mae": 0.965811010616985,
+     "adj_mae": 0.5992723628009587,
+     "improved": true
+    },
+    {
+     "origin": 2018,
+     "n": 4,
+     "prior_cells": 6,
+     "adjustment_log": 0.4234946430959274,
+     "raw_mae": 0.7637242933595738,
+     "adj_mae": 0.3402296502636464,
+     "improved": true
+    },
+    {
+     "origin": 2019,
+     "n": 3,
+     "prior_cells": 10,
+     "adjustment_log": 0.4584059088477629,
+     "raw_mae": 0.5817590741097964,
+     "adj_mae": 0.1233531652620335,
+     "improved": true
+    },
+    {
+     "origin": 2020,
+     "n": 2,
+     "prior_cells": 15,
+     "adjustment_log": 0.4937775088010584,
+     "raw_mae": 0.8626744216550237,
+     "adj_mae": 0.3688969128539653,
+     "improved": true
+    },
+    {
+     "origin": 2021,
+     "n": 1,
+     "prior_cells": 20,
+     "adjustment_log": 0.4900920690974925,
+     "raw_mae": 0.9239485058763865,
+     "adj_mae": 0.4338564367788941,
+     "improved": true
+    }
+   ],
+   "origins": 5,
+   "improved_origins": 5,
+   "mean_raw_mae": 0.8195834611235531,
+   "mean_adj_mae": 0.37312170559189956,
+   "clause_1": "PASS",
+   "clause_2": "DECLINED \u2014 SPECIFICATION DEFECT, NOT A BIAS",
+   "clause_2_reason": "Clause 1 passes emphatically: five origins of five improve and mean MAE falls from 0.820 to 0.373, which is the single largest improvement any candidate offers. IT MUST NOT BE ADOPTED, because the driver is wired wrong and the multiplier would hide it. The rule rolls PP&E forward at historical cost plus capex less cost over the disclosed life, and the reported charge is struck on a base that ALSO carries the translation of foreign subsidiaries: note 17 of the FY2025 statements adds EGP 9,941,876,468 to the cost of machinery in FY2024 as an \"effect of movement in exchange rates\" alone, against additions of EGP 2,061,542,102. A roll-forward that models the additions and not the translation must under-forecast on a currency that halved, and it will do so in a NEW way next year rather than the way the correction was fitted to. The house builds depreciation off a PP&E roll-forward everywhere in this book and none of those roll-forwards carries a translation term either, so this fails the second clause on its own terms. [R-FCAL-01]: a specification error is not a calibration one and no correction factor may hide it.",
+   "adopted": false
+  },
+  {
+   "driver": "D12_capex",
+   "bias": -0.6794770763640882,
+   "ci": {
+    "lo": -0.9538068981522203,
+    "hi": -0.23408579176414904,
+    "blocks": [
+     2,
+     3,
+     4
+    ],
+    "resamples": 2000,
+    "seed": 42
+   },
+   "cuts": 8,
+   "strength": 0.5,
+   "by_origin": [
+    {
+     "origin": 2017,
+     "n": 5,
+     "prior_cells": 3,
+     "adjustment_log": 0.33305377675516584,
+     "raw_mae": 0.669074275629247,
+     "adj_mae": 0.46924200957614753,
+     "improved": true
+    },
+    {
+     "origin": 2018,
+     "n": 5,
+     "prior_cells": 6,
+     "adjustment_log": 0.37579070569013306,
+     "raw_mae": 0.4358788665095987,
+     "adj_mae": 0.5137517962111225,
+     "improved": false
+    },
+    {
+     "origin": 2019,
+     "n": 5,
+     "prior_cells": 10,
+     "adjustment_log": 0.4379002607220529,
+     "raw_mae": 0.48877118899313154,
+     "adj_mae": 0.5948993649321884,
+     "improved": false
+    },
+    {
+     "origin": 2020,
+     "n": 5,
+     "prior_cells": 15,
+     "adjustment_log": 0.5157098976623736,
+     "raw_mae": 1.314074347978628,
+     "adj_mae": 0.7983644503162545,
+     "improved": true
+    },
+    {
+     "origin": 2021,
+     "n": 4,
+     "prior_cells": 20,
+     "adjustment_log": 0.3750283286750501,
+     "raw_mae": 1.071790576258041,
+     "adj_mae": 0.6967622475829909,
+     "improved": true
+    },
+    {
+     "origin": 2022,
+     "n": 3,
+     "prior_cells": 25,
+     "adjustment_log": 0.3259761044051646,
+     "raw_mae": 0.3237930361366308,
+     "adj_mae": 0.432451737605019,
+     "improved": false
+    },
+    {
+     "origin": 2023,
+     "n": 2,
+     "prior_cells": 30,
+     "adjustment_log": 0.36433080896919356,
+     "raw_mae": 0.6031796677056793,
+     "adj_mae": 0.23884885873648576,
+     "improved": true
+    },
+    {
+     "origin": 2024,
+     "n": 1,
+     "prior_cells": 35,
+     "adjustment_log": 0.3231156956885439,
+     "raw_mae": 0.14285907843991041,
+     "adj_mae": 0.1802566172486335,
+     "improved": false
+    }
+   ],
+   "origins": 8,
+   "improved_origins": 4,
+   "mean_raw_mae": 0.6311776297063584,
+   "mean_adj_mae": 0.49057213527610527,
+   "clause_1": "FAIL",
+   "clause_2": "DECLINED",
+   "clause_2_reason": "clause 1 fails: four of eight origins.",
+   "adopted": false
+  },
+  {
+   "driver": "D13_other_operating_income",
+   "bias": -0.8619518240245897,
+   "ci": {
+    "lo": -1.1852399967778586,
+    "hi": -0.530836557668565,
+    "blocks": [
+     2,
+     3,
+     4
+    ],
+    "resamples": 2000,
+    "seed": 42
+   },
+   "cuts": 8,
+   "strength": 0.5,
+   "by_origin": [
+    {
+     "origin": 2017,
+     "n": 5,
+     "prior_cells": 3,
+     "adjustment_log": -0.11246830562728612,
+     "raw_mae": 0.2124702336303604,
+     "adj_mae": 0.21767068530875658,
+     "improved": false
+    },
+    {
+     "origin": 2018,
+     "n": 5,
+     "prior_cells": 6,
+     "adjustment_log": 0.31144805684695714,
+     "raw_mae": 0.46899659402920807,
+     "adj_mae": 0.36538108400211916,
+     "improved": true
+    },
+    {
+     "origin": 2019,
+     "n": 5,
+     "prior_cells": 10,
+     "adjustment_log": 0.37371475445617347,
+     "raw_mae": 1.1451097534934107,
+     "adj_mae": 0.7713949990372373,
+     "improved": true
+    },
+    {
+     "origin": 2020,
+     "n": 5,
+     "prior_cells": 15,
+     "adjustment_log": 0.3266851819069906,
+     "raw_mae": 0.9897907006715503,
+     "adj_mae": 0.8610020894800303,
+     "improved": true
+    },
+    {
+     "origin": 2021,
+     "n": 4,
+     "prior_cells": 20,
+     "adjustment_log": 0.34386099236651824,
+     "raw_mae": 1.3599344730216107,
+     "adj_mae": 1.0268921102042508,
+     "improved": true
+    },
+    {
+     "origin": 2022,
+     "n": 3,
+     "prior_cells": 25,
+     "adjustment_log": 0.32109920373896417,
+     "raw_mae": 1.3836143196712125,
+     "adj_mae": 1.0625151159322483,
+     "improved": true
+    },
+    {
+     "origin": 2023,
+     "n": 2,
+     "prior_cells": 30,
+     "adjustment_log": 0.299875844140862,
+     "raw_mae": 0.9467118518637399,
+     "adj_mae": 0.6468360077228779,
+     "improved": true
+    },
+    {
+     "origin": 2024,
+     "n": 1,
+     "prior_cells": 35,
+     "adjustment_log": 0.3344787975111658,
+     "raw_mae": 0.2100933847410901,
+     "adj_mae": 0.5445721822522559,
+     "improved": false
+    }
+   ],
+   "origins": 8,
+   "improved_origins": 6,
+   "mean_raw_mae": 0.8395901638902729,
+   "mean_adj_mae": 0.687033034242472,
+   "clause_1": "PASS",
+   "clause_2": "WATCH FLAG",
+   "clause_2_reason": "The rule holds this line flat and was DECLARED equal to FREEZE in advance, so a correction here changes the RULE rather than calibrating it. Other operating income is not a driver class this book builds consistently anywhere - it is a residual of disposals, grants and reversals - so the second clause has nothing to be consistent WITH. Recorded, graded live.",
+   "adopted": false
+  },
+  {
+   "driver": "D15_finance_costs",
+   "bias": -0.879798675799276,
+   "ci": {
+    "lo": -1.548299003145808,
+    "hi": -0.41568518655177805,
+    "blocks": [
+     2,
+     3,
+     4
+    ],
+    "resamples": 2000,
+    "seed": 42
+   },
+   "cuts": 8,
+   "strength": 0.5,
+   "by_origin": [
+    {
+     "origin": 2017,
+     "n": 5,
+     "prior_cells": 3,
+     "adjustment_log": 0.15070116719253476,
+     "raw_mae": 0.4204117876147858,
+     "adj_mae": 0.41614080405867143,
+     "improved": true
+    },
+    {
+     "origin": 2018,
+     "n": 5,
+     "prior_cells": 6,
+     "adjustment_log": 0.20292501821612197,
+     "raw_mae": 1.131361024121088,
+     "adj_mae": 0.9284360059049661,
+     "improved": true
+    },
+    {
+     "origin": 2019,
+     "n": 5,
+     "prior_cells": 10,
+     "adjustment_log": 0.12601199753083359,
+     "raw_mae": 1.4081684524719527,
+     "adj_mae": 1.2821564549411189,
+     "improved": true
+    },
+    {
+     "origin": 2020,
+     "n": 5,
+     "prior_cells": 15,
+     "adjustment_log": 0.13394222410990858,
+     "raw_mae": 1.7133896680012257,
+     "adj_mae": 1.5794474438913169,
+     "improved": true
+    },
+    {
+     "origin": 2021,
+     "n": 4,
+     "prior_cells": 20,
+     "adjustment_log": 0.14392111950598435,
+     "raw_mae": 1.8081097249022657,
+     "adj_mae": 1.6641886053962813,
+     "improved": true
+    },
+    {
+     "origin": 2022,
+     "n": 3,
+     "prior_cells": 25,
+     "adjustment_log": 0.16172833854172097,
+     "raw_mae": 1.2509840320304944,
+     "adj_mae": 1.0892556934887734,
+     "improved": true
+    },
+    {
+     "origin": 2023,
+     "n": 2,
+     "prior_cells": 30,
+     "adjustment_log": 0.2366961074139397,
+     "raw_mae": 0.3106065583722287,
+     "adj_mae": 0.14074203675614946,
+     "improved": true
+    },
+    {
+     "origin": 2024,
+     "n": 1,
+     "prior_cells": 35,
+     "adjustment_log": 0.34734113281028184,
+     "raw_mae": 0.2814840735122987,
+     "adj_mae": 0.6288252063225805,
+     "improved": false
+    }
+   ],
+   "origins": 8,
+   "improved_origins": 7,
+   "mean_raw_mae": 1.0405644151282925,
+   "mean_adj_mae": 0.9661490313449822,
+   "clause_1": "PASS",
+   "clause_2": "DECLINED \u2014 SPECIFICATION DEFECT, NOT A BIAS",
+   "clause_2_reason": "Clause 1 passes on seven origins of eight. IT MUST NOT BE ADOPTED, and this is [L-002] arriving in a new costume. The rule holds the finance charge flat at the origin, which is a flat DEBT BOOK; SWDY's interest-bearing borrowings went from EGP 6.6bn at FY2014 to EGP 62.5bn at FY2025, nine and a half times, while the borrowing rate on the borrowings that actually bear it went from 5.79% to 9.37%. The 88 log points of \"bias\" are the growth of the debt book, which the rule does not model. ACROSS THIS MARKET'S BOOK the house builds finance cost as rate x interest-bearing borrowings - it is the first trap [R-FCAL-01] names - so a multiplier on a flat charge is inconsistent with every other name here. A correction factor is honest when the model is right and reality is awkward; when the model is wrong it hides the model.",
+   "adopted": false
+  },
+  {
+   "driver": "D16_finance_income",
+   "bias": -0.8694072696436458,
+   "ci": {
+    "lo": -1.4580864103433409,
+    "hi": -0.1747570341202186,
+    "blocks": [
+     2,
+     3,
+     4
+    ],
+    "resamples": 2000,
+    "seed": 42
+   },
+   "cuts": 8,
+   "strength": 0.5,
+   "by_origin": [
+    {
+     "origin": 2017,
+     "n": 5,
+     "prior_cells": 3,
+     "adjustment_log": 0.36430850499464346,
+     "raw_mae": 0.3500285761131776,
+     "adj_mae": 0.5686136791099636,
+     "improved": false
+    },
+    {
+     "origin": 2018,
+     "n": 5,
+     "prior_cells": 6,
+     "adjustment_log": 0.6094056979258456,
+     "raw_mae": 0.794701281395462,
+     "adj_mae": 1.1603447001509695,
+     "improved": false
+    },
+    {
+     "origin": 2019,
+     "n": 5,
+     "prior_cells": 10,
+     "adjustment_log": 0.7092985299323399,
+     "raw_mae": 0.8788811534324988,
+     "adj_mae": 1.0207408594189669,
+     "improved": false
+    },
+    {
+     "origin": 2020,
+     "n": 5,
+     "prior_cells": 15,
+     "adjustment_log": 0.6267253443024295,
+     "raw_mae": 1.221457062200702,
+     "adj_mae": 1.0816896353896002,
+     "improved": true
+    },
+    {
+     "origin": 2021,
+     "n": 4,
+     "prior_cells": 20,
+     "adjustment_log": 0.47588847230326914,
+     "raw_mae": 1.6359084134671702,
+     "adj_mae": 1.307211506066404,
+     "improved": true
+    },
+    {
+     "origin": 2022,
+     "n": 3,
+     "prior_cells": 25,
+     "adjustment_log": 0.3539516910475344,
+     "raw_mae": 1.9392040946252092,
+     "adj_mae": 1.5852524035776743,
+     "improved": true
+    },
+    {
+     "origin": 2023,
+     "n": 2,
+     "prior_cells": 30,
+     "adjustment_log": 0.27354077841012464,
+     "raw_mae": 0.3427649388319679,
+     "adj_mae": 0.06922416042184326,
+     "improved": true
+    },
+    {
+     "origin": 2024,
+     "n": 1,
+     "prior_cells": 35,
+     "adjustment_log": 0.3434450368863912,
+     "raw_mae": 0.13451910196358677,
+     "adj_mae": 0.477964138849978,
+     "improved": false
+    }
+   ],
+   "origins": 8,
+   "improved_origins": 4,
+   "mean_raw_mae": 0.9121830777537218,
+   "mean_adj_mae": 0.9088801353731748,
+   "clause_1": "FAIL",
+   "clause_2": "DECLINED",
+   "clause_2_reason": "clause 1 fails: four of eight origins.",
+   "adopted": false
+  }
+ ],
+ "declined": [
+  {
+   "driver": "D2_cable_price_t",
+   "bias": -0.026116286384329716,
+   "ci": {
+    "lo": -0.3782739565940784,
+    "hi": 0.7121202039360207,
+    "blocks": [
+     2,
+     3,
+     4
+    ],
+    "resamples": 2000,
+    "seed": 42
+   },
+   "cuts": 3,
+   "flips": 3,
+   "reasons": [
+    "the sign flips at 3 of 3 admissible cuts \u2014 an instability, not a bias [R-FCAL-01 AMENDED 07-09-2026]",
+    "the block-bootstrap interval [-0.378, 0.712] covers zero",
+    "the bias is under 5 log points and is not worth correcting"
+   ]
+  },
+  {
+   "driver": "D3_cable_cost_t",
+   "bias": -0.024264297505460337,
+   "ci": {
+    "lo": -0.3565005663745281,
+    "hi": 0.6808316773167383,
+    "blocks": [
+     2,
+     3,
+     4
+    ],
+    "resamples": 2000,
+    "seed": 42
+   },
+   "cuts": 3,
+   "flips": 3,
+   "reasons": [
+    "the sign flips at 3 of 3 admissible cuts \u2014 an instability, not a bias [R-FCAL-01 AMENDED 07-09-2026]",
+    "the block-bootstrap interval [-0.357, 0.681] covers zero",
+    "the bias is under 5 log points and is not worth correcting"
+   ]
+  },
+  {
+   "driver": "D4_cables_revenue",
+   "bias": -0.20654044024086554,
+   "ci": {
+    "lo": -0.9837721916511946,
+    "hi": 0.3648156557997316,
+    "blocks": [
+     2,
+     3,
+     4
+    ],
+    "resamples": 2000,
+    "seed": 42
+   },
+   "cuts": 8,
+   "flips": 4,
+   "reasons": [
+    "the sign flips at 4 of 8 admissible cuts \u2014 an instability, not a bias [R-FCAL-01 AMENDED 07-09-2026]",
+    "the block-bootstrap interval [-0.984, 0.365] covers zero"
+   ]
+  },
+  {
+   "driver": "D6_other_revenue",
+   "bias": -0.31551387447736495,
+   "ci": {
+    "lo": -0.7913649176304456,
+    "hi": 0.16769866435030908,
+    "blocks": [
+     2,
+     3,
+     4
+    ],
+    "resamples": 2000,
+    "seed": 42
+   },
+   "cuts": 8,
+   "flips": 0,
+   "reasons": [
+    "the block-bootstrap interval [-0.791, 0.168] covers zero"
+   ]
+  },
+  {
+   "driver": "D7_cables_cost",
+   "bias": -0.18079001576780598,
+   "ci": {
+    "lo": -0.9849808095773056,
+    "hi": 0.3816027203268465,
+    "blocks": [
+     2,
+     3,
+     4
+    ],
+    "resamples": 2000,
+    "seed": 42
+   },
+   "cuts": 8,
+   "flips": 6,
+   "reasons": [
+    "the sign flips at 6 of 8 admissible cuts \u2014 an instability, not a bias [R-FCAL-01 AMENDED 07-09-2026]",
+    "the block-bootstrap interval [-0.985, 0.382] covers zero"
+   ]
+  },
+  {
+   "driver": "D9_other_cost",
+   "bias": -0.31642874523306774,
+   "ci": {
+    "lo": -0.7942182550324145,
+    "hi": 0.17012694593851846,
+    "blocks": [
+     2,
+     3,
+     4
+    ],
+    "resamples": 2000,
+    "seed": 42
+   },
+   "cuts": 8,
+   "flips": 0,
+   "reasons": [
+    "the block-bootstrap interval [-0.794, 0.170] covers zero"
+   ]
+  },
+  {
+   "driver": "D10_sga",
+   "bias": -0.18991438656352155,
+   "ci": {
+    "lo": -0.38492370555688105,
+    "hi": 0.06796094724286006,
+    "blocks": [
+     2,
+     3,
+     4
+    ],
+    "resamples": 2000,
+    "seed": 42
+   },
+   "cuts": 5,
+   "flips": 0,
+   "reasons": [
+    "the block-bootstrap interval [-0.385, 0.068] covers zero"
+   ]
+  },
+  {
+   "driver": "D14_other_operating_expense",
+   "bias": -0.4248600754844501,
+   "ci": {
+    "lo": -1.0154259138722017,
+    "hi": 0.023358201483365322,
+    "blocks": [
+     2,
+     3,
+     4
+    ],
+    "resamples": 2000,
+    "seed": 42
+   },
+   "cuts": 8,
+   "flips": 2,
+   "reasons": [
+    "the sign flips at 2 of 8 admissible cuts \u2014 an instability, not a bias [R-FCAL-01 AMENDED 07-09-2026]",
+    "the block-bootstrap interval [-1.015, 0.023] covers zero"
+   ]
+  },
+  {
+   "driver": "A_revenue",
+   "bias": -0.2221872795578331,
+   "ci": {
+    "lo": -0.708549478519712,
+    "hi": 0.20077049962986557,
+    "blocks": [
+     2,
+     3,
+     4
+    ],
+    "resamples": 2000,
+    "seed": 42
+   },
+   "cuts": 8,
+   "flips": 0,
+   "reasons": [
+    "the block-bootstrap interval [-0.709, 0.201] covers zero"
+   ]
+  },
+  {
+   "driver": "A_cost_of_revenue",
+   "bias": -0.2147384431367818,
+   "ci": {
+    "lo": -0.7261816552295938,
+    "hi": 0.20124732471225584,
+    "blocks": [
+     2,
+     3,
+     4
+    ],
+    "resamples": 2000,
+    "seed": 42
+   },
+   "cuts": 8,
+   "flips": 0,
+   "reasons": [
+    "the block-bootstrap interval [-0.726, 0.201] covers zero"
+   ]
+  },
+  {
+   "driver": "A_gross_profit",
+   "bias": -0.26184986359666124,
+   "ci": {
+    "lo": -0.6333668220375726,
+    "hi": 0.22393629671159365,
+    "blocks": [
+     2,
+     3,
+     4
+    ],
+    "resamples": 2000,
+    "seed": 42
+   },
+   "cuts": 8,
+   "flips": 0,
+   "reasons": [
+    "the block-bootstrap interval [-0.633, 0.224] covers zero"
+   ]
+  }
+ ],
+ "adopted": [],
+ "watch_flags": [
+  "D1_cable_volume_t",
+  "D13_other_operating_income"
+ ]
+}

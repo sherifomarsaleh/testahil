@@ -1,0 +1,40 @@
+{
+ "_ticker": "ADIB",
+ "_company": "Abu Dhabi Islamic Bank (ADIB) – Egypt S.A.E., EGX: ADIB. NOT ADIB Group PJSC (ADX: ADIB).",
+ "_rule": "[R-TERM-01] — every terminal is built on a DISCLOSED useful life, and a life this desk chose is not a disclosed life.",
+ "_built": "2026-09-09",
+ "route_one_policy_note": {
+  "attempted": true,
+  "result": "FAILED — a range across seven classes, not a life",
+  "what_the_note_states": {
+   "Buildings": "20 years",
+   "Decorations and preparations": "20 years",
+   "Integrated systems and equipment": "5 years",
+   "Motor vehicles": "5 years",
+   "Furniture and fittings": "10 years",
+   "Other equipment": "10 years (8 years in the FY2015 filing)",
+   "Mobiles": "1 year"
+  },
+  "implied_span_years": [1, 20],
+  "source": "ADIB-Egypt audited consolidated financial statements for the year ended 31 December 2018, accounting-policies note (L) Fixed assets; the same table with 'Other equipment' at 8 years appears in the FY2015 filing",
+  "route": "text layer (pdftotext -layout)",
+  "why_it_fails": "The note gives a life per class and no weighting between them, and the classes span 1 to 20 years. Finding a range is not finding a life, and picking a point inside one is the choice this rule exists to forbid. On the names read under this rule so far, route one has given a usable scalar about once."
+ },
+ "route_two_derived": {
+  "identity": "depreciable gross cost / annual depreciation charge",
+  "labelled": "DERIVED",
+  "observations": [
+   {"year": "FY2018", "gross_cost_total": 1095953000, "charge": 101905000, "implied_life_years": 10.75,
+    "ex_land_and_premises": {"gross_cost": 855709000, "charge": 94590000, "implied_life_years": 9.05}},
+   {"year": "FY2017", "gross_cost_total": 1019504000, "charge": 82909000, "implied_life_years": 12.30,
+    "ex_land_and_premises": {"gross_cost": 778925000, "charge": 75206000, "implied_life_years": 10.36}}
+  ],
+  "units": "EGP",
+  "source": "ADIB-Egypt audited consolidated financial statements for the year ended 31 December 2018, note 24 'Fixed assets – Net of accumulated depreciation' — the cost and accumulated-depreciation blocks for both years",
+  "route": "text layer (pdftotext -layout), arithmetic-confirmed: each year's roll-forward (opening NBV + additions − disposals − impairment − depreciation + depreciation on disposals) foots to the printed closing NBV, and cost less accumulated depreciation reproduces the same NBV",
+  "held_against_route_one": "9.1 to 12.3 years sits inside the 1-to-20-year span the policy note discloses, in its middle. That is what a branch network looks like: the largest block by far is 'Other assets' — fit-out, IT and equipment on 5-to-10-year lives — at EGP 761mn of EGP 1,096mn gross cost, against EGP 240mn of land and premises on 20 years.",
+  "one_reason_the_total_ratio_is_OVERSTATED": "Land is not depreciated and is not separable: the note prints a single 'Land & premises' column. The ex-land-and-premises figures are given beside the totals so both bounds are visible; the truth is between them, nearer the ex-land number because premises are only part of that column.",
+  "adopted_for_the_terminal": null,
+  "adopted_note": "NO LIFE IS ADOPTED, and for a bank that is a statement about the construction rather than about the evidence. A bank's terminal is built on equity — dividends, free cash flow to equity and return above the cost of equity [L-111] — not on a reinvestment identity in which a PP&E life sets maintenance capex. ADIB-Egypt's entire net fixed-asset base is EGP 953mn against total assets of EGP 347bn: 0.27%. The life is recorded because the rule says read it while the filings are open, and because a study that later wants it should find it here rather than choose one."
+ }
+}

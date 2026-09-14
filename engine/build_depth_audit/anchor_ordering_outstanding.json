@@ -1,0 +1,21 @@
+{
+ "note": "May only SHORTEN. An entry excuses the LAG it records; a study falling further behind is a NEW breach [R-ENF-08].",
+ "outstanding": {
+  "ARCC": {
+   "lag_days": 181,
+   "reason": "measured on adoption day; the fix is to read the income statement out of the filing the bridge already stands on",
+   "why": "the bridge stands on balance_sheet_date 2026-06-30 while the forecast is anchored on latest_reviewed_date 2025-12-31 \u2014 181 days BEHIND its own balance sheet. Both come out of the same reviewed filing, so the study opened it and took half of it, and no anchor_ordering_reason declares why"
+  },
+  "EGCH": {
+   "lag_days": 274,
+   "reason": "measured on adoption day; the fix is to read the income statement out of the filing the bridge already stands on",
+   "why": "the bridge stands on balance_sheet_date 2026-03-31 while the forecast is anchored on latest_reviewed_date 2025-06-30 \u2014 274 days BEHIND its own balance sheet. Both come out of the same reviewed filing, so the study opened it and took half of it, and no anchor_ordering_reason declares why"
+  },
+  "SCEM": {
+   "lag_days": 90,
+   "reason": "measured on adoption day; the fix is to read the income statement out of the filing the bridge already stands on",
+   "why": "the bridge stands on balance_sheet_date 2026-03-31 while the forecast is anchored on latest_reviewed_date 2025-12-31 \u2014 90 days BEHIND its own balance sheet. Both come out of the same reviewed filing, so the study opened it and took half of it, and no anchor_ordering_reason declares why"
+  }
+ },
+ "rule": "R-BRIDGE-01 / R-ANCHOR-01 \u2014 the joint condition"
+}

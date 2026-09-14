@@ -17,7 +17,11 @@ import openpyxl
 import xlcalc
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-XLSX = os.path.join(HERE, 'ARCC_Valuation_Model_03092026_public.xlsx')
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
+# POINTED AT THE EDITION MODULE. It named the 03-09 files, and a check that opens a
+# SUPERSEDED file reports that file's defects as current [L-066/L-067].
+XLSX = os.path.join(HERE, _ed.MODEL_XLSX)
 wb = openpyxl.load_workbook(XLSX)
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 XP = json.load(open(os.path.join(HERE, 'xlsx_expected.json')))

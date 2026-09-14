@@ -1,0 +1,981 @@
+        Corporate Governance Report
+For the Fiscal Year Ending on 31 December, 2023
+                                                 Index
+                                  Contents                                      Page Number
+1) Company information                                                     1
+2) General Assembly of Shareholders                                        2
+    •    Ownership structure                                               2
+
+3) Board of Directors                                                      3
+    •    Board composition                                                 3
+    •    Role and responsibilities of the board of directors               4
+    •    The most significant responsibilities and tasks of the board of   4
+         directors
+    •    Responsibilities of the Board Chairman                            5
+                                                                           5
+    •    Responsibilities of the Managing Director
+                                                                           6
+    •    Secretary of the Board of Directors
+4) Committees of the Board of Directors                                    7
+    •    Formation of the committees                                       7
+    •    The progress of the Board meetings and its committees             7
+    •    The Committee of Audit & Risk                                     8
+    •    The Committee of Remuneration and Nominations                     9
+    •    The Committee of Compliance and Governance                        10
+    •    The Committee of Employee Stock Option (ESOP)                     11
+                                                                           11
+    •    The Committee of Investment
+5) The Regulatory Environment                                              11
+    •    Internal Control System                                           11
+    •    Internal Audit Department                                         12
+    •    Risk Management Department                                        12
+    •    The Auditor                                                       13
+6) Disclosure and Transparency                                             14
+    •    Material Information and Financial and Non-financial Disclosure   14
+                                                                           15
+    •    Investor Relations
+7) Disclosure Tools                                                        17
+   •    Board of Directors’ report                                         17
+   •    Disclosure report                                                  17
+   •    Website                                                            18
+
+8) Codes and Policies                                                      19
+   •    Code of Ethics and Business Conduct                                19
+   •    Succession Planning                                                19
+   •    Whistleblowing                                                     19
+
+9) Insider and Related Parties Trading Policy                              20-22
+        Fawry for Banking Technology and Electronic Payment S.A.E.
+                          Corporate Governance Report
+                                31 December 2023
+
+  1) Company information
+Company Name        Fawry for Banking Technology and Electronic Payment S.A.E
+Company Purpose     The purpose of the company is: 1) to provide specialized operating services for
+                    information and communications technology systems, 2) management, operation and
+                    maintenance of computer equipment and networks, internal systems for banks,
+                    networks and central computers, 3) and the development of online and phone-based
+                    banking services operating systems, in addition to the provision of electronic payment
+                    services, the circulation of electronically secured documents, and real estate rental
+                    services, taking into account the provisions of the laws, regulations and decisions in
+                    force, provided that all necessary licenses are issued to practice these activities. The
+                    company may have an interest or participate in any way with companies and others
+                    that conduct similar activities or that may assist the company in achieving its purpose
+                    in Egypt or abroad. It may also merge with, purchase, or join these entities, in
+                    accordance with the provisions of the law and its executive regulations.
+Company Term        25 years from the date        Date of stock exchange       22/7/2019
+                    of registration in the        listing
+                    commercial registry.
+Relevant law        No. 159 for 1981              Nominal value per share      0.50 EGP
+Last authorized     3,000,000,000 EGP             Last issued capital          1,703,261,622 EGP
+capital
+Last paid capital   1,703,261,622 EGP           Number and date of             Commercial registration No.
+                                                commercial registration        1333 6th of October
+                                                                               Investment dated
+                                                                               26/6/2008
+Contact person      Mostafa Mohamed Mohamed Ibrahim
+Headquarters        Building 221-F12, Smart Village
+Phone numbers       02 35371171                               Fax numbers      02 3537117
+Website             www.fawry.com
+Email               investor.Relations@Fawry.com
+
+
+
+
+                                                                                                  1
+   2) General Assembly of Shareholders
+The Company’s Ordinary and extraordinary General Assemblies are held in the city where the
+company is headquartered to consider:
+    •   Approval of the Board of Directors' report on the company's activities and results of
+        its activities for the fiscal year.
+    •   Approval of the company's auditor's report on the company's annual financial
+        statements.
+    •   Approval of the company's financial statements for the fiscal year.
+    •   Absolving the members of the Board of Directors from liability for the fiscal year.
+    •   Approval of the amendments and changes made to the Board of Directors during the
+        year.
+    •   Approval of the attendance and transfer allowances for members of the Board of
+        Directors and Board committees for the fiscal year, appointment of the company's
+        auditor for the fiscal year and the determination of his/her fees.
+    •   Adoption of the limits of donations during the fiscal year.
+    •   Election of the members of the Board of Directors in the event of the expiry of the
+        Board’s term.
+    •   Consideration of the company's conclusion of related-party contracts.
+    •   Consideration of any other issues that the Board of Directors may consider to be
+        presented to the General Assembly.
+Additionally, Board committee heads attend General Assembly meetings, as the principles of
+good governance stipulate that the company’s General Assembly meeting is attended by the
+Chairman and members of the Board of Directors in addition to committee heads.
+The company’s General Assembly consists of the company’s shareholders, each according to
+the percentage of his/her shares. Shareholders are urged to attend the company’s General
+Assembly meeting, and to arrange the date and place of the meeting in a way that facilitates and
+encourages them to attend.
+Measures have been taken to amend the method of electing the Board of Directors by
+proportional representation and cumulative voting, as of the date of the Extraordinary
+Assembly on 28/03/2019.
+The General Assembly meetings are managed in a way that allows the shareholders to express
+their opinions, and the company’s management makes full and sufficient disclosure of all the
+topics included in the assembly’s agenda.
+
+
+
+
+                                                                                              2
+Ownership Structure:(December 31,2023)
+  Holders of 5% or more of                                        Number of shares on the date
+                                         Final beneficiary                                          Percentage
+    the company's shares                                           of the financial statements
+      Alpha Oryx Limited                Alpha Oryx Limited                 416,728,062                12.23%
+          Banque Misr                       Banque Misr                   331,942,520                  9.74%
+      Egyptian American            Egyptian American Enterprise
+                                                                          289,002,353                 8.48%
+        Enterprise Fund                         Fund
+        Link Hold Co BV                   Link Hold Co BV                 270,344,629                 7.93%
+    National Bank of Egypt            National Bank of Egypt              206,225,843                 6.05%
+  Black Sparrow Long Term           Black Sparrow Long Term
+                                                                           188,640,077                 5.53%
+       Investments Ltd                   Investments Ltd
+             Total                                                        1,702,883,484               49.98%
+
+     3) Board of Directors
+Fawry For Banking Technology and Electronic Payment is headed by a board of directors, the
+majority of which are non-executives, with a varied array of expertise, skills and qualifications in
+finance and legal to manage and run the company's affairs efficiently, and to achieve the company
+and its shareholders objectives.
+The company’s Board of Directors is comprised in accordance with the decision of the General
+Assembly dated 21/11/2021 and for a period of 3 years.
+     •   On 20/7/2022, the ordinary general assembly of the company approved the appointment of
+         two new members.
+     •   On 6/3/2023, the resignation submitted by Link Hold Co BV from the Company's board of
+         directors and the withdrawal of its representative Mr. Babatunde Soyoye.
+     •   On 17/5/2023, the resignation submitted by Black Sparrow Ling Term from the Company's
+         Board of Directors and the withdrawal of its representative Mr. Hedi Ben Mlouka.
+     •   On 17/5/2023, the appointment of Mr. Volodymyr Tsapko as a representative of
+         Responsibility Partnerships AG in the Board of Directors of the company instead of Mr.
+         Michael Fiebig.
+     •   On 12/4/2023, the ordinary general assembly of the company approved the appointment of
+         Mrs. Rafi Aziz Qasim as a Member of the Board of Directors.
+Composition of the board of directors on December 31, 2023
+                                     Title (executive/non-   Number of
+             Member name                                                    Date of joining      Representing
+                                    executive/independent)    shares
+                                                                                                Chairman of the
+         Seif Allah Coutry Saady
+ 1                                  Non-executive Member          -         26/06/2008        Board of Directors –
+             Hassan Coutry
+                                                                                              Representing Himself
+                                                                                               Managing Director
+         Ashraf Kamel Moussa
+ 2                                    Executive Member       74,912,691     26/06/2008             and CEO –
+                Sabry
+                                                                                              Representing Himself
+
+
+                                                                                                       3
+         Ashraf Mahmoud Abbas                                                        Egyptian American
+ 3                                Non-executive Member   289,002,353     2015
+                 Zaki                                                                 Enterprise Fund
+                                                                                       Responsability
+ 4         Volodymyr Tsapko       Non-executive Member   161,408,519     2023
+                                                                                     Participations AG
+             Shehab Ezzat
+ 5                                Non-executive Member   331,942,520     2019           Banque Misr
+           Abdelrahman Zidan
+         Sherif Hussein Safwat                                                      Representing National
+ 6                                Non-executive Member   206,225,843     2019
+            Mohamed Tolba                                                              Bank of Egypt
+                                     Non-executive/
+ 7     Magda Raafat Gendy Habib                           7,904,105      2019       Representing herself
+                                     non-independent
+                                     Non-executive/
+ 8       Hussein Hassan Choukri                             None         2019       Representing Himself
+                                       independent
+        Moataz Mohamed Hashem        Non-executive/
+ 9                                                          None         2019       Representing Himself
+                Tabaa                  independent
+ 10           Aziz Moolji             Non-executive      416,728,062     2022        Alpha Oryx Limited
+ 11         Ahmed Al Tanani           Non-executive      416,728,062     2022        Alpha Oryx Limited
+                                     Non-executive/
+ 12         Rafi Aziz Qasim                                 None         2023       Representing herself
+                                       independent
+
+
+Role and responsibilities of the board of directors
+The company’s Board of Directors manages its affairs based on the mandate issued by the
+General Assembly and is held accountable for the company’s management by the General
+Assembly of shareholders.
+Based on international experiences and best practices in applying corporate governance rules,
+the positions of the Chairman and Managing Director are separated, enabling the objective
+evaluation of the executive management’s performance, after separating the supervisory and
+executive functions.
+The Board sets the company’s strategic objectives, approves the general plans and policies
+that determine its workflow, monitors the performance of the executive management, ensures
+the effectiveness of the internal control system and manages the company’s risks, determines
+the best method for applying governance, and adopts professional policies and standards to be
+followed by employees, reflecting on their performance and behavior.
+Board and committee meetings are held by means of modern communication such as conference
+call or video conference, as of the Extraordinary General Assembly on 06/11/2019.
+
+The most significant responsibilities and tasks of the board of directors
+      • Establishing mechanisms and systems that ensure compliance by all company employees
+        with the company's internal laws, charters, and policies, setting up an early warning
+        system to detect any defect or deviation that may occur, and ensuring that appropriate
+
+
+
+                                                                                             4
+       timely action is taken. This system must include ways to protect sources of information
+       and whistleblowers of corruption and deviation.
+   •   Developing a succession plan within the company for the higher-level executive
+       positions and members of the Board of Directors to ensure the sustainability of the
+       company and the effective conduct of its business.
+   •   Determining the powers that it delegates to members, committees, or others and
+       specifying the mandate period and the frequency of reports it receives from
+       committees and executive management, in addition to following up on the outcomes of
+       the delegated tasks.
+   •   Establishing preventive measures, tools, and mechanisms that secure the flow of
+       information, control the accuracy and integrity of data within the company, and protect
+       it from manipulation and penetration, whether from within or outside the company, such
+       as securing the use of the Internet and mobile devices against intrusions and piracy.
+   •   General supervision of the data disclosure process and communication channels,
+       ensuring the integrity of the financial and accounting reports issued by the company, and
+       ensuring the independence of each internal audit activity.
+   •   Appointing a competent secretary to the Board of Directors with understanding of all
+       the company's business. The Board can establish an organizational unit for the
+       secretariat in accordance with the company’s size and needs.
+Responsibilities of the Board Chairman
+   • Inviting the Board of Directors to convene, setting its agenda and managing its sessions.
+   • Inviting the Ordinary General Assembly and Extraordinary General Assembly to convene
+     to consider the agenda of the Board of Directors.
+   • Ensuring the availability of accurate and sufficient information in a timely manner to the
+     members of the Board and the shareholders.
+   • Ensuring that sound decisions are taken based on comprehensive knowledge of the
+     issues, with the need to ensure that an appropriate mechanism is in place to ensure the
+     effective implementation of those decisions in a timely manner.
+   • Receiving reports and recommendations from all committees and periodically presenting
+     them to the Board to take the necessary measures.
+   • Ensuring that all members of the Board carry out a self-assessment that reflects the
+     member's commitment to his duties.
+   • Ensuring the Board's commitment to carrying out its duties to the fullest extent in line
+     the best interest of the company, and avoiding conflict of interest.
+   • Ensuring the effectiveness of the corporate governance framework applied in the
+     company, as well as the effectiveness of the performance of the Board's committees.
+Responsibilities of the Managing Director
+The responsibilities of the Managing Director along with senior executive management includes:
+
+
+                                                                                              5
+   • Executing the company's annual strategy and plan set and approved by the Board of
+     Directors.
+   • Presiding over the company's executive work and managing its daily affairs, supervising
+     the workflow in all the company’s departments and divisions, following up on the
+     performance of all activities, and taking the decisions it deems appropriate to regularize
+     work and achieve goals, as well as working to increase customer satisfaction with the
+     company.
+   • Working to implement all the company's internal policies, regulations and systems
+     approved by the Board of Directors.
+   • Suggesting topics to be raised in the periodic meetings of the Board of Directors in
+     consultation with the Chairman of the Board.
+   • Supervising the preparation of periodic financial and non-financial reports on the results
+     of the company's business and evaluating its performance, as well as the corporate
+     governance report, and reviewing all responses to the auditors' inquiries before
+     preparing these reports.
+   • Active participation in building and developing a culture of ethical values within the
+     company and proposing reward and motivation systems and mechanisms of authority
+     follow-up approved by the Board to ensure the loyalty of employees and maximize the
+     value of the company.
+   • Determining the terms of reference and responsibilities of all employees of the company
+     in accordance with the applicable work regulations and the decisions of the Board of
+     Directors.
+Secretary of the Board of Directors
+The company maintains a Board of Directors’ secretariat organizational whose role is not only
+limited to taking meeting minutes but also includes:
+   • Preparing and managing the logistics of Board and committee meetings, assisting the
+     Chairman of the Board in preparing the meeting agenda, preparing information, data, and
+     details on the topics to be discussed and sending them to members well in advance of
+     the meeting.
+   • Assisting the Chairman of the Board in preparing for the shareholders' General
+     Assembly meetings and managing their logistics.
+   • Following up on the issuance and implementation of the Board of Directors' decisions,
+     informing the concerned departments about them, and preparing follow-up reports on
+     what has been done in their regard.
+   • Documenting all relevant details to the Board’s resolutions and the topics presented
+     before it, while ensuring that the Board obtains important information in a timely manner.
+   • Coordinating with all Board committees to ensure effective communication between
+     those committees and the Board of Directors.
+
+
+
+                                                                                             6
+              • Coordinating with the concerned committees in the context of providing the necessary
+                information to support the Chairman of the Board in the process of evaluating the Board
+                and committee members, and the proposals submitted by the Board to the General
+                Assembly regarding the selection or replacement of a member.
+
+              4) Committees of the Board of Directors on 31 December 2023
+         The board of directors established a number of committees to assist the Board to effectively
+         assume its roles and responsibilities of running the Company. These committees were formed
+         as per the laws and regulations. The aforesaid committees submit their reports and
+         recommendations to the board of directors periodically, to take the necessary decisions in
+         their regard as specified in their respective terms of reference.
+
+         Formation of the Committees
+                                                                      Name of Committee
+                                                     Remuneration                                    Compliance &   Capacity of the
+             Member name             Audit & Risk                       Investment      ESOP
+                                                    and Nominations                                  Governance        Member
+                                     Committee                          Committee     Committee
+                                                      Committee                                       Committee
+1   Seif Allah Coutry Saadi Coutry     Member          Member                             Chairman     Chairman      Non-executive
+
+2 Ashraf Kamel Moussa Sabry                            Member            Chairman                                      Executive
+3 Ashraf Mahmoud Abbas Zaki                            Member            Member           Member                     Non-Executive
+4 Shehab Ezzat Abdelrahman Zidan                                                                       Member        Non-Executive
+  Sherif Hussein Safwat Mohamed
+5                                                                                                      Member        Non-Executive
+  Tolba
+                                                                                                                      Non-executive
+6 Magda Raafat Gendy Habib                             Member            Member           Member
+                                                                                                                    / Non-independent
+7   Hussein Hassan Choukri            Chairman         Chairman                           Member       Member          Independent
+8 Moataz Mohamed Hashem Tabaa          Member          Member                             Member       Member         Independent
+9 Rafi Aziz Qasim                      Member                                                                         Independent
+
+
+
+
+         The progress of the Board meetings and its committees
+              • The current board of directors was elected by virtue of resolution of the company’s
+                ordinary general assembly held on 21 November 2021, for a three-year term ending in
+                December 2024.
+              • Five (5) meetings were held remotely.
+              • The following meetings were held during the year 2023: Four (4) meeting of the audit
+                and risk committee, One (1) meetings of the Compliance & Governance Committee, one
+                (1) meeting of the remuneration and nominations committee, and One (1) meetings of the
+                investment committee, and One (1) meetings of ESOP committee.
+
+
+
+
+                                                                                                                           7
+               A follow-up schedule of the Board members’ attendance of the Board meetings,
+               Committees and General Assembly meetings
+                                                               Compliance                                         Remuneration
+                                      Joining      Departure                              Audit &
+                            Board                                  &        Meeting                  Meeting           &         Meeting        ESOP       Meeting    Investment   Meeting
+      Member name                     Date of       Date of                                Risk
+                           Meetings
+                                       Board         Board
+                                                               Governance    Date
+                                                                                         Committee
+                                                                                                      Date         Nominations    Date        Committee     Date      Committee     Date
+                                                               Committee                                           Committee
+     Seif Allah Coutry
+1                            5/5      21/11/2021       -           1/1      11/15/2020      4/4      11/15/2020        1/1       11/15/2020      1/1      3/29/2021       -            -
+      Saadi Coutry
+
+      Ashraf Kamel
+2                            5/5      21/11/2021       -           -            -            -           -             1/1       11/15/2020       -           -          1/1       3/29/2021
+      Moussa Sabry
+        Babatunde
+3                            1/5      21/11/2021   6/3/2023        -            -            -           -             -             -            -           -           -            -
+         Soyoye
+
+4    Hedi Ben Melouka        1/5      21/11/2021   17/5/2023       -            -            -           -             -             -            -           -           -            -
+
+     Ashraf Mahmoud
+5                            4/5      21/11/2021       -           -            -            -           -             1/1       11/15/2020      1/1      3/29/2021      1/1       3/29/2021
+        Abbas Zaki
+        Volodymyr
+6                            5/5      17/5/2023        -           -            -            -           -             -             -            -           -           -            -
+          Tsapko
+       Shehab Ezzat
+7      Abdelrahman           5/5      21/11/2021       -           1/1      11/15/2020       -           -             -             -            -           -           -            -
+           Zidan
+      Sherif Hussein
+8    Safwat Mohamed          5/5      21/11/2021       -           1/1      11/15/2020       -           -             -             -            -           -           -            -
+           Tolba
+       Magda Raafat
+9                            5/5      21/11/2021       -           -            -            -           -             1/1       11/15/2020      1/1      3/29/2021      1/1       3/29/2021
+        Gendy Habib
+      Hussein Hassan
+10                           5/5      21/11/2021       -           1/1      11/15/2020      4/4      11-15-2020        1/1       11/15/2020      1/1      3/29/2021       -            -
+          Choukri
+     Moataz Mohamed
+11                           5/5      21/11/2021       -           1/1      11/15/2020      4/4      11-15-2020        1/1       11/15/2020      1/1      3/29/2021       -            -
+     Hashem El-Tabaa
+12      Aziz Moolji          5/5      20/7/2022        -           -            -            -           -             -             -            -           -           -            -
+
+13   Ahmed Al Tanani         5/5      20/7/2022        -           -            -            -           -             -             -            -           -           -            -
+
+14   Rafi Aziz Qasim         4/5      12/4/2023        -           -            -           4/4      3-5-2023          -             -            -           -           -            -
+
+
+
+
+               The Committee of Audit & Risk
+               The company contains an Audit and Risk Committee comprising of Four non-executive Board
+               Members including three independent members who possess the necessary experience to
+               ensure achieving the desired balance in ability, knowledge, and adequate familiarity with financial
+               topics and the field of audit and accounting in accordance with the size of the company .
+
+               The committee’s responsibilities include:
+                         • Reviewing the company's internal control system and developing a written report on its
+                           opinion and recommendations in this regard.
+                         • Reviewing the financial statements before submitting them to the Board of Directors
+                           and giving its opinion and recommendations in this regard.
+                         • Reviewing the accounting principles used and expressing its opinion and
+                           recommendations regarding them.
+                         • Recommending to the Board of Directors to appoint one or more auditors for the
+                           company, outlining the needed qualifications, competence, and independence. The
+
+
+
+
+                                                                                                                                                                         8
+       decision to appoint auditors and determine their remuneration is the responsibility of the
+       company's Ordinary General Assembly.
+   •   Reviewing and commenting on the auditor’s audit plan.
+   •   Reviewing the auditor's notes and recommendations on the financial and other
+       statements contained in the management letter received from the auditor and following
+       up on the actions taken in their regard.
+   •   Ensuring the company's commitment to follow the internal and external systems,
+       regulations and laws in accordance with the reports submitted to it by the Compliance
+       Department or other concerned departments.
+   •   Recommending approval for the auditor to carry out additional duties other than auditing
+       the accounts, and recommending approval of the auditor’s remuneration for these
+       operations in proportion to the annual remuneration.
+   •   Discussing and approving the annual plan of the Internal Audit Department, following up
+       on its efficiency, and ensuring that it includes all the company's departments and
+       activities.
+   •   Reviewing the internal audit reports, identifying the company's shortcomings and their
+       reasons, and following up on the corrective actions.
+   •   Reviewing and evaluating the company's early warning system and suggesting what is
+       needed to effectively improve and implement it.
+   •   Reviewing and evaluating security systems, information, and data, and how to protect
+       them from any internal or external penetrations.
+   •   Reviewing the observations or violations received from the regulatory authorities and
+       following up on the subsequent measures.
+   •   Inviting the company's auditor, head of the internal Audit Department, or whoever
+       deemed appropriate from within or outside the company to attend its meetings
+       whenever the need arises.
+   •   Implementing and following up on any other tasks assigned by the Board of Directors.
+
+
+In 2023, the committee performed quarterly reviews and issued its periodical reports to the
+company’s Board of Directors alongside its recommendations which included the approval of
+the financial accounts.
+
+The Committee of Remuneration and Nominations
+   • Regular and constant review of the appropriate skills required for membership in the
+     Board of Directors and of senior management.
+
+
+
+
+                                                                                               9
+  • Assisting the Board in developing the required qualifications, evaluating potential
+    candidates for executive positions, and supervising the development of authority
+    succession plans.
+  • Determining the responsibilities of the executive, non-executive, and independent
+    members of the Board of Directors.
+  • Continuously verifying the independence of the independent board members and
+    ensuring that there is no conflict of interest if a member joins the Board of Directors of
+    any other company.
+  • Proposing clear policies for the remuneration of members of the Board of Directors,
+    committee members, and senior executives in the company and defining criteria for
+    measuring performance in determining remuneration.
+  • Reviewing the remuneration and compensation policy on a yearly basis after conducting
+    the necessary studies for the current remuneration policy.
+  • Preparing a detailed annual report to be submitted to the Board of Directors and the
+    General Assembly on all remunerations and benefits received by members of the Board
+    of Directors and senior management.
+
+The Committee of Compliance and Governance
+  • Evaluating the corporate governance framework, policies, and procedures that
+    determine the implementation of corporate governance principles.
+  • Determining best practices and recommending corporate governance principles that
+    apply to the company.
+  • Preparing annual reports on the company's compliance with the principles of corporate
+    governance and relevant regulations.
+  • Reviewing the observations of the supervisory authorities on the implementation of
+    corporate governance in the company, considering these observations, and following up
+    on the corrective measures taken.
+  • Reviewing the adequacy and effectiveness of the system to monitor compliance with
+    laws, regulations, contracts, policies, procedures, and certification requirements.
+  • Obtaining reports from management about the company's compliance with its code of
+    business conduct and ethics, and reviewing the disclosures required to be made under
+    the laws of the Financial Regulatory Authority and the relevant regulations and
+    procedures. Reviewing the procedures implemented by the company in relation to
+    compliance with the company's code of business conduct and ethics.
+  • Monitoring the implementation of procedures for receiving, maintaining, and handling
+    complaints regarding accounting matters, internal controls, or other matters, including
+    mechanisms for the presentation of relevant facts or concerns by company employees .
+
+
+
+
+                                                                                           10
+The Committee of Employee Stock Option (ESOP)
+This committee promotes to members of senior management and the company’s employees
+the benefits of owning shares in their company of employment, which increases the sense of
+belonging to the company and the continuous effort to help the company achieve its purpose in
+order to increase the returns to shareholders. The company uses this system to:
+   • Promote to members of senior management and the company’s employees the benefits
+     of owning shares in their company of employment.
+   • Attract competent and experienced workers and employees in order to combat job
+     offers that might be provided to them by competing companies.
+   • Retaining experienced employees.
+   • Pushing employees towards innovation and positive teamwork.
+The Committee of Investment
+   • Reviewing the company’s investment strategy and guiding principles.
+   • Assessing investment opportunities which exceed the designated amount and providing
+     a recommendation to the Board of Directors according to the majority vote of the
+     present committee members.
+   • Monitoring the performance of the investment portfolio and providing the Board of
+     Directors with reports on the portfolio’s performance on a semi-annual basis.
+
+   5) The Regulatory Environment
+Internal Control System
+The company's internal control system ensures the following:
+   • Complete separation between the responsibilities and authorities of all employees of the
+     company, whereby the internal control system determines the terms of reference and
+     complete separation between responsibilities and tasks, which was considered when
+     preparing the organizational structure of the company.
+   • Ensuring the accuracy and quality of information, so that it provides both the company
+     and others with correct and accurate information about the company.
+   • Protecting the company's physical assets from the dangers it may be exposed to, and
+     documenting and recording those assets in the company's records.
+   • Increasing the company's production efficiency and achieving its goals at the lowest
+     costs while maintaining quality.
+   • Ensuring the accuracy of the implementation of instructions, to ensure that all
+     instructions have been implemented as they should.
+   • Ensuring the implementation of corporate governance rules, through strict execution of
+     the various corporate governance instructions and rules.
+
+
+                                                                                          11
+Internal Audit Department
+The company’s internal audit function is an independent and objective, designed to add value and
+improve the performance of the company’s operations to help it achieve its goals by adopting
+a systematic and organized approach aimed at evaluating the means and systems of internal
+control and risk management procedures in the company, and ensuring the proper application of
+the rules of governance. It concerns all departments and executive, financial, and legal
+activities.
+The internal audit department is managed full-time by a member of the company’s
+administrative leadership, who reports on technical matters to the audit committee and
+administratively to the company’s Managing Director or the CEO.
+The appointment and dismissal of the head of the internal audit department and determination of
+his/her remuneration is based on a recommendation by the Audit Committee, based on which
+the Managing Director will then issue a decision. The audit committee determines the
+objectives, tasks, and powers of the internal audit department through the internal audit work
+charter that was approved on March 29, 2021 and stipulates that the Director of the Internal
+Audit Department should submit at least a quarterly report to the Audit Committee explaining
+the results of his/her work starting from the subsequent period.
+The tasks carried out by the internal auditor throughout the year include:
+    • Evaluating the efficiency of the company's internal control system and submitting
+      reports to the Audit Committee with the observations made.
+    • Assessing the extent to which the company's departments are committed to carrying
+      out their work in accordance with work procedures and established policies without
+      conflicting with the competencies of other concerned departments.
+    • Assessing the efficiency of procedures and established policies and their compatibility
+      with work and market developments.
+    • Following up on the corrective measures taken for the observations made in the
+      internal and external audit reports and others received from the regulatory authorities .
+Risk Management Department
+The company’s Board of Directors is generally responsible for managing risks in a manner
+consistent with the nature of the company’s activities and size and the market in which it
+operates. The company contains a risk management policy to be approved by the Board of
+Directors.
+The Risk Management Department’s responsibilities include:
+   • Conducting accurate and timely analyses of the risks that the company may be exposed.
+   • Determining the level of risks that the company can tolerate based on the size of the
+     risks that the company may face depending on their impact and likelihood.
+
+
+                                                                                             12
+   • Developing a risk policy and specific indicators to measure, monitor, and control the
+     risks surrounding the company.
+   • Measuring the extent to which the policies continue to be appropriate and effective with
+     regard to measuring, following up on and monitoring risks, and making any required
+     adjustments in accordance with market developments and the surrounding environment,
+     both internally and externally.
+   • Ensuring the availability of appropriate and effective information and communication
+     systems with regard to the process of follow-up and control of risks, so as to allow
+     senior management and the Risk Committee to receive periodic reports from the Risk
+     Management Department that reflect the company's commitment to the set risk limits,
+     and clarify the violations of these limits, their causes, and the proposed plan to address
+     them.
+The Auditor
+The company’s auditor was appointed from among those who meet the conditions stipulated in
+the Law for the Practice of the Accounting and Auditing Profession, which include competence,
+reputation, and sufficient experience. The auditor’s experience, competence, and capabilities
+commensurate with the size and nature of the company’s activities and those with whom it
+deals.
+The company shall, upon nomination by the Board of Directors and after the recommendation of
+the Audit Committee, appoint one or more auditors for the company, taking into account that the
+auditor is completely independent from the company and members of its Board of Directors.
+The auditor must be impartial in his/her opinions, and the scope of work must be immune against
+Board intervention.
+The Board of Directors may not contract the company’s auditor to perform any additional work
+that is not directly or indirectly related to his/her work as its auditor, except after obtaining
+the approval of the Audit Committee, and provided that this additional work is not among the
+tasks the auditor is prohibited from carrying out. The fees for performing additional works
+must be commensurate with the nature and size of the required tasks. The Audit Committee,
+when considering the approval of the auditor’s performance of additional work and determining
+the remuneration for it, should consider that this does not affect the auditor’s independence,
+with the need to disclose this in the General Assembly of shareholders and the annual report.
+The company is entitled to a copy of the auditor’s report that reviews the report prepared by
+the company on the extent of its commitment to the rules of governance to the administrative
+authority, in accordance with the rules of governance and disclosure in force. This report is
+also submitted to the General Assembly of shareholders.
+
+
+
+
+                                                                                              13
+   6) Disclosure and Transparency
+The company is methodical in disclosing information that is periodic, documented, credible,
+measurable, and comparable, to be presented in a timely and clear manner that is not misleading,
+and to be presented to all recipients simultaneously through the various available disclosure
+channels. The company also works to immediately disclose all material events as they occur.
+
+Material Information and Financial and Non-financial Disclosure
+The company discloses, through various means, the company’s financial information of
+interest to shareholders and stakeholders, such as its annual and periodic financial statements,
+annual and periodic auditor’s reports, as well as the Board of Directors’ report, accounting
+policies, estimated budgets, asset assessment methods, and dividends.
+It also clarifies how to disclose the company's non-financial information of interest to current
+and prospective shareholders and investors, including:
+   • Internal information that includes the company's goals, vision, nature of its activities,
+     and plans and future strategy.
+   • Systems of raising competencies, training, reward, and care for its employees.
+   • Ownership structures of sister companies and subsidiaries.
+   • Transactions with related parties and related-party contracts.
+   • The most important potential risks and how to counter them.
+   • Changing investment policies.
+   • Disclosure of treasury shares to its shareholders and to the regulatory authorities. In
+     the event that a subsidiary company purchases the shares of the holding company that
+     owns it, all the rules of treasury shares shall apply to the purchased shares, and they
+     shall not be counted in the quorum of shareholders, nor participate in voting on the
+     decisions of the General Assembly.
+   • Providing the Financial Regulatory Authority and the Stock Exchange with the
+     resolutions of the Ordinary and Extraordinary General Assembly immediately after its
+     conclusion and no later than before the start of the first trading session following the
+     end of the meeting. The company is also obligated to provide the Stock Exchange with
+     the minutes within a week at most from the date of the General Assembly meeting,
+     provided that they are approved by the Chairman of the Board of Directors.
+   • Providing the Stock Exchange with the minutes of the General Assembly meetings
+     approved by the competent administrative authority, within a period not exceeding
+     three working days from the date of their receipt.
+   • Providing the Financial Regulatory Authority and the Stock Exchange with a summary of
+     the resolutions that contain material events issued by its Board of directors
+     immediately after its end and no later than before the start of the first trading session
+     following the end of the meeting.
+
+
+
+                                                                                             14
+   • Providing the Financial Regulatory Authority and the Stock Exchange with a statement
+     approved by the company’s Board of Directors of the most material results of its
+     business compared to the corresponding period, in accordance with the relevant Stock
+     Exchange form for this, as soon as the Board of Directors approves the annual or
+     quarterly (periodic) financial statements in preparation for referring them to the auditor
+     to issue their report on them. Such disclosure shall be made after the end of the meeting,
+     and no later than before the beginning of the next trading session following the end of
+     the meeting.
+   • Announcing the resolution of the competent authority responsible for cash dividends or
+     free stock dividends, or both.
+   • Disclosure when the holdings of a shareholder and related parties exceed or decrease
+     5% and its multiples of the number of securities representing the capital of the company
+     listed in the Stock Exchange or its voting rights, including the shares that have been
+     subscribed for by purchasing their rights issue.
+   • Disclosure of the future investment plan and the shareholder's directions regarding the
+     company's management if the percentage of buyer and his associated parties reached
+     25% or more of the company's capital or voting rights.
+   • Disclosure of when any arbitration or judicial rulings are issued at any stage of litigation
+     when they affect the company’s financial position or the rights of its securities holders
+     or have an impact on trading prices or traders’ investment decisions.
+   • Disclosure at the end of the fiscal year about the extent to which the company has
+     achieved the results contained in the independent financial advisor’s report on the fair
+     value or the work plans approved by the sponsor for small and medium-sized companies,
+     provided that the report includes a statement of the reasons and justifications in the
+     event of substantial deviations from what is contained in this report or the work plans
+     referred to.
+   • Immediate disclosure upon the issuance of any judicial rulings of a custodial penalty
+     against a member of the Board of Directors of the issuing entity or one of its main
+     officials.
+Violations and judgments issued against the company during the year:
+None
+
+Investor Relations
+The company has an investor relations manager, whose aim is to build and advance the
+relationship with current and prospective investors, open channels of communication with
+those involved in the capital and investment market, and provide the necessary disclosure and
+transparency, which will have a positive impact on:
+   • Investors' view of the company's current performance and their expectations for
+     future performance.
+
+                                                                                              15
+   • Achieving adequate liquidity for trading the company's shares on the stock exchange.
+   • Reducing the cost of financing in the long run.
+   • Increasing the confidence of the company's traders and stakeholders, as well as
+     promoting an increase in the company's support groups.
+The Investor Relations Officer participates in setting the company's communication strategy
+with the investment market, opening channels of communication with investors, and conveying
+market views and investor concerns to the Board of Directors on a regular basis.
+Investor relations is a tool that enables the Board of Directors to understand the reasons for
+the performance of the company’s shares, and the reflection of that performance on their fair
+value according to the information provided by the company on its performance, capabilities,
+future, and the extent of the company’s commitment to the rules of disclosure and
+communication with investors, the clarity of their vision, and the investment market’s
+assessment of it.
+The Investor Relations Department reports to the Chairman of the Board of Directors or the
+Managing Director and submits its periodic reports to them, with the possibility of the Investor
+Relations official attending the company’s General Assembly and Board of Directors meetings,
+in order to learn about the company’s internal affairs and its strategic directions.
+The company clarifies the most prominent activities of the Investor Relations Officer during
+the year, including:
+   • Developing an investor relations strategy by understanding the market and company's
+     requirements, enabling the Investor Relations Officer to determine the priorities
+     regarding the required activities and set the strategy required to implement those
+     activities in cooperation with the Board of Directors.
+   • Participating in setting the disclosure policy followed in the company and approved by
+     the Board of Directors.
+   • Preserving existing investors and attracting new ones by educating the market about
+     the company's business and future growth opportunities and identifying the factors
+     that affect its profitability.
+   • Communicating with analysts, investors and media representatives and providing
+     information to reduce rumors and surprises that lead to fluctuations in prices and
+     trading volumes.
+   • Organizing the information issued by the company in accordance with the applicable
+     disclosure rules.
+   • Establishing and following up on the investor database, whether in terms of the type of
+     investor or his geographical location.
+   • Introducing the market to the new members of the board of directors or senior
+     management.
+
+
+
+                                                                                             16
+   • Organizing promotional campaigns and events on behalf of the company according to a
+     previously prepared plan and facilitating investor visits to the company's various sites.
+   • Communicating with investors through various communication tools such as the
+     company's website, social networking sites, and press reports, and participating in
+     preparing the annual report of interest to current and prospective investors.
+   • Preparing the disclosure report required by the company, preparing the investor
+     relations pages on the company's website, and updating them on an ongoing basis .
+
+   7) Disclosure Tools
+The company issues several reports to disclose all the company’s activities and financial
+information which include:
+
+Board of Directors’ report
+The company issues an annual report in accordance with Companies Law No. 159 of 1981 and its
+executive regulations, to be presented to the General Assembly of shareholders and regulatory
+authorities, addressed by the Chairman of the Board to the shareholders. It includes at least
+the following:
+
+   •   A discussion of the financial results and material issues.
+   •   The company’s main achievements during the year.
+   •   Analysis of the company's main business environment and markets.
+   •   The company's strategy.
+   •   Major changes in the company's administrative structure.
+   •   Formation of the Board of Directors and the number of times it met.
+   •   Formation of board committees and the number of times they met.
+   •   The average number of employees in the company during the year and the average
+       income during the same period.
+   •   Policies to reward and motivate employees, such as offers to own shares and others.
+   •   What was done regarding the related- party contracts concluded in the previous year,
+       as well as the related- party contracts offered for the following year.
+   •   Actions taken against the company, members of its Board of Directors, or managers by
+       regulatory or judicial authorities.
+   •   A report on the company's commitment to corporate governance, social, and
+       environmental responsibility.
+Disclosure report
+The company issues a quarterly disclosure report prepared by management with the
+assistance of the Investor Relations Department, that includes at least the following:
+   • Company contact information.
+
+                                                                                           17
+   •   Investor Relations Officer contact details.
+   •   Shareholder structure of those who own 5% or more of the company's shares.
+   •   The total shareholder structure showing free float shares.
+   •   Details of the company's treasury shares.
+   •   Changes to the company's Board of Directors and the latest formation of the Board.
+   •   The establishment of board committees.
+   •   Auditor changes for the coming period.
+The company issues an annual report in both Arabic and English that includes a summary of the
+Board of Directors’ report and financial statements, in addition to all other information of
+interest to shareholders, current and prospective investors, and other stakeholders as the
+most important sources of information for current and prospective investors about the
+company, its activities, and its financial position. It serves as a report from the company's
+management to all those interested in the events that took place during the past year and what
+the company aims to achieve during the coming year. The annual report shall contain at least the
+following:
+   • A word from the Chairman of the Board of Directors and/or the Managing Director.
+   • Vision and mission.
+   • The company's strategy.
+   • The company's history and timeline.
+   • Ownership structure.
+   • Senior management and the Board of Directors structure.
+   • Analysis of the market in which the company operates.
+   • The company's current and future projects.
+   • Analysis of the company's financial position.
+   • Report on the company's social and environmental responsibility.
+   • A report on the executive management's discussion of the company's financial
+     performance.
+   • The auditor's report and the comparative financial statements for the same previous
+     periods.
+
+
+Website
+The company has its own website in both Arabic and English through which financial and non-
+financial information is disclosed in an easy way for the user. The website is continuously
+updated with the latest information and provides easy means of communication with the
+company, which is obliged to follow up on responding to messages and inquiries received. The
+website address is (www.fawry.com)
+
+
+
+                                                                                             18
+The Company’s website includes the following pages:
+
+   • An overview of the Company, its vision, mission and strategy.
+   • Formation of the board of directors, its committees and Senior Management.
+   • Information about the Company’s activities, products and scope of work.
+   • The Financial Statements, periodic and annual comparative financial results over
+     previous periods.
+   • Disclosures related to material events upon their occurrence. Investor Relations pages
+     and how to directly contact them. Press releases issued by the Company.
+
+   8) Codes and Policies
+Code of Ethics and Business Conduct
+The company has a Code of Ethics and Business Conduct, which was approved in the past
+period. It includes a set of values that work to control and regulate the rules of business conduct
+and professional ethics within the company. It contains standards of behavior that all company
+employees must follow and observe in all transactions and at every location in which they
+perform their work, in a way that positively affects the reputation and credibility of the
+company and the integrity of its employees, and guarantees the rights of its shareholders and
+all those who deal with it. The Board of Directors approved in its meeting held on 29/3/2021 the
+code of ethics and business conduct.
+
+Succession Planning
+The company is currently putting in place a system of rights, responsibilities, and competencies
+for all activities which includes the implementation of all the company’s operational activities in
+an effective, flexible, and authority and responsibility specific way. The company also
+considers selection, recruitment, and promotions in order to guarantee securing the most
+qualified personnel for the company in the appropriate positions under the supervisor of the
+Human Resources Department. The Board of Directors approved in its meeting held on
+29/3/2021 the succession planning policy.
+
+Whistleblowing
+The company actively encourages employees to report any activities that violate the rules,
+regulations, company internal procedures, or the code of ethics and business conduct of the
+company, and action is taken against the offenders with the reporter being protected, taking
+into consideration the fact that reporting is done based on documents or substantive
+information. The Board of Directors approved in its meeting held on 29/3/2021 the
+whistleblowing policy.
+
+                                                                                                19
+   9) Insider and Related Parties Trading Policy
+Insider trading of company shares is controlled according to the rules of the supervisory
+authorities, and it shows the extent of the commitment of insiders, founders, the main
+shareholders, and groups associated with them not to be a party to any of the related-party
+contracts except after the approval of the General Assembly, provided that this is presented
+to the assembly in full detail in advance, including the price and number of shares prior to any
+action. The concerned party is not entitled to vote in the General Assembly. The policy ensures
+that all concerned parties understand the definition of insider trading and the rules of its
+regulation. This policy, which was approved by the board of Directors on November 14, 2022,
+includes the following:
+   • Prohibiting any insiders or their related parties from dealing in any securities issued by
+     the company within five working days before and one working day after publishing any
+     material information.
+   • Prohibiting any trading activity by shareholders who own 20% or more on their own or
+     through a related party, until the Stock Exchange is notified of this.
+   • Prohibiting members of the company's Board of Directors, regardless of the
+     percentage of their contribution to the capital, its officials, or people who have access
+     to information that is not available to others and has an impact on the price of the
+     security, from buying or selling the securities to which this information relates.
+Disclosure of Activities of Related Parties
+Activates and balances of debit and credit related parties are disclosed as part of the financial
+statement breakdowns.
+
+The main objectives and principles of the disclosure policy related to the
+transactions of all shareholders, as well as how to disclose all material information,
+considering the legal requirements and rules of listing in the Egyptian Stock
+Exchange:
+
+   A. The objectives of the disclosure policy are to control and direct everything
+      related to:
+       • How to communicate essential information to the public
+       • How to prevent unauthorized disclosure of material and non-public information by the
+          employees of Fawry for Banking Services and Electronic Payments LLC (“Fawry”
+          or the “Company”).
+
+   B. The main principles of the disclosure policy are:
+       • Treat all shareholders equally.
+       • To disclose all material information in a timely and accurate manner.
+
+                                                                                              20
+       • Consider the relevant legal requirements and listing rules.
+
+Board of Directors work regulations related to the board's responsibility to
+supervise the operational and financial performance of the company
+
+The Board of Directors of Fawry for Banking Services and Electronic Payments L.L.C. (“Fawry”
+or the “Company”) is responsible for overseeing the operational and financial performance of
+the Company, as well as the corporate governance practices and making all major decisions
+related to the general policy of the company. And the Board of Directors approved in its meeting
+on 11/14/2022.
+
+The corporate governance framework, which explains the company’s enactment
+of various corporate governance practices and policies
+
+The Board of Directors of Fawry for Banking Services and Electronic Payments LLC (“Fawry”
+or the “Company”) oversees compliance with the corporate governance framework. This
+Corporate Governance Statement has been approved by the members of the Board of
+Directors and is effective as of May 25, 2022. The corporate governance framework shows
+the extent to which the company enacts
+various corporate governance practices and policies. The Company will follow every policy that
+the Board of Directors deems appropriate and necessary to its corporate governance
+practices. In the presence of a sound governance framework, the company's business can take
+advantage of growth opportunities. According to the Organization for Economic Co-operation
+and Development (OECD), corporate governance is the system by which companies are
+directed and controlled for the benefit of shareholders and other stakeholders, to maintain
+their value and promote their growth. The Good corporate governance is related to doing what
+is in the interest of shareholders and extends beyond compliance with regulations and laws, and
+therefore it needs to be well published within the company to be effective. The company’s
+board of directors approved in its meeting on 11/14/2022.
+
+
+
+
+                                                                                             21
+The below follow-up table shows the insiders’ Transactions on the company's
+shares
+                                         Number of shares owned at the       Share balance at
+               Member name
+                                              start of the year                  year-end
+ 1 Responsability Participations AG              162,102,903                   161,408,519
+ 2 Ashraf Kamel Moussa Sabry Kamel                 71,147,911                   74,912,691
+
+
+On April 13, 2023, the company’s ordinary general assembly meeting was held, the issued and
+paid-up capital was increased from 1,653,652,060 Egyptian pounds to 1,703,261,622 Egyptian
+pounds distributed among 3,406,523,244 Cash nominal shares, the value of each share (fifty
+piasters). Using the reserve balance of the reward and incentive system (ESOP), and it was
+noted in the commercial registry on 11/5/2023.
+
+
+
+
+The Company’s Legal Representative
+Name: Seif Allah Coutry Saadi Hassan Coutry
+Capacity: Chairman of the Board of Directors
+
+
+
+
+                                                                                        22
+

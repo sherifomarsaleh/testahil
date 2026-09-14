@@ -4,7 +4,7 @@
  "currency": "AED",
  "as_of": "2026-09-03",
  "regime": "pegged",
- "regime_note": "The dirham is hard-pegged to the dollar at 3.6725, so the UAE imports United States monetary policy and TODAY IS ALREADY THE TERMINAL: the cost-of-capital glide does not apply here and cost_of_capital.py returns a FLAT schedule for this market by construction of the peg, not by a choice made in this file. What the peg does NOT supply is a domestic inflation ladder, and the cost escalators need one \u2014 which is why this path exists at all and why it was the stated blocker on 28 UAE names.",
+ "regime_note": "The dirham is hard-pegged to the dollar at 3.6725, so the UAE imports United States monetary policy and TODAY IS ALREADY THE TERMINAL: the cost-of-capital glide does not apply here and cost_of_capital.py returns a FLAT schedule for this market by construction of the peg, not by a choice made in this file. What the peg does NOT supply is a domestic inflation ladder, and the cost escalators need one — which is why this path exists at all and why it was the stated blocker on 28 UAE names.",
  "inflation": {
   "latest": {
    "value": 0.013,
@@ -40,7 +40,7 @@
     "basis": "IMF World Economic Outlook projection"
    }
   ],
-  "path_source": "International Monetary Fund, World Economic Outlook database, series PCPIPCH (inflation, average consumer prices, annual percent change), United Arab Emirates (ARE), read live from the IMF datamapper API on 3 September 2026. The published series runs to 2031 and prints 2.0% flat from 2027 onward, so NO STEP HERE IS INTERPOLATED \u2014 every year is a published figure and none is a house view. The 2025 actual of 1.3% and the 2024 actual of 1.7% are from the same series and are recorded above as the latest observation.",
+  "path_source": "International Monetary Fund, World Economic Outlook database, series PCPIPCH (inflation, average consumer prices, annual percent change), United Arab Emirates (ARE), read live from the IMF datamapper API on 3 September 2026. The published series runs to 2031 and prints 2.0% flat from 2027 onward, so NO STEP HERE IS INTERPOLATED — every year is a published figure and none is a house view. The 2025 actual of 1.3% and the 2024 actual of 1.7% are from the same series and are recorded above as the latest observation.",
   "target": {
    "value": 0.02,
    "band": 0.005,
@@ -80,7 +80,7 @@
   },
   "default_spread_rating": 0.0042,
   "default_spread_market": 0.0004,
-  "spread_source": "RATING BASIS 0.42%: A. Damodaran, country default spreads and risk premiums (ctryprem), 5 January 2026, United Arab Emirates row, Moody's Aa2 rating-based adjusted default spread; paired with the 4.87% rating-basis total ERP (4.23% mature base + 0.64% country premium). MARKET BASIS 0.04%: the spread the very instrument above prices at over the comparable US Treasury, read from the MoF/WAM auction release; paired with the 4.29% market-basis ERP (4.23% mature base + a 6bp country premium scaled off the 4bp spread on Damodaran's own CRP/spread multiple of 0.64/0.42). THE MARKET BASIS COULD NOT HAVE BEEN A CDS AT ALL, AND THAT IS WHY THE FIELD IS NAMED FOR THE BASIS RATHER THAN THE INSTRUMENT: the original Damodaran file, read live on 3 September 2026, carries the United Arab Emirates row as Aa2 with an adjusted default spread of 0.42%, a country risk premium of 0.64%, a total ERP of 4.87%, a corporate tax rate of 9.00% \u2014 and 'NA' in BOTH credit-default-swap columns. An existing study records the same fact in as many words ('NA for UAE'). A field named default_spread_cds could therefore only ever have been filled here by putting something that is not a CDS into it, which is precisely the key-that-lies defect found the same day in a study's own register. A THIRD FIGURE EXISTS AND IS NOT ADOPTED: an Abu Dhabi sovereign CDS spread of 0.46% registered by the FERTIGLOBE study on 9 August 2026. It appears nowhere in the original file today, and it is a DIFFERENT ISSUER in a DIFFERENT CURRENCY \u2014 an emirate's USD CDS against the federation's AED bond \u2014 so adopting it would break the same-instrument discipline the market basis exists to keep. Recorded so a later session finds it named rather than absent. WHICH BASIS IS CENTRAL IS A COST-OF-CAPITAL DECISION, NOT A MACRO ONE; both are carried. DU adopted the market basis on 17 August 2026 after an external critique, on the ground that the rating basis breaches the matched-tenor Treasury floor.",
+  "spread_source": "RATING BASIS 0.42%: A. Damodaran, country default spreads and risk premiums (ctryprem), 5 January 2026, United Arab Emirates row, Moody's Aa2 rating-based adjusted default spread; paired with the 4.87% rating-basis total ERP (4.23% mature base + 0.64% country premium). MARKET BASIS 0.04%: the spread the very instrument above prices at over the comparable US Treasury, read from the MoF/WAM auction release; paired with the 4.29% market-basis ERP (4.23% mature base + a 6bp country premium scaled off the 4bp spread on Damodaran's own CRP/spread multiple of 0.64/0.42). THE MARKET BASIS COULD NOT HAVE BEEN A CDS AT ALL, AND THAT IS WHY THE FIELD IS NAMED FOR THE BASIS RATHER THAN THE INSTRUMENT: the original Damodaran file, read live on 3 September 2026, carries the United Arab Emirates row as Aa2 with an adjusted default spread of 0.42%, a country risk premium of 0.64%, a total ERP of 4.87%, a corporate tax rate of 9.00% — and 'NA' in BOTH credit-default-swap columns. An existing study records the same fact in as many words ('NA for UAE'). A field named default_spread_cds could therefore only ever have been filled here by putting something that is not a CDS into it, which is precisely the key-that-lies defect found the same day in a study's own register. A THIRD FIGURE EXISTS AND IS NOT ADOPTED: an Abu Dhabi sovereign CDS spread of 0.46% registered by the FERTIGLOBE study on 9 August 2026. It appears nowhere in the original file today, and it is a DIFFERENT ISSUER in a DIFFERENT CURRENCY — an emirate's USD CDS against the federation's AED bond — so adopting it would break the same-instrument discipline the market basis exists to keep. Recorded so a later session finds it named rather than absent. WHICH BASIS IS CENTRAL IS A COST-OF-CAPITAL DECISION, NOT A MACRO ONE; both are carried. DU adopted the market basis on 17 August 2026 after an external critique, on the ground that the rating basis breaches the matched-tenor Treasury floor.",
   "damodaran_date": "2026-01-05"
  },
  "erp_market": 0.0429,
@@ -106,12 +106,12 @@
    0.049,
    0.056
   ],
-  "source": "The long-run UAE corporate borrowing norm, 4.9-5.6%, midpoint 5.2%, taken from the TERMINAL costs of debt this house has already sourced and audited across six UAE names from their own facility notes: DU 4.90%, AIRARABIA 5.00%, ADNOCLS 5.01%, ADNOCDIST 5.08%, MODON 5.36%, BOROUGE 5.55%. It is a range with a midpoint, and a name with a facility note of its own uses that note rather than this figure \u2014 the norm is the floor of last resort, not a substitute for the three-assert Kd gate.",
+  "source": "The long-run UAE corporate borrowing norm, 4.9-5.6%, midpoint 5.2%, taken from the TERMINAL costs of debt this house has already sourced and audited across six UAE names from their own facility notes: DU 4.90%, AIRARABIA 5.00%, ADNOCLS 5.01%, ADNOCDIST 5.08%, MODON 5.36%, BOROUGE 5.55%. It is a range with a midpoint, and a name with a facility note of its own uses that note rather than this figure — the norm is the floor of last resort, not a substitute for the three-assert Kd gate.",
   "date": "2026-09-03"
  },
  "real_rate_convention": {
   "value": 0.019751,
-  "source": "DERIVED, NEVER QUOTED, so the single most terminal-value-sensitive number in a model cannot be typed. The long-run United States real ten-year rate = the FOMC's own longer-run median federal funds projection (3.1%, Summary of Economic Projections of 17 June 2026, FRED FEDTARMDLR) plus the ten-year term premium (0.8751%, Kim-Wright, FRED THREEFYTP10, 28 August 2026) less long-run US inflation (2.2%, IMF WEO above) = 1.9751%. Under the peg the AED real rate is the USD real rate. CROSS-CHECK, NOT AN INPUT: the observed ten-year TIPS real yield is 2.45% (FRED DFII10, 2 September 2026), which is a SPOT price carrying today's cyclical position and is 48bp above this long-run construction \u2014 the direction and size a reader should expect, and it is recorded rather than averaged in. The derived terminal AED risk-free rate is therefore 2.0% + 1.9751% = 3.9751%, against a live 4.48% federal auction yield: a mild normalisation, not a rate call.",
+  "source": "DERIVED, NEVER QUOTED, so the single most terminal-value-sensitive number in a model cannot be typed. The long-run United States real ten-year rate = the FOMC's own longer-run median federal funds projection (3.1%, Summary of Economic Projections of 17 June 2026, FRED FEDTARMDLR) plus the ten-year term premium (0.8751%, Kim-Wright, FRED THREEFYTP10, 28 August 2026) less long-run US inflation (2.2%, IMF WEO above) = 1.9751%. Under the peg the AED real rate is the USD real rate. CROSS-CHECK, NOT AN INPUT: the observed ten-year TIPS real yield is 2.45% (FRED DFII10, 2 September 2026), which is a SPOT price carrying today's cyclical position and is 48bp above this long-run construction — the direction and size a reader should expect, and it is recorded rather than averaged in. The derived terminal AED risk-free rate is therefore 2.0% + 1.9751% = 3.9751%, against a live 4.48% federal auction yield: a mild normalisation, not a rate call.",
   "date": "2026-09-03"
  },
  "erp_terminal": {
@@ -121,7 +121,12 @@
  },
  "corporate_tax_rate": {
   "value": 0.09,
-  "source": "A. Damodaran, 'Country Default Spreads and Risk Premiums', ctryprem, last updated 5 January 2026, read live 3 September 2026 \u2014 United Arab Emirates row, corporate tax rate 9.00%.",
+  "source": "A. Damodaran, 'Country Default Spreads and Risk Premiums', ctryprem, last updated 5 January 2026, read live 3 September 2026 — United Arab Emirates row, corporate tax rate 9.00%.",
   "date": "2026-01-05"
+ },
+ "real_gdp_lt": {
+  "value": 0.035,
+  "source": "United Arab Emirates long-run real GDP growth, the IMF World Economic Outlook medium-term projection rounded to the nearest half point. USED ONLY AS A CEILING on a terminal real growth rate [R-MACRO-02] — never as a company's growth rate and never inside a discount rate — so it binds in one direction only. A study wanting to sit at or above it re-sources this figure live and argues it here.",
+  "date": "2026-09-10"
  }
 }

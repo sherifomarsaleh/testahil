@@ -204,9 +204,20 @@ f_bs = R.add(Ring.COMPANY, "regular disclosures", FindingClass.D,
     "debt EGP 36.8m against ~EGP 5.2bn equity, i.e. debt/equity 0.7% and a NET CASH "
     "position",
     "EGX filings via aggregated financial summaries", AGG, "2026-03-10", is_fs_data=True,
+    detail="SUPERSEDED ON 07-09-2026 BY THE AUDITED STATEMENTS THEMSELVES, and the record "
+           "of what was found on the sweep date is kept beside the correction rather than "
+           "replaced by it. The audited balance sheet at 31 December 2024 (SCC-AFS-E-1224."
+           "pdf, printed page 5, read by OCR off the rendered pixels) states total assets "
+           "of EGP 5,695.6m, total liabilities of EGP 1,959.8m and total equity of EGP "
+           "3,735.8m, which foot to the pound. The relayed figures above ran 12.1 per "
+           "cent HIGH on assets and 21.7 per cent LOW on liabilities, so the equity they "
+           "closed to was overstated by 27.8 per cent. The study carries the FILED "
+           "figures; this finding is retained because a sweep register records what the "
+           "sweep found on its own date.",
     model_impact="Fixes the capital structure: net cash, so the WACC is ~all-equity and "
                  "the EV->equity bridge ADDS net cash. Treasury income is excluded from "
-                 "FCFF to avoid double-counting the cash.")
+                 "FCFF to avoid double-counting the cash. THE BALANCE-SHEET FIGURES IN "
+                 "THIS FINDING NO LONGER REACH THE MODEL — see the detail above.")
 
 f_guid = R.add(Ring.COMPANY, "strategic plans & guidance", FindingClass.C,
     "SCEM operates two lines at El Hassana, North Sinai, ~3.8Mt/yr cement capacity, and "

@@ -131,6 +131,14 @@ def strip_html_comments(src):
 
 def main():
     ap = argparse.ArgumentParser()
+    # A RATCHET WITH NO --prune IS A RATCHET NOBODY SHORTENS. Every other list in this
+    # repository carries one and this gate's own docstring says the list "may only ever
+    # SHORTEN" — which was true and had no mechanism, so closing an entry meant editing
+    # JSON by hand. Added 07-09-2026 when the exemplar's entry became the first to close.
+    ap.add_argument("--prune", action="store_true",
+                    help="rewrite the DOCUMENT ratchet with every entry that no longer "
+                         "carries retired verdict vocabulary removed. It may only ever "
+                         "SHORTEN: an entry that still fires is kept.")
     ap.add_argument("--root", default=DEFAULT_ROOT,
                     help="repository root to check (the negative control passes a copy)")
     a = ap.parse_args()
@@ -180,6 +188,7 @@ def main():
     # cleared at their own next re-issue. The list may only ever SHORTEN.
     _DOC_RATCHET = set(_ratchet_json(root).get("documents", []))
     _doc_outstanding = 0
+    _doc_clean = set()          # listed documents that no longer carry a retired verdict
     _delivered = []
     for _sdir in sorted(glob.glob(os.path.join(root, "engine", "*_study"))):
         _docs = [f for f in glob.glob(os.path.join(_sdir, "*.docx"))
@@ -188,6 +197,20 @@ def main():
             continue
         _latest = max(_edition_key(f) for f in _docs)
         _delivered += [f for f in _docs if _edition_key(f) == _latest]
+    # A GATE MUST NEVER REPORT CLEAN HAVING EXAMINED NOTHING [R-ENF-04]. The WORKBOOK
+    # arm below refuses on zero workbooks; this one did not, so a resolver that found no
+    # delivered document -- a renamed edition, a changed date format, a glob that stopped
+    # matching -- read as clean rather than as broken. The asymmetry between the two arms
+    # of one gate was invisible because the sandbox that tests this gate stages no .docx
+    # at all, so this arm scanned ZERO documents in every one of its cases and had never
+    # been seen to fire since it was added on a real leak.
+    if not _delivered:
+        print("REFUSED - resolved ZERO delivered study documents while %d study "
+              "directories are present. An empty population is not a clean one: the "
+              "resolver is broken, or every study has stopped carrying a dated document."
+              % len(glob.glob(os.path.join(root, "engine", "*_study"))))
+        return 1
+
     for path in sorted(_delivered):
         rel = os.path.relpath(path, root)
         try:
@@ -197,8 +220,11 @@ def main():
                 for _r in _t.rows:
                     _parts += [c_.text for c_ in _r.cells]
             _hits = br.scan_text("\n".join(_parts), rel)
-            if rel.replace(os.sep, "/") in _DOC_RATCHET:
+            _key = rel.replace(os.sep, "/")
+            if _key in _DOC_RATCHET:
                 _doc_outstanding += len(_hits)          # reported, not failing
+                if not _hits:
+                    _doc_clean.add(_key)
             else:
                 fails += _hits
         except Exception as e:                       # [R-ENF-04]: an unreadable
@@ -304,6 +330,21 @@ def main():
         if len(fails) > 60:
             print(f"  ... and {len(fails) - 60} more")
         return 1
+    if a.prune:
+        # THE LIST MAY ONLY SHORTEN [R-ENF-02]. Only entries this run READ and found clean
+        # come off; a document that could not be opened stays listed rather than being
+        # dropped for being unreadable, which would be unreadability buying a clean list.
+        _r = _ratchet_json(root)
+        _before = dict(_r.get("documents") or {})
+        _after = {k: v for k, v in _before.items() if k not in _doc_clean}
+        assert len(_after) <= len(_before), "a ratchet may only ever SHORTEN"
+        _r["documents"] = _after
+        json.dump(_r, open(os.path.join(root, OUTSTANDING), "w", encoding="utf-8"),
+                  indent=1, ensure_ascii=False)
+        _off = sorted(set(_before) - set(_after))
+        print("pruned: documents %d -> %d%s"
+              % (len(_before), len(_after), (": " + ", ".join(_off)) if _off else ""))
+        return 0
     print("[R-CAL-02] OK — no verdict vocabulary in any page text; every published "
           "band record agrees with its panel.")
     if baked:

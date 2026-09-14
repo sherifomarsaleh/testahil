@@ -35,6 +35,43 @@ COMPANY_NOT_MACRO = 0.10  # macro share below this, with a large error, is us
 BIG_MAE = 0.50
 ERA_FLIP = True           # a bias that changes sign between eras is not a bias
 
+# A SKIP run scores nothing, and it is still a run. [R-FCAL-01] makes SKIP one of the
+# three scopes and calls it a completed queue position, so a SKIP that harvested
+# nothing would read as a clean result rather than as the finding it usually is: the
+# reason a walk-forward cannot run is almost always a fact about the archive or about
+# the study's own panel, and both are worth a lesson.
+#
+# THREE OF THE FOUR THRESHOLDS BELOW WERE STATED AHEAD OF ANY RUN. PANEL_WEDGE WAS NOT,
+# AND SAYING SO IS THE POINT — this comment read "the thresholds below are stated here,
+# ahead of any run" until 7 September 2026, which was true of the others and false of
+# that one: it was set with ELEC's measured 1.5130 already in view. A comment asserting
+# a discipline that was not followed is worse than no comment, because it stops the next
+# reader looking.
+#
+# WHAT IT COSTS, MEASURED RATHER THAN ASSERTED: exactly ONE run in the book computes
+# profit_beyond_wedge_by at all, so ANY cutoff between 1.0 and 1.5130 classifies every
+# run in the book identically and no cutoff classifies a second run either way. THE
+# THRESHOLD DOES NO WORK — which is [R-ANCHOR-01]'s own test of whether a cutoff does
+# work or merely exists, applied here and failed. It is left at 1.30 rather than quietly
+# re-derived, because inventing a justification for a number somebody chose is the
+# free-parameter offence in better clothes, and moving it would change nothing while
+# looking like a correction. Registered for a ruling; revisit when a second run measures
+# the quantity, which is the first moment the choice can be tested at all.
+SKIP_SHORTFALL = 1        # sourceable years at least this far below the LIGHT bar
+UNSERVED_ARCHIVE = True   # an issuer that lists statements and serves none of them
+PANEL_WEDGE = 1.0         # PANEL_WEDGE_RULED_2026-09-07, by the principal: re-pointed at
+                          # the MEASURED consolidation wedge itself rather than a chosen
+                          # multiple of it. The wedge is computed from the company's own
+                          # overlap year, so "beyond what consolidation explains" is a
+                          # measured line; "1.30 times what consolidation explains" was a
+                          # number somebody picked, with one run's figure already in view.
+                          # Nothing in the book is classified differently by the change —
+                          # one run measures the quantity and it reads 1.5130 — which is
+                          # the point: the bound now rests on an arithmetic fact rather
+                          # than on a choice nobody could test.
+KD_BELOW_SOVEREIGN = 1    # trap (i)'s broad denominator landing under the sovereign
+                          # in at least this many years
+
 PRETTY = {
     "is.revenue": "revenue", "is.cogs": "cost of revenue",
     "is.gross_profit": "gross profit", "is.sga": "overheads",
@@ -65,11 +102,14 @@ def load(run_dir):
     for f in ("scores.json", "diagnostics.json", "corrections_log.json"):
         p = os.path.join(run_dir, f)
         out[f[:-5]] = json.load(open(p)) if os.path.exists(p) else None
-    if out["scores"] is None:
+    p = os.path.join(run_dir, "skip_record.json")
+    out["skip"] = json.load(open(p)) if os.path.exists(p) else None
+    if out["scores"] is None and out["skip"] is None:
         raise FileNotFoundError(
-            "%s holds no scores.json — a walk-forward run that produced no "
-            "score file has nothing to harvest, and an empty harvest must not "
-            "read as a clean one" % run_dir)
+            "%s holds no scores.json and no skip_record.json — a walk-forward run "
+            "that produced neither a score file nor a recorded reason for not "
+            "scoring has nothing to harvest, and an empty harvest must not read as "
+            "a clean one" % run_dir)
     return out
 
 
@@ -84,6 +124,8 @@ def _draft(key, ticker, headline, plain, evidence, scope, why_scope,
 def harvest(run_dir, ticker):
     """Every candidate lesson this run's own numbers support."""
     d = load(run_dir)
+    if d["scores"] is None:
+        return harvest_skip(d["skip"], ticker)
     S = d["scores"]
     drafts = []
 
@@ -226,6 +268,174 @@ def harvest(run_dir, ticker):
             "rule 'score guidance, never consume it' is ALL — file the rule "
             "once and the company's own record separately.",
             "A longer guidance record in which the lean disappears."))
+
+    for i, x in enumerate(drafts, start=1):
+        x["proposed_id"] = "DRAFT-%s-%02d" % (ticker.upper(), i)
+    return drafts
+
+
+def harvest_skip(K, ticker):
+    """Candidates a SKIP run's OWN measurements support. Rules fixed above.
+
+    A run that scores nothing still measures the archive it could not use and the
+    panel it could not reconcile to. Each rule below fires off a committed number,
+    never off a reading of the run's prose.
+    """
+    drafts = []
+    src = K.get("sourceable_years", {})
+    arch = K.get("issuer_archive", {})
+    panel = K.get("study_panel_vs_filed_FY2023", {})
+    claim = K.get("claimed_filed_record", {})
+    ul = K.get("useful_life", {})
+
+    # S1 — the archive is short, so the method could not be tested here at all
+    best = max(src.get("consolidated", 0), src.get("standalone", 0))
+    bar = src.get("required_for_light", 5)
+    if best <= bar - SKIP_SHORTFALL:
+        drafts.append(_draft(
+            "skip_insufficient_history", ticker,
+            "The forecasting method could not be tested on %s at all." % ticker,
+            "A walk-forward needs an origin to project from and a later actual to "
+            "score against. Where the archive is too short there is no test to run, "
+            "and saying so is the result — not a gap to be filled by stretching the "
+            "window.",
+            "%d sourceable fiscal years on the best available basis against a bar of "
+            "%d, and %d scoreable origins: %s."
+            % (best, bar, src.get("scoreable_origins", 0),
+               src.get("why_zero_origins", "")),
+            "STOCK",
+            "A short archive is a fact about one issuer, not about a class or a "
+            "method. File narrow and widen only if a second name shows the same "
+            "thing for the same reason.",
+            "A filing archive that becomes reachable, or filings supplied directly, "
+            "taking the sourceable span to five years or more on one basis."))
+
+    # S2 — an issuer that lists what it does not serve
+    if UNSERVED_ARCHIVE and arch.get("statement_files_listed", 0) > 0 \
+            and arch.get("fetchable_on_live_host", -1) == 0:
+        drafts.append(_draft(
+            "unserved_archive", ticker,
+            "An index of filings is not an archive of filings.",
+            "A company can list its statements on its own website and serve none of "
+            "them. The list looks like evidence the documents exist and are "
+            "obtainable; only fetching each one tells you which. Record the outcome "
+            "per file, not per page.",
+            "%d statement files listed; %d on the live host and %d of those fetchable; "
+            "%d on a host whose DNS does not resolve; the index's last period is %s "
+            "while the last statement on the basis the study models is %s."
+            % (arch.get("statement_files_listed"), arch.get("on_live_host"),
+               arch.get("fetchable_on_live_host"), arch.get("on_dead_host"),
+               arch.get("index_last_period"),
+               arch.get("last_consolidated_statement_issued")),
+            "ALL",
+            "This is about how a source is checked rather than about any company: "
+            "the same wrong inference — a listing read as an obtainable document — is "
+            "available on every name in the book.",
+            "An index whose listings are shown to be reliably fetchable, making the "
+            "per-file probe redundant."))
+
+    # S3 — the study's own panel does not reconcile to the filings
+    if panel.get("profit_beyond_wedge_by", 1.0) >= PANEL_WEDGE:
+        drafts.append(_draft(
+            "panel_unreconciled", ticker,
+            "A study's historicals can be unverifiable and still pass every gate.",
+            "Where a company stops publishing on the basis a study models, the "
+            "study's history quietly becomes a vendor's account of it. Every "
+            "arithmetic check still passes, because the numbers are internally "
+            "consistent — they are simply nobody's filed numbers. The test is to "
+            "measure the study's panel against the filings that DO exist and against "
+            "the wedge between the two bases, rather than to assume the difference is "
+            "the consolidation.",
+            "At the one year existing on both bases the group is %.2fx the parent on "
+            "revenue and %.2fx on net profit. The study's FY2023 revenue is %.2fx the "
+            "parent — consistent with a consolidated figure — while its net profit is "
+            "%.2fx, %.2f times beyond what the measured wedge delivers."
+            % (K["consolidation_wedge_at_overlap"]["revenue"],
+               K["consolidation_wedge_at_overlap"]["net_profit"],
+               panel.get("revenue"), panel.get("net_profit"),
+               panel.get("profit_beyond_wedge_by")),
+            "ALL",
+            "The failure is in how a panel is checked, not in what industry it "
+            "belongs to. Any issuer can change reporting basis or stop publishing.",
+            "A study whose vendor panel is later reconciled line by line to filings "
+            "on the same basis, showing the check adds nothing."))
+
+    # S4 — a "filed record" that was not filed
+    if claim.get("premise_withdrawn"):
+        lo, hi = claim.get("true_filed_range_standalone", [0, 0])
+        clo, chi = claim.get("claimed_range", [0, 0])
+        drafts.append(_draft(
+            "filed_record_that_was_not_filed", ticker,
+            "Check that a \"filed record\" was filed before reasoning from it.",
+            "A review can reach the right conclusion about a study and still take its "
+            "benchmark from the study's own inputs. Calling a number the company's "
+            "own record makes it read as external evidence when it is the thing under "
+            "test, and the argument then runs in a circle nobody can see.",
+            "A review described a terminal-margin range of %.2f%%-%.2f%% as the "
+            "company's own filed record; it is the study's committed hist_is, and two "
+            "of its three years have no filing at all. The filed range on the basis "
+            "that can be checked is %.2f%%-%.2f%%, which puts the forecast of %.2f%% "
+            "INSIDE it rather than at half the lowest filed year, and puts the price's "
+            "reverse read at %.1f times the highest filed margin."
+            % (100 * clo, 100 * chi, 100 * lo, 100 * hi,
+               100 * claim.get("study_terminal_forecast", 0),
+               claim.get("reverse_read_over_highest_filed", 0)),
+            "ALL",
+            "It is a rule about where a benchmark comes from, and it binds on every "
+            "review this house writes.",
+            "A house convention that tags every committed historical with whether it "
+            "came from a filing, making the confusion impossible to make."))
+
+    # S5 — the disclosed-life route that keeps failing
+    if ul and not ul.get("route_1_succeeded"):
+        band = ul.get("route_2_years_band", [0, 0])
+        drafts.append(_draft(
+            "useful_life_route_one_fails", ticker,
+            "The accounting-policies note usually gives a range, not a life.",
+            "[R-TERM-01] needs one disclosed useful life and the policy note rarely "
+            "supplies one. Reading a span and picking a point inside it is the choice "
+            "the rule exists to forbid, so the honest output is the derived identity "
+            "and a band.",
+            "Route (1) gave %s. Route (2) — depreciable gross cost over "
+            "the annual charge — gives %.2f years on the full base and %.2f excluding "
+            "the %.1f%% of that base the note itself discloses as fully depreciated "
+            "and still in use, with a prior-year control at %.2f."
+            % (ul.get("route_1_outcome", ""), band[1], band[0],
+               100 * ul.get("fully_depreciated_share_of_base", 0),
+               ul.get("route_2_prior_year_control", 0)),
+            "ALL",
+            "It is about how a disclosure is read and it has now recurred across "
+            "several unrelated names and industries.",
+            "A run of filings that do disclose a scalar or a dominant class, making "
+            "route (1) the normal case rather than the exception."))
+
+    # S6 — trap (i), where the broad denominator is not merely wrong but impossible
+    if K.get("trap_i_broad_denominator_below_sovereign_years", 0) >= KD_BELOW_SOVEREIGN:
+        t = K.get("trap_i", {})
+        yrs = sorted(t)
+        drafts.append(_draft(
+            "trap_i_below_sovereign", ticker,
+            "A borrowing rate below the sovereign is the arithmetic failing, not the "
+            "company borrowing cheaply.",
+            "Dividing the finance charge by a liabilities total that includes trade "
+            "payables, related-party balances, tax and provisions understates the "
+            "rate. The useful part is that the error announces itself: a corporate "
+            "cannot fund below its own government, so a rate under the sovereign is a "
+            "denominator problem and can be caught without knowing the right answer.",
+            "On the borrowings that actually bear interest the rate runs %s; on total "
+            "liabilities %s — understated by %.2f to %.2f points, and below the "
+            "Egyptian sovereign in %d of %d years."
+            % (", ".join("%.2f%%" % (100 * t[y]["rate_on_bearing_debt"]) for y in yrs),
+               ", ".join("%.2f%%" % (100 * t[y]["rate_on_total_liabilities"]) for y in yrs),
+               min(t[y]["understatement_pp"] for y in yrs),
+               max(t[y]["understatement_pp"] for y in yrs),
+               K.get("trap_i_broad_denominator_below_sovereign_years"), len(yrs)),
+            "ALL",
+            "[R-COC-01] already refuses a cost of debt below its own sovereign; this "
+            "adds that the same test catches the trap-(i) denominator, which is a "
+            "method point rather than a company one.",
+            "A jurisdiction where a corporate genuinely funds below its sovereign, "
+            "which would make the check fire on work that is right."))
 
     for i, x in enumerate(drafts, start=1):
         x["proposed_id"] = "DRAFT-%s-%02d" % (ticker.upper(), i)

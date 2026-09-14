@@ -1,4 +1,4 @@
-"""EIPICO_Bibliography_09-08-2026.docx — the standalone bibliography document.
+"""EIPICO_Bibliography_{edition}.docx — the standalone bibliography document.
 
 Five things, in order: the primary documents actually read; the FULL input register (every
 input with its value, date and construction, grouped by research layer); the judgements, each
@@ -7,6 +7,10 @@ disagrees with, or reports beyond, the audited filing.
 """
 import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed
+sys.path.insert(0, os.path.join(HERE, '..'))
+import col_width as _cw    # size tables with the helper, never by eye                      # the edition date, written once
 sys.path.insert(0, HERE)
 import docx_base as B
 from docx.shared import Pt
@@ -33,7 +37,10 @@ PX_CLOSE = [float(x) for x in _PX['Price']]
 masthead()
 P('Egyptian International Pharmaceutical Industries Company (EIPICO)', size=19, bold=True,
   space_after=1)
-P('Bibliography and complete list of inputs — the companion to the valuation study of 9 August 2026',
+# THE COMPANION LINE NAMED A DATE THE STUDY IS NOT FILED UNDER — the same typed
+# masthead the study itself carried, in the document beside it.
+P(f'Bibliography and complete list of inputs — the companion to the valuation study '
+  f'of {_ed.EDITION.day} {_ed.EDITION.strftime("%B")} {_ed.EDITION.year}',
   size=11, color=GREY, space_after=12)
 
 # ---------------------------------------------------------------- 1. DOCUMENTS
@@ -80,11 +87,22 @@ docs = [
     ('P9', 'Company announcement of the active-ingredient plant foundation, 15 January 2026',
      'The USD 165 million project in the Suez Canal Economic Zone, and the fact that it is a '
      'separate legal entity', 'eipico.com.eg → News → item 258'),
-    ('P10', 'Country default spreads and risk premiums file, last updated 5 January 2026, '
-     'read live on 9 August 2026',
-     'Egypt row: Moody\'s Caa1; adjusted default spread 6.37%; country risk premium 9.71%; '
-     'total equity risk premium 13.94% on the rating basis; corporate tax rate 22.50%; '
-     'sovereign credit-default-swap spread 3.41%; equity risk premium on the swap basis 9.41%',
+    # THE VINTAGE THIS STUDY ACTUALLY USES, WITH ITS FIGURES DERIVED FROM THE COMMITTED
+    # INPUTS. This row described the JANUARY-2026 file and typed its numbers -- default
+    # spread 6.37%, swap spread 3.41%, swap-basis premium 9.41%. The study moved to the
+    # MID-YEAR (July 2026) vintage, and sov_spread_cds's own source string records the
+    # move in as many words ("The January-2026 vintage previously used carried 3.41%").
+    # So the bibliography documented a source the study had RETIRED, and a reader
+    # reconciling the cost of capital against it would have found 9.41% where the model
+    # carries 9.5164%. Derived now, so the row cannot describe a vintage the model has left.
+    ('P10', 'Country default spreads and risk premiums file, MID-YEAR (July 2026) vintage, '
+     'spreads measured 30 June 2026. The 5-January-2026 vintage this study previously used '
+     'is superseded and is named here rather than dropped',
+     'Egypt row: Moody\'s Caa1; adjusted default spread %.2f%%; total equity risk premium '
+     '%.2f%% on the rating basis; sovereign credit-default-swap spread %.2f%%; total equity '
+     'risk premium %.4f%% on the swap basis — the basis this study adopts'
+     % (100 * INP['sov_spread_rating']['value'], 100 * INP['erp_rating']['value'],
+        100 * INP['sov_spread_cds']['value'], 100 * INP['erp_cds']['value']),
      'pages.stern.nyu.edu → adamodar → datafile → ctryprem'),
     ('P12', 'Reviewed consolidated interim financial statements for the three months ended '
      '31 March 2026, English translation issued by the auditor, review report dated 14 May '
@@ -152,11 +170,36 @@ for layer in LAYERS:
         else:
             vs = str(val)
         rows.append([k.replace('_', ' '), vs, v['date'], v['source']])
-    table(rows, [1.55, 1.05, 0.66, 3.34], size=7.2)
+    # THE DATE COLUMN WRAPPED: 1.68cm declared against 1.83cm needed for its widest
+    # date. Widened from the source column, which has the slack; the total is
+    # unchanged so nothing else on the page moves.
+    table(rows, [1.55, 1.05, 0.73, 3.27], size=7.2)
 P(f'Total: {len(INP)} inputs, every one carrying a value, a source, a date and a layer.',
   size=9, italic=True, color=GREY)
 
 # ------------------------------------------------------------- 3. JUDGEMENTS
+# EVERY FIGURE IN THE JUDGEMENTS TABLE BELOW IS READ FROM THE MODEL. It was a
+# hard-coded literal and SIX OF ITS TWELVE ROWS contradicted the delivered study of the
+# same edition: the withdrawn 22.31% risk-free print, a terminal debt weight of 20%
+# against a model running 25.53%, a terminal growth of 5% against 7%, an associate
+# normalisation of EGP 320m the study's own section 7.1 says was cut to 250m, an FY2025
+# associate contribution of 495.5 against 512.1, and three relative-lens multiples
+# (8.1x / 6.7x / 9.8x) against committed legs of 7.06 / 6.57 / 6.10 -- the third of
+# which the study elsewhere states is NOT a peer median. A judgements table is where a
+# reader goes to disagree with the study; typed, it disagreed with the study itself.
+_W, _I, _MR = D['wacc'], D['inputs'], D['macro_record']
+_L, _SENS, _CE = D['lenses'], D['sensitivity'], D['cost_exposure']
+_G = _SENS['g']
+
+
+def _pc(x, dp=2):
+    return ('%.' + str(dp) + 'f%%') % (100 * x)
+
+
+def _egp(x, dp=1):
+    return 'EGP %s' % ('{:,.%df}' % dp).format(x)
+
+
 H1('3. Judgements, and what would overturn each one')
 rows = [['Judgement', 'What was decided', 'What would overturn it']]
 J = [
@@ -180,40 +223,57 @@ J = [
      'from the December 2025 licence. No revenue is credited, because the company has '
      'published none. The required revenue is solved for and published as the crux instead.',
      'Any disclosure of biosimilar volume, price or utilisation.'),
-    ('The associate contribution is normalised to EGP 320 million',
-     'The disclosed stream is EGP 74.5m, 147.1m and 495.5m across three years and the FY2025 '
-     'print is more than three times FY2024. The three-year average is 239.0; 320 sits '
-     'between that and the latest year.',
-     'A second year near EGP 495 million would make 320 too conservative by roughly EGP 10 a '
-     'share.'),
+    ('The associate contribution is normalised to %s million'
+     % '{:,.0f}'.format(_I['assoc_norm']['value']),
+     'The disclosed stream is EGP %.1fm, %.1fm and %.1fm across three years and the FY2025 '
+     'print is more than three times FY2024. The three-year average is %.1f; the adopted '
+     'figure sits between that and the latest year.'
+     % (_I['assoc_fy23']['value'], _I['assoc_fy24']['value'], _I['assoc_fy25']['value'],
+        (_I['assoc_fy23']['value'] + _I['assoc_fy24']['value']
+         + _I['assoc_fy25']['value']) / 3.0),
+     'A second year near EGP %.0f million would make the adopted figure too conservative.'
+     % _I['assoc_fy25']['value']),
     ('The associates are valued on earnings, not carrying value',
-     'They contributed EGP 495.5 million against a carrying value of EGP 675.9 million. '
-     'Carrying value is therefore not a usable proxy, and an 11 times multiple is applied to '
-     'the normalised stream instead.',
+     'They contributed EGP %.1f million against a carrying value of EGP %.1f million. '
+     'Carrying value is therefore not a usable proxy, and a %.0f times multiple is applied '
+     'to the normalised stream instead.'
+     % (_I['assoc_fy25']['value'], _I['assoc_bv_fy25']['value'],
+        _I['assoc_multiple']['value']),
      'Separate accounts for the Saudi associate, which would allow a real valuation rather '
      'than a multiple.'),
     ('The exchange-rate path depreciates about 4% a year, narrowing to 3%',
      'The pound averaged 47.74 in FY2024 and 49.48 in FY2025 while domestic inflation ran far '
      'above the United States\', so the real rate appreciated. The path assumes a partial '
      'reversal.',
-     'A step devaluation of the kind seen in March 2024. Note this cuts AGAINST the company, '
-     'not for it: imported inputs are 79% of the cash cost stack against a 32% export share.'),
-    ('The terminal debt weight is 20%, below today\'s 25%',
-     'At a 40% payout the model deleverages through the forecast, so a terminal weight at '
-     'today\'s level would contradict the model\'s own trajectory in the direction that '
-     'flatters the valuation.',
-     'A stated policy of maintaining current leverage.'),
-    ('Terminal growth is 5%, which is roughly zero in real terms',
-     'It is a pound-nominal rate struck against a terminal risk-free rate that itself embeds '
-     'the central bank\'s 5% inflation target. Deliberately conservative for a company with a '
-     'third of revenue in hard currency.',
-     'Nothing in the near term; the sensitivity table runs 3% to 7% and the value ranges from '
-     'EGP 78 to EGP 98.'),
+     'A step devaluation of the kind seen in March 2024. Note this cuts AGAINST the '
+     'company, not for it: imported inputs are %s of the full cash cost stack against a '
+     'roughly one-third export share. The %s variant assumes ALL packaging is imported, '
+     'which the group\'s own primary-packaging manufacture rules out.'
+     % (_pc(_CE['fx_cost_share_full_stack'], 1),
+        _pc(_CE['fx_cost_share_full_stack_if_all_packaging'], 1))),
+    ('The terminal debt weight is %s, which is today\'s market weight' % _pc(_W['wd_term']),
+     'An earlier edition carried 20%% here on the argument that the model deleverages '
+     'through the forecast. The market weight is used instead, and both are shown: on the '
+     'book basis the terminal weight is %s and the terminal cost of capital %s, against '
+     '%s on the market basis.'
+     % (_pc(_W['wd_term_book']), _pc(_W['wacc_term_book_basis']), _pc(_W['wacc_term'])),
+     'A stated policy of maintaining leverage away from the current level.'),
+    ('Terminal growth is %s, which is zero in real terms' % _pc(_MR['terminal']['g_nominal']),
+     'It is a pound-nominal rate DERIVED from the house terminal inflation of %s at zero '
+     'real growth, not typed. An earlier edition typed 5%% and called it approximately '
+     'zero real, which against a %s long-run rate is a real DECLINE of about 1.9%% a year '
+     'in perpetuity that nothing in the study argued for.'
+     % (_pc(_MR['terminal']['inflation']), _pc(_MR['terminal']['inflation'])),
+     'Nothing in the near term; the sensitivity table runs %s to %s and the value ranges '
+     'from %s to %s.'
+     % (_pc(_G[0][0], 0), _pc(_G[-1][0], 0), _egp(_G[0][1], 2), _egp(_G[-1][1], 2))),
     ('The risk-free rate is normalised by subtracting the sovereign spread',
-     'The quoted 22.31% ten-year yield contains Egypt\'s own default risk; subtracting the '
-     '3.41% credit-default-swap spread leaves 18.90%, and country risk is then charged once, '
-     'inside the equity premium. Both the swap and the rating construction are published and '
-     'they agree to 11 basis points.',
+     'The quoted %s ten-year yield contains Egypt\'s own default risk; subtracting the '
+     '%s credit-default-swap spread leaves %s, and country risk is then charged once, '
+     'inside the equity premium. Both the swap and the rating construction are published: '
+     'the rating basis leaves %s.'
+     % (_pc(_W['rf']), _pc(_W['sov_spread_cds']), _pc(_W['rf_star']),
+        _pc(_W['rf_star_rating'])),
      'Nothing — this is a construction rule, and charging the raw yield alongside a '
      'country-loaded premium would double-count. The rate itself is a cached print and is '
      'sensitised.'),
@@ -229,10 +289,13 @@ J = [
      'Nothing — a single blended index across physically distinct lines makes the forecast '
      'margin an artefact of the index rather than of the business.'),
     ('The relative lens uses three multiples, averaged on the sheet',
-     'The multiple the model\'s own economics justify (8.1x), the company\'s own four-year '
-     'mean (6.7x), and a regional peer median adjusted for the cost-of-equity gap (9.8x). The '
-     'unadjusted peer median would give EGP 133 a share; the size of that gap is the '
-     'country-risk discount and it is shown rather than hidden.',
+     'The multiple the model\'s own economics justify (%.2fx), the company\'s own '
+     'four-year mean (%.2fx), and a peer-referenced multiple adjusted for the '
+     'cost-of-equity gap (%.2fx) — which is NOT a median of a disclosed peer set and is '
+     'not presented as one. The unadjusted peer read would give %s a share; the size of '
+     'that gap is the country-risk discount and it is shown rather than hidden.'
+     % (_L['just_fwd_pe'], _L['own_pe_mean'], _L['peer_adj_pe'],
+        _egp(_L['rel_peer_unadjusted'], 0)),
      'A peer set facing a comparable cost of equity, which does not currently exist in a '
      'liquid listed form.'),
 ]
@@ -354,36 +417,48 @@ caption(f'Table B6 — the twenty sessions behind the twenty-day moving average 
         f'non-trading days are absent rather than carried forward.')
 
 H2('6.2 The index the beta was regressed against')
+# THIS SECTION DESCRIBED A CONSTRUCTION THIS STUDY NO LONGER USES, AND IT FAILED LOUDLY.
+# It was written for an equal-weighted composite of covered Egyptian names, and priced the
+# subject's own weight inside that composite as the interesting caveat. The beta is now
+# produced by beta_regression.own_stock_beta() against the PUBLISHED EGX30 index, which the
+# source mandate requires and which makes a constituent composite a hard failure rather than
+# a fallback. The old text referenced BETA["composite_names"], that key stopped existing when
+# the record changed, and the build died on a KeyError instead of printing a false account of
+# the method — which is the failure mode this house prefers and the reason the prose is
+# rewritten here rather than patched around.
 P(f'The beta of {BETA["beta"]:.3f} is a weekly regression of this company\'s own returns '
-  f'against an equal-weighted composite of {BETA["composite_names"]} Egyptian listed names, '
-  f'over {BETA["window_years"]} years and {BETA["n"]} weekly observations, with an R-squared '
-  f'of {BETA["r2"]:.3f} and a standard error of {BETA["se"]:.3f}. The composite is '
-  f'equal-weighted across the following constituents, and both the constituent list and the '
-  f'weekly return series are supplied alongside this document so the coefficient can be '
-  f're-estimated rather than taken on trust:')
-P(', '.join(BETA['constituents']) + '.')
-P(f'THE SUBJECT IS IN ITS OWN INDEX, and publishing the list makes that visible, so it is '
-  f'priced here rather than left for a reader to notice. An equal-weighted composite of '
-  f'{BETA["composite_names"]} names gives this company a weight of about '
-  f'{1 / BETA["composite_names"] * 100:.1f}% in the very index it is being regressed against, '
-  f'which biases the coefficient toward one. That is how a real local index behaves and it is '
-  f'the construction used, but the regression was also re-run with the subject removed from '
-  f'the composite: the coefficient falls from {BETA["beta"]:.4f} to '
-  f'{BETA["beta_ex_subject"]:.4f}, with an R-squared of {BETA["r2_ex_subject"]:.3f} and a '
-  f'standard error of {BETA["se_ex_subject"]:.4f}. Carried through the whole model, the '
-  f'ex-subject coefficient would RAISE the two fundamental centres to EGP '
-  f'{XB["beta_ex_subject_centre_A"]:,.2f} and EGP {XB["beta_ex_subject_centre_B"]:,.2f} from '
-  f'EGP {D["lenses"]["centre_A"]:,.2f} and EGP {D["lenses"]["centre_B"]:,.2f}. The study '
-  f'carries the in-index coefficient because it is the more conservative of the two and '
-  f'because it is what a local-index construction actually produces; the alternative and its '
-  f'price are stated here so the choice is visible rather than silent.')
+  f'against the published {os.path.basename(BETA["index_file"]).replace(".csv", "")} index of '
+  f'the exchange this share is listed on, over {BETA["window_years"]} years and '
+  f'{BETA["n"]} weekly observations, with an R-squared of {BETA["r2"]:.3f} and a standard '
+  f'error of {BETA["se"]:.3f}. The index series was read as at {BETA["index_asof"]} and the '
+  f'regression window runs {BETA["first_obs"]} to {BETA["last_obs"]}. The weekly grid is '
+  f'matched to the exchange\'s real trading week rather than to calendar Fridays, and both '
+  f'series are cleaned the same way before either is differenced.')
+P(f'THE REGRESSOR IS THE PUBLISHED INDEX AND NOT A BASKET OF THIS HOUSE\'S OWN COVERAGE, '
+  f'which is the whole of the improvement. An equal-weighted composite of covered names is '
+  f'what every study in this book once used, and it is not a weaker version of an index — it '
+  f'is a different quantity, whose membership moves whenever coverage moves and which gives '
+  f'the subject a large weight in the very series it is regressed against. On one name in '
+  f'this book that construction understated the coefficient by about 40% and overstated fair '
+  f'value by 21.6%. There is therefore no ex-subject variant to report here: the subject is '
+  f'one constituent of a published index it does not control, and its weight there is set by '
+  f'the index\'s own rules.')
+P(f'{"The regression carries a Dimson adjustment for non-synchronous trading. " if BETA.get("dimson") else ""}'
+  f'A Blume cross-check shrinking the raw coefficient toward one gives '
+  f'{BETA["blume_crosscheck"]:.3f}, published beside the regression rather than substituted '
+  f'for it. The coefficient is comfortably larger than its own standard error, which is '
+  f'the test applied before any regression beta is used here.'
+  + (f' Data-quality notes on the stock series: {"; ".join(BETA["stock_dq"])}.'
+     if BETA.get('stock_dq') else '')
+  + (f' On the index series: {"; ".join(BETA["index_dq"])}.' if BETA.get('index_dq') else ''))
 P(f'Two statistics a reader can check without the series at all. The standard error implied '
   f'by the reported coefficient, R-squared and sample size is '
   f'{BETA["beta"] * ((1 - BETA["r2"]) / (BETA["r2"] * (BETA["n"] - 2))) ** 0.5:.5f}, against '
   f'the {BETA["se"]:.5f} reported — they agree, so the three statistics are mutually '
   f'consistent rather than separately asserted. And the standard error is well below the '
   f'coefficient, which is the usability test this study applies before a regression beta is '
-  f'used at all.')
+  f'used at all. The 90% interval on the coefficient runs {BETA["ci90"][0]:.3f} to '
+  f'{BETA["ci90"][1]:.3f}.')
 
 H2('6.3 The window outcomes behind the coverage statistics')
 P('The coverage figures quoted in the study are counts over a finite number of test windows, '
@@ -403,13 +478,25 @@ table(rows, [1.7, 0.7, 1.0, 1.0, 1.0, 1.35], size=8.4)
 caption('Table B7 — all THREE window sets, not a selection from them. The distribution of '
         'realised outcomes within each set is printed below it as a ten-bin histogram so a '
         'reader can run the uniformity test independently.')
-rows = [['Window set'] + [f'{i * 10}-{(i + 1) * 10}%' for i in range(10)]]
+# SIZED BY THE HELPER, NOT BY EYE, AND THE HEADERS LOST A CHARACTER TO MAKE IT FIT.
+# Eleven columns at the typed widths left every decile 1.35cm where its own header
+# needs 1.55cm, so ten of them wrapped. The DATA are single digits; it is the headers
+# that are wide, and at "0-10%" through "90-100%" the table needs 18.06cm inside a
+# 17.78cm block and cannot fit at any allocation. The per-cent sign moves into the
+# caption, where it is said once instead of ten times, and fit_widths does the rest --
+# it RAISES rather than returning a table that squeezes, which is the point of using
+# it instead of nudging numbers until nothing complains.
+_hdr = ['Window set'] + [f'{i * 10}-{(i + 1) * 10}' for i in range(10)]
+rows = [_hdr]
 for key, label in (('five_year', 'Last five years'), ('full', 'Full history'),
                    ('production', 'Post-break')):
     rows.append([label] + [str(x) for x in BT[key]['pit_hist']])
-table(rows, [1.35] + [0.53] * 10, size=7.6)
+_w_cm = _cw.fit_widths(_hdr, rows[1:], total_cm=17.78, size=7.6)
+table(rows, [w / 2.54 for w in _w_cm], size=7.6)
 caption('Table B8 — where each window\'s realised outcome fell inside its own forecast '
-        'distribution, in ten equal bins. A well-sized band spreads these evenly.')
+        'distribution, in ten equal bins. The column headings are percentage bands: '
+        '0-10 is the lowest tenth of the forecast distribution and 90-100 the highest. '
+        'A well-sized band spreads these evenly.')
 
 H1('7. How to check this study')
 P('The valuation model is a live spreadsheet. Open the Assumptions sheet, change any driver, '
@@ -424,6 +511,6 @@ P('The claim that the workbook calculates was tested on the delivered file rathe
   'direction the mechanism implies. The evidence is reported in the study\'s quality-control '
   'table.')
 
-OUT = os.path.join(HERE, 'EIPICO_Bibliography_09-08-2026.docx')
+OUT = os.path.join(HERE, _ed.BIBLIO_DOCX)
 doc.save(OUT)
 print('wrote', os.path.basename(OUT))

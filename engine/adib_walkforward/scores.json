@@ -1,0 +1,1373 @@
+{
+ "_": "ADIB \u2014 the run's scores in the shape engine/lessons_harvest.py reads.\n\nThe harvester is the same for every name in the campaign, so this file translates this\nrun's own records into its schema rather than the harvester learning a per-name shape.\nGENERATED from score.py and diagnose.py; never hand-edited.\n\n`robust_sign` here means what the harvester means by it: the bias holds its sign across\nevery era cut tested. That is the same test the corrections rule applies, so a driver the\nharvester calls robust and a driver the correction rule calls correctable are the same\nset \u2014 two names for one measurement, which is what stops them drifting apart.",
+ "run": "ADIB",
+ "which": "the FUNDAMENTAL walk-forward [R-FCAL-01]",
+ "scope": "full",
+ "origins": [
+  "FY2014",
+  "FY2015",
+  "FY2016",
+  "FY2017",
+  "FY2018",
+  "FY2019",
+  "FY2020",
+  "FY2021",
+  "FY2022",
+  "FY2023",
+  "FY2024"
+ ],
+ "horizons": [
+  1,
+  2,
+  3,
+  4,
+  5
+ ],
+ "pre_registration": "PRE_REGISTRATION_09-09-2026.md",
+ "n_cells": 597,
+ "by_driver": {
+  "admin": {
+   "bias": -0.04251568392424593,
+   "mae": 0.23303101383837788,
+   "over": 0.35555555555555557,
+   "n": 45,
+   "n_cells": 45,
+   "robust_sign": true,
+   "bias_ci": [
+    -0.17726073945677112,
+    0.09763243874067348
+   ],
+   "sign_broken": 0
+  },
+  "cost_funds": {
+   "bias": -0.467076989854024,
+   "mae": 0.5186737623763835,
+   "over": 0.17777777777777778,
+   "n": 45,
+   "n_cells": 45,
+   "robust_sign": true,
+   "bias_ci": [
+    -0.622528284500244,
+    -0.30849937865313903
+   ],
+   "sign_broken": 0
+  },
+  "cust_deposits": {
+   "bias": -0.29073193822888704,
+   "mae": 0.31460557078769424,
+   "over": 0.24444444444444444,
+   "n": 45,
+   "n_cells": 45,
+   "robust_sign": true,
+   "bias_ci": [
+    -0.4061367224519993,
+    -0.16964131210877553
+   ],
+   "sign_broken": 0
+  },
+  "ecl": {
+   "bias": -0.1858899354887376,
+   "mae": 0.7337940150377983,
+   "over": 0.275,
+   "n": 40,
+   "n_cells": 40,
+   "robust_sign": false,
+   "bias_ci": [
+    -0.5308984354618548,
+    0.19291651320603964
+   ],
+   "sign_broken": 5
+  },
+  "fin_customers": {
+   "bias": -0.3113837970372641,
+   "mae": 0.32578790182433415,
+   "over": 0.15555555555555556,
+   "n": 45,
+   "n_cells": 45,
+   "robust_sign": true,
+   "bias_ci": [
+    -0.44743322633227994,
+    -0.16955572885607875
+   ],
+   "sign_broken": 0
+  },
+  "fin_income": {
+   "bias": -0.4549430029155398,
+   "mae": 0.5268777219927044,
+   "over": 0.2222222222222222,
+   "n": 45,
+   "n_cells": 45,
+   "robust_sign": true,
+   "bias_ci": [
+    -0.6324719054230522,
+    -0.2695173453883529
+   ],
+   "sign_broken": 0
+  },
+  "net_fees": {
+   "bias": -0.18506984072242685,
+   "mae": 0.42714255605880497,
+   "over": 0.3333333333333333,
+   "n": 45,
+   "n_cells": 45,
+   "robust_sign": true,
+   "bias_ci": [
+    -0.4066762029631477,
+    0.047506069356184885
+   ],
+   "sign_broken": 0
+  },
+  "net_funds": {
+   "bias": -0.4455270386318564,
+   "mae": 0.5641670635358004,
+   "over": 0.24444444444444444,
+   "n": 45,
+   "n_cells": 45,
+   "robust_sign": true,
+   "bias_ci": [
+    -0.6767052449680462,
+    -0.21249139251638163
+   ],
+   "sign_broken": 0
+  },
+  "np": {
+   "bias": -0.5469914646594181,
+   "mae": 0.6703151612745124,
+   "over": 0.225,
+   "n": 40,
+   "n_cells": 40,
+   "robust_sign": true,
+   "bias_ci": [
+    -0.8293504293478364,
+    -0.27000119102603737
+   ],
+   "sign_broken": 5
+  },
+  "np_parent": {
+   "bias": -0.5501150109485979,
+   "mae": 0.677110141207428,
+   "over": 0.225,
+   "n": 40,
+   "n_cells": 40,
+   "robust_sign": true,
+   "bias_ci": [
+    -0.8415406325547354,
+    -0.265916512037835
+   ],
+   "sign_broken": 5
+  },
+  "other_nii": {
+   "bias": 0.0507063042118757,
+   "mae": 0.5045019046034241,
+   "over": 0.5111111111111111,
+   "n": 45,
+   "n_cells": 45,
+   "robust_sign": false,
+   "bias_ci": [
+    -0.23326519531193138,
+    0.3238726062545513
+   ],
+   "sign_broken": 0
+  },
+  "other_op": {
+   "bias": -0.4143067134852348,
+   "mae": 0.5120593780386802,
+   "over": 0.1875,
+   "n": 32,
+   "n_cells": 32,
+   "robust_sign": true,
+   "bias_ci": [
+    -0.6329585829921233,
+    -0.21403910556951525
+   ],
+   "sign_broken": 13
+  },
+  "pbt": {
+   "bias": -0.3716683761164851,
+   "mae": 0.6300240201018045,
+   "over": 0.35,
+   "n": 40,
+   "n_cells": 40,
+   "robust_sign": true,
+   "bias_ci": [
+    -0.6875799842287204,
+    -0.05816855370662802
+   ],
+   "sign_broken": 5
+  },
+  "total_assets": {
+   "bias": -0.31310920150093824,
+   "mae": 0.35917160562042727,
+   "over": 0.26666666666666666,
+   "n": 45,
+   "n_cells": 45,
+   "robust_sign": true,
+   "bias_ci": [
+    -0.444196242605889,
+    -0.17285405118287578
+   ],
+   "sign_broken": 0
+  }
+ },
+ "by_horizon": {
+  "fin_customers": {
+   "1": {
+    "bias": -0.13513955847692483,
+    "mae": 0.13783988454056678,
+    "n": 11,
+    "skill_freeze": {
+     "skill": 0.4699266528046562
+    },
+    "skill_trend": {
+     "skill": -0.09521858718279308
+    }
+   },
+   "2": {
+    "bias": -0.23728718423766565,
+    "mae": 0.24957989949623155,
+    "n": 10,
+    "skill_freeze": {
+     "skill": 0.5098316639965086
+    },
+    "skill_trend": {
+     "skill": -0.5426671047571616
+    }
+   },
+   "3": {
+    "bias": -0.3255916230142923,
+    "mae": 0.3372156627255802,
+    "n": 9,
+    "skill_freeze": {
+     "skill": 0.5340220687504525
+    },
+    "skill_trend": {
+     "skill": -0.6828731422308612
+    }
+   },
+   "4": {
+    "bias": -0.43401232841191834,
+    "mae": 0.46040494313568386,
+    "n": 8,
+    "skill_freeze": {
+     "skill": 0.5252616947051267
+    },
+    "skill_trend": {
+     "skill": -1.0303980979694036
+    }
+   },
+   "5": {
+    "bias": -0.5357772352328684,
+    "mae": 0.5614624782243991,
+    "n": 7,
+    "skill_freeze": {
+     "skill": 0.5315565324902969
+    },
+    "skill_trend": {
+     "skill": -1.5088247130306316
+    }
+   }
+  },
+  "cust_deposits": {
+   "1": {
+    "bias": -0.12045669440287537,
+    "mae": 0.15566801208484024,
+    "n": 11,
+    "skill_freeze": {
+     "skill": 0.3923253909764386
+    },
+    "skill_trend": {
+     "skill": -1.3704790903892792
+    }
+   },
+   "2": {
+    "bias": -0.21857431164283728,
+    "mae": 0.24937579109847405,
+    "n": 10,
+    "skill_freeze": {
+     "skill": 0.5113500427139883
+    },
+    "skill_trend": {
+     "skill": -0.8647189249363922
+    }
+   },
+   "3": {
+    "bias": -0.3123640954525616,
+    "mae": 0.3365236700436609,
+    "n": 9,
+    "skill_freeze": {
+     "skill": 0.5485322799499273
+    },
+    "skill_trend": {
+     "skill": -0.8572935564796724
+    }
+   },
+   "4": {
+    "bias": -0.4062042255279614,
+    "mae": 0.42146326306548965,
+    "n": 8,
+    "skill_freeze": {
+     "skill": 0.5728776909782267
+    },
+    "skill_trend": {
+     "skill": -0.9704382919438777
+    }
+   },
+   "5": {
+    "bias": -0.5016085431633094,
+    "mae": 0.5072465009444848,
+    "n": 7,
+    "skill_freeze": {
+     "skill": 0.5839521529652496
+    },
+    "skill_trend": {
+     "skill": -0.9505374833067894
+    }
+   }
+  },
+  "total_assets": {
+   "1": {
+    "bias": -0.13888702529295305,
+    "mae": 0.19372269461090916,
+    "n": 11,
+    "skill_freeze": {
+     "skill": 0.2588520004918383
+    },
+    "skill_trend": {
+     "skill": -1.2655098104424551
+    }
+   },
+   "2": {
+    "bias": -0.24706590661872302,
+    "mae": 0.3063611566769201,
+    "n": 10,
+    "skill_freeze": {
+     "skill": 0.4194323372322356
+    },
+    "skill_trend": {
+     "skill": -1.1437014128248606
+    }
+   },
+   "3": {
+    "bias": -0.3370843065392661,
+    "mae": 0.38959059279340963,
+    "n": 9,
+    "skill_freeze": {
+     "skill": 0.48907581674271805
+    },
+    "skill_trend": {
+     "skill": -0.8744904062680443
+    }
+   },
+   "4": {
+    "bias": -0.4275296531925111,
+    "mae": 0.46451401113312907,
+    "n": 8,
+    "skill_freeze": {
+     "skill": 0.5355620040862683
+    },
+    "skill_trend": {
+     "skill": -0.7588238574705362
+    }
+   },
+   "5": {
+    "bias": -0.5196431055341466,
+    "mae": 0.5351048030320438,
+    "n": 7,
+    "skill_freeze": {
+     "skill": 0.5648131432370143
+    },
+    "skill_trend": {
+     "skill": -0.8521001543988671
+    }
+   }
+  },
+  "fin_income": {
+   "1": {
+    "bias": -0.20167314177166373,
+    "mae": 0.26358113114178966,
+    "n": 11,
+    "skill_freeze": {
+     "skill": 0.177630987480336
+    },
+    "skill_trend": {
+     "skill": -0.49018890776607216
+    }
+   },
+   "2": {
+    "bias": -0.3806050729820516,
+    "mae": 0.4853014677278922,
+    "n": 10,
+    "skill_freeze": {
+     "skill": 0.2519392275453495
+    },
+    "skill_trend": {
+     "skill": -0.3233392585054109
+    }
+   },
+   "3": {
+    "bias": -0.5131224753637113,
+    "mae": 0.6234390980275845,
+    "n": 9,
+    "skill_freeze": {
+     "skill": 0.3371861809380352
+    },
+    "skill_trend": {
+     "skill": -0.0793938404276513
+    }
+   },
+   "4": {
+    "bias": -0.6084202285679758,
+    "mae": 0.6699961162749428,
+    "n": 8,
+    "skill_freeze": {
+     "skill": 0.43276857460913587
+    },
+    "skill_trend": {
+     "skill": -0.10110573226509545
+    }
+   },
+   "5": {
+    "bias": -0.7089308192961798,
+    "mae": 0.7123099367693272,
+    "n": 7,
+    "skill_freeze": {
+     "skill": 0.49174896184837036
+    },
+    "skill_trend": {
+     "skill": -0.4883886431202613
+    }
+   }
+  },
+  "cost_funds": {
+   "1": {
+    "bias": -0.19084445074530168,
+    "mae": 0.2596129568438572,
+    "n": 11,
+    "skill_freeze": {
+     "skill": 0.19895747109361372
+    },
+    "skill_trend": {
+     "skill": -0.17861347527684468
+    }
+   },
+   "2": {
+    "bias": -0.3789636050963493,
+    "mae": 0.45501874504007384,
+    "n": 10,
+    "skill_freeze": {
+     "skill": 0.32079453240805555
+    },
+    "skill_trend": {
+     "skill": -0.03168290507590865
+    }
+   },
+   "3": {
+    "bias": -0.5305628164921471,
+    "mae": 0.6055704011121732,
+    "n": 9,
+    "skill_freeze": {
+     "skill": 0.38255522587248103
+    },
+    "skill_trend": {
+     "skill": 0.1455193133792313
+    }
+   },
+   "4": {
+    "bias": -0.6411860662611909,
+    "mae": 0.6574087581867645,
+    "n": 8,
+    "skill_freeze": {
+     "skill": 0.46933752386396066
+    },
+    "skill_trend": {
+     "skill": 0.17823953820340488
+    }
+   },
+   "5": {
+    "bias": -0.7464265222500587,
+    "mae": 0.7464265222500587,
+    "n": 7,
+    "skill_freeze": {
+     "skill": 0.4921925822609535
+    },
+    "skill_trend": {
+     "skill": -0.10704333687586809
+    }
+   }
+  },
+  "net_funds": {
+   "1": {
+    "bias": -0.21655749934659177,
+    "mae": 0.29803913686625616,
+    "n": 11,
+    "skill_freeze": {
+     "skill": 0.05558513116828889
+    },
+    "skill_trend": {
+     "skill": -0.8565579310311875
+    }
+   },
+   "2": {
+    "bias": -0.38568900100467285,
+    "mae": 0.5250663495887826,
+    "n": 10,
+    "skill_freeze": {
+     "skill": 0.1572012071949106
+    },
+    "skill_trend": {
+     "skill": -0.5056554406332481
+    }
+   },
+   "3": {
+    "bias": -0.49856570377427367,
+    "mae": 0.6824502229919914,
+    "n": 9,
+    "skill_freeze": {
+     "skill": 0.23747760527662953
+    },
+    "skill_trend": {
+     "skill": -0.1237608091285356
+    }
+   },
+   "4": {
+    "bias": -0.5767432226055704,
+    "mae": 0.7085949221364052,
+    "n": 8,
+    "skill_freeze": {
+     "skill": 0.36473113150996905
+    },
+    "skill_trend": {
+     "skill": 0.0448390485838146
+    }
+   },
+   "5": {
+    "bias": -0.6726653029658965,
+    "mae": 0.7210874962393165,
+    "n": 7,
+    "skill_freeze": {
+     "skill": 0.4549926757716839
+    },
+    "skill_trend": {
+     "skill": 0.12970417922826472
+    }
+   }
+  },
+  "net_fees": {
+   "1": {
+    "bias": -0.05986878640455724,
+    "mae": 0.2872627113857943,
+    "n": 11,
+    "skill_freeze": {
+     "skill": -0.14202404957932457
+    },
+    "skill_trend": {
+     "skill": -0.369873709153542
+    }
+   },
+   "2": {
+    "bias": -0.1714149280707291,
+    "mae": 0.5023983331218886,
+    "n": 10,
+    "skill_freeze": {
+     "skill": -0.04380769255202521
+    },
+    "skill_trend": {
+     "skill": -0.13492031496657608
+    }
+   },
+   "3": {
+    "bias": -0.23128850693987613,
+    "mae": 0.53744055677427,
+    "n": 9,
+    "skill_freeze": {
+     "skill": 0.2043108458585584
+    },
+    "skill_trend": {
+     "skill": 0.22926116506701688
+    }
+   },
+   "4": {
+    "bias": -0.24488893513364474,
+    "mae": 0.4636804834051684,
+    "n": 8,
+    "skill_freeze": {
+     "skill": 0.45733458594174003
+    },
+    "skill_trend": {
+     "skill": 0.5443265749310591
+    }
+   },
+   "5": {
+    "bias": -0.2735326939748205,
+    "mae": 0.35587614113911653,
+    "n": 7,
+    "skill_freeze": {
+     "skill": 0.6539013730140131
+    },
+    "skill_trend": {
+     "skill": 0.7065696805491344
+    }
+   }
+  },
+  "other_nii": {
+   "1": {
+    "bias": 0.027952928437473438,
+    "mae": 0.379029454611719,
+    "n": 11,
+    "skill_freeze": {
+     "skill": -0.39939443470485236
+    },
+    "skill_trend": {
+     "skill": 0.10047082057006018
+    }
+   },
+   "2": {
+    "bias": -0.00804936067748615,
+    "mae": 0.5032294766982397,
+    "n": 10,
+    "skill_freeze": {
+     "skill": -0.11945611767659492
+    },
+    "skill_trend": {
+     "skill": 0.2685689527915146
+    }
+   },
+   "3": {
+    "bias": 0.05336608418068313,
+    "mae": 0.5176638329520796,
+    "n": 9,
+    "skill_freeze": {
+     "skill": -0.06322095762484192
+    },
+    "skill_trend": {
+     "skill": 0.5470380770136047
+    }
+   },
+   "4": {
+    "bias": 0.10513041808215566,
+    "mae": 0.6115170960556916,
+    "n": 8,
+    "skill_freeze": {
+     "skill": -0.13937221522600196
+    },
+    "skill_trend": {
+     "skill": 0.5992757413702607
+    }
+   },
+   "5": {
+    "bias": 0.10477956874480965,
+    "mae": 0.564265096346933,
+    "n": 7,
+    "skill_freeze": {
+     "skill": 0.1381838434007735
+    },
+    "skill_trend": {
+     "skill": 0.7235036888628585
+    }
+   }
+  },
+  "admin": {
+   "1": {
+    "bias": -0.03518176159616019,
+    "mae": 0.12279705444867081,
+    "n": 11,
+    "skill_freeze": {
+     "skill": 0.22695704052587684
+    },
+    "skill_trend": {
+     "skill": -0.4912741420262463
+    }
+   },
+   "2": {
+    "bias": -0.07885628638747254,
+    "mae": 0.24077258964978582,
+    "n": 10,
+    "skill_freeze": {
+     "skill": 0.17913388884482995
+    },
+    "skill_trend": {
+     "skill": -0.21701194241266175
+    }
+   },
+   "3": {
+    "bias": -0.07386406594551448,
+    "mae": 0.3040779883397302,
+    "n": 9,
+    "skill_freeze": {
+     "skill": 0.24583556199182655
+    },
+    "skill_trend": {
+     "skill": 0.046627177197513414
+    }
+   },
+   "4": {
+    "bias": -0.024639444303240374,
+    "mae": 0.2673836832403924,
+    "n": 8,
+    "skill_freeze": {
+     "skill": 0.4507998291099544
+    },
+    "skill_trend": {
+     "skill": 0.2846393711295647
+    }
+   },
+   "5": {
+    "bias": 0.017749801825282054,
+    "mae": 0.264590109473294,
+    "n": 7,
+    "skill_freeze": {
+     "skill": 0.5427058443760624
+    },
+    "skill_trend": {
+     "skill": 0.37074725995321833
+    }
+   }
+  },
+  "other_op": {
+   "1": {
+    "bias": -0.13741727528209172,
+    "mae": 0.2257089113275169,
+    "n": 7,
+    "skill_freeze": {
+     "skill": 0.5638908465964244
+    },
+    "skill_trend": {
+     "skill": 0.11104378783518287
+    }
+   },
+   "2": {
+    "bias": -0.23256704071150416,
+    "mae": 0.23355094153831205,
+    "n": 7,
+    "skill_freeze": {
+     "skill": 0.5048074708595607
+    },
+    "skill_trend": {
+     "skill": 0.32354248171815003
+    }
+   },
+   "3": {
+    "bias": -0.4032788398182144,
+    "mae": 0.7608726266188742,
+    "n": 7,
+    "skill_freeze": {
+     "skill": 0.5697552123653107
+    },
+    "skill_trend": {
+     "skill": 0.6926048175569348
+    }
+   },
+   "4": {
+    "bias": -0.6873542338771158,
+    "mae": 0.6873542338771158,
+    "n": 6,
+    "skill_freeze": {
+     "skill": 0.7551746967095886
+    },
+    "skill_trend": {
+     "skill": 0.8461238902041809
+    }
+   },
+   "5": {
+    "bias": -0.7441694675164297,
+    "mae": 0.7441694675164297,
+    "n": 5,
+    "skill_freeze": {
+     "skill": 0.8288554692075855
+    },
+    "skill_trend": {
+     "skill": 0.9129783977124416
+    }
+   }
+  },
+  "ecl": {
+   "1": {
+    "bias": 0.12148724784245397,
+    "mae": 0.6611194249514324,
+    "n": 10,
+    "skill_freeze": {
+     "skill": 0.14600751666270506
+    },
+    "skill_trend": {
+     "skill": 0.21981688065725602
+    }
+   },
+   "2": {
+    "bias": -0.22734664070389168,
+    "mae": 0.6424644113464548,
+    "n": 9,
+    "skill_freeze": {
+     "skill": 0.3096809056326546
+    },
+    "skill_trend": {
+     "skill": 0.3294576369239963
+    }
+   },
+   "3": {
+    "bias": -0.23941232558597447,
+    "mae": 0.912541922668617,
+    "n": 8,
+    "skill_freeze": {
+     "skill": 0.2353494643525318
+    },
+    "skill_trend": {
+     "skill": 0.19109125278787809
+    }
+   },
+   "4": {
+    "bias": -0.31605297985166864,
+    "mae": 0.87833575997905,
+    "n": 7,
+    "skill_freeze": {
+     "skill": 0.5742964330329332
+    },
+    "skill_trend": {
+     "skill": 0.3464746333039861
+    }
+   },
+   "5": {
+    "bias": -0.4127801113315905,
+    "mae": 0.5849501581128712,
+    "n": 6,
+    "skill_freeze": {
+     "skill": 0.5440420786599943
+    },
+    "skill_trend": {
+     "skill": 0.06497876793059099
+    }
+   }
+  },
+  "pbt": {
+   "1": {
+    "bias": -0.150911131520595,
+    "mae": 0.3586942044479807,
+    "n": 10,
+    "skill_freeze": {
+     "skill": 0.022811183255992518
+    },
+    "skill_trend": {
+     "skill": -0.38005973471531407
+    }
+   },
+   "2": {
+    "bias": -0.3165791502394424,
+    "mae": 0.6262307728217161,
+    "n": 9,
+    "skill_freeze": {
+     "skill": 0.14407829535598604
+    },
+    "skill_trend": {
+     "skill": -0.35570587025227374
+    }
+   },
+   "3": {
+    "bias": -0.404915867954019,
+    "mae": 0.7614983073098185,
+    "n": 8,
+    "skill_freeze": {
+     "skill": 0.2651175298099917
+    },
+    "skill_trend": {
+     "skill": -0.0498736648664615
+    }
+   },
+   "4": {
+    "bias": -0.5035789913220778,
+    "mae": 0.7745019440508717,
+    "n": 7,
+    "skill_freeze": {
+     "skill": 0.4451604230601265
+    },
+    "skill_trend": {
+     "skill": 0.13774752371845855
+    }
+   },
+   "5": {
+    "bias": -0.6240052490686292,
+    "mae": 0.7440736228937125,
+    "n": 6,
+    "skill_freeze": {
+     "skill": 0.6003204105207366
+    },
+    "skill_trend": {
+     "skill": 0.3252946875393121
+    }
+   }
+  },
+  "np": {
+   "1": {
+    "bias": -0.2371963961476843,
+    "mae": 0.3397495890328857,
+    "n": 10,
+    "skill_freeze": {
+     "skill": 0.22769087139850308
+    },
+    "skill_trend": {
+     "skill": -0.44576056411926146
+    }
+   },
+   "2": {
+    "bias": -0.45745812930121055,
+    "mae": 0.6542886550267819,
+    "n": 9,
+    "skill_freeze": {
+     "skill": 0.22521303321539976
+    },
+    "skill_trend": {
+     "skill": -0.2885233808230516
+    }
+   },
+   "3": {
+    "bias": -0.6076178931242012,
+    "mae": 0.7919647022499307,
+    "n": 8,
+    "skill_freeze": {
+     "skill": 0.3655026832247067
+    },
+    "skill_trend": {
+     "skill": 0.06899374322389462
+    }
+   },
+   "4": {
+    "bias": -0.7402054372690177,
+    "mae": 0.8346578274427009,
+    "n": 7,
+    "skill_freeze": {
+     "skill": 0.5029618323811823
+    },
+    "skill_trend": {
+     "skill": 0.18082699372364142
+    }
+   },
+   "5": {
+    "bias": -0.8913650425520426,
+    "mae": 0.8913650425520426,
+    "n": 6,
+    "skill_freeze": {
+     "skill": 0.5600410100883708
+    },
+    "skill_trend": {
+     "skill": -0.03731754338038984
+    }
+   }
+  },
+  "np_parent": {
+   "1": {
+    "bias": -0.24329279048385452,
+    "mae": 0.3500647779063875,
+    "n": 10,
+    "skill_freeze": {
+     "skill": 0.2128933818912191
+    },
+    "skill_trend": {
+     "skill": -0.4069906182043914
+    }
+   },
+   "2": {
+    "bias": -0.4596159358163173,
+    "mae": 0.661085293994398,
+    "n": 9,
+    "skill_freeze": {
+     "skill": 0.21570687527788157
+    },
+    "skill_trend": {
+     "skill": -0.26012790462021473
+    }
+   },
+   "3": {
+    "bias": -0.6099226174226097,
+    "mae": 0.7980040963500901,
+    "n": 8,
+    "skill_freeze": {
+     "skill": 0.36046280709454503
+    },
+    "skill_trend": {
+     "skill": 0.09681095602659195
+    }
+   },
+   "4": {
+    "bias": -0.7421440535781392,
+    "mae": 0.8413168080217542,
+    "n": 7,
+    "skill_freeze": {
+     "skill": 0.49891781571953464
+    },
+    "skill_trend": {
+     "skill": 0.21325089172864375
+    }
+   },
+   "5": {
+    "bias": -0.8934566327217773,
+    "mae": 0.8934566327217773,
+    "n": 6,
+    "skill_freeze": {
+     "skill": 0.5602000586412577
+    },
+    "skill_trend": {
+     "skill": 0.06871279757407611
+    }
+   }
+  }
+ },
+ "by_era": {
+  "admin": {
+   "E1 recapitalisation and the 2016 float (origins FY2014-FY2017)": {
+    "bias": -0.029691255676804362
+   },
+   "E2 the 2022-24 devaluation sequence (origins FY2018-FY2024)": {
+    "bias": -0.05277522652219917
+   }
+  },
+  "cost_funds": {
+   "E1 recapitalisation and the 2016 float (origins FY2014-FY2017)": {
+    "bias": -0.5374407991792483
+   },
+   "E2 the 2022-24 devaluation sequence (origins FY2018-FY2024)": {
+    "bias": -0.4107859423938444
+   }
+  },
+  "cust_deposits": {
+   "E1 recapitalisation and the 2016 float (origins FY2014-FY2017)": {
+    "bias": -0.3094790820619669
+   },
+   "E2 the 2022-24 devaluation sequence (origins FY2018-FY2024)": {
+    "bias": -0.275734223162423
+   }
+  },
+  "ecl": {
+   "E1 recapitalisation and the 2016 float (origins FY2014-FY2017)": {
+    "bias": 0.08885135638801778
+   },
+   "E2 the 2022-24 devaluation sequence (origins FY2018-FY2024)": {
+    "bias": -0.35073471061479083
+   }
+  },
+  "fin_customers": {
+   "E1 recapitalisation and the 2016 float (origins FY2014-FY2017)": {
+    "bias": -0.47343275334691687
+   },
+   "E2 the 2022-24 devaluation sequence (origins FY2018-FY2024)": {
+    "bias": -0.18174463198954188
+   }
+  },
+  "fin_income": {
+   "E1 recapitalisation and the 2016 float (origins FY2014-FY2017)": {
+    "bias": -0.5557824106004321
+   },
+   "E2 the 2022-24 devaluation sequence (origins FY2018-FY2024)": {
+    "bias": -0.3742714767676258
+   }
+  },
+  "net_fees": {
+   "E1 recapitalisation and the 2016 float (origins FY2014-FY2017)": {
+    "bias": -0.13786359848820243
+   },
+   "E2 the 2022-24 devaluation sequence (origins FY2018-FY2024)": {
+    "bias": -0.2228348345098063
+   }
+  },
+  "net_funds": {
+   "E1 recapitalisation and the 2016 float (origins FY2014-FY2017)": {
+    "bias": -0.5927228585576396
+   },
+   "E2 the 2022-24 devaluation sequence (origins FY2018-FY2024)": {
+    "bias": -0.3277703826912299
+   }
+  },
+  "np": {
+   "E1 recapitalisation and the 2016 float (origins FY2014-FY2017)": {
+    "bias": -0.709418840694753
+   },
+   "E2 the 2022-24 devaluation sequence (origins FY2018-FY2024)": {
+    "bias": -0.4495350390382171
+   }
+  },
+  "np_parent": {
+   "E1 recapitalisation and the 2016 float (origins FY2014-FY2017)": {
+    "bias": -0.7250396351984576
+   },
+   "E2 the 2022-24 devaluation sequence (origins FY2018-FY2024)": {
+    "bias": -0.4451602363986822
+   }
+  },
+  "other_nii": {
+   "E1 recapitalisation and the 2016 float (origins FY2014-FY2017)": {
+    "bias": -0.027099557476628344
+   },
+   "E2 the 2022-24 devaluation sequence (origins FY2018-FY2024)": {
+    "bias": 0.11295099356267894
+   }
+  },
+  "other_op": {
+   "E1 recapitalisation and the 2016 float (origins FY2014-FY2017)": {
+    "bias": -0.6712063082628461
+   },
+   "E2 the 2022-24 devaluation sequence (origins FY2018-FY2024)": {
+    "bias": -0.3423748269475036
+   }
+  },
+  "pbt": {
+   "E1 recapitalisation and the 2016 float (origins FY2014-FY2017)": {
+    "bias": -0.40850164398417643
+   },
+   "E2 the 2022-24 devaluation sequence (origins FY2018-FY2024)": {
+    "bias": -0.34956841539587025
+   }
+  },
+  "total_assets": {
+   "E1 recapitalisation and the 2016 float (origins FY2014-FY2017)": {
+    "bias": -0.33586916237022635
+   },
+   "E2 the 2022-24 devaluation sequence (origins FY2018-FY2024)": {
+    "bias": -0.29490123280550784
+   }
+  }
+ },
+ "macro_split": {
+  "fin_customers": {
+   "macro_share": 0.43067953408131504,
+   "as_known_mae": 0.32578790182433415,
+   "perfect_mae": 0.1854777200573007
+  },
+  "cust_deposits": {
+   "macro_share": 0.4510605531064757,
+   "as_known_mae": 0.31460557078769424,
+   "perfect_mae": 0.17269940801781838
+  },
+  "total_assets": {
+   "macro_share": 0.5062894432835913,
+   "as_known_mae": 0.35917160562042727,
+   "perfect_mae": 0.17732681336758754
+  },
+  "fin_income": {
+   "macro_share": 0.28185833367246177,
+   "as_known_mae": 0.5268777219927044,
+   "perfect_mae": 0.3783728452226982
+  },
+  "cost_funds": {
+   "macro_share": 0.2348515711175455,
+   "as_known_mae": 0.5186737623763835,
+   "perfect_mae": 0.3968624143848414
+  },
+  "net_funds": {
+   "macro_share": 0.3064265990170946,
+   "as_known_mae": 0.5641670635358004,
+   "perfect_mae": 0.3912912689790639
+  },
+  "net_fees": {
+   "macro_share": 0.36458238244044366,
+   "as_known_mae": 0.42714255605880497,
+   "perfect_mae": 0.2714139053291851
+  },
+  "other_nii": {
+   "macro_share": 0.18187164047454044,
+   "as_known_mae": 0.5045019046034241,
+   "perfect_mae": 0.4127473155906693
+  },
+  "admin": {
+   "macro_share": 0.5333477672711392,
+   "as_known_mae": 0.23303101383837788,
+   "perfect_mae": 0.10874444290274911
+  },
+  "other_op": {
+   "macro_share": 0.19201877552364185,
+   "as_known_mae": 0.5120593780386802,
+   "perfect_mae": 0.4137343632722952
+  },
+  "ecl": {
+   "macro_share": 0.046520560386519326,
+   "as_known_mae": 0.7337940150377983,
+   "perfect_mae": 0.6996575062499659
+  },
+  "pbt": {
+   "macro_share": 0.3692599487532306,
+   "as_known_mae": 0.6300240201018045,
+   "perfect_mae": 0.39738138272570783
+  },
+  "np": {
+   "macro_share": 0.22848060754663838,
+   "as_known_mae": 0.6703151612745124,
+   "perfect_mae": 0.5171611459787889
+  },
+  "np_parent": {
+   "macro_share": 0.2279201864791528,
+   "as_known_mae": 0.677110141207428,
+   "perfect_mae": 0.5227830715565055
+  }
+ },
+ "macro_split_check": {
+  "what": "the split's own check in its bank form: ADIB's share of system credit is nominal EGP over nominal EGP of the same year, so inflation cancels identically and the share must be macro-invariant by construction",
+  "max_abs_difference": 0.0,
+  "verdict": "PASS"
+ },
+ "skill": {
+  "fin_customers": {
+   "n": 45,
+   "model": 0.32578790182433415,
+   "freeze": 0.6803036252632328,
+   "trend": 0.18191788168682355,
+   "vs_freeze": 0.521113970694665,
+   "vs_trend": -0.7908514479361994,
+   "model_minus_freeze_mae_ci": [
+    -0.48357329014226874,
+    -0.23366720216742182
+   ]
+  },
+  "cust_deposits": {
+   "n": 45,
+   "model": 0.31460557078769424,
+   "freeze": 0.6901832824299846,
+   "trend": 0.16048760905488044,
+   "vs_freeze": 0.5441709777726914,
+   "vs_trend": -0.9603106597476416,
+   "model_minus_freeze_mae_ci": [
+    -0.4798499635974402,
+    -0.27458042420351403
+   ]
+  },
+  "total_assets": {
+   "n": 45,
+   "model": 0.35917160562042727,
+   "freeze": 0.7027402558512157,
+   "trend": 0.18612299343113647,
+   "vs_freeze": 0.4888984904025888,
+   "vs_trend": -0.929754078199462,
+   "model_minus_freeze_mae_ci": [
+    -0.44104124268095996,
+    -0.24692348718658685
+   ]
+  },
+  "fin_income": {
+   "n": 45,
+   "model": 0.5268777219927044,
+   "freeze": 0.8386281790705988,
+   "trend": 0.4228666227132636,
+   "vs_freeze": 0.371738590305168,
+   "vs_trend": -0.24596668001855626,
+   "model_minus_freeze_mae_ci": [
+    -0.3756911005931485,
+    -0.24484487852372933
+   ]
+  },
+  "cost_funds": {
+   "n": 45,
+   "model": 0.5186737623763835,
+   "freeze": 0.8731399424748425,
+   "trend": 0.5406997473560982,
+   "vs_freeze": 0.4059672027988481,
+   "vs_trend": 0.0407360741102929,
+   "model_minus_freeze_mae_ci": [
+    -0.40117376824133555,
+    -0.29932950974097383
+   ]
+  },
+  "net_funds": {
+   "n": 45,
+   "model": 0.5641670635358004,
+   "freeze": 0.7986952297662485,
+   "trend": 0.49896746838530115,
+   "vs_freeze": 0.293639122270815,
+   "vs_trend": -0.1306690301103004,
+   "model_minus_freeze_mae_ci": [
+    -0.31946774379253234,
+    -0.14719282082156307
+   ]
+  },
+  "net_fees": {
+   "n": 45,
+   "model": 0.42714255605880497,
+   "freeze": 0.6153859941890973,
+   "trend": 0.6586543911022699,
+   "vs_freeze": 0.3058949015866754,
+   "vs_trend": 0.35149213027491655,
+   "model_minus_freeze_mae_ci": [
+    -0.3283895690573962,
+    -0.05195303907100903
+   ]
+  },
+  "other_nii": {
+   "n": 45,
+   "model": 0.5045019046034241,
+   "freeze": 0.46074474599451365,
+   "trend": 1.073206014485471,
+   "vs_freeze": -0.09497049936936564,
+   "vs_trend": 0.5299114076943574,
+   "model_minus_freeze_mae_ci": [
+    -0.1393346271567661,
+    0.22426185859659792
+   ]
+  },
+  "admin": {
+   "n": 45,
+   "model": 0.23303101383837788,
+   "freeze": 0.3612078869466491,
+   "trend": 0.25973996296824725,
+   "vs_freeze": 0.3548562413511285,
+   "vs_trend": 0.10282957164021189,
+   "model_minus_freeze_mae_ci": [
+    -0.22068772112356477,
+    -0.020470922509297097
+   ]
+  },
+  "other_op": {
+   "n": 18,
+   "model": 0.41172253680240983,
+   "freeze": 1.328016782988237,
+   "trend": 1.9722300307529,
+   "vs_freeze": 0.6899718873462033,
+   "vs_trend": 0.7912401036479327,
+   "model_minus_freeze_mae_ci": [
+    -1.884355031932777,
+    -0.23462792343760172
+   ]
+  },
+  "ecl": {
+   "n": 25,
+   "model": 0.6627736953898382,
+   "freeze": 1.0583506266303826,
+   "trend": 0.8813334629310874,
+   "vs_freeze": 0.37376737093263446,
+   "vs_trend": 0.24798759690160388,
+   "model_minus_freeze_mae_ci": [
+    -0.6931785269616371,
+    -0.11788812249935322
+   ]
+  },
+  "pbt": {
+   "n": 30,
+   "model": 0.5873143238127576,
+   "freeze": 0.9028347727992522,
+   "trend": 0.5846014498540791,
+   "vs_freeze": 0.34947751071684896,
+   "vs_trend": -0.004640552908918849,
+   "model_minus_freeze_mae_ci": [
+    -0.4118852314996683,
+    -0.21237337098240958
+   ]
+  },
+  "np": {
+   "n": 35,
+   "model": 0.5818922780232929,
+   "freeze": 0.9839142223515154,
+   "trend": 0.5606382694193339,
+   "vs_freeze": 0.4085945046788796,
+   "vs_trend": -0.037910377802022444,
+   "model_minus_freeze_mae_ci": [
+    -0.4823987269649264,
+    -0.31106926762017384
+   ]
+  },
+  "np_parent": {
+   "n": 35,
+   "model": 0.5830161054869003,
+   "freeze": 0.9773488579842984,
+   "trend": 0.5878614769923575,
+   "vs_freeze": 0.40347185068663904,
+   "vs_trend": 0.008242369495356727,
+   "model_minus_freeze_mae_ci": [
+    -0.47976444703426824,
+    -0.29957368526279027
+   ]
+  }
+ }
+}

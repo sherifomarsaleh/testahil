@@ -1,0 +1,120 @@
+{
+ "ticker": "STC",
+ "years": [
+  "FY2023",
+  "FY2024",
+  "FY2025"
+ ],
+ "sources": {
+  "FY2025": "stc_Annual-2025-en.txt, notes 17, 18 and 32 (audited, 31 December 2025)",
+  "FY2024": "stc_Annual-2025-en.txt, notes 17, 18 and 32 (audited, 31 December 2025)",
+  "FY2023": "stc_Annual-2024-en.txt, notes 17, 18 and 32 (audited, 31 December 2024)"
+ },
+ "trade_receivables": [
+  21401271,
+  22223164,
+  26727198
+ ],
+ "inventories": [
+  1904971,
+  1889227,
+  1923203
+ ],
+ "inventory_expense": [
+  11023000,
+  11939000,
+  11899000
+ ],
+ "payables_total": [
+  21823200,
+  22627472,
+  22259436
+ ],
+ "trade_payables": [
+  4875450,
+  6048267,
+  7452911
+ ],
+ "dso": [
+  108.82937979394309,
+  106.87956357951644,
+  125.36100454036259
+ ],
+ "dio": [
+  63.07850993377483,
+  57.7575889940531,
+  58.99395705521472
+ ],
+ "dpo_trade": [
+  161.4387417218543,
+  184.9080706089287,
+  228.6169018404908
+ ],
+ "dpo_total": [
+  215.0672994196764,
+  214.1448015970135,
+  202.51494242651097
+ ],
+ "contract_assets": [
+  7963387,
+  8722920,
+  9224434
+ ],
+ "contract_liabilities": [
+  5244341,
+  5237420,
+  5359851
+ ],
+ "dco": [
+  40.495280316255474,
+  41.95180680568418,
+  43.26620069025848
+ ],
+ "dcl": [
+  26.66843377937447,
+  25.188724876558126,
+  25.13979600654984
+ ],
+ "cash_cycle": [
+  -29.33256315507747,
+  -32.74456709431789,
+  -0.03357614722501623
+ ],
+ "net_working_capital": [
+  4202088,
+  4970419,
+  10255548
+ ],
+ "nwc_share_of_revenue": [
+  0.058543524729265904,
+  0.06549210008515495,
+  0.13178774889189518
+ ],
+ "latest_disclosed": {
+  "trade_receivables": 26727997,
+  "inventories": 1781441,
+  "payables_total": 21198207,
+  "contract_assets": 11258839,
+  "contract_liabilities": 4408076,
+  "date": "2026-06-30",
+  "source": "the reviewed interim to 30 June 2026, statement of financial position and notes 10 and 14"
+ },
+ "denominator_caveat": "The conventional cash conversion cycle mixes denominators \u2014 receivable days on revenue, inventory and payable days on cost \u2014 which is the standard construction and is NOT net working capital in days of revenue. On this book the two differ by a factor of three, so both are published and the projection runs on net working capital as a share of revenue, which is the one an actual balance sheet obeys.",
+ "disclosed_payment_days": [
+  90,
+  107
+ ],
+ "disclosed_payment_source": "note 32 of the FY2025 audited statements: trade payables \"are non-interest bearing and are normally settled by the Group on average range of 90-107 days\"",
+ "measured_trade_days_outside_disclosed_range": [
+  "FY2023",
+  "FY2024",
+  "FY2025"
+ ],
+ "government_receivable_share": [
+  null,
+  0.7251956772603875,
+  0.7504055487134086
+ ],
+ "finding": "Days sales outstanding runs 108.8, 106.9 and 125.4 \u2014 RISING, and the receivable book is mostly sovereign: government and government-related entities owed 22,577 million of 30,086 million gross in FY2025, 75% of the book. A telecom collecting three quarters of its receivables from the state does not collect on commercial terms, and the days say so rather than the study assuming a norm. Days inventory is 59.0 on the note's OWN cost base and would read 17.5 against cost of revenues \u2014 a factor of 3.4, which is the difference between measuring a real cycle and dividing two unrelated numbers.",
+ "payables_finding": "The measured trade payable days \u2014 161.4, 184.9, 228.6 \u2014 do not reconcile with the settlement range the filings state, 90 to 107 days, and the disclosure is not what is wrong. Trade payables are not bought only against inventory: network access, contractors and services sit on trade terms too, so the inventory cost base is a fraction of what the payable pays for and the ratio runs about twice the stated range. The purchases actually on trade terms are not disclosed, so the right denominator cannot be built and is not invented; the balance-sheet projection uses the WHOLE payables line against cost of revenues, which is at least a consistent pair."
+}

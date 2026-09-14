@@ -45,12 +45,12 @@
    "value": 0.02,
    "band": 0.005,
    "horizon": "long run",
-   "source": "The Bank of Korea's published inflation target, 2 percent on the consumer price index \u2014 an EXPLICIT target set by the central bank, unlike the pegged markets where the anchor has to be imported. The 0.5pp band is the dispersion of the IMF's own published Korean projections about it over 2026-2031 (2.5%, then 1.9%, then 2.0% held).",
+   "source": "The Bank of Korea's published inflation target, 2 percent on the consumer price index — an EXPLICIT target set by the central bank, unlike the pegged markets where the anchor has to be imported. The 0.5pp band is the dispersion of the IMF's own published Korean projections about it over 2026-2031 (2.5%, then 1.9%, then 2.0% held).",
    "date": "2026-09-03"
   },
   "terminal": {
    "value": 0.02,
-   "source": "The Bank of Korea's 2 percent target, which is also the IMF's own published figure for 2028 through 2031 \u2014 the two agree, which is a coherence check rather than a second assumption.",
+   "source": "The Bank of Korea's 2 percent target, which is also the IMF's own published figure for 2028 through 2031 — the two agree, which is a coherence check rather than a second assumption.",
    "date": "2026-09-03"
   }
  },
@@ -116,12 +116,17 @@
  },
  "real_rate_convention": {
   "value": 0.019751,
-  "source": "DERIVED, NEVER QUOTED. the FOMC's own longer-run median federal funds projection (3.1%, Summary of Economic Projections of 17 June 2026, FRED FEDTARMDLR) plus the ten-year term premium (0.8751%, Kim-Wright, FRED THREEFYTP10, 28 August 2026) less long-run US inflation (2.2%) = 1.9751%. THE UNITED STATES REAL RATE IS USED FOR A FLOATING CURRENCY AND THAT IS AN ASSUMPTION, NOT AN IDENTITY: it says the long-run real rate is common across open capital markets, which is the textbook position and is what the observed Korean curve supports here \u2014 4.181% nominal less 2.0% terminal inflation is a 2.18% real rate, 21bp from this convention. That agreement is a cross-check, not the source. The derived terminal KRW risk-free rate is 2.0% + 1.9751% = 3.9751% against a live 4.181%.",
+  "source": "DERIVED, NEVER QUOTED. the FOMC's own longer-run median federal funds projection (3.1%, Summary of Economic Projections of 17 June 2026, FRED FEDTARMDLR) plus the ten-year term premium (0.8751%, Kim-Wright, FRED THREEFYTP10, 28 August 2026) less long-run US inflation (2.2%) = 1.9751%. THE UNITED STATES REAL RATE IS USED FOR A FLOATING CURRENCY AND THAT IS AN ASSUMPTION, NOT AN IDENTITY: it says the long-run real rate is common across open capital markets, which is the textbook position and is what the observed Korean curve supports here — 4.181% nominal less 2.0% terminal inflation is a 2.18% real rate, 21bp from this convention. That agreement is a cross-check, not the source. The derived terminal KRW risk-free rate is 2.0% + 1.9751% = 3.9751% against a live 4.181%.",
   "date": "2026-09-03"
  },
  "erp_terminal": {
   "value": 0.0487,
   "source": "A. Damodaran, 'Country Default Spreads and Risk Premiums', ctryprem, LAST UPDATED 5 JANUARY 2026, read live from the original file on 3 September 2026. Terminal equity risk premium held at the rating-basis Korean ERP of 4.87%; no convergence is assumed for an Aa2 sovereign.",
   "date": "2026-01-05"
+ },
+ "real_gdp_lt": {
+  "value": 0.02,
+  "source": "Korea long-run real GDP growth, the IMF World Economic Outlook medium-term projection rounded to the nearest half point. USED ONLY AS A CEILING on a terminal real growth rate [R-MACRO-02] — never as a company's growth rate and never inside a discount rate — so it binds in one direction only. A study wanting to sit at or above it re-sources this figure live and argues it here.",
+  "date": "2026-09-10"
  }
 }

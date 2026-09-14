@@ -1,0 +1,138 @@
+{
+ "era_stability": {
+  "admin": {
+   "post_bias": -0.6772289866549133,
+   "pre_bias": 0.11011139419188869,
+   "same_sign": false,
+   "verdict": "SIGN CHANGES BETWEEN ERAS \u2014 this is instability, not a bias, and it is reported rather than corrected for"
+  },
+  "cogs": {
+   "post_bias": -0.3803060868814774,
+   "pre_bias": 0.08767534211242024,
+   "same_sign": false,
+   "verdict": "SIGN CHANGES BETWEEN ERAS \u2014 this is instability, not a bias, and it is reported rather than corrected for"
+  },
+  "gp": {
+   "post_bias": -0.7362961199174487,
+   "pre_bias": -0.11319646988494297,
+   "same_sign": true,
+   "verdict": "bias holds its sign across eras"
+  },
+  "nonop": {
+   "post_bias": -0.7751451756935746,
+   "pre_bias": 0.30954329500550265,
+   "same_sign": false,
+   "verdict": "SIGN CHANGES BETWEEN ERAS \u2014 this is instability, not a bias, and it is reported rather than corrected for"
+  },
+  "np": {
+   "post_bias": -0.8059722868738981,
+   "pre_bias": -0.03495841050735472,
+   "same_sign": true,
+   "verdict": "bias holds its sign across eras"
+  },
+  "pbt": {
+   "post_bias": -0.8149914215165596,
+   "pre_bias": -0.014152916044853947,
+   "same_sign": true,
+   "verdict": "bias holds its sign across eras"
+  },
+  "rev": {
+   "post_bias": -0.5523783498134596,
+   "pre_bias": 0.006268662285709696,
+   "same_sign": false,
+   "verdict": "SIGN CHANGES BETWEEN ERAS \u2014 this is instability, not a bias, and it is reported rather than corrected for"
+  },
+  "sell": {
+   "post_bias": -0.5461649796369846,
+   "pre_bias": 0.04128929629682395,
+   "same_sign": false,
+   "verdict": "SIGN CHANGES BETWEEN ERAS \u2014 this is instability, not a bias, and it is reported rather than corrected for"
+  },
+  "vol_proxy": {
+   "post_bias": 0.26321905338601026,
+   "pre_bias": 0.008148294791847093,
+   "same_sign": true,
+   "verdict": "bias holds its sign across eras"
+  }
+ },
+ "split": {
+  "admin": {
+   "company_share": 0.0,
+   "macro_share": 0.09423741674629404,
+   "mae_foresight": 0.585405594179717,
+   "mae_macro_actual": 0.585405594179717,
+   "mae_model": 0.6463124057043806,
+   "spec_residual": 0.905762583253706
+  },
+  "cogs": {
+   "company_share": 1.2599085911687338,
+   "macro_share": -0.25990859116873394,
+   "mae_foresight": 4.440892098500627e-17,
+   "mae_macro_actual": 0.4254144709063761,
+   "mae_model": 0.33765502822053717,
+   "spec_residual": 1.3152157460543096e-16
+  },
+  "gp": {
+   "company_share": 0.3540111190510562,
+   "macro_share": 0.6459888809489438,
+   "mae_foresight": 2.2204460492503132e-17,
+   "mae_macro_actual": 0.25172850843153116,
+   "mae_model": 0.711075146753304,
+   "spec_residual": 3.12266018491666e-17
+  },
+  "nonop": {
+   "company_share": 0.9012765636088146,
+   "macro_share": 0.0987234363911854,
+   "mae_foresight": 0.0,
+   "mae_macro_actual": 0.7611945716620009,
+   "mae_model": 0.8445737994274373,
+   "spec_residual": 0.0
+  },
+  "np": {
+   "company_share": 0.41905481058910665,
+   "macro_share": 0.5576117330279432,
+   "mae_foresight": 0.018031469162883684,
+   "mae_macro_actual": 0.34186578546318425,
+   "mae_model": 0.7727731745760292,
+   "spec_residual": 0.02333345638295013
+  },
+  "pbt": {
+   "company_share": 0.4163997687607879,
+   "macro_share": 0.5603611718934731,
+   "mae_foresight": 0.018031469162883694,
+   "mae_macro_actual": 0.3411211208625226,
+   "mae_model": 0.7759121784845335,
+   "spec_residual": 0.023239059345738985
+  },
+  "rev": {
+   "company_share": 0.5402197221199523,
+   "macro_share": 0.45978027788004766,
+   "mae_foresight": 4.440892098500627e-17,
+   "mae_macro_actual": 0.26864205253746404,
+   "mae_model": 0.4972829416209536,
+   "spec_residual": 8.930312558128386e-17
+  },
+  "sell": {
+   "company_share": 0.7558017910072966,
+   "macro_share": 0.2441982089927034,
+   "mae_foresight": 2.2204460492503132e-17,
+   "mae_macro_actual": 0.35845280837458,
+   "mae_model": 0.4742682706491753,
+   "spec_residual": 4.6818355489204056e-17
+  },
+  "vol_proxy": {
+   "company_share": 1.0,
+   "macro_share": 0.0,
+   "mae_foresight": 0.0,
+   "mae_macro_actual": 0.26864205253746387,
+   "mae_model": 0.26864205253746387,
+   "spec_residual": 0.0
+  }
+ },
+ "zero_by_construction_check": {
+  "driver": "vol_proxy",
+  "macro_share": 0.0,
+  "passes": true,
+  "why": "D1 carries no inflation, FX or urea term, so substituting the actual macro path must leave its error untouched. A non-zero share here would mean the split is wired wrong and the whole diagnosis is void."
+ }
+}

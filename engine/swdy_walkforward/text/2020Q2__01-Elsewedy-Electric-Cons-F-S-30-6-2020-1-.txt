@@ -1,0 +1,1982 @@
+                                                                                                                                                          Translated from Arabic
+EL Sewedy Electric Company
+( An Egyptian joint stock company)
+ Consolidated income statement
+For the period ended 30 June 2020
+
+
+
+
+                                                                                 Financial Period       Financial Period           Financial Period         Financial Period
+                                                                                  From 1/1/2020          From 1/1/2019              From 1/4/2020            From 1/4/2019
+                              LE                                                   To 30/6/2020           To 30/6/2019              To 30/6/2020             To 30/6/2019
+
+
+Operational revenues                                                 )13-34(        20 118 340 818          21 553 628 853               9 339 476 744            10 330 084 817
+
+Operational costs                                                    )13-34(      (17 817 967 170)        (17 992 517 584)              (8 237 382 693)          (8 578 559 131)
+
+Gross profits                                                                       2 300 373 648           3 561 111 269               1 102 094 051             1 751 525 686
+
+
+
+Other operating income                                                 )5(             188 447 718              55 349 584                  98 297 296                24 219 046
+
+Selling and distribution expenses                                                    ( 362 150 871)          ( 359 484 420)              ( 169 468 013)            ( 187 729 324)
+
+Administrative expenses                                                             (1 000 753 116)          ( 923 562 870)              ( 469 972 447)            ( 502 268 457)
+
+Other operating expenses                                               )6(           ( 156 788 086)          ( 151 230 140)               ( 55 307 785)             ( 21 868 499)
+Operating profits                                                                     969 129 293           2 182 183 423                 505 643 102             1 063 878 452
+
+
+
+Financing income                                                                       378 061 102             343 457 687                 255 265 795               130 564 851
+
+Financing expenses                                                                   ( 213 307 905)          ( 224 128 856)              ( 147 465 900)            ( 121 705 463)
+
+Net financing Income                                                   )7(            164 753 197             119 328 831                 107 799 895                    8 859 388
+
+Share of profit of equity accounted investees                                         167 094 219             192 951 815                  84 963 189               101 322 696
+(Lossess) from disposal of subsidiaries                                )10(                    -               ( 293 351)                          -                 6 033 090
+Net profits for the period before tax                                               1 300 976 709           2 494 170 718                 698 406 186             1 180 093 626
+
+
+
+Current income tax                                                   )16-34(         ( 327 673 619)          ( 560 359 883)              ( 200 867 042)            ( 287 676 415)
+Deferred tax                                                         )16-34(            52 659 783              19 541 451                  64 728 617                65 428 759
+Net profits for the period after tax                                                1 025 962 873           1 953 352 286                 562 267 761               957 845 970
+Attributable to :
+Equity holders of the holding company                                                  914 243 347           1 888 082 166                 514 164 861               930 860 467
+
+Non controlling interest                                                               111 719 526              65 270 120                  48 102 900                26 985 503
+                                                                                    1 025 962 873           1 953 352 286                 562 267 761               957 845 970
+Earnings per share (L.E/share)                                    )31(,)17-34(         0.42                    0.86                     0.24                      0.43
+
+
+
+
+* The accompanying notes in the pages from (6) to (35) are an integral part of these consolidated interim financial statements .
+
+
+
+
+                                                                                        -2-
+                                                                                                                                                         Translated from Arabic
+EL Sewedy Electric Company
+( An Egyptian joint stock company)
+ Consolidated interim other comprehensive income statement
+For the period ended 30 June 2020
+
+
+
+
+                                                                                 Financial Period       Financial Period           Financial Period        Financial Period
+                                                                                  From 1/1/2020          From 1/1/2019              From 1/4/2020           From 1/4/2019
+                                LE                                                 To 30/6/2020           To 30/6/2019              To 30/6/2020            To 30/6/2019
+
+
+Net profits for the period after tax                                                 1 025 962 873           1 953 352 286                 562 267 761              957 845 970
+Other comprehensive income items
+Foreign operations translation difference                                               96 938 855           ( 211 980 714)                222 210 767             ( 83 177 293)
+Total comprehensive income                                                          1 122 901 728           1 741 371 572                 784 478 528              874 668 677
+
+attributable to :
+Owners of the company                                                                1 039 297 442           1 687 600 185                 752 637 309              857 203 958
+Non controlling interests                                                               83 604 286              53 771 387                  31 841 219               17 464 719
+                                                                                    1 122 901 728           1 741 371 572                 784 478 528              874 668 677
+
+
+
+
+* The accompanying notes in the pages from (6) to (35) are an integral part of these consolidated interim financial statements .
+
+
+
+
+                                                                                        -3-
+EL Sewedy Electric Company
+(An Egyptian joint stock company)
+Interim Consolidated statement of changes in Equity
+For the period ended at 30 June 2020
+                                                                                         Issued and Paid Up          Legal Reserve        Treasury Stocks    Retained Earnings      Translation Reserve    Parent Company       Non Controlling     Total Owner's Equity
+L.E                                                                                            Capital                                                                                                       Equity Share          Interest
+Balance as of 1 January 2019                                                                  2 184 180 000                416 209 242        ( 1 422 160)       11 601 298 507           1 420 979 250       15 621 244 839        516 570 862           16 137 815 701
+Impact of adjustments of Retained Earning                                                                -                         -                 -            ( 229 182 077)                   -           ( 229 182 077)         5 769 940            ( 223 412 137)
+Other comprehensive income
+Net profits for the period                                                                               -                         -                 -             1 888 082 166                    -          1 888 082 166          65 270 120           1 953 352 286
+Foreign operations translation difference                                                                -                         -                 -                      -             ( 200 481 981)       ( 200 481 981)       ( 11 498 733)          ( 211 980 714)
+Total other comprehensive income                                                                         -                         -                 -            1 888 082 166           ( 200 481 981)       1 687 600 185         53 771 387            1 741 371 572
+Transactions with owners of the parent company
+Transferred to legal reserve                                                                             -                   20 626 758              -              ( 20 626 758)                   -                   -                   -                       -
+Dividends to shareholders                                                                                -                         -                 -            (1 746 206 275)                   -         (1 746 206 275)               -             (1 746 206 275)
+Dividends to employees                                                                                   -                         -                 -              ( 56 609 808)                   -           ( 56 609 808)               -               ( 56 609 808)
+Total transactions with owners of the parent company                                                     -                  20 626 758               -           (1 823 442 841)                   -         (1 802 816 083)               -              (1 802 816 083)
+Change in ownership interests and non controlling interests
+Subsidiaries dividends to non controlling interest                                                       -                         -                 -             ( 255 424 818)                   -          ( 255 424 818)       ( 32 204 424)          ( 287 629 242)
+Employee dividends & board rearwards                                                                     -                         -                 -             ( 357 398 505)                   -          ( 357 398 505)       ( 16 515 002)          ( 373 913 507)
+Total changes in ownership interests and non controlling interests                                       -                         -                 -            ( 612 823 323)                   -           ( 612 823 323)      ( 48 719 426)           ( 661 542 749)
+Balances as at 30 June 2019                                                                   2 184 180 000                436 836 000        ( 1 422 160)       10 823 932 432           1 220 497 269       14 664 023 541        527 392 763           15 191 416 304
+Balance as of 1 January 2020                                                                  2 184 180 000                436 836 000        ( 1 422 160)       13 012 401 531           1 084 522 276       16 716 517 647        582 004 359           17 298 522 006
+Retained Earnings adjustments                                                                            -                         -                 -            ( 248 554 717)                               ( 248 554 717)        42 240 702            ( 206 314 015)
+Other comprehensive income
+Net profits for the period                                                                               -                         -                 -               914 243 347                    -            914 243 347        111 719 526            1 025 962 873
+Foreign operations translation difference                                                                -                         -                 -                      -               125 054 095          125 054 095        ( 28 115 240)             96 938 855
+Total other comprehensive income                                                                         -                         -                 -              914 243 347             125 054 095        1 039 297 442         83 604 286            1 122 901 728
+Transactions with owners of the parent company
+Transferred to Legal reserve                                                                             -                         -                 -                      -                       -                   -                   -                       -
+Dividends to shareholders                                                                                -                         -                 -            (1 746 206 272)                   -         (1 746 206 272)               -             (1 746 206 272)
+Dividends to employees                                                                                   -                         -                 -              ( 91 856 532)                   -           ( 91 856 532)               -               ( 91 856 532)
+Purchasing own shares                                                                                    -                         -         ( 73 445 714)                  -                       -           ( 73 445 714)               -               ( 73 445 714)
+Total transactions with owners of the parent company                                                     -                                   ( 73 445 714)       (1 838 062 804)                   -         (1 911 508 518)               -              (1 911 508 518)
+Change in ownership interests and non controlling interests
+Subsidiaries dividends to non controlling interest                                                       -                         -                 -             ( 125 668 664)                   -          ( 125 668 664)       ( 46 856 239)          ( 172 524 903)
+Employee dividends & board rearwards                                                                     -                         -                 -             ( 561 235 676)                   -          ( 561 235 676)       ( 17 524 909)          ( 578 760 585)
+Total changes in ownership interests and non controlling interest                                        -                         -                 -            ( 686 904 340)                   -           ( 686 904 340)      ( 64 381 148)           ( 751 285 488)
+Balances as at 30 June 2020                                                                   2 184 180 000                436 836 000       ( 74 867 874)       11 153 123 017           1 209 576 371       14 908 847 514        643 468 199           15 552 315 713
+* The accompanying notes in the pages from (6) to (35) are an integral part of these consolidated interim financial statements .
+                                                                                                                                             -4-
+                                                                                                                              Translated from Arabic
+
+El Sewedy Electric Company
+( An Egyptian joint stock company)
+For the period ended 30 June 2020
+
+                                                                                                   Financial Period                Financial Period
+                                                                                 Note No.           From 1/1/2020                   From 1/1/2019
+                                                                                                     To 30/6/2020                    To 30/6/2019
+                                                                                                         L.E                             L.E
+Cash flows from operating activities:
+Net profits for the period before tax                                                                     1 300 976 709                 2 494 170 718
+Adjustments :-
+Depreciation                                                                       )11(                     453 349 322                    339 150 263
+Amortization                                                                        )6(                        14 815 114                      8 270 021
+Provisions and receivable impairment (Net)                                                                     30 698 890                     56 161 935
+Net finance (income)                                                                                      ( 164 753 197)                 ( 119 328 831)
+Share of profits of equity accounted investees                                                            ( 167 094 219)                 ( 192 951 815)
+Capital gain                                                                        )5(                    ( 12 109 135)                   ( 2 350 879)
+loss from disposal of subsidiaries                                                 )10(                    -                                    293 351
+Operating profit before changes in working capital                                                        1 455 883 484                 2 583 414 763
+Changes in :
+Trade, notes and other receivables                                                                          963 540 912                 (1 540 116 740)
+Inventories                                                                                               1 172 570 571                  ( 273 526 572)
+Related parties                                                                                              ( 1 698 953)                ( 126 428 326)
+Trade, notes and other payables                                                                          (1 479 007 306)                 2 973 477 702
+
+Net cash provided by operating activities                                                                 2 111 288 708                 3 616 820 827
+
+
+
+Cash flows from investing activities:
+(Paid for ) acquisition of fixed assets and project under progress                                        ( 502 700 409)                 ( 682 722 351)
+(Paid for) intangible assets                                                                               ( 12 202 791)                   ( 6 792 743)
+Change in investment available for sale                                                                           ( 533)                          7 085
+(Paid under) investement                                                                                   -                            (1 050 386 894)
+Change in equity-accounted investees                                                                       ( 29 589 801)                   431 297 546
+
+Proceeds from sale of fixed assets and projects under progress                                                 78 558 322                     39 552 708
+
+Proceeds from treasury bills and investment fund                                                           ( 57 684 261)                 2 021 303 440
+
+(Paid for) Treasury Stocks                                                                                 ( 73 445 714)                  -
+
+Net cash flows (used in) investing activities                                                            ( 597 065 187)                   752 258 791
+
+
+Cash flows from financing activities
+Dividends paid to NCI                                                                                          78 988 749                     15 838 170
+Paid collected from loans, bank facilities and overdraft                                                  1 100 658 161                    439 372 892
+Dividends (paid to ) shareholders                                                                        (1 746 206 272)                (1 746 206 275)
+Net cash flows (used in) financing activities                                                            ( 566 559 362)                (1 290 995 213)
+Net change in cash and banks                                                                                947 664 159                 3 078 084 405
+Cash and banks at the beginning of the period                                                             8 516 382 729                 6 347 745 383
+Cash and banks at the end of the period                                                                   9 464 046 888                 9 425 829 788
+
+
+* The accompanying notes in the pages from (6) to (35) are an integral part of these consolidated interim financial statements .
+
+
+
+
+                                                                           -5-
+                                                                                Translated From Arabic
+
+EL Sewedy Electric Company
+Notes to the interim consolidated financial statements for the period ended 30 June 2020
+______________________________________________________________________________________
+
+1. Company background
+
+    El Sewedy Electric Company “previously El Sewedy Cables” is an Egyptian Joint Stock Company,
+    established under the Investment Incentives and Guarantees Law No. 8 of 1997 and was registered in the
+    commercial registration under No. 14584 on 1 June 2005.
+
+    The Company’s Extra-Ordinary General Assembly held on 19/4/2010 decided to change the company name
+    from “EL Sewedy Cables” to “EL Sewedy Electric “. This change was authenticated in the company
+    commercial register on 4/10/2010. The company has obtained the approval for the change of its name from
+    Misr for Central Clearing, Depository and Registry Company on 31/10/2010, and changed the name in the
+    Egyptian Stock Exchange on 3/11/2010.
+
+    The Company’s purpose is to establish and operates a production facility for power cables, transformers,
+    terminators, joint accessories, copper and aluminum terminators either coated or not coated production,
+    with low, med and high potential & production of (PVC). In addition to designing, building, managing,
+    operating and maintaining power generation units and power nets. The duration of the company is 25 years
+    from 1/6/2005 (the date of its registration in the commercial register).
+    The consolidated financial statement includes the holding company and its subsidiaries “The group”.
+
+2. Basis of preparation
+   Statement of compliance
+
+    The consolidated financial statements have been prepared in accordance with Egyptian Accounting
+    Standards and the Egyptian laws and regulations.
+    The accounting policies and basis mentioned below in note (34) are applied and followed, and it is the same
+    accounting policies and basis followed in the preparation of company’s separate financial statements either
+    interim or year end
+
+    The consolidated financial statements were approved by the Board of Directors on 19 August 2020.
+
+3. Functional and presentation currency
+    These consolidated financial statements are presented in Egyptian Pound, which is the company’s
+    functional currency.
+4. Use of estimates and judgments
+   The preparation of the financial statements in conformity with Egyptian Accounting Standards requires
+   management to make estimates and assumptions that affect the application of the accounting policies and
+   the reported amounts of assets, liabilities, income, and expenses. Actual results may differ from these
+   estimates. Estimates and underlying assumptions are reviewed on an ongoing basis. Revisions to
+   accounting estimates are recognized in the period in which the estimates are revised and in any future
+   periods affected.
+
+    4-1 Judgements
+    Information about critical judgments in applying accounting policies that have the most significant effect
+    on the amounts recognized in the financial statements is included in the following notes:
+
+     • Note (34-18):                 Lease classification.
+
+
+
+
+                                                           6
+                                                                                   Translated From Arabic
+
+EL Sewedy Electric Company
+Notes to the interim consolidated financial statements for the period ended 30 June 2020
+______________________________________________________________________________________
+   4-2 Uncertain estimates and judgments
+
+    Information on uncertain assumptions and estimates and that have significant risks to what may result in
+    significant adjustments to the carrying amounts of assets and liabilities during the period ended as at 30
+    June 2020, are presented in the following clarifications:
+    Note no. (34-12): Provisions and contingent liabilities
+    Note no. (34-8): Impairment of receivables and notes receivables
+    Measurement of fair values
+    The financial statements have been prepared on the historical cost basis except for a number of the
+    Company’s accounting policies and disclosures require the measurement of fair values, for both financial
+    and non-financial assets and liabilities.
+    The Company has an established control framework with respect to the measurement of fair values. This
+    includes a valuation team that has overall responsibility for overseeing all significant fair value
+    measurements, including Level 3 fair values, and reports directly to the chief financial officer.
+    The valuation team regularly reviews significant unobservable inputs and valuation adjustments. If third
+    party information, such as broker quotes or pricing services, is used to measure fair values, then the
+    valuation team assesses the evidence obtained from the third parties to support the conclusion that these
+    valuations meet the requirements of EAS, including the level in the fair value hierarchy in which the
+    valuations should be classified.
+    Significant valuation issues are reported to the Company’s audit committee.
+    When measuring the fair value of an asset or a liability, the Company uses observable market data as far as
+    possible. Fair values are categorized into different levels in a fair value hierarchy based on the inputs used
+    in the valuation techniques as follows:
+    Level 1:              Quoted prices (unadjusted) in active markets for identical assets or liabilities.
+    Level 2:              Inputs other than quoted prices included in Level 1 that are observable for the asset or liability,
+                          either directly (i.e. as prices) or indirectly (i.e. derived from prices).
+    Level 3:              Inputs for the asset or liability that are not based on observable market data.
+    If the inputs used to measure the fair value of an asset or a liability fall into different levels of the fair value
+    hierarchy, then the fair value measurement is categorized in its entirety in the same level of the fair value
+    hierarchy as the lowest level input that is significant to the entire measurement.
+    The Company recognizes transfers between levels of the fair value hierarchy at the end of the reporting
+    period during which the change has occurred.
+
+
+
+
+                                                            7
+                                                                                   Translated From Arabic
+
+   EL Sewedy Electric Company
+   Notes to the interim consolidated financial statements for the period ended 30 June 2020
+   ______________________________________________________________________________________
+   5. Other operating income
+
+                                  Financial period            Financial period           Financial period      Financial period
+                                   From 1/1/2020               From 1/1/2019              From 1/4/2020         From 1/4/2019
+            EGP                     To 30/6/2020                To 30/6/2019               To 30/6/2020          To 30/6/2019
+Capital gain                        12 109 135                   2 350 879                  9 593 759             2 067 424
+Reversal of receivable               21 892 546                     73 725                    8 965 720           (8 589 952)
+impairment
+Provision no longer required         25 409 550                    852 283                    10 438 717           (209 494)
+
+Others                               129 036 487                  52 072 697                  69 299 100          30 951 068
+
+                                    188 447 718                   55 349 584                  98 297 296         24 219 046
+   6. Other operating expenses
+
+                               Financial period           Financial period           Financial period       Financial period
+                                From 1/1/2020              From 1/1/2019              From 1/4/2020         From 1/4/2019
+          EGP                    To 30/6/2020               To 30/6/2019               To 30/6/2020          To 30/6/2019
+Provisions                        46 993 433                 130 051 583                19 996 600            73 629 031
+Impairment Receivables            93 720 655                 11 976 185                 26 963 640           (56 146 364)
+Amortizations                     14 815 114                  8 270 021                 7 448 259              3 894 047
+Others                             1 258 884                   932 351                   899 286               491 785
+                                 156 788 086                151 230 140                55 307 785             21 868 499
+   7. Net financing income
+
+
+                               Financial period           Financial period         Financial period         Financial period
+                                From 1/1/2020              From 1/1/2019            From 1/4/2020            From 1/4/2019
+          EGP                    To 30/6/2020               To 30/6/2019             To 30/6/2020             To 30/6/2019
+Finance Income
+Interest earned                   136 811 584               300 139 821               58 024 122             137 352 347
+Changes In Present Value          180 735 738               120 435 073               80 560 397              55 518 984
+Foreign exchange gain             60 513 780                (77 117 207)              116 681 276            (62 306 480)
+                                 378 061 102                343 457 687              255 265 795             130 564 851
+Finance Cost
+Interest expense                 (213 307 905)             (224 128 856)             (147 465 900)           (121 705 463)
+                                 (213 307 905)             (224 128 856)             (147 465 900)           (121 705 463)
+                                 164 753 197                119 328 831              107 799 895              8 859 388
+
+
+
+
+                                                              8
+                                                                                 Translated From Arabic
+
+ EL Sewedy Electric Company
+ Notes to the interim consolidated financial statements for the period ended 30 June 2020
+ ______________________________________________________________________________________
+8. Deferred tax
+     L.E                                             30/6/2020             31/12/2019
+
+        Deferred tax assets                                           664 769 631                         743 639 294
+        Deferred tax liability                                       (839 824 480)                        863 567 343
+
+      Unrecognized deferred tax asset
+      L.E                                                               30/6/2020                   31/12/2019
+
+       Account Receivables and other debt balance                          353 758 152                    373 831 586
+       Provisions                                                          353 373 522                    399 714 585
+                                                                           707 131 704                    773 546 171
+
+      Deferred tax assets relating to these items have not been recognized because the necessary conditions for
+      the reversal of the temporary differences have not been met.
+
+9.    Tax status
+      El-sewedy Electric Company is subject to Investment Guarantees and Incentives law No.8 for 1997 and its
+      executive regulations and the rest of group companies are subject to taxes in Egypt or abroad.
+
+10.     Operating segments
+
+        The Group has the following strategic divisions which are reportable segments. These divisions offer
+        different product and services and are managed separately because they require different technology and
+        marketing structure
+        The following summary describe the operation of each reportable segment:
+
+        The group has (3) operating segments in which financial reports are reported to senior management, these
+        reports presents various products and services and are managed separately because they require different
+        technology and marketing strategies.
+        The following is a statement of the operations for each sector to which reports are issued.
+
+           Segment report                                                     Process
+
+           Cables                                                The cables segment manufactures, markets and
+                                                                 trade the cables
+
+
+           Constructions                                        This segment execute construction related to
+                                                                power of generation units and electricity
+                                                                distribution networks
+
+
+           Electricity products                                 This segment manufactures electric meters,
+                                                                transformers, electric Joints and also market
+                                                                 and trade the products
+
+
+
+
+                                                            9
+EL Sewedy Electric company
+Notes to the consolidated interim financial statements - 30 June 2020                                                                                                         Translated from Arabic
+
+
+                                                                           Power and Special Cables              Turn Key             Electric Products and Accessories                                Consolidated
+                                                                                                                                                                                 Elimination
+                                                                           Egypt          International           projects              Egypt              International                                30-Jun-20
+10- Operating segments                                                      L.E                L.E                  L.E                  L.E                    L.E                   L.E                  L.E
+
+Local Sales                                                               3 910 432 882      2 027 409 932           8 437 533 974       620 342 777           316 828 126                     -          15 312 547 691
+Export Sales and construction revenues                                    2 217 311 758        112 218 820           1 177 146 698       168 402 922         1 130 712 929                     -           4 805 793 127
+Total revenue without inter segment sales                                  6 127 744 640      2 139 628 752           9 614 680 672       788 745 699         1 447 541 055                    -          20 118 340 818
+
+
+Inter segment revenues                                                    4 073 733 928         83 853 922                     -         377 131 699            63 786 909       ( 4 598 506 458)                     -
+Total revenue                                                             10 201 478 568      2 223 482 674           9 614 680 672     1 165 877 398         1 511 327 964       ( 4 598 506 458)        20 118 340 818
+Total Cost                                                              ( 9 445 233 813)   ( 2 030 027 923)     ( 8 838 151 527)      ( 916 890 616)       ( 1 186 169 749)         4 598 506 458       ( 17 817 967 170)
+Gross Profit                                                                756 244 755        193 454 751             776 529 145        248 986 782           325 158 215                    -           2 300 373 648
+Total selling and marketing expenses                                     ( 144 248 019)      ( 62 332 557)           ( 25 659 820)     ( 57 625 418)         ( 72 285 057)                                ( 362 150 871)
+Segment profit                                                              611 996 736        131 122 194             750 869 325        191 361 364           252 873 158                    -           1 938 222 777
+
+
+Other operating income                                                                                                                                                                                      188 447 718
+Income from disposal of subsidiaries                                                                                                                                                                                  -
+Share of profit equity accounted investee                                                                                                                                                                   167 094 219
+General and administrative expenses                                                                                                                                                                    ( 1 000 753 116)
+Other operating expenses                                                                                                                                                                                 ( 156 788 086)
+Net financing income                                                                                                                                                                                        164 753 197
+Current income tax                                                                                                                                                                                       ( 327 673 619)
+Deferred tax                                                                                                                                                                                                 52 659 783
+Net profit for the year                                                                                                                                                                                  1 025 962 873
+
+                                                                                                                                                                                  Unallocated
+Depreciation                                                                 76 893 414         66 314 189            227 180 850        30 801 331            38 151 656            14 007 882             453 349 322
+
+
+Assets                                                                  12 347 325 153       1 706 840 066       24 498 881 155       1 413 066 031        1 096 420 666          11 229 075 135        52 291 608 206
+Liabilities                                                               3 023 499 034        903 159 892       20 597 065 112         638 186 385          846 957 539          10 730 424 531        36 739 292 493
+
+
+Additions to fixed assets and project under progress                        144 340 706         32 708 765            186 877 980        26 302 629          109 063 438              75 665 741            574 959 259
+
+
+
+
+                                                                                                              -10-
+EL Sewedy Electric Company
+Notes to the consolidated interim financial statements - 30 June 2019                                                                                                                      Translated from Arabic
+
+
+
+10- Operating segments
+
+                                                                          Power and Special Cables              Turn Key           Electric Products and Accessories                                 Consolidated
+                                                                                                                                                                         Elimination
+                                                                         Egypt               International       projects             Egypt             International                                 30-Jun-19
+                                                                          L.E                     L.E              L.E                 L.E                   L.E             L.E                         L.E
+
+Local Sales                                                              6 194 106 602        2 619 561 579     6 219 706 387        862 852 636         373 506 884          -                        16 269 734 088
+Export Sales and construction revenues                                   3 030 597 006          121 114 509       524 330 352        143 203 873       1 464 649 025          -                         5 283 894 765
+Total revenue without inter segment sales                                9 224 703 608        2 740 676 088     6 744 036 739      1 006 056 509       1 838 155 909          -                        21 553 628 853
+
+Inter segment revenues                                                5 110 990 839              57 888 069        398 075 868        529 313 170       52 536 655      ( 6 148 804 601)                  -
+Total revenue                                                        14 335 694 447           2 798 564 157      7 142 112 607      1 535 369 679    1 890 692 564         6 148 804 601               21 553 628 853
+Total Cost                                                        ( 13 078 159 899)        ( 2 471 406 221)   ( 5 999 853 573)   ( 1 145 113 469) ( 1 446 789 023)         6 148 804 601            ( 17 992 517 584)
+Gross Profit                                                          1 257 534 548             327 157 936      1 142 259 034        390 256 210      443 903 541                  -                   3 561 111 269
+Total selling & marketing expenses                                   ( 150 862 470)           ( 49 848 036)      ( 22 714 664)      ( 45 000 099)    ( 91 059 151)                  -                  ( 359 484 420)
+Segment profit                                                        1 106 672 078             277 309 900      1 119 544 370        345 256 111      352 844 390                  -                   3 201 626 849
+
+Other operating income                                                                                                                                                                                      55 349 584
+Loss from disposal of subsidiaries                                                                                                                                                                         ( 293 351)
+Share of profit equity accounted investee                                                                                                                                                                 192 951 815
+General and administrative expenses                                                                                                                                                                    ( 923 562 870)
+Other operating expenses                                                                                                                                                                               ( 151 230 140)
+Net financing revenue                                                                                                                                                                                     119 328 831
+Current income tax                                                                                                                                                                                     ( 560 359 883)
+Deferred tax (expense)                                                                                                                                                                                      19 541 451
+Net profit for the period                                                                                                                                                                              1 953 352 286
+
+                                                                                                                                                                         Unallocated
+Depreciation                                                                66 709 164           77 238 256       120 580 021         24 818 118           42 253 305         7 551 399                   339 150 263
+
+Assets                                                                  15 168 018 289        1 996 448 770    20 704 172 419      1 249 674 276       1 189 421 850     10 068 069 529                50 375 805 133
+Liabilities                                                              3 721 908 159          933 069 723    19 120 457 072        662 090 667       1 048 873 958      9 697 989 250                35 184 388 829
+
+Additions to fixed assets Transfer from constrution in progress           162 074 857            18 109 610       587 670 478         31 269 804           34 901 398        90 466 130                   924 492 277
+
+
+
+
+                                                                                                              -11-
+                                                                                                                                                                             Translated from Arabic
+El Sewedy Electric company
+Notes to the Interim consolidated financial statements for the period ended 30 June 2020
+
+
+
+  11 Fixed assets and projects under progress                                                                              Machineries           Furniture &                                                                                          Total fixed assets and
+                                                                                                                                                                                             leasehold            Total fixed      Projects under
+                                                                              Land                  Buildings                                                            Vehicles                                                                        projects under
+                                                                                                                                                                                           improvements             assets            progress
+                                                                                                                          & equipments          office supplies                                                                                              progress
+     L.E                                                                                                                                                                                                                              Note (12)
+     Cost
+     Cost as at 1 January 2019                                              376 472 303            2 319 816 627          5 744 077 431          424 975 635           267 684 328            87 762 500           9 220 788 824     1 393 649 330           10 614 438 154
+     Additions during the year                                               130 946 305              368 683 738          2 712 487 138          143 361 676            63 017 941             5 449 750          3 423 946 548       497 703 808             3 921 650 356
+     Disposals during the year                                                ( 3 115 247)            ( 24 294 625)        ( 182 777 025)          ( 9 460 130)          ( 7 672 532)       ( 14 376 690)         ( 241 696 249)         -                    ( 241 696 249)
+     Transfer from Project in progress                                           -                    128 535 108            546 257 894             1 139 634             4 284 534            1 291 081            681 508 251     ( 681 508 251)              -
+     Adjustments,translation difference                                     ( 80 845 490)           ( 204 472 352)         ( 345 763 215)        ( 10 517 994)         ( 10 714 532)           90 581 814         ( 561 731 769)          -                ( 561 731 769)
+     Cost as at 31 December 2019                                               423 457 871             2 588 268 496         8 474 282 223          549 498 821           316 599 739           170 708 455      12 522 815 605      1 209 844 887           13 732 660 492
+
+
+     Cost as at 1 January 2020                                              423 457 871            2 588 268 496          8 474 282 223          549 498 821           316 599 739          170 708 455          12 522 815 605      1 209 844 887           13 732 660 492
+     Additions during the period                                              12 639 332               14 867 833            153 898 549           37 413 596            42 588 550             4 497 187           265 905 047        309 054 212              574 959 259
+     Disposals during the period                                                -                        ( 73 913)         ( 151 023 034)          ( 6 401 515)          ( 8 575 099)         ( 3 323 188)        ( 169 396 749)     ( 64 527 438)            ( 233 924 187)
+     Transfer from Project in progress                                          -                      13 417 095             23 372 682               -                     -                    374 768             37 164 545      ( 37 164 545)             -
+     Adjustments,translation difference                                        ( 594 782)            ( 12 345 666)         ( 225 687 402)             ( 85 104)          ( 1 524 420)         ( 1 073 554)        ( 241 310 928)       2 579 300              ( 238 731 628)
+     Cost as at 30 June 2020                                                   435 502 421            2 604 133 845          8 274 843 018          580 425 798           349 088 770          171 183 668       12 415 177 520      1 419 786 416           13 834 963 936
+
+     Accumulated depreciation as at 1 January 2019                              -                       749 036 983          3 641 757 695          319 458 903           168 538 160           42 400 823        4 921 192 564          -                    4 921 192 564
+     Adjustments from financial lease (33)                                      -                         974 325                -                     -                     -                    -                      974 325         -                          974 325
+     Depreciation during the year                                               -                      69 087 037            601 525 592           69 073 165            39 634 717             7 122 492           786 443 003          -                      786 443 003
+     Accumulated depreciation of disposals                                      -                    ( 11 652 911)         ( 143 659 082)          ( 6 802 637)          ( 6 300 269)         ( 6 972 780)        ( 175 387 679)         -                    ( 175 387 679)
+     Adjustments,translation difference                                         -                     126 314 840            602 773 093           ( 5 910 318)          ( 7 381 103)         ( 1 618 721)          714 177 791          -                      714 177 791
+     Accumulated depreciation as at 31 December 2019                            -                       933 760 274          4 702 397 298          375 819 113           194 491 505           40 931 814        6 247 400 004          -                    6 247 400 004
+
+
+     Accumulated depreciation as at 1 January 2020                              -                 933 760 274             4 702 397 298          375 819 113           194 491 505            40 931 814          6 247 400 004          -                    6 247 400 004
+     Depreciation during the period                                             -                      52 621 527            330 216 296           35 372 917            27 817 897             7 320 685           453 349 322          -                      453 349 322
+     Accumulated depreciation of disposals                                      -                        ( 73 486)         ( 146 767 452)          ( 3 770 406)         ( 13 114 779)         ( 3 748 878)        ( 167 475 001)         -                    ( 167 475 001)
+     Adjustments,translation difference                                         -                      17 212 109          ( 181 322 724)           ( 171 511)           ( 1 397 013)          ( 793 638)         ( 166 472 777)         -                    ( 166 472 777)
+     Accumulated depreciation as at 30 June 2020                                -                     1 003 520 424          4 704 523 418          407 250 113           207 797 610           43 709 983        6 366 801 548          -                    6 366 801 548
+     Net carrying amount as at 30 June 2020                                    435 502 421            1 600 613 421          3 570 319 600          173 175 685           141 291 160          127 473 685        6 048 375 972      1 419 786 416            7 468 162 388
+
+     Net carrying amount as at 31 December 2019                                423 457 871            1 654 508 222          3 771 884 925          173 679 708           122 108 234          129 776 641        6 275 415 601      1 209 844 887            7 485 260 488
+
+
+
+
+     The company agreed to sell its new adminstrative building (under construction). According to the terms of the sale agreement the company Extra ordinary General Assembly (EXGA) is to approve the sale and the company
+     should register the building in the name of the buyer. The EXGA was invited on 23 April 2014 and decided to postpone its approval on the sale. On 18 June 2015 the company sent a warning letter to the buyer to hand over
+     the building because of his failure to meet the special conditions under the contract related to the finishing which should have been completed by 31 December 2013 or after by a maximum of 3 months from that date. The
+     company sent warning required the buyer to return back all documentation that was delivered to the buyer in relation to this sale by minutes dated 31 January 2013. The EXGA decided in its meeting dated 12 January 2016
+     that the company should take legal action against the buyer for violation of the contract terms.
+
+
+
+
+                                                                                                                                 -12-
+                                                                                Translated From Arabic
+
+EL Sewedy Electric Company
+Notes to the interim consolidated financial statements for the period ended 30 June 2020
+ ______________________________________________________________________________________
+12. Projects under progress
+   L.E                                                  30/6/2020         31/12/2019
+
+    Buildings                                                             924 092 467               842 050 207
+    Tools & Equipment                                                     382 870 606               316 266 549
+    Computers                                                             10 219 451                  2 602 119
+    Others                                                                102 603 892                48 926 012
+                                                                        1 419 786 416             1 209 844 887
+
+
+13. Investments available for sale
+ L.E                                                                        30/6/2020            31/12/2019
+
+
+   Misr for Mechanical and Electrical Projects (Kahromica) - An
+                                                                            20 000 000              20 000 000
+   Egyptian Joint Stock Company (the share proportion is 10%)
+
+   Others                                                                        95 645                  95 113
+
+                                                                           20 095 645              20 095 113
+
+14. Equity-accounted investees
+    The assets, liabilities and income from Equity accounted investments are as follow:
+
+   L.E (million)                                                           30/6/2020             31/12/2019
+
+   Assets                                                                           3 471                  3 620
+   Liabilities                                                                      1 979                  2 325
+   Profits                                                                             167                  375
+
+
+* The disclosure No. (29) Includes the equity accounted companies.
+
+15. Trade receivables
+    L.E                                                                          30/6/2020               31/12/2019
+
+
+     Clients receivables (construction) long term                               2 776 898 742            2 526 349 912
+                                                                                2 776 898 742            2 526 349 912
+
+
+
+
+                                                           13
+                                                                                Translated From Arabic
+
+EL Sewedy Electric Company
+Notes to the interim consolidated financial statements for the period ended 30 June 2020
+______________________________________________________________________________________
+16. Intangible assets
+     L.E                                                   30/6/2020          31/12/2019
+
+     Goodwill                                                                     729 126 188     729 126 188
+     Concession assets with a limited duration                                    114 238 219     110 245 565
+     Other Intangible assets                                                      119 590 237     126 195 214
+                                                                              962 954 644         965 566 967
+     Goodwill resulted from acquisitions of a group of energy companies in the countries of Cyprus and Greece
+     during June 2019 which resulted in LE 716 million at the acquisition date the rest of the goodwill balance
+     for acquisition group is calculated at the date of acquisition about 12.5 million,
+     Intangible assets amortization on profit or loss statement:
+
+    L.E                                                                          30/6/2020               30/6/2019
+   Intangible assets amortization                                               14 815 114                  8 270 021
+
+
+17. Inventories
+     L.E                                                                        30/6/2020                31/12/2019
+   Raw Materials                                                              3 960 897 805              3 989 643 091
+   Work in progress                                                               815 137 248              992 622 403
+   Finished goods                                                               2 599 009 885            3 150 689 760
+   Goods in transit                                                               601 019 392            1 015 679 646
+
+                                                                          7 976 064 330           9 148 634 900
+    Some of inventories items are recorded according to their net realizable value. The difference between the
+    book value of these items and their net realizable value is LE 980 million at 30 June 2020 (LE 973 million at
+    31 December 2019).
+
+18. Trade, notes and other receivables
+
+     L.E                                                                      30/6/2020                  31/12/2019
+    Trade receivables                                                       6 423 429 668                7 193 297 801
+    Due from receivables turnkey                                            3 737 862 492                4 018 537 103
+    Notes receivables                                                        821 848 382                 1 324 908 432
+    Other receivables*                                                      8 694 038 612                8 426 353 669
+                                                                       19 677 179 154          20 963 097 005
+      Trade, notes and other receivables are recorded after deducting impairment losses of LE 1.614 Billion at
+      30 June 2020. (LE 1.661 Billion at 31 December 2019)
+   * Other receivables include advance payments to suppliers of LE 2.585 Billion, accrued revenue of LE 830
+     million, retention insurance of LE 2.118 Billion and prepaid expenses of LE 613 million at
+     30 June 2020.
+
+
+
+
+                                                           14
+                                                                                Translated From Arabic
+
+EL Sewedy Electric Company
+Notes to the interim consolidated financial statements for the period ended 30 June 2020
+______________________________________________________________________________________
+19. Investment funds/treasury bills
+      L.E                                                 30/6/2020            31/12/2019
+
+     Present value of investment in treasury bills                             1 116 369 142               1 069 648 804
+     (Less): -
+     Interest not due                                                           (18 588 920)                (29 552 843)
+                                                                               1 097 780 222               1 040 095 961
+
+20. Banks and cash in hand
+      L.E                                                                         30/6/2020               31/12/2019
+
+     Banks - time deposits                                                        2 294 848 317            1 546 245 339
+     Banks - current accounts                                                     7 025 446 195            6 918 722 894
+     Cash on hand                                                                   143 752 376               51 414 496
+                                                                                  9 464 046 888            8 516 382 729
+
+21. Share capital and Reserves
+21-1 Authorized share capital
+
+    The Company’s authorized share capital is LE 5 billion.
+
+    Issued and paid in share capital
+    The issued and fully paid-in share capital of the Company at 1 January 2017 was amounted to LE
+    2 234 180 000 divided over 223 418 000 shares with par value LE 10 each. The Extraordinary General
+    Assembly of the Company decided on 4 May 2017 to cancel 5 million treasury shares and accordingly the
+    company's issued and paid capital become LE 2 184 180 000 distributed over 2 18 418 000 shares with a
+    nominal value of LE 10 per share.
+    The Extraordinary General Meeting of the Company approved on 22 May 2018 the split of the nominal
+    value of the Company's shares to one Egyptian pound instead of ten Egyptian pounds. This amendment was
+    recorded in the Commercial Register of the Company on 8/8/2018.
+
+  21-2 Reserves
+     L.E                                                                         30/6/2020               31/12/2019
+
+     Legal reserve (*)                                                           436 836 000              436 836 000
+                                                                                436 836 000              436 836 000
+
+(*) Legal reserve
+    According to the Companies Law and the statutes of the Company, 5% of the annual net profit is set aside
+    to form a legal reserve. The transfer to legal reserve ceases once the reserve reach 20% of the issued share
+    capital. The reserve is not distributable; however, it can be used to increase the share capital or offset losses.
+    If the reserve falls below the defined level, then the Company is required to resume setting aside 5% of the
+    annual profit until it reaches 20% of the issued share capital again.
+
+
+
+
+                                                           15
+                                                                                Translated From Arabic
+
+EL Sewedy Electric Company
+Notes to the interim consolidated financial statements for the period ended 30 June 2020
+______________________________________________________________________________________
+24. Banks credit facilities and overdraft
+
+     L.E                                                                        30/6/2020            31/12/2019
+
+     Banks - Credit facilities and Overdraft                                   6 586 172 861         5 304 055 565
+                                                                               6 586 172 861         5 304 055 565
+
+    The interest of the Central Bank of Egypt borrowing and lending rate for the Egyptian Pound plus 0.11%
+    for Egyptian pound facilities, An interest rate of 8% was applied to facilities in Egyptian pounds, according
+    to the Central Bank's initiative on April 4, 2020 and 1.5 % over Libor and 0.1 % monthly commission on
+    the highest debit balance for US Dollar and 1.75 % over Libor for the Euro facilities.
+
+25. Trade, notes and other payables
+
+      L.E                                                                 30/6/2020                31/12/2019
+
+     Trade and notes payables                                             4 128 943 811             3 936 191 619
+     Prepayments and due to clients                                     12 232 128 201             12 587 563 303
+     Other credit balances and accrued expenses*                          6 519 213 212             6 538 183 175
+                                                                          22 880 285 224           23 061 938 097
+
+    *Other credit balances include income tax and other accrued taxes of LE 987 million, retention payable
+     of LE 839 million and accrued expenses of LE 1,153 Billion.
+
+26. Provisions
+     L.E                                                                   30/6/2020               31/12/2019
+
+     Beginning balance                                             1 665 943 158           1 330 795 458
+     Formed during the period/ year                                  46 993 433              316 409 713
+     Used during the period/ year                                   (62 713 102)            (80 910 474)
+     Provisions no longer required                                  (25 409 550)            (10 753 380)
+     Translation differences and adjustments                        (54 264 820)             110 401 841
+                                                                   1 570 549 119           1 665 943 158
+   A balance of provision has been included in the financial statements under the following items:
+
+      L.E                                                                  30/6/2020               31/12/2019
+
+    Current liabilities
+                                                                         1 337 112 568           1 484 492 494
+    Current Provision
+    Non-Current Liabilities
+    Non-Current Provisions                                               233 436 551              181 450 664
+                                                                         1 570 549 119           1 665 943 158
+27. Capital commitments
+    The Group’s capital commitment as at 30 June 2020 is LE 83 million (LE 173 million at 31 December
+    2019). The commitments are expected to be settled within year from date of the consolidated financial
+    statements.
+
+28. Contingencies
+     L.E (million)                                                             30/6/2020            31/12/2019
+
+     Uncovered portion of letters of guarantees and letter of credits                 21 192              19 489
+
+
+                                                           17
+                                                                                Translated From Arabic
+
+EL Sewedy Electric Company
+Notes to the interim consolidated financial statements for the period ended 30 June 2020
+______________________________________________________________________________________
+22. Own shares
+    The Board of Directors of the Company held a Board meeting on 9 October 2016 decided to buy 3.6 million
+    own shares at a price of LE 62.5 per share. The fair value of the shares was a price of LE 73.8 per share
+    determined by an independent financial advisor (HC Securities and Investment Company). The board
+    decided to buy the shares in the period from 11 October 2016 to 17 October 2016.
+
+    The Board also held a meeting on 18 October 2016 and decided to buy 1.4 million own shares at a price of
+    LE 62.5 per share based on the same study of fair value of the shares during the period from 20 October
+    2016 until 26 October 2016.
+    Accordingly, the company own shares represented 5 million shares or 2.24% of the total shares capital. The
+    decision was made in order to invest cash liquidity in local currency. The Extraordinary General Assembly
+    decided on 4 May 2017 to cancel the own shares amounting to LE 50 million at par. The General Assembly
+    also decided to amend articles (6), (7) of the company statute. The shares cancelation was recorded in the
+    Commercial Register on 19 July 2017.
+    The value of own shares purchased in accordance with the resolutions of the Board of Directors above is
+    LE 313 300 846. The cancelation of these shares resulted in the reduction of issued and paid up capital of
+    LE 50 million, the general reserve by LE 43.8 million and retained earnings reduced by LE 219.5 million.
+    The company’s board of directors held a board meeting on 1 April 2020 at the invitation of the company’s
+    chairman of the board of directors to buy 54.6 million shares by trading from 2 April 2020 to 1 July 2020
+    and 10.5 million treasury shares were purchased at an average share price 6.994 EGP per share for the
+    purpose of investing the available liquidity in local currency, during the period from 24 June 2020 until
+    28 June 2020
+
+23. Loans
+    Item which is presented in the current and non-current liabilities in the consolidated statement of the
+    financial position in the balance of short-term credit facilities and long-term loans granted to the company
+    and its subsidiaries as follows:
+
+     L.E                                                                        30/6/2020            31/12/2019
+
+     Current liabilities
+     Loans - Current portion                                                   1 442 374 969         1 470 663 043
+     Non-current liabilities
+
+     Secured bank loans – non current                                          1 859 573 821         2 012 744 882
+                                                                               3 301 948 790         3 483 407 925
+
+    The average interest rate for loans and credit facilities is 10% for the Egyptian pounds including CBE
+    lending rate and 3.50 % over Libor for the US Dollars and 2.87% for Euro.
+
+    Loans guarantees and credit facilities granted to the company and its subsidiaries are secured by
+    promissory notes from subsidiaries approximately LE 878 million, USD 41 million, Euro 71 million, DZD
+    476 million, joint guarantees of LE 4.104 Billion and machinery and equipment.
+
+
+
+
+                                                           16
+                                                                                Translated From Arabic
+
+EL Sewedy Electric Company
+Notes to the interim consolidated financial statements for the period ended 30 June 2020
+______________________________________________________________________________________
+29. Related parties
+  The main transactions with the related parties are sale of finished products. The total value of sales to the affiliates
+  during the period is LE 910 million as of 30 June 2020. The significant related parties’ balances are as follows:
+      Stated under current assets (Due from related parties)
+      L.E                                                                     30/6/2020                 31/12/2019
+      ELSewedy Cables-Qatar                                                      28 169 234                58 968 122
+      ELSewedy for Tools and Cables                                              59 088 198              162 705 985
+      Pilling Technology                                                         16 624 364                15 166 273
+      Senyar Industries Qatar Holding                                            17 193 789                17 099 976
+      Iskra Malysia                                                               1 375 775                    314 586
+      Zesco Company                                                             123 295 168            71 217 992
+      Al Ola for industrial parks development                                    22 231 624              574 949
+      Doha cables-Qatar                                                          57 104 296            20 360 503
+      El Sewedy for constructions Co. Algeria                                    25 967 294            25 729 256
+      Glencore Company                                                           40 028 251            39 805 872
+      Elsewedy for Electrical Industries (Egylux)                                         -               37 800
+      Aswan 21                                                                  127 264 292            110 306 439
+      Pyramids for Industrial parks development                                  10 836 941             9 015 129
+      Pyramids Zonafranca                                                         8 092 889             7 768 895
+      3W Networks – Egypt                                                           310 413                  -
+      Elsewedy Electric Engineering and trading – Zambia                         50 364 599            49 866 166
+      Arab steel fabrication                                                      2 613 095            17 254 520
+      Emas                                                                       13 144 645            14 140 345
+      GAMA – Rowad                                                                1 464 682            10 530 964
+      RME Mozambique                                                              4 013 824             4 013 821
+      Giad cables                                                                 5 303 787            24 189 144
+      Troy Trade and Contracting                                                 2 217 175                   -
+      Others                                                                     75 226 335            34 461 855
+                                                                                691 930 669              693 528 592
+
+  Stated under current liabilities “Due to related parties”
+  L.E                                                                         30/6/2020                31/12/2019
+  Pyramids for Real Estate Development                                           24 572 683               24 586 228
+  Pyramids Zonafranca                                                            10 259 300                9 020 304
+  Al Ola for Industrial Parks Development                                        34 937 086               24 465 297
+  BV Power Plant                                                                128 249 535              127 537 038
+  Al Arabiya for Steel Industries                                                48 483 567               89 949 945
+  Elastymould-Egypt                                                               3 454 828               45 759 464
+  Maali Holding                                                                           -               11 795 920
+  El Sewedy Cables-Qatar                                                         32 955 560               32 257 536
+  Doha Cables-Qatar                                                               7 833 520                8 944 073
+  Senyar- Holding                                                                98 512 200               49 634 910
+  El Rajhee Construction                                                         75 937 936               32 510 589
+  El Sewedy for electric equipment & cables                                       5 933 226                2 508 030
+  Elsewedy Electric Engineering and trading – Zambia                                      -                8 137 672
+  EMAS                                                                           16 899 568               11 066 145
+  Hassan Giad                                                                    16 251 143               16 160 859
+  Giad cables                                                                             -                5 395 760
+  El Rowad Mozambique                                                             2 203 232                2 990 786
+  International Company for Development                                           5 747 544                3 571 640
+  Others                                                                          5 487 239               14 722 847
+                                                                                517 718 167              521 015 043
+
+                                                           18
+                                                                                Translated From Arabic
+
+EL Sewedy Electric Company
+Notes to the interim consolidated financial statements for the period ended 30 June 2020
+______________________________________________________________________________________
+
+ Subsidiaries and jointly controlled
+ The following are the most important subsidiaries entities owned by the company as at 30 June 2020: -
+                                                               Date of                   Nature of     % of
+                                                             acquisition Country contribution          share
+    Egyptian Company for Advanced Industries                        21/06/2005        Egypt        Direct        98.50
+    United Metals Co.                                               23/06/2005        Egypt        Direct        99.80
+    Egytech Cables Co.                                              25/12/2005        Egypt        Direct        .9999
+    United Industries Co.                                           25/12/2005        Egypt        Direct        99.98
+    El Sewedy for Electric International Co. (previously            19/04/2006        Egypt        Direct        99.96
+    External cables)
+    United Wires Co.                                                02/11/2006       Egypt         Direct         99.94
+    Egyplast Co.                                                    24/12/2006       Egypt         Direct         99.98
+    El Sewedy Cables – Egypt                                        21/02/2007       Egypt         Direct         99.87
+    El sewedy Transformer                                           30/04/2011       Egypt         Direct         99.87
+    El sewedy Electric Co. For Transmission                         21/10/2007       Egypt         Direct         99.98
+    El Sewedy Power                                                 27/09/2007       Egypt         Direct         99.88
+    El Sewedy Sedco for Petroleum Services                          10/01/2008       Egypt         Direct         97.00
+    Iskra Emco Energy Measurement – Misr                            18/02/2008       Egypt        Indirect        99.12
+    Iskra Emco Slovenia                                               1/1/2008      Solvenia      Indirect        99.70
+    Egyptian Company for Insulators                                  30/6/2008       Egypt     Direct/Indirect    74.83
+    El sewedy Electric Co. For Trading and Distribution.            21/12/2008       Egypt     Direct/Indirect    99.80
+    Siag El Sewedy for Towers                                       17/08/2008       Egypt         Direct         99.00
+    El Sewedy for Wind Energy Generation                            10/07/2008       Egypt         Direct         99.90
+    Power System Projects Company                                   31/12/2008       Egypt         Direct         99.99
+    Rowad Engineering Co.                                            30/6/2010       Egypt        Indirect          51
+    El Sewedy Sedco electrical industries                            30/6/2010       Egypt        Indirect        99.98
+    SMD for developments and managements Co.                         14/1/2018       Egypt         Direct         99.99
+    Souq Misr for malls Co.                                          11/3/2018       Egypt         Direct         99.99
+    El Sewedy Electric Company – Tanzania Branch                     11/8/2019      Tanzania       Direct          100
+    El Sewedy Energy limited Co.(Cyprus)                            03/06/2019       Cyprus       Indirect       99.84
+    El Sewedy Electric Tripoli S.A. (Greece)                        03/06/2019       Greece       Indirect       99.84
+    El Sewedy Electric Ermionida S.A. (Greece)                      03/06/2019       Greece       Indirect       99.84
+    El Sewedy Electric Kilkis S.A.                                  03/06/2019       Greece       Indirect       99.84
+    El Sewedy Electric Aigialeia S.A. (Greece)                      03/06/2019       Greece       Indirect       99.84
+    El Sewedy Kallisti Energiaki S.A. (Greece)                      24/06/2019       Greece       Indirect       99.84
+    El Sewedy Aioloki Adres S.A. (Greece)                           25/06/2019       Greece       Indirect       99.84
+    El Sewedy Aioliki Kylindrias S.A. (Greece)                      26/06/2019       Greece       Indirect       99.84
+    El Sewedy Hydroelectriki Achaias S.A. (Greece)                  27/06/2019       Greece       Indirect       99.84
+
+    Subsidiaries for El Sewedy for Electric International Co (External cables previously).
+    El Sewedy Cables – Algeria                             03/10/2006 Algeria          Indirect                  99.91
+    El Sewedy Cables Limited                               24/12/2006     Saudi        Indirect                  60.00
+    El Sewedy Electric Limited Zambia                      31/03/2009 Zambia           Indirect                  60.00
+    El Sewedy Cables Ethiopia                              31/03/2009 Ethiopia         Indirect                  95.00
+
+                                                           19
+                                                                                Translated From Arabic
+
+EL Sewedy Electric Company
+Notes to the interim consolidated financial statements for the period ended 30 June 2020
+______________________________________________________________________________________
+                                                    Date of              Nature of    % of
+                                                  acquisition Country contribution    share
+    Red Sea for copper – Egypt                                      31/12/2009       Egypt      Direct /Indirect    100
+    United Co. For Electrical Industries                             31/3/2010       Saudi         Indirect          60
+    3W Network – Emirates                                            30/6/2010      Emirates       Indirect        99.97
+    National Extraction and manufacturing of metal                   23/5/2013       Egypt      Direct/Indirect    99.98
+    El Sewedy Cables-Dubai                                           30/9/2016      Emirates       Indirect          49
+    El Sewedy Electric for engineering projects-Kuwait              27/10/2010      Kuwait         Indirect          49
+
+     Equity accounted investee’s
+      Elasty Mould                                                     22/2/2006      Egypt    Indirect            49.60
+      El Sewedy Electric Engineering and trading – Zambia              31/3/2009     Zambia    Direct              49.90
+      Al Ola for industrial parks development                          30/9/2009      Egypt    Direct/Indirect     50.00
+      El Sewedy Cables Qatar                                           20/4/2006      Qatar    Indirect            38.30
+      Senyar                                                            9/5/2008      Qatar    Indirect            50.00
+      Doha Cables                                                       9/5/2008      Qatar    Indirect            47.29
+      Pyramids for industrial parks development                        27/9/2007      Egypt    Direct/Indirect     50.00
+      Zona Franca                                                      30/6/2010      Egypt    Indirect             47.5
+
+30. Shares based payment
+     The general assembly dated 13 April 2008 decided to issue 200 000 shares with par value of LE 10 each
+     as employees share based payments according to the ministerial decree No 282 for 2005. The
+     Extraordinary General assembly's dated 19 April 2010 and 26 April 2011 decided a shares dividend (3
+     shares for each 10 shares).
+     The employee right at each year end during the three years scheme to exercise part of the shares based
+     payments were in the following rates: -
+     First year        20%
+     Second year        30%
+     Third year         50%
+     The fair value of the services rendered in return of the shares granted as at 31 December 2011 is as follows:
+      Number of share options granted in 31 December 2008                                                    126 000
+      Share dividends (3 for each 10)                                                                         52 383
+      Exercised up to 31 December 2011                                                                     (161 227)
+      Canceled shares to employees up to 31 December 2011                                                   (17 156)
+                                                                                                             -
+      Fair Market value at 31 December 2011                                                               4 227 700
+     The granted options were fully exercised and there is a remaining balance of shares of 142 216 available
+     for share based payments that belongs to the system. The Group is in the process of renewing the share-
+     based payments system.
+
+
+
+
+                                                           20
+                                                                                   Translated From Arabic
+
+  EL Sewedy Electric Company
+  Notes to the interim consolidated financial statements for the period ended 30 June 2020
+  ______________________________________________________________________________________
+  31. Earnings per share
+                                Financial      Financial period  Financial period    Financial period
+                                 period
+                             From 1/1/2020      From 1/1/2019     From 1/4/2020       From 1/4/2019
+EGP                                     To 30/6/2020              To 30/6/2019               To 30/6/2020     To 30/6/2019
+
+Profits attributable to the
+shareholders of the company               914 243 349              1 888 082 166               514 164 861       930 860 467
+Weighted average number of
+shares
+Issued and paid capital                2 184 180 000              2 184 180 000              2 184 180 000    2 184 180 000
+Treasury shares
+10.5 million shares were bought
+in June 2020                              (10 500 000)                         -               (10 500 000)                 -
+Treasury shares (reward system(            (1 422 160)               (1 422 160)                (1 422 160)       (1 422 160)
+Weighted average number of shares        2 172 257 840             2 182 757 840              2 172 257 840     2 182 757 840
+
+Earnings per share                           0.42                     0.86                       0.24             0.43
+
+
+
+
+                                                             21
+                                                                                Translated From Arabic
+
+EL Sewedy Electric Company
+Notes to the interim consolidated financial statements for the period ended 30 June 2020
+______________________________________________________________________________________
+32. Financial instruments and the related risks
+    The main risks related to the company activities are:
+    - Credit risk
+    - Liquidity risk
+    - Market risk
+    The Company management policies are established to identify and analyze the risk faced by the Company,
+    to set appropriate risk limits and controls, and to monitor risks and adherence to limits. Risk management
+    policies and systems are reviewed regularly to reflect changes in market conditions and the Company
+    activities. The company’s board of directors has all the necessary powers and responsibilities to define and
+    supervise the risk management framework.
+
+   Credit risk
+   Credit risk is the risk that one party to a financial instrument fails to discharge an obligation and cause the
+   other party to incur financial loss. This risk arises from the receivable and debtors.
+                                                                                                      (L.E million)
+                                                                                     30/6/2020          31/12/2019
+    Receivable and debtors                                                                22 454            23 489
+    Due from related parties                                                                 692                693
+    Cash                                                                                   9 464              8 516
+    Total                                                                                32 610             32 698
+   Receivable aging
+                                                                                                       (L.E million)
+                                                                                        30/6/2020        31/12/2019
+   Not due                                                                                 11 525             11 919
+   Due for 30 days.                                                                         4 267              4 716
+   Due for 31 to 120 days                                                                     2 752           2 405
+   Due for 121 to 180 days                                                                    2 158           3 043
+   Due for more than 180 days                                                                 1 120             943
+   Others                                                                                       632             463
+                                                                                            22 454          23 489
+    Liquidity risk
+    Payments to suppliers and creditors are due within a period of 90 days from receipt of goods or services.
+                                                                                               (L.E Thousand)
+                                                                      Less than one         More than one
+                                                                           year                  year
+                                                         30/6/2020     31/12/2019      30/6/2020 31/12/2019
+
+    Trade payable, Creditors & due to related parties 23 398 003                23 582 953 1 004 354      1 180 641
+    Due to banks                                       8 028 548                 6 774 719 1 859 574      2 012 745
+
+    Foreign currency risk
+    The following are the balances of monetary assets and liabilities in foreign currencies:
+                                                                                                    (Thousand)
+                                             30 June 2020                             31 December 2019
+                                    USD          Euro            GBP              USD      Euro        GBP
+   Financial assets                 546 367        94 542        22 475           563 010       122 323     13 479
+   Financial liabilities            298 950        57 353          5 747          568 948       125 241       2 168
+
+                                                           22
+                                                                                Translated From Arabic
+
+EL Sewedy Electric Company
+Notes to the interim consolidated financial statements for the period ended 30 June 2020
+______________________________________________________________________________________
+    The following are the significant foreign currency exchange rates during the period:
+                                            Closing rates                             Average rates
+
+                                        30/6/2020            31/12/2019              30/6/2020           31/12/2019
+    USD                                   16.2                 16.11                   16.08               16.13
+    Euro                                  18.14                18.09                  17.925               17.95
+
+   Sensitivity analysis
+   A weakening of LE against the US dollar and Euro at 30 June 2020 affected equity and profit or loss by the
+   amounts shown below.
+   This analysis is based in the exchange rate changes that the company considers to be a possibility to achieve
+   at the date of the financial position and assumes that all other variables, in particular interest rates, remain
+   constant and ignores any impact of forecast sales and purchases.
+
+   Effect Change 10%
+                                                                                                         (Thousand)
+                                                                                       30/6/2020          31/3/2019
+    USD                                                                                    400 815            (9 566)
+    Euro                                                                                     67 461           (5 278)
+   Total                                                                                   468 276          (14 844)
+   Interest rate risk
+   The following are the group interest bearing financial instruments:
+                                                                                                       (L.E million)
+                                                                                             Net book value
+                                                                                      30/6/2020         31/12/2019
+    Fixed interest rates
+    Financial assets                                                                        3 199                 2 616
+    Financial liabilities                                                                  (3 302)            (3 483)
+                                                                                            (103)                 (867)
+    Variable interest rates
+    Financial assets                                                                        7 219                 6 919
+    Financial liabilities                                                                  (6 586)            (5 304)
+                                                                                              633                 1 615
+
+ The average interest rates are as follows:
+                                                                        L.E                EURO            USD
+     Financial assets                                                   9.5                  -             1.19
+     Financial liabilities                                              10.5               2.30            3.75
+
+
+
+
+                                                           23
+                                                                                Translated From Arabic
+
+EL Sewedy Electric Company
+Notes to the interim consolidated financial statements for the period ended 30 June 2020
+______________________________________________________________________________________
+33. Finance Lease Contract
+    Finance lease contracts (Sale and Lease back)
+    The company has entered into financing lease with international leasing company (Incolease) in 28 March
+    2010 to lease the company Head Office with a contractual leasing value of USD 9 189 700 and the
+    following is summary for contract:
+
+ Description                                   Payments of Lease                      Contract     Purchase      Lease amount
+                                                                                      Duration      amount         quarterly
+                                Payment of principle     Payment of interest
+                                      USD                       USD                    Month             L.E          USD
+ Contract from 28 March               8 873 635                  316 065                   57            1         459 485
+ 2010 till 28 December 2014
+
+(*) ElSewedy Electric Company had purchased the building from Leasing Company (Incolease) by 1 L.E as
+   defined in the contract and the building become owned by Elsewedy Electric Company.
+
+    According to the related transitional rules of the Egyptian accounting standard (49) for year 2019 that
+    related to lease contracts the application of this standard for the first time will be at the beginning of the
+    annual report period when the financial lease law no.95 for year 1995 will canceled and its modifications
+    and issuing a law regulating the activities of financial leasing and factoring No. 176for 2018, for leasing
+    contracts that were subject to Law 95 of 1995 and were processed in accordance with Egyptian Accounting
+    Standard No. 20 (Accounting Rules and Standards for Financial Leasing Operations).
+
+34. Significant accounting policies
+     The accounting policies set out below have been applied consistently to all periods presented in these
+     consolidated financial statements and have been applied consistently by Group entities.
+
+34-1 Business combinations
+      The Group accounts for business combinations using the acquisition method when control is transferred
+      to the Group. The consideration transferred in the acquisition is generally measured at fair value, as are
+      the identifiable net assets acquired. Any goodwill that arises is tested annually for impairment.
+
+      Transaction costs are expensed as incurred, except if related to the issue of debt or equity securities.
+
+      The consideration transferred does not include amounts related to the settlement of pre-existing
+      relationships. Such amounts are generally recognized in profit or loss.
+
+      Any contingent consideration is measured at fair value at the date of acquisition, if an obligation to pay
+      contingent consideration that meets the definition of a financial instrument is classified as equity, then it
+      is not remeasured at fair value at each reporting date and subsequent changes in the fair value of the
+      contingent consideration are recognized in profit or loss.
+
+      Subsidiaries
+
+      Subsidiaries are entities controlled by the Group. The Group controls an entity when it is exposed to, or
+      has rights to, variable returns from its involvement with the entity and has the ability to affect those
+      returns through its power over the entity.
+
+      The financial statements of subsidiaries are included in the consolidated financial statements from the
+      date on which control commences until the date on which control ceases.
+
+
+
+                                                           24
+                                                                                Translated From Arabic
+
+EL Sewedy Electric Company
+Notes to the interim consolidated financial statements for the period ended 30 June 2020
+______________________________________________________________________________________
+     Non-controlling interests
+
+      NCI are measured at their proportionate share of the acquirer’s identifiable net assets at the date of
+      acquisition. Changes in the Group’s interest in a subsidiary that do not result in a loss of control are
+      accounted for as equity transactions.
+
+      Loss of control
+
+      When the Group loses control over a subsidiary, it derecognizes the assets and liabilities of the subsidiary,
+      and any related NCI and other components of equity. Any resulting gain or loss is recognized in profit or
+      loss. Any interest retained in the former subsidiary is measured at fair value when control is lost.
+
+       Interests in equity-accounted investees
+
+      The Group’s interests in equity-accounted investees comprise interests in associates and in joint ventures.
+      Associates are those entities in which the Group has significant influence, but not control or joint control,
+      over the financial and operating policies. A joint venture is an arrangement in which the Group has joint
+      control, whereby the Group has rights to the net assets of the arrangement.
+
+      Interests in associates and the joint ventures are accounted for using the equity method. They are initially
+      recognized at cost, which includes transaction costs. Subsequent to initial recognition, the consolidated
+      financial statements include the Group’s share of the profit or loss and OCI of equity-accounted investees.
+
+      Transactions eliminated on consolidation
+
+      Intra-group balances and transactions, and any unrealized income and expenses arising from intra-group
+      transactions, are eliminated. Unrealized gains arising from transactions with equity-accounted investees
+      are eliminated against the investment to the extent of the Group’s interest in the investee. Unrealized
+      losses are eliminated in the same way as unrealized gains, but only to the extent that there is no evidence
+      of impairment.
+
+      Acquisitions from entities under common control
+      Business combinations arising from acquisition of interests in entities that are under the control of the
+      shareholders that controls the group are accounted for as of the acquisition date. The assets and liabilities
+      acquired are recognized at the carrying amounts and the difference recorded in equity between the assets
+      of these entities and the paid acquisition value. The components of equity of the acquired entities are
+      added to the same components within the net assets of acquired entities than the paid value in investment.
+
+
+      Foreign currencies
+      Translation differences in foreign currencies
+      Transactions in foreign currencies are translated to the respective functional currency at exchange rates
+      at the dates of the transactions. Monetary assets and liabilities denominated in foreign currencies are
+      translated into the functional currency at the exchange rate at the reporting date. Non-monetary assets
+      and liabilities that are measured at fair value in a foreign currency are translated into the functional
+      currency at the exchange rate when the fair value was determined. Non-monetary items that are
+      measured based on historical cost in a foreign currency are translated at the exchange rate at the date of
+      the transaction.
+
+        Foreign currency differences are generally recognized in profit or loss except for differences recognized
+       in shareholders’ equity:
+
+
+
+                                                           25
+                                                                                Translated From Arabic
+
+EL Sewedy Electric Company
+Notes to the interim consolidated financial statements for the period ended 30 June 2020
+______________________________________________________________________________________
+         − Translation of available -for-sale equity investments (except on impairment, in which case
+            foreign currency differences that have been recognized in equity are reclassified to profit or
+            loss).
+
+            −   Financial obligations that have been designated as a hedging risks tool to cover the net
+                investment risk in foreign activity as long as the hedging is effective
+
+            −   Hedging tools used in the cash flow risk as long as the hedging is effective
+
+
+
+
+       Foreign operations
+       The assets and liabilities of foreign operations, including goodwill and fair value adjustments arising on
+      acquisition, are translated into Egyptian pound at the exchange rates at the reporting date.
+      Foreign currency differences are recognized in OCI and accumulated in the translation reserve, except to
+      the extent that the translation difference is allocated to NCI.
+      When a foreign operation is disposed of in its entirety or partially such that control, significant influence
+      or joint control is lost, the cumulative amount in the translation reserve related to that foreign operation
+      is reclassified to profit or loss as part of the gain or loss on disposal.
+      If the Group disposes of part of its interest in a subsidiary but retains control, then the relevant proportion
+      of the cumulative amount is reattributed to NCI.
+      When the Group disposes of only part of an associate or joint venture while retaining significant influence
+      or joint control, the relevant proportion of the cumulative amount is reclassified to profit or loss.
+
+34-2 Fixed assets
+      Recognition & measurement
+      Items of fixed assets are measured at cost less accumulated depreciation and accumulated impairment
+      losses at the reporting date of the consolidated financial statements. Cost includes expenditure that is
+      directly attributable to the acquisition of the asset. The cost of self-constructed assets includes the cost of
+      materials and direct labor, any others costs directly attributable to bringing the asset to a working
+      condition for its intended use. If significant parts of an item of property, plant and equipment have
+      different useful lives, then they are accounted for as separate items (major components) of property, plant
+      and equipment. Any gain or loss on disposal of an item of property, plant and equipment is recognized
+      in profit or loss.
+
+      Subsequent costs
+      Subsequent costs are capitalised only if it is probable that the future economic benefits associated with
+      the expenditure will flow to the Group, and its cost can be measured reliably. The carrying amount of the
+      replaced part is derecognised. All other expenditure, including expenditure on internally generated
+      goodwill and brands, is recognized in profit or loss as incurred.
+
+      Depreciation
+      Depreciation is calculated to write off the cost of items of property, plant and equipment less their
+      estimated residual values using the straight-line method over their estimated useful lives, and is generally
+      recognized in profit or loss. Land is not depreciated. The estimated useful lives of property, plant and
+      equipment for current and comparative periods are as follows:
+          Asset                                                                  Years
+          Buildings                                                            8 -50 years
+          Machinery and equipment                                              5-15 years
+          Furniture                                                            4 -17 years
+          Vehicles                                                              5-8 years
+          Long-term assets                                                       25 years
+                                                           26
+                                                                                Translated From Arabic
+
+EL Sewedy Electric Company
+Notes to the interim consolidated financial statements for the period ended 30 June 2020
+______________________________________________________________________________________
+
+      Lease hold improvements are depreciated over 3 years or the lease period whichever is less.
+      Depreciation methods, useful lives and residual values for fixed assets are reviewed at the end of each
+      financial period and have been adjusted if needed.
+
+34-3 Project under progress
+      Project under progress are recognized by cost. The cost includes all expenditure that are directly related
+      to and necessary for the asset to be ready for using and the purpose for which acquired. The project under
+      progress are transferred to fixed assets when finished and available for usage.
+
+34-4 Financial instruments
+     The Group classifies non-derivative financial assets into the following categories: financial assets at fair
+     value through profit or loss, held-to-maturity financial assets, loans and receivables and available-for-sale
+     financial assets. The Group classifies non-derivative financial liabilities into the following categories:
+     financial liabilities at fair value through profit or loss and other financial liabilities category.
+
+     Non-derivative financial assets and financial liabilities-Recognition and derecognition
+     The Group initially recognises loans and receivables and debt securities issued on the date when they are
+     originated. All other financial assets and financial liabilities are initially recognised on the trade date when
+     the entity becomes a party to the contractual provisions of the instrument.
+
+     The Group derecognises a financial asset when the contractual rights to the cash flows from the asset
+     expire, or it transfers the rights to receive the contractual cash flows in a transaction in which substantially
+     all of the risks and rewards of ownership of the financial asset are transferred, or it neither transfers nor
+     retains substantially all of the risks and rewards of ownership and does not retain control over the
+     transferred asset. Any interest in such derecognised financial assets that is created or retained by the Group
+     is recognised as a separate asset or liability.
+     The Group derecognises a financial liability when its contractual obligations are discharged or cancelled,
+     or expire. Financial assets and financial liabilities are offset and the net amount presented in the statement
+     of financial position when, and only when, the Group currently has a legally enforceable right to offset
+     the amounts and intends either to settle them on a net basis or to realise the asset and settle the liability
+     simultaneously.
+
+     Non-derivative financial assets – Measurement:
+     Financial assets at fair value through profit or loss:
+     A financial asset is classified as at fair value through profit or loss if it is classified as held-for-trading or
+     is designated as such on initial recognition. Directly attributable transaction costs are recognised in profit
+     or loss as incurred. Financial assets at fair value through profit or loss are measured at fair value and
+     changes therein, including any interest or dividend income, are recognised in profit or loss.
+
+     Held-to-maturity financial assets:
+     These assets are initially measured at fair value plus any directly attributable transaction costs. Subsequent
+     to initial recognition, they are measured at amortised cost using the effective interest method.
+
+     Loans and receivables:
+     These assets are initially measured at fair value plus any directly attributable transaction costs. Subsequent
+     to initial recognition, they are measured at amortised cost using the effective interest method.
+
+     Available-for-sale financial assets:
+     These assets are initially measured at fair value plus any directly attributable transaction costs. Subsequent
+     to initial recognition, they are measured at fair value and changes therein, other than impairment losses
+     and foreign currency differences on debt instruments are recognised in OCI and accumulated in the fair
+
+                                                           27
+                                                                                Translated From Arabic
+
+EL Sewedy Electric Company
+Notes to the interim consolidated financial statements for the period ended 30 June 2020
+______________________________________________________________________________________
+    value reserve. When these assets are derecognised, the gain or loss accumulated in equity is reclassified
+    to profit or loss.
+
+      Investment in funds
+     Investments in funds are recorded according to its latest announced recoverable value.
+
+     Investment in treasury bills
+     Treasury bills are stated at the balance sheet at its nominal value after deducting the balance of interest
+     not due. There is no losses from the impairment of the value of these bills because it is governmental bills
+     and can be sold at the Central Bank of Egypt adjustment rate.
+
+     Non-derivative financial liabilities-Measurement:
+     A financial liability is classified as at fair value through profit or loss if it is classified as held-for-trading
+     or is designated as such on initial recognition. Directly attributable transaction costs are recognised in
+     profit or loss as incurred. Financial liabilities at fair value through profit or loss are measured at fair value
+     and changes therein, including any interest expense, are recognised in profit or loss.
+      Other non-derivate financial liabilities are initially measured at fair value less any directly attributable
+      transactions costs. Subsequent to initial recognition, these liabilities are measured at amortised cost using
+      the effective interest method.
+
+34-5 Intangible assets and goodwill
+      Recognition and measurement
+      Goodwill
+      Goodwill arising on the acquisition of subsidiaries is measured at cost less accumulated impairment losses.
+
+
+      Other intangible assets
+      Development activities involve a plan or design for the production of new or substantially improved
+      products and processes. Development expenditure is capitalized only if development costs can be
+      measured reliably, the product or process is technically and commercially feasible, future economic
+      benefits are probable, and the Group intends to and has sufficient resources to complete development and
+      to use or sell the assets.
+
+      Subsequent expenditure
+      Subsequent expenditure is capitalized only when it increases the future economic benefits embodied in
+      the specific asset to which it related to research and development projects under progress and recognized
+      as intangible asset. All other expenditure, including expenditure on internally generated goodwill and
+      brands, is recognized in profit or loss as incurred.
+
+      Amortization
+       Amortization is calculated to write off the cost of intangible assets less their estimated residual values
+      using the straight-line method over their estimated useful lives and is generally recognized in profit or
+      loss.
+
+      Amortization
+      Amortization is incurred in profit and loss statement using straight line method over their estimated useful
+      life for each asset
+
+34-6 Inventories
+      Inventories are valued at the lower of cost and net realizable value. Net realizable value is the estimated
+      selling price in the normal course of business minus the estimated cost for completion and any selling
+      costs. Net realizable value of the quantity of inventory held to satisfy firm sales is based on the contract
+      price. If the sales are for less than the inventory quantities held, the net realizable value of the excess is
+                                                           28
+                                                                                Translated From Arabic
+
+EL Sewedy Electric Company
+Notes to the interim consolidated financial statements for the period ended 30 June 2020
+______________________________________________________________________________________
+     based on general selling price. Provisions arise from firm sales contracts in excess of inventory quantities
+     held or from firm purchase contracts.
+     Cost of raw materials is determined using the weighted average method. In case of finished goods and
+     work in process, cost includes direct material and direct labor cost and an appropriate share of production
+     cost.
+
+34-7 Assets held for sale
+      Non-current assets, or disposal groups comprising assets and liabilities, are classified as held-for-sale if
+      it is highly probable that they will be recovered primarily through sale or distribution rather than through
+      continuing use.
+      Such assets, or disposal groups, are generally measured at the lower of their carrying amount and fair
+      value less costs to sell. Any impairment loss on a disposal group is allocated first to goodwill, and then
+      to the remaining assets and liabilities on a pro rata basis, except that no loss is allocated to inventories,
+      financial assets, deferred tax assets, employee benefit assets, which continue to be measured in
+      accordance with the Group’s other accounting policies. Impairment losses on initial classifications as
+      held for sale and subsequent gains and losses on measurement are recognized in profit or loss.
+      Once classified as held for sale, intangibles assets and property plant and equipment are no longer
+      amortized or depreciated, and any equity accounted investee is no longer equity accounted.
+
+34-8 Impairment
+      Non-derivative financial assets:
+      Financial assets not classified as at fair value through profit or loss, including an interest in an equity-
+      accounted investee, are assessed at each reporting date to determine whether there is objective evidence
+      of impairment.
+      Objective evidence that financial assets are impaired includes:
+      - Default of delinquency by a debtor,
+      - Restructuring of an amount due to the group on terms that the Group would not consider otherwise,
+      - Indications that a debtor or issuer will enter bankruptcy,
+      - Adverse changes in the payment status of borrowers or issuers,
+      - The disappearance of an active market for a security because of financial difficulties, or
+
+      - Observable data indicating that there is a measurable decrease
+      For an investment in an equity security, objective evidence of impairment includes a significant or
+      prolonged decline in its fair value below its cost. The Group considers a decline of 20% to be significant
+      and a period of nine months to be prolonged.
+
+      Financial assets measured at amortised cost:
+      The Group considers evidence of impairment for these assets at both an individual asset and a collective
+      level. All individually significant assets are individually assessed for impairment. Those found not to be
+      impaired are then collectively assessed for any impairment that has been incurred but not yet individually
+      identified. Assets that are not individually significant are collectively assessed for impairment. Collective
+      assessment is carried out by grouping together assets with similar risk characteristics.
+
+      In assessing collective impairment, the Group uses historical information on the timing of recoveries and
+      the amount of loss incurred and makes an adjustment if current economic and credit conditions are such
+      that the actual losses are likely to be greater or lesser than suggested by historical trends.
+      Any impairment loss is calculated as the difference between an asset’s carrying amount and the present
+      value of the estimated future cash flows discounted at the asset’s original effective interest rate. Losses
+      are recognized in profit or loss and reflected in an allowance account.
+      When the Group considers that there are no realistic prospects of recovery of the asset, the relevant
+      amounts are written off.
+      If the amount of impairment loss subsequently decreases and the decrease can be related objectively to
+      an event occurring after the impairment was recognised, then the previously recognised impairment loss
+      is reversed through profit or loss.
+                                                           29
+                                                                                Translated From Arabic
+
+EL Sewedy Electric Company
+Notes to the interim consolidated financial statements for the period ended 30 June 2020
+______________________________________________________________________________________
+
+      Available-for-sale financial assets
+      Impairment losses on available-for-sale financial assets are recognised by reclassifying the losses
+      accumulated in the fair value reserve to profit or loss. The amount reclassified is the difference between
+      the acquisition cost (net of any principal repayment and amortisation) and the current fair value, less any
+      impairment loss previously recognised in profit or loss.
+      If the fair value of an impaired available-for-sale debt security subsequently increases and the increase
+      can be related objectively to an event occurring after the impairment loss was recognised, then the
+      impairment loss is reversed through profit or loss. Impairment losses recognised in profit or loss for an
+      investment in an equity instrument classified as available-for-sale are not reversed through profit or loss.
+
+      Equity-accounted investees
+      An impairment loss in respect of an equity-accounted investee is measured by comparing the recoverable
+      amount of the investment with it carrying amount. An impairment loss is recognised in profit or loss and
+      is reversed if there has been a favourable change in the estimates used to determine the recoverable
+      amount.
+
+      Non-financial assets:
+      At each reporting date, the Group reviews the carrying amounts of its non-financial assets (other than
+      inventories and deferred tax assets) to determine whether there is any indication of impairment. If any
+      such indication exists, then the asset’s recoverable amount is estimated. Goodwill is tested annually for
+      impairment.
+      For impairment testing, assets are grouped together into the smallest group assets that generates cash
+      inflows from continuing use that are largely independent of the cash inflows of other assets or CGUs that
+      are expected to benefit from synergies of the combination.
+
+      The recoverable amount of an asset or CGU is the greater if its value in use and its fair value less costs
+      to sell. Value in use is based on the estimated future cash flows discounted to their present money and
+      the risks specific to the asset or CGU.
+      An impairment loss is recognized if the carrying amount of an assets or CGU exceeds its recoverable
+      amount.
+      Impairment losses are recognized in profit or loss. They are allocated first to reduce the carrying amounts
+      of the other assets in the CGU on a pro rata basis.
+      An impairment loss in respect of goodwill is not reversed. For other assets, an impairment loss is reversed
+      only to the extent that the asset’s carrying amount does not exceed the carrying amount that would have
+      been determined, net of depreciation or amortization, of no impairment loss had been recognized.
+
+34-9 Share capital
+      Incremental costs directly attributable to the issue of ordinary shares are recognized as a deduction from
+      equity. Income tax relating to transaction costs of an equity transaction are accounted for in accordance
+      with EAS (24).
+
+      Repurchase and reissue of ordinary shares (treasury shares):
+      When shares recognized as equity are repurchased, the amount of the consideration paid, which includes
+      directly attributable costs is recognized as a deduction from equity. Repurchased shares are classified as
+      treasury shares and are presented in the treasury shares reserve. When treasury shares are sold or reissued
+      subsequently, the amount received is recognized as an increase in equity and the resulting surplus or
+      deficit on the transaction is presented within share premium.
+
+34-10 Dividends
+     Dividends are recognized as a liability in the financial period in which the dividends are approved by the
+     shareholders general meeting.
+
+                                                           30
+                                                                                Translated From Arabic
+
+EL Sewedy Electric Company
+Notes to the interim consolidated financial statements for the period ended 30 June 2020
+______________________________________________________________________________________
+34-11 Interest bearing borrowings
+       Interest bearing borrowings are recognized initially at fair value less attributable transaction costs.
+       Subsequent to initial recognition, interest bearing borrowings are stated at amortized cost with any
+       difference between cost and redemption value been recognized over the period of borrowing on an
+       effective interest basis.
+
+       Interest and commissions on credit facilities and loans that are directly attributable to the acquisition,
+       construction or production of qualifying assets are capitalized as part of the cost of those assets till the
+       date of availability for use. All borrowing costs that do not meet the capitalization criteria are recognized
+       as expense in the consolidated income statement as incurred
+
+
+34-12 Provisions
+       Provisions are recognized when the Group has a legal or constructive obligation as a result of past event,
+       and it is probable that an outflow of economic benefits will be required to settle the obligation and the
+       liability can be reliably estimated. Provisions are determined by discounting the expected future cash
+       flows at a pre-tax rate that reflects current market adjustments of the time value of money and the risks
+       specific to the liability. The provisions are reviewed at each balance sheet date and amended, (when
+       necessary), to represent the best current estimate.
+
+
+34-13 Recognition of revenue
+      Sales revenue
+      Revenue from sale of goods is measured at the fair value of the consideration received or receivable, net
+      of returns and allowances, trade discounts and volume rebates. Revenue is recognized when the
+      significant risks and rewards of ownership have been transferred to the buyer, recovery of the
+      consideration is probable, the associated costs and possible return of goods can be estimated reliably,
+      and there is no continuing management involvement with the goods. Risk and rewards of ownership are
+      transferred when goods are received at the customer’s warehouse; however, for some international
+      shipments transfer occurs upon loading the goods onto the relevant carrier.
+
+        Revenue of construction contracts
+        Revenues from construction contracts are recognized using the percentage-of-completion method. The
+        percentage-of-completion is measured by correlating costs incurred to date to estimated total costs for
+        each contract.
+
+        Contract costs include all direct material, equipment, labor, subcontract and those indirect costs related
+        to contract performance, such as indirect labor and maintenance costs. General and administrative costs
+        allocable to particular contracts are charged to contract costs. All other
+        general and administrative costs are charged to expense as incurred. Changes in job performance, job
+        conditions, estimated profitability and final contract settlements may result in revisions to costs and
+        income and are recognized in the period in which the facts requiring such revisions become known.
+
+        Provision for estimated losses including allocable general and administrative expenses on uncompleted
+        contracts is made in the period in which such losses are determined. Claims for additional contract
+        revenue are recognized when realization is assured, and the amount can be reasonably determined.
+
+        Finance income and finance costs
+        The Group’s finance income and finance costs include:
+        Interest income
+        Interest expense
+        Dividend income
+        Dividends on preference shares issued classified as financial liabilities
+                                                           31
+                                                                                Translated From Arabic
+
+EL Sewedy Electric Company
+Notes to the interim consolidated financial statements for the period ended 30 June 2020
+______________________________________________________________________________________
+       The net gain or loss on the disposal of available-for-sale financial assets
+       The net gain or loss on financial assets at fair value through profit or loss
+       The foreign currency gain or loss on financial assets and financial liabilities
+       The gain on the measurement to fair value of any pre-existing interest in an acquire in a business
+       combination
+       The fair value loss on contingent consideration classified as a financial liability
+       Impairment losses recognized on financial assets (other than trade receivables)
+       The net gain or loss hedging instruments that are recognized in profit or loss; and
+       The reclassification of net gains previously recognized in OCI.
+       Interest income or expense is recognized using the effective interest method. Dividend income is
+       recognized in profit or loss on the date on which the group’s right to receive payment is established.
+
+        Revenues from Available for Sale
+        Revenues are recognized when the group has the right to the revenues
+
+34-14 Expenses
+       Operating expenses, selling and distribution, general administrative expenses and other expenses are
+       recognized using the accrual basis of accounting and as such are recognized in the income statement
+       as incurred.
+
+34-15 Employees benefits
+       Social Insurance Scheme
+       The Group contributes in the governmental social insurance system for the benefits of its employees
+       according to the social insurance Law No. 79 of 1975 and its amendments. The Group’s contributions
+       are recognized in income statement using the accrual basis of accounting. The Group’s obligation in
+       respect of employees’ pensions is confined to the amount of the aforementioned contributions.
+
+        Share-based payment arrangements
+        The grant-date fair value of equity-settled share-based payment arrangements granted to employees is
+        generally recognized as an expense with a corresponding increase in equity, over the vesting period of
+        the awards. The amount recognized as an expense is adjusted to reflect the number of awards for which
+        the related service and non-market performance conditions are expected to be met, such that the amount
+        ultimately recognized is based on the number of awards that meet the related service and non-market
+        performance conditions at the vesting date.
+
+34-16 Income tax
+        Income tax expense comprises current and deferred tax. It is recognized in profit or loss except to the
+        extent that it relates to a business combination, or items recognized directly in equity or in OCI.
+        Current tax:
+        Current tax comprises the expected tax payable or receivable on the taxable income or loss for the year
+        and any adjustment to the tax payable or receivable in respect of previous years. The amount of current
+        tax payable or receivable is the best estimate of the tax amount expected to be paid or received that
+        reflects uncertainty related to income taxes, if any. It is measured using tax rates enacted or
+        substantively enacted at the reporting date. Current tax also includes any tax arising from dividends.
+        Current tax assets and liabilities are offset only if certain criteria are met.
+
+        Deferred tax:
+        Deferred tax is recognized in respect to temporary differences between the carrying amounts of assets
+        and liabilities for financial reporting purposes and the amounts used for taxation purposes.
+        Deferred tax is not recognized:
+        Temporary differences on the initial recognition of assets or liabilities in a transaction that is not a
+        business combination and that affects neither accounting nor taxable profit nor loss;
+
+                                                           32
+                                                                                 Translated From Arabic
+
+ EL Sewedy Electric Company
+ Notes to the interim consolidated financial statements for the period ended 30 June 2020
+ ______________________________________________________________________________________
+        Temporary differences related to investments in subsidiaries, associates and joint arrangements to the
+        extent that the group is able to control the timing of the reversal of the temporary differences and it is
+        probable that they will not reverse in the foreseeable future;
+        Deferred tax assets are recognized for unused tax losses, unused tax credits and deductible temporary
+        differences to the extent that it is probable that future taxable profits will be available against which
+        they can be used. Future taxable profits are determined based on business plans for individual
+        subsidiaries in the group. Deferred tax assets are reviewed at each reporting date and are reduced to the
+        extent that it is no longer probable that the related tax benefits will be realized; such reductions are
+        reversed when the probability of the future taxable profits improve.
+        Unrecognized deferred tax assets are reassessed at each reporting date and recognized to the extent that
+        it has become probable that future taxable profits will be available against which they can be used.
+        Deferred tax is measured at the tax rates that are expected to be applied to temporary differences when
+        they reverse, using tax rates enacted or substantively enacted at the reporting date.
+        The measurement if deferred tax reflects the tax consequences that would follow from the manner in
+        which the group expects, at the reporting date, to recover or settle the carrying amount of its assets or
+        liabilities. For this purpose, the carrying amount of investment property measured at fair value is
+        presumed to be recovered through sale, and the group has not rebutted this presumption.
+        Deferred tax assets and liabilities are offset only if certain criteria are met.
+
+ 34-17 Earnings per share
+        Basic EPS is calculated by dividing the profit or loss attributable to the ordinary shareholders of the
+        company by the weighted average number of ordinary shares outstanding during the period.
+
+ 34-18 Lease contract
+       Operating lease contract
+       Leases are classified as operating leases. The costs in respect of operating leases are charged on a
+       straight-line basis over the lease term. The value of any lease incentive received to take on an operating
+       lease (for example, rent-free periods) is recognized as deferred income and is released over the life of
+       the lease.
+       Financial lease contract (Sale/ re-leasing operation)
+        If an entity (the lease) transfers an asset to another entity (the lessor) and re-leases the assets, the entity
+       must determine whether the assets is being accounted for as a sale transaction on the assets or not.
+       In case the transfer of the asset is not a sale transaction
+       The Lessee must continue to recognize the transferred assets and must recognize a financial liability
+       equal to the proceeds of the transfer
+
+ 35. New accounting standards and amendments to current accounting standards:
+     On March 18, 2019, the Minister of Investment and International Cooperation introduced amendments to
+     some provisions of the Egyptian Accounting Standards issued thereby by virtue of Decree No. 110 of 2015,
+     which include some new accounting standards as well as introducing amendments to certain existing
+     standards.
+     The Financial Regulatory Authority decided in its declaration on April 12, 2020 to postpone the application
+     of the new Egyptian accounting standards and the accompanying amendments issued by Ministerial
+     Resolution No. 69 of 2019 to the periodic (quarterly) financial statements that will be issued during the
+     year 2020 that companies implement these standards and these amendments On the annual financial
+     statements of these companies at the end of the fiscal year ending December 31, 2020 and the inclusion of
+     the combined effect in full at the end of the year, with companies committing to adequate disclosure in
+     their periodic lists during the year 2020 about this fact and its accounting impact, if any.
+     The most prominent amendments are as follows:
+New or             A Summary of the Most Significant                    The Possible        Date of Implementation
+Amended            Amendments                                           Impact on the
+Standards
+
+                                                            33
+                                                                                  Translated From Arabic
+
+  EL Sewedy Electric Company
+  Notes to the interim consolidated financial statements for the period ended 30 June 2020
+  ______________________________________________________________________________________
+                                                               Financial
+                                                               Statements
+1- The new                 1-The new Egyptian Accounting       The
+   Egyptian                Standard No. (47), "Financial       Management is                 This standard applies to
+   Accounting              Instruments", supersedes the        currently                     financial periods beginning on
+   Standard                corresponding related issues        assessing the                 or after January1st, 2020, and
+   No. (47)                included in the Egyptian            potential                     the early implementation
+   "Financial              Accounting Standard No. (26),       impact of                     thereof is permitted; provided
+   Instruments             "Financial Instruments:             implementing                  that the amended Egyptian
+   "                       Recognition and Measurement".       the amendment                 Accounting Standards Nos.(1),
+                           Accordingly, Egyptian Accounting of the standard                  (25), (26) and (40) are to be
+                           Standard No. 26 was amended and on the financial                  simultaneously applied.
+                           reissued after cancelling the       statements.
+                           paragraphs pertaining to the issues
+                           addressed in the new Standard No.
+                           (47) and the scope of the amended
+                           Standard No. (26) was specified
+                           and intended to deal only with
+                           limited cases of Hedge Accounting
+                           according to the choice of the
+                           enterprise.
+                        2- Pursuant to the requirements of the
+                           Standard, financial assets are
+                           classified based on their
+                           subsequent measurement whether
+                           at amortized cost, or fair value
+                           through other comprehensive
+                           income or at fair value through
+                           profit or loss, in accordance with
+                           the enterprise business model for
+                           managing financial assets and the
+                           contractual cash flow
+                           characteristics of the financial
+                           asset.
+                        3- When measuring the impairment
+                           of financial assets the Incurred
+                           Loss Model is replaced by the
+                           Expected Credit Loss
+                           (ECL)Models, which requires
+                           measuring the impairment of all
+                           financial assets measured at
+                           amortized cost and financial                                      -These ammendments are
+                           instruments measured at fair value                                effective as of the date of
+                           through other comprehensive                                       implementing Standard No.
+                           income from their initial                                         (47) [
+                           recognition date regardless
+                           whether there is any indication of
+                           the occurrence of loss event.
+
+
+                                                             34
+                                                                                 Translated From Arabic
+
+ EL Sewedy Electric Company
+ Notes to the interim consolidated financial statements for the period ended 30 June 2020
+ ______________________________________________________________________________________
+                       4- based on the requirements of this
+                          standard the following standards
+                          were amended:
+                          -Egyptian Accounting Standard
+                          No. (1) “Presentation of Financial
+                          Statements” as amended in 2019]
+                          2-Egyptian Accounting Standard
+                          No. (4) - “Statement of Cash
+                          Flows”.
+                          3-Egyptian Accounting Standard
+                          No. (25) - “Financial Instruments:
+                          Presentation.
+                          4-Egyptian Accounting Standard
+                          No. (26) - “Financial Instruments:
+                          Recognition and Measurement”.
+                          5- Egyptian Accounting Standard
+                          - EAS No. (40) - “Financial
+                          Instruments: Disclosures “
+The new                   1.The new Egyptian Accounting                 The                 Standard No (48) applies to
+Egyptian                    Standard No. (48)                           Management is       financial periods beginning on
+Accounting                  - “Revenue from Contracts with              currently           or after January1st, 2020, and
+Standard No.                Customers” shall supersede the              assessing the       the early implementation
+(48)                        following standards and                     potential           thereof is permitted
+- “Revenue fr               accordingly such standards shall            impact of
+om Contracts                be deemed null and void:                    implementing
+with                      2.Egyptian Accounting Standard                the amendment
+Customers”                  No. (8) - “Construction                     of the standard
+                            Contracts” as amended in 2015.              on the financial
+                          3.Egyptian Accounting Standard                statements
+                            No. (11) – “Revenue” as
+                            amended in 2015.
+                          4.For revenue recognition, Control
+                            Model is used instead of Risk
+                            and Rewards Model.
+                          5.incremental costs of obtaining a
+                            contract with a customer are
+                            recognized as an asset if the
+                            enterprise expects to recover
+                            those costs and the costs of
+                            fulfilling the contract are to be
+                            recognized as an asset when
+                            certain conditions are met
+                          6.the standard requires that
+                            contract must have a commercial
+                            substance in order for revenue to
+                            be recognized
+                          7.Expanding in the presentation
+                            and disclosure requirements
+
+
+                                                            35
+                                                                                 Translated From Arabic
+
+ EL Sewedy Electric Company
+ Notes to the interim consolidated financial statements for the period ended 30 June 2020
+ ______________________________________________________________________________________
+The new               1- The new Egyptian Accounting                    The                 This standard No. (49) applies
+Egyptian                  Standard No. (49) "Lease                      Management is       to financial periods beginning
+Accounting                Contracts" shall supersede and                currently           on or after January 1st, 2020,
+Standard No.              revoke Standard No. (20),”                    assessing the       and the early implementation
+(49) "Lease               Accounting Rules and Standards                potential           thereof is permitted if Egyptian
+Contracts                 related to Financial Leasing”                 impact of           Accounting Standard No. (48)
+                          issued in 2015                                implementing        "Revenue from Contracts with
+                      2- The Standard introduces a single               the amendment       Customers" is simultaneously
+                          accounting model for the lessor               of the standard     applied.
+                          and the lessee where the lessee               on the financial     Except for the above-
+                          recognizes the usufruct of the                statements.         mentioned date of enforcement,
+                          leased asset as part of the                                       Standard No. (49) applies to
+                          company’s assets and recognizes a                                 lease contracts that were
+                          liability that represents the present                             subjected to Finance Lease
+                          value of the unpaid lease payments                                Law No. 95 of 1995 and its
+                          under the company's liabilities,                                  amendments and were treated
+                          taking into account that the lease                                according to Egyptian
+                          contracts are not classified in                                   Accounting Standard No. 20,
+                          respect of the lease as operating l                               ”Accounting rules and
+                          or finance lease contracts .                                      standards related to financial
+                      3- As for the lessor, he shall classify                               leasing ” as well as the finance
+                          each lease contract either as an                                  lease contracts that arise under
+                          operating lease or a finance lease                                and are subjected to Law No.
+                          contract.                                                         176 of 2018 to the effect of
+                      4- As for the finance lease, the lessor                               regulating both financial
+                          must recognize the assets held                                    leasing and factoring activities
+                          under a finance lease contract in                                 starting from the beginning of
+                          the Statement of Financial Position                               the annual reporting period in
+                          and present them as amounts                                       which Law No. (95) of 1995
+                          receivable with an amount                                         was revoked and Law No. (176)
+                          equivalent to the amount of the                                   of 2018 was issued.
+                          net investment in the lease
+                          contract.
+                      5- As for operating leases, the lessor
+                          must recognize the lease payments
+                          of operating lease contracts as
+                          income either based on the
+                          straight-line method or based on
+                          any other regular basis.
+Egyptian           Anumber of paragraphs were introduced                The                 This standard No. (38) applies
+Accounting         and amended in order to amend the                    Management is       to financial periods beginning
+Standard No.       Accounting Rules of Settlements and                  currently           on or after January 1st, 2020,
+(38)) as           Curtailments of Benefit Plans                        assessing the       and the early implementation
+ammended "                                                              potential           thereof is permitted.
+Employees                                                               impact of
+Benefits "                                                              implementing
+                                                                        the amendment
+                                                                        of the standard
+
+
+                                                            36
+                                                                                 Translated From Arabic
+
+ EL Sewedy Electric Company
+ Notes to the interim consolidated financial statements for the period ended 30 June 2020
+ ______________________________________________________________________________________
+                                                                        on the financial
+                                                                        statements.
+Egyptian       Some paragraphs related to the exclusion                 The                 This standard applies to
+Accounting     of the Investment Entities from the                      Management is       financial periods beginning on
+Standard No.   consolidation process were added . This                  currently           or after January 1st, 2020, and
+(42)) as       amendment has resulted in introducing an                 assessing the       the early implementation
+ammended "     amendment to some of the standards                       potential           thereof is permitted.
+Consolidated   related to the subject of the Investment                 impact of           -The new or amended
+Financial      Entities. The standards that were                        implementing        paragraphs
+Statements"    ammended are as follows:                                 the amendment       pertaining to the amended
+                   - (ESA 15) Related Party                             of the standard     standards      concerning      the
+                       Disclosures                                      on the financial    investment entities shall apply
+                   - ( ESA 17)Consolidated and                          statements.         on the effective date of Egyptian
+                       Separate Financial Statements                                        Accounting Standard No. (42)
+                   - ( ESA 18) Investments in                                               "Consolidated            Financial
+                       Associates                                                           Statements", as amended and
+                   - (ESA 24) Income Taxes                                                  issued in 2019
+                   - (ESA 29)Business Combinations
+                   - ESA( 30) Periodical Financial
+                       Statements
+                   - EAS (44) Disclosure of Interests in
+                       Other Entities.
+Issuance of    This interpretation provides guidance on                 The              Interpretation No. (1) applies to
+Egyptian       the accounting by operators of public                    Management is financial periods beginning on
+Accounting     service privileges arrangements from a                   currently        or after January 1st, 2019,
+Interpretation public entity to a private entity for the                assessing the
+No. (1)”       construction, operation and maintenance                  potential
+Public Service of the infrastructure for public utilities               impact of
+Privileges     such as roads, bridges, tunnels, hospitals,              implementing
+Arrangements airports, water supply facilities, power                   the amendment
+” ...          supplies and communications networks. ..,                of the standard
+               etc                                                      on the financial
+               This interpretation gives the option of                  statements
+               continuing to apply the prior treatment of
+               public service privilages arrangements
+               that prevailed prior to January 1st,2019
+               on entities that used to recognize and
+               measure the assets of these arrangements
+               as fixed assets in accordance with
+               Egyptian Accounting Standard No. 10
+               "Fixed Assets and Depreciation"until their
+               useful lives are expired .
+Egyptian       The scope of implementaion of the                        The                 This amendment is introduced
+Accounting     Standard was amended to be applied to                    Management is       and shall apply to financial
+Standard No.   the separate, or consolidated financial                  currently           periods beginning on or after
+(22) as        statements issued to all enterprises.                    assessing the       January 1st, 2019.
+ammended "                                                              potential
+Earnings per                                                            impact of
+Share                                                                   implementing
+
+                                                            37
+                                                                                 Translated From Arabic
+
+ EL Sewedy Electric Company
+ Notes to the interim consolidated financial statements for the period ended 30 June 2020
+ ______________________________________________________________________________________
+                                                                        the amendment
+                                                                        of the standard
+                                                                        on the financial
+                                                                        statements
+Egyptian           The Fair Value Model option for all                  The                 This amendment is introduced
+Accounting         enterprises is no longer used when the               Management is       and shall apply to financial
+Standard No.       subsequent measurement of their real                 currently           periods beginning on or after
+(34) as            estate investments is made and                       assessing the       January 1st, 2019.
+ammended "         compliance shall apply only to the Cost              potential
+Real Estate        Model.                                               impact of
+Investment         while only real estate investment funds              implementing
+                   are obliged to use the Fair Value Model,             the amendment
+                   upon the subsequent measurement of all               of the standard
+                   their real estate assets.                            on the financial
+                   Based on this amendment, the following               statements
+                   standards were ammended :
+                        - Egyptian Accounting Standard No.
+                            (32) Non-current Assets Held for
+                            Sale and Discontinued Operation
+                        - Egyptian Accounting Standard No.
+                            (31) Impairment of Assets
+Egyptian           This standard requires the entity to                 The                 This amendment is introduced
+Accounting         provide disclosures that enable users of             Management is       and shall apply to financial
+Standard No.       the financial statements to assess changes           currently           periods beginning on or after
+(4) as             in liabilities arising from finance                  assessing the       January 1st, 2019.
+ammended "         activities, including both changes arising           potential
+Statemnet of       from cash flows or non-cash flows .                  impact of
+Cash Flows"                                                             implementing
+                                                                        the amendment
+                                                                        of the standard
+                                                                        on the financial
+                                                                        statements
+
+
+ 36. Subsequent event
+     The second half of march have witnessed the beginning of the impact of the outbreak of corona virus on
+     the Egyptian market and the Egyptian government announced unprecedented measures to combat the virus
+     infection and its spread, El Sewedy group has formed a risk committee to manage the crisis and the
+     objectives of this period has been defined in maintaining all employees and securing them from corona
+     risks as well as continuing the company’s operations , all risks were studied and evaluated and taken a
+     serious of precautionary measures to reduce all risks on all employees and to ensure the continuity of the
+     supply chain (operational , manufacturing ,sales and collection operations in this period and there is not
+     effect on the company’s current economic situation (its financial position , business result and cash flow).
+
+     And given to of the lack of clarity of the effects that could be caused by the development of the situation
+     related to the effect of the spread of the virus (Covid-19) in the future , the effects of development on the
+     company’s activity cannot be determined precisely at the present time
+
+
+                                                            38
+

@@ -1,9 +1,14 @@
 {
+ "scrub_docs": [
+  "EGCH_Valuation_Study_10-09-2026.docx",
+  "EGCH_Bibliography_10-09-2026.docx",
+  "EGCH_Valuation_Model_10092026.xlsx"
+ ],
  "scrub_patterns": 73,
  "scrub_hits": [],
  "figures": 15,
  "transparent": [],
- "tables": 56,
+ "tables": 57,
  "table_problems": [],
  "builders": [
   "docx_egch.py",

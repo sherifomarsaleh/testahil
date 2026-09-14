@@ -1,0 +1,123 @@
+{
+ "ticker": "AIRARABIA",
+ "as_of": "2026-09-06",
+ "spot": 4.97,
+ "spot_date": "close 2026-09-03, supplied 2026-09-03 (SUPPLIED_03-09-2026.json)",
+ "published_central": 4.7458743053797985,
+ "published_spot": 4.97,
+ "why_this_file": "The reverse read — what the traded price must believe — is a DIAGNOSTIC and lives outside the numbers file every builder reads. A quantity solved from a price and then used anywhere in the valuation is the reverse-engineered rate the protocol prohibits outright, arriving through a side door. Nothing in this file is an input to anything: it is COMPUTED by diagnostics_airarabia.py, no builder reads it, and this generator asserts before writing that the solved value appears nowhere in study_numbers.json.",
+ "implied": {
+  "quantity": "the single flat discount rate that reproduces the traded price on this study's own free cash flows and terminal",
+  "value": 0.07315418334748858,
+  "value_other_framing": 0.07878724344254817,
+  "study_value": 0.07530896630331227,
+  "study_value_range": [
+   0.07996156770622016,
+   0.074963
+  ],
+  "solved_on": "engine/reverse_read.py, on this study's own committed free cash flows, its own terminal cash flow recovered from its own terminal value, its own terminal growth and its own bridge — holding every driver at its published value and varying only the discount rate until the model reproduces the traded price. The discounting convention was recovered from the study's own factors and recovers whole years. The bridge is not additive in enterprise value here, so the price is first carried back to the model's own valuation date through the study's own two-legged accretion, and that inversion is asserted to reproduce the study's published answer before either rate is believed.",
+  "reading": "At AED 4.97 the price is paying for a flat 7.315% cost of capital on the same cash flows this study discounts at a schedule equivalent to a flat 7.531%. The disagreement is -22 basis points on the price of time and risk, not on the business — which is a smaller statement than \"the central sits -4.5% below the market\" and a more useful one. The study's schedule runs 8.00% gliding to 7.50%, and its flat equivalent sits inside that range, which is the check that the two numbers are one quantity measured twice. On the study's own alternative framing of the venture network the implied rate is 7.879%. Beside what the company itself discloses: its FY2025 finance charge over average gross debt computes to 2.73%, its cash and deposits earn 4.1% in the model's first forecast year, the dirham sovereign it borrows behind yields 4.48% and this study's own marginal cost of debt is 5.50% — so the market is discounting the whole firm about 284 basis points above that sovereign, against this study's 305."
+ },
+ "construction": {
+  "implied_rate_at_price": 0.07315418334748858,
+  "implied_rate_at_study_value": 0.07530896630331227,
+  "terminal_cash_flow": 1283.818348553999,
+  "terminal_growth": 0.024997999999999854,
+  "terminal_arrives_at_year": 5.0,
+  "enterprise_value_at_spot": 19547.79930748646,
+  "enterprise_value_in_study": 18557.177763751228,
+  "bridge_delta_equity_less_ev": 3848.6799999999967,
+  "discounting_times": [
+   1.0,
+   2.0,
+   3.0,
+   4.0,
+   5.0
+  ],
+  "times_resolved": "recovered from the study's own factors",
+  "price_carried_to_the_model_date": 5.013495469493745,
+  "bridge_inverted": "the operating leg at the cost of equity (x1.055829), the cash and near-cash legs at the deposit yield (x1.027451), less the dividend paid inside the window",
+  "study_value_per_share_reproduced": 4.7458743053797985
+ },
+ "construction_venture_network_capitalised": {
+  "implied_rate_at_price": 0.07878724344254817,
+  "implied_rate_at_study_value": 0.07530896630331227,
+  "terminal_cash_flow": 1283.818348553999,
+  "terminal_growth": 0.024997999999999854,
+  "terminal_arrives_at_year": 5.0,
+  "enterprise_value_at_spot": 17128.38399318465,
+  "enterprise_value_in_study": 18557.177763751228,
+  "bridge_delta_equity_less_ev": 6334.918999999998,
+  "discounting_times": [
+   1.0,
+   2.0,
+   3.0,
+   4.0,
+   5.0
+  ],
+  "times_resolved": "recovered from the study's own factors",
+  "price_carried_to_the_model_date": 5.027814728434365,
+  "bridge_inverted": "the operating leg at the cost of equity (x1.055829), the cash and near-cash legs at the deposit yield (x1.027451), less the dividend paid inside the window",
+  "study_value_per_share_reproduced": 5.293261086256813
+ },
+ "at_the_strike": {
+  "spot": 4.97,
+  "note": "this edition was re-struck on the same close the gap is measured against, so the strike price and the latest known price are one number and there is no month of drift between them to report"
+ },
+ "cross_reads": {
+  "why": "The flat rate is the comparable read across this book and it is not the most legible one for an airline, where a reader can check passengers and fares against the company's own results presentations. Each figure below is the same question asked of ONE driver: the value that driver must take for this study's own model to reproduce the traded price, with every other driver held at its published value. They are alternative readings of the SAME disagreement and are not additive.",
+  "implied_passenger_multiplier": 1.0275760580958275,
+  "implied_fy2030_passengers_mn": 18.033959819581774,
+  "study_fy2030_passengers_mn": 17.55,
+  "implied_passenger_cagr_fy2025_to_fy2030": 0.06666878026921919,
+  "study_passenger_cagr_fy2025_to_fy2030": 0.06088128666310899,
+  "disclosed_passenger_cagr_fy2022_to_fy2025": 0.16032317514993766,
+  "implied_fare_multiplier": 1.0073732848058983,
+  "implied_fy2030_fare_and_baggage_per_passenger": 497.64240269411374,
+  "study_fy2030_fare_and_baggage_per_passenger": 494.0,
+  "implied_effective_jet_price_multiplier": 0.9784611724679311,
+  "implied_cash_cost_per_passenger_shift": -0.008277951647448656,
+  "implied_fleet_capex_multiplier": 0.9126014335491837,
+  "implied_parallel_shift_in_the_schedule": -0.0022047836420800646,
+  "implied_terminal_growth_nominal": 0.029448203629603653,
+  "study_terminal_growth_nominal": 0.024997999999999854,
+  "house_AE_terminal_inflation": 0.02,
+  "implied_terminal_growth_real": 0.009262944734905743,
+  "study_terminal_growth_real": 0.0049,
+  "implied_working_capital_pct_of_revenue": -0.7133210659651792,
+  "study_working_capital_pct_of_revenue": -0.64,
+  "implied_joint_venture_network_value": 1381.3682793200046,
+  "implied_multiple_of_the_fy2025_profit_share": 7.271316116962783,
+  "study_joint_venture_network_value_book": 363.386,
+  "study_multiple_of_the_fy2025_profit_share_at_book": 1.9128095802079224,
+  "study_joint_venture_network_value_capitalised": 2849.625,
+  "study_multiple_capitalised": 15.0,
+  "reading": "The two rate reads agree, which is worth stating because they were solved on different machinery: the flat-rate read puts the disagreement at -22 basis points and a parallel shift of the study's own gliding schedule, solved on the study's own scenario engine, puts it at -22. In business units the same gap is 2.8% more passengers than this study forecasts (FY2030 18.03mn against 17.55mn, a compound 6.67% a year from the audited FY2025 13.06mn against this study's 6.09% — where the company's own disclosed record from FY2022 to FY2025 is 16.0% a year), or 0.7% more on the fare, or a jet price 2.2% below the path the study takes, or a fleet capital bill 8.7% lighter. THE ONE WORTH PAUSING ON IS THE VENTURE NETWORK. This study prices it BOTH ways and never averages: the audited carrying value, 1.91 times the FY2025 profit share, and the same share capitalised at 15 times. The price implies AED 1381mn, or 7.27 times — BETWEEN the study's own two published framings, nearer the book end than the capitalised one. That does not prove the venture network is where the disagreement lives — every line above absorbs the same gap, and a gap this small is absorbed by almost any single driver — but it does mean the price sits INSIDE a bracket this study publishes and declines to close, which is a different thing from the price disagreeing with an answer the study committed to."
+ },
+ "company_disclosed": {
+  "passengers_carried_mn": {
+   "FY22": 8.36,
+   "FY23": 10.11,
+   "FY24": 11.22,
+   "FY25": 13.06
+  },
+  "seat_load_factor": {
+   "FY22": 0.8,
+   "FY23": 0.804,
+   "FY24": 0.82,
+   "FY25": 0.853
+  },
+  "fare_and_baggage_per_passenger_fy2024": 494.86568627450976,
+  "fare_and_baggage_per_passenger_fy2025": 478.69165390505356,
+  "fuel_per_passenger_fy2025": 172.38614088820825,
+  "share_of_venture_profit_fy2025": 189.975,
+  "carrying_value_of_the_venture_network_fy2025": 363.386,
+  "effective_finance_cost_over_average_gross_debt_fy2025": 0.027308496058470456,
+  "audited_effective_tax_rate_fy2025_as_the_tax_note_states_it": 0.11599999999999999,
+  "audited_effective_tax_rate_fy2025_income_statement_charge_over_pretax_profit": 0.11036443850165147,
+  "audited_effective_tax_rate_fy2024_both_readings_agree": 0.08789999999999999,
+  "why_the_fy2025_tax_rate_has_two_readings": "the tax note's stated rate is struck on the year's tax expense; the charge that reaches the income statement is that expense less a prior-period adjustment the note separates on its own line. Both are filed, both are published here, and the FY2024 pair agreeing to the basis point on both readings is what places the difference in that line rather than in the identity.",
+  "net_cash_fy2025": 2417.297,
+  "note": "every figure here is the company's own disclosure or an identity on the company's own disclosures, taken from this study's own four-field input register and recomputed by this study's own code. The fare and fuel per passenger are the disclosed revenue and cost lines over the disclosed passenger count; seat and available-seat-kilometre data is not disclosed, which the study flags, so per-passenger is the finest sourced level here."
+ }
+}

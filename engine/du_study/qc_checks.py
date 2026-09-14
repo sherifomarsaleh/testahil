@@ -12,6 +12,25 @@ from PIL import Image
 HERE = os.path.dirname(os.path.abspath(__file__))
 STUDY = os.path.join(HERE, 'DU_Valuation_Study_09-08-2026_public.docx')
 BIB = os.path.join(HERE, 'DU_Bibliography_09-08-2026.docx')
+
+
+def latest_ddmmyyyy(pat):
+    """The workbook names its edition DDMMYYYY with no separators, so the date is PARSED
+    rather than the filenames sorted as text — 03092026 sorts below 09082026 as a string and
+    a text sort silently picks a superseded edition [L-067]."""
+    c = []
+    for f in os.listdir(HERE):
+        if re.match(pat, f) and not f.startswith('~$'):
+            m = re.findall(r'_(\d{2})(\d{2})(\d{4})_', f)
+            c.append(((m[-1][2] + m[-1][1] + m[-1][0]) if m else '', f))
+    return sorted(c)[-1][1] if c else None
+
+
+# THE WORKBOOK IS A DELIVERED DOCUMENT AND THIS SCRUB EXCLUDED IT [L-350]. A reader receives
+# three files and the list above named two, so the third was scanned by nothing. Only its
+# STRING cells are read: a numeric cell is a model output the recalculation gate reconciles,
+# and a formula is not a sentence.
+XLSX = os.path.join(HERE, latest_ddmmyyyy(r'.*Valuation_Model_\d{8}.*\.xlsx$'))
 TEXT_WIDTH = 7.0            # 8.5in page less 0.75in margins each side
 BIB_WIDTH = 7.1             # bibliography uses 0.7in margins
 
@@ -32,7 +51,23 @@ BANNED = [
 
 CASE_BANNED = [r'\bPARITY\b', r'\bBOUNDARY\b', r'\bFAIL\b(?! )']
 
+def xlsx_strings(path):
+    """Every string cell a reader sees in the workbook; formulas and numbers are skipped."""
+    import openpyxl
+    wb = openpyxl.load_workbook(path, data_only=False, read_only=True)
+    out = []
+    for ws in wb.worksheets:
+        for row in ws.iter_rows(values_only=True):
+            for v in row:
+                if isinstance(v, str) and not v.startswith('='):
+                    out.append(v)
+    wb.close()
+    return out
+
+
 def doc_text(path):
+    if path.lower().endswith(('.xlsx', '.xlsm')):
+        return None, '\n'.join(xlsx_strings(path))
     d = Document(path)
     parts = [p.text for p in d.paragraphs]
     for t in d.tables:
@@ -46,7 +81,7 @@ fails = []
 # ---- (k)/(m) procedure-reference scrub --------------------------------------
 print('=' * 74)
 print('(k)+(m)  internal-procedure vocabulary scrub')
-for label, path in [('study', STUDY), ('bibliography', BIB)]:
+for label, path in [('study', STUDY), ('bibliography', BIB), ('workbook', XLSX)]:
     _, txt = doc_text(path)
     low = txt.lower()
     hits = []
@@ -111,15 +146,15 @@ for fn in sorted(f for f in os.listdir(HERE) if f.endswith('.png')):
 # ---- general: no leaked placeholders --------------------------------------------
 print('=' * 74)
 print('general  leaked placeholders / unformatted values')
-for label, path in [('study', STUDY), ('bibliography', BIB)]:
+for label, path in [('study', STUDY), ('bibliography', BIB), ('workbook', XLSX)]:
     d, txt = doc_text(path)
     bad = re.findall(r'\{[a-z_]+\}|\bnan\b|\d+e[+-]\d\d|\bTODO\b|\bXXX\b', txt)
     # a whole cell whose entire content is a Python repr is the real leakage mode
-    for t in d.tables:
-        for row in t.rows:
-            for c in row.cells:
-                if c.text.strip() in ('None', 'nan', 'inf', '-inf', '[]', '{}', '0.0%'):
-                    bad.append(f'cell="{c.text.strip()}"')
+    cells = ([c.text for t in d.tables for row in t.rows for c in row.cells] if d is not None
+             else xlsx_strings(path))
+    for ctext in cells:
+        if ctext.strip() in ('None', 'nan', 'inf', '-inf', '[]', '{}', '0.0%'):
+            bad.append(f'cell="{ctext.strip()}"')
     print(f'  {label}: {len(bad)} hits {sorted(set(bad))[:8]}')
     if bad:
         fails.append(f'placeholders in {label}')
@@ -130,11 +165,11 @@ for label, path in [('study', STUDY), ('bibliography', BIB)]:
 # its own say-so. The result is now a file, it NAMES THE FILES IT SCANNED, and the model
 # refuses to attest on a result covering an edition nobody receives.
 json.dump({
-    'files': [os.path.basename(STUDY), os.path.basename(BIB)],
+    'files': [os.path.basename(STUDY), os.path.basename(BIB), os.path.basename(XLSX)],
     'clean': not fails,
     'hits': sorted(set(fails)),
     'patterns': len(BANNED) + len(CASE_BANNED),
-    'chars': sum(len(doc_text(p)[1]) for p in (STUDY, BIB)),
+    'chars': sum(len(doc_text(p)[1]) for p in (STUDY, BIB, XLSX)),
 }, open(os.path.join(HERE, 'scrub_result.json'), 'w'), indent=1)
 
 print('=' * 74)

@@ -10,30 +10,30 @@
    "Relative multiples"
   ],
   "four_lenses": true,
-  "inputs": "302 inputs, all four-field complete",
+  "inputs": "310 inputs, all four-field complete",
   "scrub": "73 patterns, 0 hits",
   "figures": "15 figures, 0 with transparency",
-  "tables": "56 tables, 0 problems",
+  "tables": "57 tables, 0 problems",
   "builders": "4 builders, 0 typed numerals",
-  "contested": "EGP 4.00 a share between the two sides"
+  "contested": "EGP 3.53 a share between the two sides"
  },
  "passed": true,
  "beta": {
-  "beta": 1.0302103069881783,
+  "beta": 1.01981029917547,
   "index_file": "raw_indices/EG/EGX30.csv",
   "conforming": true
  },
- "standard_version": "2026.09.01",
+ "standard_version": "2026.09.10",
  "ground_up": {
   "ticker": "EGCH",
   "lines": 5,
   "share_by_level": {
-   "unit": 0.7470974569827978,
-   "derived": 0.24091006069013293,
-   "segment": 0.011992482327069181,
+   "unit": 0.7664819812051628,
+   "derived": 0.22244473862913003,
+   "segment": 0.011073280165707194,
    "topdown": 0
   },
-  "unit_share": 0.7470974569827978,
-  "standard_version": "2026.09.01"
+  "unit_share": 0.7664819812051628,
+  "standard_version": "2026.09.10"
  }
 }

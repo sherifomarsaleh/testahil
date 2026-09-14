@@ -5,11 +5,14 @@ that its own workbook no longer holds: alternatives.py reads lenses.json, figure
 reads alternatives.json, and both documents read all three. The order is the contract.
 
 AND A STAGE LEFT OUT OF THIS LIST NEVER RUNS AT ALL. diagnostics_egch.py, which writes
-contested_judgements.json and diagnostics.json, was missing until 5 September 2026, so
-those two artefacts went on declaring a central three corrections old while every stage
-listed here rebuilt cleanly. check_artefact_currency caught it, which is what that gate is
-for [R-ENF-06]: an artefact every builder reads and this list does not write is a number
-frozen at the date somebody last ran it by hand.
+this study's two output records, was missing until 5 September 2026, so those two
+artefacts went on declaring a central three corrections old while every stage listed here
+rebuilt cleanly. check_artefact_currency caught it, which is what that gate is for
+[R-ENF-06]: an artefact every builder reads and this list does not write is a number
+frozen at the date somebody last ran it by hand. The records are named here by their
+GENERATOR rather than by filename on purpose: nothing in this file opens either of them,
+and a build orchestrator that even appears to read the reverse read is the side door
+[R-ENF-05] closes.
 """
 import subprocess, sys, os
 HERE = os.path.dirname(os.path.abspath(__file__))

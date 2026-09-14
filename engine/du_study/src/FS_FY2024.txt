@@ -1,0 +1,3066 @@
+Emirates Integrated Telecommunications
+Company PJSC and its subsidiaries
+
+Consolidated financial statements
+for the year ended 31 December 2024
+Emirates Integrated Telecommunications Company PJSC
+
+Consolidated financial statements
+for the year ended 31 December 2024
+
+                                                      Page(s)
+
+Independent auditor’s report                            1–5
+
+
+Consolidated statement of financial position               6
+
+
+Consolidated statement of comprehensive income             7
+
+
+Consolidated statement of changes in equity                8
+
+
+Consolidated statement of cash flows                       9
+
+
+Notes to the consolidated financial statements        10 – 61
+Independent auditor’s report to the shareholders of Emirates
+Integrated Telecommunications Company PJSC
+Report on the audit of the consolidated financial statements
+Our opinion
+In our opinion, the consolidated financial statements present fairly, in all material respects, the consolidated financial
+position of Emirates Integrated Telecommunications Company PJSC (“the Company”) and its subsidiaries (together
+the “Group”), as at 31 December 2024 and its consolidated financial performance and its consolidated cash flows for
+the year then ended in accordance with IFRS Accounting Standards.
+
+What we have audited
+
+The Group’s consolidated financial statements comprise:
+
+●       the consolidated statement of financial position as at 31 December 2024;
+●       the consolidated statement of comprehensive income for the year then ended;
+●       the consolidated statement of changes in equity for the year then ended;
+●       the consolidated statement of cash flows for the year then ended; and
+●       the notes to the consolidated financial statements, comprising material accounting policy information
+        and other explanatory information.
+
+Basis for opinion
+We conducted our audit in accordance with International Standards on Auditing (ISAs). Our responsibilities under those
+standards are further described in the Auditor’s responsibilities for the audit of the consolidated financial statements
+section of our report.
+
+We believe that the audit evidence we have obtained is sufficient and appropriate to provide a basis for our opinion.
+
+Independence
+
+We are independent of the Group in accordance with the International Code of Ethics for Professional Accountants
+(including International Independence Standards) issued by the International Ethics Standards Board for Accountants
+(the” IESBA Code”) and the ethical requirements that are relevant to our audit of the consolidated financial statements
+in the United Arab Emirates. We have fulfilled our other ethical responsibilities in accordance with these requirements
+and the IESBA Code.
+
+
+Our audit approach
+Overview
+
+Key Audit Matters                    ●    Revenue recognition due to complexity of related IT systems
+
+
+
+As part of designing our audit, we determined materiality and assessed the risks of material misstatement in the
+consolidated financial statements. In particular, we considered where management made subjective judgements; for
+example, in respect of significant accounting estimates that involved making assumptions and considering future
+events that are inherently uncertain. As in all of our audits, we also addressed the risk of management override of
+internal controls, including among other matters consideration of whether there was evidence of bias that represented
+a risk of material misstatement due to fraud.
+
+
+
+
+PricewaterhouseCoopers Limited Partnership Dubai Branch, License no. 102451
+Emaar Square, Building 5, P O Box 11987, Dubai - United Arab Emirates
+T: +971 (0)4 304 3100, F: +971 (0)4 346 9150, www.pwc.com/me
+
+
+                                                                                                                      (1)
+Independent auditor’s report to the shareholders of Emirates
+Integrated Telecommunications Company PJSC (continued)
+
+Our audit approach (continued)
+Overview (continued)
+
+We tailored the scope of our audit in order to perform sufficient work to enable us to provide an opinion on the
+consolidated financial statements as a whole, taking into account the structure of the Group, the accounting processes
+and controls, and the industry in which the Group operates.
+
+Key audit matters
+
+Key audit matters are those matters that, in our professional judgment, were of most significance in our audit of the
+consolidated financial statements of the current period. These matters were addressed in the context of our audit of
+the consolidated financial statements as a whole, and in forming our opinion thereon, and we do not provide a separate
+opinion on these matters.
+
+ Key audit matter                                          How our audit addressed the Key audit matter
+
+Revenue recognition due to complexity
+of related IT systems                                      We performed audit procedures over this significant risk
+                                                           area, which included a combination of tests of controls and
+                                                           substantive procedures as described below:
+The Group reported revenue of AED 14.6 billion from
+telecommunication and related activities during the        •   Obtained an understanding of the various significant
+year ended 31 December 2024.                                   revenue streams and identified the relevant controls,
+                                                               IT systems, interfaces and reports;
+We considered this area to be a matter of significance,
+                                                           •   Assessed the Group's revenue accounting policies,
+as there is an inherent risk around the recognition of
+                                                               including the key judgments and estimates applied by
+revenue in telecommunication services given that
+                                                               management in consideration of the requirements of
+revenue is processed by complex information
+                                                               IFRS 15;
+technology (“IT”) systems, involving large volumes of
+                                                           •   Placed reliance on the Group’s IT systems and key
+data with a combination of different products, services,
+                                                               internal controls. We involved our internal IT specialists
+and related prices.
+                                                               to test the IT general controls and application controls
+                                                               connected with the processing of transactions of
+A significant portion of our audit effort was directed
+                                                               significant revenue streams;
+towards this area as we placed high reliance on the
+                                                           •   Performed automated and manual controls testing,
+Group’s IT systems and key internal controls, which is
+                                                               and substantive procedures to verify the accuracy and
+a normal practice for an audit of a large
+                                                               occurrence of revenue. This included testing the end-
+telecommunications business.
+                                                               to end reconciliations from data records extracted from
+                                                               source systems to the billing systems and to the
+Refer to Notes 2.2 and 3.18 for the critical accounting
+                                                               general ledger, and testing of key manual controls
+judgements and key sources of estimation uncertainty,
+                                                               applied by the Group’s revenue assurance team;
+and material accounting policies made by
+                                                           •   Performed independently generated events test using
+management, respectively. Details of the Group’s
+                                                               various parameters to ascertain those instances will
+revenue are disclosed in Note 34 to the consolidated
+                                                               accurately be processed through the network elements
+financial statements.
+                                                               and recognized appropriately;
+                                                           •   Performed additional substantive procedures in
+                                                               instances where control weaknesses were identified to
+                                                               assess accuracy and occurrence of revenue;
+                                                           •   Used data analytics tools to identify, based on risk
+                                                               criteria, revenue-related manual journals posted to the
+                                                               general ledger and traced them to source
+                                                               documentation; and
+                                                           •   Assessed the adequacy of the Group’s disclosures in
+                                                               respect to revenue.
+
+
+
+
+                                                                                                                      (2)
+Independent auditor’s report to the shareholders of Emirates
+Integrated Telecommunications Company PJSC (continued)
+
+Other information
+Management is responsible for the other information. The other information comprises the Board of Directors’ Report
+(but does not include the consolidated financial statements and our auditor’s report thereon), which we obtained prior
+to the date of this auditor’s report, and the Group’s Annual Report, which is expected to be made available to us after
+that date.
+
+Our opinion on the consolidated financial statements does not cover the other information and we do not and will
+not express any form of assurance conclusion thereon.
+
+In connection with our audit of the consolidated financial statements, our responsibility is to read the other
+information identified above and, in doing so, consider whether the other information is materially inconsistent with
+the consolidated financial statements or our knowledge obtained in the audit, or otherwise appears to be materially
+misstated.
+
+If, based on the work we have performed on the other information that we obtained prior to the date of this auditor’s
+report, we conclude that there is a material misstatement of this other information, we are required to report that fact.
+We have nothing to report in this regard.
+
+When we read the Group’s Annual Report, if we conclude that there is a material misstatement therein, we are required
+to communicate the matter to those charged with governance.
+
+
+
+Responsibilities of management and those charged with governance for the
+consolidated financial statements
+
+Management is responsible for the preparation and fair presentation of the consolidated financial statements in
+accordance with IFRS Accounting Standards and their preparation in compliance with the applicable provisions of the
+UAE Federal Decree Law No. (32) of 2021 and for such internal control as management determines is necessary to
+enable the preparation of consolidated financial statements that are free from material misstatement, whether due to
+fraud or error.
+
+In preparing the consolidated financial statements, management is responsible for assessing the Group’s ability to
+continue as a going concern, disclosing, as applicable, matters related to going concern and using the going concern
+basis of accounting unless management either intends to liquidate the Group or to cease operations, or has no realistic
+alternative but to do so.
+
+Those charged with governance are responsible for overseeing the Group’s financial reporting process.
+
+Auditor’s responsibilities for the audit of the consolidated financial statements
+Our objectives are to obtain reasonable assurance about whether the consolidated financial statements as a whole
+are free from material misstatement, whether due to fraud or error, and to issue an auditor’s report that includes our
+opinion. Reasonable assurance is a high level of assurance, but is not a guarantee that an audit conducted in
+accordance with ISAs will always detect a material misstatement when it exists. Misstatements can arise from fraud or
+error and are considered material if, individually or in the aggregate, they could reasonably be expected to influence
+the economic decisions of users taken on the basis of these consolidated financial statements.
+
+As part of an audit in accordance with ISAs, we exercise professional judgment and maintain professional scepticism
+throughout the audit. We also:
+
+•   Identify and assess the risks of material misstatement of the consolidated financial statements, whether due to
+    fraud or error, design and perform audit procedures responsive to those risks, and obtain audit evidence that is
+    sufficient and appropriate to provide a basis for our opinion. The risk of not detecting a material misstatement
+    resulting from fraud is higher than for one resulting from error, as fraud may involve collusion, forgery, intentional
+    omissions, misrepresentations, or the override of internal control.
+
+
+
+
+                                                                                                                      (3)
+Independent auditor’s report to the shareholders of Emirates
+Integrated Telecommunications Company PJSC (continued)
+
+Auditor’s responsibilities for the audit of the consolidated financial statements (continued)
+•   Obtain an understanding of internal control relevant to the audit in order to design audit procedures that are
+    appropriate in the circumstances, but not for the purpose of expressing an opinion on the effectiveness of the
+    Group’s internal control.
+•   Evaluate the appropriateness of accounting policies used and the reasonableness of accounting estimates and
+    related disclosures made by management.
+•   Conclude on the appropriateness of management’s use of the going concern basis of accounting and, based on
+    the audit evidence obtained, whether a material uncertainty exists related to events or conditions that may cast
+    significant doubt on the Group’s ability to continue as a going concern. If we conclude that a material uncertainty
+    exists, we are required to draw attention in our auditor’s report to the related disclosures in the consolidated
+    financial statements or, if such disclosures are inadequate, to modify our opinion. Our conclusions are based on
+    the audit evidence obtained up to the date of our auditor’s report. However, future events or conditions may cause
+    the Group to cease to continue as a going concern.
+•   Evaluate the overall presentation, structure and content of the consolidated financial statements, including the
+    disclosures, and whether the consolidated financial statements represent the underlying transactions and events
+    in a manner that achieves fair presentation.
+•   Plan and perform the group audit to obtain sufficient appropriate audit evidence regarding the financial information
+    of the entities or business units within the Group as a basis for forming an opinion on the consolidated financial
+    statements. We are responsible for the direction, supervision and review of the audit work performed for purposes
+    of the group audit. We remain solely responsible for our audit opinion.
+We communicate with those charged with governance regarding, among other matters, the planned scope and timing
+of the audit and significant audit findings, including any significant deficiencies in internal control that we identify
+during our audit.
+We also provide those charged with governance with a statement that we have complied with relevant ethical
+requirements regarding independence, and to communicate with them all relationships and other matters that may
+reasonably be thought to bear on our independence, and where applicable, actions taken to eliminate threats or
+safeguards applied.
+
+From the matters communicated with those charged with governance, we determine those matters that were of most
+significance in the audit of the consolidated financial statements of the current period and are therefore the key audit
+matters. We describe these matters in our auditor’s report unless law or regulation precludes public disclosure about
+the matter or when, in extremely rare circumstances, we determine that a matter should not be communicated in our
+report because the adverse consequences of doing so would reasonably be expected to outweigh the public interest
+benefits of such communication.
+
+
+
+
+                                                                                                                    (4)
+Independent auditor’s report to the shareholders of Emirates
+Integrated Telecommunications Company PJSC (continued)
+
+Report on other legal and regulatory requirements
+Further, as required by the UAE Federal Decree Law No. (32) of 2021, we report that:
+i)      we have obtained all the information we considered necessary for the purposes of our audit;
+ii)     the consolidated financial statements have been prepared and comply, in all material respects, with the
+        applicable provisions of the UAE Federal Decree Law No. (32) of 2021;
+iii)    the Group has maintained proper books of account;
+iv)     the financial information included in the Board of Directors’ Report is consistent with the books of account of
+        the Group;
+v)      as disclosed in Note 1 to the consolidated financial statements the Group has made an additional investment
+        in the share capital of EITC Financial Services LLC during the year ended 31 December 2024;
+vi)     Note 15 to the consolidated financial statements discloses material related party transactions, and the terms
+        under which they were conducted;
+vii)    based on the information that has been made available to us, nothing has come to our attention which causes
+        us to believe that the Group has contravened during the year ended 31 December 2024 any of the applicable
+        provisions of the UAE Federal Decree Law No. (32) of 2021, or in respect of the Company, its Articles of
+        Association which would materially affect its activities or its financial position as at 31 December 2024; and
+viii)   Note 27 to the consolidated financial statements discloses the social contributions made during the year ended
+        31 December 2024.
+
+
+
+PricewaterhouseCoopers Limited Partnership Dubai Branch
+
+10 February 2025
+
+
+
+
+Virendra Dhirajlal Lodhia
+Registered Auditor Number 5443
+Dubai, United Arab Emirates
+
+
+
+
+                                                                                                                   (5)
+Emirates Integrated Telecommunications Company PJSC
+
+Consolidated statement of comprehensive income
+
+
+                                                                        For the year ended 31 December
+                                                                                2024              2023
+                                                              Note         AED 000             AED 000
+Revenue                                                        34          14,635,917          13,636,340
+
+Operating expenses                                             27         (10,059,524)         (9,793,238)
+Expected credit losses (net of recoveries)                                   (261,268)           (242,619)
+Other income                                                                    3,468                 841
+Federal royalty on regulated revenue                           23.1                -           (1,400,199)
+Finance income                                                 28              79,930              61,327
+Finance costs                                                  28             (89,945)           (101,430)
+Share of loss on investment accounted for using the            10
+equity method                                                                   (2,427)            (2,720)
+Profit before federal royalty on profit and corporate
+ income tax                                                                 4,306,151           2,158,302
+Federal royalty on regulated profit                            23.1           104,233            (490,451)
+Federal royalty on profit                                      23.2        (1,675,882)                  -
+Corporate income tax                                           23.2          (246,955)                  -
+Profit for the year                                                         2,487,547           1,667,851
+
+Other comprehensive income/(loss)
+Items that will not be re‐classified to profit or loss
+Fair value changes on financial asset at fair value
+  through other comprehensive income                           11                 (612)            (1,571)
+Actuarial gain/(loss) on defined benefit obligations           20                7,403            (14,663)
+Related corporate income tax                                   23.2               (615)                 -
+Other comprehensive income/(loss) for the year                                   6,176            (16,234)
+
+Total comprehensive income for the year
+ attributable to shareholders of the Company                                2,493,723           1,651,617
+
+Basic and diluted earnings per share (AED)                     29                 0.55               0.37
+
+
+
+
+The notes on pages 10 to 61 are an integral part of these consolidated financial statements.           (7)
+Emirates Integrated Telecommunications Company PJSC
+
+Consolidated statement of changes in equity
+
+
+
+
+                                      Share            Share           Other        Retained
+                                     capital        premium          reserves       earnings         Total
+                                    AED 000         AED 000         AED 000         AED 000        AED 000
+
+At 1 January 2023                   4,532,906        232,332        2,126,590      1,878,324       8,770,152
+Profit for the year                         -              -                -      1,667,851       1,667,851
+Fair value changes on financial
+ asset at fair value through
+ other comprehensive income                 -                -         (1,571)                 -      (1,571)
+Actuarial loss on defined
+ benefit obligations                        -                -               -        (14,663)      (14,663)
+Total comprehensive (loss)/
+ income for the year                        -                -         (1,571)     1,653,188       1,651,617
+Transfer to other reserves                  -                -        126,012        (126,012)             -
+Final cash dividend paid                    -                -              -        (589,278)     (589,278)
+Interim cash dividend paid                  -                -              -        (589,278)     (589,278)
+At 31 December 2023                 4,532,906        232,332        2,251,031      2,226,944       9,243,213
+
+At 1 January 2024                   4,532,906        232,332        2,251,031      2,226,944       9,243,213
+Profit for the year                         -              -                -      2,487,547       2,487,547
+Fair value changes on financial
+ asset at fair value through
+ other comprehensive income –
+ net of tax                                 -                -           (557)                 -       (557)
+Actuarial gain on defined
+ benefit obligations – net of tax           -                -              -           6,733          6,733
+Total comprehensive (loss)/
+ income for the year                        -                -           (557)     2,494,280       2,493,723
+Transfer to other reserves                  -              -                -               -              -
+Final cash dividend paid (1)                -              -                -       (951,910)       (951,910)
+Interim cash dividend paid (2)              -              -                -       (906,581)       (906,581)
+At 31 December 2024                 4,532,906        232,332        2,250,474      2,862,733       9,878,445
+
+(1)
+  For the year 2023, a final cash dividend of AED 0.21 (2022: AED 0.13) per share amounting to
+AED 951,910 thousand was paid on 18 April 2024.
+(2)
+  For the period 2024, an interim cash dividend AED 0.20 (2023: AED 0.13) per share amounting to
+AED 906,581 thousand was paid on 19 August 2024.
+
+For the year 2024, a final cash dividend of AED 0.34 per share amounting to AED 1,541,188 thousand is
+proposed.
+
+
+
+
+The notes on pages 10 to 61 are an integral part of these consolidated financial statements.            (8)
+Emirates Integrated Telecommunications Company PJSC
+Consolidated statement of cash flows
+
+                                                                                 For the year ended 31 December
+                                                                                     2024                   2023
+                                                                   Note          AED 000                 AED 000
+Cash flows from operating activities
+Profit for the year                                                              2,487,547              1,667,851
+Adjustments for:
+  Depreciation and impairment of property, plant and equipment        6          1,569,189              1,544,182
+  Depreciation of right-of-use assets                                 7            374,505                445,042
+  Amortization and impairment of intangible assets                    8            209,896                209,053
+  Service cost for employees’ end of service benefits                20             21,451                 19,753
+  Charge/(release) of allowance for inventory obsolescence           14              8,874                   (970)
+  Loss allowances                                                                  293,255                273,573
+  Finance income                                                     28            (79,930)               (61,327)
+  Finance costs                                                      28             89,945                101,430
+  Share of loss on investment accounted for using the equity
+  method                                                             10              2,427                  2,720
+  Federal royalty on profit and corporate income tax                             1,922,837                      -
+  Changes in other operating assets and liabilities                  30           (359,291)             1,942,655
+Cash generated from operations                                                   6,540,705              6,143,962
+Royalty paid on regulated activities                                 23         (1,928,939)            (1,687,899)
+Payment of employees’ end of service benefits                        20            (21,916)               (30,697)
+Net cash generated from operating activities                                    4,589,850              4,425,366
+
+Cash flows from investing activities
+Purchase of property, plant and equipment                                       (1,508,948)            (1,899,868)
+Purchase of intangible assets                                                     (363,611)              (327,690)
+Proceeds from disposal of property, plant and equipment                                874                    685
+Interest received                                                                   75,176                 44,992
+Margin on guarantees placed                                                            (66)                     -
+Net change in term deposits matured/(placed)                                        27,319               (652,319)
+Net cash used in investing activities                                           (1,769,256)            (2,834,200)
+
+Cash flows from financing activities
+Dividends paid                                                                  (1,858,491)            (1,178,556)
+Repayment of lease liabilities                                                    (524,252)              (593,690)
+Interest paid on lease liabilities                                   18            (63,671)               (78,696)
+Interest paid others                                                                  (313)                (1,269)
+Net cash used in financing activities                                           (2,446,727)            (1,852,211)
+Net increase/(decrease) in cash and cash equivalents                               373,867               (261,045)
+Cash and cash equivalents at 1 January                                             607,690                868,735
+Cash and cash equivalents at 31 December                             17            981,557                607,690
+
+
+Non-cash transactions are disclosed in Note 30 of the consolidated financial statements.
+
+
+
+
+The notes on pages 10 to 61 are an integral part of these consolidated financial statements.                 (9)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024
+1       General information
+
+Emirates Integrated Telecommunications Company PJSC (“the Company”) is a public joint stock company
+with limited liability. The Company was incorporated according to Ministerial Resolution No. 479 of 2005
+issued on 28 December 2005. The Company is registered in the commercial register under No. 77967. The
+principal address of the Company is P.O Box 502666 Dubai, United Arab Emirates (UAE). These
+consolidated financial statements for the year ended 31 December 2024 include the financial statements of
+the Company and its subsidiaries (together the “Group”).
+
+The Group’s principal objective is to provide fixed, mobile, wholesale, broadcasting and associated
+telecommunication services in the UAE. During the year, the Group has invested additional share capital
+in EITC Financial Services LLC.
+
+At the end of 2024, the Company has either direct or indirect ownership in the following subsidiaries:
+
+
+                                                                                              Country of
+Subsidiaries                       Principal activities                      Shareholding   incorporation
+                                                                             2024 2023
+EITC Investment Holdings           Holding investments in various            100%   100%         UAE
+Limited                            businesses.
+
+Telco Operations FZ-LLC            Outsourcing services                      100%   100%         UAE
+
+Smart Dubai Platform Project       Software development, IT                  100%   100%         UAE
+Company LLC                        infrastructure, IT network and
+                                   computer systems housing services.
+
+EITC Singapore Pte. Ltd.           Telecommunications resellers/third        100%   100%      Singapore
+                                   party telecommunications providers.
+
+EITC Solutions LLC                 Computer network & infrastructure         100%   100%         UAE
+                                   installation, project management, IT
+                                   network and datacenter colocation
+                                   services.
+
+EITC Financial Services LLC        Financial services company hosting        100%   100%         UAE
+                                   digital wallet, retail payment, service
+                                   provision brokerage and loyalty card
+                                   services.
+
+
+
+
+                                                                                                     (10)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+2       Basis of preparation
+
+These consolidated financial statements have been prepared in accordance with International Financial
+Reporting Standards (“IFRS Accounting Standards”) and complies with the applicable requirements of the
+UAE Federal Decree Law No. (32) of 2021. These consolidated financial statements have been prepared
+under the historical cost convention except for financial assets at fair value through other comprehensive
+income (“FVOCI”) that have been measured at fair value. The preparation of consolidated financial
+statements in conformity with IFRS Accounting Standards requires the use of certain critical accounting
+estimates. It also requires management to exercise its judgement in the process of applying the Group’s
+accounting policies.
+
+(i)     Functional and presentation currency
+The individual financial statements of each of the Group’s subsidiaries, associates and joint venture are
+presented in the currency of the primary economic environment in which they operate (its functional
+currency) as provided in Note 3.17.
+
+(ii)    Basis of consolidation
+A subsidiary is an entity controlled by the Company. The financial statements of a subsidiary are included
+in the consolidated financial statements from the date that control commences until the date that control
+ceases.
+
+(iii)    Going concern
+The Directors have, at the time of approving the consolidated financial statements, a reasonable expectation
+that the Group has adequate resources to continue in operational existence for the foreseeable future. Thus,
+they continue to adopt the going concern basis of accounting in preparing the consolidated financial
+statements.
+
+2.1    New standards, amendments and interpretations
+
+a)    New and amended standards adopted by the Group
+
+The Group has applied the following amendments for the first time for their annual reporting period
+commencing 1 January 2024:
+
+•     Amendments to IAS 1 - Classification of Liabilities as Current or Non-Current;
+•     Amendment to IFRS 16 - Lease liability in a Sale and Leaseback;
+•     Amendments to IAS 1 - Non-current liabilities with covenants; and
+•     Amendments to IAS 7 and IFRS 7 - Supplier Finance Arrangements.
+
+The amendments listed above did not have any impact on the amounts recognized in prior periods and
+are not expected to significantly affect the current or future periods.
+
+
+
+
+                                                                                                        (11)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+2.        Basis of preparation (continued)
+
+2.1       New standards, amendments and interpretations (continued)
+
+(b)       New standards and interpretations not yet adopted by the Group
+
+As at 31 December 2024, the following standards, amendments and interpretations have not been effective
+and have not been early adopted. These standards, amendments or interpretations are not expected to have
+a material impact on the Group in the current or future reporting periods and on foreseeable future
+transactions.
+
+      •    Amendments to IAS 21 – Lack of Exchangeability (effective from 1 January 2025);
+      •    Amendments to IFRS 9 and IFRS 7 - Amendments to the Classification and Measurement of
+           Financial Instruments (effective from 1 January 2026);
+      •    Annual Improvement to IFRS Accounting Standards – Volume 11(effective from 1 January
+           2026);
+      •    IFRS 18 Presentation and Disclosure in Financial Statements (effective from 1 January 2027);
+           and
+      •    IFRS 19 Subsidiaries without Public Accountability: Disclosures (effective from 1 January
+           2027).
+
+Management is in the process of assessing the impact of these new standards and amendments which will
+be adopted in the Group’s consolidated financial statements as and when they become effective.
+
+
+
+
+                                                                                                     (12)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+2.      Basis of preparation (continued)
+
+2.2     Critical accounting judgements and key sources of estimation uncertainty
+
+In the application of the Group’s accounting policies, the management is required to make judgements,
+estimates and assumptions about the carrying amounts of assets and liabilities that are not readily apparent
+from other sources. The estimates and associated assumptions are based on historical experience and other
+factors that are considered to be relevant. Actual results may differ from these estimates.
+
+The estimates and underlying assumptions are reviewed on an ongoing basis. Revisions to accounting
+estimates are recognized in the period in which the estimate is revised if the revision affects only that period
+or in the period of the revision and future periods if the revision affects both current and future periods.
+
+The key assumptions concerning the future, and other key sources of estimation uncertainty at the reporting
+date, that have a significant risk of causing a material adjustment to the carrying amounts of assets and
+liabilities within the next financial year, are disclosed below:
+
+Critical accounting judgements
+
+(i)     Asset retirement obligations
+
+The Group exercises judgement in determining the expected cash outflows related to its asset retirement
+obligations.
+
+The present value of the Group’s provision is based on management’s best estimate of the future cash
+outflows required to settle the obligations, discounted using appropriate discount rate. Additional
+information on this provision is disclosed in Note 21.
+
+(ii)    Allocation of the transaction price
+
+Products with multiple deliverables that have value to customers on a stand-alone basis are defined as
+multiple element arrangements. The transaction price for these contracts is allocated to the performance
+obligations on a relative stand-alone selling price basis.
+
+Management estimates the stand-alone selling price at contract inception based on observable prices of the
+type of goods to be provided and the services rendered in similar circumstances to similar customers. If a
+discount is granted, it is allocated to performance obligations based on their relative stand-alone selling
+prices. Where the stand-alone selling prices are not directly observable, they are estimated based on
+expected cost-plus margin.
+
+
+
+
+                                                                                                            (13)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+2       Basis of preparation (continued)
+2.2     Critical accounting judgements and key sources of estimation uncertainty (continued)
+
+(iii)   Determining the lease term
+
+In determining the lease term, management considers all facts and circumstances that create an economic
+incentive to exercise an extension option, or not exercise a termination option. Extension options (or periods
+after termination options) are only included in the lease term if the lease is reasonably certain to be extended
+(or not terminated). The assessment is reviewed if a significant event or a significant change in
+circumstances occurs which affects this assessment and that is within the control of the lessee.
+
+Key sources of estimation uncertainty
+
+(i)     Provision for expected credit losses of trade receivables, due from related parties and contract
+        assets
+
+The Group recognizes a loss allowance for expected credit losses (“ECL”) on its trade receivables,
+due from related parties and contract assets. The approach for calculating ECL is provided in Note 3.16.1.
+
+(ii)    Provision for impairment of other financial assets
+
+For all other financial assets, the Group calculates ECL using the general approach. The Group measures
+the loss allowance as provided in Note 3.16.1.
+
+(iii)   Impairment of goodwill
+
+The recoverable amount of a cash-generating unit (“CGU”) has been determined based on value-in-use
+calculations. These calculations are performed internally by the management and require the use of
+estimates and assumptions. The input factors most sensitive to change are management estimates of future
+cash flows based on budgets, growth rates and discount rate. Further details on these assumptions have been
+disclosed in Note 8.
+
+(iv)    Useful lives of property, plant and equipment
+
+Property, plant and equipment represent a significant proportion of the Group’s asset base. Therefore, the
+judgements made in determining their estimated useful lives and residual values are critical to the Group’s
+financial position and performance.
+
+In determining residual values, the Group uses historical sales and management’s best estimate based on
+market prices of similar items. Useful lives of property, plant and equipment are based on management
+estimates and take into account historical experience with similar assets, the expected usage of the asset,
+physical wear and tear, technical or commercial obsolescence and legal restrictions on the use of the assets.
+The useful lives of the property, plant and equipment are provided in Note 3.2.
+
+
+
+
+                                                                                                            (14)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+2       Basis of preparation (continued)
+
+2.2     Critical accounting judgements and key sources of estimation uncertainty (continued)
+
+Key sources of estimation uncertainty (continued)
+
+(v)    Impairment of property, plant and equipment and intangible assets
+
+Property, plant and equipment and intangible assets are assessed for impairment based on assessment of
+cash flows on individual CGUs when there is indication of impairment. Management did not identify any
+impairment indicators in the current or prior year for individual CGUs. However, management identified
+certain individual items of property, plant and equipment and intangible assets for which future economic
+benefit is not expected and, accordingly, recorded an impairment and the detail of which are provided in
+Notes 6 and 8.
+
+(vi)    Discounting of lease payments
+
+The lease payments are usually discounted using the Group’s incremental borrowing rate (“IBR”) or the
+rate implicit in the lease, if readily determinable. For calculation of IBR, the Group has taken the interest
+rate from external sources which is then adjusted for Group’s specific risk, term risk and underlying asset
+risk.
+
+
+3       Summary of material accounting policies
+
+The material accounting policies applied in the preparation of these consolidated financial statements are
+set out below:
+
+3.1     Consolidation
+
+(a)     Subsidiaries
+
+Subsidiaries are all entities (including structured entities) over which the Group has control. The Group
+controls an entity when the Group is exposed to, or has rights to, variable returns from its involvement with
+the entity and has the ability to affect those returns through its power to direct the activities of the entity.
+Subsidiaries are fully consolidated from the date on which control is transferred to the Group. They are
+deconsolidated from the date that control ceases.
+
+The Group applies the acquisition method to account for business combinations. The consideration
+transferred for the acquisition of a subsidiary is the fair value of the assets transferred, the liabilities
+incurred to the former owners of the acquiree and the equity interests issued by the Group.
+
+Identifiable assets acquired and liabilities and contingent liabilities assumed in a business combination are
+measured initially at their fair values at the acquisition date.
+Acquisition-related costs are expensed as incurred.
+
+Intercompany transactions, balances and unrealized gains on transactions between Group companies are
+eliminated. Unrealized losses are also eliminated unless the transaction provides evidence of an impairment
+of the transferred asset. Accounting policies of subsidiaries are changed where necessary to ensure
+consistency with the policies adopted by the Group.
+                                                                                                            (15)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+3       Summary of material accounting policies (continued)
+
+3.1     Consolidation (continued)
+
+(b)    Changes in ownership interests in subsidiaries
+
+Changes in the Group’s ownership interests in subsidiaries that do not result in the Group losing control
+over the subsidiaries are accounted for as equity transactions. The carrying amounts of the Group’s interests
+and the non-controlling interests are adjusted to reflect the changes in their relative interests in the
+subsidiaries. Any difference between the amount by which the non-controlling interests are adjusted and
+the fair value of the consideration paid or received is recognized directly in equity and attributed to the
+owners of the Group.
+
+When the Group loses control of a subsidiary, a gain or loss is recognized in the statement of comprehensive
+income. All amounts previously recognized in other comprehensive income in relation to that subsidiary
+are accounted for as if the Group had directly disposed of the related assets or liabilities of the subsidiary.
+
+The fair value of any investment retained in the former subsidiary at the date when control is lost is regarded
+as the initial carrying amount for the purposes of subsequent accounting for the retained interest as an
+investment in an associate or a joint venture or financial asset.
+
+3.2     Property, plant and equipment
+Property, plant and equipment are stated at historical cost less accumulated depreciation and impairment.
+Historical cost includes expenditure that is directly attributable to the acquisition of the assets. Subsequent
+costs are included in the asset's carrying amount or recognized as a separate asset, as appropriate, only
+when it is probable that future economic benefits associated with the item will flow to the Group and the
+cost of the item can be measured reliably. The carrying amount of any component accounted for as a
+separate asset is derecognized when replaced.
+
+Depreciation is calculated using the straight-line method to allocate their cost or revalued amounts, net of
+their residual values, over their estimated useful lives, as follows:
+                                                                                                     Years
+
+Buildings                                                                                                 25
+Plant and equipment
+ Network civil works/buildings                                                                        10-25
+ Infrastructure                                                                                        3-25
+ IT hardware                                                                                           3-10
+ Mobile network                                                                                        8-10
+ Fixed network                                                                                         2-10
+ Broadcasting                                                                                           5-7
+Furniture and fixtures                                                                                  3-5
+Motor vehicles                                                                                            4
+
+The assets’ residual values and useful lives are reviewed, and adjusted if appropriate, at the end of each
+reporting period on a prospective basis. Property, plant and equipment are assessed for impairment annually
+as per non-financial assets impairment policy given in Note 3.16.2.
+
+
+
+                                                                                                           (16)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+3     Summary of material accounting policies (continued)
+
+3.2      Property, plant and equipment (continued)
+
+Capital work in progress includes assets which are under construction or inspection pending certification
+for their intended use and are stated at cost net of any accumulated impairment losses. When available for
+use, capital work in progress is transferred to property, plant and equipment and depreciated in accordance
+with the Group’s policies. No depreciation is charged on such assets until available for use.
+
+3.3      Leases
+
+The Group assesses at contract inception whether a contract is, or contains, a lease. That is, if the contract
+conveys the right to control the use of an identified asset for a period of time in exchange for consideration.
+
+Group as a lessee
+
+The Group applies a single recognition and measurement approach for all leases. The Group recognizes
+lease liabilities to make lease payments and right-of-use assets representing the right to use the underlying
+assets.
+
+i) Right-of-use assets
+
+The Group recognizes right-of-use assets at the commencement date of the lease (i.e., the date the
+underlying asset is available for use). Right-of-use assets are measured at cost, less any accumulated
+depreciation and impairment losses, and adjusted for any re-measurement of lease liabilities. The cost of
+right-of-use assets includes the amount of lease liabilities recognized, initial direct costs incurred, and lease
+payments made at or before the commencement date less any lease incentives received. Right-of-use assets
+are depreciated on a straight-line basis over the shorter of the lease term or the estimated useful lives of the
+assets, as follows:
+                                                                                                          Years
+  Land and buildings                                                                                         1-30
+  Furniture and fixtures - space                                                                             8-13
+
+Right-of-use assets are assessed for impairment annually as per non-financial assets impairment policy
+detailed in Note 3.16.2.
+
+ii) Lease liabilities
+
+At the commencement date of the lease, the Group recognizes lease liabilities measured at the present value
+of lease payments to be made over the lease term. The lease payments include fixed payments (including
+in-substance fixed payments) less any lease incentives receivable, variable lease payments that depend on
+an index or a rate.
+
+In calculating the present value of lease payments, the Group uses its incremental borrowing rate at the
+lease commencement date because the interest rate implicit in the lease is not readily determinable. After
+the commencement date, the amount of lease liabilities is increased to reflect the accretion of interest and
+reduced for the lease payments made. In addition, the carrying amount of lease liabilities is re-measured if
+there is a modification, a change in the lease term, a change in the lease payments (e.g., changes to future
+payments resulting from a change in an index or rate used to determine such lease payment).
+
+
+                                                                                                             (17)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+3       Summary of material accounting policies (continued)
+
+3.3     Leases (continued)
+
+Group as a lessor
+
+The Group also enters into lease agreements as a lessor. Leases for which the Group is a lessor are classified
+as finance or operating leases. Whenever the terms of the lease transfer substantially all the risks and
+rewards of ownership to the lessee, the contract is classified as a finance lease. All other leases are classified
+as operating leases.
+
+When the Group is an intermediate lessor, it accounts for the head lease and the sub-lease as two separate
+contracts. The sub-lease is classified as a finance or operating lease by reference to the right-of-use asset
+arising from the head lease.
+
+Amounts due from lessees under finance leases are recognized as lease receivables at the amount of the
+Group’s net investment in the leases. Finance lease income is allocated to accounting periods so as to
+reflect a constant periodic rate of return on the Group’s net investment outstanding in respect of the leases.
+Subsequent to initial recognition, the Group regularly reviews the estimated unguaranteed residual value
+and applies the impairment requirements of IFRS 9, recognizing an allowance for expected credit losses
+on the lease receivables.
+
+Finance lease income is calculated with reference to the gross carrying amount of the lease receivables,
+except for credit-impaired financial assets for which interest income is calculated with reference to their
+amortized cost (i.e., after a deduction of the loss allowance).
+
+3.4     Intangible assets
+
+Goodwill
+
+Goodwill arises on the acquisition of subsidiaries or businesses and represents the excess of the
+consideration transferred, the amount of any non-controlling interest in the acquiree and the acquisition-
+date fair value of any previous equity interest in the acquiree over the fair value of the identifiable net assets
+acquired.
+
+Goodwill impairment reviews are undertaken annually or more frequently if events or changes in
+circumstances indicate a potential impairment. The carrying value of the CGU containing the goodwill is
+compared to the recoverable amount, which is the higher of value in use and the fair value less costs of
+disposal. Any impairment is recognized immediately as an expense and is not subsequently reversed.
+
+Telecommunications license
+
+Telecommunications license is shown at historical cost. The license has a finite useful life and is carried at
+cost less accumulated amortization. Amortization is calculated using the straight-line method to allocate
+the cost of the license over their estimated useful lives as shown below:
+
+                                                                                                           Years
+Telecommunications license                                                                                    20
+
+
+
+                                                                                                              (18)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+3       Summary of material accounting policies (continued)
+
+3.4     Intangible assets (continued)
+
+Computer software
+
+Acquired computer software are capitalized on the basis of the costs incurred to acquire and bring to use
+the specific software. These costs are amortized over their estimated useful lives of three to five years.
+Costs associated with maintaining computer software programmes are recognized as an expense as
+incurred.
+
+Capital work in progress includes assets which are under development or inspection pending certification
+for their intended use and are stated at cost net of any accumulated impairment losses. When available for
+use, capital work in progress is transferred to software in use and amortized in accordance with the Group’s
+policies. No amortization is charged on such assets until available for use.
+
+3.5     Associate and joint venture
+
+An associate is an entity over which the Group has significant influence. Significant influence is the power
+to participate in the financial and operating policy decisions of the investee, but is not control or joint
+control over those policies. A joint venture is a type of joint arrangement whereby the parties that have
+joint control of the arrangement have rights to the net assets of the joint venture. Joint control is the
+contractually agreed sharing of control of an arrangement, which exists only when decisions about the
+relevant activities require the unanimous consent of the parties sharing control.
+
+The Group’s investment in its associate and joint venture are accounted for using the equity method.
+
+Under the equity method, the investment in an associate or a joint venture is initially recognized at cost.
+The carrying amount of the investment is adjusted to recognize changes in the Group’s share of net assets
+of the associate or joint venture since the acquisition date. The changes are recognized in profit or loss.
+Any change in Other Comprehensive Income (“OCI”) of those investees is presented as part of the Group’s
+OCI.
+
+The financial statements of the associate or joint venture are prepared for the same reporting period as the
+Group. When necessary, adjustments are made to bring the accounting policies in line with those of the
+Group.
+
+At each reporting date, the Group determines whether there is objective evidence that the investment in the
+associate or joint venture is impaired. If there is such evidence, the Group calculates the amount of
+impairment as the difference between the recoverable amount of the associate or joint venture and its
+carrying value, and then recognizes the impairment loss in the statement of comprehensive income.
+
+Upon loss of significant influence over the associate or joint control over the joint venture, the Group
+measures and recognizes any retained investment at its fair value.
+
+
+
+
+                                                                                                        (19)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+3       Summary of material accounting policies (continued)
+
+3.5     Associate and joint venture (continued)
+
+Any difference between the carrying amount of the associate or joint venture upon loss of significant
+influence or joint control and the fair value of the retained investment and proceeds from disposal is
+recognized in profit or loss.
+3.6     Inventories
+
+Inventories are measured at the lower of cost and net realizable value. Cost comprises direct materials and
+where applicable, directs labour costs and those overheads that have been incurred in bringing the
+inventories to their present location and condition. It excludes borrowing costs. Allowance is made, where
+appropriate, for deterioration and obsolescence. Cost is determined in accordance with the weighted
+average cost method. Net realizable value represents the estimated selling price less all estimated costs of
+completion and costs to be incurred in marketing, selling and distribution.
+
+3.7     Contract assets
+
+A contract asset is the right to consideration in exchange for goods or services transferred to the customer.
+If the Group performs by transferring goods or services to a customer before the consideration is received
+or before payment is due, a contract asset is recognized. Contract assets are recognized initially at fair value
+and subsequently measured at amortized cost using effective interest rate method, less provision for
+impairment.
+
+
+3.8     Trade and other receivables
+
+Trade and other receivables are amounts due from customers for goods sold or services performed in the
+ordinary course of business. If the contractual collection date is in one year or less, they are classified as
+current assets. If not, they are presented as non-current assets. Trade receivables are recognized initially at
+fair value and subsequently measured at amortized cost using effective interest rate method, less provision
+for impairment.
+
+3.9     Contract liabilities
+
+A contract liability is the obligation to transfer goods or services to a customer for which the Group has
+received consideration (or an amount of consideration is due) from the customer. If a customer pays
+consideration before the Group transfers goods or services to the customer, a contract liability is recognized
+when the payment is made or the payment is due (whichever is earlier). Contract liabilities are recognized
+as revenue when the Group performs under the contract.
+
+3.10    Cash and bank balances
+
+Cash and bank balances comprise cash balances and call deposits with original maturities of three months
+or less from date of placement. Bank overdrafts, if any that are repayable on demand and form an integral
+part of the Group’s cash management are included as a component of cash and cash equivalents for the
+purpose of the consolidated statement of cash flows.
+
+
+
+
+                                                                                                            (20)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+3       Summary of material accounting policies (continued)
+
+3.11    Financial instruments
+
+3.11.1 Non-derivative financial assets
+
+Classification, initial recognition and measurement
+
+The Group classifies its financial assets as financial assets measured at amortized costs and financial assets
+at fair value through other comprehensive income. The classification of financial assets at initial
+recognition depends on the financial asset’s contractual cash flow characteristics and the Group’s business
+model for managing them. With the exception of trade receivables that do not contain a significant
+financing component or for which the Group has applied the practical expedient, the Group initially
+measures a financial asset at its fair value plus, in the case of a financial asset not at fair value through
+profit or loss, transaction costs. Trade receivables are measured at the transaction price determined under
+IFRS 15. For investments in equity instruments that are not held for trading, the Group may irrevocably
+elect to designate the equity investment at FVOCI. This election is made on an investment-by-investment
+basis.
+
+(a)     Financial assets measured at amortized cost
+
+Financial assets measured at amortized cost applies to instruments for which the Group has a business
+model to hold the financial asset to collect the contractual cash flows. The characteristics of the contractual
+cash flows are that of solely payments of the principal amount and interest (referred to as solely payments
+of principal and interest).
+
+Financial assets measured at amortized costs are included in current assets, except for maturities greater
+than 12 months after the end of the reporting period which are then classified as non-current assets. The
+Group’s financial assets measured at amortized costs comprise trade and other receivables, contract assets,
+due from related parties, term deposits and cash and bank balances in the consolidated statement of
+financial position.
+
+(b)     Financial assets at fair value through other comprehensive income
+
+FVOCI is the classification for instruments for which Group has a dual business model, i.e., the business
+model is achieved by both holding the financial asset to collect the contractual cash flows and through the
+sale of the financial assets. The characteristics of the contractual cash flows of instruments in this category
+must still be solely payments of principal and interest. The Group elected to classify irrevocably its listed
+equity investments under this category.
+
+Subsequent measurement
+
+Financial assets measured at amortized cost
+
+Financial assets measured at amortized cost are subsequently measured using the effective interest method
+and are subject to impairment. Gains and losses are recognized in the consolidated statement of
+comprehensive income when the asset is derecognized, modified or impaired.
+
+
+
+
+                                                                                                           (21)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+3        Summary of material accounting policies (continued)
+
+3.11     Financial instruments (continued)
+
+3.11.1   Non-derivative financial assets (continued)
+
+(b)      Financial assets at fair value through other comprehensive income (continued)
+
+Subsequent measurement (continued)
+
+Financial assets at fair value through other comprehensive income
+
+Gains and losses on these equity instruments are not subsequently reclassified to profit or loss following
+its derecognition. Dividends are recognized as other income in the statement of comprehensive income
+when the right of payment has been established, except when the Group benefits from such proceeds as a
+recovery of part of the cost of the equity instruments, in which case such gains are recorded in OCI.
+Impairment losses (and reversal of impairment losses) on equity investments measured at FVOCI are not
+reported separately from other changes in fair value.
+
+3.11.2 Non-derivative financial liabilities
+
+The Group non-derivative financial liabilities include borrowings, due to related parties and trade and other
+payables in the consolidated statement of financial position.
+
+Such financial liabilities are recognized initially at fair value plus any directly attributable transaction costs.
+Subsequent to initial recognition these financial liabilities are measured at amortized cost using the
+effective interest rate method. The Group derecognizes a financial liability when its contractual obligations
+are discharged or cancelled or expired.
+
+3.11.3 Offsetting of financial instruments
+
+Financial assets and liabilities are offset and the net amount reported in the consolidated statement of
+financial position if, and only if, there is a currently enforceable legal right to offset the recognized amounts
+and there is an intention to settle on a net basis, or to realize the assets and settle the liabilities
+simultaneously.
+
+3.12     Share capital
+
+Ordinary shares are classified as equity.
+
+3.13     Dividend on ordinary shares
+
+Dividends payable on ordinary shares are recognized as a liability in the period in which they are approved
+by the Group’s shareholders.
+
+
+
+
+                                                                                                               (22)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+3       Summary of material accounting policies (continued)
+
+3.14    Provisions
+
+Provisions are recognized when the Group has a legal or constructive obligation as a result of a past event,
+it is probable that an outflow of resources will be required to settle the obligation, and the amount can be
+reliably estimated. Provisions are not recognized for future operating losses.
+
+Provisions are measured at the present value of the expenditures expected to be required to settle the
+obligation at the end of the reporting period. The discount rate used to determine the present value is a pre-
+tax rate that reflects current market assessments of the time value of money and the risks specific to the
+obligation. The increase in provision due to the passage of time is recognized as finance costs in the
+consolidated statement of comprehensive income.
+
+Asset retirement obligations
+
+This provision relates to the estimate of the cost of dismantling and removing an item of property, plant and
+equipment and restoring the site on which the item was located to its original condition.
+
+3.15    Employee benefits
+
+Payments made to state-managed pension schemes are dealt with as payments to defined contribution
+schemes where the Group’s obligations under the schemes are equivalent to those arising in a defined
+contribution scheme. Accordingly, the cost of contribution is charged to the consolidated statement of
+comprehensive income as incurred.
+
+Provision for employees’ end of service benefits for non-UAE nationals is made in accordance with UAE
+Labour Law. The provision is calculated in accordance with the Projected Unit Credit method as per IAS 19
+‘Employee Benefits’ taking into consideration the UAE Labour Law.
+
+The present value of the defined benefit obligations is calculated using assumptions on the average annual
+rate of increase in salaries, average period of employment of non-UAE nationals and an appropriate discount
+rate. The assumptions used are calculated on a consistent basis for each period and reflect management’s best
+estimate.
+
+The net interest cost is calculated by applying the discount rate to the defined benefit obligation. This cost is
+included in finance costs in the consolidated statement of comprehensive income.
+
+Re-measurement gains and losses arising from experience adjustments and changes in actuarial assumptions
+are recognized in the period in which they occur, directly in other comprehensive income. They are included
+in retained earnings in the consolidated statement of changes in equity and in the consolidated statement of
+financial position. Changes in the present value of the defined benefit obligation resulting from plan
+amendments or curtailments are recognized immediately in profit or loss as past service costs.
+
+Provision is also made for the estimated liability for employees' unused entitlements to annual leave and
+flights as a result of services rendered by eligible employees up to the reporting date. The provision relating
+to annual leave and air passage is disclosed as a current liability, while that relating to end of service benefits
+is disclosed as a non-current liability. The Group also provides discount on mobile, fixed line charges and
+devices to employees for official and personal purposes. This benefit is not separately accounted for as staff
+costs.
+
+                                                                                                               (23)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+3       Summary of material accounting policies (continued)
+
+3.16    Impairment
+
+3.16.1 Financial assets
+
+The Group recognizes a loss allowance for expected credit losses on financial assets measured at amortized
+cost. The amount of expected credit losses is updated at the end of each reporting period to reflect changes
+in credit risk since initial recognition of the respective financial instrument.
+
+(a)     Measurement of lifetime ECL on trade and lease receivables, due from related parties and contract
+        assets
+
+The Group recognizes lifetime ECL for trade and lease receivables, due from related parties and contract
+assets using the simplified approach. The expected credit losses on these financial assets are estimated
+using a provision matrix based on the Group’s historical credit loss experience, adjusted for factors that are
+specific to the debtors, general economic conditions and an assessment of both the current as well as the
+forecast direction of general economic conditions at the reporting date.
+
+The Group evaluates the ECL for its trade and lease receivables, due from related parties and contract
+assets based on probability of default using the Group’s historical information adjusted with forward
+looking collection factors.
+
+Periodic impairment losses based on the above debt flow rates are adjusted against security deposit and
+any other legally binding offsets at customer level. Provision for impairment is also taken on unbilled
+receivables based on the applicable rate.
+
+In addition, an allowance for impairment loss may be considered for a financial asset on case-by-case basis
+based on specific information, company risk profile, market conditions and any other relevant information.
+
+(b)     Measurement of ECL on term deposits, bank balances and other financial assets
+
+Impairment for terms deposits and bank balances is based on probability of default, calculated on the basis
+of ratings provided by credit rating agencies (e.g., Fitch, Moody’s, etc.) of each bank and Loss Given
+Default driven by rating from reputable financial institutions.
+
+For all other financial assets, the Group recognizes lifetime ECL when there has been a significant increase
+in credit risk since initial recognition. If, on the other hand, the credit risk on the financial instrument has
+not increased significantly since initial recognition, the Group measures the loss allowance for that
+financial instrument at an amount equal to 12 months ECL. The assessment of whether lifetime ECL should
+be recognized is based on significant increase in the likelihood or risk of a default occurring since initial
+recognition instead of evidence of a financial asset being credit-impaired at the end of the reporting period
+or an actual default occurring.
+
+
+
+
+                                                                                                            (24)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+3       Summary of material accounting policies (continued)
+
+3.16    Impairment (continued)
+
+3.16.2 Non-financial assets
+
+Intangible assets that have an indefinite useful life or intangible assets, property, plant and equipment
+(including capital work in progress) not ready to use are not subject to amortization/depreciation and are
+tested annually for impairment. Assets that are subject to amortization/depreciation are reviewed for
+impairment whenever events or changes in circumstances indicate that the carrying amount may not be
+recoverable. An impairment loss is recognized for the amount by which the asset’s carrying amount
+exceeds its recoverable amount. The recoverable amount is the higher of an asset’s fair value less costs of
+disposal and value in use.
+
+For the purposes of assessing impairment, assets are grouped at the lowest levels for which there are largely
+independent cash inflows. Prior impairments of non-financial assets (other than goodwill) are reviewed for
+possible reversal at each reporting date.
+
+3.17    Foreign currency translation
+
+(a)     Functional and presentation currency
+
+Items included in the consolidated financial statements are measured using the currency of the primary
+economic environment in which the Group operates (“the functional currency”). The consolidated financial
+statements are presented in AED which is the Company’s functional and presentation currency. The figures
+have been rounded to the nearest thousand except when otherwise stated.
+
+(b)     Transactions and balances
+
+Foreign currency transactions are translated into the functional currency using the exchange rates
+prevailing at the dates of the transactions.
+
+Foreign exchange gains and losses resulting from the settlement of such transactions and from the
+translation at year-end exchange rates of monetary assets and liabilities denominated in foreign currencies
+are recognized in the consolidated statement of comprehensive income within finance income or costs.
+
+For the purpose of presenting the consolidated financial statements, the assets and liabilities of the Group’s
+foreign operations are translated at exchange rates prevailing on the reporting date. Income and expense
+items are translated at the average exchange rates for the period, unless exchange rates fluctuate
+significantly during that period, in which case the exchange rates at the date of transactions are used.
+Exchange differences arising, if any, are recognized in other comprehensive income and accumulated in a
+foreign exchange translation reserve. Since the presentation currency of the Group and its subsidiaries is
+AED or USD which is pegged to AED, there is no foreign currency translation reserve at reporting date.
+
+3.18    Revenue recognition
+
+IFRS 15 Revenue from Contracts with Customers established a single comprehensive model for entities to
+use in accounting for revenue arising from contracts with customers.
+
+
+
+                                                                                                          (25)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+3       Summary of material accounting policies (continued)
+
+3.18    Revenue recognition (continued)
+
+The core principle of IFRS 15 is that an entity should recognize revenue to depict the transfer of promised
+goods or services to customers in an amount that reflects the consideration to which the entity expects to
+be entitled in exchange for those goods or services.
+
+The standard introduces a 5-step approach to revenue recognition:
+
+Step 1: Identify the contract(s) with a customer;
+Step 2: Identify the performance obligations in the contract;
+Step 3: Determine the transaction price;
+Step 4: Allocate the transaction price to the performance obligations in the contract; and
+Step 5: Recognize revenue when (or as) the entity satisfies a performance obligation.
+
+Revenue comprises the invoiced or accrued amounts from the sale of goods and services in the ordinary
+course of the Group’s activities. Revenue is shown net of returns, discounts and rebates allowed.
+
+Revenue recognition policies for product and services of the Group based on IFRS 15 guidelines are given
+below:
+
+Revenue from telecommunication services comprise amounts charged to customers in respect of monthly
+access charges, airtime usage, messaging, the provision of other mobile telecommunications services,
+including data services providing information and communication technology (ICT) and fees for
+connecting fixed line and mobile users to the Group’s network. The Group recognizes revenue, as services
+are provided.
+
+Products with multiple deliverables that have value to a customer on a stand-alone basis are defined as
+multiple element arrangements. Contracts typically include the sale of handsets and other devices,
+subscriber identification module (SIM) card and a service package which mainly include voice, data,
+SMS/MMS, VAS or other services. These arrangements are divided into separate performance obligations.
+Where the contracts include multiple performance obligations, the transaction price will be allocated to
+each performance obligation based on the stand-alone selling prices. Where these are not directly
+observable, they are estimated based on expected cost-plus margin. Revenue recognition for voice, data,
+SMS/MMS, VAS or other services is over the period when these services are provided to the customers.
+
+Revenue from sale of stand-alone handsets and other devices under separate contract is recognized when
+it is delivered to the end customer and control has been transferred.
+
+Revenue from the sale of prepaid credit is recognized on the actual utilisation of the prepaid credit. Unused
+prepaid credit is deferred as contract liability until such time as the customer uses the credit, expires or
+becomes unutilised. Prepaid vouchers sold but not activated are recognized as revenue on expiry of 24
+months.
+
+Certain revenue from managed services provided by the Group, is recognized over time based on the cost-
+to cost method, i.e., based on the proportion of contract costs incurred for work performed to date relative
+to the estimated total contract costs. This input method is considered as an appropriate measure of the
+progress towards complete satisfaction of these performance obligations under IFRS 15.
+
+
+                                                                                                         (26)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+3       Summary of material accounting policies (continued)
+
+3.18    Revenue recognition (continued)
+
+Revenue from interconnection of voice and data traffic with other telecommunication operators is
+recognized at the time the services are performed based on the actual recorded traffic.
+
+When the Group sells goods or services as a principal, revenue from customers and payments to suppliers
+are reported on a gross basis in revenue and operating expenses. If the Group sells goods or services as an
+agent, revenue and payments to suppliers are recorded in revenue on a net basis, representing the margin
+earned.
+
+Variable Consideration
+
+Under IFRS 15, if consideration promised in the contract (either explicit or implicit) includes a variable
+amount, then the Group should estimate the amount and adjust the total transaction price at contract
+inception. Certain customer contracts include variable discounts, rebates, refunds, credits, and incentives
+etc, which are provided to the customers during the contract period. The Group also has certain interconnect
+and roaming contracts which contain such variable considerations, which are estimated by using the most
+likely amount method.
+
+Contract Modification
+
+Contract modifications exist when the parties to the contract approve a modification that creates or changes
+the enforceable rights and obligations of the parties to the contract.
+
+A modification is accounted for as either a separate contract (accounted for prospectively) or as part of the
+existing contract (accounted through a cumulative catch-up adjustment). This assessment is to be based on
+whether:
+
+(a) the modification adds distinct goods and services and
+(b) the distinct goods and services are priced at their stand-alone selling prices.
+
+Significant financing component
+
+Significant financing component exists if the timing of payments agreed to by the parties to the contract
+(either explicitly or implicitly) provides the customer or the Group with a significant benefit of financing
+the transfer of goods or services to the customer. In such circumstances, the contract contains a significant
+financing component.
+
+Currently, in the case of handsets by instalments products (bundled and stand-alone) with periods
+exceeding one year, since the list price, cash selling price and the promised consideration are significantly
+equal, the Group has assessed that financing component does not exist. In principle, the Group considers
+any price difference above 5% as significant in making necessary accounting based on the practical
+expediency. However, if there are any changes in products structure indicating the existence of a financing
+component, above 5%-6% of the stand-alone selling price of the products will be considered significant
+and accounted for accordingly.
+
+
+
+
+                                                                                                         (27)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+3       Summary of material accounting policies (continued)
+
+3.19    Commission to intermediaries
+
+Intermediaries are paid commissions by the Group mainly in return for selling recharge credits, sims,
+products and related services. The Group recognizes commissions incurred to obtain a contract for
+providing goods or services to the customer as contract costs (subscriber acquisition costs). Contract costs
+are capitalized as these are expected to be recovered and amortized over the average customer life with the
+Group for each segment and tested for impairment.
+
+The Group has applied the practical expedient for subscriber acquisition costs which have amortization
+period of less than 1 year. These are recognized in the consolidated statement of comprehensive income in
+the same period of services provided.
+
+3.20    Recognition of finance income and costs
+
+Finance income comprises mainly interest income on short-term investments, other bank deposits and lease
+receivables. Interest income is recognized as it accrues in consolidated statement of comprehensive income,
+using the effective interest rate method.
+
+Finance costs is mainly interest payable on borrowing facilities obtained from financial institutions at
+commercial rates, amortization of loan arrangement fees, interest on lease liabilities, interest on employees’
+end of service benefits, interest on asset retirement obligations and is recognized as an expense in the
+consolidated statement of comprehensive income in the period in which it is incurred.
+
+3.21    Cash dividend distribution to equity holders of the parent
+
+The Group recognizes a liability to make cash distributions to equity holders when the distribution is
+authorised and the distribution is no longer at the discretion of the Company. As per the UAE Federal
+Decree Law No. (32) of 2021 concerning Federal Commercial Companies Law a distribution is authorised
+when it is approved by the shareholders. A corresponding amount is recognized directly in equity.
+
+3.22    Segmental information
+
+Information regarding the Group’s operating segments is reported in accordance with IFRS 8 Operating
+Segments. IFRS 8 requires operating segments to be identified on the basis of internal reports that are
+regularly reviewed by the Group’s chief operating decision maker and used to allocate resources to the
+segments and to assess their performance.
+
+3.23    Government grants
+
+Government grants relating to non-monetary assets are recognized at nominal value. Grants that
+compensate the Group for expenses are recognized in the consolidated statement of comprehensive income
+on a systematic basis in the same period in which the expenses are recognized. Grants that compensate the
+Group for the cost of an asset are recognized in the consolidated statement of comprehensive income on a
+systematic basis over the expected useful life of the related asset upon capitalization.
+
+
+
+
+                                                                                                          (28)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+3       Summary of material accounting policies (continued)
+
+3.24    Corporate income tax and federal royalty on profit
+
+Corporate income taxes and federal royalty on profit (“royalty”) have been provided for in the consolidated
+financial statements in accordance with the tax laws and royalty guidelines enacted or substantively
+enacted at year end. The corporate income tax and royalty charge comprises current tax, royalty and
+deferred tax which is recognized in profit or loss for the year, except if it is recognized in other
+comprehensive income because it relates to transactions that are also recognized, in the same or a different
+period, in other comprehensive income.
+
+Taxable profits or losses are based on estimates if the consolidated financial statements are authorised
+prior to filing relevant tax returns. Taxes other than on income are recorded within operating expenses.
+
+Deferred income tax is provided in full, using the liability method, on temporary differences arising
+between the tax bases of assets and liabilities and their carrying amounts in the consolidated financial
+statements. However, deferred tax liabilities are not recognized if they arise from the initial recognition of
+goodwill. Deferred tax assets are recognized only if it is probable that future taxable amounts will be
+available to utilise those temporary differences and losses.
+
+Pillar Two was enacted on 6 February 2025 in the United Arab Emirates, where the Group is
+headquartered. The Group will be subject to Pillar Two tax rules effective 1 January 2025. However, based
+on the current effective tax rate, we deem the rules to have an immaterial impact.
+
+4       Financial risk management
+
+4.1     Financial risk factors
+
+The Group’s activities expose it to a variety of financial risks: credit risk, liquidity risk and market risk
+(including foreign exchange, cash flow and fair value interest rate risks and equity price risk). The Group’s
+overall risk management process focuses on the unpredictability of financial markets and seeks to minimise
+potential adverse effects on the Group’s financial performance.
+
+This note presents information about the Group’s exposure to each of the above risks, the Group’s
+objectives, policies and processes for measuring and managing risk, and the Group’s management of
+capital. Further quantitative disclosures are included throughout these consolidated financial statements.
+
+The Board of Directors has overall responsibility for the establishment and oversight of the Group’s risk
+management framework. The Board is responsible for developing and monitoring the Group’s risk
+management policies.
+
+
+
+
+                                                                                                           (29)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+4       Financial risk management (continued)
+
+4.1     Financial risk factors (continued)
+
+The Group’s risk management policies are established to identify and analyse the risks faced by the Group,
+to set appropriate risk limits and controls, and to monitor risks and adherence to limits. Risk management
+policies and systems are reviewed regularly to reflect changes in market conditions and the Group’s
+activities. The Group, through its training and management standards and procedures, aims to develop a
+disciplined and constructive control environment in which all employees understand their roles and
+obligations.
+
+The Group’s Audit Committee oversees how management monitors compliance with the Group’s risk
+management policies and procedures and reviews the adequacy of the risk management framework in
+relation to the risks faced by the Group. The Audit Committee is assisted in its oversight role by Internal
+Audit and Risk Management department. Both departments undertakes both regular and ad hoc reviews of
+risk management controls and procedures, the results of which are reported to the Audit Committee.
+
+(a)     Credit risk
+
+Credit risk is the risk of financial loss to the Group if a customer or counterparty to a financial instrument
+fails to meet its contractual obligations, and arises principally from the Group’s receivables from
+customers.
+
+Trade receivables, contract assets and due from related parties
+
+The Group’s exposure to credit risk is influenced mainly by the individual characteristics of each customer
+and the extent to which credit terms are offered.
+
+The management has established a credit policy under which new customer is analysed for creditworthiness
+before credit is granted. The Group’s review can include external ratings, when available, customer
+segmentation, and in some cases bank references. Credit limits are established for each customer in
+accordance with this policy, which represents the maximum exposure without requiring approval from
+senior management. These limits are reviewed periodically.
+
+
+
+
+                                                                                                          (30)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+4       Financial risk management (continued)
+
+4.1     Financial risk factors (continued)
+
+(a)     Credit risk (continued)
+
+Trade receivables, contract assets and due from related parties (continued)
+
+In monitoring customer credit risk, customers are classified according to their credit characteristics,
+including whether they are an individual or legal entity, projected business volumes, new or established
+businesses and existence of previous financial relationships with the Group.
+
+The Group may require deposit or collateral in respect of granting credit subject to results of risk
+assessment and the nature and volumes contemplated by the customer.
+
+Information on the ageing of trade receivables, contract assets, due from related parties and due from other
+telecommunication operators is given in Note 32.1.
+
+The carrying amount of financial assets recorded in the consolidated financial statements, net of any
+allowances for impairment losses, represents the Group’s maximum exposure to credit risk without taking
+account of the value of any collateral obtained.
+
+Term deposits and cash and bank balances
+
+Cash is placed with reputable banks and the risk of default is considered remote. The table below presents
+the external credit ratings as at 31 December of the Group’s term deposits and bank balances.
+
+
+Ratings                                     Term deposits                     Cash and bank balances
+                                              2024           2023                  2024           2023
+                                           AED 000        AED 000              AED 000        AED 000
+
+Aa3/AA-                                           -                    -          26,788           139,913
+A1/A+                                             -             200,000           31,625            10,403
+A2/A                                        500,000             277,072          227,049            56,820
+A3/A-                                       700,000             525,000          434,184          260,140
+Baa1/BBB+                                   100,000             325,247          237,565          114,403
+Others                                            -                    -          27,179            28,647
+                                          1,300,000           1,327,319          984,390          610,326
+Less: loss allowance                           (717)               (733)            (421)             (290)
+As at 31 December                         1,299,283           1,326,586          983,969          610,036
+
+
+
+
+                                                                                                        (31)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+4           Financial risk management (continued)
+
+4.1         Financial risk factors (continued)
+
+(b)         Liquidity risk
+
+Liquidity risk is the risk that the Group will not be able to meet its financial obligations as they fall due.
+The Group’s approach to managing liquidity is to ensure that it will always have sufficient liquidity to meet
+its liabilities when due, under both normal and stressed conditions, without incurring unacceptable losses
+or risking damage to the Group’s business and reputation. A major portion of the Group’s funds are
+invested in short-term investments which are readily available to meet expected operational expenses,
+including servicing of financial obligations. The table in Note 32.2 analyses the Group’s non-derivative
+financial liabilities and derivative financial liabilities, if any, into relevant maturity groupings based on the
+remaining period at the reporting date to the contractual maturity date. The amounts disclosed in the table
+are the contractual undiscounted cash flows.
+
+c)          Market risk
+
+Market risk is the risk that the fair value or future cash flows of a financial instrument will fluctuate because
+of changes in market prices such as foreign exchange rates, interest rates and equity prices will affect the
+Group’s income or the value of its holdings of financial instruments. The objective of market risk
+management is to manage and control market risk exposures within acceptable parameters, while
+optimising the return. The Group’s exposure to market risk arises from:
+
+•       Foreign exchange risk
+•       Cash flow and fair value interest rate risks
+•       Equity price risk
+
+(i)         Foreign exchange risk
+
+The Group is exposed to currency risk on sales and purchases that are denominated in a currency, primarily
+the Euro/GBP, other than the functional currency of the Company and its subsidiaries. In respect of the
+Group’s transactions denominated in US Dollars (“USD”), the Group is not exposed to material currency
+risk as the AED is pegged to the USD at a fixed rate of exchange. The Group’s exposure and sensitivity
+analysis in respect to the foreign exchange risk is detailed in Note 32.3.
+
+(ii)        Cash flow and fair value interest rate risks
+
+The Group’s interest rate risk arises from borrowings. Borrowings issued at variable rates expose the
+Group to cash flow interest rate risk which is partially offset by short-term investments held at variable
+rates. Borrowings issued at fixed rates expose the Group to fair value interest rate risk. The Group
+analyses its interest rate exposure on a dynamic basis. Various scenarios are simulated taking into
+consideration refinancing, renewal of existing positions, alternative financing and interest rate swaps. The
+scenarios are run only for liabilities that represent the major interest-bearing positions.
+
+(iii)       Equity price risk
+
+The Group is not significantly exposed to equity price risk as the balance of the investment in equity
+instrument designated at FVOCI is not material.
+
+
+                                                                                                             (32)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+4       Financial risk management (continued)
+
+4.2     Capital risk management
+
+The Group’s objectives when managing capital are to safeguard the Group’s ability to continue as a going
+concern in order to provide returns for shareholders and benefits for other stakeholders and to maintain an
+optimal capital structure.
+
+Consistent with others in the industry, the Group monitors capital on the basis of the gearing ratio. This
+ratio is calculated as net debt divided by total equity. Net debt is calculated as total borrowings as shown
+in the consolidated statement of financial position, less cash and bank balances and term deposits.
+
+                                                                           31 December           31 December
+                                                                                  2024                 2023
+                                                                              AED 000              AED 000
+Total borrowings                                                                     -                    -
+Less: Term deposits/Cash and bank balances (Notes 16 and 17)                (2,283,252)          (1,936,622)
+Net debt                                                                    (2,283,252)          (1,936,622)
+Total equity                                                                 9,878,445            9,243,213
+Gearing                                                                              -                    -
+
+Under the terms of the borrowing facility, the Group is required to comply with net debt to EBITDA
+financial covenant. The Group has complied with this covenant in 2024.
+
+5.      Fair value estimation
+
+A number of the Group’s accounting policies and disclosures require the determination of fair value, for
+both financial and non-financial assets and liabilities. The fair values of the Group’s financial assets and
+liabilities approximated their carrying values as reflected in these consolidated financial statements. The
+table below analyses financial instruments carried at fair value, by valuation method. The different levels
+have been defined as follows:
+
+Level 1 – Quoted prices (unadjusted) in active markets for identical assets or liabilities.
+Level 2 – Inputs other than quoted prices included within level 1 that are observable for asset or liability,
+           either directly (that is, as prices) or indirectly (that is, derived from prices).
+Level 3 – Inputs for the asset or liability that are not based on observable market data (that is, unobservable
+          inputs).
+                                                                              In AED 000
+                                                          Level 1         Level 2        Level 3       Total
+
+ Financial asset at fair value through other
+   comprehensive income (Note 11)                        2,334               -               -        2,334
+ At 31 December 2024                                     2,334               -               -        2,334
+
+ Financial asset at fair value through other
+   comprehensive income (Note 11)                        2,946               -               -        2,946
+ At 31 December 2023                                     2,946               -               -        2,946
+Financial instruments comprise financial assets and financial liabilities. The fair values of these financial
+assets and liabilities are not materially different from their carrying values unless stated otherwise
+(Note 32).
+                                                                                                           (33)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+6       Property, plant and equipment
+                                                                       Plant and             Furniture                 Motor        Capital work in
+                                                     Buildings        equipment            and fixtures               vehicles             progress              Total
+                                                     AED 000           AED 000                AED 000                AED 000              AED 000              AED 000
+Cost
+At 1 January 2023                                       21,630         23,998,336               340,258                 4,403               343,115           24,707,742
+Additions                                                     -         1,240,830                32,098                    33               567,118            1,840,079
+Addition: asset retirement obligations                        -             4,276                     -                     -                     -                4,276
+Transfers                                                     -           402,371                 3,621                     -              (405,992)                   -
+Disposals/write-offs                                          -          (115,939)              (21,048)                    -                     -             (136,987)
+At 31 December 2023                                     21,630         25,529,874               354,929                 4,436               504,241           26,415,110
+Additions                                                    -          1,203,895                40,940                   360               437,476            1,682,671
+Addition: asset retirement obligations                       -              3,140                     -                     -                     -                3,140
+Transfers                                                    -            173,819                   500                     -              (174,319)                   -
+Disposals/write-offs                                         -           (195,629)              (24,970)                    -                     -             (220,599)
+At 31 December 2024                                     21,630         26,715,099               371,399                 4,796               767,398           27,880,322
+
+Depreciation / impairment
+At 1 January 2023                                       20,479         14,994,508               246,071                 4,403                16,570           15,282,031
+Charge for the year                                        878          1,501,278                30,323                    14                     -            1,532,493
+Disposals/write-offs                                         -           (112,755)              (21,048)                    -                     -             (133,803)
+Impairment charge/(reversal)                                 -             15,409                     -                     -                (3,720)              11,689
+At 31 December 2023                                     21,357         16,398,440               255,346                 4,417                12,850           16,692,410
+Charge for the year                                        273          1,517,743                31,847                     6                     -            1,549,869
+Disposals/write-offs                                          -          (194,755)              (24,970)                    -                     -             (219,725)
+Impairment charge                                             -            18,561                     -                     -                   759               19,320
+At 31 December 2024                                     21,630         17,739,989               262,223                 4,423                13,609           18,041,874
+
+Net book value
+At 31 December 2024                                           -         8,975,110               109,176                   373               753,789            9,838,448
+At 31 December 2023                                        273          9,131,434                99,583                    19               491,391            9,722,700
+
+The carrying amount of the Group’s buildings include a nominal amount of AED 1 (2023: AED 1) in relation to a plot of land granted to the Group by the UAE Government.
+
+
+
+                                                                                                                                                                    (34)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+7       Right-of-use assets
+                                          Land and            Furniture &
+                                          buildings        fixtures - space                    Total
+                                          AED 000                AED 000                     AED 000
+Cost
+At 1 January 2023                         2,655,596                    945                  2,656,541
+Additions                                   517,465                      -                    517,465
+Re-measurement                              133,395                      -                    133,395
+Disposals                                  (167,747)                     -                   (167,747)
+At 31 December 2023                       3,138,709                    945                  3,139,654
+Additions                                   155,983                      -                    155,983
+Re-measurement                              282,446                      -                    282,446
+Disposals                                   (49,813)                     -                    (49,813)
+At 31 December 2024                       3,527,325                    945                  3,528,270
+Depreciation
+At 1 January 2023                         1,240,391                    400                  1,240,791
+Charge for the year                         444,941                    101                    445,042
+Disposals                                  (143,364)                     -                   (143,364)
+At 31 December 2023                       1,541,968                    501                  1,542,469
+Charge for the year                         374,405                    100                    374,505
+Disposals                                    (45,921)                    -                    (45,921)
+At 31 December 2024                       1,870,452                    601                  1,871,053
+
+Net book value
+At 31 December 2024                       1,656,873                    344                  1,657,217
+
+At 31 December 2023                       1,596,741                    444                  1,597,185
+
+
+The Group leases several assets including shops, technical sites, offices, warehouses and billboards. The
+average lease term is 9.16 years (2023: 8.54 years). Short-term and low value leases are also included in
+right-of-use assets.
+
+
+
+
+                                                                                                     (35)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+
+8       Intangible assets and goodwill
+                                                                               2024             2023
+                                                                            AED 000          AED 000
+
+Goodwill                                                                      413,220          413,220
+Intangible assets                                                             846,932          697,549
+                                                                            1,260,152        1,110,769
+
+Goodwill
+
+The Group acquired the fixed line business of Tecom Investments FZ LLC with effect from 31 December
+2005. Goodwill represents the excess of purchase consideration paid over the fair value of net assets
+acquired. Carrying amount of goodwill is for fixed line business CGU as below:
+
+                                                                               2024             2023
+                                                                            AED 000          AED 000
+Fixed line business                                                           413,220         413,220
+
+The Group tests goodwill for impairment annually. The recoverable amount of the CGU is determined using
+the discounted cash flow method based on the five-year business outlook.
+
+In 2024, the estimated recoverable amount of the fixed line business CGU exceeded its carrying amount by
+approximately 356%.
+
+The key assumptions for the fixed line business CGU value-in-use calculations at 31 December 2024
+include:
+
+- 5-year revenue growth projections;
+- a pre-tax discount rate of 8.40% (2023: 9.75%) based on the Company’s weighted-average cost of
+  capital;
+- maintenance capital expenditure projections allowing for replacement of existing infrastructure at the
+  end of its useful life; and
+- terminal growth rate of 2%, determined based on management’s estimate of the long-term cash flow
+  growth rate, consistent with the assumption that a market participant would make.
+
+
+
+
+                                                                                                    (36)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+
+8       Intangible assets and goodwill (continued)
+
+Goodwill (continued)
+The fixed line model calculations are particularly sensitive to the revenue growth assumptions, including
+expectations around the impact of future competition in the Group's existing network zones. However,
+management considers that it would require a significant decline in revenue growth before any impairment
+of the fixed line CGU would be required.
+
+Sensitivity analysis
+The Group has conducted an analysis of the sensitivity of impairment test to changes in the key assumptions
+used to determine the recoverable amount.
+
+For fixed line business CGU, management has identified that any reasonably possible change in key
+assumptions could not cause the carrying amounts to exceed the recoverable amounts.
+Intangible assets
+                                             Capital         Telecom -       Indefeasible
+                            Software         work in      munications           rights of
+                               in use       progress       license fees               use          Total
+                            AED 000         AED 000         AED 000             AED 000          AED 000
+Cost
+At 1 January 2023          2,500,897         257,526          124,500            207,359         3,090,282
+Additions                     58,040         299,578                -                  -           357,618
+Transfers                    109,974        (109,974)               -                  -                 -
+Disposals/write-offs            (583)              -                -                  -             (583)
+At 31 December 2023        2,668,328         447,130          124,500            207,359         3,447,317
+Additions                     64,830         294,449                -                   -          359,279
+Transfers                    353,915        (353,915)               -                   -                -
+Disposals/write-offs            (177)               -               -                   -            (177)
+At 31 December 2024        3,086,896         387,664          124,500            207,359         3,806,419
+Amortization/
+impairment
+At 1 January 2023          2,228,871             106          104,962            207,359         2,541,298
+Charge for the year          194,011                -           6,223                   -          200,234
+Impairment
+ charge/(reversal)             8,925            (106)                -                  -            8,819
+Disposals/write-offs            (583)               -                -                  -            (583)
+At 31 December 2023        2,431,224                -         111,185            207,359         2,749,768
+Charge for the year         203,673                 -           6,223                   -          209,896
+Impairment
+ charge/(reversal)                 -                -                -                  -                -
+Disposals/write-offs            (177)               -                -                  -            (177)
+At 31 December 2024        2,634,720                -         117,408            207,359         2,959,487
+
+Net book value
+At 31 December 2024          452,176         387,664            7,092                   -         846,932
+At 31 December 2023          237,104         447,130           13,315                   -         697,549
+
+                                                                                                       (37)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+
+8       Intangible assets and goodwill (continued)
+
+Intangible assets (continued)
+
+The software in use includes all applications such as enterprise resource planning (ERP), billing and other
+systems which are currently in use while the capital work in progress relates to the development of software.
+Telecommunication license fees represent charge by the Telecommunications and Digital Government
+Regulatory Authority (“TDRA”) to the Group to grant the license to operate as a telecommunications
+service provider in the UAE.
+
+Indefeasible right of use represents the fees paid to a telecom operator to obtain rights to use Indoor Building
+Solutions relating to certain sites in the UAE. Also included in the balance is an amount charged by an
+operator of a fibre-optic cable system for the right to use its submarine fibre-optic circuits and cable system.
+
+
+9       Lease receivable
+                                                                                    2024               2023
+                                                                                 AED 000            AED 000
+
+Lease receivable (net of loss allowance)                                            111,602           127,710
+
+
+Non-current                                                                          92,575           109,612
+Current                                                                              19,027            18,098
+Total lease receivable                                                              111,602           127,710
+
+During the year 2020, the Group signed a sub-lease agreement to lease its data centre with a customer for
+a period of 10 years.
+                                                                                  2024                 2023
+                                                                               AED 000              AED 000
+Maturity analysis:
+Not later than 1 year                                                            21,131               20,515
+Later than 1 year and not later than 5 years                                     91,055               88,402
+Later than 5 years                                                               12,067               35,851
+                                                                                124,253              144,768
+Less: unearned interest on lease receivable and loss allowance                  (12,651)             (17,058)
+                                                                                111,602              127,710
+
+The interest income on lease receivable is presented in Note 28.
+
+
+
+
+                                                                                                           (38)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+
+10      Investments accounted for using the equity method
+
+          Investments                   Principal activities             Shareholding        Country of
+                                                                         2024    2023      incorporation
+
+Dubai Smart City Accelerator   To run accelerator programmes with     23.53% 23.53%            UAE
+ FZCO (Associate)              the purpose of sourcing innovation and
+                               technology applicable to the Smart
+                               City Industry
+
+Advanced Regional              Provision of connectivity and data        50%     50%           UAE
+ Communications Solutions      centre services
+ Holding Limited
+ (Joint venture)
+
+Movement in investments in associate and joint venture
+
+                                                                             2024
+                                                            Associate     Joint venture         Total
+                                                            AED 000           AED 000         AED 000
+
+At 1 January (1)                                                1,810             3,333           5,143
+Share of loss for the year                                     (1,048)           (1,379)         (2,427)
+At 31 December                                                    762             1,954           2,716
+
+                                                                             2023
+                                                            Associate     Joint venture          Total
+                                                            AED 000          AED 000          AED 000
+
+At 1 January (1)                                                2,128            5,735            7,863
+Share of loss for the year                                       (318)          (2,402)          (2,720)
+At 31 December                                                  1,810            3,333            5,143
+
+
+(1)
+  Beginning balance as at 1 January includes cumulative impairment loss of AED 8,496 thousand in the
+Group’s investment in joint venture.
+
+
+
+
+                                                                                                     (39)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+
+10      Investments accounted for using the equity method (continued)
+
+Summarised financial information for the associate and joint venture are as follows:
+
+                                                                        2024
+                                                Associate         Joint venture          Total
+                                                AED 000               AED 000          AED 000
+
+Non-current assets                                  2,735                 36,276         39,011
+Current assets                                        555                 24,944         25,499
+Current liabilities                                   (51)                (3,066)        (3,117)
+Non-current liabilities                                 -                (37,254)       (37,254)
+Net assets                                          3,239                 20,900         24,139
+
+Revenue                                                  -                14,730         14,730
+Loss for the year                                   (4,454)               (2,757)        (7,211)
+
+                                                                          2023
+                                                 Associate          Joint venture         Total
+                                                 AED 000                AED 000        AED 000
+
+Non-current assets                                  7,143                  42,569        49,712
+Current assets                                        571                  32,830        33,401
+Current liabilities                                    (20)                (9,919)       (9,939)
+Non-current liabilities                                  -                (41,819)      (41,819)
+Net assets                                          7,694                  23,661        31,355
+
+Revenue                                                  -                15,669        15,669
+Loss for the year                                  (1,351)                 (4,804)       (6,155)
+
+
+
+
+                                                                                            (40)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+
+11      Financial asset at fair value through other comprehensive income
+
+
+                                                                          2024                 2023
+                                                                       AED 000              AED 000
+
+Listed shares
+ Anghami Inc.                                                             2,334                 2,946
+
+During the year 2024, a loss of AED 612 thousand was recognized in other comprehensive income
+(2023: AED 1,571 thousand).
+
+12      Trade receivables, contract assets and other assets
+
+                                                                              2024             2023
+                                                                           AED 000          AED 000
+
+Trade receivables                                                          2,222,809        2,057,319
+Due from other telecommunication operators (1)                               211,398          258,433
+Contract assets                                                              489,486          463,770
+Less: provision for impairment                                              (812,067)        (756,993)
+Net amount                                                                 2,111,626        2,022,529
+
+Prepayments (2)                                                              168,251          131,462
+Advances to suppliers                                                        129,350          195,845
+Other receivables                                                             91,156          131,585
+Total trade receivables, contract assets and other assets                  2,500,383        2,481,421
+
+Non-current (3)                                                              180,573          257,390
+Current                                                                    2,319,810        2,224,031
+Total trade receivables, contract assets and other assets                  2,500,383        2,481,421
+
+(1)
+ Due from other telecommunication operators are presented after netting off payable balances amounting to
+AED 1,537,253 thousand (31 December 2023: AED 1,686,315 thousand).
+(2)
+  Prepayments include unamortized loan fees amounting to AED 4,539 thousand (31 December 2023: AED
+11,709 thousand) related to the revolving credit facility.
+(3)
+  Total non-current includes the non-current portion for the unamortized loan fees amounting to AED 3,211
+thousand (31 December 2023: AED 9,121 thousand).
+
+
+
+
+                                                                                                   (41)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+
+12     Trade receivables, contract assets and other assets (continued)
+
+The movement in the allowance for expected credited losses of trade receivables, contract assets and due
+from other telecommunication operators is as follows:
+
+                                                                               2024              2023
+                                                                            AED 000           AED 000
+
+At 1 January                                                                 756,993            706,965
+Charge for the year                                                          292,975            273,573
+Write-off during the year                                                   (237,901)          (223,545)
+At 31 December                                                               812,067            756,993
+
+13     Contract costs
+
+                                                    Current                      Non-current
+                                           2024                  2023             2024       2023
+                                        AED 000               AED 000          AED 000   AED 000
+
+Contract costs                            361,577              341,863          345,227       222,233
+
+14     Inventories
+
+                                                                               2024              2023
+                                                                            AED 000           AED 000
+
+Goods held for sale                                                          198,569            115,780
+Less: allowance for inventory obsolescence                                   (22,959)           (14,085)
+At 31 December                                                               175,610            101,695
+
+Inventories recognized as an operating expense during the year             1,363,984          1,191,010
+Charge/(release) of allowance for inventory obsolescence recognized as
+an operating expense during the year                                            8,874              (970)
+
+
+
+
+                                                                                                    (42)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+
+15          Related party balances and transactions
+Related parties comprise the founding shareholders of the Company, entities under common shareholding,
+its directors, key management personnel and entities over which they exercise control, joint control or
+significant influence. The founding shareholders are Emirates Investment Authority, Mamoura Diversified
+Global Holding PJSC & Emirates Communications and Technologies Company LLC. Transactions with
+related parties are in the ordinary course of business and are approved by the Group’s management or by
+the Board of Directors.
+
+Related party balances
+
+                                                                                    2024              2023
+                                                                                 AED 000           AED 000
+Due from related parties                                                             21,732            53,449
+
+Due to related parties                                                                6,717              6,064
+
+Related party transactions
+
+Transactions between the Company and its subsidiaries, which are related parties, have been eliminated on
+consolidation and are not disclosed in this note. All transactions with related parties referred to below are
+in the ordinary course of business. The following table reflects the gross value of transactions with related
+parties.
+                                                                                   2024                 2023
+                                                                              AED 000               AED 000
+
+Sale of goods and services                                                        442,382              579,949
+Rent and services                                                                  28,665               28,687
+                                                                                                       608,636
+Key management compensation
+                                                                                     2024               2023
+                                                                                  AED 000            AED 000
+
+Short-term employee benefits                                                        34,284              33,947
+Employees’ end of service benefits                                                     405                 412
+Post-employment benefits                                                             1,392               1,186
+Long-term incentives (1)                                                             5,875              (3,125)
+                                                                                    41,956              32,420
+
+(1)
+      In 2023, the Group revised the estimation of long-term incentives resulted in the release of provision.
+
+Board of Directors fees recorded during the year were AED 12,555 thousand (2023: AED 10,494
+thousand).
+
+No loan has been provided to Directors, their spouses, children and relatives of the second degree and any
+corporates in which they own 20% or more.
+
+
+
+
+                                                                                                            (43)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+
+15      Related party balances and transactions (continued)
+
+The Group provides telecommunication services and also receives various services from the Federal
+Government (including Ministries and local bodies). These transactions are at normal commercial terms.
+The credit period allowed to Government customers ranges from 15 to 150 days. The Group has elected
+not to disclose transactions with the UAE Federal Government and other entities over which the Federal
+Government exerts control, joint control or significant influence.
+
+16       Term deposits
+
+                                                                              2024                2023
+                                                                           AED 000             AED 000
+
+Term deposits (net of loss allowance)                                      1,299,283           1,326,586
+
+
+Term deposits represent bank deposits with maturity periods exceeding three months from the date of
+deposit. These term deposits are denominated primarily in UAE Dirham, with banks. Interest is earned on
+these term deposits at prevailing market rates. The carrying amount of these term deposits approximates
+their fair value.
+
+17       Cash and bank balances
+
+For the purposes of the consolidated statement of cash flows, cash and cash equivalents comprise:
+
+                                                                              2024                2023
+                                                                           AED 000             AED 000
+
+Cash at bank (net of loss allowance)                                         983,386                609,341
+Cash on hand                                                                     583                    695
+Cash and bank balances                                                       983,969                610,036
+Less: margin on guarantees (Note 31)                                          (2,412)                (2,346)
+Cash and cash equivalents                                                    981,557                607,690
+
+
+
+
+                                                                                                        (44)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+
+18      Lease liabilities
+                                                                                2024                 2023
+                                                                             AED 000              AED 000
+At 1 January                                                                2,104,959            2,059,211
+Lease liabilities during the year                                              155,983             517,465
+Interest expense during the year                                                63,671              78,696
+Payments made during the year                                                (587,923)            (672,386)
+Re-measurement during the year                                                282,446              133,395
+Disposals during the year                                                     (20,449)             (11,422)
+Closing balance                                                             1,998,687            2,104,959
+
+                                              Current                             Non-current
+                                          2024           2023                   2024             2023
+                                       AED 000        AED 000                AED 000          AED 000
+
+Lease liabilities                       561,999            649,585           1,436,688            1,455,374
+
+The Group does not face a significant liquidity risk with regard to its lease liabilities. The Group does
+not have any variable component in lease payments.
+
+19       Contract liabilities
+                                                      Current                       Non-current
+                                             2024                  2023              2024       2023
+                                          AED 000               AED 000           AED 000   AED 000
+
+Contract liabilities                        559,180              465,710            233,029       217,254
+
+Revenue recognized during the year that was included in the contract liabilities balances at the beginning
+of 2024 was AED 350,373 thousand (2023: AED 354,803 thousand)
+
+There was no revenue recognized in the current reporting period that is related to performance obligations
+that were satisfied in the prior year. The Group’s contracts with customers are for periods of one year or
+less or are billed based on service provided. As permitted under IFRS 15, the transaction price allocated
+to the unsatisfied contracts is not disclosed.
+
+20      Provision for employees’ end of service benefits
+
+The Group provides end of service benefits (defined benefit obligations) to its eligible employees. The most
+recent actuarial valuations of the present value of the defined benefit obligations were carried out as at
+31 December 2024 by a registered actuary in the UAE. The present value of defined benefit obligations and
+the related current and past service cost were measured using the Projected Unit Credit Method. Changes
+in the present value of defined benefit obligations are as follows:
+
+
+
+
+                                                                                                            (45)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+
+20       Provision for employees’ end of service benefits (continued)
+
+                                                                                  2024              2023
+                                                                               AED 000           AED 000
+
+At 1 January                                                                    208,471           197,166
+Service cost                                                                     21,451            21,013
+Interest cost                                                                     8,001             7,586
+Actuarial (gain)/loss recognized in other comprehensive income (1)               (7,403)           14,663
+Past service cost                                                                     -            (1,260)
+Benefits paid during the year                                                   (21,916)          (30,697)
+At 31 December                                                                  208,604           208,471
+
+(1)
+   Actuarial (gain)/loss recognized in other comprehensive income relates to re-measurement of the
+employees’ end of service benefits obligation net gain from changes in financial assumptions amounting
+to AED 8,114 thousand (2023: net loss of AED 7,306 thousand), net loss from experience adjustments
+amounting to AED 711 thousand (2023: net loss of AED 3,015 thousand) and demographic assumptions
+amounting to AED Nil (2023: net loss of AED 4,342 thousand).
+
+The provision is recognized based on the following significant actuarial assumptions:
+
+                                                                                        2024            2023
+
+Average period of employment (years)                                                  4.75               5.05
+Average annual rate of salary increase                                               2.5%               2.5%
+Average annual rate of salary increase for next two years                            2.5%               2.5%
+Discount rate                                                                       4.90%              4.10%
+
+Through its defined benefit plan, the Group is exposed to a number of actuarial risks, the most significant of
+which include, longevity risk, withdrawal risk and salary increase risk.
+
+Sensitivity of the provision for employees’ end of service benefits to changes in principal assumptions is
+included below:
+
+                                                                     Impact on defined benefit obligation
+                                                   Change in             Increase in       Decrease in
+                                                  assumption             assumption        assumption
+                                                2024   2023            2024    2023        2024       2023
+
+Withdrawal rate                                  10%       10%         0.83% 0.44%             (0.94%) (0.53%)
+Mortality age                                  1 year    1 year        0.04% 0.02%             (0.04%) (0.02%)
+Average annual rate of salary increase            1%        1%         5.56% 5.85%             (5.13%) (5.38%)
+Discount rate                                     1%        1%        (4.52%) (4.80%)           4.98% 5.31%
+
+Expected contribution to defined benefit obligations for the year ending 31 December 2025 is AED 30,136
+thousand.
+
+
+
+
+                                                                                                        (46)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+
+21       Other provisions
+
+Asset retirement obligations
+
+In the course of the Group’s activities, a number of sites and other commercial premises are utilised which
+are expected to have costs associated with exiting and ceasing their use. The associated cash outflows are
+expected to occur at the dates of exit of the assets to which they relate. These assets are long-term in nature,
+primarily up to the period of 10 years from when the asset is brought into use.
+
+                                                                                     2024              2023
+                                                                                  AED 000           AED 000
+
+At 1 January                                                                        210,778           208,801
+Additions during the year                                                             5,530             4,276
+Deletions during the year                                                            (2,390)           (8,038)
+Adjustment for change in discount/inflation rates                                    (1,582)            1,410
+Unwinding of discount                                                                 6,784             4,329
+At 31 December                                                                      219,120           210,778
+
+The provision is recognized based on the following significant assumptions:
+                                                                                      2024               2023
+
+Average period of restoration (years)                                                   10                 10
+Inflation rate                                                                      2.02%              2.06%
+Discount rate                                                                       3.99%              3.54%
+
+22       Trade and other payables
+                                                                                     2024               2023
+                                                                                  AED 000            AED 000
+
+Trade payables and accruals (1)                                                   2,435,421         2,135,354
+Accrued federal royalty on regulated activities (Note 23.1)                               -         2,033,172
+Due to other telecommunication operators (2)                                        616,097           641,140
+Valued Added Tax (VAT) payable                                                       25,187            24,674
+Other payables and accruals                                                         456,311           412,947
+                                                                                  3,533,016         5,247,287
+(1)
+ Trade payables and accruals include ICT fund payable to TDRA based on 1% of regulated revenue of
+AED 10,095,989 thousand (31 December 2023: AED 9,410,136 thousand).
+(2)
+ Due to other telecommunication operators are presented after netting off receivable balances amounting to
+AED 1,537,253 thousand (31 December 2023: AED 1,686,315 thousand).
+
+
+
+
+                                                                                                          (47)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+23       Federal royalty and corporate income tax
+                                                                                2024                  2023
+                                                                             AED 000               AED 000
+Federal royalty on profit                                         23.2       1,675,882                      -
+Corporate income tax                                              23.2         247,570                      -
+As at 31 December                                                            1,923,452                      -
+
+
+23.1     Federal royalty on regulated activities
+
+In year 2023, the federal royalty was calculated as 15% on regulated revenue and 30% on regulated profit
+after deducting royalty on regulated revenue according to the guidelines issued for the relevant period by the
+MoF.
+
+Movement in the accrued federal royalty on regulated activities is as follows:
+
+                                                                                    2024                2023
+                                                                                 AED 000             AED 000
+At 1 January                                                                   2,033,172           1,830,421
+Payment made during the year                                                  (1,928,939)         (1,687,899)
+(Release)/charge for the year - net                                             (104,233)          1,890,650
+As at 31 December                                                                      -           2,033,172
+
+23.2     Federal royalty on profit and corporate income tax
+
+Federal royalty on profit
+
+As per Cabinet of Ministers of UAE decision no. 8/38 of 2023 and the UAE Ministry of Finance (“the MoF”)
+royalty guidelines, the federal royalty, effective from 2024 to 2026, is equal to 38% of yearly total regulated
+and non-regulated UAE profits (calculated before royalty and corporate income tax) of the Group. The total
+amount of federal royalty on profit and corporate income tax payable by the Group shall not be lower than
+AED 1.8 billion per year.
+
+Corporate income tax
+
+UAE Federal Decree-Law No. 47 of 2022 on the Taxation of Corporations and Businesses was published on
+9 December 2022. Cabinet decisions are issued to specify the implementation of certain provisions in the
+corporate tax law (“the Law”). The Group is subject to corporate income tax at 9% on profit after royalty in
+the financial year beginning 1 January 2024.
+
+Federal royalty on profit and corporate income tax have been provided for in the consolidated financial
+statements in accordance with the royalty guidelines and tax laws enacted or substantively enacted at year
+end. The effective annual income tax rate for the current year is 44.7% (2023: Nil).
+
+
+
+
+                                                                                                          (48)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+23       Federal royalty and corporate income tax (continued)
+
+23.2     Federal royalty on profit and corporate income tax (continued)
+
+(a) Corporate income tax expense
+                                                                                 2024                2023
+                                                                              AED 000             AED 000
+
+Corporate income tax expense attributable to:
+- Current corporate income tax                                                  246,955                     -
+- Other comprehensive income not reclassified to profit or loss                     615                     -
+                                                                                247,570                     -
+
+
+The reconciliation between federal royalty on profit and corporate income tax charge and the product of
+standard rate of 38% and 9% respectively, on accounting profit is as follows:
+
+                                                                                 2024                2023
+                                                                              AED 000             AED 000
+
+Profit before federal royalty on profit and corporate income tax             4,306,151                      -
+
+Federal royalty on profit calculated at a rate of 38%                        1,636,337                      -
+Prior period adjustments                                                        39,609                      -
+International operations                                                            (64)                    -
+Federal royalty on profit                                                    1,675,882                      -
+
+
+Profit before corporate income tax after deduction of federal                                               -
+ royalty on profit                                                           2,630,269
+Income subject to 0% corporate income tax rate                                    (375)                     -
+Income subject to 9% corporate income tax rate                               2,629,894                      -
+
+Corporate income tax calculated at rate of 9%                                  236,690                      -
+Prior period adjustments                                                         9,381                      -
+Disallowed deductions and others                                                 1,499                      -
+Corporate income tax charge                                                    247,570                      -
+
+Total federal royalty on profit and corporate income tax                     1,923,452                      -
+
+
+
+
+                                                                                                     (49)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+23      Federal royalty and corporate income tax (continued)
+
+23.2    Federal royalty on profit and corporate income tax (continued)
+
+(b) Amount recognized in other comprehensive income
+
+                                               2024                                2023
+                                    Before- Corporate   Net-of-        Before-   Corporate      Net-of-
+                                  corporate   Income corporate       corporate     Income     corporate
+                                    income        tax  income          income          tax      income
+                                        tax (expense)      tax             tax   (expense)          tax
+ AED ’000                           amount / benefit   amount          amount      /benefit     amount
+
+ Fair value changes on
+  financial asset at fair value
+  through other comprehensive
+  income                              (612)            55    (557)     (1,571)          -       (1,571)
+ Actuarial gain/(loss) on
+  defined benefit obligations         7,403          (670)   6,733   (14,663)           -      (14,663)
+ Other comprehensive
+  income/(loss)                       6,791          (615)   6,176   (16,234)           -      (16,234)
+
+
+24      Share capital
+                                                                             2024                2023
+                                                                          AED 000             AED 000
+
+Authorised, issued and fully paid-up share capital
+ (4,532,905,989 shares of AED 1 each)                                      4,532,906          4,532,906
+
+25       Share premium
+                                                                             2024                2023
+                                                                          AED 000             AED 000
+
+Premium on issue of common share capital                                    232,332            232,332
+
+
+
+
+                                                                                                   (50)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+
+26       Other reserves
+                                                      Statutory                Other
+                                                       reserve (1)            Reserve (2)              Total
+                                                        AED 000                AED 000               AED 000
+
+At 1 January 2023                                       2,140,441                (13,851)            2,126,590
+Transfer from retained earnings                           126,012                       -              126,012
+Fair value changes on financial
+ asset at fair value through other
+ comprehensive income                                           -                 (1,571)               (1,571)
+At 31 December 2023                                     2,266,453                (15,422)            2,251,031
+
+At 1 January 2024                                       2,266,453                (15,422)            2,251,031
+Fair value changes on financial
+ asset at fair value through other
+ comprehensive income (net of tax)                              -                   (557)                (557)
+At 31 December 2024                                     2,266,453                (15,979)            2,250,474
+
+(1)
+   In accordance with Federal Commercial Companies Law and the Company's Articles of Association, 10%
+of the net profit is required to be transferred annually to a non-distributable statutory reserve. Such transfers
+are required to be made until the balance of the statutory reserve equals one half of the Company's paid up
+share capital. In September 2023, the statutory reserves balance has reached 50% of paid-up capital.
+(2)
+   This relates to the change in the fair value of financial asset at fair value through other comprehensive
+income.
+
+27       Operating expenses
+                                                                                   31 December
+                                                                                   2024         2023
+                                                                                AED 000      AED 000
+
+Interconnect costs                                                              2,811,223         2,729,605
+Depreciation and impairment on property, plant and equipment (Note 6)           1,569,189         1,544,182
+Cost of devices and direct services                                             1,402,121         1,405,604
+Staff costs                                                                     1,070,046         1,069,596
+Network operation and maintenance                                                 945,376           880,791
+Commission                                                                        596,223           535,469
+Depreciation on right-of-use assets (Note 7)                                      374,505           445,042
+Telecommunication licence and related fees                                        422,496           398,608
+Marketing                                                                         264,122           235,994
+Amortization and impairment on intangible assets (Note 8)                         209,896           209,053
+Outsourcing and contracting                                                       123,893            83,551
+Others                                                                            270,434           255,743
+                                                                               10,059,524         9,793,238
+
+During the year ended 31 December 2024, the Group has paid AED 1,220 thousand (2023: AED 1,150
+thousand) for various social contribution purposes.
+
+
+
+                                                                                                           (51)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+
+28      Finance income and costs
+                                                                                  2024                  2023
+                                                                               AED 000               AED 000
+Finance income
+Interest income                                                                   75,243               56,025
+Finance income on lease receivable                                                 4,687                5,302
+                                                                                  79,930               61,327
+Finance costs
+Interest expense on lease liabilities                                             63,671               78,696
+Interest expense others (1)                                                       26,274               22,734
+                                                                                  89,945              101,430
+
+(1) “
+   Interest expense others” mainly include interest cost and commitment fees on borrowings, interest cost
+on defined benefit obligations and unwinding of discount on asset retirement obligations.
+
+On 29 April 2021, the Group signed a long-term financing agreement with a group of local and
+international banks for an unsecured credit facility (“the Financing”) of AED 3,769 million equivalent,
+comprising a term loan facility and a revolving credit facility. In March 2024, the term loan facility has
+been cancelled and related unamortized loan fees have been recognized in profit or loss. The remaining
+revolving credit facility of AED 1,981 million equivalent has a maturity of 5 years extendable to 7 years.
+
+29      Earnings per share
+                                                                                    2024                 2023
+Profit for the year (AED 000)                                                  2,487,547            1,667,851
+Weighted average number of shares (000)                                        4,532,906            4,532,906
+Basic and diluted earnings per share (AED)                                           0.55                0.37
+
+There were no potentially dilutive shares outstanding at any time during the year and, therefore, the
+dilutive earnings per share is equal to the basic earnings per share.
+
+30       Changes in other operating assets and liabilities
+                                                                                  2024                  2023
+                                                                               AED 000               AED 000
+Change in:
+  Inventories                                                                    (82,789)             (5,490)
+ Contract costs                                                                 (142,708)            (81,679)
+ Trade receivables, contract assets and other assets                            (301,655)           (341,367)
+ Trade and other payables                                                         26,246           2,332,449
+ Contract liabilities                                                            109,245              (2,736)
+ Due from related parties                                                         31,717              41,148
+ Due to related parties                                                              653                 330
+Net changes in other operating assets and liabilities                           (359,291)          1,942,655
+
+Non-cash transactions:
+Accruals for property, plant and equipment                                       173,723             (59,789)
+Accruals for intangible assets                                                    (4,332)             29,928
+Additions and remeasurement to right-of-use assets                               438,429             650,860
+
+The reconciliation for the changes in lease liabilities arising from financing activities are presented in Note
+18 of the consolidated financial statements.
+                                                                                                           (52)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+
+31       Contingencies and commitments
+
+The Group has outstanding bank guarantees amounting to AED 205,973 thousand (2023: AED 90,993
+thousand). Bank guarantees are secured against margin of AED 2,412 thousand (2023: AED 2,346 thousand)
+(Note 17).
+
+The Group is subject to litigations in the normal course of business and the management is of the view that
+the outcome of these court cases will not have a material impact on the Group's consolidated financial
+statements. Details of these cases are not disclosed in order not to prejudice the Group’s position in these
+litigations.
+
+The Group has contractual capital expenditure commitments amounting to AED 1,745,064 thousand (2023:
+AED 929,720 thousand).
+
+32       Financial instruments and risk management
+
+32.1     Credit risk
+
+Exposure to credit risk
+
+The carrying amount of financial assets represent the maximum credit exposure. The maximum exposure
+to credit risk at the reporting date was:
+
+                                              Note        Carrying amount               Fair value
+                                                            2024        2023            2024       2023
+                                                         AED 000     AED 000         AED 000 AED 000
+Non-derivatives
+Financial asset at fair value through other
+ comprehensive income                          11            2,334          2,946        2,334        2,946
+Lease receivable                                9          111,602        127,710      111,602      127,710
+Trade receivables, contract assets and
+ other assets (1)                              12        2,202,782      2,154,114    2,202,782    2,154,114
+Due from related parties                       15           21,732         53,449       21,732       53,449
+Term deposits                                  16        1,299,283      1,326,586    1,299,283    1,326,586
+Cash and bank balances                         17          983,969        610,036      983,969      610,036
+                                                         4,621,702      4,274,841    4,621,702    4,274,841
+
+(1)
+   For the purpose of the exposure to credit risk on financial assets disclosure, non-financial assets
+(prepayments and advances to suppliers) amounting to AED 297,601 thousand (2023: AED 327,307
+thousand) have been excluded from trade receivables, contract assets and other assets.
+
+
+
+
+                                                                                                        (53)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+
+32       Financial instruments and risk management (continued)
+
+32.1    Credit risk (continued)
+
+Exposure to credit risk (continued)
+
+Impairment of financials assets
+
+The ageing of trade receivables, contract assets, due from related parties and due from other
+telecommunication operators are as follows:
+
+31 December 2024
+
+                                       Not past Past due    Past due More than
+                                           due 0-30 days 31-180 days  180 days          Total
+                                      AED 000 AED 000      AED 000 AED 000            AED 000
+Gross carrying amount –
+ trade receivables, contract assets
+ and due from related parties         700,793    172,416     444,029     1,416,789    2,734,027
+
+Loss allowance                        (47,605)    (22,362)   (115,333)    (613,890)   (799,190)
+Expected loss rate                      6.79%     12.97%       25.97%       43.33%
+
+
+
+
+                                      Not past    Past due    Past due More than
+                                          due    0-30 days 31-180 days  180 days        Total
+                                      AED 000    AED 000     AED 000 AED 000          AED 000
+Gross carrying amount –
+due from other telecom operators      165,842      67,645     317,624    1,197,540    1,748,651
+
+Loss allowance                             (1)          -         (39)     (12,837)    (12,877)
+Expected loss rate                        0%          0%          0%         1.07%
+
+
+
+
+                                                                                            (54)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+
+32      Financial instruments and risk management (continued)
+
+32.1    Credit risk (continued)
+
+Exposure to credit risk (continued)
+
+31 December 2023
+
+                                         Not past     Past due    Past due       More than
+                                             due     0-30 days 31-180 days        180 days           Total
+                                        AED 000      AED 000     AED 000         AED 000          AED 000
+Gross carrying amount –
+ trade receivables, contract assets
+ and due from related parties            963,966      109,300       328,184      1,173,088      2,574,538
+
+Loss allowance                           (47,513)     (22,217)      (91,730)      (582,952)      (744,412)
+Expected loss rate                         4.93%       20.33%        27.95%        49.69%
+
+
+
+                                          Not past    Past due    Past due       More than
+                                              due    0-30 days 31-180 days        180 days           Total
+                                         AED 000     AED 000     AED 000         AED 000          AED 000
+Gross carrying amount –
+ due from other telecom operators        114,238      269,513        295,859     1,265,138      1,944,748
+Loss allowance                                 (1)            -          (32)      (12,548)        (12,581)
+Expected loss rate                             0%           0%            0%         0.99%
+
+The above gross carrying amount of due from other telecommunication operators amount excludes netting
+amounting to AED 1,537,253 thousand (31 December 2023: AED 1,686,315 thousand) (Note 12).
+
+The impairment provision in respect of trade receivables, contract assets and due from related parties is used
+to record impairment losses unless the Group is satisfied that there is no reasonable expectation of recovery
+of the amount due; at that point the amounts considered irrecoverable are written-off. Indicators that there is
+no reasonable expectation of recovery include, amongst others, the failure of a debtor to engage in a
+repayment plan with the Group, and a failure to make contractual payments for a period greater than 365
+days past due.
+
+
+
+
+                                                                                                          (55)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+
+32       Financial instruments and risk management (continued)
+
+32.2     Liquidity risk
+
+The following are the contractual maturities of financial liabilities along with fair values:
+
+31 December 2024
+                                                 ----------------------------- Contractual cash flows -----------------------------
+                           Fair     Carrying                           6 months           6-12                        Above 2
+                          value      amount             Total               or less    months 1-2 years                    years
+                        AED 000     AED 000      AED 000                AED 000 AED 000 AED 000                      AED 000
+Non-derivative
+financial liabilities
+
+Lease liabilities  1,998,687       1,998,687     1,998,687           260,859         301,140         315,211         1,121,477
+Future interest on
+ lease liabilities         -                 -     283,684            28,860           16,206          38,332           200,286
+Trade payables and
+ accruals          2,435,421       2,435,421     2,435,421        2,435,421                    -               -                 -
+Due to other
+ telecommunication
+ operators           616,097         616,097       616,097           616,097                   -               -                 -
+Other payables and
+ accruals            456,311         456,311       456,311           456,311                   -               -                 -
+Due to related
+ parties               6,717           6,717         6,717            6,717                -               -                 -
+                   5,513,233       5,513,233     5,796,917        3,804,265          317,346         353,543         1,321,763
+
+
+
+
+                                                                                                                          (56)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+
+32       Financial instruments and risk management (continued)
+
+32.2     Liquidity risk (continued)
+
+31 December 2023
+                                                ----------------------------- Contractual cash flows -----------------------------
+                            Fair    Carrying                           6 months          6-12                        Above 2
+                          value      amount            Total                or less   months 1-2 years                     years
+                        AED 000     AED 000     AED 000                AED 000 AED 000 AED 000                      AED 000
+Non-derivative
+financial liabilities
+
+Lease liabilities       2,104,959   2,104,959   2,104,959           337,782         311,804            298,686        1,156,687
+Future interest on
+  lease liabilities             -           -     215,541            30,623           17,196            40,674          127,048
+Trade payables and
+  accruals              2,135,354   2,135,354   2,135,354        2,135,354                    -                 -                -
+Due to other
+telecommunication
+  operators              641,140      641,140     641,140           641,140                   -                 -                -
+Accrued federal
+  royalty               2,033,172   2,033,172   2,033,172        2,033,172                    -                 -                -
+Other payables and
+  accruals               412,947      412,947     412,947           412,947                   -                 -                -
+Due to related
+  parties                  6,064        6,064        6,064             6,064                  -                 -                -
+                        7,333,636   7,333,636   7,549,177        5,597,082          329,000            339,360        1,283,735
+
+32.3     Currency risk
+
+Exposure to currency risk
+
+The Group’s exposure to foreign currency risk was as follows:
+
+                                                            31 December 2024                             31 December 2023
+                                                       ------------ AED 000 -------------         ------------ AED 000 ------------
+                                                                   EUR            GBP                        EUR             GBP
+Trade receivables                                                8,879             738                     8,916             340
+Trade payables                                                     (161)            (19)                    (333)             (48)
+Net exposure                                                     8,718             719                     8,583             292
+
+The following significant exchange rates against AED have been applied during the year:
+
+                                                             Average rate                     Reporting date spot rate
+                                                              2024               2023                     2024               2023
+EUR 1                                                       3.9925             3.9762                   3.8220             4.0546
+GBP 1                                                       4.7083             4.5481                   4.6087             4.6761
+
+
+
+                                                                                                                          (57)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+
+32      Financial instruments and risk management (continued)
+
+32.3    Currency risk (continued)
+
+Sensitivity analysis
+
+A 10% strengthening of the AED against the following currencies at 31 December would have
+increased/(decreased) equity and profit by the amounts shown below. This analysis assumes that all other
+variables, in particular interest rates, remain constant.
+
+                                                                                    2024           2023
+                                                                                 AED 000        AED 000
+Decrease in profit
+EUR                                                                                 (3,481)       (3,413)
+GBP                                                                                   (339)         (133)
+
+Conversely a 10% weakening of the AED against the above currencies at 31 December will have the exact
+reverse effect.
+
+32.4     Financial instruments by category
+
+The accounting policies for financial instruments have been applied to the line items below:
+
+                                                                                2024              2023
+                                                                             AED 000           AED 000
+
+Financial asset at fair value through other comprehensive income                 2,334            2,946
+
+Financial assets measured at amortized cost
+Lease receivable                                                              111,602            127,710
+Trade receivables, contract assets and other assets (1)                     2,202,782          2,154,114
+Due from related parties                                                       21,732             53,449
+Term deposits                                                               1,299,283          1,326,586
+Cash and bank balances                                                        983,969            610,036
+                                                                            4,619,368          4,271,895
+Financial liabilities measured at amortized cost
+Lease liabilities                                                           1,998,687          2,104,959
+Trade and other payables (2)                                                3,507,829          5,222,613
+Due to related parties                                                          6,717              6,064
+                                                                            5,513,233          7,333,636
+
+(1)
+ Non-financial assets (prepayments and advances to suppliers) amounting to AED 297,601 thousand (2023:
+AED 327,307 thousand) have been excluded from trade receivables, contract assets and other assets.
+(2)
+  Non-financial liability (Value Added Tax) amounting to AED 25,187 thousand (2023: AED 24,674
+thousand) has been excluded from trade and other payables.
+
+
+
+
+                                                                                                   (58)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+
+33        Offsetting financial assets and financial liabilities
+
+Financial assets and liabilities are offset and the net amount reported in the consolidated statement of
+financial position if, and only if, there is a currently enforceable legal right to offset the recognized amounts
+and there is an intention to settle on a net basis, or to realize the assets and settle the liabilities
+simultaneously.
+
+The following table presents the recognized financial instruments that are offset in the statement of financial
+position.
+
+                                     31 December 2024                          31 December 2023
+                                            Gross         Net                           Gross        Net
+                                 Gross amounts        amount                Gross    amounts     amount
+                               amounts      set off presented             amounts      set off presented
+                               AED 000 AED 000       AED 000             AED 000    AED 000 AED 000
+Financial assets
+Due from other
+ telecommunication
+ operators                    1,748,651 (1,537,253)          211,398     1,944,748      (1,686,315)     258,433
+
+Financial liabilities
+Due to other
+ telecommunication
+ operators                    2,153,350     (1,537,253)      616,097     2,327,455      (1,686,315)     641,140
+
+
+34        Segment analysis
+
+The Group has operations mainly in the UAE. The Group is organized into four major business segments
+as follows:
+
+•    Mobile segment offers mobile services to the enterprise and consumer customers. Services include
+     mobile voice and data, mobile content and mobile broadband Wi-Fi.
+•    Fixed segment provides fixed services to the enterprise and consumer customers. Services include
+     broadband, IPTV, home wireless, IP/VPN business internet and telephony.
+•    Wholesale segment provides voice and SMS to national and international carriers and operators.
+     Services include termination of inbound international voice traffic and international hubbing.
+•    Others include broadcasting services, data center co-location, multi-cloud, cybersecurity, IOT,
+     international roaming, equipment and site sharing etc. The point in time includes revenue from sale
+     of handsets and other devices.
+
+Segment contribution, referred to by the Group as gross margin, represents revenue less direct costs of
+sales. It is calculated before charging network operating costs, sales and general and administration
+expenses. This is the measure reported to the Group’s Board of Directors for the purpose of resource
+allocation and assessment of segment performance.
+
+
+
+
+                                                                                                             (59)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+
+34     Segment analysis (continued)
+
+31 December 2024
+
+                                 Mobile       Fixed     Wholesale    Others        Total
+                                AED 000     AED 000      AED 000    AED 000      AED 000
+
+Segment revenue
+
+Timing of revenue recognition
+Over time                       6,548,135   4,002,658   1,831,132   1,129,647   13,511,572
+At a point in time                      -           -           -   1,124,345    1,124,345
+                                6,548,135   4,002,658   1,831,132   2,253,992   14,635,917
+Segment contribution            3,985,612   3,387,593 1,604,099      840,172     9,817,476
+Unallocated costs                                                               (5,502,351)
+Other income                                                                         3,468
+Finance income/(costs) and
+ share of loss on investment
+ accounted for using the
+ equity method                                                                     (12,442)
+Federal royalty on regulated
+profit                                                                             104,233
+Federal royalty on profit                                                       (1,675,882)
+Corporate income tax                                                              (246,955)
+Profit for the year                                                              2,487,547
+
+
+
+
+                                                                                              (60)
+Emirates Integrated Telecommunications Company PJSC
+
+Notes to the consolidated financial statements
+for the year ended 31 December 2024 (continued)
+
+34      Segment analysis (continued)
+
+31 December 2023
+
+                                      Mobile        Fixed      Wholesale        Others           Total
+                                     AED 000      AED 000      AED 000        AED 000         AED 000
+
+Segment revenue
+Timing of revenue recognition
+Over time                            6,105,327    3,774,481     1,768,447     1,047,309     12,695,564
+At a point in time                           -            -             -       940,776        940,776
+                                     6,105,327    3,774,481     1,768,447     1,988,085     13,636,340
+Segment contribution                 3,560,894    3,130,183     1,500,167       775,387       8,966,631
+Unallocated costs                                                                            (5,366,148)
+Other income                                                                                        841
+Finance income/(costs) and
+  share of loss on investment
+  accounted for using the
+  equity method                                                                                 (42,823)
+Federal royalty on regulated
+  activities                                                                                 (1,890,650)
+Profit for the year                                                                           1,667,851
+
+
+In order to conform with current period presentation, at a point in time revenue and segment contribution
+previously reported under mobile and fixed segment have been re-presented under Others based on the
+internal management reporting. Such re-presented figures did not affect the previously reported total
+revenue, profit, comprehensive income or equity.
+
+The Group’s assets and liabilities have not been identified to any of the reportable segments as the
+majority of the operating fixed assets are fully integrated between segments. The Group believes that it
+is not practical to provide segment disclosure relating to total assets and liabilities since a meaningful
+segregation of available data is not feasible.
+
+The Group’s operations are subject to limited level of seasonality and cyclicality.
+
+
+
+
+                                                                                                          (61)
+

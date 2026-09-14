@@ -1,0 +1,32 @@
+{
+ "ticker": "DU",
+ "company": "Emirates Integrated Telecommunications Company PJSC (du)",
+ "fetched_on": "2026-09-06",
+ "company_document_library": "https://investors.du.ae/publications",
+ "why": "[R-TERM-01] sourcing pass for the disclosed useful life. The documents were fetched independently from the company's own investor-relations library, which answered 200 on the first request, rather than escalated [R-IND-01] — and the four files that fetch produced are BYTE-IDENTICAL to the ones committed to this branch the same hour: same SHA-256, same git blob id, both routes reading the same document. Nothing published moves on this pass.",
+ "held_locally": "engine/du_study/src/ — the PDFs and their extracted .txt are COMMITTED (added to this branch 6 September 2026)",
+ "documents": [
+  {
+   "file": "FS_FY2025.pdf",
+   "url": "https://investors.du.ae/static-files/a036639f-edfc-4f02-8dc4-d0fb832115a7",
+   "remote_title": "EITC Annual Consolidated Financial Statements for the year ended  31 Dec 2025 – English.pdf",
+   "reads": "FY2025 audited consolidated financial statements (KPMG Lower Gulf, unmodified opinion 9 February 2026). Read for: note 3.2 property, plant and equipment useful lives; note 3.3 right-of-use lives; note 3.4 intangible lives; notes 6, 7 and 8 composition, cost, accumulated depreciation and the year's charge by class; note 2.2(iv) critical estimates on useful lives and residual values.",
+   "held_locally": true,
+   "bytes_local": 2900877,
+   "sha256_local": "ac23eeecd8da26af4f2ee1bf587aaff355c859bb1288bb67946c05e86e1c54cb",
+   "http_status": "200",
+   "fetch": "downloaded from the URL above on 2026-09-06 and hash-matched against the copy committed to this branch at engine/du_study/src/ — identical. Re-run the download and re-hash to verify."
+  },
+  {
+   "file": "FS_FY2024.pdf",
+   "url": "https://investors.du.ae/static-files/8b33d5c4-4118-40b4-93d8-3cb545cf00d4",
+   "remote_title": "EITC+Annual+Consolidated+Financial+statements+31+December+2024+English+Final.pdf",
+   "reads": "FY2024 audited consolidated financial statements. Read as the prior-year cross-check on the identical accounting-policies table — which turns out to be FINER than FY2025's, splitting plant and equipment into six sub-classes with their own lives.",
+   "held_locally": true,
+   "bytes_local": 3066673,
+   "sha256_local": "ed718cc8b21e94119d265c24aa74e6b8bbbdbf6ed8e91183818349e0f3781288",
+   "http_status": "200",
+   "fetch": "downloaded from the URL above on 2026-09-06 and hash-matched against the copy committed to this branch at engine/du_study/src/ — identical. Re-run the download and re-hash to verify."
+  }
+ ]
+}

@@ -389,14 +389,34 @@ def served_pages() -> dict[str, Path]:
     GitHub Pages publishes the whole repository (there is a .nojekyll), so a
     page is anything ending .html anywhere in the tree, not just the root.
     Build directories that are never deployed are skipped by name.
+
+    THE POPULATION IS WHAT IS COMMITTED, NOT WHAT IS ON THIS DISK. This walked
+    REPO.rglob("*.html"), which is a different set: an untracked working file is
+    not published by GitHub Pages and cannot be landed on, while a scratch copy
+    in somebody's checkout would fail the run for everyone. The docstring above
+    already says the subject is "the whole repository" — the repository is the
+    committed tree, so the reader is now git rather than the filesystem, and a
+    file removed from the index stops being served the moment that lands.
     """
+    import subprocess
     skip = {".git", "node_modules", "__pycache__", ".github"}
+    try:
+        tracked = subprocess.run(["git", "ls-files", "-z", "*.html"], cwd=REPO,
+                                 capture_output=True, check=True)
+        names = [n for n in tracked.stdout.decode("utf-8", "surrogateescape").split("\0")
+                 if n]
+    except (OSError, subprocess.CalledProcessError):
+        # [R-ENF-04] — if git cannot be read, do NOT quietly fall back to a
+        # smaller population and report clean. Fail the resolution loudly.
+        raise RuntimeError("the served population could not be read from git; an "
+                           "unreadable population is not an empty one")
     out = {}
-    for p in sorted(REPO.rglob("*.html")):
-        rel = p.relative_to(REPO)
-        if any(part in skip for part in rel.parts):
+    for rel in sorted(names):
+        if any(part in skip for part in rel.split("/")):
             continue
-        out[rel.as_posix()] = p
+        fp = REPO / rel
+        if fp.is_file():
+            out[rel] = fp
     return out
 
 

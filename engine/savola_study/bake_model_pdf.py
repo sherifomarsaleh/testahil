@@ -16,7 +16,9 @@ import openpyxl
 import xlcalc
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-SRC = os.path.join(HERE, 'SAVOLA_Valuation_Model_19082026_public.xlsx')
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
+SRC = os.path.join(HERE, _ed.MODEL_XLSX)
 
 wb = openpyxl.load_workbook(SRC)
 bk = xlcalc.Book(wb)
@@ -27,14 +29,14 @@ for sh, coord in cells:
 print(f'baked {len(cells)} formula results into a values copy')
 
 with tempfile.TemporaryDirectory() as tmp:
-    baked = os.path.join(tmp, 'SAVOLA_Valuation_Model_19082026_public.xlsx')
+    baked = os.path.join(tmp, _ed.MODEL_XLSX)
     wb.save(baked)
     env = dict(os.environ, HOME=tmp)
     r = subprocess.run(['soffice', '--headless',
                         f'-env:UserInstallation=file://{tmp}/profile',
                         '--convert-to', 'pdf', '--outdir', HERE, baked],
                        capture_output=True, text=True, timeout=600, env=env)
-    out = os.path.join(HERE, 'SAVOLA_Valuation_Model_19082026_public.pdf')
+    out = os.path.join(HERE, _ed.MODEL_PDF)
     if not os.path.exists(out) or os.path.getsize(out) == 0:
         sys.exit(f'FAIL: no PDF produced\n{r.stdout}\n{r.stderr}')
     print(f'wrote {out} ({os.path.getsize(out)/1024:,.0f} KB) with values visible')

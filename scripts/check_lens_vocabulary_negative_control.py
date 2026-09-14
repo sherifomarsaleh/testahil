@@ -118,6 +118,32 @@ case("a caption asserting the CURRENT weighting with a 'previous edition' "
 case("a table row whose label the layout splits around its own figures", True,
      SPLIT_ROW)
 
+# ---- the spelling ---------------------------------------------------------
+# EVERY ALTERNATIVE IN THE PATTERN SPELLED THE NOUN ONE WAY. ADNOCDIST publishes
+# "WEIGHTED CENTRE - Frame A" with the weights printed beside it and a central that
+# reproduces to 8.9e-16 as 0.40 cash flow + 0.25 normalised + 0.20 relative + 0.15
+# BOOK, and this gate reported it clean for a month: it says CENTRE where the pattern
+# knew only CENTRAL. A gate that treats a spelling as a loophole is testing its
+# author's dialect rather than the rule.
+BRITISH_SPELLING = (
+    "WEIGHTED CENTRE - Frame A  4.41  cash flow 40%, normalised earnings 25%, "
+    "relative 20%, book and return 15%")
+BRITISH_PLURAL = (
+    "Because the contested judgement below is carried BOTH ways, this study publishes "
+    "TWO weighted centres: AED 4.41 a share on the first reading and AED 4.58 on the "
+    "second.")
+# and the words in the wrong ORDER are an ordinary sentence, not a claim
+INNOCENT_CENTRE = (
+    "The chart plots a centre-weighted moving average of the data centre segment's "
+    "revenue, and the weighted average cost of capital is unchanged.")
+
+case("the retired blend spelled CENTRE rather than CENTRAL — exactly as ADNOCDIST "
+     "publishes it, and clean under this gate for a month", True, BRITISH_SPELLING)
+case("the same noun in the plural, 'two weighted centres'", True, BRITISH_PLURAL)
+case("'centre-weighted moving average', 'data centre' and 'weighted average cost of "
+     "capital' in one sentence — the words present, no claim made", False,
+     INNOCENT_CENTRE)
+
 
 # ---- the widened scope: the workbook is read too --------------------------
 WB_DIRTY = ("Lens · Value per share · WEIGHTED CENTRAL · "

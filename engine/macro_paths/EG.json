@@ -60,7 +60,7 @@
    "overnight_lending": 0.2,
    "main_operation": 0.195,
    "discount": 0.195,
-   "source": "Central Bank of Egypt Monetary Policy Committee, 20 August 2026 \u2014 rates held for a fourth consecutive meeting.",
+   "source": "Central Bank of Egypt Monetary Policy Committee, 20 August 2026 — rates held for a fourth consecutive meeting.",
    "date": "2026-08-20"
   },
   "path": [
@@ -108,13 +108,22 @@
   "date": "2026-08-06"
  },
  "real_rate_convention": {
-  "value": 0.055,
-  "source": "The standard emerging-market terminal real risk-free convention (~5.5pp). The terminal NOMINAL risk-free rate is DERIVED as this plus the inflation target in force, so the single most terminal-value-sensitive number in a model cannot be typed.",
-  "date": "2026-08-06"
+  "value": 0.035,
+  "source": "Egypt's LONG-RUN STRUCTURAL real risk-free rate, 3.5%. REVISED FROM 5.5% on 10-09-2026 by instruction, and the revision is about which rate the terminal is supposed to be. The retired 5.5% matched this path's own policy ladder, which ends 2030 at 12.0% nominal against 7.0% inflation — but that is a central bank still RESTRICTING to finish a disinflation, not a neutral stance, and a terminal rate is the neutral one held in perpetuity. Charging a disinflation-campaign real rate for ever discounted every Egyptian company at crisis settings on the line that carries most of the value. THE CROSS-CHECK IS THE REGION'S LEADING HOUSE: EFG Hermes prices Egyptian terminal cost of capital at 14.2-15.1% in every report read from November 2023 through June 2026 — across a devaluation and a full rate cycle — where ours floated to 17.85%. 3.5% real is above the 1.5-2% a mature market pays and below the restrictive stance, and it is a HOUSE JUDGEMENT rather than a quoted instrument, which is why it is stated here rather than derived.",
+  "date": "2026-09-10",
+  "retired": {
+   "value": 0.055,
+   "why": "a restrictive policy stance used as a perpetual rate"
+  }
  },
  "erp_terminal": {
   "value": 0.07,
   "source": "Terminal equity risk premium, normalised below the currently elevated crisis-era level toward the rating-class norm; never held flat into perpetuity.",
   "date": "2026-08-06"
+ },
+ "real_gdp_lt": {
+  "value": 0.045,
+  "source": "Egypt's long-run real GDP growth, the ceiling a terminal real growth rate is held below. IMF World Economic Outlook medium-term projection for Egypt, converging to about 4.5% a year once the current stabilisation completes; the World Bank's Egypt Economic Monitor carries the same order. It is a CEILING and never a company's growth rate: a company growing faster than its economy in perpetuity eventually becomes the economy, which is why a terminal real growth is stated BELOW this and the gap is the share of the economy the company is assumed to cede.",
+  "date": "2026-09-10"
  }
 }

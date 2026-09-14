@@ -1,0 +1,62 @@
+{
+  "_rule": "R-TERM-01 — a terminal's maintenance capital rests on a DISCLOSED useful life. A life this desk chooses is not a disclosed life (SIGCM clause 1), and engine/terminal_value.py refuses one without a source. FINDING A RANGE IS NOT FINDING A LIFE and picking a point inside one is the choice that rule exists to forbid.",
+  "_source": "Note 3/2, 'Fixed assets and depreciation', audited financial statements of Sinai Cement Company S.A.E. for the year ended 31 December 2025, printed page 8: 'Depreciation is calculated on the basis of the straight-line method. Depreciation is to be charged to the income statement based on the estimated useful life of fixed assets and consistent with preceeding year, at the following rates: Buildings & Utilities 2% - 2.5%; Machinery 5%; Motor Vehicles 20%; Tools 20%; Furniture & Office equipment 10%-25%.' The gross-cost mix the rates apply to is note 4.",
+  "_file": "engine/scem_study/filings/SCC-AFS-E-1225.pdf",
+  "_route": "OCR off the rendered pixels at 150dpi grayscale (tesseract, eng). All six of this issuer's filings are image-only scans — pdftotext returns 30 to 37 characters for documents of 30 to 36 pages — so no text layer exists and arithmetic is the arbiter: note 4's five class costs, five accumulated-depreciation figures and five annual charges each foot to their printed totals, and the total charge is the same figure the cash-flow statement adds back.",
+  "_cross_check": "THE IDENTICAL TABLE APPEARS IN FOUR CONSECUTIVE FILINGS — FY2022 (pdf p11), FY2023 (pdf p11), FY2024 and FY2025 — each stating the rates are 'consistent with preceeding year'. That is a stronger cross-check than [R-TERM-01] asks for, and it is the reason the rates are treated as a standing policy rather than one year's disclosure.",
+  "_extracted": "2026-09-07",
+  "_extracted_by": "the SCEM fundamental walk-forward run of 07-09-2026",
+
+  "disclosed_rates": {
+    "buildings_and_utilities": {"rate": [0.020, 0.025], "life_years": [40.0, 50.0], "is_scalar": false},
+    "machinery": {"rate": [0.05, 0.05], "life_years": [20.0, 20.0], "is_scalar": true},
+    "motor_vehicles": {"rate": [0.20, 0.20], "life_years": [5.0, 5.0], "is_scalar": true},
+    "tools": {"rate": [0.20, 0.20], "life_years": [5.0, 5.0], "is_scalar": true},
+    "furniture_and_office_equipment": {"rate": [0.10, 0.25], "life_years": [4.0, 10.0], "is_scalar": false}
+  },
+
+  "gross_cost_mix_note_4": {
+    "as_at": "2025-12-31",
+    "buildings_utilities": 834757411,
+    "machinery_equipment": 2182615926,
+    "motor_vehicles": 37425653,
+    "tools": 42816197,
+    "furniture_office": 43239967,
+    "total": 3140855154,
+    "accumulated_depreciation": 1874983563,
+    "charge_for_the_year": 99209674,
+    "net_book_value": 1265871591,
+    "fully_depreciated_and_still_in_use": 379375977
+  },
+
+  "route_1_policy_note": {
+    "outcome": "SUCCEEDS",
+    "years": 20.0,
+    "basis": "machinery, the dominant class",
+    "evidence": "Machinery is EGP 2,182,615,926 of a gross cost of EGP 3,140,855,154 — 69.5 per cent — and note 3/2 states its rate as a SCALAR 5 per cent, not a range. That is exactly the case route one is written for: the policy note states a scalar for the class that dominates the base. The two other scalars in the table, motor vehicles and tools at 20 per cent, are 2.6 per cent of cost between them.",
+    "why_it_is_the_right_base": "The replacement-cost base this study capitalises is capacity multiplied by the replacement cost of a tonne of annual cement capacity — the cost of building the plant again at today's prices — which is overwhelmingly kilns, mills, packing plant and civil works. Machinery IS that base. The 40-to-50-year buildings life belongs to the housing, offices and site utilities around it."
+  },
+
+  "route_2_identity": {
+    "outcome": "COMPUTED AS A CROSS-CHECK AND NOT ADOPTED",
+    "years_derived": 31.66,
+    "formula": "depreciable gross cost 3,140,855,154 / annual depreciation charge 99,209,674",
+    "label": "DERIVED",
+    "held_against_the_disclosed_range": "inside the note's own 4-to-50-year span, so it does not contradict the disclosure",
+    "why_not_adopted": "IT IS CONTAMINATED BY ASSETS THAT HAVE STOPPED DEPRECIATING AND HAVE NOT STOPPED WORKING. Note 4 discloses EGP 379,375,977 of fully depreciated fixed assets still in use — 12.1 per cent of gross cost carrying a zero charge — so the denominator is the charge on a shrinking base while the numerator is the whole base. The effect is visible on machinery alone: 5 per cent of its gross cost would be EGP 109.1mn and the filed charge is EGP 73.2mn, an implied 29.8 years against a disclosed 20. The identity therefore reads LONGER than the policy the company states it follows, and adopting it would charge the terminal less maintenance than the company's own accounting policy does."
+  },
+
+  "route_rejected_weighted_midpoints": {
+    "years": 25.9,
+    "what_it_is": "each class's rate taken at the MIDPOINT of its disclosed range and weighted by note 4's gross-cost mix",
+    "why_it_is_refused": "IT IS NOT A DISCLOSED LIFE. Two of the five classes are disclosed as RANGES, and this construction resolves both by choosing a point inside them — buildings at 2.25 per cent where the note says 2 to 2.5, furniture at 17.5 per cent where the note says 10 to 25. [R-TERM-01] and this file's own rule line forbid exactly that: finding a range is not finding a life. The figure is recorded here because the SCEM study of 04-09-2026 adopted it, and this run replaces it with route one.",
+    "what_it_costs": "see the rebuild ledger — this is lever L2 of the 07-09-2026 rebuild"
+  },
+
+  "adopted_for_terminal": {
+    "years": 20.0,
+    "route": "route 1 — the policy note's own scalar for the dominant class",
+    "what_would_overturn_it": "a disclosed class breakdown showing the replacement-cost base is dominated by something other than machinery; a later filing revising the rate; or a disclosure splitting the plant into components with their own lives, which is what would make the buildings and machinery blend a sourced figure rather than a chosen one.",
+    "sensitivity": "priced in the study's contested-judgements register rather than asserted here, both ways, because the choice between the 20-year disclosed scalar and any longer blend is worth more than 5 per cent of value."
+  }
+}

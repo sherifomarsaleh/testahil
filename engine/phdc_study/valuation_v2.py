@@ -72,7 +72,7 @@ def ranged_revenue():
     return out
 
 
-def dcf(cfo_margin, sched):
+def dcf(cfo_margin, sched, terminal_growth=None):
     """Discount the cash the profit path actually produces.
 
     Cash conversion stays the crux: the profit above is an accrual figure and
@@ -93,7 +93,10 @@ def dcf(cfo_margin, sched):
     # struck, and brought home on the window's OWN factor -- one date, one price
     # of time. Capitalising at the explicit-window rate gives the same pound
     # arriving on the same day two different values.
-    pv_tv = dc.perpetuity_pv(tail, TG)
+    # run() ACCEPTED A TERMINAL GROWTH AND THIS LINE IGNORED IT, reading the module
+    # constant instead -- so the one lever the contested-judgement record prices as an
+    # alternative could not actually be moved. Default unchanged; nothing moves.
+    pv_tv = dc.perpetuity_pv(tail, TG if terminal_growth is None else terminal_growth)
     tv = pv_tv / dc.factor(len(ROWS))
     ev = pv + pv_tv
     eq_gross = ev - NET_DEBT + BS["investments_assoc"] + BS["investment_property"]
@@ -114,7 +117,7 @@ def run(cfo_margin, sched, terminal_growth=TG):
     ten-year capacity-ratio valuation beside this one and publish both as
     "fundamental value", which put two different ranges in one document.
     """
-    d = dcf(cfo_margin, sched)
+    d = dcf(cfo_margin, sched, terminal_growth)
     wacc = sched.wacc_exp
     rows = []
     for r in ROWS:
@@ -168,9 +171,17 @@ def lenses():
     # it with a flat rate would ask two questions at once, and the second one is the
     # assumption the schedule exists to remove
     S = SCHEDULES["cds"]   # [R-COC-01] house default; see build_numbers.py
-    d_bear = dcf(lo, S.shifted(0.02))
+    # THE SHIFTS ARE PUBLISHED, NOT FOLDED IN. These two numbers widen the range at
+    # both ends and the delivered document described the result as "the full observed
+    # range of the one thing that decides it" -- one driver, where two move. Naming
+    # them here means the document can print what it actually did, and the
+    # conversion-only pair is computed beside them so a reader can see the difference.
+    BEAR_WACC_SHIFT, FULL_WACC_SHIFT = 0.02, -0.01
+    d_bear = dcf(lo, S.shifted(BEAR_WACC_SHIFT))
     d_base = dcf(mid, S)
-    d_full = dcf(hi, S.shifted(-0.01))
+    d_full = dcf(hi, S.shifted(FULL_WACC_SHIFT))
+    d_crux_bear = dcf(lo, S)
+    d_crux_full = dcf(hi, S)
     # book value on the SAME numerator as the share count: equity attributable
     # to the parent, on the latest disclosed sheet (the 30-Aug edition divided
     # TOTAL equity, minority included, by parent shares)
@@ -219,7 +230,13 @@ def lenses():
     # the envelope is the RANGE of the present-value reads, never an average
     pv_reads = [d_bear["per_share"], d_base["per_share"], d_full["per_share"],
                 rel["bear"], rel["base"], rel["full"]]
-    w = {"bear": min(pv_reads), "base": d_base["per_share"], "full": max(pv_reads)}
+    # BOTH PAIRS, AND WHAT SEPARATES THEM. bear/full move cash conversion AND the
+    # cost-of-capital schedule; crux_only_* move cash conversion alone. The document
+    # published the first pair and described it as the second.
+    w = {"bear": min(pv_reads), "base": d_base["per_share"], "full": max(pv_reads),
+         "crux_only_bear": d_crux_bear["per_share"],
+         "crux_only_full": d_crux_full["per_share"],
+         "bear_wacc_shift": BEAR_WACC_SHIFT, "full_wacc_shift": FULL_WACC_SHIFT}
     return {"rows": rows, "weighted": w,
             "primary": {"kind": "dcf", "value": d_base["per_share"]},
             "envelope": {"low": min(pv_reads), "high": max(pv_reads)},

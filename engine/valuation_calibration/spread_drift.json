@@ -1,0 +1,63 @@
+{
+ "rows": [
+  {
+   "from": 2021,
+   "to": 2025,
+   "years": 4,
+   "rev": 0.4458708953705546,
+   "cost": 0.45994301490389455,
+   "drift": 0.009732625214600166,
+   "margin_from": 0.1018110302414792,
+   "margin_to": 0.06633028323819112,
+   "name": "AMOC",
+   "klass": "refiner",
+   "per_unit": true
+  },
+  {
+   "from": 2023,
+   "to": 2025,
+   "years": 2,
+   "rev": 0.2190080300625321,
+   "cost": 0.3013958340842975,
+   "drift": 0.06758594036295151,
+   "margin_from": 0.45941306301387763,
+   "margin_to": 0.38387158495925533,
+   "name": "EGCH",
+   "klass": "fertiliser",
+   "per_unit": true
+  },
+  {
+   "from": 2015,
+   "to": 2023,
+   "years": 8,
+   "rev": 0.22716116762893335,
+   "cost": 0.2346357117351101,
+   "drift": 0.006090922939338661,
+   "margin_from": 0.35044486795791907,
+   "margin_to": 0.3181107174784845,
+   "name": "PHDC",
+   "klass": "developer",
+   "per_unit": true
+  },
+  {
+   "from": 2011,
+   "to": 2025,
+   "years": 14,
+   "rev": 0.15980887655815024,
+   "cost": 0.15546338774196244,
+   "drift": -0.003746728365352281,
+   "margin_from": 0.2349109856708641,
+   "margin_to": 0.27408024632575534,
+   "name": "TMGH",
+   "klass": "developer",
+   "per_unit": false
+  }
+ ],
+ "skipped": [
+  [
+   "ARCC",
+   "no volume series committed by this run"
+  ]
+ ],
+ "min_years": 4
+}

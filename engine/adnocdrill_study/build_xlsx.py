@@ -1,3 +1,4 @@
+import sys
 """ADNOC Drilling — build the delivered valuation workbook.
 
 THE WORKBOOK CALCULATES. Everything arithmetically derivable from a driver is a
@@ -30,6 +31,8 @@ from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 ST = json.load(open(os.path.join(HERE, 'strike_result.json')))
 EX = json.load(open(os.path.join(HERE, 'experts.json')))
@@ -47,7 +50,7 @@ FLEET = {c: {k: {int(y): v for y, v in plan.items()} for k, plan in D['fleet_pla
          for c in ('A', 'B')}
 CAPEX_PLAN = {c: {int(y): v for y, v in D['capex_plan'][c].items()} for c in ('A', 'B')}
 
-OUT_XLSX = os.path.join(HERE, 'ADNOCDRILL_Valuation_Model_09082026.xlsx')
+OUT_XLSX = os.path.join(HERE, _ed.MODEL_XLSX)
 
 # ---------------------------------------------------------------- styling ----
 INK, GOLD, SAGE, BAND = '1C3A36', 'C0A45F', '9FB0AC', 'F3EFE4'

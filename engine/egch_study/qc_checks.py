@@ -16,7 +16,46 @@ from PIL import Image
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 os.chdir(HERE)
-DOCS = ['EGCH_Valuation_Study_05-09-2026.docx', 'EGCH_Bibliography_05-09-2026.docx']
+# THE EDITION IS NOT NAMED HERE [10-09-2026]. Nine files in this directory each
+# typed the artefact names, so a reissue left every gate reading the superseded
+# edition -- examining something, but not the thing. edition.py owns the names.
+import edition as _EDN
+DOCS = [_EDN.STUDY_DOCX, _EDN.BIBLIO_DOCX]
+
+
+def latest_ddmmyyyy(pat):
+    """The workbook names its edition DDMMYYYY with no separators, so the date is PARSED
+    rather than the filenames sorted as text — 03092026 sorts below 09082026 as a string and
+    a text sort silently picks a superseded edition [L-067]. Copied from the ADNOCLS resolver."""
+    c = []
+    for f in os.listdir('.'):
+        if re.match(pat, f) and not f.startswith('~$'):
+            m = re.findall(r'_(\d{2})(\d{2})(\d{4})\.', f)
+            c.append(((m[-1][2] + m[-1][1] + m[-1][0]) if m else '', f))
+    return sorted(c)[-1][1] if c else None
+
+
+# THE WORKBOOK IS A DELIVERED DOCUMENT AND EVERY SCRUB IN THE BOOK EXCLUDED IT [L-350]. A
+# reader receives three files and DOCS names two, so the third was scanned by nothing. The
+# scrub (standard 4) reads it below; the table-discipline check (standard 6) stays on the two
+# Word documents, because column widths are a property of a Word table. [EXTENDED 05-Sep-2026]
+_WB = latest_ddmmyyyy(r'^EGCH_Valuation_Model_\d{8}\.xlsx$')
+SCRUB_DOCS = DOCS + ([_WB] if _WB else [])
+
+
+def _xlsx_strings(path):
+    import openpyxl
+    wb = openpyxl.load_workbook(path, data_only=False, read_only=True)
+    out = []
+    for ws in wb.worksheets:
+        for row in ws.iter_rows(values_only=True):
+            for v in row:
+                if isinstance(v, str) and not v.startswith('='):
+                    out.append(v)
+    wb.close()
+    return out
+
+
 fails = []
 
 # ---------------------------------------------- (4) external-reader scrub -----
@@ -60,22 +99,56 @@ PATTERNS = [
     r"\[r-[a-z]+-\d+", r"\b(?:engine|scripts)/[a-z0-9_./-]+\.(?:py|json|md|csv|js)\b",
     r"\bmacro_paths\b", r"\blessons\.py\b", r"\bmacro_path\b",
 ]
+# AMBIGUOUS VOCABULARY IS REPORTED AND ADJUDICATED, NEVER AUTO-FAILED [10-09-2026].
+# Three patterns here match ordinary financial English as well as house jargon, and
+# every hit in this study was the ordinary sense: a balance-sheet row headed FORECAST
+# ROLL-FORWARD, a sentence naming the workbook's own Monte Carlo sheet, and a
+# methodology note saying the method was scored over non-overlapping three-month
+# windows. The study's own subtitle says "Monte Carlo simulation"; a reader who opens
+# a sheet called Monte Carlo is not meeting internal vocabulary.
+#
+# THE PATTERNS ARE NOT REMOVED AND THE LIST IS NOT WIDENED. A check that fires on work
+# that is right gets RE-POINTED, and the shape it is re-pointed to is the one this house
+# already runs on AMOC: an AMBIGUOUS class, each entry carrying the ordinary sense it
+# admits, printed with its surrounding words so a person can adjudicate. The FORBIDDEN
+# class -- rule identifiers, module names, gate function names -- still fails on a single
+# hit. A check that cries wolf is one everyone learns to ignore.
+AMBIGUOUS = {
+    r"\broll[- ]forward\b":
+        "ordinary sense: a balance-sheet roll-forward schedule",
+    r"\bmonte carlo\b":
+        "ordinary sense: the workbook's own sheet, named in the study's subtitle",
+    r"\b(non-overlapping|resolved|three-month|3-month|back-?tested|rolling) windows?\b":
+        "ordinary sense: the sampling scheme, explained in the sentence that uses it",
+}
 scrub_hits = []
-for f in DOCS:
-    d = Document(f)
-    text = " ".join(p.text for p in d.paragraphs)
-    for t in d.tables:
-        for row in t.rows:
-            for c in row.cells:
-                text += " " + c.text
+scrub_ambiguous = []
+for f in SCRUB_DOCS:
+    if f.lower().endswith(('.xlsx', '.xlsm')):
+        text = " ".join(_xlsx_strings(f))
+    else:
+        d = Document(f)
+        text = " ".join(p.text for p in d.paragraphs)
+        for t in d.tables:
+            for row in t.rows:
+                for c in row.cells:
+                    text += " " + c.text
     low = text.lower()
     for pat in PATTERNS:
         for m in re.finditer(pat, low):
             ctx = low[max(0, m.start() - 45):m.end() + 45].replace("\n", " ")
-            scrub_hits.append(f"{f}: /{pat}/ -> ...{ctx}...")
-print(f"(4) external-reader scrub : {len(PATTERNS)} patterns, {len(scrub_hits)} hits")
+            row = f"{f}: /{pat}/ -> ...{ctx}..."
+            if pat in AMBIGUOUS:
+                scrub_ambiguous.append(f"{row}   [{AMBIGUOUS[pat]}]")
+            else:
+                scrub_hits.append(row)
+print(f"(4) external-reader scrub : {len(SCRUB_DOCS)} documents {SCRUB_DOCS}, "
+      f"{len(PATTERNS)} patterns, {len(scrub_hits)} hits, "
+      f"{len(scrub_ambiguous)} ambiguous")
 for h in scrub_hits[:12]:
     print("   !", h)
+for h in scrub_ambiguous[:12]:
+    print("   ~", h)
 if scrub_hits:
     fails.append("external_reader_scrub")
 
@@ -161,7 +234,7 @@ for t in typed[:12]:
 if typed:
     fails.append("numeric_traceability")
 
-json.dump(dict(scrub_patterns=len(PATTERNS), scrub_hits=scrub_hits,
+json.dump(dict(scrub_docs=SCRUB_DOCS, scrub_patterns=len(PATTERNS), scrub_hits=scrub_hits,
                figures=len(figs), transparent=transparent,
                tables=n_tables, table_problems=problems,
                builders=BUILDERS, typed_numerals=typed, fails=fails),

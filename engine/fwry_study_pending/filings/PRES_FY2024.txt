@@ -1,0 +1,568 @@
+4Q 2024 Earnings Call
+    March 6, 2025
+
+
+
+
+                        1
+Disclaimer
+
+
+  The information contained in this document is proprietary and confidential to Fawry For Banking Technology And Electronic Payment
+  S.A.E (“Fawry”). You must only use such information for the purposes of discussions with Fawry and you must hold such
+  information in strict confidence and not reproduce it or disclose it to any person, except as may be required by law.
+
+  You must not place any reliance for any purpose whatsoever on the information contained in this document. No representation or
+  warranty, express or implied, is given by or on behalf of Fawry or any other person as to the accuracy or completeness of the
+  information or opinions contained in this document and no liability whatsoever is accepted by Fawry or any other person for any loss
+  howsoever arising, directly or indirectly, from any use of such information or opinions or otherwise arising in connection therewith.
+  The information contained in this document has been obtained from sources prepared by other parties and such information may not
+  have been independently verified. The supply of this document does not imply that the information within it is correct now or at any
+  time subsequent to the date of this document.
+
+  This document may contain forward-looking statements which, by their nature, involve a number of risks, uncertainties and
+  assumptions that could cause actual results or events to differ materially from those expressed or implied by these statements.
+  These risks, uncertainties and assumptions could adversely affect the outcome and financial effects of the plans and events
+  described within this document. In particular, actual results may be adversely affected by future developments affecting inflation,
+  interest rates, taxation, social instability or other economic, political or diplomatic or other matters. Forward-looking statements
+  contained in this document that reference past trends or activities should not be taken as a representation that such trends or
+  activities will continue.
+
+
+
+
+                                                                                                                                          2
+AGENDA
+
+              4Q 2024 Operating & financial results
+         01
+
+              Dive into 4Q 2024 payments business figures
+         02
+
+              Dive into 4Q 2024 financial services figures
+         03
+
+              Digital growth
+         04
+              2025 Guidance
+         05
+                                                             3
+4Q 2024
+Operating & Financial
+Results Highlights
+                        4
+Financial KPIs
+                          •   Revenue growth came at 68% y-o-y, the highest the company has witnessed since 2015
+
+68%                       •   Acceptance business throughput more than doubled to reach EGP 167.6 billion in FY 24
+Y-o-Y revenue growth
+                          •   BNPL loan portfolio exceeded EGP 1.0 bn by end of 31 December 2024 after reaching EGP 1.6 bn
+for FY24, highest since
+                              in disbursements, while MSME loan portfolio reached EGP 2.0 bn
+2015
+
+
+49.9%                     •   GP followed the revenue performance and grew by 76% y-o-y, with GP margin reaching 69.8%,
+                              the highest GP margin ever reached on a full year basis
+EBITDA margin for
+                          •   EBITDA more than doubled, with EBIDA margin for FY24 reaching 50%, also the highest EBITDA
+FY24, the highest in
+                              margin recorded since company’s inception, including one-off gains
+company’s history
+                          •   Net income for FY 24 came more than double that of FY23, while Net income margin coming at
+29.2%                         29.2%
+
+Net income margin for     •   Revenue, EBITDA and net income achievement vs. guidance came at 123%, 144% and 160%,
+FY24, the highest in          respectively
+company’s history
+
+
+
+
+                                                                                                                             5
+Operational KPIs achieved double digits growth
+  Active Network       Total POS +12%    Number of services   Total transactions     Avg transaction
+Customers +3% (mn)        (000s)              +17%               +20% (mn)          value +57% (EGP)
+                                                                                               379
+                                  372                3,708                 483
+            53.1
+
+
+
+                                                                                     241
+
+
+
+                                          3,165
+                                                               437
+  51.7                 331
+
+
+
+
+4Q 2023   4Q 2024    4Q 2023   4Q 2024   4Q 2023   4Q 2024    4Q 2023    4Q 2024   3Q 2023   3Q 2024
+
+
+
+
+                                                                                                       6
+Exponential growth over financial KPIs with EBITDA and Net income more than
+doubling
+ Throughput +74%                            Revenue +74%                    Average revenue per                       EBITDA +113%                            Net profit +119%
+     (EGP bn)                                 (EGP mn)                           trx +47%                               (EGP mn)                                 (EGP mn)
+                                                           1,665                   (EGP)
+                   183
+                                                                                                                                      868
+                                                                                                  2.6                                                                     500
+
+
+
+
+                                                                                 1.8
+  105                                      955
+
+                                                                                                                    407
+                                                                                                                                                              229
+
+
+
+
+4Q 2023        4Q 2024                  4Q 2023          4Q 2024             4Q 2023          4Q 2024            4Q 2023           4Q 2024                 4Q 2023       4Q 2024
+
+ Total revenue excluding airtime would have grown by 84% y-o-y, as airtime grew by 23% y-o-y
+ 1Adjusted Net Profit reflects EAS Net Profit excluding after tax impact of nonrecurring items such as a noncash ESOP expense of EGP 15.0 million and EGP 27.2 million
+ included in EAS net profit of 4Q21 and 4Q22, respectively.                                                                                                                        7
+Quarterly throughput reached EGP 183 bn, up by 74% y-o-y, and
+2.9x that of 4Q 2022
+                            Quarterly throughput (EGP bn)
+                                                            +74%
+                                                              +
+                                                                   183
+                                         +70%
+                                           +
+                  +55%
+                    +
+
+                                                      105
+
+
+                            62
+          40
+
+
+
+
+         4Q21              4Q22                      4Q23          4Q24
+
+
+
+
+                                                                          8
+Quarterly revenue went up by 74% y-o-y, 1.6x that of 4Q 2023 growth
+                             Quarterly revenue (EGP mn)
+                                                           +74%
+                                                                  1,665
+
+                                       +47%
+
+                  +39%
+                                                     955
+
+                            651
+         467
+
+
+
+
+         4Q21              4Q22                     4Q23          4Q24
+
+
+
+
+                                                                          9
+This is achieved due to the successful revenue diversification, with
+Banking and financial services growing in contribution
+                  Revenue contribution by quarter                         Contribution to y-o-y revenue growth for
+     1%                    1%                                   2%                        4Q 2024
+     6%                   6%                 3%
+                                             7%                 6%
+     9%                   13%
+                                            15%                 22%
+     18%                                                                                   4% 1%
+                         20%                                                                         18%
+                                            21%
+     11%                                                        19%
+                          16%
+                                            20%                             30%
+                                                                25%
+     56%
+                         44%
+                                            35%
+                                                                28%
+                                                                                                           31%
+
+   4Q 2021              4Q 2022          4Q 2023             4Q 2024
+                                                                                     16%
+   ADP                     Acceptance               Agent Banking
+   Financial Services      Supply Chain Solutions   Technology & others
+
+
+                                                                                                                     10
+Despite year-over-year increases, expenses declined against revenue
+
+                     y-o-y expenses increase                                       Expense item as % of revenue
+
+   61%                                                                                                                13%
+               61%                                                                           12%
+                                                                                                                            11%
+         53%
+                                                                                                    10%
+                                                   45%                                                                            9%
+                                                                42%
+                                                                                                             8%
+                                          36%
+                                                          30%
+                          27%
+                                24%
+                                                                      4% 4% 3%
+
+
+
+
+     Marketing                  Selling                   HR           Marketing                   Selling                  HR
+                 4Q 2022        4Q 2023         4Q 2024                            4Q 2022     4Q 2023            4Q 2024
+
+
+
+
+                                                                                                                                       11
+…Leading to overall margins improvement, reaching the highest EBITDA
+margin since inception
+                                Gross profit margin (%)
+                                                          +0.7%
+
+                                                                  64.9%
+                                        64.2%
+            62.7%
+
+
+
+            4Q22                        4Q23                      4Q24
+
+
+                                  EBITDA margin (%)
+                                                          +9.5%
+
+                                                                  52.1%
+                                        42.6%
+            36.3%
+
+
+
+
+            4Q22                        4Q23                      4Q24
+
+
+
+
+                                                                          12
+Dive into 4Q 2024 payments
+business figures             13
+ADP continued to beat guidance, grew at 37% y-o-y
+
+    ADP throughput value    ADP revenue (EGP mn)    Contribution to ADP revenue growth
+
+
+          +34%                     +37%
+
+                                                                  2%
+                                            461                            28%
+
+                                                         51%
+                             336
+
+
+
+                                                                          19%
+
+
+
+
+   4Q 2023       4Q 2024    4Q 2023       4Q 2024     Telecom   ADSL   Utilities   Others
+
+
+
+
+                                                                                            14
+Acceptance revenue more than doubled, with Agent Banking
+growing at decent rates
+       Acceptance revenue (EGP mn)   Agent Banking revenue (EGP mn)
+
+                                                +58%
+                 +116%
+
+                                                             310
+                             408
+
+
+                                       196
+
+         189
+
+
+
+
+       4Q 2023             4Q 2024   4Q 2023               4Q 2024
+
+
+
+
+                                                                      15
+Both acceptance revenue segments achieved growth, with higher
+acceptance throughput per POS and online payments
+     Revenue from instore      Acceptance enabled POS       Revenue from online
+         acceptance                   (000s)                   acceptance
+
+                                                                    +161%
+              +65%                       +17%
+                                                 335
+
+
+
+
+                                287
+
+
+
+
+    4Q 2023          4Q 2024   4Q 2023          4Q 2024   4Q 2023           4Q 2024
+
+
+
+
+                                                                                      16
+Supply Chain revenue grew on the back of inflation and
+increase in adoption
+          Supply chain throughput              Supply chain revenue
+                                                     (EGPmn)
+
+                                                         +45%
+                    +27%
+                                                                  94
+
+
+                                                 65
+
+
+
+
+          4Q 2023          4Q 2024             4Q 2023          4Q 2024
+
+
+                                                                          17
+Dive into 4Q 2024 financial
+services figures              18
+MSME lending loan portfolio doubled, despite challenging
+macro economic developments
+• Number of MSME loans granted in 4Q24 reached 33.4k,
+                                                              Gross MSME loan            MSME lending
+   up by 212% y-o-y
+                                                              portfolio (EGP mn)       revenue (EGP mn)
+• Disbursements for MSME loans for 4Q24 reached EGP
+   840mn up by 93%
+                                                                      +102%                   +105%
+• Outstanding MSME gross loan portfolio reached EGP 2.1
+   bn, up by 102% y-o-y
+                                                                              2,096                    224
+• Average loan portfolio per staff member increased by
+   104% y-o-y, showing higher efficiency
+• Average number of monthly processed online applications                               142
+   in 4Q24 came at 14.2k, 73% higher than that of 4Q23        1,037
+   which stood at 8.2k
+• The company successfully launched Al Note Financing/BNPL
+   for Business in 1Q24, achieving significant traction by
+   onboarding 60k clients by end of 4Q 2024
+
+• PAR 30% in 12 months after loan disbursements remain       4Q 2023      4Q 2024     4Q 2023         4Q 2024
+   below 2.0%
+
+                                                                                                                19
+  Other financial services revenue continued its growth trajectory,
+  fueled by BNPL and Insurance Brokerage business
+                                                                                                          Other financial services
+  • Consumer finance (BNPL) gross loan portfolio exceeded EGP 1.0 bn by end of                              revenue (EGP mn)
+     4Q24
+  • Total spend for the full year exceeded EGP 1.6 bn and EGP 700 mn for 4Q24                                                 135
+
+
+  • Average tenure for BNPL transactions is 6.7 months for 4Q24
+  • The average value per transaction came at EGP 2.3k for 4Q24, with an
+     average of 4.9x transactions per customer monthly                                                               4x
+
+  • In 4Q24, collection efficiency in the first month reached 96%, 98% after
+     month 2 and 99% after month 3.
+                                                                                                              33
+  • Insurance brokerage revenue grew by 74% y-o-y to EGP 11.0 mn for 4Q24
+
+                                                                                                           4Q 2023          4Q 2024
+
+
+Other financial services revenue include Consumer finance (BNPL), Insurance Brokerage, Money Market Fund and Prepaid Card
+                                                                                                                                      20
+revenue
+Digital growth
+                 21
+ myFawry transitions into a fully fledged Neo Banking app
+
+
+The launch of, i) myFawry prepaid
+                                                              myFawry cumulative downloads
+                                       26.8
+card (Yellow Card), ii) BNPL , iii)
+the money market fund in 2023,                                           20
+                                                     EGP Bn
+
+
+
+
+                                                              Millions
+and iv) Medical insurance in 2024,                                       18
+
+fueled the myFawry app growth           Annualized Dec 24                16
+                                        throughput                       14
+                                                                         12
+The app is expected to have more        Up c. 238% y-o-y                 10
+investments and savings product                                          8
+
+
+
+                                             17.3
+in 2025.                                                                  6
+                                                                         4
+
+This is in addition to P2P and          c.           Mn                   2
+
+Remittances.                            Downloads since                  0
+
+                                        June 2019
+                                        Up 43% y-o-y
+
+
+
+                                                                                             22
+   Digital transactions growth
+              Mobile wallet1                                  Mobile wallet1                                   Total digital 2          Total transactions
+            transactions (mn)                                processed value                                transactions (mn)                  (mn)
+                                                                (EGP bn)
+                                                                                                                                               +23%
+                   +59%                                            +171%                                            +59%
+                                                                                                                                                      483
+                               74
+                                                                              162                                                 174
+
+
+
+
+              47                                                                                              110
+
+
+                                                                                                                                         437
+                                                              60
+
+
+
+
+          4Q 2023          4Q 2024                        4Q 2023          4Q 2024                         4Q 2023          4Q 2024     4Q 2023    4Q 2024
+
+1 These figures reflect total processed value and transactions from bank and operators’ wallets processed on the Fawry Network.
+2 These figures reflect mobile wallet, myFawry, prepaid card and Banking and acceptance transactions                                                         23
+FY 2025
+Guidance   24
+Revenue growth guidance by offering…
+                                                 Revenue growth by offering (%)
+
+                                                                     138%
+                                  127%
+
+
+                                                         96%                                                         95%
+          90%
+                                                                                                                                    85%
+                            76%
+                                                               71%
+                      60%                                                                               62%
+                                                                            53%
+                48%                                                               45%                                         43%
+                                                 35%
+                                                                                                  27%         27%
+    17%
+
+
+
+                 2023                                           2024                                            2025P
+                ADP     Acceptance       Agent Banking     NBFI services     Supply Chain Solutions     Technology & others
+
+
+
+
+                                                                                                                                          25
+Driving diversification further and growing more into financial
+services
+                                                      Revenue by offering
+      1%                        2%                            3%                          2%                           3%
+      6%                        6%                            7%                          6%                           6%
+      9%                        12%
+                                                              13%                         18%
+      15%                                                                                                              24%
+                                19%
+                                                              20%
+      10%                                                                                20%
+                                                                                                                       17%
+                                14%
+                                                              19%
+                                                                                          22%
+                                                                                                                       24%
+      59%
+                                48%
+                                                              39%
+                                                                                          31%                          26%
+
+
+      2021                      2022                         2023                        2024                      2025P
+             ADP   Acceptance         Agent Banking     NBFI services   Supply Chain Solutions   Technology & others
+
+
+
+
+                                                                                                                             26
+Company to keep margins relatively stable with revenue
+growth close to 50%
+            Revenue y-o-y growth                   EBITDA margin
+                          68%                                 50%     51%
+                                                  40%
+                                    49%
+             44%                           31%
+   37%
+
+
+
+
+                                           2022   2023        2024   2025P
+   2022      2023         2024     2025P
+
+          ESOP expense in EGP mn                   Capex to sales
+
+   99        106                                              22%
+                           81              20%    21%
+
+                                    30                                16%
+
+
+   2022      2023        2024      2025P   2022   2023       2024    2025P
+
+
+
+                                                                             27
+Q&A   28
+

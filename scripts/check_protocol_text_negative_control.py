@@ -43,6 +43,59 @@ CLEAN = [
      'Every engine change must sit on a feature branch before it is reviewed.'),
 ]
 
+# ---- [R-DOC-02 EXTENDED 07-09-2026] the BARE-FILENAME half -------------------------
+# The defect exactly as it shipped, plus the cases that decide whether the check is
+# honest rather than merely strict. EVERY FIXTURE ASSERTS ITS OWN CONDITION FIRST: a
+# case that cannot prove the name it names is absent (or present) from the tree is
+# evidence about nothing.
+_HAVE = cpt._repo_basenames()
+assert 'mc_v3.py' in _HAVE, 'fixture: the tree index did not find a file that exists'
+assert 'mc_v2.py' not in _HAVE, 'fixture: mc_v2.py is present, so its case proves nothing'
+
+BARE_RED = [
+    # verbatim from the digest before 07-09-2026
+    ('the retired engine module named as available',
+     'mc_v2.py is legacy reference only, never the production default.'),
+    # the same shape on a file that never existed
+    ('a module invented in prose',
+     'The schedule is built by cost_of_capital_v9.py and nothing else.'),
+    # a document, not a module — the class is files, not python
+    ('a delivered document that is not there',
+     'The worked precedent is Nonexistent_Study_01-01-2020.docx in that directory.'),
+]
+
+BARE_CLEAN = [
+    # a real file with no directory prefix must NOT fire
+    ('a bare filename that resolves',
+     'The production engine is mc_v3.py and the profiles beside it.'),
+    # a prefixed path is check_paths' subject and must not be double-counted here
+    ('a prefixed path is not this check\'s subject',
+     'Read engine/market_profiles.py live before quoting any fit.'),
+    # DECLARED ABSENT, with its reason held in the gate
+    ('a cache the documents say is never committed',
+     'the harvest cache (claims_short.pkl) is a regenerable convenience, never committed'),
+    # a braced template names a shape, not a file
+    ('a template name',
+     'a PENDING_REVIEW/{MARKET}_{date}-ERROR.md carries the traceback'),
+]
+
+bare_caught = 0
+for name, text in BARE_RED:
+    f = []
+    cpt.check_bare_filenames(text, 'test', f, _HAVE)
+    ok = len(f) > 0
+    bare_caught += ok
+    print(f"  {'CAUGHT ' if ok else 'MISSED '} {name}")
+
+bare_clean_ok = 0
+for name, text in BARE_CLEAN:
+    f = []
+    cpt.check_bare_filenames(text, 'test', f, _HAVE)
+    ok = len(f) == 0
+    bare_clean_ok += ok
+    print(f"  {'PASSED ' if ok else 'FALSE+ '} {name}")
+print()
+
 fails_seen = 0
 for name, text in DEFECTS:
     f = []
@@ -61,4 +114,8 @@ for name, text in CLEAN:
 
 print()
 print(f'defects caught {fails_seen}/{len(DEFECTS)} | clean text passed {clean_ok}/{len(CLEAN)}')
-sys.exit(0 if fails_seen == len(DEFECTS) and clean_ok == len(CLEAN) else 1)
+print(f'bare-filename defects caught {bare_caught}/{len(BARE_RED)} | '
+      f'clean passed {bare_clean_ok}/{len(BARE_CLEAN)}')
+sys.exit(0 if (fails_seen == len(DEFECTS) and clean_ok == len(CLEAN)
+               and bare_caught == len(BARE_RED)
+               and bare_clean_ok == len(BARE_CLEAN)) else 1)

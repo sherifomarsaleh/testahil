@@ -1,0 +1,65 @@
+[
+ {
+  "target": "sinaicement.com homepage",
+  "url": "https://sinaicement.com/",
+  "date": "2026-09-07",
+  "outcome": "SUCCESS \u2014 HTTP 200",
+  "note": "the company's own website, tried FIRST per the primary-source rule (L-007). It carries every published filing as a direct PDF link from the homepage: no authentication, no portal, no investor-relations sub-site to navigate. This is the fact the first two editions of the SCEM study did not establish before taking their historicals from trade press."
+ },
+ {
+  "target": "SCC-AFS-E-1225.pdf \u2014 audited FY2025",
+  "url": "https://sinaicement.com/wp-content/uploads/2026/06/SCC-AFS-E-1225.pdf",
+  "date": "2026-09-04",
+  "outcome": "SUCCESS",
+  "note": "already on disk from the study rebuild"
+ },
+ {
+  "target": "SCC-AFS-E-1224.pdf \u2014 audited FY2024",
+  "url": "https://sinaicement.com/wp-content/uploads/2025/05/SCC-AFS-E-1224.pdf",
+  "date": "2026-09-04",
+  "outcome": "SUCCESS",
+  "note": "already on disk from the study rebuild"
+ },
+ {
+  "target": "SCC-AFS-E-0326.pdf \u2014 reviewed Q1-2026",
+  "url": "https://sinaicement.com/wp-content/uploads/2026/06/SCC-AFS-E-0326.pdf",
+  "date": "2026-09-04",
+  "outcome": "SUCCESS",
+  "note": "already on disk from the study rebuild"
+ },
+ {
+  "target": "SCC-AFS-E-1223.pdf \u2014 audited FY2023",
+  "url": "https://sinaicement.com/wp-content/uploads/2025/05/SCC-AFS-E-1223.pdf",
+  "date": "2026-09-07",
+  "outcome": "SUCCESS \u2014 2,647,622 bytes, 30 pages",
+  "note": "NOT PREVIOUSLY DOWNLOADED. It carries FY2023 as its own year and FY2022 as the comparative column, and it is what takes this run's span from three fiscal years to five."
+ },
+ {
+  "target": "SCC-AFS-E-1222.pdf \u2014 audited FY2022",
+  "url": "https://sinaicement.com/wp-content/uploads/2025/05/SCC-AFS-E-1222.pdf",
+  "date": "2026-09-07",
+  "outcome": "SUCCESS \u2014 1,101,601 bytes, 33 pages",
+  "note": "NOT PREVIOUSLY DOWNLOADED. FY2022 own year, FY2021 comparative column."
+ },
+ {
+  "target": "SCC-AFS-A-1221.pdf \u2014 audited FY2021, ARABIC",
+  "url": "https://sinaicement.com/wp-content/uploads/2025/05/SCC-AFS-A-1221.pdf",
+  "date": "2026-09-07",
+  "outcome": "DOWNLOADED AND UNREADABLE \u2014 FY2020 IS NOT SOURCED AND THE WINDOW IS SHORTENED",
+  "note": "The document downloads (921,494 bytes, 36 pages) and its Arabic PROSE reads well under tesseract's Arabic model \u2014 the income statement's own caption renders as '\u0642\u0627\u0626\u0645\u0629 \u0627\u0644\u062f\u062e\u0644 \u0627\u0644\u0645\u0633\u062a\u0642\u0644\u0629'. Its FIGURES do not: they are Eastern Arabic numerals and both the English and the Arabic model return letters where the digits are, so not one number on the statement pages can be read by any route available here. Under the English model the page returns ZERO figures matching a thousands-separated pattern, which is the check that settled it. FY2020 is therefore left out: a fabricated cell corrupts the very error this run scores, and an interpolated year would have been invisible in the pooled result afterwards. WHAT WOULD CLOSE IT: an Arabic-Indic digit OCR model, or the company publishing an English FY2021 filing."
+ },
+ {
+  "target": "EGX disclosure portal, older filings",
+  "url": "https://www.egx.com.eg/",
+  "date": "2026-09-07",
+  "outcome": "NOT ATTEMPTED \u2014 the company's own site is the primary source and it publishes exactly six documents",
+  "note": "Recorded rather than left silent. The prior study's own sweep register (finding F21) logs the EGX portal as refused by egress policy on the earlier attempt. Nothing older than FY2021 is obtainable from the issuer, so the span is a fact about the archive rather than about the effort."
+ },
+ {
+  "target": "volume, tonnage, capacity or utilisation in any filing",
+  "url": "the six filings themselves",
+  "date": "2026-09-07",
+  "outcome": "NEGATIVE SEARCH \u2014 NOTHING FOUND",
+  "note": "Searched every OCR'd page of the FY2022 and FY2023 filings for tonne, tons, capacity and utilisation: no physical quantity is disclosed anywhere, in any year. This issuer's finest DISCLOSED level is the cost-note line, not the tonne, and SIGCM clause 2's flag is raised rather than a tonnage being imported from a plant register and treated as the company's own figure."
+ }
+]

@@ -1,0 +1,10 @@
+{
+ "why": "[R-ASSET-02] with the ratchet of [R-ENF-02]. Both developers on the book register a land bank, commit it, print it to a delivered document or workbook, and read it with no arithmetic at all. Fixing that means rebuilding a developer's model so cumulative delivered area is bounded by the land bank and new land enters the value — real work on a delivered study, not a declaration. Listed with the measurement; the list may only ever get SHORTER (--prune).",
+ "adopted": "2026-09-07",
+ "outstanding": {
+  "PHDC": "land_bank_sqm_mn = 33.0 appears in exactly three places: registered at inputs.py:138, committed to study_numbers.json, and printed as a workbook row at build_xlsx_phdc.py:336. NONE IS A CALCULATION. New land raises the value by zero and exhausted land lowers it by zero, while a reader of the workbook sees the figure and reasonably takes it for a constraint that is doing work.",
+  "TMGH": "landbank_msqm = 20.0 registered at inputs.py:194, committed, printed at docx_tmgh.py:296, printed inside a gap-review calculation's output, and bound at experts.py:150 where its single use is a format argument in an English sentence. That expert's net asset value is built from balance-sheet totals and never from land.",
+  "SCEM": "capacity_mt is registered at compute.py:362 as \"Alias of cement grinding capacity\" and read by nothing. A LESSER FINDING THAN THE TWO ABOVE and recorded as such: this company's capacity IS in the arithmetic, under cap_cement_mt at compute.py:1450, and the industry figure egy_capacity_mt is used too. What is dead is the ALIAS — a registered input with a four-field provenance that no line reads, which still costs something, because a reader of the register cannot tell a live driver from a spare name."
+ },
+ "pruned_on": []
+}

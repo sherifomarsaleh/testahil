@@ -31,6 +31,13 @@ The failure cases are the repository's own:
 import json, os, shutil, subprocess, sys, tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# THIS FIXTURE SUPPLIES ITS OWN POPULATION [06-09-2026]. The gate resolves the
+# book through engine/study_population.py; this control runs it against a
+# sandboxed tree holding studies it planted, which is the point of the control.
+# The escape is explicit and the gate PRINTS that it took it, so a fixture
+# population can never be mistaken for the real one.
+_FIXTURE_ENV = dict(os.environ, TESTAHIL_FIXTURE_POPULATION='1')
+
 GATE = os.path.join("scripts", "check_cost_of_capital.py")
 
 sys.path.insert(0, os.path.join(ROOT, "engine"))
@@ -87,7 +94,8 @@ def case(name, build, expect_red, results):
     tmp = sandbox()
     try:
         build(tmp)
-        r = subprocess.run([sys.executable, GATE], cwd=tmp, capture_output=True, text=True)
+        r = subprocess.run([sys.executable, GATE], cwd=tmp, capture_output=True, text=True,
+                       env=_FIXTURE_ENV)
         out = (r.stdout + r.stderr).strip()
         red = r.returncode != 0
         ok = red == expect_red
@@ -125,7 +133,17 @@ def main():
         r["rf_star"] = r["rf_observed"]
 
     def m_quoted_terminal(r):
-        r["rf_terminal"] = 0.105
+        # A QUOTED TERMINAL RATE IS ONE THAT IS NOT THE DERIVED ONE, and this fixture
+        # TYPED 0.105 to be that [corrected 10-09-2026]. It was, until the house
+        # Egyptian real-rate convention moved from 5.5% to 3.5% this morning and the
+        # derived rate became 10.50% exactly — so the control's "wrong" value silently
+        # turned into the right one and the control started passing what it exists to
+        # catch. A negative control that types the number it is testing against is a
+        # control with an expiry date nobody wrote down.
+        #
+        # It is now DERIVED from whatever the record holds and shifted, so it is wrong
+        # by construction no matter where the house path goes next.
+        r["rf_terminal"] = r["rf_terminal"] + 0.02
 
     def m_kd_below_sovereign(r):
         # AMOC's own committed pair, as found on 02-Sep-2026
@@ -191,6 +209,45 @@ def main():
                  ("12 effective_rates neither a sequence nor a mapping", m_eff_garbage),
                  ("13 effective_rates carries a non-numeric entry", m_eff_nonnumeric)):
         case(n, broken(m), True, results)
+
+    # THE BANK EXEMPTION, BOTH WAYS [added 10-09-2026]. A record may carry no weighted
+    # rate and no cost of debt ONLY on a ground from the closed list and ONLY with no
+    # financing debt beside it. Both halves are controlled, because an exemption nobody
+    # has seen refuse is an exemption, not a check.
+    def m_bank_invented_ground(r):
+        for k in ("wacc_exp", "wacc_terminal", "kd_pretax"):
+            r.pop(k, None)
+        r["weight_debt"] = 0.0
+        r["no_wacc_reason"] = "holding company: the parts are financed separately"
+
+    def m_bank_with_debt(r):
+        for k in ("wacc_exp", "wacc_terminal", "kd_pretax"):
+            r.pop(k, None)
+        r["no_wacc_reason"] = "bank: deposits are raw material"
+        r["weight_debt"] = 0.35
+
+    def m_no_wacc_no_ground(r):
+        for k in ("wacc_exp", "wacc_terminal", "kd_pretax", "no_wacc_reason"):
+            r.pop(k, None)
+
+    for n, m in (("14 no-WACC ground not on the closed list", m_bank_invented_ground),
+                 ("14b the bank exemption claimed WITH financing debt", m_bank_with_debt),
+                 ("14c no weighted rate and no ground named", m_no_wacc_no_ground)):
+        case(n, broken(m), True, results)
+
+    # AND THE CLEAN CASE MUST PASS: a genuine bank, ground on the list, no debt weight.
+    def m_bank_clean(r):
+        for k in ("wacc_exp", "wacc_terminal", "kd_pretax", "forward_wacc",
+                  "glide_fractions", "kd_terminal_pretax", "kd_terminal_aftertax",
+                  "kd_aftertax", "weight_debt_terminal"):
+            r.pop(k, None)
+        r["weight_debt"] = 0.0
+        r["weight_equity"] = 1.0
+        r["no_wacc_reason"] = ("bank: deposits are raw material rather than financing; "
+                               "their cost is inside the net interest margin")
+
+    case("CLEAN — a bank with no weighted rate, ground named, must PASS",
+         broken(m_bank_clean), False, results)
 
     # a period-keyed mapping is GOOD evidence and must not be refused
     case("CLEAN — effective_rates as a period-keyed mapping, must PASS",
@@ -280,6 +337,63 @@ def main():
         put_study(tmp, "NCC", _mid(json.loads(json.dumps(GOOD)))); put_list(tmp, [])
     case("CLEAN — a declared mid-period schedule that reproduces, must PASS",
          c_mid, False, results)
+
+    # ---- the re-pointed terminal-arrival check [added 08-Sep-2026] -----------
+    # Test 4 used to demand the terminal factor EQUAL the last explicit year's.
+    # The harm it names is a PREMIUM, and equality also caught the opposite and
+    # correct case: a terminal value is what is left at the END of the window, so
+    # under a mid-period schedule it arrives later than the last explicit cash flow
+    # and is worth LESS. ARCC does exactly that and was red for being right.
+    # The check now asks WHEN the terminal arrives and whether the factor
+    # reproduces there. Every way of answering that badly must FAIL, or "declare an
+    # arrival" becomes the way to switch the terminal check off.
+    def _tv_end(rec, t=None, factor=None, declare=True):
+        """Terminal at the END of the window — the ARCC shape, built from the ladder."""
+        rec = _mid(rec)
+        fwd = rec["forward_wacc"]
+        edges = rec["discounting_convention"]["rate_edges"]
+        t = edges[-1] if t is None else t
+        a = 1.0
+        for j, w in enumerate(fwd):
+            span = max(0.0, min(t, edges[j + 1]) - edges[j])
+            if span > 0:
+                a *= (1 + w) ** span
+        rec["terminal_discount_factor"] = factor if factor is not None else 1.0 / a
+        if declare:
+            rec["discounting_convention"]["terminal_arrival_years"] = t
+        return rec
+
+    def c_tv_end(tmp):
+        put_study(tmp, "NCC", _tv_end(json.loads(json.dumps(GOOD)))); put_list(tmp, [])
+    case("CLEAN — a terminal declared at the end of the window, reproducing, must PASS",
+         c_tv_end, False, results)
+
+    def b_tv_undeclared(tmp):
+        rec = _tv_end(json.loads(json.dumps(GOOD)), declare=False)
+        put_study(tmp, "NCC", rec); put_list(tmp, [])
+    case("a terminal discounted below the last explicit year on an UNDECLARED arrival",
+         b_tv_undeclared, True, results)
+
+    def b_tv_no_repro(tmp):
+        rec = _tv_end(json.loads(json.dumps(GOOD)))
+        rec["terminal_discount_factor"] *= 0.85          # says one thing, carries another
+        put_study(tmp, "NCC", rec); put_list(tmp, [])
+    case("a declared terminal arrival that does not reproduce its own factor",
+         b_tv_no_repro, True, results)
+
+    def b_tv_inside_window(tmp):
+        # a discount deeper than the last explicit year, dressed as an EARLIER arrival
+        rec = _tv_end(json.loads(json.dumps(GOOD)))
+        rec["discounting_convention"]["terminal_arrival_years"] = 0.5
+        put_study(tmp, "NCC", rec); put_list(tmp, [])
+    case("a terminal declared to arrive before the last explicit cash flow",
+         b_tv_inside_window, True, results)
+
+    def b_tv_past_window(tmp):
+        rec = _tv_end(json.loads(json.dumps(GOOD)), t=40.0)
+        put_study(tmp, "NCC", rec); put_list(tmp, [])
+    case("a terminal declared to arrive past the window the forward rates cover",
+         b_tv_past_window, True, results)
 
     # ---- the re-pointed cost-of-debt check [added 03-Sep-2026] ---------------
     # A book whose trailing effective rate is structurally unrepresentative may

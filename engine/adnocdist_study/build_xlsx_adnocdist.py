@@ -1,3 +1,4 @@
+import sys
 """ADNOC Distribution — the valuation workbook. FORMULA-FIRST: the model CALCULATES.
 
 Two primitives carry the whole discipline:
@@ -29,6 +30,8 @@ from openpyxl.styles import Font, PatternFill, Border, Side, Alignment
 from openpyxl.utils import get_column_letter
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 SR = json.load(open(os.path.join(HERE, 'sweep_research.json')))
 M, H, F, W, DCFD, L = D['meta'], D['history'], D['forecast'], D['wacc'], D['dcf'], D['lenses']
@@ -1291,7 +1294,7 @@ order = ['READ FIRST', 'Summary', 'Fundamental Valuation', 'Assumptions', 'SOTP 
          'Cash Flow', 'Summary Financials', 'Monte Carlo', 'Sensitivity',
          'Per-Share & Ratios', 'Peer & Sector']
 wb._sheets = sorted(wb._sheets, key=lambda s: order.index(s.title))
-OUT = os.path.join(HERE, 'ADNOCDIST_Valuation_Model_09082026.xlsx')
+OUT = os.path.join(HERE, _ed.MODEL_XLSX)
 wb.save(OUT)
 json.dump({'expected': EXPECT, 'paste_counts': NPASTE},
           open(os.path.join(HERE, 'xlsx_expected.json'), 'w'), indent=1)

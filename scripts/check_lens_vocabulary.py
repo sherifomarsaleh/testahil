@@ -52,7 +52,31 @@ BLEND = re.compile(
     # "WEIGHTED  the four, weighted  4.93 9.91 16.73  100%  8.9%  CENTRAL" — the
     # layout splits the label around the figures, so a pattern needing "weighted
     # central" contiguous walked past the row carrying the claim.
-    r"WEIGHTED\b[^.\n]{0,120}?\bCENTRAL\b|"
+    # CENTRAL AND CENTRE ARE THE SAME WORD AND THIS PATTERN KNEW ONLY ONE OF THEM.
+    # ADNOCDIST publishes "this study publishes TWO weighted centres", a Table 1 carrying
+    # "WEIGHTED CENTRE - Frame A", a figure legend reading "weighted centre, Frame A 4.41"
+    # and a workbook cell computing =B2*D2+B3*D3+B4*D4+B5*D5 -- and this gate reported it
+    # CLEAN, because every alternative above spells the noun the American way. Measured:
+    # the document says WEIGHTED CENTRE five times and WEIGHTED CENTRAL never, and the
+    # published figure reproduces to 8.9e-16 as 0.40 cash flow + 0.25 normalised + 0.20
+    # relative + 0.15 BOOK, which [R-LENS-03] forbids twice over.
+    #
+    # A SPELLING IS NOT A LOOPHOLE AND A GATE THAT TREATS IT AS ONE IS TESTING ITS
+    # AUTHOR'S DIALECT. Every noun in this pattern now admits both spellings.
+    # THE WIDE SPAN STAYS IN CAPITALS ONLY, because that is the only shape it was built
+    # for: a TABLE ROW whose label the layout splits around its own figures, which
+    # renders "WEIGHTED  the four, weighted  4.93 ... CENTRAL" in caps. Allowing 120
+    # characters of lower-case prose between the two words flags an ordinary sentence --
+    # "a centre-weighted moving average of the data centre segment" carries both words,
+    # neither of them making any claim, and the first draft of this widening failed its
+    # own clean case on exactly that. Per [R-COC-01] the answer to a check firing on work
+    # that is right is to RE-POINT it, never to widen the tolerance.
+    r"(?-i:WEIGHTED\b[^.\n]{0,120}?\bCENTR(?:AL|E)S?\b)|"
+    # and the ordinary prose shape is ADJACENCY, which is what a claim actually looks
+    # like: "WEIGHTED CENTRE - Frame A", "publishes TWO weighted centres". A hyphen
+    # before "weighted" makes it half a compound adjective (equal-weighted,
+    # cap-weighted, centre-weighted) and never the verb this rule is about.
+    r"(?<!-)\bweighted\s+centr(?:al|e)s?\b|"
     r"\b\d{1,2}/\d{1,2}/\d{1,2}/\d{1,2}\s+weights", re.I)
 
 # The same words used to explain that the construction was retired. Not an escape
@@ -153,9 +177,15 @@ def text_of(path):
         return ""
 
 
-def scan(pdf):
-    """(hits asserting the blend, hits explained as retired)."""
-    t = text_of(pdf)
+def scan_text(t):
+    """(hits asserting the blend, hits explained as retired) — from TEXT.
+
+    Split out of scan() so a second gate whose subject is the SITE rather than the
+    delivered document can hold the same claim through the same instrument rather
+    than re-implementing this window logic [R-ENF-03]. Two readers of one rule
+    drift into two notions of what the rule says; the sentence-window discount
+    above was re-pointed twice already and only one copy of it may exist.
+    """
     asserting, explained = [], 0
     for m in BLEND.finditer(t):
         lo = max(0, m.start() - WINDOW)
@@ -170,6 +200,11 @@ def scan(pdf):
         asserting.append(re.sub(r"\s+", " ", t[max(0, m.start() - 90):
                                               m.end() + 90]).strip())
     return asserting, explained
+
+
+def scan(pdf):
+    """(hits asserting the blend, hits explained as retired) — from a FILE."""
+    return scan_text(text_of(pdf))
 
 
 def load_outstanding():
@@ -235,7 +270,13 @@ def main(argv):
         return 2
 
     if prune:
-        keep = {tk: outstanding[tk] for tk in outstanding if tk in dirty}
+        # THE RATCHET IS A LIST AND THIS BRANCH TREATED IT AS A DICT, so the first
+        # prune this gate ever ran crashed. It had never been exercised: the list only
+        # ever grew until a study was actually re-issued, and the exemplar is the first
+        # one to come off. A CODE PATH THAT HAS NEVER RUN IS NOT A TESTED PATH, which is
+        # the same species as a check nobody has seen fail. The shape is kept as it is
+        # committed rather than rewritten, because other readers hold the list form.
+        keep = [tk for tk in outstanding if tk in dirty]
         json.dump({"_": ("Delivered documents still printing the retired weighted "
                          "blend as the study's own central. Each clears when that "
                          "study is re-issued. THE LIST MAY ONLY SHORTEN "

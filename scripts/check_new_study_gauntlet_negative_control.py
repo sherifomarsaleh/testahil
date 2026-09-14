@@ -7,6 +7,7 @@ sandbox, and asserts the gauntlet notices. A gauntlet that stays green while a g
 told to ignore unknown studies would be the most comfortable check in the repository and the
 least informative.
 """
+import concurrent.futures as futures
 import os
 import re
 import shutil
@@ -19,13 +20,45 @@ GAUNTLET = os.path.join('scripts', 'check_new_study_gauntlet.py')
 
 
 def sandbox():
+    """A HARDLINKED COPY, WHICH COSTS DIRECTORY ENTRIES AND NOT GIGABYTES.
+
+    A full copy is 1.6GB and it is almost all PDFs. Three of them at once took the
+    filesystem to 3.0GB free and falling, because the gauntlet copies AGAIN inside
+    each sandbox, so the real cost per case is over 3GB and not the 2.5GB the disk
+    bound assumed. That is the second time this control has died of disk rather
+    than of a finding, and a run that dies is not a verdict [R-ENF-04].
+
+    Hardlinks remove the cost outright: the sandbox is a tree of directory entries
+    pointing at the same inodes. THE DANGER IS EXACTLY ONE THING — a write through
+    a link changes the file in the real repository — so every write inside a
+    sandbox has to break the link first. Those writes are enumerated in this file
+    and nowhere else: _over_ratchet, _weaken_resolver, and _delete (which unlinks
+    the entry and never touches the inode). They all go through _write below.
+
+    The assumption that no GATE writes is not taken on trust either: main() checks
+    the working tree is unchanged after the run, so if one ever does, this control
+    says so instead of quietly corrupting the repository it is testing.
+    """
     tmp = tempfile.mkdtemp(prefix='gauntlet_nc_')
     def ignore(d, names):
         return [n for n in names
                 if n in ('.git', '__pycache__', 'raw_ohlc', 'panels', 'node_modules',
                          'filings')]
-    shutil.copytree(ROOT, os.path.join(tmp, 'repo'), ignore=ignore, symlinks=True)
+    shutil.copytree(ROOT, os.path.join(tmp, 'repo'), ignore=ignore, symlinks=True,
+                    copy_function=os.link)
     return tmp, os.path.join(tmp, 'repo')
+
+
+def _write(path, data):
+    """Replace a file inside a sandbox WITHOUT writing through its hardlink.
+
+    open(path, 'w') truncates the shared inode and edits the real repository. The
+    entry is removed first, so the write creates a NEW inode and the original is
+    untouched."""
+    if os.path.exists(path):
+        os.remove(path)
+    with open(path, 'w', encoding='utf-8') as fh:
+        fh.write(data)
 
 
 def run(repo):
@@ -70,17 +103,60 @@ def _over_ratchet(*ratchets):
                 d['unreadable'] = sorted(set(d.get('unreadable', [])) | {'ZZTEST'})
             else:
                 raise AssertionError('unknown ratchet shape in %s: %s' % (r, list(d)))
-            _j.dump(d, open(p, 'w', encoding='utf-8'), indent=1)
+            _write(p, _j.dumps(d, indent=1))
             assert _j.dumps(d) != before, 'the mutation did not land in %s' % r
     return go
 
 
-case("1. the gap ratchet seeded one entry too generously — the gate then passes an "
-     "unknown study", True, _over_ratchet('gap_outstanding.json'), 'check_valuation_gap.py')
+# CASE 1 WAS RE-POINTED 06-09-2026, AND WHY IS THE INTERESTING PART.
+# It used to seed gap_outstanding.json with the unknown study, on the reasoning that a
+# ratchet seeded one entry too generously is the one-line edit anybody could make in
+# good faith. THAT ROUTE IS NOW CLOSED: check_valuation_gap resolves its population
+# through engine/study_population.py, which REFUSES a record directory naming a name
+# the site does not carry — before any ratchet is consulted. Measured in a probe
+# sandbox, one weakening at a time: seeding gap_outstanding.json does not smuggle the
+# study through, and neither does seeding the shared no-record ratchet, which only
+# excuses COVERED names with no directory.
+#
+# What DOES smuggle it through is switching off the resolver's own stray-directory
+# refusal — ONE LINE — and that is the honest falsifier now, because it is the single
+# edit that would let an unknown study past ALL TEN re-pointed gates at once. The
+# concentration is the cost of the shared instrument and this case is where it is
+# tested: closing the old route was a strengthening, and it moved the weak point
+# rather than removing it.
+def _weaken_resolver(repo):
+    p = os.path.join(repo, 'engine', 'study_population.py')
+    s = open(p).read()
+    old = "        if undeclared:\n            raise SystemExit("
+    assert s.count(old) == 1, 'the mutation did not land: the resolver refusal moved'
+    _write(p, s.replace(old, "        if False:\n            raise SystemExit(", 1))
+
+
+case("1. the resolver's stray-directory refusal switched off — one line, and an "
+     "unknown study walks past every re-pointed gate", True, _weaken_resolver,
+     'check_valuation_gap.py')
 case('2. the document ratchet seeded with the unknown study', True,
      _over_ratchet('document_outstanding.json'), 'check_document_structure.py')
-case('3. the prose ratchet seeded with the unknown study', True,
-     _over_ratchet('prose_outstanding.json'), 'check_prose_figures.py')
+# CASE 3 IS NOW A CLEAN CASE, AND THAT IS THE POINT OF IT.
+#
+# It asserted that seeding the prose ratchet BLINDS check_prose_figures and that the
+# gauntlet must catch the gate failing to refuse a new study. On 09-09-2026 that gate
+# was hardened: it had read `tk not in known`, so BARE PRESENCE on the ratchet excused a
+# study having no prose check at all, whatever the entry recorded. It now requires the
+# entry to record a MEASUREMENT — every real one carries the day it was measured, and
+# the seed here is a bare string that records nothing.
+#
+# So the premise of the old case is false: there is no longer a blinding to catch, the
+# gauntlet is satisfied, and it returns 0. The case is INVERTED rather than deleted,
+# because what it now proves is worth more than what it proved before — that this
+# particular one-line edit no longer works on this particular gate.
+#
+# CASES 2 AND 4 STILL PASS AS FAILURES, AND THEY ARE THE HONEST PART. The same hole is
+# open in the other ratchets: seeding document_outstanding.json still blinds the
+# document gate, and case 4 defeats the whole design in one edit per list. prose is the
+# FIRST gate immune to it and the others are debt, recorded here rather than implied.
+case('3. the prose ratchet seeded with the unknown study — NO LONGER BLINDS IT',
+     False, _over_ratchet('prose_outstanding.json'))
 case('4. EVERY ratchet seeded — the whole design defeated in one edit per list', True,
      _over_ratchet('gap_outstanding.json', 'document_outstanding.json',
                    'prose_outstanding.json', 'bridge_outstanding.json',
@@ -108,29 +184,124 @@ case('7. CLEAN — nothing weakened', False, lambda repo: None)
 EXPECTED_CASES = 7          # a dropped case is a green that proves nothing
 
 
+# EACH SANDBOX IS A 1.6GB DEEP COPY, SO THE CONCURRENCY BOUND IS DISK, NOT CPU.
+#
+# Measured on this container: seven concurrent sandboxes is 11.2GB of peak disk where
+# serial was 1.6GB. Bounding on cpu_count alone drove the filesystem to 0MB free and
+# killed the run with ENOSPC — the same outcome as the timeout it was written to fix,
+# and no more of a verdict than the timeout was [R-ENF-04].
+#
+# WHAT WAS TRIED FIRST AND DOES NOT WORK HERE: copy-on-write. `cp --reflink=always`
+# fails with "Operation not supported" on this filesystem (ext2/ext3), so a sandbox
+# cannot share blocks with the source. Hardlinking would, but every mutation site in
+# this file opens a path for WRITING, and writing through a hardlink truncates the
+# shared inode — the negative control would corrupt the repository it is testing. That
+# is a worse failure than a slow one, so it is not done.
+#
+# The bound is therefore arithmetic: reserve headroom, divide what is left by the
+# measured cost of one sandbox, and never exceed the CPU bound. A machine with room
+# for one case runs them serially and still reports all seven.
+SANDBOX_COST = 350 * 1024 ** 2      # hardlinked: directory entries, plus write-through scratch
+DISK_RESERVE = 3 * 1024 ** 3        # never spend the last of the disk on a control
+
+
+def _workers():
+    cpu = max(2, (os.cpu_count() or 2) - 1)
+    try:
+        st = os.statvfs(tempfile.gettempdir())
+        free = st.f_bavail * st.f_frsize
+    except OSError:
+        return 2                     # unmeasurable disk is not abundant disk
+    by_disk = int(max(0, free - DISK_RESERVE) // SANDBOX_COST)
+    return max(1, min(len(CASES), cpu, by_disk))
+
+
+def _one(idx):
+    """Run one case end to end and return (idx, ok, line, detail). Independent by
+    construction: its own sandbox, its own gauntlet, nothing shared."""
+    name, must_fail, mutate, expect = CASES[idx]
+    tmp, repo = sandbox()
+    try:
+        mutate(repo)
+        rc, out = run(repo)
+        red = rc != 0
+        ok = (red == must_fail) and (expect is None or expect in out)
+        detail = ''
+        if not ok:
+            detail = ('      rc=%d wanted %s%s\n      %s'
+                      % (rc, 'RED' if must_fail else 'GREEN',
+                         (' containing %r' % expect) if expect else '',
+                         '\n      '.join(out.strip().splitlines()[-8:])))
+        return idx, ok, name, detail
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def _tree_state():
+    """The set of paths git reports as not-clean, as a set of paths.
+
+    A SET AND NOT THE RAW OUTPUT, because the question is narrow: did a sandbox
+    write reach a file in this repository through a hardlink? The first cut compared
+    the whole porcelain output and would have called a run VOID because somebody
+    committed while it ran — a commit takes paths OUT of this set, which is the
+    opposite of corruption. Only a path that was clean before and is dirty after is
+    evidence of a write, so that is what is compared."""
+    out = subprocess.run(['git', 'status', '--porcelain'], cwd=ROOT,
+                         capture_output=True, text=True).stdout
+    return {ln[3:].strip() for ln in out.splitlines() if len(ln) > 3}
+
+
 def main():
+    before_tree = _tree_state()
     assert len(CASES) == EXPECTED_CASES, (
         'this file declares %d cases and %d are registered — a case lost to an edit is '
         'a green that proves nothing, which has now happened three times in this '
         'repository' % (EXPECTED_CASES, len(CASES)))
+
+    # THE SEVEN CASES RUN CONCURRENTLY, AND NOTHING ABOUT THE CLAIM CHANGES.
+    #
+    # Serially this took past thirty minutes and killed a CI run outright — sixty green
+    # steps and no recorded result, because a timeout is not a verdict. Each case already
+    # builds its OWN sandbox, mutates only inside it, and runs the gauntlet there; they
+    # share nothing but the read-only source tree. So the work was always parallel and
+    # only the loop was serial.
+    #
+    # WHAT IS DELIBERATELY NOT DONE HERE: no case was dropped, none was narrowed to the
+    # single gate it names, and none was made to reuse another's sandbox. Every one of
+    # those would have been faster and each would have bought the speed with coverage.
+    # This buys it with concurrency, which costs nothing.
+    #
+    # RESULTS ARE REORDERED BACK INTO DECLARATION ORDER before printing, so the output a
+    # reader compares against last week's is identical line for line — a control whose
+    # output shuffles is one nobody can diff.
+    workers = _workers()
+    results = [None] * len(CASES)
+    with futures.ThreadPoolExecutor(max_workers=workers) as pool:
+        for fut in futures.as_completed([pool.submit(_one, i) for i in range(len(CASES))]):
+            idx, ok, name, detail = fut.result()
+            results[idx] = (ok, name, detail)
+
+    # THE SANDBOXES ARE HARDLINKED, SO THE ONE THING THAT COULD GO WRONG IS CHECKED
+    # RATHER THAN ASSUMED. Every write inside a sandbox breaks its link first, and no
+    # gate is supposed to write at all [R-ENF-01]. If one ever does, it would edit this
+    # repository through the link — so the working tree is compared before and after,
+    # and a difference FAILS the control instead of being discovered later.
+    newly_dirty = sorted(_tree_state() - before_tree)
+    if newly_dirty:
+        print('FAIL  %d file(s) that were clean when this control started are dirty now '
+              '— a sandbox write reached the real repository through a hardlink. Treat '
+              'the run as void.\n      %s'
+              % (len(newly_dirty), '\n      '.join(newly_dirty[:12])))
+        return 1
+
     bad = 0
-    for name, must_fail, mutate, expect in CASES:
-        tmp, repo = sandbox()
-        try:
-            mutate(repo)
-            rc, out = run(repo)
-            red = rc != 0
-            ok = (red == must_fail) and (expect is None or expect in out)
-            print('%-4s %s' % ('PASS' if ok else 'FAIL', name))
-            if not ok:
-                bad += 1
-                print('      rc=%d wanted %s%s' % (
-                    rc, 'RED' if must_fail else 'GREEN',
-                    (' containing %r' % expect) if expect else ''))
-                print('      ' + '\n      '.join(out.strip().splitlines()[-8:]))
-        finally:
-            shutil.rmtree(tmp, ignore_errors=True)
-    print('\n%d/%d cases behaved as specified' % (len(CASES) - bad, len(CASES)))
+    for ok, name, detail in results:
+        print('%-4s %s' % ('PASS' if ok else 'FAIL', name))
+        if not ok:
+            bad += 1
+            print(detail)
+    print('\n%d/%d cases behaved as specified (%d run concurrently)'
+          % (len(CASES) - bad, len(CASES), workers))
     return 1 if bad else 0
 
 

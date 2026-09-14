@@ -19,6 +19,13 @@ stood on 3 September 2026:
 import json, os, shutil, subprocess, sys, tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# THIS FIXTURE SUPPLIES ITS OWN POPULATION [06-09-2026]. The gate resolves the
+# book through engine/study_population.py; this control runs it against a
+# sandboxed tree holding studies it planted, which is the point of the control.
+# The escape is explicit and the gate PRINTS that it took it, so a fixture
+# population can never be mistaken for the real one.
+_FIXTURE_ENV = dict(os.environ, TESTAHIL_FIXTURE_POPULATION='1')
+
 GATE = os.path.join("scripts", "check_artefact_currency.py")
 
 
@@ -58,7 +65,8 @@ def case(name, build, expect_red, results):
     tmp = sandbox()
     try:
         build(tmp)
-        r = subprocess.run([sys.executable, GATE], cwd=tmp, capture_output=True, text=True)
+        r = subprocess.run([sys.executable, GATE], cwd=tmp, capture_output=True, text=True,
+                       env=_FIXTURE_ENV)
         out = (r.stdout + r.stderr).strip()
         red = r.returncode != 0
         ok = red == expect_red
@@ -221,6 +229,52 @@ def main():
         put_list(tmp, [])
     case("clean: a two-sided study whose artefact declares its vintage",
          k_two_sided_declared, False, results)
+
+    # THE CASE ABOVE IS SATISFIED BY CONSTRUCTION AND PROVED NOTHING ABOUT THE ANCHOR. It
+    # declares 1.79, the FIRST branch, and the gate anchored every artefact on the first
+    # branch unconditionally -- so it passed whether the anchoring was right or wrong,
+    # while the gate's own comment claimed artefacts were "held to the branch nearest each
+    # figure". An honest declaration of the SECOND branch went RED: a false accusation on
+    # correct work, invisible because no case ever declared one.
+    def k_two_sided_second_branch(tmp):
+        """A two-sided study whose artefact honestly declares the SECOND branch."""
+        d = os.path.join(tmp, "engine", "ncl_study")
+        os.makedirs(d, exist_ok=True)
+        json.dump({"central": None, "spot": 14.41,
+                   "central_two_sided": {"branches": [
+                       {"label": "carried through", "value": 1.79,
+                        "condition": "the programme is completed"},
+                       {"label": "stopped", "value": 5.90,
+                        "condition": "the programme is halted"}]}},
+                  open(os.path.join(d, "study_numbers.json"), "w"), indent=1)
+        json.dump({"base": {"central": 5.90}, "published_central": 5.90,
+                   "published_spot": 14.41},
+                  open(os.path.join(d, "thing.json"), "w"), indent=1)
+        put_list(tmp, [])
+    case("clean: an artefact declaring the SECOND branch of a two-sided study — the "
+         "case the first-branch anchor accused, and the reason its comment was false",
+         k_two_sided_second_branch, False, results)
+
+    # AND THE NEAREST-BRANCH RULE IS NOT A LICENCE TO DECLARE ANYTHING. An artefact must
+    # still land on ONE of the answers the study publishes, to the same tolerance; a
+    # figure matching neither branch is as stale as it ever was, and without this case the
+    # loosening above would be untested in the direction that matters.
+    def n_two_sided_neither_branch(tmp):
+        d = os.path.join(tmp, "engine", "ncl_study")
+        os.makedirs(d, exist_ok=True)
+        json.dump({"central": None, "spot": 14.41,
+                   "central_two_sided": {"branches": [
+                       {"label": "carried through", "value": 1.79,
+                        "condition": "the programme is completed"},
+                       {"label": "stopped", "value": 5.90,
+                        "condition": "the programme is halted"}]}},
+                  open(os.path.join(d, "study_numbers.json"), "w"), indent=1)
+        json.dump({"base": {"central": 3.42}, "published_central": 3.42,
+                   "published_spot": 14.41},
+                  open(os.path.join(d, "thing.json"), "w"), indent=1)
+        put_list(tmp, [])
+    case("an artefact declaring a central that matches NEITHER branch",
+         n_two_sided_neither_branch, True, results)
 
     def m_unparseable_numbers(tmp):
         """An unreadable answer is not a clean answer [R-ENF-04] — this was a silent skip."""

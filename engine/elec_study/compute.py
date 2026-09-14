@@ -4,6 +4,28 @@ truth for every builder). Code-first rule: INPUTS are four-field records
 block raises (no JSON emitted) unless the bridge closes, the glide is ordered,
 the Kd-integrity triple holds, and the terminal is ROIC-consistent."""
 import json, os, sys
+# THE HOUSE MACRO PATH, found wherever this file is run from. The diagnostics harness
+# COPIES compute.py into a temporary directory and runs it there, so a path derived
+# from __file__ alone resolves to /tmp and the import dies. Walk up from both this
+# file and the working directory until the engine root is found.
+def _engine_root():
+    seen = []
+    for start in (os.path.dirname(os.path.abspath(__file__)), os.getcwd()):
+        d = start
+        for _ in range(6):
+            if os.path.exists(os.path.join(d, 'macro_path.py')):
+                return d
+            seen.append(d)
+            d = os.path.dirname(d)
+    raise ImportError('macro_path.py not found above %s' % seen[:3])
+
+
+try:                                    # PYTHONPATH already carries the engine root
+    import macro_path as _MPmod
+except ImportError:                     # run from somewhere that does not
+    sys.path.insert(0, _engine_root())
+    import macro_path as _MPmod
+_MP_EG = _MPmod.load('EG')          # THE house Egyptian path; this study holds no macro view
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, '..'))
 import numpy as np
@@ -13,12 +35,43 @@ import numpy as np
 def I(value, source, date, ring):
     return dict(value=value, source=source, date=date, ring=ring)
 
+# ============================ SOURCE RINGS, DECLARED ==========================
+# TWENTY FIGURES IN THIS FILE NAMED A VENDOR IN THEIR SOURCE AND CLAIMED THE RING
+# "Company". The ring is what a gate reads and what a reader is told; the source string
+# is prose beside it. So the register asserted company sourcing on figures it described
+# in the same breath as coming from Simply Wall St, Investing.com, Zawya, Mubasher,
+# MarketScreener, Arab Finance, Decypha and Reuters. That is not a labelling nicety: it
+# is the difference between a study that says where its numbers came from and one that
+# does not, and SIGCM clause 1 exists because of it.
+#
+# ON THE PRINCIPAL'S EXPLICIT INSTRUCTION, 09-09-2026 -- "Declare that the financials
+# are from vendor and state specifically they are from investing.com" -- every such ring
+# now NAMES its vendor. Nothing about the numbers changes. What changes is that the
+# study, its gates and its reader can all see what they rest on.
+#
+# THE EXCEPTION IS DECLARED, NOT SMUGGLED. SIGCM clause 1 forbids a vendor as the source
+# of a company's own historicals, and this study breaches it. It breaches it because the
+# company's statements cannot be obtained: FY2024 and FY2025 were never filed anywhere
+# reachable, and every archived annual but FY2021 is truncated mid-file by the crawler.
+# The full consolidated record and its footing checks are in
+# vendor_record_investing.json.
 INP = dict(
     # ---- anchors ----
-    spot=I(2.19, "uploaded EGX daily history, last close", "2026-08-05", "Market"),
+    # RE-STRUCK ONTO THE LATEST SUPPLIED PRICE, 09-09-2026 [R-GAP-01 AMENDED]. Struck at
+    # EGP 2.19 of 5 August against a latest supplied EGP 2.08 of 3 September. THE FAIR
+    # VALUE IS UNTOUCHED: a re-strike moves the price the answer is compared with, never
+    # the answer. THE SIGCM BLOCK ON THIS STUDY IS UNAFFECTED AND STILL STANDS — its
+    # income statement and balance sheet rest on vendor data because the company serves
+    # none of the filings it lists, re-tested on 09-09-2026 and still refused (CONNECT
+    # tunnel 502 over https, no DNS over http). A price is not a fundamental; fixing the
+    # one does not touch the other, and neither excuses the other.
+    spot=I(2.08, "uploaded EGX daily history, last close — the latest price supplied to "
+           "this repository (SUPPLIED_03-09-2026.json). Superseded: EGP 2.19 of "
+           "5 August 2026, on which every edition before this one was struck",
+           "2026-09-03", "Market"),
     shares_mn=I(3313.540373, "Mubasher ELEC profile (paid-in capital EGP 662,708,074.60 / par 0.20); "
                 "verified 3 ways: SWS holder sum; FY24 EPS 0.40=1,327.8/3,313.5; FY25 EPS 0.15=500.3/3,313.5",
-                "2026 (mid)", "Company"),
+                "2026 (mid)", "Vendor"),
     tax=I(0.225, "PwC Tax Summaries Egypt — corporate income tax 22.5%, unchanged 2025-26", "2026", "Country"),
     fx=I(49.8, "USD/EGP mid-market 49.765 (Xe/Google Finance, 05-Aug-26). NB the pound was NOT "
          "range-bound over the last year: 46.8 (Feb-26 strong side) to ~54.7 (Apr-26, war spike), "
@@ -26,31 +79,31 @@ INP = dict(
          "throughout", "2026-08-05", "Country"),
 
     # ---- historical income statement (EGP mn) ----
-    rev_fy23=I(8673.4, "MarketScreener/Mubasher FY2024 results note (comparative)", "2025-03", "Company"),
-    rev_fy24=I(13778.2, "MarketScreener/Mubasher FY2024 consolidated results", "2025-03", "Company"),
-    rev_fy25=I(10819.0, "Arab Finance/Zawya FY2025 results (net sales EGP 10.81bn)", "2026-03", "Company"),
-    np_fy23=I(1248.0, "Zawya/MarketScreener (FY23 consolidated NP)", "2024-03", "Company"),
-    np_fy24=I(1327.8, "Mubasher FY2024 consolidated results", "2025-03", "Company"),
-    np_fy25=I(500.31, "Arab Finance FY2025 (attributable; Reuters flash 501.4 incl. NCI)", "2026-03", "Company"),
-    ebit_fy24=I(3400.0, "Simply Wall St health page: 'EBIT is EGP3.4B, interest coverage 2x'", "2025-05-22", "Company"),
+    rev_fy23=I(8673.4, "MarketScreener/Mubasher FY2024 results note (comparative)", "2025-03", "Vendor"),
+    rev_fy24=I(13778.2, "MarketScreener/Mubasher FY2024 consolidated results", "2025-03", "Vendor"),
+    rev_fy25=I(10819.0, "Arab Finance/Zawya FY2025 results (net sales EGP 10.81bn)", "2026-03", "Vendor"),
+    np_fy23=I(1248.0, "Zawya/MarketScreener (FY23 consolidated NP)", "2024-03", "Vendor"),
+    np_fy24=I(1327.8, "Mubasher FY2024 consolidated results", "2025-03", "Vendor"),
+    np_fy25=I(500.31, "Arab Finance FY2025 (attributable; Reuters flash 501.4 incl. NCI)", "2026-03", "Vendor"),
+    ebit_fy24=I(3400.0, "Simply Wall St health page: 'EBIT is EGP3.4B, interest coverage 2x'", "2025-05-22", "Vendor"),
     ebitda_fy24=I(3490.0, "Investing.com financial summary ('EBITDA 3.49B') — single aggregator, "
-                  "period attributed to FY2024; flagged", "2026 capture", "Company"),
-    int_cover_fy24=I(2.0, "Simply Wall St health page (interest coverage 2x EBIT)", "2025-05-22", "Company"),
-    q1_26_rev=I(2094.0, "Zawya/Arab Finance Q1-2026 (consolidated net sales)", "2026-05", "Company"),
-    q1_26_np=I(-241.6, "Zawya/Arab Finance Q1-2026 (consolidated net LOSS)", "2026-05", "Company"),
+                  "period attributed to FY2024; flagged", "2026 capture", "Vendor"),
+    int_cover_fy24=I(2.0, "Simply Wall St health page (interest coverage 2x EBIT)", "2025-05-22", "Vendor"),
+    q1_26_rev=I(2094.0, "Zawya/Arab Finance Q1-2026 (consolidated net sales)", "2026-05", "Vendor"),
+    q1_26_np=I(-241.6, "Zawya/Arab Finance Q1-2026 (consolidated net LOSS)", "2026-05", "Vendor"),
     q1_25_rev=I(3723.0, "Q1-2026 release comparatives", "2026-05", "Company"),
     q1_25_np=I(451.7, "Q1-2026 release comparatives", "2026-05", "Company"),
 
     # ---- historical balance sheet anchors (EGP mn) ----
-    assets_fy22=I(4960.0, "Zawya 9M-2023 results note (comparative, 31-Dec-2022)", "2023-11", "Company"),
-    assets_fy24=I(14970.0, "Zawya/Decypha FY2025 note (comparative) + SWS (15.0bn)", "2026-03", "Company"),
-    assets_fy25=I(16460.0, "Zawya/Decypha FY2025 results (total assets, +9.9%)", "2026-03", "Company"),
+    assets_fy22=I(4960.0, "Zawya 9M-2023 results note (comparative, 31-Dec-2022)", "2023-11", "Vendor"),
+    assets_fy24=I(14970.0, "Zawya/Decypha FY2025 note (comparative) + SWS (15.0bn)", "2026-03", "Vendor"),
+    assets_fy25=I(16460.0, "Zawya/Decypha FY2025 results (total assets, +9.9%)", "2026-03", "Vendor"),
     debt_fy24=I(8960.0, "Company's own FY25-filing comparative ('vs 8.96bn in 2024'); SWS independent "
                 "print ~9.0bn corroborates. Standardized on the filing comparative so every FY24 "
-                "net-debt reference in the study is the same number (8,132)", "2026-03-18", "Company"),
-    cash_fy24=I(827.6, "Simply Wall St health page (cash & ST investments)", "2025-05-22", "Company"),
-    equity_fy24=I(3600.0, "Simply Wall St health page (total shareholder equity)", "2025-05-22", "Company"),
-    liab_fy24=I(11300.0, "Simply Wall St health page (total liabilities)", "2025-05-22", "Company"),
+                "net-debt reference in the study is the same number (8,132)", "2026-03-18", "Vendor"),
+    cash_fy24=I(827.6, "Simply Wall St health page (cash & ST investments)", "2025-05-22", "Vendor"),
+    equity_fy24=I(3600.0, "Simply Wall St health page (total shareholder equity)", "2025-05-22", "Vendor"),
+    liab_fy24=I(11300.0, "Simply Wall St health page (total liabilities)", "2025-05-22", "Vendor"),
     assets_fy23_est=I(10000.0, "House estimate — bounded by 9M-23 disclosed 8,060 and FY24 14,970; "
                       "no FY23 year-end print found (flagged). A single aggregator shows ~8,900, "
                       "which would put this estimate ~12%% high — affects only the FY23 ROIC context "
@@ -75,7 +128,7 @@ INP = dict(
     q1_25_gp=I(1233.0, "Q1-2025 gross profit comparative (same sources)", "2026-06-30", "Company"),
     q1_25_op=I(1124.0, "Q1-2025 operating profit comparative (same sources)", "2026-06-30", "Company"),
     fy25_standalone_sales=I(4700.0, "FY25 standalone sales EGP 4.7bn vs 7.69bn FY24 (Arab Finance AR) — "
-                            "the consolidated subsidiaries carry most of group revenue", "2026-03", "Company"),
+                            "the consolidated subsidiaries carry most of group revenue", "2026-03", "Vendor"),
     agm_no_dividend=I("FY25 profits carried forward, no cash distribution; new board elected",
                       "AGM resolutions (amwalalghad/almasryalyoum, May-2026)", "2026-05-06", "Company"),
 
@@ -212,8 +265,19 @@ INP = dict(
               "deleveraging, and current market-value weights are circular (the equity weight "
               "depends on the DCF's own output). 40% is the industry-normal structure for a "
               "working-capital-funded cable maker; sensitized via the terminal-WACC grid", "2026-08-05", "House"),
-    rf_term=I(0.105, "Terminal rf norm-built: CBE's own stated Q4-2028 inflation target 5%% (+/-2pp) "
-              "+ ~5.5pp EM real-rate convention (house standing construction)", "2026-08-05", "House"),
+    rf_term=I(_MP_EG.terminal_rf,
+              "Terminal risk-free rate, READ FROM THE HOUSE EGYPTIAN PATH rather than "
+              "typed: terminal inflation %.1f%% plus the structural real rate %.1f%% = "
+              "%.1f%%. THE RETIRED ENTRY WAS RIGHT BY ACCIDENT AND THAT IS WHY NOTHING "
+              "CAUGHT IT. It typed 10.5%% and justified it as the CBE's Q4-2028 inflation "
+              "target of 5%% plus a ~5.5pp emerging-market real-rate convention. BOTH "
+              "components were wrong against the house path, which holds 7.0%% inflation "
+              "and, from 10-09-2026, a 3.5%% structural real rate - and they cancelled "
+              "exactly: 5 + 5.5 = 7 + 3.5 = 10.5. A number that is correct for two "
+              "offsetting wrong reasons survives every check that looks at the number."
+              % (100 * _MP_EG.terminal_inflation, 100 * _MP_EG.real_rate_convention,
+                 100 * _MP_EG.terminal_rf),
+              "2026-09-10", "House"),
     erp_term=I(0.070, "Terminal ERP normalised below the crisis-era 9.41%% CDS-based level toward the "
                "B-rating-class norm; never held flat into perpetuity (house standing rule)", "2026-08-05", "House"),
     kd_path=I([0.220, 0.200, 0.185, 0.168, 0.155],
@@ -224,8 +288,16 @@ INP = dict(
               "terminal 15%%. Next MPC 20-Aug-26 (confirmed). A higher-for-longer path is the explicit "
               "+2pp column of the rate grid. The WACC glide shape is tied to this path by construction",
               "2026-08-05", "House"),
-    g_term=I(0.05, "Terminal growth center 5%% — standing convention for established Egyptian names "
-             "post-disinflation; grid 3-7%%", "2026-08-05", "House"),
+    g_term=I(_MP_EG.terminal_growth(0.0),
+             "Terminal NOMINAL growth, DERIVED from the house path and not typed: zero "
+             "STATED real growth on %.1f%% long-run Egyptian inflation. THE RETIRED 5.0%% "
+             "was a standing convention for established Egyptian names that named no "
+             "inflation rate at all - and against the house path's 7.0%% it was a REAL "
+             "DECLINE of about 1.9%% a year in perpetuity, on the line carrying most of "
+             "the value. The same defect was found and corrected on another Egyptian "
+             "study earlier the same day."
+             % (100 * _MP_EG.terminal_inflation),
+             "2026-09-10", "House"),
 
     # ---- lens inputs ----
     ev_ebitda_base=I(5.5, "Justified EV/EBITDA on mid-cycle FY27E EBITDA: SWDY trades ~6x (multiples.vc "
@@ -572,7 +644,12 @@ zone_edges = [0, 1.80, 2.05, 2.35, 2.70, 1e9]
 zones = [float(np.mean((term3 >= a) & (term3 < b))) for a, b in zip(zone_edges[:-1], zone_edges[1:])]
 fan = np.array([np.percentile(p3, p, axis=0) for p in (5, 25, 50, 75, 95)])
 np.save(os.path.join(HERE, 'fan.npy'), fan)
-levels = [3.00, 2.75, 2.50, 2.35, 2.19, 2.05, 1.90, 1.70]
+# THE LADDER'S SPOT RUNG IS THE SPOT, NOT A COPY OF IT. These are round price levels
+# plus the traded price, and the traded price was typed as 2.19 — so a re-strike would
+# have left the touch probabilities reporting against a rung the study no longer sits on,
+# with nothing to say which of the eight was meant to be the spot.
+levels = sorted({3.00, 2.75, 2.50, 2.35, 2.05, 1.90, 1.70, round(float(SPOT), 2)},
+                reverse=True)
 touch = {}
 rmax1, rmin1 = p1.max(axis=1), p1.min(axis=1)
 rmax3, rmin3 = p3.max(axis=1), p3.min(axis=1)
@@ -643,9 +720,15 @@ if V['kd'] > max(V['kd_eff_fy24'], V['kd_eff_fy25']) + 0.005:
 # terminal capital structure: normalized, and lighter on debt than today's distress weights
 if not (V['wd_term'] < wd):
     err.append('terminal debt weight not below the current distress weight')
-# terminal-growth procedure
-if V['g_term'] != 0.05:
-    err.append('terminal g center is not the standing 5%')
+# TERMINAL-GROWTH PROCEDURE. RE-POINTED, NOT WIDENED, on 10-09-2026. This tested
+# `g_term == 0.05` — it pinned the answer rather than the procedure, so it enforced the
+# very convention that was the defect and would have refused the correction. What the
+# rule actually requires is that a terminal growth is DERIVED from the one dated house
+# path and never typed, so that is what is checked now: the study's rate must reproduce
+# from the house path's own terminal-growth function at a stated real rate.
+if abs(V['g_term'] - _MP_EG.terminal_growth(0.0)) > 1e-9:
+    err.append('terminal g is not the house path\'s derived rate at zero stated real '
+               'growth (%.4f vs %.4f)' % (V['g_term'], _MP_EG.terminal_growth(0.0)))
 if rr_T >= 1.0 or rr_T <= 0:
     err.append('terminal reinvestment rate not in (0,1)')
 if abs(roic_T * rr_T - V['g_term']) > 1e-9:
@@ -676,8 +759,150 @@ print(f'    Ke_term = rf_term {V["rf_term"]*100:.1f} + beta x ERP_term {V["erp_t
 print(f'    terminal ROIC {roic_T*100:.1f}% vs WACC_term {wacc_term*100:.2f}% — spread {"NEGATIVE: growth subtracts value; the g-grid gradient inverts by construction" if roic_T < wacc_term else "positive"}')
 print(f'  central {central["base"]:.2f} [{central["bear"]:.2f}-{central["bull"]:.2f}] vs spot {SPOT} ({central["base"]/SPOT-1:+.0%})')
 
+
+# ---- [R-ANCHOR-01] THE FORECAST IS ANCHORED ON THE LATEST REVIEWED PERIOD ----
+# NEITHER CLAUSE OF THAT RULE FIRES HERE AND THE RECORD IS COMMITTED ANYWAY, which
+# is the point of printing it for every study: the forecast opens ABOVE the latest
+# reviewed period and its path RISES from its own opening year, so clause one has
+# nothing to fire on and clause two has nothing to reach. No mechanism is owed and
+# none is claimed — inventing one to decorate a record that does not fire would be
+# the assumption wearing a mechanism, which this rule exists to stop.
+#
+# WHAT THE RECORD MAKES VISIBLE IS THAT THE RULE CANNOT SEE THIS STUDY'S CLAIM.
+# The latest reviewed period is the worst quarter in the company's record, so a
+# forecast opening above it is arithmetically unavoidable; and the rate that
+# carries the answer is not the opening year but the LAST one, which is 82% of
+# enterprise value and sits half below every full year the company has reported.
+# Clause one compares the opening year with the latest reviewed period; clause two
+# compares the path's minimum with its own opening year. On a path that rises out
+# of a collapsed quarter, NEITHER COMPARISON REACHES THE TERMINAL. That is a
+# property of the rule's two comparisons rather than a defect in this record, and
+# it is written down here rather than left for somebody to discover.
+#
+# EVERY FIGURE BELOW IS DERIVED FROM THIS STUDY'S OWN COMMITTED VALUES. The
+# Q1-2026 EBITDA is recovered from the conversion rate this model already commits
+# for that quarter rather than retyped, so the depreciation add-back inside it is
+# the study's own and not a second one introduced here.
+_q1_ebitda = hist_ebitda_per_t['Q1_26'] * hist_vol['Q1_26_annualized']['vol_kt'] / 4.0
+_q1_dna_addback = _q1_ebitda - V['q1_26_op']
+_q1_mgn = _q1_ebitda / V['q1_26_rev']
+_fcst_mgn = [r['margin'] for r in rows]
+_hist_mgn = {y: hist_is[y]['ebitda'] / hist_is[y]['rev'] for y in ('FY23', 'FY24', 'FY25')}
+_mgn_filed_low = min(_hist_mgn.values())
+# the add-back the quarter would need before the forecast opened BELOW it at all:
+# the verdict is insensitive to a construction that is a house estimate, and the
+# bound says by how much rather than asserting it.
+_dna_to_close = _fcst_mgn[0] * V['q1_26_rev'] - V['q1_26_op']
+_ebit_mgn_f = [r['ebit'] / r['rev'] for r in rows]
+_ebit_mgn_q1 = V['q1_26_op'] / V['q1_26_rev']
+
+FORECAST_ANCHOR = dict(
+    rate_name='EBITDA margin',
+    latest_reviewed_period='Q1-2026 (three months ended 31 March 2026), interim filing — '
+                           'the statements themselves are not held',
+    latest_reviewed_date='2026-03-31',
+    latest_reviewed_rate=float(_q1_mgn),
+    latest_reviewed_source=(
+        'THE STUDY HOLDS NO COMPANY FINANCIAL STATEMENT, AND THIS FIELD SAYS SO RATHER '
+        'THAN NAMING A FILING. The Q1-2026 figures reach this model as press coverage of '
+        'the interim filing lodged with the exchange — revenue EGP %s mn, cost of sales '
+        'EGP %s mn, gross profit EGP %.3fmn and operating profit EGP %.3fmn — not as the '
+        'reviewed statements. EBITDA is that operating profit plus a depreciation add-back '
+        'of EGP %.1fmn, which is this study\'s own estimate for the quarter and not a '
+        'disclosed line. The issuer\'s statement index lists nothing after 30 September '
+        '2025 and nothing consolidated after 31 December 2020, every consolidated file it '
+        'does list sits on a host that no longer resolves, and this study models '
+        'consolidated figures; the position is carried in the escalation register and was '
+        're-probed on 5 September 2026 rather than taken on report. So the anchor is '
+        'recorded and its provenance is not of the class the source rule requires — a '
+        'condition of the study, not of this record.'
+        % (format(V['q1_26_rev'], ',.0f'), format(V['q1_26_cogs'], ',.0f'),
+           V['q1_26_gp'], V['q1_26_op'], _q1_dna_addback)),
+    first_forecast_rate=float(_fcst_mgn[0]),
+    forecast_path=[float(m) for m in _fcst_mgn],
+    other_framing=dict(
+        label='operating margin — no depreciation add-back on either side',
+        latest_reviewed_rate=float(_ebit_mgn_q1),
+        first_forecast_rate=float(_ebit_mgn_f[0]),
+        forecast_path=[float(m) for m in _ebit_mgn_f],
+        note='RECORDED BECAUSE THE HEADLINE RATE CARRIES A HOUSE ESTIMATE AND THE VERDICT '
+             'SHOULD BE SHOWN NOT TO TURN ON IT. Strip the add-back from both sides and the '
+             'shape is identical: %.4f%% in the quarter against %.4f%% in the first forecast '
+             'year, rising to %.2f%% by FY2030E. The bound is exact — the quarterly add-back '
+             'would have to exceed EGP %.1fmn, an annualised EGP %s mn against this study\'s '
+             'own FY2025 depreciation charge of EGP %.1fmn, before the forecast opened below '
+             'the quarter at all. No treatment of depreciation available on these numbers '
+             'reverses the sign.'
+             % (100 * _ebit_mgn_q1, 100 * _ebit_mgn_f[0], 100 * _ebit_mgn_f[-1],
+                _dna_to_close, format(4 * _dna_to_close, ',.0f'), dna_fy['FY25'])),
+    driver_rate_beside_it=dict(
+        label='conversion EBITDA per tonne (k EGP/t) — the unit rate the forecast is '
+              'actually built on, margin being an output of it',
+        latest_reviewed_rate=float(hist_ebitda_per_t['Q1_26']),
+        forecast_path=[float(x) for x in V['ebitda_per_t']],
+        filed_record={y: float(hist_ebitda_per_t[y]) for y in ('FY23', 'FY24', 'FY25')},
+        note='THE DRIVER TELLS THE SAME STORY AND IS NOT RECORDED AS THE GOVERNING RATE, '
+             'for a reason worth stating: its denominator is a volume the company does not '
+             'disclose, implied through a fabrication uplift that revenue alone does not '
+             'identify, so it cannot be read off any filing. It opens at %.1f against %.1f '
+             'in the quarter and rises to %.0f, while the filed years run %.1f (FY2023), '
+             '%.1f (FY2024) and %.1f (FY2025) — the same shape as the margin: above the '
+             'quarter, far below every year.'
+             % (V['ebitda_per_t'][0], hist_ebitda_per_t['Q1_26'], V['ebitda_per_t'][-1],
+                hist_ebitda_per_t['FY23'], hist_ebitda_per_t['FY24'],
+                hist_ebitda_per_t['FY25'])),
+    note='THE FORECAST OPENS ABOVE THE LATEST REVIEWED PERIOD AND RISES FROM THERE, SO '
+         'NEITHER CLAUSE FIRES AND NO MECHANISM IS OWED OR CLAIMED. It opens at %.2f%% '
+         'against %.2f%% in the three months to 31 March 2026 — %+.0f%% relative — and the '
+         'path\'s minimum IS its opening year, running %.2f%% / %.2f%% / %.2f%% / %.2f%% / '
+         '%.2f%%.\n\n'
+         'WHAT SITS EITHER SIDE OF THAT IS THE WHOLE OF THIS STUDY AND A READER SHOULD SEE '
+         'IT. The anchor quarter is the worst the company has reported: revenue EGP %s mn '
+         'against EGP %s mn a year earlier, gross margin %.2f%% against %.2f%%, operating '
+         'profit EGP %.3fmn against EGP %s mn, and a net loss of EGP %.1fmn against a '
+         'profit of EGP %.1fmn. A forecast opening above that is the ordinary consequence of '
+         'not projecting the worst quarter for ever, and it is not evidence of anything. The '
+         'LAST forecast year is where the answer lives: %.2f%% against a reported record of '
+         '%.2f%% (FY2023), %.2f%% (FY2024) and %.2f%% (FY2025) — %.0f%% relatively below the '
+         'lowest of the three — and %.0f%% of enterprise value sits in the terminal struck '
+         'off it. THIS RULE\'S TWO COMPARISONS CANNOT REACH THAT NUMBER: one holds the '
+         'opening year against the latest reviewed period and the other holds the path\'s '
+         'minimum against its own opening year, and on a rising path out of a collapsed '
+         'quarter both pass while the single judgement carrying the valuation goes '
+         'unexamined. It is examined instead by this study\'s own dated gap review, which '
+         'solves the traded price back through these same drivers onto a terminal margin '
+         'that sits inside the reported range in all three years — a figure that review '
+         'computes and this model does not, so it is described rather than quoted.\n\n'
+         'AND THE RECORD IS ONLY AS GOOD AS WHAT IT IS STRUCK ON. The full-year margins '
+         'quoted above are not filed rates: revenue and net profit are vendor and press '
+         'prints, and everything between them is solved or typed — the FY2025 EBITDA rests '
+         'on a finance cost derived to close the profit and loss to a reported net profit, '
+         'and this study\'s own review shows the FY2025 conversion rate the forecast is '
+         'calibrated against moving materially with that single unsourced input, which is '
+         'that review\'s arithmetic and not this model\'s. The comparison this '
+         'record draws is therefore between a forecast and a reconstruction, and it is '
+         'recorded in those terms.'
+         % (100 * _fcst_mgn[0], 100 * _q1_mgn,
+            100 * (_fcst_mgn[0] - _q1_mgn) / abs(_q1_mgn),
+            100 * _fcst_mgn[0], 100 * _fcst_mgn[1], 100 * _fcst_mgn[2],
+            100 * _fcst_mgn[3], 100 * _fcst_mgn[4],
+            format(V['q1_26_rev'], ',.0f'), format(V['q1_25_rev'], ',.0f'),
+            100 * V['q1_26_gp'] / V['q1_26_rev'], 100 * V['q1_25_gp'] / V['q1_25_rev'],
+            V['q1_26_op'], format(V['q1_25_op'], ',.0f'), -V['q1_26_np'], V['q1_25_np'],
+            100 * _fcst_mgn[-1], 100 * _hist_mgn['FY23'], 100 * _hist_mgn['FY24'],
+            100 * _hist_mgn['FY25'],
+            -100 * (_fcst_mgn[-1] - _mgn_filed_low) / _mgn_filed_low,
+            100 * tv_pct))
+
 # ============================ EMIT ===========================================
 out = dict(
+    # [R-FCAL-01] WHAT THIS NAME'S WALK-FORWARD ADOPTED, STATED RATHER THAN LEFT
+    # TO SILENCE. scripts/check_corrections_applied.py reads this; a study with a
+    # run behind it and no statement either way is SILENT, which is a different
+    # fact from 'none adopted' and reads identically.
+    adopted_corrections=[],
+    adopted_corrections_note=(
+        "the walk-forward on this name is a SCOPE SKIP under [R-FCAL-01] — four sourceable fiscal years against the five a LIGHT scope needs, recorded in engine/elec_walkforward/skip_record.json in the rule's own words. It scores nothing, so it adopts nothing, and this list is EMPTY rather than ABSENT: silence and 'none adopted' are the same file to a reader and different facts about the work."),
     # THE ANSWER, WHERE THE SHARED READER LOOKS FOR IT. [R-GAP-01]'s gate reads a study's
     # own numbers for a central; this study carried its spot at the top level and its
     # central at lenses.central.base, so the gate could see neither pair and THE LARGEST
@@ -690,7 +915,15 @@ out = dict(
     # weight while producing 4.2% of the answer; unfloored the same blend is -0.7055. The
     # figure below is what a reader receives today, which is what the gate audits.
     central=lens['central']['base'],
-    spot=SPOT, spot_date=tech['spot_date'], shares=SH, mktcap=MKTCAP, fx=V['fx'], tax=TAX,
+    # TWO DATES, AND THIS RECORD USED TO PUBLISH ONE OF THEM UNDER THE OTHER'S NAME
+    # [09-09-2026]. spot_date read tech['spot_date'], which is the TECHNICAL read's
+    # anchor — the price library's last session — while the study is struck on the latest
+    # supplied price. They are different quantities and were the same day only by
+    # accident; after the re-strike they are a month apart, and the record would have aged
+    # the strike by the wrong clock. The strike date is now the spot input's OWN, and the
+    # technical anchor keeps its own name so nothing is lost.
+    spot=SPOT, spot_date=INP['spot']['date'], tech_anchor_date=tech['spot_date'],
+    shares=SH, mktcap=MKTCAP, fx=V['fx'], tax=TAX,
     inputs={k: INP[k] for k in INP},
     hist_is=hist_is,
     hist_bs=dict(assets={'FY22': V['assets_fy22'], 'FY23e': V['assets_fy23_est'],
@@ -740,6 +973,7 @@ out = dict(
     sens_roic=sens_roic, nd_challenge=nd_challenge,
     scenarios=dict(bear=dict(knobs=BEAR_KNOBS, **bear_detail),
                    bull=dict(knobs=BULL_KNOBS, **bull_detail)),
+    forecast_anchor=FORECAST_ANCHOR,
     step0=step0, strike=strike, tech=tech,
     mc=dict(prob_read=prob_read, zones=zones, zone_edges=zone_edges[1:-1], touch=touch,
             pct1={p: float(np.percentile(term1, p)) for p in (5, 25, 50, 75, 95)},
@@ -760,6 +994,32 @@ out = dict(
                            src='SAR 102.70 30-Jul-26 (sa.investing) x 150mn sh; FY25 NP 1,080.4 +32% '
                                '(maaal). EV/EBITDA ~12.5x derived, balance-sheet inputs unverified; '
                                'prior 18x was a stale mid-June cache')),
+
+    # [R-FCAL-01] — the scope decision, stated in the study as the rule requires.
+    # Recorded 07-09-2026 by the fundamental walk-forward run at
+    # engine/elec_walkforward/. The words are the rule's own and are not paraphrased.
+    walkforward_scope=dict(
+        scope='SKIP',
+        status='run',
+        sourceable_fiscal_years=4,
+        basis=('Four fiscal years are sourceable from ELEC\'s own audited statements on '
+               'a single reporting basis: FY2020-FY2023 standalone. The consolidated '
+               'basis this study models yields only FY2019-FY2020, because the company '
+               'has issued no consolidated statement since FY2020 while holding a 99.99% '
+               'subsidiary. FY2024 and FY2025 are unobtainable: re-probed 07-09-2026, '
+               'the issuer\'s index lists 61 statement files and serves none of the 19 '
+               'on its live host (HTTP 404, 19 of 19), the 42 consolidated ones sit on a '
+               'host whose DNS does not resolve, and the index carries no period after '
+               '30-09-2025. walk-forward not run - insufficient sourceable history '
+               '(4 years).'),
+        note=('walk-forward not run - insufficient sourceable history (4 years). There '
+              'are also ZERO scoreable origins by construction: the last sourceable '
+              'actual is FY2023, so the last possible origin is FY2022 at h=1, and an '
+              'origin needs five years of history to it. The run directory records what '
+              'was measured anyway - the filed record, the valuation-input block, the '
+              'basis-break register and the derived useful life - because these filings '
+              'are not obtainable from the issuer.'),
+    ),
 )
 with open(os.path.join(HERE, 'study_numbers.json'), 'w') as f:
     json.dump(out, f, indent=1, default=float)

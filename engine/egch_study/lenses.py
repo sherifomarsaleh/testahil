@@ -229,17 +229,26 @@ json.dump(L, open(os.path.join(HERE, 'lenses.json'), 'w'), indent=1, default=flo
 # with no answer at all is a defect, and this is a study whose answer the
 # repository's one-number shape cannot hold.
 D['central'] = None
+# THE TWO BRANCHES, DEFINED ONCE. They are this study's answer, and TWO records
+# publish them: `central_two_sided`, which a reader meets, and
+# `lens_record.primary.branches`, which [R-LENS-03] reads from outside. Until this
+# constant existed only the first carried them, so the lens gate read a primary
+# declaring one scalar beside a document publishing two numbers, and
+# said so: "the study publishes a TWO-SIDED answer and its lens record declares a
+# single-sided primary. The record understates the answer." Defined here so the
+# two records cannot state different branches.
+TWO_SIDED_BRANCHES = [
+    dict(label='Cash-flow lens, capital programme carried through',
+         value=float(L['contested']['side_a']),
+         condition='the ANNA programme is completed and commissioned as the '
+                   'company is currently doing'),
+    dict(label='Cash-flow lens, capital programme stopped',
+         value=float(L['contested']['side_b']),
+         condition='the programme is halted and the remaining spend is not '
+                   'committed'),
+]
 D['central_two_sided'] = dict(
-    branches=[
-        dict(label='Cash-flow lens, capital programme carried through',
-             value=float(L['contested']['side_a']),
-             condition='the ANNA programme is completed and commissioned as the '
-                       'company is currently doing'),
-        dict(label='Cash-flow lens, capital programme stopped',
-             value=float(L['contested']['side_b']),
-             condition='the programme is halted and the remaining spend is not '
-                       'committed'),
-    ],
+    branches=TWO_SIDED_BRANCHES,
     question=L['contested']['question'],
     decides=L['contested']['decides'],
     gap_per_share=float(L['contested']['gap']),
@@ -330,25 +339,51 @@ D['macro_record'] = dict(
 D['lens_record'] = {
     'class': 'petrochemical',
     'primary': dict(
-        kind='dcf', value=float(L['central']['base']),
-        range=dict(low=float(L['central']['bear']), high=float(L['central']['bull'])),
-        range_note='the cash-flow lens across the dollar export price, from the '
-                   'flat-at-opening path the base case holds to the higher path the '
-                   'upside case holds, with the programme carried through in both '
-                   'and the macro path held still',
+        kind='dcf', two_sided=True, value=None,
+        # THE BRANCHES ARE THE ANSWER, referenced rather than repeated. A scalar
+        # beside them would be the single number this study deliberately does not
+        # publish, and the rule refuses one for exactly that reason.
+        branches=TWO_SIDED_BRANCHES,
+        # THE ENVELOPE SPANS BOTH BRANCHES, which is what makes it this study's
+        # envelope. The narrower range that used to sit here — the export-price
+        # sensitivity WITHIN the carried-through branch — is real and is kept
+        # below as the secondary basis; on its own it excluded the study's own
+        # second answer, and an envelope that excludes an answer is not that
+        # study's envelope.
+        range=dict(low=float(D['fair']['bear']), high=float(D['fair']['full'])),
+        range_note='the two answers to a BINARY question — whether the capital '
+                   'programme is carried through or stopped — with the dollar '
+                   'export-price sensitivity inside the carried-through branch. '
+                   'Not a spread across methods and not a band invented around a '
+                   'point: every read is the same cash-flow lens on one clock, '
+                   'with the macro path held still across all of them',
         range_basis=dict(
-            driver='the dollar export price per tonne of urea',
-            low=float(D['drivers']['export_usd_path'][0]), high=float(D['drivers']['export_usd_path_bull'][0]),
-            units='US$ per tonne, f.o.b. Egypt',
+            driver='whether the ANNA capital programme is carried through or stopped',
+            low=float(min(L['contested']['side_a'], L['contested']['side_b'])),
+            high=float(max(L['contested']['side_a'], L['contested']['side_b'])),
+            units='EGP per share, the present-value read under each answer',
             macro_held=True,
-            evidence='the base case holds the price FLAT in nominal dollars at the '
-                     'opening level, because no forecast of a traded commodity price is '
-                     'defensible and that is the convention this house applies to the '
-                     'same class of input elsewhere; the upside case holds it nearer the '
-                     'CME FOB Egypt settlement of 7 August 2026. Both are levels the '
-                     'market has actually printed, not a chosen percentage band, and '
-                     'the currency path, the cost of capital and terminal growth are '
-                     'held at the house macro path across both.'),
+            secondary_basis=dict(
+                driver='the dollar export price per tonne of urea, within the '
+                       'carried-through branch',
+                low=float(D['drivers']['export_usd_path'][0]),
+                high=float(D['drivers']['export_usd_path_bull'][0]),
+                units='US$ per tonne, f.o.b. Egypt',
+                macro_held=True,
+                evidence='the base case holds the price FLAT in nominal dollars at '
+                         'the opening level, because no forecast of a traded '
+                         'commodity price is defensible and that is the convention '
+                         'this house applies to the same class of input elsewhere; '
+                         'the upside case holds it nearer the CME FOB Egypt '
+                         'settlement of 7 August 2026. Both are levels the market '
+                         'has actually printed, not a chosen percentage band.'),
+            evidence='both branches re-run the SAME cash-flow lens on the same '
+                     'tonnes, the same disclosed capital cost and the same house '
+                     'macro path; the only thing that changes between them is '
+                     'whether the remaining programme spend is committed. The '
+                     'currency path, the cost of capital and terminal growth are '
+                     'identical in both, so the spread is the decision and '
+                     'nothing else.'),
         note='the cash-flow lens on the company\'s own tonnes, dollar prices and '
              'disclosed capital programme, discounted on the glide. THE CONTESTED '
              'JUDGEMENT IS BINARY AND IT STRADDLES ZERO: carried through the lens '
@@ -397,6 +432,29 @@ D['lens_record'] = {
         justified_price_to_book=float(L['book']['pb_justified']),
         book_value_floor=float(L['book']['book_per_share']),
     ),
+    # WHY BOTH ANSWERS SIT BELOW THE NUMBER THIS STUDY CALLS A FLOOR, in a FIELD and not
+    # in prose. The lens architecture names book value a disclosed floor, and on this
+    # company that label is the thing that is wrong: a book value floors a valuation only
+    # where the business earns at least what its capital costs, and this one does not.
+    # The book figure stays published because it is a DISCLOSED fact a reader is entitled
+    # to; what is withdrawn is the claim that it floors anything.
+    'below_floor_reason': (
+        "Both published branches (EGP {a:.4f} carried through, EGP {b:.4f} stopped) sit "
+        "below the disclosed book equity of EGP {bk:.4f} a share, and that is the finding "
+        "rather than a contradiction. A book value floors a valuation only where the "
+        "business earns at least what its capital costs. This one earns a sustainable "
+        "{roe:.2%} on equity against a cost of equity of {ke:.2%}, so its own justified "
+        "price-to-book comes out at {pbj:.2f}x: the assets are worth less in this "
+        "company's hands than they cost, and a floor built on the assumption that they "
+        "are not is not a floor. The book figure is published because it is disclosed and "
+        "a reader is entitled to it; the claim withdrawn is that it bounds the answer "
+        "from below. The market pays {pbm:.2f}x book, and that gap is the disagreement "
+        "this study is publishing."
+        .format(a=float(L['contested']['side_a']), b=float(L['contested']['side_b']),
+                bk=float(L['book']['book_per_share']),
+                roe=float(L['book']['roe_sustainable']), ke=float(L['book']['ke']),
+                pbj=float(L['book']['pb_justified']),
+                pbm=float(L['book']['pb_at_market']))),
 }
 
 _BR = _CASE['bridge'] if _CASE else {}
@@ -413,6 +471,28 @@ _BR = _CASE['bridge'] if _CASE else {}
 # sourced. The opening year was never the problem; the path away from it was, and
 # a record that captured only the opening year would have missed it. That is why
 # the committed record carries the whole path.
+# [R-FCAL-01] THE SCOPE DECISION, TRANSCRIBED FROM THIS NAME'S OWN WALK-FORWARD
+# PRE-REGISTRATION RATHER THAN RE-DECIDED HERE. The rule requires the decision to be
+# stated in the study; the run stated it in section 0 and it was never carried across,
+# which is [R-ENF-01]'s founding observation — the rule was not disputed and not hard,
+# it simply was not present where the gate reads. `sourceable` is a claim about the
+# ARCHIVE and not about the panel, so the count is the one the pre-registration
+# established and never the number of origins the run happened to use.
+D['walkforward_scope'] = dict(
+    rule='R-FCAL-01',
+    scope='FULL',
+    sourceable_fiscal_years=18,
+    earliest_sourceable='FY2008',
+    basis=('this name\'s own walk-forward pre-registration, section 0: "The archive '
+           'supports eighteen sourceable fiscal years, FY2008 through FY2025". The run '
+           'built origins FY2012-FY2024 on that archive'),
+    status='run',
+    note=('The fundamental walk-forward HAS been run on this name '
+          '(engine/egch_walkforward/, 01-09-2026): 13 origins, FY2012-FY2024, 825 scored '
+          'cells on the as-known macro setting. No correction was adopted; every '
+          'candidate is a watch flag, which this study\'s own record states.'),
+)
+
 D['forecast_anchor'] = dict(
     rate_name='gross margin',
     latest_reviewed_period='FY2024/25, audited',

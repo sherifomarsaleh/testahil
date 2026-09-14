@@ -22,13 +22,13 @@ out["central"], out["spot"] = CENTRAL, SPOT
 out["gap"] = CENTRAL / SPOT - 1
 
 p("\n[1] WHERE THE MOVE CAME FROM — one lens at a time, against the 30-Aug edition")
-prior = N["derived"]["prior_edition_lenses"]
+prior = N["derived"]["edition_30aug_lenses"]
 L = V2.lenses()
 p("  30-Aug DCF base                       %8.2f" % prior["dcf_base"])
 p("  02-Sep DCF base, new standard         %8.2f" % L["primary"]["value"])
-p("  30-Aug weighted blend (retired)       %8.2f" % N["derived"]["prior_edition_fair"]["base"])
+p("  30-Aug weighted blend (retired)       %8.2f" % N["derived"]["edition_30aug_fair"]["base"])
 p("  02-Sep central = the cash-flow lens   %8.2f" % CENTRAL)
-out["prior_dcf"], out["prior_blend"] = prior["dcf_base"], N["derived"]["prior_edition_fair"]["base"]
+out["prior_dcf"], out["prior_blend"] = prior["dcf_base"], N["derived"]["edition_30aug_fair"]["base"]
 
 p("\n[2] DECOMPOSITION — each change alone, from the 30-Aug construction")
 S = V2.SCHEDULES["rating"]

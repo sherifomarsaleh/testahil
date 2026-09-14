@@ -47,6 +47,51 @@ OUTSTANDING_FILE = os.path.join(ENGINE, "build_depth_audit", "actuation_outstand
 import decision_rule as DR  # noqa: E402
 
 
+
+# [R-FCAL-01] SETS THREE SCOPES AND THIS GATE KNEW ONLY TWO. A run at fewer than five
+# sourceable fiscal years is a SKIP — recorded, in the rule's own words, as "walk-forward
+# not run — insufficient sourceable history (N years)" — and it scores nothing by design.
+# Demanding scores.json of such a run is a FALSE CLAIM about what this gate checks: there
+# is no measurement to actuate on, so there is nothing to be a diary about. Re-pointed
+# rather than widened per [R-COC-01].
+#
+# THE THREE CONDITIONS ARE WHAT KEEP IT FROM BEING AN OPT-OUT, and the third is the one
+# that matters: a run may not declare itself a skip while holding a scored record. A
+# record that merely says "skip" without establishing the year count establishes nothing
+# — an unevidenced skip is an absent answer in a clean answer's clothes [R-ENF-04].
+SKIP_WORDS = "walk-forward not run — insufficient sourceable history"
+
+
+def _skip(rundir):
+    """The reason string where this run is an EVIDENCED skip, else None."""
+    rec = _load(os.path.join(rundir, "skip_record.json"))
+    if not isinstance(rec, dict):
+        return None
+    if str(rec.get("scope", "")).strip().lower() != "skip":
+        return None
+    words = str(rec.get("scope_words") or "")
+    if SKIP_WORDS not in words:
+        return None
+    yrs = rec.get("sourceable_years")
+    if not isinstance(yrs, dict):
+        return None
+    need = yrs.get("required_for_light")
+    have = [v for k, v in yrs.items()
+            if k != "required_for_light" and isinstance(v, (int, float))
+            and not str(k).startswith("scoreable")]
+    if not isinstance(need, (int, float)) or not have or max(have) >= need:
+        return None
+    # THE OPT-OUT IS CLOSED BY THE CALL SITE RATHER THAN HERE, and saying so is worth a
+    # line: a first draft of this function ended with a clause refusing a skip that sat
+    # beside a scores.json, which reads like a protection and CANNOT EVER FIRE — audit()
+    # consults _skip() only where scores.json is absent, so a run holding a scored record
+    # is never offered to it at all. A clause asserting a check that cannot run is worse
+    # than no clause, because it stops the next reader looking for the real one. The real
+    # one is the `if scores is None` above.
+    return "%s; %d sourceable year(s) against the %d a LIGHT scope needs" % (
+        words, max(have), need)
+
+
 def runs():
     """The population, anchored on the run directories rather than on a list this
     gate keeps for itself — defeating it would mean deleting the runs, which is a
@@ -75,6 +120,9 @@ def audit(rundir):
     tk = ticker_of(rundir)
     scores = _load(os.path.join(rundir, "scores.json"))
     if scores is None:
+        skip = _skip(rundir)
+        if skip is not None:
+            return "skip", skip
         return "fail", "scores.json is missing or will not parse — the record " \
                        "this gate exists to read does not exist"
 
@@ -174,7 +222,7 @@ def main(argv):
               "pruning; neither is a pass." % ", ".join(vanished))
         return 1
 
-    ok, fixed, still, hard = [], [], [], []
+    ok, fixed, still, hard, skipped = [], [], [], [], []
     for d in rundirs:
         tk = ticker_of(d)
         try:
@@ -185,13 +233,21 @@ def main(argv):
             state, detail = "fail", ("%s while auditing this run: %s"
                                      % (type(exc).__name__, exc))
         listed = tk in known
-        if state == "ok":
+        if state == "skip":
+            # NOT counted as actuating, and that is deliberate: a skip has nothing
+            # to actuate on, so calling it a pass would overstate what this book
+            # has measured. It is reported in its own line with its own evidence.
+            skipped.append((tk, detail))
+        elif state == "ok":
             (fixed if listed else ok).append((tk, detail))
         else:
             (still if listed else hard).append((tk, detail))
 
-    print("walk-forward runs examined: %d   actuating: %d   outstanding (allowed): %d"
-          % (len(rundirs), len(ok) + len(fixed), len(still)))
+    print("walk-forward runs examined: %d   actuating: %d   scope skip: %d   "
+          "outstanding (allowed): %d"
+          % (len(rundirs), len(ok) + len(fixed), len(skipped), len(still)))
+    for tk, detail in sorted(skipped):
+        print("   [scope skip] %-12s %s" % (tk, detail))
     for tk, detail in sorted(ok):
         print("   %-12s %s" % (tk, detail))
     if fixed:

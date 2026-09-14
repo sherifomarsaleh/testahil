@@ -14,7 +14,13 @@ import openpyxl
 import xlcalc
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-wb = openpyxl.load_workbook(os.path.join(HERE, 'SWDY_Valuation_Model_05082026_public.xlsx'))
+import sys
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
+# IT OPENED THE 5-AUGUST WORKBOOK. That file answers SAR 43.51; the delivered edition
+# answers 87.82. Every driver below was perturbed on a workbook no reader holds, and the
+# test reported the live model a live driver model on that evidence. L-066/L-067.
+wb = openpyxl.load_workbook(os.path.join(HERE, _ed.MODEL_XLSX))
 A = {}
 for row in wb['Assumptions'].iter_rows(min_col=1, max_col=1):
     c = row[0]
@@ -36,7 +42,18 @@ def read(overrides=None):
                 wacc=bk.cell_value('DCF', 'C46'),
                 wacc_term=bk.cell_value('DCF', 'C53'),
                 nd30=bk.cell_value('Balance Sheet', 'I17'),
-                bvps=bk.cell_value('Relative & Normalized', 'C31'))
+                bvps=bk.cell_value('Relative & Normalized', 'C31'),
+                # THE THREE CROSS-CHECK LENSES, READ WHERE THEY LIVE. These used to be
+                # tested against 'central', which was right while the central was a
+                # WEIGHTED BLEND of four lenses. [R-LENS-03] retired the blend: the class
+                # primary IS the central and the cross-checks are published beside it, so
+                # a higher justified multiple now moves the lens it belongs to and moves
+                # the central by exactly zero. The assertions were not re-pointed with the
+                # architecture and had been asserting a relationship the model no longer
+                # has [L-066/L-067].
+                lens_relative=bk.cell_value('Relative & Normalized', 'C11'),
+                lens_normalized=bk.cell_value('Relative & Normalized', 'C28'),
+                lens_book=bk.cell_value('Relative & Normalized', 'C36'))
 
 base = read()
 print('base:  ' + ' · '.join(f'{k} {v:,.4f}' for k, v in base.items()))
@@ -60,17 +77,20 @@ CASES = [
      'within fixed post-D&A segment margins, more D&A is a larger non-cash add-back'),
     ('Effective tax rate', 'C', +0.05, 'dcf', -1,
      'a higher tax rate must lower NOPAT and the valuation'),
-    ('Justified EV/EBITDA', 'C', +1.0, 'central', +1,
-     'a higher justified multiple must raise the weighted central'),
-    ('Justified price/earnings', 'C', +1.0, 'central', +1,
-     'a higher justified P/E must raise the weighted central'),
-    ('Sustainable return on equity', 'C', +0.03, 'central', +1,
-     'a higher sustainable return must raise the book lens and the central'),
+    ('Justified EV/EBITDA', 'C', +1.0, 'lens_relative', +1,
+     'a higher justified multiple must raise the RELATIVE lens it drives'),
+    ('Justified EV/EBITDA', 'C', +1.0, 'central', 0,
+     'and must leave the central untouched: under [R-LENS-03] the cash-flow lens IS the '
+     'central and the multiples are cross-checks published beside it'),
+    ('Justified price/earnings', 'C', +1.0, 'lens_normalized', +1,
+     'a higher justified P/E must raise the NORMALISED lens it drives'),
+    ('Sustainable return on equity', 'C', +0.03, 'lens_book', +1,
+     'a higher sustainable return must raise the BOOK lens'),
     ('Net bank debt at FY2025 (EGP mn, disclosed)', 'C', +5000.0, 'dcf', -1,
      'more net debt must leave less for shareholders'),
     ('Forecast dividend payout ratio (struck at the actual FY2025 rate)', 'C', +0.25, 'nd30', +1,
      'paying more of the profit out must leave more net debt at the end of the forecast'),
-    ('Days from the 31-Dec-2025 valuation date to the 5-Aug-2026 anchor', 'C', +100.0, 'dcf', +1,
+    ('Days from the 31-Dec-2025 valuation date to the 3-Sep-2026 anchor', 'C', +100.0, 'dcf', +1,
      'a later anchor accretes more value at the cost of equity'),
     ('FY2025 dividend per share (EGP, ratified 6 May 2026, paid 4 June 2026)', 'C', +1.0, 'dcf', -1,
      'a larger dividend paid before the anchor is value that left the share'),
@@ -87,7 +107,12 @@ for label, col, bump, key, sign, why in CASES:
     out = read({('Assumptions', f'{col}{r}'): cur + bump})
     delta = out[key] - base[key]
     rel = delta / abs(base[key]) if base[key] else 0.0
-    ok = (delta * sign > 0) and abs(rel) > 1e-6
+    # sign 0 means the driver must move this headline by NOTHING. That is a real
+    # assertion rather than an absent one: [R-LENS-03] retired the weighted blend, so a
+    # multiple driving a cross-check must leave the central alone, and a model in which
+    # it did not would have quietly re-created the blend.
+    ok = ((abs(rel) <= 1e-9) if sign == 0
+          else ((delta * sign > 0) and abs(rel) > 1e-6))
     moved.append((label, key, base[key], out[key], rel))
     flag = 'OK ' if ok else 'BAD'
     print(f'  [{flag}] {label} {bump:+g} -> {key} {base[key]:,.3f} -> {out[key]:,.3f} '
@@ -96,9 +121,28 @@ for label, col, bump, key, sign, why in CASES:
         fails.append((label, key, delta, why))
 
 # a driver that moves NOTHING anywhere is a dead input: catch those too
+import re as _re_decl
+
+# A label that tells the reader, on the page, that this figure is not a driver. The same
+# vocabulary scripts/check_workbook_live_inputs.py reads, so one declaration satisfies
+# both and there is one place to write it.
+_DECLARED_REFERENCE = _re_decl.compile(
+    r'not used|reference|for comparison|alternative|memo|superseded|retired|'
+    r'not adopted|cross-check|diagnostic', _re_decl.I)
+
 DEAD_OK = {          # inputs the valuation legitimately does not consume directly
-    'Spot price (EGP)', 'Statutory corporate tax rate', 'FY2025 average USD/EGP',
-    'Copper (USD/tonne)', 'USD/EGP path',
+    # 'Spot price (EGP)' was on this list and is NOT a dead input: it drives market
+    # capitalisation, which drives the market-value equity weight, which drives the
+    # explicit-window cost of capital [R-COC-01]. Removed rather than left, because an
+    # allowance for an input that does work excuses the one case it was written for and
+    # every other case that input could ever have.
+    # COPPER AND THE CURRENCY PATH CAME OFF THIS LIST 13-09-2026. They were exempted
+    # because bumping them moved nothing, and the reason was a defect rather than a
+    # property of the model: cu_growth is a RATIO of consecutive years and both legs
+    # carried the multiplier, so a permanent shift divided itself out. It lands once at
+    # the transition now, the grids run 84.86-108.12 on the currency and 83.40-92.13 on
+    # copper, and an allowance written for a broken chain must not outlive it.
+    'Statutory corporate tax rate', 'FY2025 average USD/EGP',
     'Cables — real (volume) growth over copper x FX',
     'Constructions and infrastructure — revenue growth',
     'Electrical products and digital solutions — revenue growth',
@@ -126,7 +170,21 @@ print('\nDEAD-INPUT SWEEP — every driver not covered above is bumped and must 
 dead = []
 for label, r in sorted(A.items(), key=lambda kv: kv[1]):
     cell = wb['Assumptions'][f'C{r}']
-    if not isinstance(cell.value, (int, float)) or label in DEAD_OK:
+    # BY THE STABLE PART OF THE LABEL, AND BY WHAT THE PAGE DECLARES.
+    #
+    # This matched DEAD_OK exactly, so labelling two rows on the page as the references
+    # they are -- "not used in the forecast", "not used in the adopted read" -- broke
+    # their own exemptions and the test went red for the page becoming clearer. That is
+    # the same shape as every checker pinned to a retired string this week.
+    #
+    # A row whose label DECLARES it is not a driver needs no entry at all: the page tells
+    # the reader, which is the whole point of saying it there, and a second list saying
+    # the same thing is a second place to go stale.
+    if not isinstance(cell.value, (int, float)):
+        continue
+    if any(label == d or label.startswith(d) for d in DEAD_OK):
+        continue
+    if _DECLARED_REFERENCE.search(label or ''):
         continue
     if any(label == c[0] for c in CASES):
         continue

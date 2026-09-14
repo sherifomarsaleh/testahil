@@ -234,7 +234,27 @@ class TerminalInputs:
     average_age_source: str = ''  # the note the two figures were read from
     maintenance_basis: str = 'disclosed_life'
     maintenance_capex: Optional[float] = None   # where disclosed directly
-    working_capital: float = 0.0
+    # THE ONE BALANCE-SHEET INPUT WITH NO SOURCE. useful_life_years and average_age_years
+    # are both REFUSED without their sources under SIGCM clause 1; this field alone could
+    # arrive from nowhere, and a wc_charge of 0.0 on the record could mean either that the
+    # accounts show no operating working capital to fund or that nobody passed one.
+    #
+    # IT IS NOT REFUSED WITHOUT A SOURCE, AND THE FIRST DRAFT OF THIS CHANGE HAD IT THE
+    # OTHER WAY ROUND ON A MEASUREMENT THAT WAS WRONG. That draft's own comment read
+    # "26 of 29 constructions pass no working capital at all" and made the source
+    # mandatory on the strength of it. The count came from a regular expression matching
+    # `TerminalInputs\([^)]*working_capital`, which stops at the FIRST closing bracket and
+    # therefore never sees a keyword whose value is itself a call — which is how almost
+    # every caller passes it. Re-counted with a real syntax-tree walk [R-ENF-03], 24 of 28
+    # constructions DO pass it, so the refusal broke twenty-four working generators the
+    # moment it shipped and AIRARABIA's was the one that said so. [L-355] again, in a
+    # measurement about to become a rule, committed by the desk writing the rule.
+    #
+    # So the omission is MADE VISIBLE rather than refused: the record says which of the two
+    # happened and whether a source was named, so it is countable and can only shorten —
+    # binding forward, per [R-ENF-02], instead of making the existing book red.
+    working_capital: Optional[float] = None
+    working_capital_source: str = ''   # the balance sheet the figure was read from
     incremental_capital_per_unit_growth: Optional[float] = None  # capital per 1.0 of real g
     floor_exemption: str = ''
     floor_exemption_disclosure: str = ''
@@ -275,6 +295,20 @@ def build(i: TerminalInputs) -> Terminal:
 
     # --- capital maintenance, at CURRENT cost -----------------------------------------
     age, age_basis = None, 'not_applicable'
+    # A DECLARED BASIS AND A SUPPLIED FIGURE THAT CONTRADICT EACH OTHER. This branch used
+    # to run FIRST and unconditionally, so a record could declare maintenance_basis
+    # 'disclosed_life' — the basis whose whole discipline is that the life comes from the
+    # accounting-policies note — while handing in a maintenance figure directly with the
+    # life and its source both empty, and the SIGCM clause 1 refusal below never ran. That
+    # is the declared-versus-used shape [R-MACRO-01 AMENDED] names: the record conformed
+    # and the model did not, and the exemption was about a field that was not doing the
+    # work. A supplied figure is honoured only under the basis that means it.
+    if i.maintenance_capex is not None and i.maintenance_basis != 'disclosed_capex':
+        raise TerminalRefused(
+            f'maintenance_capex was supplied but the basis declared is '
+            f'{i.maintenance_basis!r}. A figure handed in directly IS the disclosed_capex '
+            f'basis; declaring another one and then overriding it states two '
+            f'constructions and holds to neither.')
     if i.maintenance_capex is not None:
         maint = float(i.maintenance_capex)
     elif i.maintenance_basis == 'disclosed_life':
@@ -324,7 +358,12 @@ def build(i: TerminalInputs) -> Terminal:
                 'inflation rate and not about the asset.' % (100.0 * i.real_growth))
         growth_capex = i.real_growth * float(i.incremental_capital_per_unit_growth)
 
-    wc_charge = i.inflation * i.working_capital
+    if i.working_capital is None:
+        wc_level, wc_basis = 0.0, 'omitted'
+    else:
+        wc_level = float(i.working_capital)
+        wc_basis = 'supplied' if i.working_capital_source else 'supplied_unsourced'
+    wc_charge = i.inflation * wc_level
     fcff = i.nopat + i.dna_book - maint - growth_capex - wc_charge
     if fcff <= 0.0:
         raise TerminalRefused(
@@ -357,6 +396,12 @@ def build(i: TerminalInputs) -> Terminal:
         maintenance_age_basis=age_basis,
         maintenance_escalator=((1.0 + i.inflation) ** age) if age is not None else None,
         growth_capex=growth_capex, wc_charge=wc_charge,
+        # WHICH OF THE THREE HAPPENED — supplied with a source, supplied from
+        # nowhere, or never passed at all. Until this field existed all three
+        # produced an identical record, so a terminal charging nothing for
+        # working capital could not be told from one whose accounts show none.
+        # Emitted so the state is countable rather than silent.
+        wc_basis=wc_basis, wc_level=wc_level,
         dna_addback=i.dna_book, net_capital_charge=charge,
         implied_cycle_years=cycle, one_over_g=(1.0 / g if g > 0 else None),
         payout_of_nopat=payout,

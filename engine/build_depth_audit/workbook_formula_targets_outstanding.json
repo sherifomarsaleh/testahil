@@ -1,0 +1,15 @@
+{
+ "dangling": {
+  "elec": {
+   "count": 2,
+   "note": "Income Statement!F13 and G13 charge the tax formula against C12 and D12, two columns left of the pre-tax line they should read (F12, G12). The reference lands on a blank, so the term it subtracts is zero and the tax charge is overstated by the whole of the shield. Outside the ten under recalibration; recorded 13-09-2026 on the edition of 05-08-2026.",
+   "workbook": "ELEC_Valuation_Model_05082026_public.xlsx"
+  },
+  "stc": {
+   "count": 8,
+   "note": "Fundamental Valuation!B10 and D10 read Summary!B10/D10, which are empty; Assumptions!B87 reads a blank B9; and Balance Sheet!E10:I10 each read a blank row 20 of Cash Flow. Eight references into nothing. Outside the ten under recalibration; recorded 13-09-2026 on the edition of 05-09-2026.",
+   "workbook": "STC_Valuation_Model_05092026_public.xlsx"
+  }
+ },
+ "note": "Dangling single-cell references in delivered workbooks. THE LIST MAY ONLY SHORTEN [R-ENF-02]; a count that grows goes red on its own. Each entry records the workbook it was measured on, so a re-issue does not inherit the excuse silently."
+}

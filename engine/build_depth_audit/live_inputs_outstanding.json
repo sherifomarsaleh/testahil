@@ -1,0 +1,234 @@
+{
+ "_": "Seeded once, at this gate's creation, with every input cell no formula reads. The list may only ever SHORTEN: an entry leaves when the cell is wired or declared a display row on the page.",
+ "seeded": "2026-09-13",
+ "dead": {
+  "ADIB": [
+   "Assumptions!B25",
+   "Assumptions!B27"
+  ],
+  "ADNOCDIST": [
+   "Assumptions!C60",
+   "Assumptions!C68",
+   "Assumptions!C69",
+   "Assumptions!C72",
+   "Assumptions!C82"
+  ],
+  "ADNOCLS": [
+   "Assumptions!B163",
+   "Assumptions!B164",
+   "Assumptions!C109",
+   "Assumptions!C110",
+   "Assumptions!C111",
+   "Assumptions!C114",
+   "Assumptions!C115"
+  ],
+  "AIRARABIA": [
+   "Assumptions!B25",
+   "Assumptions!C25",
+   "Assumptions!C79",
+   "Assumptions!C88",
+   "Assumptions!C89",
+   "Assumptions!C90",
+   "Assumptions!C91",
+   "Assumptions!D25",
+   "Assumptions!E25",
+   "Assumptions!F25"
+  ],
+  "AMOC": [
+   "Assumptions!B13",
+   "Assumptions!B184",
+   "Assumptions!B185",
+   "Assumptions!B186",
+   "Assumptions!B187",
+   "Assumptions!B188",
+   "Assumptions!B20",
+   "Assumptions!B21",
+   "Assumptions!B24",
+   "Assumptions!B49",
+   "Assumptions!B50",
+   "Assumptions!B51",
+   "Assumptions!B52",
+   "Assumptions!B54",
+   "Assumptions!B58",
+   "Assumptions!B63",
+   "Assumptions!B64",
+   "Assumptions!B65",
+   "Assumptions!B84",
+   "Assumptions!B85",
+   "Assumptions!B86",
+   "Assumptions!B87",
+   "Assumptions!B88"
+  ],
+  "AMR": [
+   "Assumptions!C79"
+  ],
+  "ARCC": [
+   "Assumptions!B95",
+   "Assumptions!B97",
+   "Assumptions!B98",
+   "Assumptions!B99"
+  ],
+  "DU": [
+   "Assumptions!C10",
+   "Assumptions!C19",
+   "Assumptions!C20",
+   "Assumptions!C8",
+   "Assumptions!C9"
+  ],
+  "ELEC": [
+   "Assumptions!B53"
+  ],
+  "EMPOWER": [
+   "Assumptions!C79"
+  ],
+  "GBCO": [
+   "Assumptions!B11"
+  ],
+  "MODON": [
+   "Assumptions!C20",
+   "Assumptions!C29",
+   "Assumptions!C32",
+   "Assumptions!C35",
+   "Assumptions!C86",
+   "Assumptions!C87",
+   "Assumptions!C88",
+   "Assumptions!C89",
+   "Assumptions!C90",
+   "Assumptions!C91",
+   "Assumptions!D86",
+   "Assumptions!D87",
+   "Assumptions!D88",
+   "Assumptions!D89",
+   "Assumptions!E86",
+   "Assumptions!E87",
+   "Assumptions!E88",
+   "Assumptions!E89",
+   "Assumptions!F86",
+   "Assumptions!F87",
+   "Assumptions!F88",
+   "Assumptions!F89",
+   "Assumptions!G86",
+   "Assumptions!G87",
+   "Assumptions!G88",
+   "Assumptions!G89"
+  ],
+  "PHAR": [
+   "Assumptions!C24",
+   "Assumptions!C61"
+  ],
+  "PHDC": [
+   "Assumptions!B10",
+   "Assumptions!B11",
+   "Assumptions!B12",
+   "Assumptions!B19",
+   "Assumptions!B20",
+   "Assumptions!B22",
+   "Assumptions!B6",
+   "Assumptions!B7"
+  ],
+  "RIYADHCABLE": [
+   "Assumptions!C24",
+   "Assumptions!C58"
+  ],
+  "SAVOLA": [
+   "Assumptions!C107",
+   "Assumptions!C134",
+   "Assumptions!C135",
+   "Assumptions!C136",
+   "Assumptions!C22"
+  ],
+  "SCEM": [
+   "Assumptions!B38",
+   "Assumptions!C38",
+   "Assumptions!D38",
+   "Assumptions!E38",
+   "Assumptions!F38"
+  ],
+  "STC": [
+   "Assumptions!B8",
+   "Assumptions!C67",
+   "Assumptions!D67",
+   "Assumptions!E67",
+   "Assumptions!F67",
+   "Assumptions!G67"
+  ],
+  "SWDY": [
+   "Assumptions!B12",
+   "Assumptions!B13",
+   "Assumptions!B14",
+   "Assumptions!B15",
+   "Assumptions!B16",
+   "Assumptions!B19",
+   "Assumptions!B20",
+   "Assumptions!B21",
+   "Assumptions!B22",
+   "Assumptions!C12",
+   "Assumptions!C13",
+   "Assumptions!C14",
+   "Assumptions!C15",
+   "Assumptions!C16",
+   "Assumptions!C19",
+   "Assumptions!C20",
+   "Assumptions!C21",
+   "Assumptions!C22",
+   "Assumptions!C59",
+   "Assumptions!C79",
+   "Assumptions!C8",
+   "Assumptions!C9",
+   "Assumptions!D12",
+   "Assumptions!D13",
+   "Assumptions!D14",
+   "Assumptions!D15",
+   "Assumptions!D16",
+   "Assumptions!D19",
+   "Assumptions!D20",
+   "Assumptions!D21",
+   "Assumptions!D22",
+   "Assumptions!E12",
+   "Assumptions!E13",
+   "Assumptions!E14",
+   "Assumptions!E15",
+   "Assumptions!E16",
+   "Assumptions!E19",
+   "Assumptions!E20",
+   "Assumptions!E21",
+   "Assumptions!E22",
+   "Assumptions!F12",
+   "Assumptions!F13",
+   "Assumptions!F14",
+   "Assumptions!F15",
+   "Assumptions!F16",
+   "Assumptions!F19",
+   "Assumptions!F20",
+   "Assumptions!F21",
+   "Assumptions!F22"
+  ],
+  "TMGH": [
+   "Assumptions!B10",
+   "Assumptions!B11",
+   "Assumptions!B12",
+   "Assumptions!B13",
+   "Assumptions!B14",
+   "Assumptions!B15",
+   "Assumptions!B16",
+   "Assumptions!B17",
+   "Assumptions!B2",
+   "Assumptions!B3",
+   "Assumptions!B4",
+   "Assumptions!B5",
+   "Assumptions!B6",
+   "Assumptions!B7",
+   "Assumptions!B8",
+   "Assumptions!B9"
+  ],
+  "XPT": [
+   "Assumptions!B17",
+   "Assumptions!B18",
+   "Assumptions!B20",
+   "Assumptions!B21",
+   "Assumptions!B22",
+   "Assumptions!B25",
+   "Assumptions!B26"
+  ]
+ }
+}

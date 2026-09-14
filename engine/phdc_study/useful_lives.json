@@ -1,0 +1,436 @@
+{
+  "_rule": "R-TERM-01 - a terminal's maintenance capital rests on a DISCLOSED useful life. A life this desk chooses is not a disclosed life (SIGCM clause 1), and engine/terminal_value.py refuses one without a source. This record is the copy of that disclosure out of the company's own audited statements; it commits no valuation and moves no fair value.",
+  "_source": "Palm Hills Developments Company (S.A.E) consolidated financial statements for the year ended 31 December 2025, note 13 'FIXED ASSETS' (significant accounting policies, printed page 21): \"Fixed assets are stated at historical cost -cost of acquisition-and to be depreciated by straight line method over the estimated useful life of the asset starting from the date of using the asset. ... Carrying amount of fixed assets after initial measurement is stated at historical cost less accumulated depreciation and cumulative impairment loses (if any). The estimated useful lives are as follows:\" followed by the Asset/Rate table reproduced below, and closing \"The residual value, the useful life and the depreciation method of an asset should be reviewed at least at each financial year-end.\"; and note 37 'Fixed Assets' (printed page 39): \"The net cost of the consolidated fixed assets on 31 Dec 2025 amounted to 4 521 970 936 presented by fixed administrative assets on the site and the headquarters as follows:\" followed by the cost and accumulated-depreciation movement schedule by asset class. Auditors Mostafa Shawki / Mazars; authorised for issue by the board of directors on 17 March 2026.",
+  "_file": "engine/phdc_walkforward/filings/ConsolidatedFinancials-Eng.pdf",
+  "_file_choice": "The LATEST AUDITED FULL-YEAR consolidated statements on disk. Of the full-year candidates in engine/phdc_walkforward/filings/, this one is 'Consolidated Financial Statements On 31 Dec 2025 Together with Auditor's Report' (cover page, PDF page 1) - newer than 'Palm Hills FS Cons 31Dec 2024.pdf' (FY2024) and 'Palm Hills Developments-Consolidated Financials - 31 December 2023.pdf' (FY2023). 'BoD 13Nov.25_ENG Financials Consolidated.pdf' and the Q1/Q2/Q3 files are INTERIM and carry no significant-accounting-policies rate table of their own. The 4Q15-4Q20 files are older full years.",
+  "_route": "OCR off the rendered pixels. The filing carries NO usable text layer - pdftotext returns 68 characters across 68 pages - so the pages were rendered with pdftoppm at 200 dpi and read from the pixels, and every figure was then held to the note's own arithmetic. THREE ROUTES AGREE ON EVERY FIGURE QUOTED HERE: the read of the rendered page, an independent tesseract 5.3.4 pass over the same rendered pixels, and the schedule's own footing. Arithmetic was the arbiter twice and corrected the first read both times - a low-resolution pass read machinery and equipment's depreciation charge as 69,903,085 (the column then failed to foot by exactly 3,000,000) and the opening accumulated depreciation total as 1,578,894,595 (out by 10,000); the note's own column totals give 66,903,085 and 1,578,884,595, the 200 dpi read and the tesseract pass both confirm those, and the FY2024 filing's own closing figures reproduce them exactly.",
+  "_extracted": "2026-09-07",
+  "policy_lives_route_1": {
+    "basis": "DISCLOSED policy rates, note 13. Life = 1 / rate, straight line, as the note itself states.",
+    "table_as_disclosed": {
+      "buildings": {
+        "rate": 0.05,
+        "life_years": 20.0,
+        "heading": null
+      },
+      "tools_and_equipment": {
+        "rate": 0.25,
+        "life_years": 4.0,
+        "heading": "Machinery and equipment"
+      },
+      "furniture_and_fixtures_machinery": {
+        "rate": 0.25,
+        "life_years": 4.0,
+        "heading": "Machinery and equipment"
+      },
+      "measuring_equipment": {
+        "rate": 0.25,
+        "life_years": 4.0,
+        "heading": "Machinery and equipment"
+      },
+      "computer_hardware_and_software": {
+        "rate": 0.3333,
+        "life_years": 3.0003000300030003,
+        "heading": "Office furniture and fixtures"
+      },
+      "office_equipment": {
+        "rate": 0.25,
+        "life_years": 4.0,
+        "heading": "Office furniture and fixtures"
+      },
+      "furniture_and_fixtures_office": {
+        "rate": 0.25,
+        "life_years": 4.0,
+        "heading": "Office furniture and fixtures"
+      },
+      "scaffolding_and_turnbuckles": {
+        "rate": 0.25,
+        "life_years": 4.0,
+        "heading": "Office furniture and fixtures"
+      },
+      "transportation_and_transportation": {
+        "rate": 0.25,
+        "life_years": 4.0,
+        "heading": "Office furniture and fixtures"
+      }
+    },
+    "gap": "THE POLICY TABLE DOES NOT COVER THE WHOLE ASSET BASE AND THAT IS THE REASON THIS RECORD FALLS TO THE DERIVED ROUTE. Note 13 lists no rate for GOLF COURSES (EGP 2,412,646,478, 37.09% of gross cost, and depreciated - note 37 charges it EGP 122,392,418 in FY2025) or for LEASEHOLD IMPROVEMENTS (EGP 47,309,818, 0.73%, charged EGP 2,424,416). Classes carrying a disclosed rate are 61.62% of gross cost; 37.82% is depreciated with no disclosed rate. A cost-weighted policy life therefore cannot be computed without inventing a golf-course rate, which SIGCM clause 8 forbids - the gap is flagged, not filled.",
+    "coverage_share_of_gross_cost": 0.6161536964979064
+  },
+  "fixed_asset_schedule_note_37": {
+    "units": "EGP",
+    "fy2025": {
+      "land": {
+        "cost_open": 33145821,
+        "additions": 3619894,
+        "disposals": 0,
+        "cost_close": 36765715,
+        "accdep_open": 0,
+        "depreciation_charge": 0,
+        "accdep_disposals": 0,
+        "accdep_close": 0,
+        "nbv_close": 36765715
+      },
+      "buildings": {
+        "cost_open": 950654148,
+        "additions": 1480486006,
+        "disposals": 0,
+        "cost_close": 2431140154,
+        "accdep_open": 378747797,
+        "depreciation_charge": 58072189,
+        "accdep_disposals": 0,
+        "accdep_close": 436819986,
+        "nbv_close": 1994320168
+      },
+      "machinery_and_equipment": {
+        "cost_open": 414189248,
+        "additions": 177592666,
+        "disposals": 1223355,
+        "cost_close": 590558559,
+        "accdep_open": 216139448,
+        "depreciation_charge": 66903085,
+        "accdep_disposals": 912902,
+        "accdep_close": 282129631,
+        "nbv_close": 308428928
+      },
+      "vehicles": {
+        "cost_open": 89166114,
+        "additions": 78035699,
+        "disposals": 2884599,
+        "cost_close": 164317214,
+        "accdep_open": 36066140,
+        "depreciation_charge": 24536679,
+        "accdep_disposals": 2882890,
+        "accdep_close": 57719929,
+        "nbv_close": 106597285
+      },
+      "computer_equipment": {
+        "cost_open": 176351167,
+        "additions": 58058129,
+        "disposals": 4138349,
+        "cost_close": 230270947,
+        "accdep_open": 121557940,
+        "depreciation_charge": 33671002,
+        "accdep_disposals": 501404,
+        "accdep_close": 154727538,
+        "nbv_close": 75543409
+      },
+      "leasehold_improvements": {
+        "cost_open": 24616689,
+        "additions": 22701483,
+        "disposals": 8354,
+        "cost_close": 47309818,
+        "accdep_open": 21293867,
+        "depreciation_charge": 2424416,
+        "accdep_disposals": 8354,
+        "accdep_close": 23709929,
+        "nbv_close": 23599889
+      },
+      "furniture": {
+        "cost_open": 325202254,
+        "additions": 267701687,
+        "disposals": 1429161,
+        "cost_close": 591474780,
+        "accdep_open": 154498986,
+        "depreciation_charge": 101363056,
+        "accdep_disposals": 1429161,
+        "accdep_close": 254432881,
+        "nbv_close": 337041899
+      },
+      "golf_courses": {
+        "cost_open": 2412646478,
+        "additions": 0,
+        "disposals": 0,
+        "cost_close": 2412646478,
+        "accdep_open": 650580417,
+        "depreciation_charge": 122392418,
+        "accdep_disposals": 0,
+        "accdep_close": 772972835,
+        "nbv_close": 1639673643
+      },
+      "TOTAL": {
+        "cost_open": 4425971919,
+        "additions": 2088195564,
+        "disposals": 9683818,
+        "cost_close": 6504483665,
+        "accdep_open": 1578884595,
+        "depreciation_charge": 409362845,
+        "accdep_disposals": 5734711,
+        "accdep_close": 1982512729,
+        "nbv_close": 4521970936
+      }
+    },
+    "fy2024_comparative": {
+      "land": {
+        "cost_open": 33145821,
+        "additions": 0,
+        "disposals": 0,
+        "cost_close": 33145821,
+        "accdep_open": 0,
+        "depreciation_charge": 0,
+        "accdep_disposals": 0,
+        "accdep_close": 0,
+        "nbv_close": 33145821
+      },
+      "buildings": {
+        "cost_open": 747387747,
+        "additions": 203266401,
+        "disposals": 0,
+        "cost_close": 950654148,
+        "accdep_open": 345540506,
+        "depreciation_charge": 33207291,
+        "accdep_disposals": 0,
+        "accdep_close": 378747797,
+        "nbv_close": 571906351
+      },
+      "machinery_and_equipment": {
+        "cost_open": 275431466,
+        "additions": 140611908,
+        "disposals": 1854126,
+        "cost_close": 414189248,
+        "accdep_open": 178127945,
+        "depreciation_charge": 38952809,
+        "accdep_disposals": 941306,
+        "accdep_close": 216139448,
+        "nbv_close": 198049800
+      },
+      "vehicles": {
+        "cost_open": 41870814,
+        "additions": 49208120,
+        "disposals": 1912820,
+        "cost_close": 89166114,
+        "accdep_open": 30868154,
+        "depreciation_charge": 7110806,
+        "accdep_disposals": 1912820,
+        "accdep_close": 36066140,
+        "nbv_close": 53099974
+      },
+      "computer_equipment": {
+        "cost_open": 129738672,
+        "additions": 47222159,
+        "disposals": 609664,
+        "cost_close": 176351167,
+        "accdep_open": 100147676,
+        "depreciation_charge": 22019928,
+        "accdep_disposals": 609664,
+        "accdep_close": 121557940,
+        "nbv_close": 54793227
+      },
+      "leasehold_improvements": {
+        "cost_open": 21077302,
+        "additions": 3741983,
+        "disposals": 202596,
+        "cost_close": 24616689,
+        "accdep_open": 21043166,
+        "depreciation_charge": 453297,
+        "accdep_disposals": 202596,
+        "accdep_close": 21293867,
+        "nbv_close": 3322822
+      },
+      "furniture": {
+        "cost_open": 187255465,
+        "additions": 143598740,
+        "disposals": 5651951,
+        "cost_close": 325202254,
+        "accdep_open": 115088369,
+        "depreciation_charge": 45062568,
+        "accdep_disposals": 5651951,
+        "accdep_close": 154498986,
+        "nbv_close": 170703268
+      },
+      "golf_courses": {
+        "cost_open": 2412646478,
+        "additions": 0,
+        "disposals": 0,
+        "cost_close": 2412646478,
+        "accdep_open": 528187999,
+        "depreciation_charge": 122392418,
+        "accdep_disposals": 0,
+        "accdep_close": 650580417,
+        "nbv_close": 1762066061
+      },
+      "TOTAL": {
+        "cost_open": 3848553765,
+        "additions": 587649311,
+        "disposals": 10231157,
+        "cost_close": 4425971919,
+        "accdep_open": 1319003815,
+        "depreciation_charge": 269199117,
+        "accdep_disposals": 9318337,
+        "accdep_close": 1578884595,
+        "nbv_close": 2847087324
+      }
+    },
+    "fy2024_source": "Palm Hills FS Cons 31Dec 2024.pdf, note 37 'Fixed Assets', printed page 38 (PDF page 45); identical to the comparative column printed in the FY2025 filing at printed page 40 (PDF page 48)."
+  },
+  "ppe_composition_by_gross_cost_31_12_2025": {
+    "buildings": {
+      "gross_cost_egp": 2431140154,
+      "share_of_gross_cost": 0.37376374193723183,
+      "depreciation_charge_egp": 58072189,
+      "implied_rate_on_closing_cost": 0.023886812491847806,
+      "disclosed_policy_rate": 0.05,
+      "policy_note_13_line": "'Buildings 5%'"
+    },
+    "golf_courses": {
+      "gross_cost_egp": 2412646478,
+      "share_of_gross_cost": 0.3709205222517843,
+      "depreciation_charge_egp": 122392418,
+      "implied_rate_on_closing_cost": 0.050729528389695557,
+      "disclosed_policy_rate": null,
+      "policy_note_13_line": "NOT DISCLOSED - no line in note 13 covers golf courses"
+    },
+    "furniture": {
+      "gross_cost_egp": 591474780,
+      "share_of_gross_cost": 0.09093339463402281,
+      "depreciation_charge_egp": 101363056,
+      "implied_rate_on_closing_cost": 0.17137342018200674,
+      "disclosed_policy_rate": 0.25,
+      "policy_note_13_line": "'Furniture and fixtures 25%' / 'office equipment 25%'"
+    },
+    "machinery_and_equipment": {
+      "gross_cost_egp": 590558559,
+      "share_of_gross_cost": 0.0907925347215089,
+      "depreciation_charge_egp": 66903085,
+      "implied_rate_on_closing_cost": 0.1132878086015514,
+      "disclosed_policy_rate": 0.25,
+      "policy_note_13_line": "'Machinery and equipment' heading: Tools &Equipment 25%, Furniture & Fixtures 25%, Measuring equipment 25%"
+    },
+    "computer_equipment": {
+      "gross_cost_egp": 230270947,
+      "share_of_gross_cost": 0.03540187951259925,
+      "depreciation_charge_egp": 33671002,
+      "implied_rate_on_closing_cost": 0.14622340524790564,
+      "disclosed_policy_rate": 0.3333,
+      "policy_note_13_line": "'Computer hardware and software 33.33 %'"
+    },
+    "vehicles": {
+      "gross_cost_egp": 164317214,
+      "share_of_gross_cost": 0.025262145692543606,
+      "depreciation_charge_egp": 24536679,
+      "implied_rate_on_closing_cost": 0.14932506706205473,
+      "disclosed_policy_rate": 0.25,
+      "policy_note_13_line": "'Transportation and transportation 25%'"
+    },
+    "leasehold_improvements": {
+      "gross_cost_egp": 47309818,
+      "share_of_gross_cost": 0.0072734163750106055,
+      "depreciation_charge_egp": 2424416,
+      "implied_rate_on_closing_cost": 0.0512455152543601,
+      "disclosed_policy_rate": null,
+      "policy_note_13_line": "NOT DISCLOSED - no line in note 13 covers leasehold improvements"
+    },
+    "land": {
+      "gross_cost_egp": 36765715,
+      "share_of_gross_cost": 0.005652364875298676,
+      "depreciation_charge_egp": 0,
+      "implied_rate_on_closing_cost": 0.0,
+      "disclosed_policy_rate": null,
+      "policy_note_13_line": "not listed in note 13 and not depreciated (charge is nil in note 37) - land is not a depreciating asset"
+    }
+  },
+  "ppe_carrying_value_and_gross_cost": {
+    "note": "note 37 'Fixed Assets', printed page 39 of the FY2025 consolidated financial statements",
+    "gross_cost_egp": {
+      "2025-12-31": 6504483665,
+      "2024-12-31": 4425971919
+    },
+    "accumulated_depreciation_egp": {
+      "2025-12-31": 1982512729,
+      "2024-12-31": 1578884595
+    },
+    "carrying_value_net_book_value_egp": {
+      "2025-12-31": 4521970936,
+      "2024-12-31": 2847087324
+    },
+    "annual_depreciation_charge_egp": {
+      "FY2025": 409362845,
+      "FY2024": 269199117
+    },
+    "land_included_in_gross_cost_egp": {
+      "2025-12-31": 36765715,
+      "2024-12-31": 33145821
+    },
+    "depreciable_gross_cost_excluding_land_egp": {
+      "2025-12-31": 6467717950,
+      "2024-12-31": 4392826098
+    }
+  },
+  "derived_life_route_2": {
+    "basis": "IDENTITY from disclosed figures in note 37: gross cost of property, plant and equipment divided by the annual depreciation charge. LABELLED DERIVED. Same construction as the EGCH precedent.",
+    "fy2025_depreciable_base_over_charge": 15.799474791123263,
+    "fy2025_total_gross_cost_over_charge": 15.88928683793958,
+    "fy2024_depreciable_base_over_charge": 16.318129669050883,
+    "fy2024_total_gross_cost_over_charge": 16.4412571940197,
+    "fy2025_average_base_over_charge": 13.265180487984932,
+    "fy2024_average_base_over_charge": 15.245655582889597,
+    "derived_average_age_years": {
+      "basis": "accumulated depreciation divided by the annual charge, note 37. LABELLED DERIVED. Supplied because engine/terminal_value.py otherwise defaults the maintenance age to half the life.",
+      "FY2025": 4.842922979490237,
+      "FY2024": 5.865118030829202
+    }
+  },
+  "investment_property_reported_separately": {
+    "why_separate": "A developer's investment property is NOT the operating plant a terminal maintenance charge replaces, and it is a separate line on the face of the balance sheet from fixed assets. Reported here, labelled, so it is visible and cannot be swept into the PP&E life by accident.",
+    "note": "note 36 'INVESTMENT PROPERTY', printed page 38; policy at note 11(c) 'Investments properties', printed page 21 - measured at cost less accumulated depreciation and any impairment.",
+    "disclosed_life": "NOT DISCLOSED. Note 11(c) states the measurement basis and gives no rate or life, and note 36 gives no rate. No life is recorded for investment property and none is invented.",
+    "balance_egp": {
+      "2025-12-31": 1032530185,
+      "2024-12-31": 1057472496
+    },
+    "components_egp": {
+      "crown_school_king_school": {
+        "cost": 1061698038,
+        "accdep_open": 31615721,
+        "charge_fy2025": 43608501,
+        "accdep_close": 75224222,
+        "nbv": 986473816,
+        "implied_rate_on_cost_DERIVED": 0.041074297435972094
+      },
+      "commercial_shops_palm_hills_resort_88_street_mall": {
+        "cost": 77418261,
+        "accdep_open": 29215583,
+        "charge_fy2025": 4146309,
+        "accdep_close": 33361892,
+        "nbv": 44056369,
+        "implied_rate_on_cost_DERIVED": 0.05355724794696693
+      },
+      "villas_at_villa_mora_resort": {
+        "nbv": 2000000,
+        "note": "carried at 2,000,000 in both years; no cost or depreciation columns are disclosed for this item"
+      }
+    }
+  },
+  "right_of_use_assets_excluded": {
+    "note": "note 39 'RIGHT OF USE ASSETS', printed page 41",
+    "cost_egp": {
+      "2025-12-31": 156612953,
+      "2024-12-31": 87344207
+    },
+    "accumulated_depreciation_egp": {
+      "2025-12-31": 54080462,
+      "2024-12-31": 25573718
+    },
+    "carrying_value_egp": {
+      "2025-12-31": 102532491,
+      "2024-12-31": 61770489
+    },
+    "why_excluded": "Leased office space, not owned operating plant. It sits outside note 37 and outside the gross cost and charge used for the derived life. Recorded so the exclusion is visible."
+  },
+  "adopted_for_terminal": {
+    "years": 15.799474791123263,
+    "route": "DERIVED (route 2) - LABELLED DERIVED, not a policy life",
+    "basis": "depreciable gross property, plant and equipment cost at 31 December 2025 (EGP 6,467,717,950, being total gross cost of EGP 6,504,483,665 less land of EGP 36,765,715, which is not depreciated) divided by the FY2025 depreciation charge of EGP 409,362,845, both from note 37.",
+    "reasoning": "ROUTE 1 WAS TRIED FIRST AND CANNOT PRODUCE A SCALAR FOR THIS COMPANY. Note 13 discloses rates covering 61.62% of gross cost and is silent on golf courses, which are 37.09% of gross cost and are depreciated. A cost-weighted policy life would require a rate the company does not disclose. NO SINGLE DISCLOSED CLASS LIFE IS DEFENSIBLE EITHER: the base is barely split between buildings at a disclosed 5% (37.38% of cost) and golf courses at an undisclosed rate (37.09%), with roughly a quarter of the base on 25%-33.33% rates, so adopting the buildings life of 20 years for the whole base would understate the maintenance charge and overstate value - the [R-TERM-01] error class. The derived identity uses only disclosed figures from the fixed-asset note, is the construction the EGCH precedent uses, and is the life of the WHOLE base the terminal's maintenance charge replaces, which is the quantity engine/terminal_value.py divides the replacement-cost capital by. LAND IS EXCLUDED FROM THE NUMERATOR because land is not depreciated (note 37 charges it nil) and a maintenance charge does not replace it. THE CONDITION ON USING THIS FIGURE: the replacement-cost capital base it is divided into must exclude land too. If the study's replacement base includes land, use the total-gross-cost figure of 15.88928683793958 years instead so the numerator and denominator describe the same assets. The two differ by 0.57% and the choice is immaterial to the value; stating it is what keeps the bases matched. INVESTMENT PROPERTY AND RIGHT-OF-USE ASSETS ARE OUTSIDE THIS FIGURE and are recorded separately above.",
+    "what_would_overturn_it": "(i) The company disclosing a rate for golf courses or leasehold improvements, which would let route 1 produce a cost-weighted policy life and displace this derived one - note 13 says management reviews residual value, useful life and depreciation method at least at each financial year-end, so a later filing can supply it. (ii) A materially different answer on a fuller run of years: this figure rests on two years, FY2025 giving 15.799474791123263 and FY2024 16.318129669050883, 3.3% apart. (iii) THE ADDITIONS DISTORTION, WHICH IS THE LARGEST KNOWN WEAKNESS AND RUNS ONE WAY: FY2025 additions of EGP 2,088,195,564 were 47% of the opening base and buildings alone rose 156%, and a part-year charge on assets carried at full cost at the year end biases a closing-cost life LONG. Measured on the average of opening and closing cost instead, the same identity gives 13.265180487984932 years for FY2025 and 15.245655582889597 for FY2024 - a shorter life, a larger maintenance charge and a lower value. The closing-cost basis is adopted because it is the house's one existing derived-life precedent and because the two years agree closely on it; the average-base figures are recorded here so the direction of the doubt is on the record rather than discovered later. (iv) A restatement of note 37, or a disposal or acquisition changing the mix between the two long-lived classes and the 3-4 year classes."
+  },
+  "cross_checks": {
+    "note_37_fy2025_foots": "every one of the 8 classes foots on all three identities (opening cost + additions - disposals = closing cost; opening accumulated depreciation + charge - depreciation on disposals = closing accumulated depreciation; closing cost - closing accumulated depreciation = net book value), all 9 column totals equal the printed TOTAL row, and the TOTAL row foots on the same three identities. No exceptions.",
+    "note_37_fy2024_foots": "same, on the FY2024 filing's own note 37.",
+    "year_on_year_continuity": "FY2024 closing cost and closing accumulated depreciation equal FY2025 opening cost and opening accumulated depreciation, class by class, for all 8 classes.",
+    "policy_table_prior_year": "the FY2024 filing (Palm Hills FS Cons 31Dec 2024.pdf, note 13 'FIXED ASSETS', PDF page 27) carries the IDENTICAL rate table - Buildings 5%; Tools &Equipment, Furniture & Fixtures, Measuring equipment 25%; Computer hardware and software 33.33%; office equipment, Furniture and fixtures, Scaffolding and turnbuckles, Transportation and transportation 25%. The rates did not move.",
+    "policy_rate_against_the_charge": "the buildings rate of 5% reproduces from note 37: FY2025 opening buildings cost of EGP 950,654,148 at 5% is EGP 47,532,707 against a charge of EGP 58,072,189, the difference being part-year depreciation on EGP 1,480,486,006 of additions.",
+    "net_book_value_against_the_study": "note 37 gives net fixed assets of EGP 4,521,970,936 at 31-12-2025 against EGP 4,529,193,596 committed in the study's own bs_1q2026.json at 31-03-2026, one quarter later.",
+    "independent_ocr": "a tesseract 5.3.4 pass over the same rendered pixels returns the note 13 rate table and the note 37 class rows and TOTAL row identically to the read recorded here."
+  }
+}

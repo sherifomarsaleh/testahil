@@ -57,6 +57,10 @@ def build_cells(w=B.W_DEFAULT, foresight=False, cpi_only=False):
             if row["e"][d] is None:
                 row["unscoreable"].append(d)
         row["proj"], row["act"], row["frz"] = p, a, f
+        # The TREND projection is retained too. Without both benchmarks'
+        # projections a per-cell file cannot reproduce a skill number, which
+        # is what a per-cell file is for.
+        row["trd"] = tr or {}
         rows.append(row)
     return rows
 
@@ -126,6 +130,50 @@ def macro_split(driver, h=None):
             "macro_share": 1.0 - f["mae"] / k["mae"], "n": k["n"]}
 
 
+
+def flatten_cells(rows, fore, fore_cpi):
+    """Per-cell error rows, the shape the pooled cuts read.
+
+    build_cells() already computes every cell; the aggregates threw them away, so
+    this run could not answer which origins carry the bias without being re-run.
+    A cell the log score cannot take is written with log_error null and a REASON
+    rather than omitted, because a silently shorter sample is how an apparent
+    improvement is manufactured.
+
+    TWO CORRECTIONS, 07-09-2026, both to this function and both of a kind this
+    repository names in its own rules. (1) The sentence above was TRUE OF THE
+    MODEL'S CELLS AND FALSE OF THE BENCHMARKS' — a freeze or trend cell the log
+    score could not take was silently skipped by the very branch this docstring
+    described, which is a comment asserting a behaviour the code does not have.
+    (2) The reason was ASSERTED FROM AN ABSENCE rather than derived from a test,
+    so a cell the benchmark could not project at all was labelled non-positive;
+    on the sibling run that mislabelled 63 of 72 cells. The reason is now tested:
+    not_projected where there is no projection, non_positive where there is one
+    the logarithm cannot take.
+    """
+    out = []
+    settings = [("asknown", rows, "e"), ("freeze", rows, "ef"), ("trend", rows, "et"),
+                ("foresight", fore, "e"), ("foresight_cpi_only", fore_cpi, "e")]
+    for name, src, key in settings:
+        for r in src:
+            for d in DRIVERS:
+                le = r[key][d]
+                src_key = {"e": "proj", "ef": "frz", "et": "trd"}[key]
+                proj = r.get(src_key, {}).get(d)
+                act = r["act"].get(d)
+                if le is not None:
+                    dropped = None
+                elif proj is None or act is None:
+                    dropped = "not_projected"
+                else:
+                    dropped = "non_positive"
+                out.append({"origin": r["origin"], "horizon": r["h"], "year": r["target"],
+                            "driver": d, "setting": name,
+                            "projected": proj, "actual": act, "era": r["era"],
+                            "log_error": le, "dropped": dropped})
+    return out
+
+
 def run():
     rows = build_cells()
     out = {"n_cells": len(rows), "drivers": {}, "by_horizon": {}, "skill": {},
@@ -133,6 +181,9 @@ def run():
            "unscoreable": {}, "trend_fallbacks": sum(r["trend_fallbacks"] for r in rows)}
     for d in DRIVERS:
         out["drivers"][d] = agg(rows, "e", d)
+        if out["drivers"][d] is not None:
+            # The cells that EXIST for this driver, beside the count the score took.
+            out["drivers"][d]["n_cells"] = sum(1 for r in rows if d in r.get("e", {}))
         out["by_horizon"][d] = {h: agg(rows, "e", d, h=h) for h in B.HORIZONS}
         out["skill"][d] = {"vs_freeze": skill(rows, d, "ef"),
                            "vs_trend": skill(rows, d, "et"),
@@ -181,6 +232,10 @@ def harvest_shape(rows, out):
         b = out["bootstrap"].get(d) or {}
         by_driver[d] = {"bias": a["bias"], "mae": a["mae"], "over": a["share_over"],
                         "n": a["n"],
+                        # n is the cells the score TOOK; n_cells the cells that
+                        # EXIST. Only the pair shows a reader the coverage behind
+                        # a bias, and it carries no threshold.
+                        "n_cells": out["drivers"][d].get("n_cells"),
                         "robust_sign": bool(b) and all(v["robust_sign"] for v in b.values())}
         hs = {}
         for h in B.HORIZONS:
@@ -210,6 +265,9 @@ if __name__ == "__main__":
     bad = check_macro_wiring(out)
     json.dump(harvest_shape(rows, out),
               open(os.path.join(HERE, "scores.json"), "w"), indent=1, default=str)
+    json.dump(flatten_cells(rows, build_cells(foresight=True),
+                             build_cells(foresight=True, cpi_only=True)),
+              open(os.path.join(HERE, "error_cells.json"), "w"), indent=1)
     print("cells %d   trend fallbacks %d" % (out["n_cells"], out["trend_fallbacks"]))
     print()
     print("%-18s %4s %8s %8s %7s %9s %9s %8s" %

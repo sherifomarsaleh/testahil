@@ -4,6 +4,46 @@
 **AUDITED GAP: +45.9%** against the latest known price, AED 11.36 (3 September 2026,
 supplied and committed), which is also the price this edition is struck at.
 
+## The number a reader currently sees, which is not this one
+
+**AUDITED CENTRAL: 13.9** — the fair value the live page carries, AED per share.
+**AUDITED PUBLISHED GAP: +22.1%** against AED 11.38, the close of 7 September 2026.
+
+*Added 7 September 2026, on [R-GAP-03]. Everything below audits a SECOND disagreement,
+not a second opinion about the first.*
+
+**The page is a month behind the study, and that is the whole of the difference.**
+`assets/data.js` carries fair `{bear 9.74, base 13.90, full 20.28}` for DU, first seen in
+the repository on 17 August 2026 at the commit that published this name, struck against a
+spot of AED 12.30 as at 7 August. The study has been rebuilt twice since — once on the
+sovereign-basis keys and once on the growth basis — and now publishes 16.5778. Nothing on
+the page is wrong for what it is; it is simply an earlier edition, and no publish has been
+requested or made since.
+
+**So there are two live disagreements and they are not the same size.** Against the price
+each was measured at, the page reads +22.1% (13.90 against 11.38) and the study reads
++45.9% (16.5778 against 11.36) — 23.8 percentage points apart, which is more than four
+times the five-point tolerance a review is allowed before it goes stale. One AUDITED GAP
+line cannot state both, which is why this review now states two, each named for the thing
+it audits. The eight headings below were asked at the study's figure; they are the
+stronger test of the two, because 16.5778 is the larger claim and the page's 13.90 is a
+number this house has already superseded downward-in-vintage rather than in value.
+
+**What the eight headings say about the page's own number, specifically.** The page's
+13.90 was struck at +13.0% against its own spot of 12.30 — and it is the worked instance
+[R-GAP-01 AMENDED] cites when it made the audit trigger two-sided, a central above the
+price that the one-sided rule could not see. It carried no review then and it carries this
+one now. Every defect the headings hunt for pushes a discounted cash flow DOWN, so a
+superseded central that is LOWER than the current one is not a high-prior-of-defect
+reading; the risk on this page is staleness, and staleness is what is recorded here rather
+than argued away.
+
+**This is not a publication request and nothing here licenses one.** [R-GAP-02] holds this
+book, publishing to the live site is a separate explicitly-requested step, and no figure
+moves toward any price because of this section. What it does is make the debt countable:
+the rebuild reached the valuation and has not reached the page, which is [R-GAP-03]'s own
+"work done and not delivered", and it stays visible until a publish is asked for.
+
 This fires the ABOVE-price half of the audit trigger. That half carries **no publication
 block** — the block is one-sided below the price, because the errors in a discounted cash
 flow are not symmetric and a large discount is the high-prior-of-defect region. So nothing

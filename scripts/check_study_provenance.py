@@ -37,6 +37,7 @@ USAGE
     python3 scripts/check_study_provenance.py          # gate; exit 1 on any hard fail
     python3 scripts/check_study_provenance.py --prune  # drop the now-passing entries
 """
+import ast
 import json
 import os
 import re
@@ -99,9 +100,43 @@ def audit(sdir, stems):
             src[f] = open(os.path.join(sdir, f), encoding='utf-8', errors='ignore').read()
         except Exception:
             src[f] = ''
-    if not any(any(g in t for g in GATE_CALLS) for t in src.values()):
-        bad.append('no code in the study calls any of '
-                   + ', '.join(g + '()' for g in GATE_CALLS))
+    # A MENTION IS NOT A CALL, AND THIS TESTED FOR A MENTION [corrected 13-09-2026].
+    # `any(g in t for g in GATE_CALLS)` is a SUBSTRING search over the file's text, so one
+    # sentence in a docstring satisfied it. Measured across the book on the day this was
+    # written: PHAR, SCEM and SWDY each carried exactly one match, all three the same
+    # sentence in their own beta_reg.py -- "assert_beta_provenance() can inspect the record
+    # rather than trust a boolean the study sets" -- and all three passed this gate while
+    # calling NONE of the three standing assertions. The gate certified them green in CI.
+    #
+    # THAT IS THE DEFECT THIS FILE EXISTS TO CATCH, COMMITTED BY THE FILE ITSELF. Its own
+    # header says a rule that can be checked must be checked from outside the thing it
+    # governs and that a self-attested boolean is never a check; a prose mention of an
+    # assertion is weaker than a boolean, because at least a boolean was set on purpose.
+    #
+    # Parsed now, not searched. A file that does not parse is REPORTED, never skipped: an
+    # unreadable answer is held exactly as a breaching one [R-ENF-04].
+    called, unparsed = set(), []
+    for f, t in src.items():
+        try:
+            tree = ast.parse(t)
+        except SyntaxError as e:
+            unparsed.append('%s (line %s)' % (f, getattr(e, 'lineno', '?')))
+            continue
+        for node in ast.walk(tree):
+            if isinstance(node, ast.Call):
+                name = getattr(node.func, 'id', None) or getattr(node.func, 'attr', None)
+                if name in GATE_CALLS:
+                    called.add(name)
+    if unparsed:
+        bad.append('%d study file(s) could not be parsed, so whether they call the '
+                   'standing assertions is unknown rather than answered: %s'
+                   % (len(unparsed), ', '.join(sorted(unparsed))))
+    if not called:
+        mentioned = sorted(f for f, t in src.items() if any(g in t for g in GATE_CALLS))
+        bad.append('no code in the study CALLS any of '
+                   + ', '.join(g + '()' for g in GATE_CALLS)
+                   + (' — the name appears in %s but only as text, never as a call'
+                      % ', '.join(mentioned) if mentioned else ''))
     for f, t in src.items():
         if f.startswith('beta_') and 'own_stock_beta' not in t and LOCAL_BETA_HINT.search(t):
             bad.append(f'{f} looks like a study-local regression '

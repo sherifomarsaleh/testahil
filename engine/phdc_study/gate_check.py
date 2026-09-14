@@ -88,9 +88,16 @@ def evidence():
     from PIL import Image
 
     ev = {}
-    study = os.path.join(HERE, "PHDC_Valuation_Study_03-09-2026.docx")
-    bib = os.path.join(HERE, "PHDC_Bibliography_03-09-2026.docx")
-    xl = os.path.join(HERE, "PHDC_Valuation_Model_03092026.xlsx")
+    # THE THREE NAMES WERE TYPED, AND THEY WERE TWO EDITIONS OLD. Every figure this
+    # entry point reported -- sections, scrub hits, column audit, document characters,
+    # formula cells, recalc checks -- measured files nobody receives. The lesson is
+    # written down four files away, in footing_check.py's _latest(): a check that opens
+    # a superseded file reports its defects as current. edition.py is where the names
+    # live, and it sits in this directory, imported by all three document builders.
+    import edition as _ed
+    study = os.path.join(HERE, _ed.STUDY_DOCX)
+    bib = os.path.join(HERE, _ed.BIBLIO_DOCX)
+    xl = os.path.join(HERE, _ed.MODEL_XLSX)
 
     from docx import Document
     d = Document(study)

@@ -1,4 +1,5 @@
-"""ARCC_Bibliography_03-09-2026.docx — a standalone source register.
+import sys
+"""ARCC_Bibliography_{edition}.docx — a standalone source register.
 
 Every figure that reaches the study or the model traces to a row here: what it is, where
 it came from, what kind of source that is, and the date the source itself carries.
@@ -6,6 +7,8 @@ Reads study_numbers.json and the sweep register — no numeral is typed here.
 """
 import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed                      # the edition date, written once
 os.chdir(HERE)
 sys.path.insert(0, HERE)
 from docx import Document
@@ -18,6 +21,14 @@ from docx.oxml import OxmlElement
 D = json.load(open('study_numbers.json'))
 SW = json.load(open('sweep_register.json'))
 INP = D['inputs']
+
+
+def IN(k):
+    """An input's VALUE, read live. A bibliography entry that types a sector figure goes
+    stale the moment the input moves, which is how this register came to list a cement
+    production figure beside an all-product export figure [audit finding 7]."""
+    v = INP[k]
+    return v['value'] if isinstance(v, dict) and 'value' in v else v
 
 
 def pc(x, dp=1):
@@ -107,7 +118,13 @@ c = t.cell(0, 0); shade(c, F_DARK); c.width = Inches(9.8)
 p = c.paragraphs[0]
 r = p.add_run('Testahil · Arabian Cement Company S.A.E. (EGX: ARCC) — Source Register')
 r.bold = True; r.font.size = Pt(12); r.font.color.rgb = WHITE
-r2 = p.add_run('   6 August 2026')
+# THE MASTHEAD DATE WAS TYPED, INSIDE THE ONE MODULE THAT IMPORTS edition.py. It used
+# the module for the FILENAME and typed the date in the heading, so this document went
+# out named 09-09-2026 and headed "6 August 2026" — the exact split the module was
+# introduced to end, surviving inside the fix for it. An outside audit found it;
+# nothing here compares a heading with the filename beside it.
+r2 = p.add_run('   %d %s %d' % (_ed.EDITION.day, _ed.EDITION.strftime('%B'),
+                                _ed.EDITION.year))
 r2.font.size = Pt(10); r2.font.color.rgb = RGBColor(0x9F, 0xB0, 0xAC)
 doc.add_paragraph().paragraph_format.space_after = Pt(4)
 
@@ -168,7 +185,9 @@ def fmt(v):
 items = sorted(INP.items(), key=lambda kv: (RING_ORDER.get(kv[1]['ring'], 9), kv[0]))
 for i, (k, v) in enumerate(items, 1):
     rows.append([str(i), k, fmt(v['value']), v['ring'], v['source'], v['date']])
-table(rows, [0.30, 1.70, 0.92, 0.74, 4.98, 0.84], size=7.4)
+# THE ROW-NUMBER COLUMN WRAPPED ON ITS OWN WIDEST NUMBER: 0.76cm declared against
+# 0.84cm needed. Widened from the source column, total unchanged.
+table(rows, [0.34, 1.70, 0.92, 0.74, 4.94, 0.84], size=7.4)
 
 # ---------------------------------------------------- source catalogue
 doc.add_page_break()
@@ -222,12 +241,22 @@ CAT = [
  ('Egyptian Tax Authority', 'Tax reference',
   'Statutory corporate income tax rate of 22.5%. The rate actually used is the effective '
   'rate disclosed in the audited accounts.', 'Statutory rate'),
+ # THE ENTRY OVER-ATTRIBUTED TO THE PRESS AND MIXED TWO BASES IN ONE SENTENCE [audit
+ # finding 7, 08-Sep-2026]. It listed sector production, consumption and exports here as
+ # though the trade press supplied them; the company's own market page supplies all three,
+ # and the press supplies only nameplate capacity, the quota history and the revival
+ # programme. It also set a cement production figure beside an all-product export figure,
+ # which is the exact mismatch the utilisation claim was corrected for.
  ('Enterprise, Global Cement and International Cement Review', 'Trade and financial press',
-  'Egyptian sector context only: nameplate capacity of about 76Mt, production of about 65Mt, '
-  'domestic consumption of about 54Mt, exports of about 18.5Mt, the abolition of the '
-  'production quota in May 2025 with exports capped at 30% of output, and the 12.6Mt of '
-  'dormant capacity under revival from the second half of 2026. No company figure is taken '
-  'from these sources in this edition.',
+  f'Egyptian sector context, and NARROWER than earlier editions of this entry claimed: '
+  f'nameplate cement capacity of about {IN("egy_capacity_mt"):.0f}Mt, the abolition of the '
+  f'production quota in May 2025 with exports capped at 30% of output, and the '
+  f'{IN("egy_revival_mt"):.1f}Mt of dormant capacity under revival from the second half of '
+  f'2026. THE SECTOR SALES FIGURES ARE NOT FROM THESE SOURCES — domestic cement '
+  f'{IN("egy_cons_mt"):.1f}Mt, exported cement {IN("egy_exports_cement_mt"):.1f}Mt and '
+  f'exported clinker {IN("egy_exports_clinker_mt"):.1f}Mt all come from the company\'s own '
+  f'FY2025 investor presentation and are listed under it. No company figure is taken from '
+  f'the press in this edition.',
   'enterpriseam.com, globalcement.com, cemnet.com'),
  ('Egyptian cement market pricing commentary', 'Trade press',
   'The local realised price of about EGP 3,500 a tonne and the export price of about USD 62 '
@@ -259,6 +288,9 @@ _BJ = json.load(open('beta_result.json'))
 BR = _BJ['adopted']
 BRO = _BJ['own_stock']
 SHT = D['share_triangulation']; TR = D['terminal_reconciliation']; UC = D['unit_calibration']
+# The ADOPTED terminal return on capital, so this register heads its entry with the
+# figure the study uses rather than the one it disavows [audit finding 14].
+GDV = D['growth_destroys_value']
 KDG = D['kd_gate']
 # (beta record already loaded above)
 DER = [
@@ -294,7 +326,19 @@ DER = [
   f'three and the reason is stated in the study rather than smoothed. The pound-equivalent '
   f'alternative under interest parity is {KDG["kd_egp_equivalent"]:.2%} and its effect on the '
   f'valuation is published.'),
- (f'Terminal return on invested capital — {TR["roic_repl"]:.1%}',
+ # THE HEADLINE CARRIED THE RETIRED FIGURE [audit finding 14, 08-Sep-2026]. It read
+ # TR["roic_repl"], which divides a profit already grown by a year of terminal growth by
+ # a capital base that has not grown — the construction the study says in terms it does
+ # NOT use. The bibliography, the workbook and the document therefore published two
+ # values under one name. The adopted figure now heads the entry and the retired one is
+ # named inside it, which is where a superseded number belongs.
+ (f'Terminal return on invested capital — {GDV["n_over_ic"]:.2%}',
+  f'The last forecast year\'s operating profit after tax against terminal invested '
+  f'capital, BOTH MEASURED AT THE SAME DATE. Earlier editions of this entry headed it '
+  f'{TR["roic_repl"]:.1%}, which grows the profit by a year of terminal growth and '
+  f'leaves the capital base ungrown; that mismatch flatters the return by '
+  f'{(TR["roic_repl"]-GDV["n_over_ic"])*1e4:.0f} basis points and the figure is '
+  f'withdrawn. It survives in the workbook, labelled as the retired construction. '
   f'Struck on REPLACEMENT cost — 5.0Mt at USD 130 per annual tonne — rather than on the '
   f'audited book, on which the FY2025 return is {TR["roic_book_fy25"]:.1%}. The book carries a '
   f'2010-vintage plant at historical cost through several devaluations: audited net property '
@@ -373,6 +417,6 @@ P('')
 P('Testahil · Independent valuation research · Educational analysis, not investment advice.',
   size=8.4, italic=True, color=GREY)
 
-OUT = 'ARCC_Bibliography_03-09-2026.docx'
+OUT = _ed.BIBLIO_DOCX
 doc.save(OUT)
 print('wrote', OUT)

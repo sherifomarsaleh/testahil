@@ -1,0 +1,61 @@
+{
+ "PS": {
+  "dps": 7
+ },
+ "REL": {
+  "book": 20,
+  "bvps": 21,
+  "eps26": 14,
+  "np26": 13,
+  "pe": 9,
+  "pe0": 6,
+  "pe1": 8,
+  "traded": 17,
+  "value": 15
+ },
+ "SENS": {
+  "branch_cols": {
+   "A": "E",
+   "B": "C"
+  },
+  "g1": 6,
+  "g2": 15,
+  "g2hdr": 14,
+  "haircuts": [
+   0.5,
+   0.75
+  ],
+  "help0": 23,
+  "help_hdr": 22,
+  "offset": 30,
+  "shifts": [
+   -0.02,
+   -0.01,
+   0.0,
+   0.01,
+   0.02
+  ],
+  "tgs": [
+   -0.02,
+   -0.01,
+   0.0,
+   0.01,
+   0.02
+  ]
+ },
+ "SOTP": {
+  "branchA": "D11",
+  "branchB": "C11",
+  "eqA": "D9",
+  "eqB": "C9",
+  "ladder0": 24,
+  "ladder1": 27,
+  "mnt": 15
+ },
+ "SUM": {
+  "envhi": 12,
+  "envlo": 11,
+  "read0": 6,
+  "read1": 8
+ }
+}

@@ -1,0 +1,6 @@
+{
+ "rule": "R-ENF-01 / a numbers file with two generators declares their order",
+ "seeded": "2026-09-06",
+ "note": "EMPTY ON ADOPTION, deliberately. The three studies this gate governs — EGCH, SAVOLA and SWDY — were declared the same morning the defect was found, so there is no debt to carry. An empty ratchet is the GOAL STATE of a list that may only shorten, not a sign the gate does nothing: its negative control goes red on seven conditions, and case 7 protects the classification this gate’s author got wrong twice.",
+ "outstanding": []
+}

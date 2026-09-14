@@ -188,6 +188,141 @@ case('a gap smaller than the EPS is printed to — rounding, not a claim',
                                / json.load(open(nf(d, 'arcc')))['meta']['shares_mn'] - 4.0002) < 1e-6)
 
 
+# --- the UNREADABLE ratchet, added when the escape stopped being free -------------
+# Until this was closed, twenty-one of twenty-four studies were PRINTED as unreadable and
+# not one could fail, so the cheapest route past this gate was to commit less. These three
+# cases hold the closure: a NEW unreadable study fails, a study moving between the two
+# groups fails, and the widened share reader actually reads.
+
+def _ratchet(d):
+    return os.path.join(d, 'engine', 'build_depth_audit', 'eps_outstanding.json')
+
+
+def _load_ratchet(d):
+    return json.load(open(_ratchet(d), encoding='utf-8'))
+
+
+def _save_ratchet(d, obj):
+    json.dump(obj, open(_ratchet(d), 'w', encoding='utf-8'), indent=1)
+
+
+def c_new_unreadable(d):
+    """DU reconciles today. Strip its reported EPS and it becomes unreadable — and it is
+    on neither ratchet group, so it is a NEW unreadable study."""
+    P = nf(d, 'du')
+    D = json.load(open(P))
+    for k in [k for k in D.get('inputs', {}) if 'eps' in k.lower()]:
+        D['inputs'].pop(k)
+    json.dump(D, open(P, 'w'), indent=1, default=float)
+    r = _load_ratchet(d)
+    r['unreadable'] = [x for x in r.get('unreadable', []) if x != 'DU']
+    _save_ratchet(d, r)
+
+
+case('a study that becomes UNREADABLE and is on neither ratchet group',
+     c_new_unreadable, True,
+     lambda d: (not any('eps' in k.lower()
+                        for k in json.load(open(nf(d, 'du'))).get('inputs', {}))
+                and 'DU' not in _load_ratchet(d).get('unreadable', [])))
+
+
+def c_moved(d):
+    """The same study, but re-filed onto the UNRECONCILED list instead. The two groups
+    excuse different conditions, so a study arriving in one while listed in the other is a
+    move and must be recorded rather than absorbed."""
+    c_new_unreadable(d)
+    r = _load_ratchet(d)
+    r['outstanding'] = sorted(set(r.get('outstanding', [])) | {'DU'})
+    _save_ratchet(d, r)
+
+
+case('a study MOVED between the unreconciled and unreadable groups',
+     c_moved, True,
+     lambda d: ('DU' in _load_ratchet(d).get('outstanding', [])
+                and 'DU' not in _load_ratchet(d).get('unreadable', [])
+                and not any('eps' in k.lower()
+                            for k in json.load(open(nf(d, 'du'))).get('inputs', {}))))
+
+
+def c_scaled_key(d):
+    """DU's count moved to a THOUSANDS key, scaled correctly. The widened reader carries
+    the scale with the name, so the reconciliation is unchanged and this must stay GREEN —
+    a reader that only knew `meta.shares_mn` reported this study as registering no earnings
+    per share, which was the wrong reason stated confidently [L-355]."""
+    P = nf(d, 'du')
+    D = json.load(open(P))
+    n = (D.get('meta') or {}).get('shares_mn')
+    D['meta'].pop('shares_mn')
+    D['meta']['shares_issued_k'] = float(n) * 1000.0
+    json.dump(D, open(P, 'w'), indent=1, default=float)
+
+
+case('a share count committed under a THOUSANDS key is read, not missed',
+     c_scaled_key, False,
+     lambda d: ('shares_mn' not in (json.load(open(nf(d, 'du'))).get('meta') or {})
+                and 'shares_issued_k' in (json.load(open(nf(d, 'du'))).get('meta') or {})))
+
+
+# --- the SCALE declaration, added 07-09-2026 -------------------------------------------
+# The exemplar keeps its statements in USD THOUSANDS and its share count in MILLIONS, so
+# dividing one straight into the other lands a factor of a thousand out — which this gate
+# reported, correctly, as a reconciliation it could not read. What was missing was the
+# DECLARATION, and these five cases are what keep the declaration from becoming a dial.
+
+
+def _adn_units(d, **kw):
+    put(d, 'adnocls', reporting_units=dict({'currency': 'USD',
+                                            'statement_scale': 'thousands',
+                                            'share_scale': 'millions'}, **kw))
+
+
+def _adn_ratio(d):
+    """The factor between the study's own profit-over-shares and its reported EPS."""
+    D = json.load(open(nf(d, 'adnocls')))
+    ins = D.get('inputs', {})
+    npa = ins.get('npa_fy25', {}).get('value')
+    eps = ins.get('eps_fy25', {}).get('value')
+    sh = ins.get('shares_mn', {}).get('value')
+    if not (npa and eps and sh):
+        return None
+    return abs((npa / sh) / eps)
+
+
+# THE DECISIVE CLEAN CASE — the exemplar as it stands, thousands DECLARED, must reconcile.
+case("the exemplar's thousands-over-millions, DECLARED — must stay green",
+     lambda d: _adn_units(d), False,
+     lambda d: (json.load(open(nf(d, 'adnocls'))).get('reporting_units') or {})
+               .get('statement_scale') == 'thousands' and (_adn_ratio(d) or 0) > 100)
+
+# ...and the same study with the declaration REMOVED is unreadable again, which is the
+# before-and-after this rule turns on: the arithmetic did not change, the record did.
+case("the same study with the scale declaration removed — unreadable again",
+     lambda d: put(d, 'adnocls', reporting_units=None), True,
+     lambda d: json.load(open(nf(d, 'adnocls'))).get('reporting_units') is None
+               and (_adn_ratio(d) or 0) > 100)
+
+# A SCALE OFF THE CLOSED LIST IS NOT A SCALE. The list is closed because a scale is a fact
+# with a multiplier rather than a reason, so closing it costs a study nothing it can
+# honestly want and leaving it open would let one declare a scale nobody can check.
+case("a statement_scale off the closed list",
+     lambda d: _adn_units(d, statement_scale='lakhs'), True,
+     lambda d: (json.load(open(nf(d, 'adnocls'))).get('reporting_units') or {})
+               .get('statement_scale') == 'lakhs')
+
+# A DECLARATION THAT IS NOT A RECORD IS NOT A DECLARATION.
+case("reporting_units that is not a record",
+     lambda d: put(d, 'adnocls', reporting_units='thousands'), True,
+     lambda d: json.load(open(nf(d, 'adnocls'))).get('reporting_units') == 'thousands')
+
+# THE DECLARATION CANNOT BE USED TO HIDE A REAL GAP, which is the abuse worth proving
+# impossible: declaring MILLIONS on a study that files in thousands does not make the
+# figures agree, it moves them a thousand the other way and the gate still refuses.
+case("the wrong scale declared — the gate is not satisfied by a declaration alone",
+     lambda d: _adn_units(d, statement_scale='millions'), True,
+     lambda d: (json.load(open(nf(d, 'adnocls'))).get('reporting_units') or {})
+               .get('statement_scale') == 'millions' and (_adn_ratio(d) or 0) > 100)
+
+
 def main():
     base = sandbox()
     rc, out = run(base)

@@ -1,0 +1,57 @@
+{
+ "_rule": "[R-TERM-01] — a terminal's maintenance capital rests on a DISCLOSED useful life. A life this desk chooses is not a disclosed life (SIGCM clause 1), and engine/terminal_value.py refuses one without a source.",
+ "_source": "Electro Cable Egypt, FY2023 standalone audited financial statements, UHY United. Note 2-4 'الأصول الثابتة' (page 13) for the policy spans; note 3 'أصول ثابتة' (page 19, a landscape table) for the roll-forward.",
+ "_file": "engine/elec_study/filings/ELEC_FY2023_Standalone_Annual.pdf",
+ "_route": "The filing carries NO text layer and the committed PDF is TRUNCATED at exactly 5 MiB with no %%EOF and no readable xref, so it opens at zero pages. The 24 page images were recovered by scanning the raw bytes for JPEG streams and read off the rendered pixels. Arithmetic is the arbiter: the cost roll, the accumulated-depreciation roll, the net book value, the charge allocation across cost of sales/selling/administrative, and the additions against the cash-flow statement's own 'payments to purchase fixed assets' ALL foot exactly — reproduced by engine/elec_walkforward/filed_record.py.",
+ "_extracted": "2026-09-07",
+ "_basis": "STANDALONE. The company has issued no consolidated statement since FY2020, so no consolidated useful-life note is obtainable. A terminal built on the consolidated group cannot use this life without saying so.",
+ "route_1_disclosed_spans": {
+  "outcome": "FAILED — a range is not a life.",
+  "spans_years": {
+   "buildings_constructions_utilities": [
+    10,
+    50
+   ],
+   "machinery_and_equipment": [
+    4,
+    25
+   ],
+   "vehicles_and_transport": [
+    5,
+    20
+   ],
+   "tools_and_equipment": [
+    5,
+    20
+   ],
+   "computers": [
+    5,
+    5
+   ],
+   "furniture_and_office_equipment": [
+    5,
+    10
+   ]
+  },
+  "why_it_fails": "The note discloses SPANS for every class and a scalar for exactly one immaterial class (computers, 5 years). Buildings run 10-50 and machinery 4-25; no dominant class is named and no weighting is given. Picking a point inside a span is the choice this rule exists to forbid."
+ },
+ "route_2_derived": {
+  "identity": "depreciable gross cost / annual depreciation charge",
+  "derived": true,
+  "depreciable_gross_cost_egp": 343770105,
+  "gross_cost_egp": 594413951,
+  "land_excluded_egp": 250643846,
+  "annual_charge_egp": 14246581,
+  "years_on_full_depreciable_base": 24.13,
+  "years_excluding_fully_depreciated_still_in_use": 17.54,
+  "fully_depreciated_still_in_use_egp": 93877527,
+  "prior_year_control_years": 24.99,
+  "why_a_band_and_not_a_point": "EGP 93,877,527 of gross cost — 27.3% of the depreciable base — is disclosed by the note itself as FULLY DEPRECIATED AND STILL IN USE. Such assets carry cost and no charge, so they lengthen the ratio. 24.13 years is the identity on the full base; 17.54 years is the same identity with those assets removed. Both sit inside the union of the disclosed spans (4-50), and the FY2022 base and charge give 24.99 years on the same identity, so the figure is stable year to year. Choosing a point inside 17.54-24.13 would be the same offence route (1) failed for, so the band is what is recorded."
+ },
+ "adopted_for_terminal": {
+  "years": null,
+  "status": "NOT ADOPTED — no terminal is built in this run.",
+  "reasoning": "This run's scope is SKIP and it rebuilds nothing, so no terminal is struck and no life is adopted. The band is recorded now because these filings are, on today's re-probe, unobtainable from the issuer: 19 of 19 live-host statement files return 404 and the 42 consolidated ones sit on a host whose DNS does not resolve. Whoever next builds a terminal on this name takes 17.54-24.13 years from here rather than re-deriving it from filings that may no longer be fetchable — and states which end of the band and why, because the two differ by 38%.",
+  "what_would_overturn_it": "an untruncated FY2023 or later filing whose fixed-asset note discloses the class-by-class gross cost split, which would let the spans be weighted and route (1) succeed; a consolidated statement, which would move the base entirely; or a later filing revising the lives, which the policy note says management reviews at each reporting date."
+ }
+}

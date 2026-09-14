@@ -22,6 +22,8 @@ HOW
 """
 import os
 import json
+import datetime as _dt
+import subprocess
 import re
 import sys
 
@@ -68,6 +70,7 @@ def ids_in_code():
 
 
 REV = re.compile(r'^(?:DIGEST|PROTOCOL) REVISION (\d{4}-\d{2}-\d{2}[a-z]?)\b')
+REV_ANY = re.compile(r'(?:DIGEST|PROTOCOL) REVISION (\d{4}-\d{2}-\d{2}[a-z]?)\b')
 
 
 def revision(path):
@@ -83,6 +86,145 @@ def revision(path):
     return m.group(1) if m else None
 
 
+def extra_stamps(path):
+    """Every stamp in the document BEYOND the one it opens with.  [R-DOC-01]
+
+    A DOCUMENT THAT STATES TWO REVISIONS STATES NONE, which is the same defect as the
+    rule stating two limits, and this gate could not see it: the digest is a SINGLE
+    LINE, so readline() returns the whole document and the opening match is satisfied
+    by the first stamp however many follow it.
+
+    Found 07-09-2026, on this gate's own output being green. A union merge of the
+    single-line digest kept both sides' opening sentences, so the file carried
+    "DIGEST REVISION 2026-09-06c ... DIGEST REVISION 2026-09-06b ..." and every check
+    in the repository read the first one and passed. The stamp exists so a pasted copy
+    can declare its own age; a copy carrying two ages declares neither, and the reader
+    it was written for is the one person who cannot run this gate.
+
+    Shape-matched rather than word-listed, and safe for the same reason rule ids and
+    repository paths are: "DIGEST REVISION" followed by an ISO date is not a phrase
+    that occurs innocently in prose written for anyone.
+    """
+    txt = open(path, encoding='utf-8').read()
+    hits = list(REV_ANY.finditer(txt))
+    return [(m.group(1), m.start()) for m in hits[1:]]
+
+
+# A PASSAGE THIS LONG DOES NOT RECUR BY ACCIDENT, AND THE THREE THAT DO ARE NAMED.
+# The window is 300 characters because that is roughly two sentences of this prose:
+# short enough to catch a spliced rule header (the shortest real one measured 106
+# chars of overlap) and long enough that ordinary house phrasing -- "READ THE
+# POPULATION LIVE", "THE GENERAL LESSON, WHICH IS NOT ABOUT" -- cannot reach it,
+# since those diverge within a clause. Measured on the repaired file: the whole
+# document carries exactly three repeats at 100 chars and NONE at 300.
+DUP_WINDOW = 300
+
+# Deliberate restatements, each a rule quoting another ON PURPOSE. Named with the
+# reason rather than tolerated by a length cutoff, because an allowance nobody has
+# to justify is where the next splice hides.
+DUP_ALLOWED = {
+    "that is the evidence to revisit this clause": (
+        "[R-GAP-02 AMENDED] and [R-MERGE-01] both state their own falsifier in the "
+        "same words, deliberately: each records the evidence that would reopen it."),
+    "a stale base year, an over-charged discount rate": (
+        "[R-GAP-01] and [R-GAP-02 AMENDED] both list the DCF errors that run one way; "
+        "the second rule's asymmetry is that list, so it restates it rather than "
+        "pointing at it."),
+    "the higher a market's inflation the more brutal the charge": (
+        "[R-TERM-01 CLAUSE TWO] QUOTES the sentence it is correcting, which is the "
+        "point of the clause."),
+}
+
+
+def duplicated_passages(path, window=DUP_WINDOW):
+    """Maximal passages appearing twice in one document.  [R-DOC-01]
+
+    A MERGE CAN SATISFY EVERY CHECK AND STILL PRODUCE A DOCUMENT NEITHER SIDE WROTE.
+    The 06-09-2026 union merge of the single-line digest duplicated the revision
+    stamp -- closed by extra_stamps() above -- and, found the day after, spliced
+    FIVE fragments into the body: a rule header repeated with a neighbouring rule's
+    sentence between the copies, a general lesson inserted into a different rule,
+    and a sentence left cut off mid-clause. 2,035 characters, every one of them
+    text that belonged somewhere else in the same file, and nothing could see it.
+
+    The full protocol took NO damage from the same merge, which is the whole
+    finding: it has line breaks, so git resolved it hunk by hunk. A single-line
+    file has no merge granularity, so the resolution is a splice and the splice is
+    invisible to a reader and to a diff alike.
+
+    Arithmetic about the file, not a word list: identical text is identical text.
+    """
+    s = open(path, encoding='utf-8').read()
+    seen, hits = {}, []
+    for i in range(len(s) - window + 1):
+        w = s[i:i + window]
+        if w in seen:
+            hits.append((seen[w], i))
+        else:
+            seen[w] = i
+    regions = []
+    for a, b in hits:
+        if regions and a == regions[-1][0] + regions[-1][2] and b == regions[-1][1] + regions[-1][2]:
+            regions[-1][2] += 1
+        else:
+            regions.append([a, b, 1])
+    out = []
+    for a, b, n in regions:
+        text = s[b:b + n + window - 1]
+        if any(k in text for k in DUP_ALLOWED):
+            continue
+        out.append((a, b, n + window - 1, text[:90]))
+    return out
+
+
+def amendment_days(root=ROOT, paths=None):
+    """The day(s) the governing documents were last amended, as a witness OUTSIDE them.
+
+    [R-DOC-01 AMENDED 07-09-2026] THE STAMP NAMES THE DAY THE DOCUMENT WAS ACTUALLY
+    AMENDED, AND NOTHING HAD EVER ASKED WHEN THAT WAS. The rule says the digest is
+    named for the day of its LATEST AMENDMENT so the filename and the stamp "agree on
+    their face". A first draft of this check compared those two to each other and
+    PASSED — of course it did: both are typed by the same hand in the same edit and
+    they had never disagreed. On 07-09-2026 three amendments landed at 00:45, 01:02
+    and 01:25 UTC carrying 2026-09-06d, e and f under a filename dated 06-09-2026,
+    every one internally consistent and every one naming a day the edits were not made
+    on. TWO FIELDS THAT AGREE WITH EACH OTHER AND NOT WITH THE WORLD IS THE
+    SELF-ATTESTATION SHAPE [R-ENF-01] CLOSES EVERYWHERE ELSE, and the only witness
+    outside the document is when it was committed.
+
+    THE ZONE IS AMBIGUOUS AND THE AMBIGUITY IS ADMITTED RATHER THAN RESOLVED BY
+    PICKING ONE. The project's clock is Africa/Cairo and CI runs in UTC, so a commit
+    between 21:00 and midnight UTC falls on two different days depending on which is
+    meant, and choosing one here would be a free parameter the PROMOTION RULE forbids.
+    Both readings are returned; what the caller refuses is a stamp matching NEITHER.
+
+    Returns (days, when) or raises RuntimeError — an unanswerable check is not a
+    clean one [R-ENF-04].
+    """
+    paths = list(paths or (DIGEST, FULL))
+    log = subprocess.run(['git', 'log', '-1', '--format=%at', '--'] + paths,
+                         cwd=root, capture_output=True, text=True)
+    if log.returncode != 0:
+        raise RuntimeError('git could not say when the governing documents were last '
+                           'amended: %s' % log.stderr.strip()[:140])
+    dirty = subprocess.run(['git', 'status', '--porcelain', '--'] + paths,
+                           cwd=root, capture_output=True, text=True)
+    if dirty.returncode == 0 and dirty.stdout.strip():
+        base = _dt.datetime.now(_dt.timezone.utc)
+        when = 'the working tree (amended, not yet committed)'
+    else:
+        ts = log.stdout.strip()
+        if not ts.isdigit():
+            raise RuntimeError('no commit was found touching the governing documents, '
+                               'so the stamp cannot be checked against when they were '
+                               'amended. On a shallow clone, fetch full depth.')
+        base = _dt.datetime.fromtimestamp(int(ts), _dt.timezone.utc)
+        when = 'the last commit touching them'
+    days = sorted({base.date().isoformat(),
+                   (base + _dt.timedelta(hours=3)).date().isoformat()})
+    return days, when
+
+
 def main():
     full, digest = ids_in(FULL), ids_in(DIGEST)
     rf, rd = revision(FULL), revision(DIGEST)
@@ -95,7 +237,57 @@ def main():
         print(f'FAIL — revision stamps disagree: full protocol {rf}, digest {rd}. '
               f'Amend both in the same commit and bump both.')
         return 1
-    print(f'revision stamp: {rf} (both documents agree)')
+    try:
+        allowed, when = amendment_days()
+    except RuntimeError as exc:
+        print('FAIL — %s An unanswerable check is not a clean one [R-ENF-04].' % exc)
+        return 1
+    if rd[:10] not in allowed:
+        print('FAIL — the documents are stamped %s and %s says they were amended on '
+              '%s (UTC or Africa/Cairo). [R-DOC-01] requires the stamp to name the '
+              'day of the amendment, the digest to be RENAMED to that day in the '
+              'SAME COMMIT as the first edit of it, the revision letters to restart '
+              'at "a", and the include line at the top of CLAUDE.md to move with the '
+              'rename — so a copy pasted into somebody else\'s project files declares '
+              'its own age on its face.' % (rd, when, ' or '.join(allowed)))
+        return 1
+    fname = os.path.basename(DIGEST)
+    m_fn = re.search(r'PROJECT_INSTRUCTIONS_(\d{2})-(\d{2})-(\d{4})\.md$', fname)
+    if not m_fn:
+        print('FAIL — the digest filename %r carries no DD-MM-YYYY date, so the rule '
+              'that it names its own amendment day cannot be checked [R-ENF-04].'
+              % fname)
+        return 1
+    fn_date = '%s-%s-%s' % (m_fn.group(3), m_fn.group(2), m_fn.group(1))
+    if rd[:10] != fn_date:
+        print('FAIL — the digest is named for %s and stamped %s. Rename engine/%s to '
+              'engine/PROJECT_INSTRUCTIONS_%s-%s-%s.md and move the CLAUDE.md include '
+              'line with it, in the same commit.'
+              % (fn_date, rd, fname, rd[8:10], rd[5:7], rd[0:4]))
+        return 1
+
+    dupes = {os.path.basename(p): extra_stamps(p) for p in (FULL, DIGEST)}
+    if any(dupes.values()):
+        for name, extra in dupes.items():
+            for rev, at in extra:
+                print(f'FAIL — {name} carries a SECOND revision stamp ({rev}) at '
+                      f'character {at}. A document that states two revisions states '
+                      f'none; the stamp exists so a pasted copy can declare its own '
+                      f'age. Delete the superseded sentence and bump.')
+        return 1
+    spliced = {os.path.basename(p): duplicated_passages(p) for p in (FULL, DIGEST)}
+    if any(spliced.values()):
+        for name, regions in spliced.items():
+            for a, b, n, head in regions:
+                print(f'FAIL — {name} repeats {n} characters verbatim, at {a} and {b}. '
+                      f'A passage that long does not recur by accident; this is a merge '
+                      f'splice. Passage begins: {head!r}')
+        print('If a rule genuinely quotes another at this length, name it in '
+              'DUP_ALLOWED with its reason — an allowance nobody has to justify is '
+              'where the next splice hides.')
+        return 1
+    print(f'revision stamp: {rf} (both documents agree, one stamp each, no spliced '
+          f'passage over {DUP_WINDOW} characters)')
     code = ids_in_code()
 
     only_full = sorted(full - digest)

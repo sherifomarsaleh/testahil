@@ -1,0 +1,53 @@
+[ Sinai Cement Company
+S.A.E
+| Statement of Cash Flow
+For The Financial Period From 1 January 2023 Till 31 December 2023
+| Egyption Pounds
+. Nee 34/42/2023 31/12/2022
+L. - Net(losses) before tax and extraordinary items (110,108,976) (328,549,809)
+- Depreciation 4 87,210,904 90,609,825
+{ - Amortization 19,023 11,152
+{ - Provisions other than deprecation 4,910,710 29,247,942
+ae © Impairment of Debtors & Notes Receivable 0 (3,367,972)
+| - Finance expense 275,591,963 183,953,232
+ms Foreign Exchange gains Profit (losses) 38,044,367 43,333,798
+- > Capital gains profit (losses) 210 (187,727)
+- Deferred tax 7,472,636 8,748,840
+~~ Interest income (6,973,315) 13,085,088
+f Profit from operations before changes in working capital 296,167,522 36,884,368
+L
+- Change in inventories 2,288,723 (554,732,917)
+| - Change in debtors & notes receivable (277,788,062) (147,991,299)
+- Change in due from affiliated companies (3,919,904) (4,402,755)
+- Changein sundry debtors 202,091,810 (73,386,553)
+f - Change in other debit accounts (266,656,552) 4,101,272
+© ~ Change in provision (14,480,876) (694,941)
+_. > Change in suppliers,creditors and notes payable (135,891,045) 364,282,988
+- Change in other credit accounts 3,812,713 186,562,890
+- Change in deferred tax liabilities (7,472,636) (8,748,839)
+p> - Adjustments for prior year on retained earnings - (30,134,496)
+| Net cash generated from operating activities (201,848,306) (228,260,283)
+: CASH FLOWS FROM INVESTING ACTIVITIES:
+p> - Payment from capital increase - 650,074,240
+- Payment for purchase of fixed assets (43,041,892) (62,826,341)
+~~ Proceeds from sales of fixed assets 5,277 2,336,322
+f - Payment to construction works in progress (77,785,335) 1,851,474
+\. - Proceeds from interest income 6,973,315 (13,085,088)
+Net cash resulted from (used in) investing activities 113,848,635) 578,350,607
+CASH FLOWS FROM FINANCING ACTIVITIES:
+- Proceeds from (Payment) Bank facilities 90,298,534 (1,045,692,325)
+- Proceeds from Long term loans (32,723,879) 203,619,394
+- Proceeds from Loans from affiliated Companies 796,543,178 750,000,000
+\. - Payment of finance expenses (275,591,963) (183,953,232)
+Net cash generated (used) in financing activities 578,525,870 (276,026,163)
+{ Net increase (decrease) in cash during the period 263,363,265 74,064,161
+Cash & cash equivalent at the beginning of the period 124,700,709 93,970,346
+i = Foreign Exchange Gains Profit (losses) (38,044,367) (43,333,798)
+| Cash & cash equivalent at the end of the period 13 350,019,607 124,700,709
+fEBAT
+| Jo b KO \
+| esl fc(3/s9" We\ \
+At s o? ah
+bau, a;
+l WI z
+«=

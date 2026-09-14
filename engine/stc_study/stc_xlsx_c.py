@@ -1,17 +1,63 @@
-"""Part C: Valuation Bridge · Relative & Normalized · Summary · Fundamental Valuation ·
+"""Part C: SOTP Bridge · Relative & Normalized · Summary · Fundamental Valuation ·
 Summary Financials · Monte Carlo · Sensitivity · Per-Share & Ratios · Peer & Sector · ordering."""
 import json
 from openpyxl import load_workbook
 from openpyxl.styles import Font, PatternFill
 from openpyxl.utils import get_column_letter
+import os
 
-FN = 'STC_Valuation_Model_09072026_public.xlsx'
-wb = load_workbook(FN)
-D = json.load(open('study_numbers.json'))
-A = json.load(open('_asm_rows.json')); AX = json.load(open('_asm_extra.json'))
-SR = json.load(open('_seg_rows.json')); IS = json.load(open('_is_rows.json'))
-BSJ = json.load(open('_bs_rows.json')); CFJ = json.load(open('_cf_rows.json'))
-DCJ = json.load(open('_dcf_rows.json'))
+HERE = os.path.dirname(os.path.abspath(__file__))
+# PATHS ARE ABSOLUTE AGAINST THIS FILE'S OWN DIRECTORY. They were relative to the
+# working directory, so running the build from the repository root — which is how
+# every gate and the CI runner invoke things — read no inputs and scattered outputs.
+# A path relative to cwd is a path that depends on who ran it.
+
+
+FN = 'STC_Valuation_Model_05092026_public.xlsx'
+wb = load_workbook(os.path.join(HERE, FN))
+D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
+A = json.load(open(os.path.join(HERE, '_asm_rows.json'))); AX = json.load(open(os.path.join(HERE, '_asm_extra.json')))
+# THE ROW NUMBERS BELOW WERE RE-POINTED ONCE, BY HAND, AFTER ONE INSERTED ROW ON THE
+# ASSUMPTIONS SHEET SHIFTED EVERY ANCHOR AND THIS SHEET WENT ON READING THE OLD POSITIONS —
+# silently, because every formula still recalculated. AR is the map by NAME, and any new
+# reference on this sheet should go through it rather than through a literal.
+AR = AX['ANCHOR_ROWS']
+
+
+def an(label):
+    return 'Assumptions!$B$%d' % AR[label]
+
+
+# SHORT NAMES FOR THE ANCHORS THIS SHEET USES. Every one resolves through AR, so
+# a row inserted on Assumptions moves them all; and they are constants rather than
+# inline calls because an f-string cannot nest the same quote its label contains.
+A_EVX = an("EV/EBITDA — the company's own trailing multiple, three year ends")
+A_ASSOC = an('Investments in associates and joint ventures')
+A_LISTED = an('Listed equity investment at its disclosed fair value')
+A_FUNDS = an('Investment funds and unlisted equity investments, at fair value')
+A_NETDEBT = an('Net debt')
+A_NCI = an('Non-controlling interests, at their share of equity value')
+A_FUNDS = an('Investment funds and unlisted equity investments, at fair value')
+A_NCISHARE = an('Minority share of equity value (proportional)')
+A_SHARES = an('Shares outstanding (mn)')
+A_SPOT = an('Spot price (SAR/share)')
+A_NP26 = an('FY26E net profit for the relative cross-check')
+A_NORMPAT = an('Normalized PAT (ex one-offs)')
+A_NORMPE = an('Justified through-cycle P/E')
+A_KE = an('Cost of equity')
+A_KDAT = an('After-tax Kd')
+A_WD = an('Debt weight')
+A_WACC = an('WACC')
+A_TG = an('Terminal growth — DERIVED, terminal inflation + stated real growth')
+A_TGDIV = an('DDM terminal dividend growth')
+A_RF = an('Risk-free rate, normalised by the sovereign default spread')
+A_ERP = an('Equity risk premium (market basis, central)')
+A_VOL = an('Forward volatility over three months (annualised)')
+A_LEAN = an('Momentum lean applied over three months')
+A_TAX = an('Effective zakat rate ON EBIT (used for after-tax operating profit)')
+SR = json.load(open(os.path.join(HERE, '_seg_rows.json'))); IS = json.load(open(os.path.join(HERE, '_is_rows.json')))
+BSJ = json.load(open(os.path.join(HERE, '_bs_rows.json'))); CFJ = json.load(open(os.path.join(HERE, '_cf_rows.json')))
+DCJ = json.load(open(os.path.join(HERE, '_dcf_rows.json')))
 BS = BSJ['BS']; CF = CFJ['CF']; DC = DCJ['DC']
 BLUE = Font(color='0000FF'); GREEN = Font(color='008000'); BLACK = Font(color='000000')
 TITLE = Font(bold=True, size=13, color='F6F1E6'); SUB = Font(size=9, color='6E7B77')
@@ -34,29 +80,58 @@ def put(ws, ad, v, font=BLACK, fmt=NUM0, bold=False, fill=None):
     if fmt: c.number_format = fmt
     if fill: c.fill = fill
 
-# ================= Valuation Bridge (primary-lens sheet) =====================
-ws = sheet('Valuation Bridge')
+# ================= SOTP Bridge (primary-lens sheet) =====================
+ws = sheet('SOTP Bridge')
 title(ws, 'Valuation bridge — FCFF DCF (primary) + the dividend-policy DDM',
       'Core-operations EV from the DCF sheet; stakes marked separately; DDM = the locked SAR 0.55/quarter policy. Links to DCF / Assumptions.', 7)
 r = 5
 rows = [
  ('Component', 'Basis', 'Value (SAR mn)', True),
  ('Core operations enterprise value', 'FCFF DCF (§1.1): Σ PV FCFF + PV terminal', f"=DCF!B{DCJ['EVR']}", False),
- ('  of which terminal value (device A-7)', '% of core EV', f"=DCF!B{DCJ['TVP']}", False),
- ('+ Investments in associates & JVs', '43.06% DIIC/TAWAL at carrying value', "=Assumptions!B19", False),
- ('+ Telefónica 9.97%', 'Market mark: 561mn sh × €3.50 × 4.40', "=Assumptions!B20", False),
- ('− Net debt (IR basis, Q1-26)', 'Total debt 22,475 − core cash 15,412', "=-Assumptions!B21", False),
- ('− Non-controlling interests', 'Book, 31-Mar-26', "=-Assumptions!B22", False),
- ('Equity value', '', f"=C6+Assumptions!B19+Assumptions!B20-Assumptions!B21-Assumptions!B22", True),
- ('DCF fair value per share (SAR)', '', '=C12/Assumptions!B6', True),
- ('Upside / (downside) vs spot', '', '=C13/Assumptions!B5-1', True),
+ ('  of which terminal value', '% of core enterprise value', f"=DCF!B{DCJ['TVP']}", False),
+ ('+ Investments in associates & JVs', '43.06% DIIC/TAWAL at carrying value', f"={A_ASSOC}", False),
+ ('+ Telefónica 9.97%', 'Market mark on the disclosed stake', f"={A_LISTED}", False),
+ # THIS ROW WAS PRINTED NOWHERE AND THE TOTAL BELOW ADDED IT NOWHERE, while the DCF sheet's
+ # own bridge DID add it — so one workbook computed two different values per share from one
+ # model, 190,447 on the DCF sheet and 185,283 here, SAR 1.03 apart. The delivered document
+ # printed the same short bridge. A reader following the printed rows could not reach the
+ # printed answer, which is the one thing a waterfall must do.
+ ('+ Investment funds and unlisted equity investments', 'At fair value',
+  f"={A_FUNDS}", False),
+ # TWO LABELS NAMING A SUPERSEDED QUARTER on figures taken from the reviewed 30 June 2026
+ # sheet, and the minority is not book at all — it is its share of value, with book
+ # published beside it as the basis NOT adopted.
+ ('− Net debt', 'Total borrowings less cash, on the 30 June 2026 reviewed sheet',
+  f"=-{A_NETDEBT}", False),
+ ('− Non-controlling interests', 'At the minority\u2019s share of equity value, not at book',
+  f"=-{A_NCI}", False),
+ ('Equity value', '', f"=C6+{A_ASSOC}+{A_LISTED}+{A_FUNDS}-{A_NETDEBT}-{A_NCI}", True),
+ # THESE TWO REFERENCED C12 AND C13 BY POSITION and broke the moment a row was inserted
+ # above them: the per-share line started dividing the MINORITY by the share count. The
+ # map below is built from the list's own order before a cell is written, so a row added
+ # anywhere carries every reference with it.
+ ('DCF fair value per share (SAR)', '', '={EQ}/%s' % A_SHARES, True),
+ ('Upside / (downside) vs spot', '', '={PS}/%s-1' % A_SPOT, True),
 ]
+BR = {a.strip(): 5 + i for i, (a, _b, _c, _bold) in enumerate(rows)}
+_SUB = {'EQ': 'C%d' % BR['Equity value'],
+        'PS': 'C%d' % BR['DCF fair value per share (SAR)']}
+rows = [(a, b, (c.format(**_SUB) if isinstance(c, str) and '{' in c else c), bold)
+        for a, b, c, bold in rows]
+# THE BRIDGE'S ROWS ARE CAPTURED BY NAME AS THEY ARE WRITTEN. They were referenced
+# positionally from the Summary sheet, so adding the investment-funds row above moved the
+# per-share line and the Summary silently started reading the EQUITY VALUE instead —
+# 190,447 where it wanted 38.14. That is the same defect the Assumptions map already had,
+# in a second place: a hardcoded row number is a reference that breaks the moment anybody
+# inserts a line, and it breaks silently because the cell it lands on still holds a number.
+assert BR['Component'] == r, 'the row map must start where the table does'
 for a, b, c, bold in rows:
     put(ws, f'A{r}', a, BLACK, None, bold=bold)
     put(ws, f'B{r}', b, SUB if b else BLACK, None)
     if c: put(ws, f'C{r}', c,
               GREEN if isinstance(c, str) and ('DCF!' in c or 'Assumptions!' in c) else BLACK,
-              PCT if r in (7, 14) else (PX if r == 13 else NUM0), bold=bold)
+              PCT if r in (BR['of which terminal value'], BR['Upside / (downside) vs spot'])
+              else (PX if r == BR['DCF fair value per share (SAR)'] else NUM0), bold=bold)
     r += 1
 ws.column_dimensions['B'].width = 52; ws.column_dimensions['C'].width = 16
 r += 1
@@ -67,22 +142,28 @@ for j, c in enumerate(['C','D','E','F','G']):
 DPS_L = r; r += 1
 put(ws, f'A{r}', 'PV of DPS @ Ke', BLACK, None)
 for j, c in enumerate(['C','D','E','F','G']):
-    put(ws, f'{c}{r}', f"={c}{DPS_L}/(1+Assumptions!$B$12)^{j+1}", BLACK, PX)
+    put(ws, f'{c}{r}', f"={c}{DPS_L}/(1+{A_KE})^{j+1}", BLACK, PX)
 PVD_L = r; r += 1
 put(ws, f'A{r}', 'Σ PV of explicit DPS (FY26–30E)'); put(ws, f'C{r}', f"=SUM(C{PVD_L}:G{PVD_L})", BLACK, PX); SPV_D = r; r += 1
 put(ws, f'A{r}', 'Terminal value = DPS30 × (1+g) / (Ke − g)')
-put(ws, f'C{r}', f"=G{DPS_L}*(1+Assumptions!$B$25)/(Assumptions!$B$12-Assumptions!$B$25)", BLACK, PX); TV_D = r; r += 1
-put(ws, f'A{r}', 'PV of terminal value'); put(ws, f'C{r}', f"=C{TV_D}/(1+Assumptions!$B$12)^5", BLACK, PX); PVT_D = r; r += 1
+put(ws, f'C{r}', f"=G{DPS_L}*(1+{A_TGDIV})/({A_KE}-{A_TGDIV})", BLACK, PX); TV_D = r; r += 1
+put(ws, f'A{r}', 'PV of terminal value'); put(ws, f'C{r}', f"=C{TV_D}/(1+{A_KE})^5", BLACK, PX); PVT_D = r; r += 1
 put(ws, f'A{r}', 'DDM fair value per share (SAR)', BLACK, None, True)
 put(ws, f'C{r}', f"=C{SPV_D}+C{PVT_D}", BLACK, PX, True); DDM_PS = r; r += 1
-put(ws, f'A{r}', '  terminal as % of DDM value (device A-7)'); put(ws, f'C{r}', f"=C{PVT_D}/C{DDM_PS}", BLACK, PCT); r += 2
+put(ws, f'A{r}', '  terminal as a share of the dividend-model value'); put(ws, f'C{r}', f"=C{PVT_D}/C{DDM_PS}", BLACK, PCT); r += 2
+# EVERY FIGURE IN THIS NOTE WAS TYPED AND MOST HAD GONE STALE: a cost of capital of 7.6%
+# against the schedule's 8.13%, a dividend cover quoted at the GUIDED capex band the model
+# no longer uses, and a core enterprise value that is not the one the sheet above computes.
+# A note beside a live model is read as the model speaking.
 put(ws, f'A{r}',
-    'Market-implied read: at spot, the market pays ≈ core EV of SAR 209bn for operations that produce ~SAR 10–11bn of '
-    'model FCFF — an implied core FCFF yield of ~5% against a 7.6% WACC, i.e. the market already prices a large share of '
-    'the terminal growth. The regular dividend (SAR 2.20 ≈ 5.0% yield) is ~0.9–1.0× covered by model FY26E FCF at the '
-    'guided capex band — the balance sheet (SAR 15.4bn core cash) carries the difference; §1.7 of the study sensitizes '
-    'this in real units.', SUB, None)
-json.dump(dict(DDM_PS=DDM_PS), open('_vb_rows.json', 'w'))
+    'What the market is paying, read off this sheet: at the spot price the market values '
+    'the whole equity above what these lines add to, and the difference is the disagreement '
+    'section 4 of the study takes apart. The regular dividend is covered %.2f to %.2f times '
+    'by first-year model free cash flow across the range of capital intensity this company '
+    'own three filed years actually ran — covered throughout that range, so the question is '
+    'whether the data-centre build takes intensity above anything it has yet run.'
+    % (D['cover'][-1]['cover'], D['cover'][0]['cover']), SUB, None)
+json.dump(dict(DDM_PS=DDM_PS), open(os.path.join(HERE, '_vb_rows.json'), 'w'))
 
 # ================= Relative & Normalized =====================================
 ws = sheet('Relative & Normalized')
@@ -90,49 +171,74 @@ title(ws, 'Relative & normalized-earnings lenses', 'Links to Assumptions, DCF an
 r = 5
 put(ws, f'A{r}', 'Lens', BLACK, None, True, FILL_H); put(ws, f'B{r}', 'Workings', BLACK, None, True, FILL_H); put(ws, f'C{r}', 'SAR/share', BLACK, None, True, FILL_H); r += 1
 put(ws, f'A{r}', 'Relative EV/EBITDA'); put(ws, f'B{r}', 'FY26E EBITDA × justified multiple + stakes − net debt − NCI, /sh', SUB, None)
-put(ws, f'C{r}', f"=(DCF!B{DC['EBITDA']}*Assumptions!B27+Assumptions!B19+Assumptions!B20-Assumptions!B21-Assumptions!B22)/Assumptions!B6", GREEN, PX); RELR = r; r += 1
-put(ws, f'A{r}', '  implied P/E cross-check at that value'); put(ws, f'C{r}', f"=C{RELR}*Assumptions!B6/Assumptions!B28", BLACK, MULT); r += 1
+put(ws, f'C{r}', f"=(DCF!B{DC['EBITDA']}*{A_EVX}+{A_ASSOC}+{A_LISTED}+{A_FUNDS}"
+                 f"-{A_NETDEBT})*(1-{A_NCISHARE})/{A_SHARES}", GREEN, PX)
+RELR = r; r += 1
+put(ws, f'A{r}', '  implied P/E cross-check at that value'); put(ws, f'C{r}', f"=C{RELR}*{A_SHARES}/{A_NP26}", BLACK, MULT); r += 1
 put(ws, f'A{r}', '  IS-build FY26E EPS, for reference'); put(ws, f'C{r}', f"='Income Statement'!E{IS['EPS (SAR)']}", GREEN, PX); r += 1
 put(ws, f'A{r}', 'Normalized earnings power'); put(ws, f'B{r}', 'Normalized PAT (ex one-offs) × through-cycle P/E, /sh', SUB, None)
-put(ws, f'C{r}', '=Assumptions!B29*Assumptions!B30/Assumptions!B6', GREEN, PX); NORMR = r; r += 1
-put(ws, f'A{r}', '  normalized EPS (SAR)'); put(ws, f'C{r}', '=Assumptions!B29/Assumptions!B6', GREEN, PX); r += 1
-put(ws, f'A{r+1}', 'P/B cross-check: spot / FY25 BVPS'); put(ws, f'C{r+1}', f"=Assumptions!B5/('Balance Sheet'!D{BS['Equity attributable to shareholders']}/Assumptions!B6)", BLACK, MULT)
+put(ws, f'C{r}', f'={A_NORMPAT}*{A_NORMPE}/{A_SHARES}', GREEN, PX); NORMR = r; r += 1
+put(ws, f'A{r}', '  normalized EPS (SAR)'); put(ws, f'C{r}', f'={A_NORMPAT}/{A_SHARES}', GREEN, PX); r += 1
+put(ws, f'A{r+1}', 'P/B cross-check: spot / FY25 BVPS'); put(ws, f'C{r+1}', f"={A_SPOT}/('Balance Sheet'!D{BS['Equity attributable to shareholders']}/{A_SHARES})", BLACK, MULT)
 put(ws, f'A{r+2}', 'Dividend yield — two framings: regular declared 2.20/sh = 5.0%; cash paid during 2025 (incl. the SAR 2.00 special for FY24) 4.20/sh = 9.6%.', SUB, None)
 ws.column_dimensions['B'].width = 52
-json.dump(dict(RELR=RELR, NORMR=NORMR), open('_rn_rows.json', 'w'))
+json.dump(dict(RELR=RELR, NORMR=NORMR), open(os.path.join(HERE, '_rn_rows.json'), 'w'))
 
 # ================= Summary ===================================================
 ws = sheet('Summary')
 title(ws, 'Valuation summary — Saudi Telecom Company (Tadawul: 7010)',
-      'Four-lens fair value vs spot. Base links live; bear/bull are scenario outputs (study §1.5).', 7)
+      'The class primary is the central; the other lenses sit beside it as cross-checks and are never '
+      'weighted into it. Base links live; bear and bull are the same model on one driver’s own filed '
+      'range (study §1.5).', 7)
 L = D['lenses']
+LR = D['lens_record']
 r = 5
-for j, h in enumerate(['', 'Bear', 'Base', 'Bull', 'Weight']):
+# ONE CLASS PRIMARY IS THE CENTRAL AND THE OTHERS ARE CROSS-CHECKS. This table used to carry
+# a WEIGHT column and a "Weighted central" row that summed four lenses at 35/25/20/20 — the
+# construction [R-LENS-03] retired outright. Two of those four are not permitted cross-checks
+# for this class at all and between them carried 45% of the answer. What a reader gets now is
+# each lens's own range, the primary marked as the central, and the ENVELOPE as the range of
+# the present-value reads — never an average, and never a spread invented around one.
+for j, h in enumerate(['', 'Bear', 'Base', 'Bull', 'Role']):
     put(ws, f'{get_column_letter(1+j)}{r}', h, BLACK, None, True, FILL_H)
 r += 1
+_PRIM = LR['primary']['kind']
 lens_rows = [
- ('FCFF DCF (primary)', L['dcf']['bear'], "='Valuation Bridge'!C13", L['dcf']['bull'], '=Assumptions!B32'),
- ('Dividend discount (policy lens)', L['ddm']['bear'], "='Valuation Bridge'!C22", L['ddm']['bull'], '=Assumptions!B33'),
- ('Relative (EV/EBITDA)', L['relative']['bear'], f"='Relative & Normalized'!C{RELR}", L['relative']['bull'], '=Assumptions!B34'),
- ('Normalized earnings', L['normalized']['bear'], f"='Relative & Normalized'!C{NORMR}", L['normalized']['bull'], '=Assumptions!B35'),
+ ('dcf', 'Discounted cash flow', "='SOTP Bridge'!C%d" % BR['DCF fair value per share (SAR)']),
+ ('ddm', 'Dividend discount', "='SOTP Bridge'!C%d" % DDM_PS),
+ ('relative', 'Enterprise multiple on own history', f"='Relative & Normalized'!C{RELR}"),
+ ('normalized', 'Normalised earnings power', f"='Relative & Normalized'!C{NORMR}"),
 ]
 first = r
-for nm, be, ba, bu, w in lens_rows:
+for key, nm, ba in lens_rows:
+    role = 'THE CENTRAL' if key == _PRIM else 'cross-check'
     put(ws, f'A{r}', nm)
-    put(ws, f'B{r}', round(be, 1), BLUE, PX)
+    put(ws, f'B{r}', round(L[key]['bear'], 1), BLUE, PX)
     put(ws, f'C{r}', ba, GREEN, PX)
-    put(ws, f'D{r}', round(bu, 1), BLUE, PX)
-    put(ws, f'E{r}', w, GREEN, PCT)
+    put(ws, f'D{r}', round(L[key]['bull'], 1), BLUE, PX)
+    put(ws, f'E{r}', role, BLACK, None, bold=(role == 'THE CENTRAL'))
     r += 1
-put(ws, f'A{r}', 'Weighted central', BLACK, None, True)
-for col in 'BCD':
-    put(ws, f'{col}{r}', f"=SUMPRODUCT({col}{first}:{col}{r-1},$E${first}:$E${r-1})", BLACK, PX, True)
-WC = r; r += 2
-put(ws, f'A{r}', 'Spot price (SAR)'); put(ws, f'B{r}', '=Assumptions!B5', GREEN, PX); r += 1
-put(ws, f'A{r}', 'Upside to central base'); put(ws, f'B{r}', f'=C{WC}/Assumptions!B5-1', BLACK, PCT); r += 2
-put(ws, f'A{r}', 'Read: modestly undervalued — the DCF and relative lenses sit above spot, the dividend and normalized lenses close to it; '
-                 'the swing is capex intensity vs the locked SAR 2.20 payout, the beta/discount-rate question, and the KSA mobile competitive picture.', SUB, None)
-json.dump(dict(first=first, WC=WC), open('_sum_rows.json', 'w'))
+put(ws, f'A{r}', 'Book value per share — a DISCLOSED FLOOR, never weighted')
+put(ws, f'C{r}', round(L['book_value'], 2), BLUE, PX)
+put(ws, f'E{r}', 'floor', BLACK, None); r += 2
+put(ws, f'A{r}', 'THE CENTRAL — the class primary, not an average of the rows above',
+    BLACK, None, True)
+put(ws, f'C{r}', f"=C{first}", BLACK, PX, True)
+WC = r; r += 1
+put(ws, f'A{r}', 'Published range — the span of the present-value reads', BLACK, None, True)
+put(ws, f'B{r}', round(LR['envelope']['low'], 2), BLACK, PX, True)
+put(ws, f'D{r}', round(LR['envelope']['high'], 2), BLACK, PX, True)
+r += 2
+put(ws, f'A{r}', 'Spot price (SAR)'); put(ws, f'B{r}', an('Spot price (SAR/share)'), GREEN, PX); r += 1
+put(ws, f'A{r}', 'Central against spot')
+put(ws, f'B{r}', f"=C{WC}/{A_SPOT}-1", BLACK, PCT); r += 2
+put(ws, f'A{r}', 'The retired four-lens blend at typed weights is recorded on Assumptions so '
+                 'nothing here can quietly rebuild it. A number produced by averaging '
+                 'several methods is not more robust than the best of them: it is a new '
+                 'method with free parameters nobody tested, and it imports every weakness '
+                 'of the weakest lens at whatever weight somebody typed.', SUB, None)
+r += 1
+json.dump(dict(first=first, WC=WC), open(os.path.join(HERE, '_sum_rows.json'), 'w'))
 
 # ================= Fundamental Valuation =====================================
 ws = sheet('Fundamental Valuation')
@@ -141,12 +247,18 @@ r = 5
 for j, h in enumerate(['Lens', 'Bear', 'Base', 'Bull']):
     put(ws, f'{get_column_letter(1+j)}{r}', h, BLACK, None, True, FILL_H)
 r += 1
-for i, nm in enumerate(['FCFF DCF (primary)', 'Dividend discount (policy lens)', 'Relative (EV/EBITDA)', 'Normalized earnings', 'Weighted central']):
+# THE LAST ROW WAS LABELLED "Weighted central" AND POINTED AT THE BOOK-VALUE FLOOR. Two
+# defects in one cell: a retired label naming a construction this house does not build, on
+# a row that was not even what the label claimed. The Summary rows it mirrors are the four
+# lenses and then the disclosed floor, so it is named for what it is.
+for i, nm in enumerate(['Cash-flow model (the class primary)', 'Dividend discount',
+                        'Enterprise multiple on own history', 'Normalised earnings power',
+                        'Book value — a disclosed floor, never weighted into an answer']):
     put(ws, f'A{r}', nm, BLACK, None, i == 4)
     for j, col in enumerate('BCD'):
         put(ws, f'{col}{r}', f'=Summary!{col}{first + i}', GREEN, PX, i == 4)
     r += 1
-put(ws, f'A{r}', 'Spot'); put(ws, f'B{r}', '=Assumptions!B5', GREEN, PX)
+put(ws, f'A{r}', 'Spot'); put(ws, f'B{r}', f'={A_SPOT}', GREEN, PX)
 
 # ================= Summary Financials ========================================
 ws = sheet('Summary Financials')
@@ -178,11 +290,24 @@ for col, v in zip('BCD', (12628.0, 7959.0, 6488.0)):
 
 # ================= Monte Carlo ===============================================
 ws = sheet('Monte Carlo')
-title(ws, 'Monte Carlo — engine outputs (YZ-HAR v2)',
-      '50,000 paths · 16 factors · seed 42 · computed by the Testahil MC engine (values, not a sheet simulation). Zero drift — the Step 0-passed configuration for this name.', 8)
+# "ZERO DRIFT" WAS FALSE OF THE DELIVERED CONE. This caption was typed when the engine ran
+# carry-centred everywhere; the committed record for this name carries a LIVE momentum lean
+# with a positive alpha at both horizons, so the sheet told a reader the opposite of what
+# produced the numbers beside it. The path count, the seed and the engine's own name were
+# typed too, and the version named was one behind the engine that struck the cone.
+_ENG = D['engine']
+_DRIFT = ('a live momentum lean, %s, worth %.2f%% at one month and %.2f%% at three'
+          % ({'up': 'upward', 'down': 'downward'}.get(_ENG['call'], _ENG['call']),
+             _ENG['horizons']['1M']['signal_alpha'] * 100,
+             _ENG['horizons']['3M']['signal_alpha'] * 100)) if _ENG['signal_active'] else \
+         'no lean either way — the cone is centred on carry alone'
+title(ws, 'Monte Carlo — the price cone as the engine struck it',
+      '%s paths, seed %d, computed by the engine itself rather than simulated in this sheet. '
+      'The distribution carries %s.' % ('{:,}'.format(_ENG['n_paths']), _ENG['seed'], _DRIFT), 8)
 pr = D['mc']['prob_read']; q20, q60 = D['mc']['q20'], D['mc']['q60']
 r = 5
-put(ws, f'A{r}', 'The probability read (T+60)', BLACK, None, True, FILL_G); r += 1
+put(ws, f'A{r}', 'The probability read (%s)' % D['engine']['horizons']['3M']['label'],
+    BLACK, None, True, FILL_G); r += 1
 prr = [
  ('P(price above spot)', pr['p_above'], PCT),
  ('P(+10%) vs P(−10%) — odds', f"{pr['p_up10']*100:.0f}% vs {pr['p_dn10']*100:.0f}% · {pr['odds']:.1f}:1", '@'),
@@ -197,20 +322,21 @@ put(ws, f'A{r}', 'Percentile map (SAR/share)', BLACK, None, True, FILL_H); r += 
 for j, h in enumerate(['Horizon', 'p5', 'p25', 'p50', 'p75', 'p95']):
     put(ws, f'{get_column_letter(1+j)}{r}', h, BLACK, None, True, FILL_H)
 r += 1
-for tag, q in [('T+20 sessions', q20), ('T+60 sessions', q60)]:
+for tag, q in [(D['engine']['horizons']['1M']['label'], q20),
+               (D['engine']['horizons']['3M']['label'], q60)]:
     put(ws, f'A{r}', tag)
     for j, p in enumerate(['5', '25', '50', '75', '95']):
         put(ws, f'{get_column_letter(2+j)}{r}', round(q[p], 1), BLACK, PX)
     r += 1
 r += 1
 put(ws, f'A{r}', 'Engine inputs (from Assumptions)', BLACK, None, True, FILL_H); r += 1
-for nm, ref in [('Anchor volatility (HAR, annualized)', '=Assumptions!B37'),
-                ('Secular drift (daily) — zero-drift class', '=Assumptions!B38'),
-                ('Net factor drift / quarter', '=Assumptions!B39')]:
+for nm, ref in [('Forward volatility over three months (annualised)', '=' + A_VOL),
+                ('Momentum lean applied over three months', '=' + A_LEAN)]:
     put(ws, f'A{r}', nm); put(ws, f'B{r}', ref, GREEN, PCT); r += 1
 r += 1
 put(ws, f'A{r}', 'Level-touch ladder (probability of touching by horizon)', BLACK, None, True, FILL_H); r += 1
-for j, h in enumerate(['Level (SAR)', 'T+20', 'T+60']):
+for j, h in enumerate(['Level (SAR)', D['engine']['horizons']['1M']['label'],
+                       D['engine']['horizons']['3M']['label']]):
     put(ws, f'{get_column_letter(1+j)}{r}', h, BLACK, None, True, FILL_H)
 r += 1
 for L_, tv in D['mc']['touch'].items():
@@ -234,29 +360,51 @@ for i, w in enumerate(gw):
         col = get_column_letter(2+j)
         f = (f"=(SUMPRODUCT(DCF!$B${FR}:$F${FR},1/(1+$A{rr})^{{1,2,3,4,5}})"
              f"+DCF!$F${FR}*(1+{col}$5)/($A{rr}-{col}$5)/(1+$A{rr})^5"
-             f"+Assumptions!$B$19+Assumptions!$B$20-Assumptions!$B$21-Assumptions!$B$22)/Assumptions!$B$6")
+             f"+{A_ASSOC}+{A_LISTED}-{A_NETDEBT}-{A_NCI})/{A_SHARES}")
         put(ws, f'{col}{rr}', f, BLACK, PX)
-put(ws, 'A12', 'The WACC axis centres on the sourced bottom-up build (rf 5.5% + β 0.48 × ERP 5.01%, blended with after-tax Kd 4.5%); '
-               'the CDS-ERP alternative WACC (7.90%) sits between rows 3 and 4. At β = 1.0 the WACC is 9.90% — off this grid deliberately: '
-               'see the beta grid below.', SUB, None)
-put(ws, 'A14', 'Beta sensitivity (regressed β = 0.48 on a 9-week window — grid mandatory)', BLACK, None, True, FILL_H)
-put(ws, 'A15', 'beta', BLACK, None, True); put(ws, 'B15', 'Ke (rating ERP)', BLACK, None, True); put(ws, 'C15', 'WACC', BLACK, None, True); put(ws, 'D15', 'DCF value/sh', BLACK, None, True)
-for i, b in enumerate([0.30, 0.48, 0.70, 0.85, 1.00, 1.20]):
+# THE GRID'S OWN RUNGS WERE TYPED AND THE ADOPTED BETA WAS NOT AMONG THEM. This block ran
+# [0.30, 0.48, 0.70, 0.85, 1.00, 1.20] and marked 0.48 "<- regressed base" — a beta the
+# model retired when the study moved to the sanctioned weekly regression, so the sheet
+# priced the answer at every beta EXCEPT the one it uses. The rungs, and which of them is
+# the adopted one, now come from the committed grid. The caption's four typed rates and the
+# column header naming the wrong premium basis went the same way: the formula reads the
+# central premium and the header said it read the alternative.
+_BG = D['sens']['beta_grid']
+_BG1 = [g for g in _BG if abs(g['beta'] - 1.0) < 1e-9][0]
+_WB = D['dcf']['wacc_build']
+put(ws, 'A12',
+    'The cost-of-capital axis centres on the sourced bottom-up build — a normalised risk-free rate of %.2f%% '
+    'plus a beta of %.4f times the %.2f%% premium this study names as central, blended with an after-tax cost '
+    'of debt of %.2f%% at a %.1f%% debt weight. On the alternative premium basis, published beside the central '
+    'one rather than chosen silently, the same build gives %.2f%%. At a beta of 1.00 the rate is %.2f%%, which '
+    'sits off this grid deliberately and is priced in the beta grid below.'
+    % (_WB['rf_star'] * 100, _WB['beta'], _WB['erp_market'] * 100, D['coc_record']['kd_aftertax'] * 100,
+       D['coc_record']['weight_debt'] * 100, D['dcf']['wacc_rating_basis'] * 100, _BG1['wacc'] * 100),
+    SUB, None)
+put(ws, 'A14',
+    'Beta sensitivity — the regression gives %.4f and the grid prices the answer either side of it'
+    % _WB['beta'], BLACK, None, True, FILL_H)
+put(ws, 'A15', 'beta', BLACK, None, True)
+put(ws, 'B15', 'Cost of equity (central premium basis)', BLACK, None, True)
+put(ws, 'C15', 'Cost of capital', BLACK, None, True)
+put(ws, 'D15', 'DCF value/sh', BLACK, None, True)
+for i, _g in enumerate(_BG):
+    b = _g['beta']
     rr = 16 + i
     put(ws, f'A{rr}', b, BLUE, '0.00')
-    put(ws, f'B{rr}', f"=Assumptions!$B$9+A{rr}*Assumptions!$B$11", BLACK, PCT)
-    put(ws, f'C{rr}', f"=(1-Assumptions!$B$15)*B{rr}+Assumptions!$B$15*Assumptions!$B$14", BLACK, PCT)
+    put(ws, f'B{rr}', f"={A_RF}+A{rr}*{A_ERP}", BLACK, PCT)
+    put(ws, f'C{rr}', f"=(1-{A_WD})*B{rr}+{A_WD}*{A_KDAT}", BLACK, PCT)
     put(ws, f'D{rr}', (f"=(SUMPRODUCT(DCF!$B${FR}:$F${FR},1/(1+C{rr})^{{1,2,3,4,5}})"
-                       f"+DCF!$F${FR}*(1+Assumptions!$B$17)/(C{rr}-Assumptions!$B$17)/(1+C{rr})^5"
-                       f"+Assumptions!$B$19+Assumptions!$B$20-Assumptions!$B$21-Assumptions!$B$22)/Assumptions!$B$6"), BLACK, PX)
-    if abs(b - 0.48) < 1e-9:
-        put(ws, f'E{rr}', '<- regressed base', SUB, None)
-    if abs(b - 1.00) < 1e-9:
-        put(ws, f'E{rr}', '<- house fallback had the regression failed', SUB, None)
+                       f"+DCF!$F${FR}*(1+{A_TG})/(C{rr}-{A_TG})/(1+C{rr})^5"
+                       f"+{A_ASSOC}+{A_LISTED}-{A_NETDEBT}-{A_NCI})/{A_SHARES}"), BLACK, PX)
+    if _g['adopted']:
+        put(ws, f'E{rr}', '<- the adopted regression beta', SUB, None)
+    elif abs(b - 1.00) < 1e-9:
+        put(ws, f'E{rr}', '<- the fallback this desk would have used had the regression not been usable', SUB, None)
 
 # ================= Per-Share & Ratios ========================================
 ws = sheet('Per-Share & Ratios')
-title(ws, 'Per-share & ratios — the standing dashboard (device A-5)', 'Links to statements / Assumptions.', 10)
+title(ws, 'Per-share & ratios', 'Every line links to the statements and the assumptions behind them.', 10)
 for j, h in enumerate([''] + YH + YF):
     put(ws, f'{get_column_letter(1+j)}4', h, BLACK, None, True, FILL_H)
 allc = ['B', 'C', 'D'] + FCOLS
@@ -270,7 +418,7 @@ def prow(r, label, fml, fmt=PX, cols=allc):
         if f is not None:
             put(ws, f'{col}{r}', f, BLACK, fmt)
     return r + 1
-r = prow(r, 'EPS (SAR)', lambda c: f"='Income Statement'!{c}{NPR}/Assumptions!$B$6")
+r = prow(r, 'EPS (SAR)', lambda c: f"='Income Statement'!{c}{NPR}/{A_SHARES}")
 DPS_hist = {'B': 1.60, 'C': 3.75, 'D': 2.20}
 put(ws, f'A{r}', 'DPS declared (SAR)')
 for col in 'BCD':
@@ -278,13 +426,13 @@ for col in 'BCD':
 for j, col in enumerate(FCOLS):
     put(ws, f'{col}{r}', f"=Assumptions!{get_column_letter(3+j)}{DPSR}", GREEN, PX)
 DPSL = r; r += 1
-r = prow(r, 'Book value / share (SAR)', lambda c: f"='Balance Sheet'!{c}{EQR}/Assumptions!$B$6")
-r = prow(r, 'P/E at spot (×)', lambda c: f"=Assumptions!$B$5/('Income Statement'!{c}{NPR}/Assumptions!$B$6)")
+r = prow(r, 'Book value / share (SAR)', lambda c: f"='Balance Sheet'!{c}{EQR}/{A_SHARES}")
+r = prow(r, 'P/E at spot (×)f', lambda c: f"={A_SPOT}/('Income Statement'!{c}{NPR}/{A_SHARES})")
 for col in allc: ws[f'{col}{r-1}'].number_format = MULT
-r = prow(r, 'P/B at spot (×)', lambda c: f"=Assumptions!$B$5/('Balance Sheet'!{c}{EQR}/Assumptions!$B$6)")
+r = prow(r, 'P/B at spot (×)f', lambda c: f"={A_SPOT}/('Balance Sheet'!{c}{EQR}/{A_SHARES})")
 for col in allc: ws[f'{col}{r-1}'].number_format = MULT
-r = prow(r, 'Dividend yield at spot (declared)', lambda c: f"={c}{DPSL}/Assumptions!$B$5", PCT)
-r = prow(r, 'Payout (of attributable NP)', lambda c: f"={c}{DPSL}*Assumptions!$B$6/'Income Statement'!{c}{NPR}", PCT)
+r = prow(r, 'Dividend yield at spot (declared)', lambda c: f"={c}{DPSL}/{A_SPOT}", PCT)
+r = prow(r, 'Payout (of attributable NP)f', lambda c: f"={c}{DPSL}*{A_SHARES}/'Income Statement'!{c}{NPR}", PCT)
 r = prow(r, 'EBITDA margin', lambda c: f"='Income Statement'!{c}{EBITDAR}/'Income Statement'!{c}{REVR}", PCT)
 r = prow(r, 'Net margin', lambda c: f"='Income Statement'!{c}{NPR}/'Income Statement'!{c}{REVR}", PCT)
 r = prow(r, 'ROAE (attributable)', lambda c: f"='Income Statement'!{c}{NPR}/'Balance Sheet'!{c}{EQR}", PCT)
@@ -293,7 +441,7 @@ for col in allc: ws[f'{col}{r-1}'].number_format = MULT
 r = prow(r, 'Capex intensity (% of revenue)', lambda c: (f"=-'Cash Flow'!{c}{CF['− Capex']}/'Income Statement'!{c}{REVR}" if c in FCOLS else None), PCT)
 for col, v in zip('BCD', (0.136, 0.157, 0.152)):
     put(ws, f'{col}{r-1}', v, BLUE, PCT)
-r = prow(r, 'FCF yield at spot (forecast)', lambda c: (f"='Cash Flow'!{c}{CFJ['FCFR']}/(Assumptions!$B$5*Assumptions!$B$6)" if c in FCOLS else None), PCT)
+r = prow(r, 'FCF yield at spot (forecast)', lambda c: (f"='Cash Flow'!{c}{CFJ['FCFR']}/({A_SPOT}*{A_SHARES})" if c in FCOLS else None), PCT)
 r = prow(r, 'Revenue YoY', lambda c: (f"='Income Statement'!{c}{REVR}/'Income Statement'!{chr(ord(c)-1)}{REVR}-1" if c != 'B' else None), PCT)
 r = prow(r, 'EPS YoY', lambda c: (f"=('Income Statement'!{c}{NPR}/'Income Statement'!{chr(ord(c)-1)}{NPR})-1" if c != 'B' else None), PCT)
 put(ws, f'A{r+1}', 'FY24 EPS/DPS carry the TAWAL disposal gain and the SAR 2.00 special dividend — the payout row prints >100% on the '
@@ -324,12 +472,11 @@ r += 1
 put(ws, f'A{r}', 'Sector: KSA mobile ≈ 57/27/16 stc/Mobily/Zain; Nov-2024 CST spectrum auction (stc: 600MHz + 3.8GHz); 10,800+ stc 5G sites, '
                  '63% populated coverage; FTTH 3.75mn; FWA one of the highest-adoption markets globally; center3–HUMAIN 1GW AI-DC ambition; '
                  'SilkLink Syria fibre corridor (SAR 3bn, Feb-2026). Peer P/E band 10.7–17.6×; stc premium tracks its share, balance sheet and yield.', SUB, None)
-put(ws, f'A{r+1}', 'Analyst context (not a model input): 17 analysts, 8 Buy / 9 Hold, average 12m TP SAR 47.9 (41.1–55.0), Jul-2026.', SUB, None)
 
 # ================= sheet order ===============================================
-order = ['READ FIRST', 'Summary', 'Fundamental Valuation', 'Assumptions', 'Valuation Bridge', 'Segments',
+order = ['READ FIRST', 'Summary', 'Fundamental Valuation', 'Assumptions', 'SOTP Bridge', 'Segments',
          'Relative & Normalized', 'DCF', 'Income Statement', 'Balance Sheet', 'Cash Flow',
          'Summary Financials', 'Monte Carlo', 'Sensitivity', 'Per-Share & Ratios', 'Peer & Sector']
 wb._sheets = [wb[n] for n in order]
-wb.save(FN)
+wb.save(os.path.join(HERE, FN))
 print('partC ok — sheets:', wb.sheetnames)

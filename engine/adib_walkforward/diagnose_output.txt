@@ -1,0 +1,44 @@
+=== THE SPLIT'S OWN CHECK (bank form) ===
+max |share_asreg - share_perfectmacro| over all origins: 0.000e+00
+PASS - the share driver is macro-invariant by construction
+
+=== MACRO / COMPANY SPLIT (MAE, all 45 cells per line) ===
+driver              as reg perf macro     macro%   company%
+fin_customers        0.326      0.185        43%        57%
+cust_deposits        0.315      0.173        45%        55%
+total_assets         0.359      0.177        51%        49%
+fin_income           0.527      0.378        28%        72%
+cost_funds           0.519      0.397        23%        77%
+net_funds            0.564      0.391        31%        69%
+net_fees             0.427      0.271        36%        64%
+other_nii            0.505      0.413        18%        82%
+admin                0.233      0.109        53%        47%
+other_op             0.512      0.414        19%        81%
+ecl                  0.734      0.700         5%        95%
+pbt                  0.630      0.397        37%        63%
+np                   0.670      0.517        23%        77%
+np_parent            0.677      0.523        23%        77%
+
+=== ERA SUB-SAMPLE: all 11 origins vs the 9 from FY2016 (reported, not selected) ===
+driver                   all origins      FY2016+ origins
+                    bias        MAE     bias        MAE
+fin_customers     -0.311      0.326   -0.219      0.237
+cust_deposits     -0.291      0.315   -0.257      0.288
+total_assets      -0.313      0.359   -0.266      0.325
+fin_income        -0.455      0.527   -0.370      0.462
+cost_funds        -0.467      0.519   -0.430      0.492
+net_funds         -0.446      0.564   -0.298      0.451
+net_fees          -0.185      0.427   -0.101      0.413
+other_nii         +0.051      0.505   +0.218      0.496
+admin             -0.043      0.233   +0.016      0.229
+other_op          -0.414      0.512   -0.342      0.378
+ecl               -0.186      0.734   -0.386      0.665
+pbt               -0.372      0.630   -0.269      0.564
+np                -0.547      0.670   -0.441      0.582
+np_parent         -0.550      0.677   -0.438      0.583
+
+=== SKILL ON THE FY2016+ SUB-SAMPLE ===
+np_parent       n=35  model 0.583  freeze 0.977  trend 0.588  vs freeze +40%  vs trend +1%
+pbt             n=30  model 0.587  freeze 0.903  trend 0.585  vs freeze +35%  vs trend -0%
+net_funds       n=35  model 0.451  freeze 0.746  trend 0.551  vs freeze +40%  vs trend +18%
+fin_customers   n=35  model 0.237  freeze 0.648  trend 0.201  vs freeze +63%  vs trend -18%

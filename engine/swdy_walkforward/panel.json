@@ -1,0 +1,4299 @@
+{
+ "_": "SWDY fundamental walk-forward panel. INTERNAL - never shown to a reader.",
+ "built": "2026-09-07",
+ "ticker": "SWDY",
+ "currency": "EGP",
+ "tiers": {
+  "A_AUDITED": "the company's own audited consolidated financial statements",
+  "A_IR": "the company's own earnings releases and investor sheets"
+ },
+ "years": {
+  "2009": {
+   "revenue": {
+    "value": 9290741956.0,
+    "line": "  Sales                                                12,902,020,387     9,290,741,956     3,690,469,927    3,225,943,8",
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "note": "comparative column of the FY2010 release"
+   },
+   "cogs": {
+    "value": -7747428129.0,
+    "line": "  COGS                                                (10,914,190,218)    (7,747,428,129)   (3,196,465,913) (2,737,620,2",
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "note": "comparative column of the FY2010 release"
+   },
+   "gross_profit": {
+    "value": 1543313827.0,
+    "line": "  Gross Profit                                         1,987,830,168       1,543,313,827      494,004,014     488,323,63",
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "note": "comparative column of the FY2010 release"
+   },
+   "sga": {
+    "value": -729780961.0,
+    "line": "  SG & A                                                (851,159,144)     (729,780,961)     (221,405,985)    (213,587,31",
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "note": "comparative column of the FY2010 release"
+   },
+   "other_op_inc": {
+    "value": 102630052.0,
+    "line": "  Other Operating Income                                 139,443,947       102,630,052       22,811,585        17,500,83",
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "note": "comparative column of the FY2010 release"
+   },
+   "other_op_exp": {
+    "value": -95369067.0,
+    "line": "  Other Operating Expenses                              (188,883,484)      (95,369,067)     (110,054,266)     (46,758,48",
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "note": "comparative column of the FY2010 release"
+   },
+   "ebitda": {
+    "value": 1012973452.0,
+    "line": "  EBITDA                                                1,366,317,365     1,012,973,452      261,327,345      316,936,21",
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "note": "comparative column of the FY2010 release"
+   },
+   "dna": {
+    "value": 192179601.0,
+    "line": "  Depreciation *                                         279,085,878       192,179,601       75,971,996        71,457,54",
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "note": "comparative column of the FY2010 release"
+   },
+   "fx": {
+    "value": -37260082.0,
+    "line": "  Fx Gain                                                (12,717,369)      (37,260,082)      (17,463,450)     (10,786,98",
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "note": "comparative column of the FY2010 release"
+   },
+   "ebit": {
+    "value": 806453505.0,
+    "line": "  EBIT                                                  1,071,257,118      806,453,505       166,596,630      231,660,05",
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "note": "comparative column of the FY2010 release"
+   },
+   "interest_exp": {
+    "value": -195310424.0,
+    "line": "  Interest Expense                                      (220,797,854)     (195,310,424)      (74,490,571)     (27,808,48",
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "note": "comparative column of the FY2010 release"
+   },
+   "interest_inc": {
+    "value": 53361814.0,
+    "line": "  Interest Income                                         57,319,589       53,361,814         17,869,051       16,650,97",
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "note": "comparative column of the FY2010 release"
+   },
+   "ebt": {
+    "value": 664504894.0,
+    "line": "  EBT                                                    907,778,853       664,504,894       109,975,109      220,502,53",
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "note": "comparative column of the FY2010 release"
+   },
+   "tax": {
+    "value": -33773257.0,
+    "line": "  Tax                                                    (91,142,132)      (33,773,257)      (20,131,912)     (29,806,51",
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "note": "comparative column of the FY2010 release"
+   },
+   "net_income": {
+    "value": 630731638.0,
+    "line": "  Net Income                                             816,636,721       630,731,638        89,843,198      190,696,01",
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "note": "comparative column of the FY2010 release"
+   },
+   "minority": {
+    "value": 2862968.0,
+    "line": "  Minority Interest                                      (21,107,572)       2,862,968         7,625,594         433,752",
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "tier": "A_IR",
+    "route": "text_layer",
+    "note": "comparative column of the FY2010 release"
+   }
+  },
+  "2010": {
+   "revenue": {
+    "value": 12902020387.0,
+    "line": "  Sales                                                12,902,020,387     9,290,741,956     3,690,469,927    3,225,943,881",
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "cogs": {
+    "value": -10914190218.0,
+    "line": "  COGS                                                (10,914,190,218)    (7,747,428,129)   (3,196,465,913) (2,737,620,251)",
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "gross_profit": {
+    "value": 1987830168.0,
+    "line": "  Gross Profit                                         1,987,830,168       1,543,313,827      494,004,014     488,323,630",
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "sga": {
+    "value": -851159144.0,
+    "line": "  SG & A                                                (851,159,144)     (729,780,961)     (221,405,985)    (213,587,312)",
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "other_op_inc": {
+    "value": 139443947.0,
+    "line": "  Other Operating Income                                 139,443,947       102,630,052       22,811,585        17,500,831",
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "other_op_exp": {
+    "value": -188883484.0,
+    "line": "  Other Operating Expenses                              (188,883,484)      (95,369,067)     (110,054,266)     (46,758,481)",
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ebitda": {
+    "value": 1366317365.0,
+    "line": "  EBITDA                                                1,366,317,365     1,012,973,452      261,327,345      316,936,216",
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "dna": {
+    "value": 279085878.0,
+    "line": "  Depreciation *                                         279,085,878       192,179,601       75,971,996        71,457,547",
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "fx": {
+    "value": -12717369.0,
+    "line": "  Fx Gain                                                (12,717,369)      (37,260,082)      (17,463,450)     (10,786,983)",
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ebit": {
+    "value": 1071257118.0,
+    "line": "  EBIT                                                  1,071,257,118      806,453,505       166,596,630      231,660,051",
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "interest_exp": {
+    "value": -220797854.0,
+    "line": "  Interest Expense                                      (220,797,854)     (195,310,424)      (74,490,571)     (27,808,487)",
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "interest_inc": {
+    "value": 57319589.0,
+    "line": "  Interest Income                                         57,319,589       53,361,814         17,869,051       16,650,971",
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ebt": {
+    "value": 907778853.0,
+    "line": "  EBT                                                    907,778,853       664,504,894       109,975,109      220,502,534",
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "tax": {
+    "value": -91142132.0,
+    "line": "  Tax                                                    (91,142,132)      (33,773,257)      (20,131,912)     (29,806,517)",
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "net_income": {
+    "value": 816636721.0,
+    "line": "  Net Income                                             816,636,721       630,731,638        89,843,198      190,696,017",
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "minority": {
+    "value": -21107572.0,
+    "line": "  Minority Interest                                      (21,107,572)       2,862,968         7,625,594         433,752",
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "npat_owners": {
+    "value": 795529149.0,
+    "line": "  Net Income After Minority / 795,529,149       633,594,606        97,468,792      191,129,770",
+    "source": "2010Q4__El-Sewedy-Electric-reports-year-end-2010-results.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   }
+  },
+  "2011": {
+   "revenue": {
+    "value": 15169204000.0,
+    "line": "Total Sales                          3,690,470      3,799,450     12,902,020    15,169,204",
+    "source": "2011Q4__FY-2011-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "cogs": {
+    "value": -13257512000.0,
+    "line": "COGS                                 (3,196,466)    (3,433,063)   (10,914,190) (13,257,512)",
+    "source": "2011Q4__FY-2011-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "gross_profit": {
+    "value": 1911691000.0,
+    "line": "Gross Profit                           494,004        366,387      1,987,830    1,911,691",
+    "source": "2011Q4__FY-2011-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "sga": {
+    "value": -900599000.0,
+    "line": "SG & A                               (221,406)      (260,641)      (851,159)    (900,599)",
+    "source": "2011Q4__FY-2011-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "other_op_inc": {
+    "value": 85711000.0,
+    "line": "Other Operating Income                 22,812         28,407        139,444       85,711",
+    "source": "2011Q4__FY-2011-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "other_op_exp": {
+    "value": -42642000.0,
+    "line": "Other Operating Expenses             (110,054)       (14,896)      (188,883)     (42,642)",
+    "source": "2011Q4__FY-2011-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ebitda": {
+    "value": 1384828000.0,
+    "line": "EBITDA                                261,327        207,324       1,366,317    1,384,828",
+    "source": "2011Q4__FY-2011-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "dna": {
+    "value": -330666000.0,
+    "line": "Depreciation                          (75,972)       (88,068)      (279,086)    (330,666)",
+    "source": "2011Q4__FY-2011-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "fx": {
+    "value": -110733000.0,
+    "line": "Fx Gain                               (17,463)       (32,984)       (12,717)    (110,733)",
+    "source": "2011Q4__FY-2011-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ebit": {
+    "value": 944160000.0,
+    "line": "EBIT                                  166,597         78,116       1,071,257     944,160",
+    "source": "2011Q4__FY-2011-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "interest_exp": {
+    "value": -371671000.0,
+    "line": "Interest Expense                      (74,491)      (112,284)      (220,798)    (371,671)",
+    "source": "2011Q4__FY-2011-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "interest_inc": {
+    "value": 61193000.0,
+    "line": "Interest Income                        17,869         23,248        57,320       61,193",
+    "source": "2011Q4__FY-2011-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ebt": {
+    "value": 633682000.0,
+    "line": "EBT                                   109,975        (10,920)       907,779      633,682",
+    "source": "2011Q4__FY-2011-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "tax": {
+    "value": -97134000.0,
+    "line": "Tax                                   (20,132)       (11,982)      (91,142)      (97,134)",
+    "source": "2011Q4__FY-2011-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "net_income": {
+    "value": 536548000.0,
+    "line": "Net Income                             89,843        (22,902)      816,637       536,548",
+    "source": "2011Q4__FY-2011-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "minority": {
+    "value": -27429000.0,
+    "line": "Minority Interest                       7,626         3,702        (21,108)      (27,429)",
+    "source": "2011Q4__FY-2011-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "npat_owners": {
+    "value": 509119000.0,
+    "line": "Net Income After Minority Interest     97,469        (19,200)      795,529       509,119",
+    "source": "2011Q4__FY-2011-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "legs": {
+    "revenue": {
+     "cables": {
+      "value": 11306128000.0,
+      "source": "2011Q4__FY-2011-Earnings-Press-Release.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "other": {
+      "value": 1338459000.0,
+      "source": "2011Q4__FY-2011-Earnings-Press-Release.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "contracting": {
+      "value": 2524617000.0,
+      "source": "2011Q4__FY-2011-Earnings-Press-Release.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     }
+    },
+    "_lines": {
+     "revenue": [
+      "Wires & Cables                       2,457,350      2,852,030      9,8",
+      "Electrical Products                   506,446        296,950       1,3",
+      "Turnkey Projects                      726,674        650,470       1,6"
+     ]
+    },
+    "_header": "^\\s*Income Statement\\s*$"
+   }
+  },
+  "2012": {
+   "revenue": {
+    "value": 14512307147.0,
+    "line": "Total Sales                          14,512,307,147      15,169,203,711   4,050,198,594   3,799,449,840",
+    "source": "2012Q4__FY-2012-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "cogs": {
+    "value": -12672143938.0,
+    "line": "COGS                                 (12,672,143,938) (13,257,512,379) (3,577,011,781)    (3,433,063,329)",
+    "source": "2012Q4__FY-2012-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "gross_profit": {
+    "value": 1840163209.0,
+    "line": "Gross Profit                          1,840,163,209    1,911,691,332     473,186,813        366,386,511",
+    "source": "2012Q4__FY-2012-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "sga": {
+    "value": -973720780.0,
+    "line": "SG & A                                (973,720,780)      (900,599,128)    (301,333,150)   (260,640,861)",
+    "source": "2012Q4__FY-2012-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "other_op_inc": {
+    "value": 63496005.0,
+    "line": "Other Operating Income                 63,496,005          85,711,232       34,478,750      28,406,745",
+    "source": "2012Q4__FY-2012-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "other_op_exp": {
+    "value": -184735494.0,
+    "line": "Other Operating Expense               (184,735,494)       (42,641,793)     (83,496,077)    (14,896,323)",
+    "source": "2012Q4__FY-2012-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ebitda": {
+    "value": 1073919551.0,
+    "line": "EBITDA                                1,073,919,551      1,384,827,512     204,908,430     207,323,849",
+    "source": "2012Q4__FY-2012-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "dna": {
+    "value": -328716611.0,
+    "line": "Depreciation                          (328,716,611)      (330,665,869)    (82,072,093)     (88,067,776)",
+    "source": "2012Q4__FY-2012-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "fx": {
+    "value": -96847851.0,
+    "line": "Fx Gain / ( Loss)                      (96,847,851)      (110,732,805)     (3,250,834)     (32,983,695)",
+    "source": "2012Q4__FY-2012-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ebit": {
+    "value": 606737632.0,
+    "line": "EBIT                                   606,737,632        944,159,652      80,121,581       78,115,966",
+    "source": "2012Q4__FY-2012-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "interest_exp": {
+    "value": -426460972.0,
+    "line": "Interest Expense                      (426,460,972)      (371,671,108)    (93,585,471)    (112,283,936)",
+    "source": "2012Q4__FY-2012-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "interest_inc": {
+    "value": 48048786.0,
+    "line": "Interest Income                         48,048,786         61,193,380      1,708,877        23,247,648",
+    "source": "2012Q4__FY-2012-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ebt": {
+    "value": 228325446.0,
+    "line": "EBT                                    228,325,446        633,681,924     (11,755,012)     (10,920,322)",
+    "source": "2012Q4__FY-2012-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "tax": {
+    "value": -82389733.0,
+    "line": "Tax                                   (82,389,733)        (97,134,033)    (21,406,855)     (11,981,714)",
+    "source": "2012Q4__FY-2012-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "net_income": {
+    "value": 145935713.0,
+    "line": "Net Income                            145,935,713         536,547,891     (33,161,867)     (22,902,036)",
+    "source": "2012Q4__FY-2012-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "minority": {
+    "value": -29394891.0,
+    "line": "Minority Interest                     (29,394,891)        (27,429,195)    (15,381,411)      3,701,670",
+    "source": "2012Q4__FY-2012-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "npat_owners": {
+    "value": 116540822.0,
+    "line": "Net Income After Minority Interest    116,540,822         509,118,697     (48,543,278)     (19,200,366)",
+    "source": "2012Q4__FY-2012-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "legs": {
+    "revenue": {
+     "cables": {
+      "value": 11118283671.0,
+      "source": "2012Q4__FY-2012-Earnings-Press-Release.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "other": {
+      "value": 1513953044.0,
+      "source": "2012Q4__FY-2012-Earnings-Press-Release.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "contracting": {
+      "value": 1880070432.0,
+      "source": "2012Q4__FY-2012-Earnings-Press-Release.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     }
+    },
+    "_lines": {
+     "revenue": [
+      "Wires & Cables                       11,118,283,671      11,306,127,67",
+      "Electrical Products                   1,513,953,044       1,338,459,40",
+      "Turnkey Projects                      1,880,070,432       2,524,616,62"
+     ]
+    },
+    "_header": "^\\s*Income Statement\\s*$"
+   },
+   "units": {
+    "cable_volume_t": {
+     "value": 150931.0,
+     "line": "Cable Sales Volume                           104,099          135,415          150,964          33,277        ",
+     "source": "2012Q4__RAP-Quarter-Investors-FY-2012.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_price_t": {
+     "value": 69437.0,
+     "line": "Cable Price per ton                          73,871            56,034           58,763          67,843        ",
+     "source": "2012Q4__RAP-Quarter-Investors-FY-2012.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_cost_t": {
+     "value": 64504.0,
+     "line": "Cable Cost per ton                           66,985            50,261           52,847          62,002        ",
+     "source": "2012Q4__RAP-Quarter-Investors-FY-2012.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_revenue": {
+     "value": 10480255614.0,
+     "line": "Cable Revenue                             7,689,846,626    7,587,869,187    8,871,087,233    2,257,566,210   2",
+     "source": "2012Q4__RAP-Quarter-Investors-FY-2012.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_cost": {
+     "value": 9735640308.0,
+     "line": "Cable Costs                               6,973,061,104    6,806,050,542    7,978,039,916    2,063,197,157   2",
+     "source": "2012Q4__RAP-Quarter-Investors-FY-2012.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_plus_rawmat_revenue": {
+     "value": 16440979676.0,
+     "line": "Total Cable Revenue                       13,724,928,676   12,457,986,347   15,122,262,786   4,106,338,038   4",
+     "source": "2012Q4__RAP-Quarter-Investors-FY-2012.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_plus_rawmat_cost": {
+     "value": 15392025680.0,
+     "line": "Total Cable Costs                         12,723,411,887   11,483,285,488   13,876,466,187   3,827,108,734   4",
+     "source": "2012Q4__RAP-Quarter-Investors-FY-2012.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    }
+   }
+  },
+  "2013": {
+   "revenue": {
+    "value": 15098992917.0,
+    "line": "           Total Sales                          4,050,198,594             3,859,825,011     14,512,307,147     15,098,992,917",
+    "source": "2013Q4__FY-2013-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "cogs": {
+    "value": -12976874645.0,
+    "line": "           COGS                                 (3,577,011,781)           (3,414,489,673)   (12,672,143,938)   (12,976,874,645)",
+    "source": "2013Q4__FY-2013-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "gross_profit": {
+    "value": 2064875894.0,
+    "line": "           Gross Profit                           470,061,746               388,092,960      1,831,515,923       2,064,875,894",
+    "source": "2013Q4__FY-2013-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "impair_inv": {
+    "value": -57242378.0,
+    "line": "           Impairment In Inventory                (3,125,067)               (57,242,378)       (8,647,286)        (57,242,378)",
+    "source": "2013Q4__FY-2013-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "sga": {
+    "value": -1062912959.0,
+    "line": "           SG & A                               (301,333,150)             (304,255,548)      (973,720,780)     (1,062,912,959)",
+    "source": "2013Q4__FY-2013-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "other_op_inc": {
+    "value": 78416335.0,
+    "line": "           Other Operating Income                 34,478,750                31,077,459         63,496,005         78,416,335",
+    "source": "2013Q4__FY-2013-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "other_op_exp": {
+    "value": -285337064.0,
+    "line": "           Other Operating Expense               (80,371,010)             (116,522,929)      (176,088,208)      (285,337,064)",
+    "source": "2013Q4__FY-2013-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ebitda": {
+    "value": 1182215144.0,
+    "line": "           EBITDA                                207,951,598               102,099,754       1,084,735,660      1,182,215,144",
+    "source": "2013Q4__FY-2013-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "dna": {
+    "value": -387172938.0,
+    "line": "           Depreciation & Amortization           (85,115,260)             (103,707,811)      (339,532,720)      (387,172,938)",
+    "source": "2013Q4__FY-2013-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "fx": {
+    "value": -11390697.0,
+    "line": "           Fx Gain / ( Loss)                      (3,250,834)               32,099,455        (96,847,851)       (11,390,697)",
+    "source": "2013Q4__FY-2013-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ebit": {
+    "value": 650906787.0,
+    "line": "           EBIT                                   80,121,581                14,194,575        606,737,632        650,906,787",
+    "source": "2013Q4__FY-2013-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "interest_exp": {
+    "value": -434721035.0,
+    "line": "           Interest Expense                      (93,585,471)             (112,748,797)      (426,460,972)      (434,721,035)",
+    "source": "2013Q4__FY-2013-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "interest_inc": {
+    "value": 24417366.0,
+    "line": "           Interest Income                         1,708,877                 9,802,994         48,048,786         24,417,366",
+    "source": "2013Q4__FY-2013-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ebt": {
+    "value": 240603118.0,
+    "line": "           EBT                                   (11,755,012)              (88,751,228)       228,325,446        240,603,118",
+    "source": "2013Q4__FY-2013-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "tax": {
+    "value": -106074477.0,
+    "line": "           Tax                                   (21,406,855)               (2,393,024)       (82,389,733)      (106,074,477)",
+    "source": "2013Q4__FY-2013-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "net_income": {
+    "value": 134528641.0,
+    "line": "           Net Income                            (33,161,867)              (91,144,252)       145,935,713        134,528,641",
+    "source": "2013Q4__FY-2013-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "minority": {
+    "value": -38026848.0,
+    "line": "           Minority Interest                     (15,381,411)               (2,647,754)       (29,394,891)       (38,026,848)",
+    "source": "2013Q4__FY-2013-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "npat_owners": {
+    "value": 96501795.0,
+    "line": "           Net Income After Minority Interest    (48,543,278)              (93,792,006)       116,540,822         96,501,795",
+    "source": "2013Q4__FY-2013-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "legs": {
+    "revenue": {
+     "cables": {
+      "value": 11733985741.0,
+      "source": "2013Q4__FY-2013-Earnings-Press-Release.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "other": {
+      "value": 1578382507.0,
+      "source": "2013Q4__FY-2013-Earnings-Press-Release.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "contracting": {
+      "value": 1786624669.0,
+      "source": "2013Q4__FY-2013-Earnings-Press-Release.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     }
+    },
+    "_lines": {
+     "revenue": [
+      "Wires & Cables                       3,050,628,461             2,932,4",
+      "Electrical Products                   392,487,744               302,91",
+      "Turnkey Projects                      607,082,389               624,41"
+     ]
+    },
+    "_header": "^\\s*Income Statement\\s*$"
+   },
+   "units": {
+    "cable_volume_t": {
+     "value": 144363.0,
+     "line": "Cable Sales Volume                            150,964          149,042          32,780          38,245        ",
+     "source": "2013Q4__RAP-Sheets-FY2013.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_price_t": {
+     "value": 78358.0,
+     "line": "Cable Price per ton                           58,763            70,407          71,257          73,608        ",
+     "source": "2013Q4__RAP-Sheets-FY2013.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_cost_t": {
+     "value": 71861.0,
+     "line": "Cable Cost per ton                            52,847            65,139          67,011          66,537        ",
+     "source": "2013Q4__RAP-Sheets-FY2013.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_revenue": {
+     "value": 11311937360.0,
+     "line": "Cable Revenue                              8,871,087,233    10,493,580,786   2,335,781,008   2,815,111,819   2",
+     "source": "2013Q4__RAP-Sheets-FY2013.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_cost": {
+     "value": 10374061989.0,
+     "line": "Cable Costs                                7,978,039,916    9,708,412,855    2,196,601,732   2,544,664,036   2",
+     "source": "2013Q4__RAP-Sheets-FY2013.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_plus_rawmat_revenue": {
+     "value": 17807120985.0,
+     "line": "Total Cable Revenue                        15,122,262,786   17,794,480,977   4,131,771,353   4,268,738,669   3",
+     "source": "2013Q4__RAP-Sheets-FY2013.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_plus_rawmat_cost": {
+     "value": 16394282361.0,
+     "line": "Total Cable Costs                          13,876,466,187   16,790,460,349   3,892,655,998   3,930,976,494   3",
+     "source": "2013Q4__RAP-Sheets-FY2013.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    }
+   }
+  },
+  "2014": {
+   "revenue": {
+    "value": 17014814372.0,
+    "line": "Total Sales                          4,201,915,939           3,859,825,011     17,014,814,372     15,098,992,917",
+    "source": "2014Q4__FY-2014-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "cogs": {
+    "value": -14431752278.0,
+    "line": "COGS                                 (3,603,856,574)         (3,471,732,051)   (14,431,752,278)   (13,034,117,023)",
+    "source": "2014Q4__FY-2014-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "gross_profit": {
+    "value": 2583062094.0,
+    "line": "Gross Profit                           598,059,365             388,092,960       2,583,062,094      2,064,875,894",
+    "source": "2014Q4__FY-2014-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "sga": {
+    "value": -1052201982.0,
+    "line": "SG & A                               (276,573,589)           (304,255,548)     (1,052,201,982)    (1,062,912,958)",
+    "source": "2014Q4__FY-2014-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "other_op_inc": {
+    "value": 91526325.0,
+    "line": "Other Operating Income                 26,331,862              31,077,459         91,526,325         78,416,332",
+    "source": "2014Q4__FY-2014-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "other_op_exp": {
+    "value": -506346320.0,
+    "line": "Other Operating Expense                28,513,515            (116,522,929)      (506,346,320)      (285,337,064)",
+    "source": "2014Q4__FY-2014-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ebitda": {
+    "value": 1502259551.0,
+    "line": "EBITDA                                481,572,934             102,099,754       1,502,259,551      1,182,215,142",
+    "source": "2014Q4__FY-2014-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "dna": {
+    "value": -386219435.0,
+    "line": "Depreciation & Amortization          (105,241,781)           (103,707,811)      (386,219,435)      (387,172,938)",
+    "source": "2014Q4__FY-2014-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "fx": {
+    "value": -75993003.0,
+    "line": "Fx Gain / ( Loss)                    (108,108,887)             32,099,455        (75,993,003)       (11,390,697)",
+    "source": "2014Q4__FY-2014-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ebit": {
+    "value": 915321934.0,
+    "line": "EBIT                                  246,256,605              14,194,575        915,321,934        650,906,785",
+    "source": "2014Q4__FY-2014-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "interest_exp": {
+    "value": -264094008.0,
+    "line": "Interest Expense                      (73,259,620)           (112,748,797)      (264,094,008)      (434,721,035)",
+    "source": "2014Q4__FY-2014-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "interest_inc": {
+    "value": 60597627.0,
+    "line": "Interest Income                        25,106,587              9,802,994          60,597,627         24,417,366",
+    "source": "2014Q4__FY-2014-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ebt": {
+    "value": 711825553.0,
+    "line": "EBT                                   198,103,572             (88,751,228)       711,825,553        240,603,116",
+    "source": "2014Q4__FY-2014-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "tax": {
+    "value": -266713645.0,
+    "line": "Tax                                   (86,869,341)             (2,393,024)      (266,713,645)      (106,074,477)",
+    "source": "2014Q4__FY-2014-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "net_income": {
+    "value": 445111908.0,
+    "line": "Net Income                            111,234,230             (91,144,252)       445,111,908        134,528,643",
+    "source": "2014Q4__FY-2014-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "minority": {
+    "value": -41811418.0,
+    "line": "Minority Interest                     (18,319,859)             (2,647,754)       (41,811,418)       (38,026,848)",
+    "source": "2014Q4__FY-2014-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "npat_owners": {
+    "value": 403300490.0,
+    "line": "Net Income After Minority Interest     92,914,372             (93,792,006)       403,300,490         96,501,795",
+    "source": "2014Q4__FY-2014-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "legs": {
+    "revenue": {
+     "cables": {
+      "value": 12757466760.0,
+      "source": "2014Q4__FY-2014-Earnings-Press-Release.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "other": {
+      "value": 1544647324.0,
+      "source": "2014Q4__FY-2014-Earnings-Press-Release.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "contracting": {
+      "value": 2712700291.0,
+      "source": "2014Q4__FY-2014-Earnings-Press-Release.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     }
+    },
+    "_lines": {
+     "revenue": [
+      "Wires & Cables                       3,249,412,437           2,932,492",
+      "Electrical Products                   360,294,907             302,915,",
+      "Turnkey Projects                      592,208,595             624,417,"
+     ]
+    },
+    "_header": "^\\s*Income Statement\\s*$"
+   },
+   "units": {
+    "cable_volume_t": {
+     "value": 164340.0,
+     "line": "Cable Sales Volume                            148,915          32,832          37,900          37,592         ",
+     "source": "2014Q4__RAP-Investors-FY-2014.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_price_t": {
+     "value": 78272.0,
+     "line": "Cable Price per ton                           70,378           75,144          81,224          76,955         ",
+     "source": "2014Q4__RAP-Investors-FY-2014.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_cost_t": {
+     "value": 69815.0,
+     "line": "Cable Cost per ton                            65,377           69,670          73,711          71,230         ",
+     "source": "2014Q4__RAP-Investors-FY-2014.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_revenue": {
+     "value": 12863273088.0,
+     "line": "Cable Revenue                             10,480,255,614    2,467,160,808   3,078,361,326   2,892,887,767   2,",
+     "source": "2014Q4__RAP-Investors-FY-2014.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_cost": {
+     "value": 11473494315.0,
+     "line": "Cable Costs                                9,735,640,308    2,287,429,892   2,793,617,243   2,677,650,192   2,",
+     "source": "2014Q4__RAP-Investors-FY-2014.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_plus_rawmat_revenue": {
+     "value": 19945091547.0,
+     "line": "Total Cable Revenue                        16,440,979,676   4,298,223,351   4,949,152,650   4,384,111,002   4,",
+     "source": "2014Q4__RAP-Investors-FY-2014.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_plus_rawmat_cost": {
+     "value": 18183576090.0,
+     "line": "Total Cable Costs                          15,392,025,680   3,938,853,795   4,515,058,083   4,104,021,898   3,",
+     "source": "2014Q4__RAP-Investors-FY-2014.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    }
+   },
+   "segment_sheet": {
+    "cables": {
+     "sales": {
+      "value": 12757466757.0,
+      "source": "2014Q4__Segment-analysis-FY-2014.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "gross_profit": {
+      "value": 1763395408.0,
+      "source": "2014Q4__Segment-analysis-FY-2014.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "selling_expense": {
+      "value": 326573315.0,
+      "source": "2014Q4__Segment-analysis-FY-2014.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     }
+    },
+    "contracting": {
+     "sales": {
+      "value": 2712700291.0,
+      "source": "2014Q4__Segment-analysis-FY-2014.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "gross_profit": {
+      "value": 399529601.0,
+      "source": "2014Q4__Segment-analysis-FY-2014.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "selling_expense": {
+      "value": 6767393.0,
+      "source": "2014Q4__Segment-analysis-FY-2014.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     }
+    },
+    "other": {
+     "sales": {
+      "value": 1544647324.0,
+      "source": "2014Q4__Segment-analysis-FY-2014.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "gross_profit": {
+      "value": 420137085.0,
+      "source": "2014Q4__Segment-analysis-FY-2014.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "selling_expense": {
+      "value": 120621163.0,
+      "source": "2014Q4__Segment-analysis-FY-2014.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     }
+    },
+    "_not_allocated_raw": [
+     15537689.0
+    ],
+    "_unmapped_rows": [
+     "Wind",
+     "Not Allocated"
+    ],
+    "_fields_carried": [
+     "gross_profit",
+     "sales",
+     "selling_expense"
+    ]
+   }
+  },
+  "2015": {
+   "revenue": {
+    "value": 20571703734.0,
+    "line": "Total Sales                          5,050,914,608       4,201,915,939     20,571,703,734     17,014,814,372",
+    "source": "2015Q4__FY-2015-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "cogs": {
+    "value": -17261410195.0,
+    "line": "COGS                                 (4,251,459,000)     (3,603,856,574)   (17,261,410,195)   (14,431,752,278)",
+    "source": "2015Q4__FY-2015-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "gross_profit": {
+    "value": 3310293539.0,
+    "line": "Gross Profit                           799,455,608         598,059,365       3,310,293,539      2,583,062,094",
+    "source": "2015Q4__FY-2015-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "sga": {
+    "value": -952528867.0,
+    "line": "SG & A                               (262,452,862)       (276,573,589)      (952,528,867)     (1,052,201,982)",
+    "source": "2015Q4__FY-2015-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "other_op_inc": {
+    "value": 240200850.0,
+    "line": "Other Operating Income                (3,429,578)          68,994,302        240,200,850        134,204,045",
+    "source": "2015Q4__FY-2015-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "other_op_exp": {
+    "value": -657660958.0,
+    "line": "Other Operating Expense              (102,674,274)        (36,114,585)      (657,660,958)      (673,749,220)",
+    "source": "2015Q4__FY-2015-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ebitda": {
+    "value": 2303913281.0,
+    "line": "EBITDA                                523,854,747         459,607,274       2,303,913,281      1,377,534,372",
+    "source": "2015Q4__FY-2015-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "dna": {
+    "value": -363608716.0,
+    "line": "Depreciation & Amortization           (92,955,853)       (105,241,781)      (363,608,716)      (386,219,435)",
+    "source": "2015Q4__FY-2015-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "fx": {
+    "value": -11145830.0,
+    "line": "Fx Gain / ( Loss)                      (3,547,878)       (108,108,887)       (11,145,830)       (75,993,003)",
+    "source": "2015Q4__FY-2015-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ebit": {
+    "value": 1929158735.0,
+    "line": "EBIT                                  427,351,016         246,256,605       1,929,158,735       915,321,934",
+    "source": "2015Q4__FY-2015-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "interest_exp": {
+    "value": -265488766.0,
+    "line": "Interest Expense                      (48,771,162)        (73,259,620)      (265,488,766)      (264,094,008)",
+    "source": "2015Q4__FY-2015-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "interest_inc": {
+    "value": 211210497.0,
+    "line": "Interest Income                        92,552,041          25,106,587        211,210,497         60,597,627",
+    "source": "2015Q4__FY-2015-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ebt": {
+    "value": 1874880466.0,
+    "line": "EBT                                   471,131,895         198,103,572       1,874,880,466       711,825,553",
+    "source": "2015Q4__FY-2015-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "tax": {
+    "value": -523834777.0,
+    "line": "Tax                                  (224,122,221)        (86,869,341)      (523,834,777)      (266,713,645)",
+    "source": "2015Q4__FY-2015-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "net_income": {
+    "value": 1351045689.0,
+    "line": "Net Income                            247,009,674         111,234,230       1,351,045,689       445,111,908",
+    "source": "2015Q4__FY-2015-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "minority": {
+    "value": -105908075.0,
+    "line": "Minority Interest                     35,788,590          (18,319,859)      (105,908,075)       (41,811,418)",
+    "source": "2015Q4__FY-2015-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "npat_owners": {
+    "value": 1245137613.0,
+    "line": "Net Income After Minority Interest    282,798,264          92,914,372       1,245,137,613       403,300,490",
+    "source": "2015Q4__FY-2015-Earnings-Press-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "legs": {
+    "revenue": {
+     "cables": {
+      "value": 12506793656.0,
+      "source": "2015Q4__FY-2015-Earnings-Press-Release.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "other": {
+      "value": 1628264493.0,
+      "source": "2015Q4__FY-2015-Earnings-Press-Release.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "contracting": {
+      "value": 6436645585.0,
+      "source": "2015Q4__FY-2015-Earnings-Press-Release.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     }
+    },
+    "_lines": {
+     "revenue": [
+      "Wires & Cables                       3,368,781,757       3,249,412,437",
+      "Electrical Products                   509,151,148         360,294,907 ",
+      "Turnkey Projects                     1,172,981,703        592,208,595 "
+     ]
+    },
+    "_header": "^\\s*Income Statement\\s*$"
+   },
+   "units": {
+    "cable_volume_t": {
+     "value": 179514.0,
+     "line": "Cable Sales Volume                            144,363          44,668          42,780          36,110         ",
+     "source": "2015Q4__RAP-Sheet-Investors-FY-2015.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_price_t": {
+     "value": 71323.0,
+     "line": "Cable Price per ton                           78,358           74,556          78,470          80,891         ",
+     "source": "2015Q4__RAP-Sheet-Investors-FY-2015.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_cost_t": {
+     "value": 64854.0,
+     "line": "Cable Cost per ton                            71,861           67,047          69,757          70,363         ",
+     "source": "2015Q4__RAP-Sheet-Investors-FY-2015.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_revenue": {
+     "value": 12803451033.0,
+     "line": "Cable Revenue                             11,311,937,360    3,330,260,578   3,356,995,411   2,921,015,893   3,",
+     "source": "2015Q4__RAP-Sheet-Investors-FY-2015.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_cost": {
+     "value": 11642196819.0,
+     "line": "Cable Costs                               10,374,061,989    2,994,834,891   2,984,219,171   2,540,822,459   2,",
+     "source": "2015Q4__RAP-Sheet-Investors-FY-2015.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_plus_rawmat_revenue": {
+     "value": 19588890901.0,
+     "line": "Total Cable Revenue                        17,807,120,985   5,137,076,496   5,205,080,690   4,556,323,742   5,",
+     "source": "2015Q4__RAP-Sheet-Investors-FY-2015.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_plus_rawmat_cost": {
+     "value": 17972411022.0,
+     "line": "Total Cable Costs                          16,394,282,361   4,681,859,267   4,723,599,328   4,098,078,645   4,",
+     "source": "2015Q4__RAP-Sheet-Investors-FY-2015.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    }
+   },
+   "segment_sheet": {
+    "cables": {
+     "sales": {
+      "value": 12506793656.0,
+      "source": "2015Q4__Segment-Analysis-FY-2015.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "gross_profit": {
+      "value": 1611405540.0,
+      "source": "2015Q4__Segment-Analysis-FY-2015.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "selling_expense": {
+      "value": 241651030.0,
+      "source": "2015Q4__Segment-Analysis-FY-2015.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     }
+    },
+    "contracting": {
+     "sales": {
+      "value": 6436645585.0,
+      "source": "2015Q4__Segment-Analysis-FY-2015.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "gross_profit": {
+      "value": 1178450759.0,
+      "source": "2015Q4__Segment-Analysis-FY-2015.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "selling_expense": {
+      "value": 7272721.0,
+      "source": "2015Q4__Segment-Analysis-FY-2015.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     }
+    },
+    "other": {
+     "sales": {
+      "value": 1628264493.0,
+      "source": "2015Q4__Segment-Analysis-FY-2015.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "gross_profit": {
+      "value": 520437240.0,
+      "source": "2015Q4__Segment-Analysis-FY-2015.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "selling_expense": {
+      "value": 105715945.0,
+      "source": "2015Q4__Segment-Analysis-FY-2015.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     }
+    },
+    "_not_allocated_raw": [
+     3552913.0
+    ],
+    "_unmapped_rows": [
+     "Wind",
+     "Not Allocated"
+    ],
+    "_fields_carried": [
+     "gross_profit",
+     "sales",
+     "selling_expense"
+    ]
+   }
+  },
+  "2016": {
+   "revenue": {
+    "value": 24644673000.0,
+    "line": "Total Sales                             9,217,370     4,517,872    104%     24,644,673    18,894,528        30%",
+    "source": "2016Q4__El-Sewedy-FY-2016-Earnings-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "cogs": {
+    "value": 18711388000.0,
+    "line": "COGS                                   (6,856,719)   (3,786,650)            (18,711,388   (15,800,416",
+    "source": "2016Q4__El-Sewedy-FY-2016-Earnings-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "gross_profit": {
+    "value": 5933285000.0,
+    "line": "Gross Profit                            2,360,651       731,222    223%       5,933,285     3,094,112       92%",
+    "source": "2016Q4__El-Sewedy-FY-2016-Earnings-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "sga": {
+    "value": -1343029000.0,
+    "line": "SG&A                                    (511,870)     (244,378)    109%     (1,343,029)    (909,265)        48%",
+    "source": "2016Q4__El-Sewedy-FY-2016-Earnings-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "other_op_inc": {
+    "value": 65315000.0,
+    "line": "Other Operating Income                    (51,313)       40,617                  65,315      226,212",
+    "source": "2016Q4__El-Sewedy-FY-2016-Earnings-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "other_op_exp": {
+    "value": -837705000.0,
+    "line": "Other Operating Expense                 (688,829)     (101,264)               (837,705)    (648,378)",
+    "source": "2016Q4__El-Sewedy-FY-2016-Earnings-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "inv_income": {
+    "value": 330824000.0,
+    "line": "Income from Investments                   132,624        47,935                 330,824      144,905",
+    "source": "2016Q4__El-Sewedy-FY-2016-Earnings-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ebitda": {
+    "value": 4535510000.0,
+    "line": "EBITDA                                  1,364,590       558,756    144%       4,535,510    2,238,395       103%",
+    "source": "2016Q4__El-Sewedy-FY-2016-Earnings-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "dna": {
+    "value": -386820000.0,
+    "line": "Depreciation & Amortization             (123,328)      (84,625)              (386,820)      (330,808)",
+    "source": "2016Q4__El-Sewedy-FY-2016-Earnings-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "fx": {
+    "value": 1311545000.0,
+    "line": "Fx Gain / ( Loss)                       1,107,750       (2,487)              1,311,545       (11,243)",
+    "source": "2016Q4__El-Sewedy-FY-2016-Earnings-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ebit": {
+    "value": 5460236000.0,
+    "line": "EBIT                                    2,349,013       471,644    398%      5,460,236     1,896,344       188%",
+    "source": "2016Q4__El-Sewedy-FY-2016-Earnings-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "interest_exp": {
+    "value": -415054000.0,
+    "line": "Interest Expense                        (134,387)      (45,966)    192%      (415,054)     (253,935)        63%",
+    "source": "2016Q4__El-Sewedy-FY-2016-Earnings-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "interest_inc": {
+    "value": 180762000.0,
+    "line": "Interest Income                             60,174       36,479     65%        180,762       202,698       -11%",
+    "source": "2016Q4__El-Sewedy-FY-2016-Earnings-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ebt": {
+    "value": 5225943000.0,
+    "line": "EBT                                     2,274,800      462,157     392%      5,225,943     1,845,106       183%",
+    "source": "2016Q4__El-Sewedy-FY-2016-Earnings-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "tax": {
+    "value": -1271215000.0,
+    "line": "Tax                                     (727,463)     (217,538)             (1,271,215)    (512,223)",
+    "source": "2016Q4__El-Sewedy-FY-2016-Earnings-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "net_income": {
+    "value": 3954728000.0,
+    "line": "Net Income                              1,547,337       244,619    533%       3,954,728    1,332,883       197%",
+    "source": "2016Q4__El-Sewedy-FY-2016-Earnings-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "minority": {
+    "value": -101286000.0,
+    "line": "Minority Interest                         (45,569)       38,243              (101,286)       (87,745)",
+    "source": "2016Q4__El-Sewedy-FY-2016-Earnings-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "npat_owners": {
+    "value": 3853443000.0,
+    "line": "Net Income After Minority Interest      1,501,768       282,862    431%      3,853,443     1,245,138       209%",
+    "source": "2016Q4__El-Sewedy-FY-2016-Earnings-Release.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "legs": {
+    "revenue": {
+     "cables": {
+      "value": 12960798000.0,
+      "source": "2016Q4__El-Sewedy-FY-2016-Earnings-Release.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "other": {
+      "value": 2203455000.0,
+      "source": "2016Q4__El-Sewedy-FY-2016-Earnings-Release.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "contracting": {
+      "value": 9480420000.0,
+      "source": "2016Q4__El-Sewedy-FY-2016-Earnings-Release.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     }
+    },
+    "_lines": {
+     "revenue": [
+      "Wires & Cables                          4,065,285     2,897,001     40",
+      "Electrical Products                       743,535       508,769     46",
+      "Turnkey Projects                        4,408,550     1,112,103    296"
+     ]
+    },
+    "_header": "^\\s*Consolidated Income Statement"
+   },
+   "units": {
+    "cable_volume_t": {
+     "value": 155628.0,
+     "line": "Cable Sales Volume                     148,585          34,967          37,397          72,364          35,725",
+     "source": "2016Q4__RAP-Sheet-Investors-FY-2016.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_price_t": {
+     "value": 88133.0,
+     "line": "Cable Price per ton                     76,391          73,456          70,117          71,730          67,996",
+     "source": "2016Q4__RAP-Sheet-Investors-FY-2016.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_cost_t": {
+     "value": 77343.0,
+     "line": "Cable Cost per ton                      67,572          67,602          62,409          64,918          61,653",
+     "source": "2016Q4__RAP-Sheet-Investors-FY-2016.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_revenue": {
+     "value": 13715985235.0,
+     "line": "Cable Revenue                       11,350,563,995   2,568,552,999   2,622,182,489   5,190,735,488   2,429,128",
+     "source": "2016Q4__RAP-Sheet-Investors-FY-2016.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_cost": {
+     "value": 12036778914.0,
+     "line": "Cable Costs                         10,040,180,305   2,363,858,462   2,333,909,802   4,697,768,264   2,202,524",
+     "source": "2016Q4__RAP-Sheet-Investors-FY-2016.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_plus_rawmat_revenue": {
+     "value": 20655939629.0,
+     "line": "Total Cable Revenue                 18,432,382,454   4,451,463,647   4,284,841,895   8,736,305,543   4,051,605",
+     "source": "2016Q4__RAP-Sheet-Investors-FY-2016.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_plus_rawmat_cost": {
+     "value": 17649760056.0,
+     "line": "Total Cable Costs                   16,750,262,080   4,142,793,521   3,885,454,604   8,028,248,125   3,706,925",
+     "source": "2016Q4__RAP-Sheet-Investors-FY-2016.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    }
+   },
+   "segment_sheet": {
+    "cables": {
+     "sales": {
+      "value": 12960797874.0,
+      "source": "2016Q4__Segment-analysis-FY-2016.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "gross_profit": {
+      "value": 3006179573.0,
+      "source": "2016Q4__Segment-analysis-FY-2016.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "selling_expense": {
+      "value": 401501215.0,
+      "source": "2016Q4__Segment-analysis-FY-2016.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     }
+    },
+    "contracting": {
+     "sales": {
+      "value": 9480419732.0,
+      "source": "2016Q4__Segment-analysis-FY-2016.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "gross_profit": {
+      "value": 2096135614.0,
+      "source": "2016Q4__Segment-analysis-FY-2016.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "selling_expense": {
+      "value": 10365879.0,
+      "source": "2016Q4__Segment-analysis-FY-2016.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     }
+    },
+    "other": {
+     "sales": {
+      "value": 2203455259.0,
+      "source": "2016Q4__Segment-analysis-FY-2016.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "gross_profit": {
+      "value": 830970160.0,
+      "source": "2016Q4__Segment-analysis-FY-2016.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "selling_expense": {
+      "value": 148668957.0,
+      "source": "2016Q4__Segment-analysis-FY-2016.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     }
+    },
+    "_not_allocated_raw": [
+     4565700.0,
+     3552910.0
+    ],
+    "_unmapped_rows": [
+     "Not Allocated"
+    ],
+    "_fields_carried": [
+     "gross_profit",
+     "sales",
+     "selling_expense"
+    ]
+   }
+  },
+  "2017": {
+   "revenue": {
+    "value": 42911112896.0,
+    "line": "Total Sales                 10,792,928,833      9,217,369,757      17%     42,911,112,896     24,644,672,864       74%",
+    "source": "2017Q4__El-Sewedy-4Q-2017-Earnings-Release-E-FINAL-2.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "cogs": {
+    "value": -33866884242.0,
+    "line": "COGS                        (8,679,453,308)    (6,856,718,711)            (33,866,884,242)   (18,711,387,517)",
+    "source": "2017Q4__El-Sewedy-4Q-2017-Earnings-Release-E-FINAL-2.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "gross_profit": {
+    "value": 9044228654.0,
+    "line": "Gross Profit                 2,113,475,525      2,360,651,046     -10%      9,044,228,654      5,933,285,347       52%",
+    "source": "2017Q4__El-Sewedy-4Q-2017-Earnings-Release-E-FINAL-2.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "sga": {
+    "value": -2060912121.0,
+    "line": "SG&A                         (537,757,318)      (511,869,872)              (2,060,912,121)    (1,343,028,969)",
+    "source": "2017Q4__El-Sewedy-4Q-2017-Earnings-Release-E-FINAL-2.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "other_op_inc": {
+    "value": 491029123.0,
+    "line": "Other Operating Income          58,723,417       (51,313,011)                 491,029,123         65,315,219",
+    "source": "2017Q4__El-Sewedy-4Q-2017-Earnings-Release-E-FINAL-2.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "other_op_exp": {
+    "value": -922176356.0,
+    "line": "Other Operating Expense      (212,826,792)      (688,829,024)               (922,176,356)      (837,704,837)",
+    "source": "2017Q4__El-Sewedy-4Q-2017-Earnings-Release-E-FINAL-2.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "inv_income": {
+    "value": 701932258.0,
+    "line": "Income from Investments        287,064,038        132,623,669                 701,932,258        330,824,011",
+    "source": "2017Q4__El-Sewedy-4Q-2017-Earnings-Release-E-FINAL-2.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ebitda": {
+    "value": 7802306592.0,
+    "line": "EBITDA                       1,830,798,897      1,364,590,364      34%      7,802,306,592      4,535,510,446       72%",
+    "source": "2017Q4__El-Sewedy-4Q-2017-Earnings-Release-E-FINAL-2.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "dna": {
+    "value": -548205034.0,
+    "line": "Depreciation & / (122,120,027)      (123,327,556)               (548,205,034)      (386,819,675)",
+    "source": "2017Q4__El-Sewedy-4Q-2017-Earnings-Release-E-FINAL-2.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "fx": {
+    "value": 198242082.0,
+    "line": "FX Gain / (Loss)                86,492,784      1,107,750,032                 198,242,082      1,311,545,267",
+    "source": "2017Q4__El-Sewedy-4Q-2017-Earnings-Release-E-FINAL-2.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ebit": {
+    "value": 7452343640.0,
+    "line": "EBIT                         1,795,171,654      2,349,012,840               7,452,343,640      5,460,236,038",
+    "source": "2017Q4__El-Sewedy-4Q-2017-Earnings-Release-E-FINAL-2.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "interest_exp": {
+    "value": -512376566.0,
+    "line": "Interest Expense             (116,099,559)      (134,386,944)               (512,376,566)      (415,054,477)",
+    "source": "2017Q4__El-Sewedy-4Q-2017-Earnings-Release-E-FINAL-2.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "interest_inc": {
+    "value": 730529680.0,
+    "line": "Interest Income                308,451,819         60,173,722                 730,529,680        180,761,611",
+    "source": "2017Q4__El-Sewedy-4Q-2017-Earnings-Release-E-FINAL-2.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ebt": {
+    "value": 7670496754.0,
+    "line": "EBT                          1,987,523,914      2,274,799,618               7,670,496,754      5,225,943,172",
+    "source": "2017Q4__El-Sewedy-4Q-2017-Earnings-Release-E-FINAL-2.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "tax": {
+    "value": -1183938659.0,
+    "line": "Tax                          (133,680,393)      (727,463,102)              (1,183,938,659)    (1,271,214,788)",
+    "source": "2017Q4__El-Sewedy-4Q-2017-Earnings-Release-E-FINAL-2.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "net_income": {
+    "value": 6486558095.0,
+    "line": "Net Income                   1,853,843,521      1,547,336,516               6,486,558,095      3,954,728,384",
+    "source": "2017Q4__El-Sewedy-4Q-2017-Earnings-Release-E-FINAL-2.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "minority": {
+    "value": -118516848.0,
+    "line": "Minority Interest             (52,916,600)       (45,568,829)               (118,516,848)        (101,285,792)",
+    "source": "2017Q4__El-Sewedy-4Q-2017-Earnings-Release-E-FINAL-2.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "npat_owners": {
+    "value": 6368041247.0,
+    "line": "Net Income After Minority / 1,800,926,921      1,501,767,687      20%      6,368,041,247        3,853,442,592     65%",
+    "source": "2017Q4__El-Sewedy-4Q-2017-Earnings-Release-E-FINAL-2.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "legs": {
+    "revenue": {
+     "cables": {
+      "value": 22475892064.0,
+      "source": "2017Q4__El-Sewedy-4Q-2017-Earnings-Release-E-FINAL-2.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "other": {
+      "value": 5012818210.0,
+      "source": "2017Q4__El-Sewedy-4Q-2017-Earnings-Release-E-FINAL-2.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "contracting": {
+      "value": 15422402622.0,
+      "source": "2017Q4__El-Sewedy-4Q-2017-Earnings-Release-E-FINAL-2.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     }
+    },
+    "_lines": {
+     "revenue": [
+      "Wires & Cables               6,310,388,978      4,065,285,020         ",
+      "Electrical Products          1,528,608,368        743,534,959         ",
+      "Turnkey Projects             2,953,931,487      4,408,549,778         "
+     ]
+    },
+    "_header": "^\\s*Consolidated Income Statement"
+   },
+   "units": {
+    "cable_volume_t": {
+     "value": 122082.0,
+     "line": "Cable Sales Volume                     153,834          43,220          43,208          37,055          32,145",
+     "source": "2017Q4__RAP-Sheet-Investors-FY-2017..txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_price_t": {
+     "value": 165472.0,
+     "line": "Cable Price per ton                     68,736          68,050          72,932          78,423          146,76",
+     "source": "2017Q4__RAP-Sheet-Investors-FY-2017..txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_cost_t": {
+     "value": 138274.0,
+     "line": "Cable Cost per ton                      62,506          60,544          63,375          68,729          128,63",
+     "source": "2017Q4__RAP-Sheet-Investors-FY-2017..txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_revenue": {
+     "value": 20201166866.0,
+     "line": "Cable Revenue                       10,573,902,206   2,941,103,028   3,151,236,459   2,905,990,490   4,717,655",
+     "source": "2017Q4__RAP-Sheet-Investors-FY-2017..txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_cost": {
+     "value": 16880796438.0,
+     "line": "Cable Costs                          9,615,511,207   2,616,712,750   2,738,287,849   2,546,772,854   4,135,005",
+     "source": "2017Q4__RAP-Sheet-Investors-FY-2017..txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_plus_rawmat_revenue": {
+     "value": 34516667581.0,
+     "line": "Total Cable Revenue                 17,359,342,075   4,598,136,955   4,627,153,026   4,349,420,735   7,081,228",
+     "source": "2017Q4__RAP-Sheet-Investors-FY-2017..txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_plus_rawmat_cost": {
+     "value": 29789206714.0,
+     "line": "Total Cable Costs                   15,945,725,410   4,105,686,566   4,041,320,480   3,844,144,779   5,658,608",
+     "source": "2017Q4__RAP-Sheet-Investors-FY-2017..txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    }
+   },
+   "segment_sheet": {
+    "cables": {
+     "sales": {
+      "value": 22475892064.0,
+      "source": "2017Q4__Segment-Analysis-FY-2017.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "gross_profit": {
+      "value": 4727460873.0,
+      "source": "2017Q4__Segment-Analysis-FY-2017.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "selling_expense": {
+      "value": 507910645.0,
+      "source": "2017Q4__Segment-Analysis-FY-2017.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     }
+    },
+    "contracting": {
+     "sales": {
+      "value": 15422402622.0,
+      "source": "2017Q4__Segment-Analysis-FY-2017.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "gross_profit": {
+      "value": 2832624088.0,
+      "source": "2017Q4__Segment-Analysis-FY-2017.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "selling_expense": {
+      "value": 31700038.0,
+      "source": "2017Q4__Segment-Analysis-FY-2017.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     }
+    },
+    "other": {
+     "sales": {
+      "value": 5012818210.0,
+      "source": "2017Q4__Segment-Analysis-FY-2017.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "gross_profit": {
+      "value": 1484143697.0,
+      "source": "2017Q4__Segment-Analysis-FY-2017.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "selling_expense": {
+      "value": 265971854.0,
+      "source": "2017Q4__Segment-Analysis-FY-2017.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     }
+    },
+    "_not_allocated_raw": [
+     8607548.0,
+     4565700.0
+    ],
+    "_unmapped_rows": [
+     "Not Allocated"
+    ],
+    "_fields_carried": [
+     "gross_profit",
+     "sales",
+     "selling_expense"
+    ]
+   }
+  },
+  "2018": {
+   "revenue": {
+    "value": 42490563350.0,
+    "line": "Total Sales                           12,174,900,775    10,792,928,833     -13%     42,490,563,350       42,911,112,896        -1%",
+    "source": "2018Q4__4Q-Earnings-Release-E-FINAL.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "cogs": {
+    "value": -35291395175.0,
+    "line": "COGS                                 (10,158,099,188)   (8,679,453,308)            (35,291,395,175)     (33,866,884,242)",
+    "source": "2018Q4__4Q-Earnings-Release-E-FINAL.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "gross_profit": {
+    "value": 7199168175.0,
+    "line": "Gross Profit                           2,016,801,587     2,113,475,525      -5%      7,199,168,175        9,044,228,654     -20%",
+    "source": "2018Q4__4Q-Earnings-Release-E-FINAL.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "sga": {
+    "value": -2234133627.0,
+    "line": "SG&A                                    (691,079,730)    (537,757,318)              (2,234,133,627)      (2,060,912,121)",
+    "source": "2018Q4__4Q-Earnings-Release-E-FINAL.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "other_op_inc": {
+    "value": 414754348.0,
+    "line": "Other Operating Income                   172,830,034        58,723,417                 414,754,348          491,029,123",
+    "source": "2018Q4__4Q-Earnings-Release-E-FINAL.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "other_op_exp": {
+    "value": -584733724.0,
+    "line": "Other Operating Expense                 (112,969,401)    (212,826,792)               (584,733,724)        (922,176,356)",
+    "source": "2018Q4__4Q-Earnings-Release-E-FINAL.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "inv_income": {
+    "value": 616298493.0,
+    "line": "Income from Investments                  176,898,583       287,064,038                 616,298,493          701,932,258",
+    "source": "2018Q4__4Q-Earnings-Release-E-FINAL.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ebitda": {
+    "value": 6060447575.0,
+    "line": "EBITDA                                 1,735,723,195     1,830,798,897      -5%      6,060,447,575        7,802,306,592     -22%",
+    "source": "2018Q4__4Q-Earnings-Release-E-FINAL.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "dna": {
+    "value": -649093910.0,
+    "line": "Depreciation & Amortization             (173,242,121)    (122,120,027)               (649,093,910)        (548,205,034)",
+    "source": "2018Q4__4Q-Earnings-Release-E-FINAL.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "fx": {
+    "value": -116173761.0,
+    "line": "FX Gain / (Loss)                         (39,368,396)       86,492,784               (116,173,761)          198,242,082",
+    "source": "2018Q4__4Q-Earnings-Release-E-FINAL.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ebit": {
+    "value": 5295179904.0,
+    "line": "EBIT                                   1,523,112,678     1,795,171,654     -15%      5,295,179,904        7,452,343,640     -29%",
+    "source": "2018Q4__4Q-Earnings-Release-E-FINAL.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "interest_exp": {
+    "value": -356959191.0,
+    "line": "Interest Expense                         (96,516,462)    (116,099,559)               (356,959,191)        (512,376,566)",
+    "source": "2018Q4__4Q-Earnings-Release-E-FINAL.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "interest_inc": {
+    "value": 1130359587.0,
+    "line": "Interest Income                          235,352,368       308,451,819               1,130,359,587          730,529,680",
+    "source": "2018Q4__4Q-Earnings-Release-E-FINAL.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ebt": {
+    "value": 6068580300.0,
+    "line": "EBT                                    1,661,948,584     1,987,523,914     -16%      6,068,580,300        7,670,496,754     -21%",
+    "source": "2018Q4__4Q-Earnings-Release-E-FINAL.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "tax": {
+    "value": -958145476.0,
+    "line": "Tax                                     (129,979,063)    (133,680,393)               (958,145,476)       (1,183,938,659)",
+    "source": "2018Q4__4Q-Earnings-Release-E-FINAL.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "net_income": {
+    "value": 5110434824.0,
+    "line": "Net Income                             1,531,969,521     1,853,843,521     -17%      5,110,434,824        6,486,558,095     -21%",
+    "source": "2018Q4__4Q-Earnings-Release-E-FINAL.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "minority": {
+    "value": -117806954.0,
+    "line": "Minority Interest                        (43,416,885)     (52,916,600)               (117,806,954)        (118,516,848)",
+    "source": "2018Q4__4Q-Earnings-Release-E-FINAL.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "npat_owners": {
+    "value": 4992627870.0,
+    "line": "Net Income After Minority Interest     1,488,552,636     1,800,926,921     -17%      4,992,627,870        6,368,041,247     -22%",
+    "source": "2018Q4__4Q-Earnings-Release-E-FINAL.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "legs": {
+    "revenue": {
+     "cables": {
+      "value": 23614259765.0,
+      "source": "2018Q4__4Q-Earnings-Release-E-FINAL.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "other": {
+      "value": 5704115516.0,
+      "source": "2018Q4__4Q-Earnings-Release-E-FINAL.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "contracting": {
+      "value": 13172188069.0,
+      "source": "2018Q4__4Q-Earnings-Release-E-FINAL.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     }
+    },
+    "_lines": {
+     "revenue": [
+      "Wires & Cables                         6,092,407,476     6,310,388,978",
+      "Electrical Products                    1,451,337,925     1,528,608,368",
+      "Turnkey Projects                       4,631,155,374     2,953,931,487"
+     ]
+    },
+    "_header": "^\\s*Consolidated Income Statement"
+   },
+   "units": {
+    "cable_volume_t": {
+     "value": 123564.0,
+     "line": "Cable Sales Volume                     155,628          33,027          29,458          26,894           32,70",
+     "source": "2018Q4__RAP-Investors-FY-2018.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_price_t": {
+     "value": 171808.0,
+     "line": "Cable Price per ton                     88,133          154,804         157,353         181,439         170,42",
+     "source": "2018Q4__RAP-Investors-FY-2018.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_cost_t": {
+     "value": 152700.0,
+     "line": "Cable Cost per ton                      77,343          123,914         129,184         154,786         147,38",
+     "source": "2018Q4__RAP-Investors-FY-2018.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_revenue": {
+     "value": 21229413383.0,
+     "line": "Cable Revenue                       13,715,985,235   5,112,730,869   4,635,262,317   4,879,668,648   5,573,505",
+     "source": "2018Q4__RAP-Investors-FY-2018.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_cost": {
+     "value": 18868317134.0,
+     "line": "Cable Costs                         12,036,778,914   4,092,517,612   3,805,462,888   4,162,848,035   4,819,967",
+     "source": "2018Q4__RAP-Investors-FY-2018.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_plus_rawmat_revenue": {
+     "value": 36716446330.0,
+     "line": "Total Cable Revenue                 20,655,939,629   8,193,235,629   7,913,181,145   8,409,406,109   10,000,84",
+     "source": "2018Q4__RAP-Investors-FY-2018.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_plus_rawmat_cost": {
+     "value": 33532546440.0,
+     "line": "Total Cable Costs                   17,649,760,056   6,547,325,435   6,788,052,871   7,470,552,465   8,983,275",
+     "source": "2018Q4__RAP-Investors-FY-2018.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    }
+   },
+   "segment_sheet": {
+    "cables": {
+     "sales": {
+      "value": 23614259765.0,
+      "source": "2018Q4__Segment-Analysis-FY-2018..txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "gross_profit": {
+      "value": 3183899889.0,
+      "source": "2018Q4__Segment-Analysis-FY-2018..txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "selling_expense": {
+      "value": 442011618.0,
+      "source": "2018Q4__Segment-Analysis-FY-2018..txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     }
+    },
+    "contracting": {
+     "sales": {
+      "value": 13172188069.0,
+      "source": "2018Q4__Segment-Analysis-FY-2018..txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "gross_profit": {
+      "value": 2366788930.0,
+      "source": "2018Q4__Segment-Analysis-FY-2018..txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "selling_expense": {
+      "value": 32213034.0,
+      "source": "2018Q4__Segment-Analysis-FY-2018..txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     }
+    },
+    "other": {
+     "sales": {
+      "value": 5704115516.0,
+      "source": "2018Q4__Segment-Analysis-FY-2018..txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "gross_profit": {
+      "value": 1648479357.0,
+      "source": "2018Q4__Segment-Analysis-FY-2018..txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "selling_expense": {
+      "value": 271253365.0,
+      "source": "2018Q4__Segment-Analysis-FY-2018..txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     }
+    },
+    "_not_allocated_raw": [
+     11811825.0,
+     8607548.0
+    ],
+    "_unmapped_rows": [
+     "Not Allocated"
+    ],
+    "_fields_carried": [
+     "gross_profit",
+     "sales",
+     "selling_expense"
+    ]
+   }
+  },
+  "2019": {
+   "revenue": {
+    "value": 46628791471.0,
+    "line": "Total Sales                    12,082,296,398     12,174,900,775      -0.8%     46,628,791,471     42,490,563,350     9.7%",
+    "source": "2019Q4__El-Sewedy-FY-2019-Earnings-Release-E-Final1.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "cogs": {
+    "value": -38434791700.0,
+    "line": "COGS                           (9,185,560,166)   (10,158,099,188)              (38,434,791,700)   (35,291,395,175)",
+    "source": "2019Q4__El-Sewedy-FY-2019-Earnings-Release-E-Final1.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "gross_profit": {
+    "value": 8193999772.0,
+    "line": "Gross Profit                     2,896,736,232      2,016,801,587    43.6%        8,193,999,772      7,199,168,175   13.8%",
+    "source": "2019Q4__El-Sewedy-FY-2019-Earnings-Release-E-Final1.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "sga": {
+    "value": -2709712657.0,
+    "line": "SG&A                            (760,196,711)      (692,054,055)                (2,709,712,657)    (2,235,107,952)",
+    "source": "2019Q4__El-Sewedy-FY-2019-Earnings-Release-E-Final1.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "other_op_inc": {
+    "value": 312797121.0,
+    "line": "Other Operating Income            (53,641,683)       172,830,034                    312,797,121        414,754,348",
+    "source": "2019Q4__El-Sewedy-FY-2019-Earnings-Release-E-Final1.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "other_op_exp": {
+    "value": -569144301.0,
+    "line": "Other Operating Expense           (93,668,341)     (112,969,401)                  (569,144,301)      (584,733,724)",
+    "source": "2019Q4__El-Sewedy-FY-2019-Earnings-Release-E-Final1.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "inv_income": {
+    "value": 375294555.0,
+    "line": "Income from Investments             79,683,149       176,898,583                    375,294,555        616,298,493",
+    "source": "2019Q4__El-Sewedy-FY-2019-Earnings-Release-E-Final1.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ebitda": {
+    "value": 6434236008.0,
+    "line": "EBITDA                          2,352,769,074      1,735,723,195     35.5%        6,434,236,008      6,060,447,575    6.2%",
+    "source": "2019Q4__El-Sewedy-FY-2019-Earnings-Release-E-Final1.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "dna": {
+    "value": -831001518.0,
+    "line": "Depreciation & Amortization     (283,856,428)      (174,216,446)                 (831,001,518)      (650,068,235)",
+    "source": "2019Q4__El-Sewedy-FY-2019-Earnings-Release-E-Final1.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "fx": {
+    "value": -354837543.0,
+    "line": "FX Gain / (Loss)                (181,957,823)       (39,368,396)                 (354,837,543)      (116,173,761)",
+    "source": "2019Q4__El-Sewedy-FY-2019-Earnings-Release-E-Final1.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ebit": {
+    "value": 5248396947.0,
+    "line": "EBIT                            1,886,954,824      1,522,138,353     24.0%       5,248,396,947      5,294,205,579     -0.9%",
+    "source": "2019Q4__El-Sewedy-FY-2019-Earnings-Release-E-Final1.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "interest_exp": {
+    "value": -473522236.0,
+    "line": "Interest Expense                (142,811,079)        (96,516,462)                (473,522,236)      (356,959,191)",
+    "source": "2019Q4__El-Sewedy-FY-2019-Earnings-Release-E-Final1.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "interest_inc": {
+    "value": 719695770.0,
+    "line": "Interest Income                   147,043,170        235,352,368                   719,695,770      1,130,359,587",
+    "source": "2019Q4__El-Sewedy-FY-2019-Earnings-Release-E-Final1.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ebt": {
+    "value": 5494570481.0,
+    "line": "EBT                             1,891,186,915      1,660,974,259     13.9%       5,494,570,481      6,067,605,975     -9.4%",
+    "source": "2019Q4__El-Sewedy-FY-2019-Earnings-Release-E-Final1.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "tax": {
+    "value": -1331462506.0,
+    "line": "Tax                             (513,216,052)      (129,759,840)                (1,331,462,506)     (957,926,253)",
+    "source": "2019Q4__El-Sewedy-FY-2019-Earnings-Release-E-Final1.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "net_income": {
+    "value": 4163107975.0,
+    "line": "Net Income                      1,377,970,863      1,531,214,419     -10.0%       4,163,107,975     5,109,679,722    -18.5%",
+    "source": "2019Q4__El-Sewedy-FY-2019-Earnings-Release-E-Final1.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "minority": {
+    "value": -141263579.0,
+    "line": "Minority Interest                (73,349,882)        (43,416,885)                (141,263,579)      (117,806,954)",
+    "source": "2019Q4__El-Sewedy-FY-2019-Earnings-Release-E-Final1.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "npat_owners": {
+    "value": 4021844396.0,
+    "line": "Net Income After Minority / 1,304,620,981      1,487,797,534     -12.4%      4,021,844,396      4,991,872,768    -19.4%",
+    "source": "2019Q4__El-Sewedy-FY-2019-Earnings-Release-E-Final1.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "legs": {
+    "revenue": {
+     "cables": {
+      "value": 21654936505.0,
+      "source": "2019Q4__El-Sewedy-FY-2019-Earnings-Release-E-Final1.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "other": {
+      "value": 5824098953.0,
+      "source": "2019Q4__El-Sewedy-FY-2019-Earnings-Release-E-Final1.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "contracting": {
+      "value": 19149756014.0,
+      "source": "2019Q4__El-Sewedy-FY-2019-Earnings-Release-E-Final1.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     }
+    },
+    "_lines": {
+     "revenue": [
+      "Wires & Cables                  4,776,091,178      6,092,407,476      ",
+      "Electrical Products             1,453,424,289      1,451,337,925      ",
+      "Turnkey Projects                5,852,780,931      4,631,155,374      "
+     ]
+    },
+    "_header": "^\\s*Consolidated Income Statement"
+   },
+   "units": {
+    "cable_volume_t": {
+     "value": 126948.0,
+     "line": "Cable Sales Volume                     155,628          122,082          33,731          29,420          26,53",
+     "source": "2019Q4__RAP-Sheet-Investors-FY-2019.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_price_t": {
+     "value": 147113.0,
+     "line": "Cable Price per ton                     88,133          165,472          161,337         169,265         174,2",
+     "source": "2019Q4__RAP-Sheet-Investors-FY-2019.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_cost_t": {
+     "value": 130764.0,
+     "line": "Cable Cost per ton                      77,343          138,274          140,690         151,985         156,9",
+     "source": "2019Q4__RAP-Sheet-Investors-FY-2019.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_revenue": {
+     "value": 18675674820.0,
+     "line": "Cable Revenue                       13,715,985,235   20,201,166,866   5,442,106,677   4,979,757,473   4,623,47",
+     "source": "2019Q4__RAP-Sheet-Investors-FY-2019.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_cost": {
+     "value": 16600176883.0,
+     "line": "Cable Costs                         12,036,778,914   16,880,796,438   4,745,664,309   4,471,378,872   4,163,82",
+     "source": "2019Q4__RAP-Sheet-Investors-FY-2019.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_plus_rawmat_revenue": {
+     "value": 30716531189.0,
+     "line": "Total Cable Revenue                 20,655,939,629   34,516,667,581   9,389,129,170   8,599,789,381   8,684,54",
+     "source": "2019Q4__RAP-Sheet-Investors-FY-2019.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_plus_rawmat_cost": {
+     "value": 28137440092.0,
+     "line": "Total Cable Costs                   17,649,760,056   29,789,206,714   8,508,153,316   7,881,504,501   8,030,84",
+     "source": "2019Q4__RAP-Sheet-Investors-FY-2019.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    }
+   },
+   "segment_sheet": {
+    "cables": {
+     "sales": {
+      "value": 21654936505.0,
+      "source": "2019Q4__Segment-Analysis-FY-2019.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "gross_profit": {
+      "value": 2579091099.0,
+      "source": "2019Q4__Segment-Analysis-FY-2019.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "selling_expense": {
+      "value": 373378945.0,
+      "source": "2019Q4__Segment-Analysis-FY-2019.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     }
+    },
+    "contracting": {
+     "sales": {
+      "value": 19149756014.0,
+      "source": "2019Q4__Segment-Analysis-FY-2019.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "gross_profit": {
+      "value": 3875450943.0,
+      "source": "2019Q4__Segment-Analysis-FY-2019.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "selling_expense": {
+      "value": 51159988.0,
+      "source": "2019Q4__Segment-Analysis-FY-2019.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     }
+    },
+    "other": {
+     "sales": {
+      "value": 5824098952.0,
+      "source": "2019Q4__Segment-Analysis-FY-2019.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "gross_profit": {
+      "value": 1739457730.0,
+      "source": "2019Q4__Segment-Analysis-FY-2019.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "selling_expense": {
+      "value": 305409849.0,
+      "source": "2019Q4__Segment-Analysis-FY-2019.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     }
+    },
+    "_not_allocated_raw": [
+     20432371.0,
+     0.0,
+     11811825.0
+    ],
+    "_unmapped_rows": [
+     "Not Allocated"
+    ],
+    "_fields_carried": [
+     "gross_profit",
+     "sales",
+     "selling_expense"
+    ]
+   }
+  },
+  "2020": {
+   "revenue": {
+    "value": 46401570767.0,
+    "line": "Total Sales                           14,931,566,636    12,082,296,398     23.6%    46,401,570,767      46,628,791,471      -0.5%",
+    "source": "2020Q4__El-Sewedy-4Q20-Earnings-Release-E-Final.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "cogs": {
+    "value": -39286868270.0,
+    "line": "COGS                                 (12,118,604,656)   (9,185,560,166)            (39,286,868,270)    (38,434,791,700)",
+    "source": "2020Q4__El-Sewedy-4Q20-Earnings-Release-E-Final.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "gross_profit": {
+    "value": 7114702496.0,
+    "line": "Gross Profit                           2,812,961,980     2,896,736,232     -2.9%     7,114,702,496       8,193,999,772     -13.2%",
+    "source": "2020Q4__El-Sewedy-4Q20-Earnings-Release-E-Final.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "sga": {
+    "value": -2812885615.0,
+    "line": "SG&A                                   (760,011,228)     (760,196,711)              (2,812,885,615)     (2,709,712,657)",
+    "source": "2020Q4__El-Sewedy-4Q20-Earnings-Release-E-Final.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "other_op_inc": {
+    "value": 553834116.0,
+    "line": "Other Operating Income                   150,005,303      (53,641,683)                 553,834,116         312,797,121",
+    "source": "2020Q4__El-Sewedy-4Q20-Earnings-Release-E-Final.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "other_op_exp": {
+    "value": -821698825.0,
+    "line": "Other Operating Expense                (449,614,217)      (93,668,341)               (821,698,825)       (569,144,301)",
+    "source": "2020Q4__El-Sewedy-4Q20-Earnings-Release-E-Final.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "inv_income": {
+    "value": 322256736.0,
+    "line": "Income from Investments                   77,900,554        79,683,149                 322,256,736         375,294,555",
+    "source": "2020Q4__El-Sewedy-4Q20-Earnings-Release-E-Final.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ebitda": {
+    "value": 5309460336.0,
+    "line": "EBITDA                                 2,088,587,067     2,352,769,074    -11.2%     5,309,460,336       6,434,236,008     -17.5%",
+    "source": "2020Q4__El-Sewedy-4Q20-Earnings-Release-E-Final.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "dna": {
+    "value": -953251429.0,
+    "line": "Depreciation & Amortization            (257,344,675)     (283,856,428)               (953,251,429)       (831,001,518)",
+    "source": "2020Q4__El-Sewedy-4Q20-Earnings-Release-E-Final.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "fx": {
+    "value": -23052455.0,
+    "line": "FX Gain / (Loss)                          14,797,447     (181,957,823)                 (23,052,455)      (354,837,543)",
+    "source": "2020Q4__El-Sewedy-4Q20-Earnings-Release-E-Final.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ebit": {
+    "value": 4333156453.0,
+    "line": "EBIT                                   1,846,039,839     1,886,954,824     -2.2%     4,333,156,453       5,248,396,947     -17.4%",
+    "source": "2020Q4__El-Sewedy-4Q20-Earnings-Release-E-Final.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "interest_exp": {
+    "value": -558406883.0,
+    "line": "Interest Expense                       (171,955,202)     (142,811,079)               (558,406,883)       (473,522,236)",
+    "source": "2020Q4__El-Sewedy-4Q20-Earnings-Release-E-Final.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "interest_inc": {
+    "value": 491440521.0,
+    "line": "Interest Income                           78,769,804       147,043,170                 491,440,521         719,695,770",
+    "source": "2020Q4__El-Sewedy-4Q20-Earnings-Release-E-Final.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ebt": {
+    "value": 4266190091.0,
+    "line": "EBT                                    1,752,854,441     1,891,186,915     -7.3%     4,266,190,091       5,494,570,481     -22.4%",
+    "source": "2020Q4__El-Sewedy-4Q20-Earnings-Release-E-Final.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "tax": {
+    "value": -959865299.0,
+    "line": "Tax                                    (381,935,109)     (513,216,052)               (959,865,299)      (1,331,462,506)",
+    "source": "2020Q4__El-Sewedy-4Q20-Earnings-Release-E-Final.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "net_income": {
+    "value": 3306324791.0,
+    "line": "Net Income                             1,370,919,333     1,377,970,863     -0.5%     3,306,324,791       4,163,107,975     -20.6%",
+    "source": "2020Q4__El-Sewedy-4Q20-Earnings-Release-E-Final.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "minority": {
+    "value": -278791550.0,
+    "line": "Minority Interest                        (75,138,759)     (73,349,882)               (278,791,550)       (141,263,579)",
+    "source": "2020Q4__El-Sewedy-4Q20-Earnings-Release-E-Final.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "npat_owners": {
+    "value": 3027533242.0,
+    "line": "Net Income After Minority Interest     1,295,780,574     1,304,620,981     -0.7%     3,027,533,242       4,021,844,396     -24.7%",
+    "source": "2020Q4__El-Sewedy-4Q20-Earnings-Release-E-Final.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "legs": {
+    "revenue": {
+     "cables": {
+      "value": 18533412130.0,
+      "source": "2020Q4__El-Sewedy-4Q20-Earnings-Release-E-Final.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "other": {
+      "value": 4783941025.0,
+      "source": "2020Q4__El-Sewedy-4Q20-Earnings-Release-E-Final.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "contracting": {
+      "value": 23084217613.0,
+      "source": "2020Q4__El-Sewedy-4Q20-Earnings-Release-E-Final.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     }
+    },
+    "_lines": {
+     "revenue": [
+      "Wires & Cables                         5,520,496,850     4,776,091,178",
+      "Electrical Products                    1,234,616,384     1,453,424,289",
+      "Turnkey Projects                       8,176,453,402     5,852,780,931"
+     ]
+    },
+    "_header": "^\\s*Consolidated Income Statement"
+   },
+   "units": {
+    "cable_volume_t": {
+     "value": 120897.0,
+     "line": "Cable Sales Volume                     122,082          123,564          33,097          32,618          30,78",
+     "source": "2020Q4__RAP-Sheet-Investors-FY-2020.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_price_t": {
+     "value": 131042.0,
+     "line": "Cable Price per ton                    165,472          171,808          162,182         148,594         145,1",
+     "source": "2020Q4__RAP-Sheet-Investors-FY-2020.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_cost_t": {
+     "value": 117551.0,
+     "line": "Cable Cost per ton                     138,274          152,700          139,705         132,072         133,3",
+     "source": "2020Q4__RAP-Sheet-Investors-FY-2020.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_revenue": {
+     "value": 15842573933.0,
+     "line": "Cable Revenue                       20,201,166,866   21,229,413,383   5,367,811,444   4,846,816,805   4,468,19",
+     "source": "2020Q4__RAP-Sheet-Investors-FY-2020.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_cost": {
+     "value": 14211633750.0,
+     "line": "Cable Costs                         16,880,796,438   18,868,317,134   4,623,875,790   4,307,918,154   4,105,50",
+     "source": "2020Q4__RAP-Sheet-Investors-FY-2020.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_plus_rawmat_revenue": {
+     "value": 27225718888.0,
+     "line": "Total Cable Revenue                 34,516,667,581   36,716,446,330   9,265,028,641   7,869,229,963   7,067,41",
+     "source": "2020Q4__RAP-Sheet-Investors-FY-2020.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    },
+    "cable_plus_rawmat_cost": {
+     "value": 24864799870.0,
+     "line": "Total Cable Costs                   29,789,206,714   33,532,546,440   8,350,732,655   7,198,833,465   6,620,60",
+     "source": "2020Q4__RAP-Sheet-Investors-FY-2020.txt",
+     "tier": "A_IR",
+     "route": "text_layer"
+    }
+   },
+   "segment_sheet": {
+    "cables": {
+     "sales": {
+      "value": 18533412130.0,
+      "source": "2020Q4__Segment-Analysis-FY-2020.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "gross_profit": {
+      "value": 2360919016.0,
+      "source": "2020Q4__Segment-Analysis-FY-2020.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     }
+    },
+    "contracting": {
+     "sales": {
+      "value": 22721422502.0,
+      "source": "2020Q4__Segment-Analysis-FY-2020.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "gross_profit": {
+      "value": 3150540156.0,
+      "source": "2020Q4__Segment-Analysis-FY-2020.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     }
+    },
+    "other": {
+     "sales": {
+      "value": 5146736136.0,
+      "source": "2020Q4__Segment-Analysis-FY-2020.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "gross_profit": {
+      "value": 1603243325.0,
+      "source": "2020Q4__Segment-Analysis-FY-2020.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     }
+    },
+    "_not_allocated_raw": [
+     27818933.0,
+     20432371.0
+    ],
+    "_unmapped_rows": [
+     "Renwables -IPPs",
+     "Not Allocated"
+    ],
+    "_fields_carried": [
+     "gross_profit",
+     "sales"
+    ]
+   }
+  },
+  "2021": {
+   "revenue": {
+    "value": 60541421612.0,
+    "line": "Total Sales                           19,654,518,459     14,931,566,636        31.6%    60,541,421,612     46,401,570,767        30.5%",
+    "source": "2021Q4__Elsewedy-Electric-FY-2021-ER-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "cogs": {
+    "value": -52106121564.0,
+    "line": "COGS                                 (16,734,470,696)   (12,118,604,656)               (52,106,121,564)   (39,347,557,392)",
+    "source": "2021Q4__Elsewedy-Electric-FY-2021-ER-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "gross_profit": {
+    "value": 8435300047.0,
+    "line": "Gross Profit                           2,920,047,763      2,812,961,980         3.8%     8,435,300,047      7,054,013,374        19.6%",
+    "source": "2021Q4__Elsewedy-Electric-FY-2021-ER-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "sga": {
+    "value": -3409596075.0,
+    "line": "SG&A                                  (1,087,248,364)     (760,011,228)                 (3,409,596,075)    (2,812,885,615)",
+    "source": "2021Q4__Elsewedy-Electric-FY-2021-ER-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "other_op_inc": {
+    "value": 470252797.0,
+    "line": "Other Operating Income                   155,501,802        129,620,540                    470,252,797        497,104,317",
+    "source": "2021Q4__Elsewedy-Electric-FY-2021-ER-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "other_op_exp": {
+    "value": -567183442.0,
+    "line": "Other Operating Expense                (310,893,932)      (429,229,454)                  (567,183,442)      (704,279,904)",
+    "source": "2021Q4__Elsewedy-Electric-FY-2021-ER-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "inv_income": {
+    "value": 248538462.0,
+    "line": "Income from Investments                   52,967,339         77,900,554                    248,538,462        322,256,736",
+    "source": "2021Q4__Elsewedy-Electric-FY-2021-ER-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ebitda": {
+    "value": 6266747767.0,
+    "line": "EBITDA                                 2,027,274,187      2,088,587,067        -2.9%     6,266,747,767      5,309,460,336        18.0%",
+    "source": "2021Q4__Elsewedy-Electric-FY-2021-ER-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "dna": {
+    "value": -1089435978.0,
+    "line": "Depreciation & Amortization            (296,899,578)      (257,344,675)                 (1,089,435,978)     (953,251,429)",
+    "source": "2021Q4__Elsewedy-Electric-FY-2021-ER-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "fx": {
+    "value": -40056070.0,
+    "line": "FX Gain / (Loss)                         (38,312,754)        14,797,447                    (40,056,070)       (23,052,455)",
+    "source": "2021Q4__Elsewedy-Electric-FY-2021-ER-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ebit": {
+    "value": 5137255718.0,
+    "line": "EBIT                                   1,692,061,855      1,846,039,839        -8.3%     5,137,255,718      4,333,156,453        18.6%",
+    "source": "2021Q4__Elsewedy-Electric-FY-2021-ER-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "interest_exp": {
+    "value": -729230425.0,
+    "line": "Interest Expense                       (243,410,239)      (171,955,202)                  (729,230,425)      (558,406,883)",
+    "source": "2021Q4__Elsewedy-Electric-FY-2021-ER-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "interest_inc": {
+    "value": 424915986.0,
+    "line": "Interest Income                           88,031,776         78,769,804                    424,915,986        491,440,521",
+    "source": "2021Q4__Elsewedy-Electric-FY-2021-ER-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ebt": {
+    "value": 4832941280.0,
+    "line": "EBT                                    1,536,683,392      1,752,854,441       -12.3%     4,832,941,280      4,266,190,091        13.3%",
+    "source": "2021Q4__Elsewedy-Electric-FY-2021-ER-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "tax": {
+    "value": -1024111242.0,
+    "line": "Tax                                    (245,802,130)      (381,935,109)                 (1,024,111,242)     (959,865,299)",
+    "source": "2021Q4__Elsewedy-Electric-FY-2021-ER-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "net_income": {
+    "value": 3808830038.0,
+    "line": "Net Income                             1,290,881,263      1,370,919,332        -5.8%     3,808,830,038      3,306,324,791        15.2%",
+    "source": "2021Q4__Elsewedy-Electric-FY-2021-ER-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "minority": {
+    "value": -274968512.0,
+    "line": "Minority Interest                        (50,470,512)       (75,138,759)                 (274,968,512)      (278,791,550)",
+    "source": "2021Q4__Elsewedy-Electric-FY-2021-ER-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "npat_owners": {
+    "value": 3533861526.0,
+    "line": "Net Income After Minority Interest     1,240,410,751      1,295,780,574        -4.3%     3,533,861,526      3,027,533,242        16.7%",
+    "source": "2021Q4__Elsewedy-Electric-FY-2021-ER-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "legs": {
+    "revenue": {
+     "cables": {
+      "value": 29629000620.0,
+      "source": "2021Q4__Elsewedy-Electric-FY-2021-ER-En-.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "other": {
+      "value": 5148322060.0,
+      "source": "2021Q4__Elsewedy-Electric-FY-2021-ER-En-.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "contracting": {
+      "value": 25764098932.0,
+      "source": "2021Q4__Elsewedy-Electric-FY-2021-ER-En-.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     }
+    },
+    "_lines": {
+     "revenue": [
+      "Wires & Cables                         9,364,333,337      5,520,496,85",
+      "Electrical Products                    1,431,663,829      1,234,616,38",
+      "Turnkey Projects                       8,858,521,292      8,176,453,40"
+     ]
+    },
+    "_header": "^\\s*Consolidated Income Statement"
+   },
+   "units_refused": {
+    "reason": "the unit identity does not close, or a field the identity needs is absent \u2014 the block is not carried",
+    "fields_present": [
+     "cable_cost",
+     "cable_plus_rawmat_cost",
+     "cable_plus_rawmat_revenue",
+     "cable_revenue",
+     "cable_volume_t"
+    ],
+    "source": "2021Q4__RAP-Sheet-Investors-FY-2021-Final.txt"
+   },
+   "segment_sheet": {
+    "cables": {
+     "sales": {
+      "value": 29629000620.0,
+      "source": "2021Q4__Segment-Analysis-FY-2021-Final.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "gross_profit": {
+      "value": 3141011823.0,
+      "source": "2021Q4__Segment-Analysis-FY-2021-Final.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "selling_expense": {
+      "value": 536039665.0,
+      "source": "2021Q4__Segment-Analysis-FY-2021-Final.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "depreciation": {
+      "value": 273991762.0,
+      "source": "2021Q4__Segment-Analysis-FY-2021-Final.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     }
+    },
+    "contracting": {
+     "sales": {
+      "value": 25393588391.0,
+      "source": "2021Q4__Segment-Analysis-FY-2021-Final.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "gross_profit": {
+      "value": 3685519294.0,
+      "source": "2021Q4__Segment-Analysis-FY-2021-Final.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "selling_expense": {
+      "value": 58205908.0,
+      "source": "2021Q4__Segment-Analysis-FY-2021-Final.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "depreciation": {
+      "value": 477357579.0,
+      "source": "2021Q4__Segment-Analysis-FY-2021-Final.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     }
+    },
+    "other": {
+     "sales": {
+      "value": 5518832601.0,
+      "source": "2021Q4__Segment-Analysis-FY-2021-Final.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "gross_profit": {
+      "value": 1608768782.0,
+      "source": "2021Q4__Segment-Analysis-FY-2021-Final.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "selling_expense": {
+      "value": 313980204.0,
+      "source": "2021Q4__Segment-Analysis-FY-2021-Final.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "depreciation": {
+      "value": 338086637.0,
+      "source": "2021Q4__Segment-Analysis-FY-2021-Final.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     }
+    },
+    "_not_allocated_raw": [
+     0.0,
+     0.0,
+     27818933.0
+    ],
+    "_unmapped_rows": [
+     "Renwables -IPPs",
+     "Not Allocated"
+    ],
+    "_fields_carried": [
+     "depreciation",
+     "gross_profit",
+     "sales",
+     "selling_expense"
+    ]
+   }
+  },
+  "2022": {
+   "revenue": {
+    "value": 92167518911.0,
+    "line": "Total Sales                           29,595,109,666     19,654,518,458     50.6%     92,167,518,911     60,541,421,612    52.2%",
+    "source": "2022Q4__Elsewedy-Electric-ER-FY2022-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "cogs": {
+    "value": -78644300819.0,
+    "line": "COGS                                 (24,528,718,185)   (16,734,470,696)             (78,644,300,819)   (52,106,121,564)",
+    "source": "2022Q4__Elsewedy-Electric-ER-FY2022-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "gross_profit": {
+    "value": 13523218092.0,
+    "line": "Gross Profit                           5,066,391,481      2,920,047,762     73.5%     13,523,218,092      8,435,300,047    60.3%",
+    "source": "2022Q4__Elsewedy-Electric-ER-FY2022-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "sga": {
+    "value": -4960860852.0,
+    "line": "SG&A                                  (1,637,880,006)    (1,104,415,657)    48.3%     (4,960,860,852)    (3,472,513,601)   42.9%",
+    "source": "2022Q4__Elsewedy-Electric-ER-FY2022-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "other_op_inc": {
+    "value": 649039871.0,
+    "line": "Other Operating Income                   259,151,836        425,843,320                  649,039,871       740,594,315,",
+    "source": "2022Q4__Elsewedy-Electric-ER-FY2022-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "other_op_exp": {
+    "value": -1778385731.0,
+    "line": "Other Operating Expense               (1,176,943,954)     (293,726,172)               (1,778,385,731)     (504,265,922)",
+    "source": "2022Q4__Elsewedy-Electric-ER-FY2022-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "inv_income": {
+    "value": 265839807.0,
+    "line": "Income from Investments                   93,084,587         52,967,339                  265,839,807        248,538,462",
+    "source": "2022Q4__Elsewedy-Electric-ER-FY2022-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ebitda": {
+    "value": 9183863933.0,
+    "line": "EBITDA                                 3,056,436,420      2,297,616,169     33.0%      9,183,863,933      6,537,089,279    40.5%",
+    "source": "2022Q4__Elsewedy-Electric-ER-FY2022-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "dna": {
+    "value": -1485012746.0,
+    "line": "Depreciation & Amortization            (452,632,476)      (296,899,578)               (1,485,012,746)    (1,089,435,978)",
+    "source": "2022Q4__Elsewedy-Electric-ER-FY2022-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "fx": {
+    "value": 1603836186.0,
+    "line": "FX Gain / (Loss)                       1,544,860,661        (38,312,754)               1,603,836,186        (40,056,070)",
+    "source": "2022Q4__Elsewedy-Electric-ER-FY2022-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ebit": {
+    "value": 9302687373.0,
+    "line": "EBIT                                   4,148,664,605      1,962,403,837    111.4%      9,302,687,373      5,407,597,230    72.0%",
+    "source": "2022Q4__Elsewedy-Electric-ER-FY2022-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "interest_exp": {
+    "value": -1740384712.0,
+    "line": "Interest Expense                       (598,798,292)      (243,410,239)    146.0%     (1,740,384,712)     (729,230,425)    138.7%",
+    "source": "2022Q4__Elsewedy-Electric-ER-FY2022-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "interest_inc": {
+    "value": 509483166.0,
+    "line": "Interest Income                          143,088,974         88,031,775     62.5%        509,483,166        424,915,985    19.9%",
+    "source": "2022Q4__Elsewedy-Electric-ER-FY2022-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "ebt": {
+    "value": 8071785827.0,
+    "line": "EBT                                    3,692,955,287      1,807,025,373    104.4%      8,071,785,827      5,103,282,790    58.2%",
+    "source": "2022Q4__Elsewedy-Electric-ER-FY2022-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "tax": {
+    "value": -2317443176.0,
+    "line": "Tax                                   (1,275,473,797)     (455,106,549)               (2,317,443,176)     (1,233,415,61)",
+    "source": "2022Q4__Elsewedy-Electric-ER-FY2022-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "net_income": {
+    "value": 5754342651.0,
+    "line": "Net Income                             2,417,481,490      1,351,918,824     78.8%      5,754,342,651      3,869,867,129    48.7%",
+    "source": "2022Q4__Elsewedy-Electric-ER-FY2022-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "minority": {
+    "value": -336675083.0,
+    "line": "Minority Interest                        (91,882,932)       (50,470,726)               (336,675,083)      (274,968,512)",
+    "source": "2022Q4__Elsewedy-Electric-ER-FY2022-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "npat_owners": {
+    "value": 5417667568.0,
+    "line": "Net Income After Minority Interest     2,325,598,558      1,301,448,098     78.7%      5,417,667,568      3,594,898,617    50.7%",
+    "source": "2022Q4__Elsewedy-Electric-ER-FY2022-En-.txt",
+    "tier": "A_IR",
+    "route": "text_layer"
+   },
+   "legs": {
+    "revenue": {
+     "cables": {
+      "value": 43709751425.0,
+      "source": "2022Q4__Elsewedy-Electric-ER-FY2022-En-.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "other": {
+      "value": 9100531522.0,
+      "source": "2022Q4__Elsewedy-Electric-ER-FY2022-En-.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "contracting": {
+      "value": 39357235964.0,
+      "source": "2022Q4__Elsewedy-Electric-ER-FY2022-En-.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     }
+    },
+    "_lines": {
+     "revenue": [
+      "Wires & Cables                       13,489,989,471      9,364,333,337",
+      "Electrical Products                   3,109,369,649      1,416,997,587",
+      "Turnkey Projects                     12,995,750,545      8,873,187,534"
+     ]
+    },
+    "_header": "^\\s*Consolidated Income Statement",
+    "gross_profit": {
+     "cables": {
+      "value": 5942422000.0,
+      "source": "2022Q4__Elsewedy-Electric-ER-FY2022-En-.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "contracting": {
+      "value": 5002082000.0,
+      "source": "2022Q4__Elsewedy-Electric-ER-FY2022-En-.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "other": {
+      "value": 2578714000.0,
+      "source": "2022Q4__Elsewedy-Electric-ER-FY2022-En-.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     }
+    },
+    "_gp_header": "^\\s*Summary Income Statement"
+   }
+  },
+  "2023": {
+   "revenue": {
+    "value": 152186247545.0,
+    "line": "Revenues                                                                    )5(,)45-9(           231 981 835 577                 152 186 247 545",
+    "source": "2024Q4__EE-Consalidated-English-FS-31-December-2024.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "cogs": {
+    "value": -123108958742.0,
+    "line": "Cost of revenue                                                            )6(,)45-10(       (188 083 314 674)                 (123 108 958 742)",
+    "source": "2024Q4__EE-Consalidated-English-FS-31-December-2024.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "gross_profit": {
+    "value": 29077288803.0,
+    "line": "Gross profit                                                                                      43 898 520 903                  29 077 288 803",
+    "source": "2024Q4__EE-Consalidated-English-FS-31-December-2024.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "other_op_inc": {
+    "value": 1377419685.0,
+    "line": "Other income                                                                )9(,)45-9(           3 943 112 948                     1 377 419 685",
+    "source": "2024Q4__EE-Consalidated-English-FS-31-December-2024.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "selling": {
+    "value": -2670371570.0,
+    "line": "Selling and distribution expenses                                          )7(,)45-10(           (4 585 404 666)                  (2 670 371 570)",
+    "source": "2024Q4__EE-Consalidated-English-FS-31-December-2024.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "admin": {
+    "value": -5977797154.0,
+    "line": "General and administrative expenses                                        )8(,)45-10(           (7 584 862 689)                  (5 977 797 154)",
+    "source": "2024Q4__EE-Consalidated-English-FS-31-December-2024.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "impair_recv": {
+    "value": -502542890.0,
+    "line": "Net impairment loss on trade and other receivables                         )10(,)45-15(          (1 310 362 947)                   ( 502 542 890)",
+    "source": "2024Q4__EE-Consalidated-English-FS-31-December-2024.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "other_op_exp": {
+    "value": -3564878625.0,
+    "line": "Other expenses                                                             )11(,)45-10(          (5 019 284 405)                  (3 564 878 625)",
+    "source": "2024Q4__EE-Consalidated-English-FS-31-December-2024.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "operating": {
+    "value": 17739118249.0,
+    "line": "Operating profit                                                                                  29 341 719 144                  17 739 118 249",
+    "source": "2024Q4__EE-Consalidated-English-FS-31-December-2024.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "finance_inc": {
+    "value": 2818868796.0,
+    "line": "Finance income                                                             )12(,)45-9(             4 247 625 658                   2 818 868 796",
+    "source": "2024Q4__EE-Consalidated-English-FS-31-December-2024.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "finance_cost": {
+    "value": -4943231073.0,
+    "line": "Finance costs                                                              )12(,)45-9(            (7 762 991 604)                 (4 943 231 073)",
+    "source": "2024Q4__EE-Consalidated-English-FS-31-December-2024.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "assoc": {
+    "value": 603624972.0,
+    "line": "Group's share of profit of equity-accounted investees, net of tax                                  1 132 366 257                      603 624 972",
+    "source": "2024Q4__EE-Consalidated-English-FS-31-December-2024.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "ebt": {
+    "value": 16218380944.0,
+    "line": "Profit for the year before tax                                                                     26 958 719 455                  16 218 380 944",
+    "source": "2024Q4__EE-Consalidated-English-FS-31-December-2024.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "tax": {
+    "value": -5080406688.0,
+    "line": "Income tax expense                                                         )13(,)45-12(           (8 121 510 082)                 (5 080 406 688)",
+    "source": "2024Q4__EE-Consalidated-English-FS-31-December-2024.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "net_income": {
+    "value": 11137974256.0,
+    "line": "Profit for the year                                                                               18 837 209 373                  11 137 974 256",
+    "source": "2024Q4__EE-Consalidated-English-FS-31-December-2024.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "npat_owners": {
+    "value": 10115701777.0,
+    "line": "Owners of the parent company                                                                      17 461 358 714                  10 115 701 777",
+    "source": "2024Q4__EE-Consalidated-English-FS-31-December-2024.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "nci": {
+    "value": 1022272479.0,
+    "line": "Non-controlling interests                                                                          1 375 850 659                   1 022 272 479",
+    "source": "2024Q4__EE-Consalidated-English-FS-31-December-2024.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "eps": {
+    "value": 4.26,
+    "line": "Basic earning per share                                                    (40),(45-13)                     7.22                            4.26",
+    "source": "2024Q4__EE-Consalidated-English-FS-31-December-2024.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "legs": {
+    "revenue": {
+     "cables": {
+      "value": 82421265000.0,
+      "source": "2023Q4__Elsewedy-Electric-ER-4Q2023-E-Final.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "contracting": {
+      "value": 52896351000.0,
+      "source": "2023Q4__Elsewedy-Electric-ER-4Q2023-E-Final.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "other": {
+      "value": 16868631000.0,
+      "source": "2023Q4__Elsewedy-Electric-ER-4Q2023-E-Final.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     }
+    },
+    "_lines": {
+     "revenue": [
+      "Wires & Cables                             22,871,950       13,489,989",
+      "Turnkey Projects                           16,378,926       12,884,134",
+      "Meters                                      1,742,202        1,288,596",
+      "Transformers                                1,718,704        1,330,377",
+      "Electrical Products                           545,110          490,397",
+      "Renewables \u2013 IPP                              125,271          111,617"
+     ],
+     "gross_profit": [
+      "Wires & Cables                              4,944,961        1,938,323",
+      "Turnkey Projects                            2,040,464        2,300,606",
+      "Meters                                        294,894          277,147",
+      "Transformers                                  894,780          284,961",
+      "Electrical Products                           289,463          211,284",
+      "Renewables \u2013 IPP                                51,135          54,071"
+     ]
+    },
+    "_header": "^\\s*Summary Income Statement",
+    "gross_profit": {
+     "cables": {
+      "value": 17589029000.0,
+      "source": "2023Q4__Elsewedy-Electric-ER-4Q2023-E-Final.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "contracting": {
+      "value": 6129962000.0,
+      "source": "2023Q4__Elsewedy-Electric-ER-4Q2023-E-Final.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "other": {
+      "value": 5358298000.0,
+      "source": "2023Q4__Elsewedy-Electric-ER-4Q2023-E-Final.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     }
+    },
+    "_gp_header": "^\\s*Summary Income Statement"
+   }
+  },
+  "2024": {
+   "revenue": {
+    "value": 231981835577.0,
+    "line": "Revenues                                                                    )5(,)44-9(           281 049 081 719                231 981 835 577",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "cogs": {
+    "value": -188083314674.0,
+    "line": "Cost of revenue                                                            )6(,)44-10(      (240 286 973 532)                  (188 083 314 674)",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "gross_profit": {
+    "value": 43898520903.0,
+    "line": "Gross profit                                                                                      40 762 108 187                 43 898 520 903",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "other_op_inc": {
+    "value": 3943112948.0,
+    "line": "Other income                                                                )9(,)44-9(             3 195 926 771                  3 943 112 948",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "selling": {
+    "value": -4612310667.0,
+    "line": "Selling and distribution expenses                                          )7(,)44-10(           (6 518 723 502)                 (4 612 310 667)",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "admin": {
+    "value": -7557956688.0,
+    "line": "General and administrative expenses                                        )8(,)44-10(           (9 643 611 043)                 (7 557 956 688)",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "impair_recv": {
+    "value": -1310362947.0,
+    "line": "Net impairment loss on trade and other receivables                         )10(,)44-15(           ( 961 837 453)                 (1 310 362 947)",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "other_op_exp": {
+    "value": -5019284405.0,
+    "line": "Other expenses                                                             )11(,)44-10(          (1 479 637 341)                 (5 019 284 405)",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "operating": {
+    "value": 29341719144.0,
+    "line": "Operating profit                                                                                  25 354 225 619                 29 341 719 144",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "finance_inc": {
+    "value": 4247625658.0,
+    "line": "Finance income                                                             )12(,)44-9(             3 713 003 271                  4 247 625 658",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "finance_cost": {
+    "value": -7762991604.0,
+    "line": "Finance costs                                                              )12(,)44-9(           (5 858 442 026)                 (7 762 991 604)",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "assoc": {
+    "value": 1132366257.0,
+    "line": "Group's share of profit of equity-accounted investees, net of tax             )20(                 1 568 902 975                  1 132 366 257",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "ebt": {
+    "value": 26958719455.0,
+    "line": "Profit for the year before tax                                                                    24 777 689 839                 26 958 719 455",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "tax": {
+    "value": -8121510082.0,
+    "line": "Income tax expense                                                         )13(,)44-12(          (5 591 139 782)                 (8 121 510 082)",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "net_income": {
+    "value": 18837209373.0,
+    "line": "Net profit for the year                                                                           19 186 550 057                 18 837 209 373",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "npat_owners": {
+    "value": 17461358714.0,
+    "line": "Owners of the parent company                                                                      17 330 244 990                 17 461 358 714",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "nci": {
+    "value": 1375850659.0,
+    "line": "Non-controlling interests                                                                          1 856 305 067                  1 375 850 659",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "eps": {
+    "value": 7.22,
+    "line": "Basic earning per share                                                    (39),(44-13)                     7.13                            7.22",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "legs": {
+    "revenue": {
+     "cables": {
+      "value": 137189799000.0,
+      "source": "2024Q4__Elsewedy-Electric-ER-4Q2024-En.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "contracting": {
+      "value": 70042369000.0,
+      "source": "2024Q4__Elsewedy-Electric-ER-4Q2024-En.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "other": {
+      "value": 24749668000.0,
+      "source": "2024Q4__Elsewedy-Electric-ER-4Q2024-En.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     }
+    },
+    "_lines": {
+     "revenue": [
+      "Wires & Cables                         36,986,664      22,871,950     ",
+      "Turnkey Projects                       22,372,638      16,378,926     ",
+      "Meters                                  3,235,986       1,742,202     ",
+      "Transformers                            3,793,527       1,718,704     ",
+      "Electrical Products                       521,825         545,110     ",
+      "Renewables \u2013 IPP                          249,156         125,271     "
+     ],
+     "gross_profit": [
+      "Wires & Cables                          6,792,342       4,944,961     ",
+      "Turnkey Projects                        1,377,247       2,040,464     ",
+      "Meters                                    933,962         294,894     ",
+      "Transformers                            1,282,331         894,780     ",
+      "Electrical Products                       293,599         289,463     ",
+      "Renewables \u2013 IPP                          161,344          51,135     "
+     ]
+    },
+    "_header": "^\\s*Summary Income Statement",
+    "gross_profit": {
+     "cables": {
+      "value": 27606525000.0,
+      "source": "2024Q4__Elsewedy-Electric-ER-4Q2024-En.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "contracting": {
+      "value": 7831147000.0,
+      "source": "2024Q4__Elsewedy-Electric-ER-4Q2024-En.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "other": {
+      "value": 8460848000.0,
+      "source": "2024Q4__Elsewedy-Electric-ER-4Q2024-En.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     }
+    },
+    "_gp_header": "^\\s*Summary Income Statement"
+   }
+  },
+  "2025": {
+   "revenue": {
+    "value": 281049081719.0,
+    "line": "Revenues                                                                    )5(,)44-9(           281 049 081 719                231 981 835 577",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "cogs": {
+    "value": -240286973532.0,
+    "line": "Cost of revenue                                                            )6(,)44-10(      (240 286 973 532)                  (188 083 314 674)",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "gross_profit": {
+    "value": 40762108187.0,
+    "line": "Gross profit                                                                                      40 762 108 187                 43 898 520 903",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "other_op_inc": {
+    "value": 3195926771.0,
+    "line": "Other income                                                                )9(,)44-9(             3 195 926 771                  3 943 112 948",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "selling": {
+    "value": -6518723502.0,
+    "line": "Selling and distribution expenses                                          )7(,)44-10(           (6 518 723 502)                 (4 612 310 667)",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "admin": {
+    "value": -9643611043.0,
+    "line": "General and administrative expenses                                        )8(,)44-10(           (9 643 611 043)                 (7 557 956 688)",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "impair_recv": {
+    "value": -961837453.0,
+    "line": "Net impairment loss on trade and other receivables                         )10(,)44-15(           ( 961 837 453)                 (1 310 362 947)",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "other_op_exp": {
+    "value": -1479637341.0,
+    "line": "Other expenses                                                             )11(,)44-10(          (1 479 637 341)                 (5 019 284 405)",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "operating": {
+    "value": 25354225619.0,
+    "line": "Operating profit                                                                                  25 354 225 619                 29 341 719 144",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "finance_inc": {
+    "value": 3713003271.0,
+    "line": "Finance income                                                             )12(,)44-9(             3 713 003 271                  4 247 625 658",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "finance_cost": {
+    "value": -5858442026.0,
+    "line": "Finance costs                                                              )12(,)44-9(           (5 858 442 026)                 (7 762 991 604)",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "assoc": {
+    "value": 1568902975.0,
+    "line": "Group's share of profit of equity-accounted investees, net of tax             )20(                 1 568 902 975                  1 132 366 257",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "ebt": {
+    "value": 24777689839.0,
+    "line": "Profit for the year before tax                                                                    24 777 689 839                 26 958 719 455",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "tax": {
+    "value": -5591139782.0,
+    "line": "Income tax expense                                                         )13(,)44-12(          (5 591 139 782)                 (8 121 510 082)",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "net_income": {
+    "value": 19186550057.0,
+    "line": "Net profit for the year                                                                           19 186 550 057                 18 837 209 373",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "npat_owners": {
+    "value": 17330244990.0,
+    "line": "Owners of the parent company                                                                      17 330 244 990                 17 461 358 714",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "nci": {
+    "value": 1856305067.0,
+    "line": "Non-controlling interests                                                                          1 856 305 067                  1 375 850 659",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "eps": {
+    "value": 7.13,
+    "line": "Basic earning per share                                                    (39),(44-13)                     7.13                            7.22",
+    "source": "2025Q4__EE-Consolidated-En-FS-31-December-2025.filled.txt",
+    "tier": "A_AUDITED",
+    "route": "text_layer"
+   },
+   "legs": {
+    "revenue": {
+     "cables": {
+      "value": 155792930000.0,
+      "source": "2025Q4__Elsewedy-Electric-ER-4Q2025-E-.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "contracting": {
+      "value": 87100671000.0,
+      "source": "2025Q4__Elsewedy-Electric-ER-4Q2025-E-.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "other": {
+      "value": 38155481000.0,
+      "source": "2025Q4__Elsewedy-Electric-ER-4Q2025-E-.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     }
+    },
+    "_lines": {
+     "revenue": [
+      "Wire, Cable & Accessories1                              42,592,460    ",
+      "Engineering & Construction (E&C)2                       26,712,389    ",
+      "Digital Solutions3                                       5,006,924    ",
+      "Electrical Products4                                     6,016,368    ",
+      "Infrastructure Investment5                               1,013,272    "
+     ],
+     "gross_profit": [
+      "Wire, Cable & Accessories1                               6,890,525    ",
+      "Engineering & Construction (E&C)2                        1,437,320    ",
+      "Digital Solutions3                                          854,221   ",
+      "Electrical Products4                                     1,707,762    ",
+      "Infrastructure Investment5                                 -125,310   "
+     ]
+    },
+    "_header": "^\\s*Summary Income Statement",
+    "gross_profit": {
+     "cables": {
+      "value": 25197547000.0,
+      "source": "2025Q4__Elsewedy-Electric-ER-4Q2025-E-.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "contracting": {
+      "value": 4626959000.0,
+      "source": "2025Q4__Elsewedy-Electric-ER-4Q2025-E-.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     },
+     "other": {
+      "value": 10937602000.0,
+      "source": "2025Q4__Elsewedy-Electric-ER-4Q2025-E-.txt",
+      "tier": "A_IR",
+      "route": "text_layer"
+     }
+    },
+    "_gp_header": "^\\s*Summary Income Statement"
+   }
+  }
+ },
+ "footing": [
+  {
+   "year": "2014",
+   "test": "segment sheet sales foots to its own total",
+   "residual": 0.0,
+   "rel": 0.0,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2014",
+   "test": "segment sheet gross_profit foots to its own total",
+   "residual": 0.0,
+   "rel": 0.0,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2014",
+   "test": "segment sheet selling_expense foots to its own total",
+   "residual": 0.0,
+   "rel": 0.0,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2014",
+   "test": "segment sheet depreciation foots to its own total",
+   "residual": -15537689.0,
+   "rel": -0.04202644028836579,
+   "verdict": "UNFOOTED \u2014 field not carried"
+  },
+  {
+   "year": "2015",
+   "test": "segment sheet sales foots to its own total",
+   "residual": 0.0,
+   "rel": 0.0,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2015",
+   "test": "segment sheet gross_profit foots to its own total",
+   "residual": 0.0,
+   "rel": 0.0,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2015",
+   "test": "segment sheet selling_expense foots to its own total",
+   "residual": 0.0,
+   "rel": 0.0,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2015",
+   "test": "segment sheet depreciation foots to its own total",
+   "residual": -3552913.0,
+   "rel": -0.010058554735386267,
+   "verdict": "UNFOOTED \u2014 field not carried"
+  },
+  {
+   "year": "2016",
+   "test": "segment sheet sales foots to its own total",
+   "residual": 0.0,
+   "rel": 0.0,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2016",
+   "test": "segment sheet gross_profit foots to its own total",
+   "residual": 0.0,
+   "rel": 0.0,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2016",
+   "test": "segment sheet selling_expense foots to its own total",
+   "residual": 0.0,
+   "rel": 0.0,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2016",
+   "test": "segment sheet depreciation foots to its own total",
+   "residual": -4565700.0,
+   "rel": -0.012079426703111858,
+   "verdict": "UNFOOTED \u2014 field not carried"
+  },
+  {
+   "year": "2017",
+   "test": "segment sheet sales foots to its own total",
+   "residual": 0.0,
+   "rel": 0.0,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2017",
+   "test": "segment sheet gross_profit foots to its own total",
+   "residual": 0.0,
+   "rel": 0.0,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2017",
+   "test": "segment sheet selling_expense foots to its own total",
+   "residual": 0.0,
+   "rel": 0.0,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2017",
+   "test": "segment sheet depreciation foots to its own total",
+   "residual": -8607548.0,
+   "rel": -0.015755426767011138,
+   "verdict": "UNFOOTED \u2014 field not carried"
+  },
+  {
+   "year": "2018",
+   "test": "segment sheet sales foots to its own total",
+   "residual": 0.0,
+   "rel": 0.0,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2018",
+   "test": "segment sheet gross_profit foots to its own total",
+   "residual": 0.0,
+   "rel": 0.0,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2018",
+   "test": "segment sheet selling_expense foots to its own total",
+   "residual": 0.0,
+   "rel": 0.0,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2018",
+   "test": "segment sheet depreciation foots to its own total",
+   "residual": -11811824.0,
+   "rel": -0.018831087106845997,
+   "verdict": "UNFOOTED \u2014 field not carried"
+  },
+  {
+   "year": "2019",
+   "test": "segment sheet sales foots to its own total",
+   "residual": 0.0,
+   "rel": 0.0,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2019",
+   "test": "segment sheet gross_profit foots to its own total",
+   "residual": 0.0,
+   "rel": 0.0,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2019",
+   "test": "segment sheet selling_expense foots to its own total",
+   "residual": 0.0,
+   "rel": 0.0,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2019",
+   "test": "segment sheet depreciation foots to its own total",
+   "residual": -20432371.0,
+   "rel": -0.024587645819438803,
+   "verdict": "UNFOOTED \u2014 field not carried"
+  },
+  {
+   "year": "2020",
+   "test": "segment sheet sales foots to its own total",
+   "residual": 1.0,
+   "rel": 2.1550994577778017e-11,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2020",
+   "test": "segment sheet gross_profit foots to its own total",
+   "residual": 0.0,
+   "rel": 0.0,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2020",
+   "test": "segment sheet selling_expense foots to its own total",
+   "residual": 141125152.0,
+   "rel": 0.18333118757589528,
+   "verdict": "UNFOOTED \u2014 field not carried"
+  },
+  {
+   "year": "2020",
+   "test": "segment sheet depreciation foots to its own total",
+   "residual": 69385318.0,
+   "rel": 0.07278805550808352,
+   "verdict": "UNFOOTED \u2014 field not carried"
+  },
+  {
+   "year": "2021",
+   "test": "segment sheet sales foots to its own total",
+   "residual": 0.0,
+   "rel": 0.0,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2021",
+   "test": "segment sheet gross_profit foots to its own total",
+   "residual": 0.0,
+   "rel": 0.0,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2021",
+   "test": "segment sheet selling_expense foots to its own total",
+   "residual": 0.0,
+   "rel": 0.0,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2021",
+   "test": "segment sheet depreciation foots to its own total",
+   "residual": 0.0,
+   "rel": 0.0,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2009",
+   "test": "gross profit foots",
+   "residual": 0.0,
+   "rel": 0.0,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2010",
+   "test": "gross profit foots",
+   "residual": 1.0,
+   "rel": 7.750724072701002e-11,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2011",
+   "test": "gross profit foots",
+   "residual": 1000.0,
+   "rel": 6.592303722726651e-08,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2011",
+   "test": "revenue legs foot to total",
+   "residual": 0.0,
+   "rel": 0.0,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2012",
+   "test": "gross profit foots",
+   "residual": 0.0,
+   "rel": 0.0,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2012",
+   "test": "revenue legs foot to total",
+   "residual": 0.0,
+   "rel": 0.0,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2012",
+   "test": "cable tonnes x price reproduces cable revenue",
+   "residual": -59767.0,
+   "rel": -5.702818919813419e-06,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2013",
+   "test": "gross profit foots",
+   "residual": 0.0,
+   "rel": 0.0,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2013",
+   "test": "revenue legs foot to total",
+   "residual": 0.0,
+   "rel": 0.0,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2013",
+   "test": "cable tonnes x price reproduces cable revenue",
+   "residual": 58594.0,
+   "rel": 5.179837735593685e-06,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2014",
+   "test": "gross profit foots",
+   "residual": 0.0,
+   "rel": 0.0,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2014",
+   "test": "revenue legs foot to total",
+   "residual": 3.0,
+   "rel": 1.763169397214744e-10,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2014",
+   "test": "cable tonnes x price reproduces cable revenue",
+   "residual": -52608.0,
+   "rel": -4.089783342085569e-06,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2015",
+   "test": "gross profit foots",
+   "residual": 0.0,
+   "rel": 0.0,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2015",
+   "test": "revenue legs foot to total",
+   "residual": 0.0,
+   "rel": 0.0,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2015",
+   "test": "cable tonnes x price reproduces cable revenue",
+   "residual": 25989.0,
+   "rel": 2.029843354968529e-06,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2016",
+   "test": "gross profit foots",
+   "residual": 0.0,
+   "rel": 0.0,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2016",
+   "test": "revenue legs foot to total",
+   "residual": 0.0,
+   "rel": 0.0,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2016",
+   "test": "cable tonnes x price reproduces cable revenue",
+   "residual": -22711.0,
+   "rel": -1.655805223677758e-06,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2017",
+   "test": "gross profit foots",
+   "residual": 0.0,
+   "rel": 0.0,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2017",
+   "test": "revenue legs foot to total",
+   "residual": 0.0,
+   "rel": 0.0,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2017",
+   "test": "cable tonnes x price reproduces cable revenue",
+   "residual": -14162.0,
+   "rel": -7.010486123866267e-07,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2018",
+   "test": "gross profit foots",
+   "residual": 0.0,
+   "rel": 0.0,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2018",
+   "test": "revenue legs foot to total",
+   "residual": 0.0,
+   "rel": 0.0,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2018",
+   "test": "cable tonnes x price reproduces cable revenue",
+   "residual": -129671.0,
+   "rel": -6.108082105737194e-06,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2019",
+   "test": "gross profit foots",
+   "residual": -1.0,
+   "rel": -2.1445977226794166e-11,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2019",
+   "test": "revenue legs foot to total",
+   "residual": 1.0,
+   "rel": 2.1445977226794166e-11,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2019",
+   "test": "cable tonnes x price reproduces cable revenue",
+   "residual": 26304.0,
+   "rel": 1.4084631614934063e-06,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2020",
+   "test": "gross profit foots",
+   "residual": 1.0,
+   "rel": 2.1550994577778017e-11,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2020",
+   "test": "revenue legs foot to total",
+   "residual": 1.0,
+   "rel": 2.1550994577778017e-11,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2020",
+   "test": "cable tonnes x price reproduces cable revenue",
+   "residual": 10741.0,
+   "rel": 6.779832649306154e-07,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2021",
+   "test": "gross profit foots",
+   "residual": 1.0,
+   "rel": 1.6517616755166988e-11,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2021",
+   "test": "revenue legs foot to total",
+   "residual": 0.0,
+   "rel": 0.0,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2022",
+   "test": "gross profit foots",
+   "residual": 0.0,
+   "rel": 0.0,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2022",
+   "test": "revenue legs foot to total",
+   "residual": 0.0,
+   "rel": 0.0,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2023",
+   "test": "gross profit foots",
+   "residual": 0.0,
+   "rel": 0.0,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2023",
+   "test": "revenue legs foot to total",
+   "residual": -545.0,
+   "rel": -3.5811383012045737e-09,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2024",
+   "test": "gross profit foots",
+   "residual": 0.0,
+   "rel": 0.0,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2024",
+   "test": "revenue legs foot to total",
+   "residual": 423.0,
+   "rel": 1.8234186264967145e-09,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2025",
+   "test": "gross profit foots",
+   "residual": 0.0,
+   "rel": 0.0,
+   "verdict": "PASS"
+  },
+  {
+   "year": "2025",
+   "test": "revenue legs foot to total",
+   "residual": 281.0,
+   "rel": 9.9982536246445e-10,
+   "verdict": "PASS"
+  }
+ ]
+}

@@ -40,7 +40,7 @@
     "basis": "IMF World Economic Outlook projection"
    }
   ],
-  "path_source": "International Monetary Fund, World Economic Outlook database, series PCPIPCH (inflation, average consumer prices, annual percent change), Qatar (QAT), read live from the IMF datamapper API on 3 September 2026. The series runs to 2031 and prints 2.0% flat from 2028 onward; no step here is interpolated. THE NEAR YEARS ARE UNUSUALLY WIDE \u2014 a 0.6% actual in 2025 against a 3.9% projection for 2026 \u2014 and that swing is the published series, recorded rather than smoothed toward the terminal.",
+  "path_source": "International Monetary Fund, World Economic Outlook database, series PCPIPCH (inflation, average consumer prices, annual percent change), Qatar (QAT), read live from the IMF datamapper API on 3 September 2026. The series runs to 2031 and prints 2.0% flat from 2028 onward; no step here is interpolated. THE NEAR YEARS ARE UNUSUALLY WIDE — a 0.6% actual in 2025 against a 3.9% projection for 2026 — and that swing is the published series, recorded rather than smoothed toward the terminal.",
   "target": {
    "value": 0.02,
    "band": 0.005,
@@ -74,14 +74,14 @@
  "sovereign": {
   "yield_10y": {
    "value": 0.0526,
-   "source": "DERIVED, AND LABELLED AS DERIVED BECAUSE NO PUBLISHED QAR SOVEREIGN CURVE WAS OBTAINABLE. Every other path on this book carries an OBSERVED local-currency government yield \u2014 an auction result, an index factsheet, a central-bank series \u2014 and Qatar has none this session could reach: FRED publishes no Qatari long-term rate series, and the World Bank's Qatari rate series is a COMMERCIAL LENDING rate (4.754% for 2025), which is a bank's price to a borrower and not a sovereign yield. Substituting it would have been the wrong instrument wearing the right field name, which is the defect this book spent the day removing. THE IDENTITY USED INSTEAD: under a hard peg a QAR sovereign yield is the USD sovereign yield plus Qatar's own credit spread. US ten-year Treasury 4.79% (FRED DGS10, 2 September 2026) plus the Qatar credit-default-swap spread of 0.47% (Damodaran, 5 January 2026) = 5.26%. Both legs are published; only their sum is constructed. IT IS A SYNTHETIC AND A STUDY MUST SAY SO WHEREVER IT QUOTES A QATARI RISK-FREE RATE, and the first Qatari study that can obtain a real QAR auction or index yield replaces this outright rather than reconciling to it.",
+   "source": "DERIVED, AND LABELLED AS DERIVED BECAUSE NO PUBLISHED QAR SOVEREIGN CURVE WAS OBTAINABLE. Every other path on this book carries an OBSERVED local-currency government yield — an auction result, an index factsheet, a central-bank series — and Qatar has none this session could reach: FRED publishes no Qatari long-term rate series, and the World Bank's Qatari rate series is a COMMERCIAL LENDING rate (4.754% for 2025), which is a bank's price to a borrower and not a sovereign yield. Substituting it would have been the wrong instrument wearing the right field name, which is the defect this book spent the day removing. THE IDENTITY USED INSTEAD: under a hard peg a QAR sovereign yield is the USD sovereign yield plus Qatar's own credit spread. US ten-year Treasury 4.79% (FRED DGS10, 2 September 2026) plus the Qatar credit-default-swap spread of 0.47% (Damodaran, 5 January 2026) = 5.26%. Both legs are published; only their sum is constructed. IT IS A SYNTHETIC AND A STUDY MUST SAY SO WHEREVER IT QUOTES A QATARI RISK-FREE RATE, and the first Qatari study that can obtain a real QAR auction or index yield replaces this outright rather than reconciling to it.",
    "date": "2026-09-03",
    "tier": "Country",
    "basis": "derived"
   },
   "default_spread_rating": 0.0042,
   "default_spread_market": 0.0047,
-  "spread_source": "A. Damodaran, 'Country Default Spreads and Risk Premiums', ctryprem, LAST UPDATED 5 JANUARY 2026, read live from the original file on 3 September 2026. Qatar row: Moody's Aa2; adjusted default spread 0.42% (rating basis); credit-default-swap spread 0.47% (market basis); country risk premium 0.64%; total ERP 4.87% on the rating basis and 4.94% on the CDS basis. UNLIKE THE UAE, QATAR DOES CARRY A CDS IN THIS FILE, and the two bases sit 5bp apart \u2014 so which is central barely moves a Qatari valuation, which is worth stating because on India the same choice is worth 185bp of equity premium.",
+  "spread_source": "A. Damodaran, 'Country Default Spreads and Risk Premiums', ctryprem, LAST UPDATED 5 JANUARY 2026, read live from the original file on 3 September 2026. Qatar row: Moody's Aa2; adjusted default spread 0.42% (rating basis); credit-default-swap spread 0.47% (market basis); country risk premium 0.64%; total ERP 4.87% on the rating basis and 4.94% on the CDS basis. UNLIKE THE UAE, QATAR DOES CARRY A CDS IN THIS FILE, and the two bases sit 5bp apart — so which is central barely moves a Qatari valuation, which is worth stating because on India the same choice is worth 185bp of equity premium.",
   "damodaran_date": "2026-01-05"
  },
  "erp_market": 0.0494,
@@ -112,7 +112,7 @@
    0.049,
    0.056
   ],
-  "source": "The long-run Qatari corporate borrowing norm, taken as the derived terminal risk-free rate of 3.975% plus a 90-165bp spread, midpoint 5.25%. NO QATARI NAME IN THIS BOOK HAS HAD ITS FACILITY NOTE READ \u2014 there are three covered Qatari instruments and no Qatari study at all \u2014 so this rests on no in-house sourced Kd and is the floor of last resort: the first Qatari study to reach the three-assert Kd gate replaces it with its own note. The range is set beside the UAE norm because the two sovereigns carry the same Aa2 rating and the same 0.42% rating spread.",
+  "source": "The long-run Qatari corporate borrowing norm, taken as the derived terminal risk-free rate of 3.975% plus a 90-165bp spread, midpoint 5.25%. NO QATARI NAME IN THIS BOOK HAS HAD ITS FACILITY NOTE READ — there are three covered Qatari instruments and no Qatari study at all — so this rests on no in-house sourced Kd and is the floor of last resort: the first Qatari study to reach the three-assert Kd gate replaces it with its own note. The range is set beside the UAE norm because the two sovereigns carry the same Aa2 rating and the same 0.42% rating spread.",
   "date": "2026-09-03"
  },
  "real_rate_convention": {
@@ -124,5 +124,10 @@
   "value": 0.0487,
   "source": "A. Damodaran, 'Country Default Spreads and Risk Premiums', ctryprem, LAST UPDATED 5 JANUARY 2026, read live from the original file on 3 September 2026. Terminal equity risk premium held at the rating-basis Qatari ERP of 4.87%; no convergence is assumed for an Aa2 sovereign already priced at 47bp.",
   "date": "2026-01-05"
+ },
+ "real_gdp_lt": {
+  "value": 0.025,
+  "source": "Qatar long-run real GDP growth, the IMF World Economic Outlook medium-term projection rounded to the nearest half point. USED ONLY AS A CEILING on a terminal real growth rate [R-MACRO-02] — never as a company's growth rate and never inside a discount rate — so it binds in one direction only. A study wanting to sit at or above it re-sources this figure live and argues it here.",
+  "date": "2026-09-10"
  }
 }

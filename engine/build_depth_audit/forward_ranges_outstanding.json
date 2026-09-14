@@ -1,0 +1,6 @@
+{
+ "rule": "R-FCAL-01 far-year ranges reach the reader",
+ "outstanding": {
+  "AMOC": "The record reaches horizon 3 only, on four, three and two observations, so years four and five have NO band to publish and year three has one the run's own counts_warning says supports a span and not a percentile. The study states the principle in Section 7 in plain words -- the far forecast years support a range and never a point -- and prints none. Correcting it means deciding what a two-observation span may be published as, which is the basis-and-count question [R-FCAL-01 AMENDED 07-09-2026] binds forward."
+ }
+}

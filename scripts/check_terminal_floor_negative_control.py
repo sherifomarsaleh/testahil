@@ -22,7 +22,7 @@ import sys
 import tempfile
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-EXPECTED_CASES = 15
+EXPECTED_CASES = 19
 
 
 def sandbox(tmp):
@@ -35,10 +35,18 @@ def sandbox(tmp):
     return dst
 
 
+# THIS FIXTURE SUPPLIES ITS OWN POPULATION [06-09-2026]. The gate resolves the
+# book through engine/study_population.py; this control runs it against a
+# sandboxed tree holding studies it planted, which is the point of the control.
+# The escape is explicit and the gate PRINTS that it took it, so a fixture
+# population can never be mistaken for the real one.
+_FIXTURE_ENV = dict(os.environ, TESTAHIL_FIXTURE_POPULATION='1')
+
+
 def run(root):
     r = subprocess.run([sys.executable, os.path.join(root, 'scripts',
                                                      'check_terminal_floor.py')],
-                       capture_output=True, text=True, cwd=root)
+                       capture_output=True, text=True, cwd=root, env=_FIXTURE_ENV)
     return r.returncode, (r.stdout or '') + (r.stderr or '')
 
 
@@ -314,6 +322,73 @@ def _clean_scenario_knob_ignored(root):
     return "ELEC's bear-case growth knob set to 0.1% — the base answer must ignore it"
 
 
+# ---- the no-enterprise-terminal ground [ADDED 10-09-2026] -------------------------
+# A NEW EXEMPTION IS THE CHEAPEST ROUTE PAST ANY GATE, so it gets four cases and three
+# of them are RED. The one green case proves a bank stops reading as dark; the three
+# red ones prove the ground cannot be borrowed, cannot sit beside a weighted rate, and
+# cannot be used to file a study that exposes nothing at all.
+def _ground_not_on_the_list(root):
+    """An invented ground. The list is closed; inventing one is the whole attack."""
+    f = numbers(root, 'ADIB')
+    d = json.load(open(f))
+    d['no_terminal_value_reason'] = 'holding company: we do not publish one'
+    json.dump(d, open(f, 'w'), indent=1)
+    assert json.load(open(f))['no_terminal_value_reason'].startswith('holding'), \
+        'mutation did not land'
+    return "ADIB's ground changed to one that is not on the closed list"
+
+
+def _ground_beside_a_weighted_rate(root):
+    """The claim is that there is no enterprise value. A WACC says there is."""
+    f = numbers(root, 'ADIB')
+    d = json.load(open(f))
+    d.setdefault('cost_of_capital_record', {})['wacc_terminal'] = 0.15
+    json.dump(d, open(f, 'w'), indent=1)
+    assert json.load(open(f))['cost_of_capital_record']['wacc_terminal'] == 0.15, \
+        'mutation did not land'
+    return 'ADIB keeps the bank ground and commits a terminal weighted rate beside it'
+
+
+def _ground_with_nothing_behind_it(root):
+    """The ground excuses the ENTERPRISE terminal, never the equity-side one. A study
+    that publishes neither is dark, and the word must not rescue it [R-ENF-04]."""
+    # EVERYWHERE, NOT IN ONE BLOCK. ADIB publishes the same terminal twice — under
+    # `cost_of_capital` and again under `cost_of_capital_record` — and the first draft of
+    # this case emptied only the record, so the census found the survivor in the other
+    # block and the case passed while proving nothing. One fact under two names [R-ENF-03],
+    # and a control that mutates one of them tests the wrong thing.
+    f = numbers(root, 'ADIB')
+    d = json.load(open(f))
+    gone = []
+
+    def strip(o):
+        if isinstance(o, dict):
+            for k in ('ke_terminal', 'ke_term', 'ke_T', 'terminal_growth', 'g_term',
+                      'g_terminal', 'growth_at_horizon_end'):
+                if k in o:
+                    o.pop(k)
+                    gone.append(k)
+            for v in o.values():
+                strip(v)
+        elif isinstance(o, list):
+            for v in o:
+                strip(v)
+
+    strip(d)
+    json.dump(d, open(f, 'w'), indent=1)
+    assert gone, 'fixture assumed ADIB published a terminal rate and growth somewhere'
+    txt = json.dumps(json.load(open(f)))
+    assert '"ke_terminal"' not in txt and '"terminal_growth"' not in txt, \
+        'mutation did not land'
+    return ('ADIB keeps the ground and every terminal cost of equity and growth behind it '
+            'is removed, from every block that carried one')
+
+
+def _clean_bank_is_not_dark(root):
+    """The repository as it stands: the bank reports as exempt, not as unreadable."""
+    return 'unchanged — ADIB must read as exempt rather than dark'
+
+
 CASES = [
     ('THE ONE THAT MATTERS — a study newly carrying the 1/g construction',
      _new_signature, 'red'),
@@ -331,6 +406,11 @@ CASES = [
      'readable', _moves_unreadable_to_signature, 'green'),
     ('...and NOT the other way: a breach hidden behind an unreadable allowance',
      _breaching_hidden_as_unreadable, 'red'),
+    ('a no-enterprise-terminal ground that is not on the closed list', _ground_not_on_the_list, 'red'),
+    ('that ground claimed beside a weighted rate', _ground_beside_a_weighted_rate, 'red'),
+    ('that ground claimed with no equity-side terminal behind it [R-ENF-04]',
+     _ground_with_nothing_behind_it, 'red'),
+    ('CLEAN — a bank reads as exempt by construction, not as dark', _clean_bank_is_not_dark, 'green'),
     ('a terminal that reads and can no longer be SCORED [R-ENF-04]',
      _newly_unscoreable, 'red'),
     ('an unscoreable terminal filed under `signature` — the mirror escape hatch',

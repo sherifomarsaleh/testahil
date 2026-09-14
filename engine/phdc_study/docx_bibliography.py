@@ -13,7 +13,8 @@ from docx.shared import Pt, Cm
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-from docx_phdc import _style, para, table, bullets, scrub, column_audit, MUTED, ACCENT
+from docx_phdc import (_style, para, table, bullets, scrub, column_audit,
+                       breakable, MUTED, ACCENT)
 
 N = json.load(open(os.path.join(HERE, "study_numbers.json")))
 REG, D, W = N["registry"], N["derived"], N["wacc"]
@@ -69,7 +70,9 @@ def build(path):
 
     para(doc, "PALM HILLS DEVELOPMENTS", size=18, bold=True, color=ACCENT,
          space_after=2)
-    para(doc, "Sources, inputs and judgements · edition of 2 September 2026",
+    # TYPED, AND TWO EDITIONS STALE. edition.py is imported in this file already.
+    import edition as _ED0
+    para(doc, "Sources, inputs and judgements · edition of %s" % _ED0.WORDS,
          size=10.5, color=MUTED, space_after=14)
     para(doc, "This document accompanies the valuation study. It lists every "
               "document the study was built on, every input with its value, its "
@@ -124,7 +127,8 @@ def build(path):
             sval = ("{:,.4f}".format(val).rstrip("0").rstrip(".")
                     if isinstance(val, float) else "{:,}".format(val))
             rows.append([k.replace("_", " "), sval, rec.get("unit", ""),
-                         rec["date"], rec["tier"], rec["source"][:200]])
+                         rec["date"], rec["tier"],
+                         breakable(rec["source"][:200])])
         table(doc, ["Input", "Value", "Unit", "Date", "Tier",
                     "Source and construction"], rows,
               [3.2, 2.1, 1.6, 1.9, 1.4, 6.4], size=7.5)
@@ -237,7 +241,8 @@ def build(path):
 
 
 if __name__ == "__main__":
-    out = os.path.join(HERE, "PHDC_Bibliography_03-09-2026.docx")
+    import edition as _EDN
+    out = os.path.join(HERE, _EDN.BIBLIO_DOCX)
     build(out).save(out)
     hits, chars = scrub(out)
     bad = column_audit(out)

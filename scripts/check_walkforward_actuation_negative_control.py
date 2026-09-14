@@ -46,9 +46,23 @@ NOT_APPLIED = {"log": [{"origin": 2020,
                         "any_applied": False}]}
 
 
-def make_run(engine, tk, scores=ADOPTABLE, log=APPLIED, forward=None):
+# [R-FCAL-01] SETS THREE SCOPES AND THE GATE LEARNED THE THIRD ON 7 SEPTEMBER 2026. A
+# SKIP run scores nothing by design, so demanding scores.json of one is a false claim
+# about what the gate checks. The release is gated on three conditions and the cases
+# below exist to prove it cannot be used as an OPT-OUT — which is the only way a new
+# release path ever goes wrong.
+SKIP_OK = {
+    "scope": "skip",
+    "scope_words": ("walk-forward not run — insufficient sourceable history (4 years)"),
+    "sourceable_years": {"consolidated": 2, "standalone": 4, "required_for_light": 5},
+}
+
+
+def make_run(engine, tk, scores=ADOPTABLE, log=APPLIED, forward=None, skip=None):
     d = os.path.join(engine, "%s_walkforward" % tk.lower())
     os.makedirs(d, exist_ok=True)
+    if skip is not None:
+        json.dump(skip, open(os.path.join(d, "skip_record.json"), "w"))
     if scores is not None:
         json.dump(scores, open(os.path.join(d, "scores.json"), "w"))
     if log is not None:
@@ -129,7 +143,42 @@ def main():
     run_case("a record shaped so the rule would crash — never silent",
              _crash, [], True, results)
 
+    # ---- the SKIP scope: the release, and the four ways it must NOT open ------
+    # Each of these three builds a run with NO scores and NO log, so the gate reaches
+    # _skip() and the ONLY thing that can make it green is the skip being accepted. The
+    # matching clean case below proves that path is live, so a red here is the refusal
+    # rather than the absence.
+    run_case("a skip record with no evidence of the year count",
+             lambda e: make_run(e, "NEW", scores=None, log=None,
+                                skip={"scope": "skip", "scope_words": SKIP_OK["scope_words"]}),
+             [], True, results)
+
+    run_case("a skip whose own figures put it ABOVE the LIGHT bar",
+             lambda e: make_run(e, "NEW", scores=None, log=None,
+                                skip=dict(SKIP_OK, sourceable_years={
+                                    "standalone": 9, "required_for_light": 5})),
+             [], True, results)
+
+    # THE OPT-OUT TEST, AND THE FIRST DRAFT OF IT PROVED NOTHING. It built a run with a
+    # skip record and NO corrections log, which goes red for the MISSING LOG whatever the
+    # skip does — a fixture that never injects its condition, which this project has
+    # caught passing four times. The run below carries a VALID log that applies nothing
+    # while the rule adopts, so the only question left is whether the skip record excuses
+    # it. It must not.
+    run_case("a skip record beside a SCORED run does not excuse it",
+             lambda e: make_run(e, "NEW", log=NOT_APPLIED, skip=SKIP_OK),
+             [], True, results)
+
+    run_case("a skip that does not use the rule's own words",
+             lambda e: make_run(e, "NEW", scores=None, log=None,
+                                skip=dict(SKIP_OK, scope_words="not enough history")),
+             [], True, results)
+
     # ---- clean cases that must stay GREEN ------------------------------------
+    run_case("CLEAN — an EVIDENCED skip, which scores nothing by design, must PASS",
+             lambda e: make_run(e, "NEW", scores=None, log=None, skip=SKIP_OK),
+             [], False, results)
+
     run_case("CLEAN — the rule adopts and the log applies, must PASS",
              lambda e: make_run(e, "NEW"), [], False, results)
 

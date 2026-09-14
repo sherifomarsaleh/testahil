@@ -104,6 +104,10 @@ def dcf(mgn, rev_mult=None):
     _ti = dict(TR['inputs'])
     _ti['nopat'] = float(nop[-1])
     _ti['dna_book'] = float(F['dna'][-1])
+    # TERMINAL-BASIS-EXCEPTION: the arguments are the study's OWN committed terminal
+    # record with exactly two substituted, and both are LAST-EXPLICIT-YEAR figures —
+    # nop[-1] and F['dna'][-1], neither grown. The splat is what the shared-record
+    # discipline requires here, and it is why no expression is visible to inspect.
     tv = terminal_value.build(terminal_value.TerminalInputs(**_ti)).tv
     rr = 0.0 if abs(nop[-1]) < 1e-12 else 1.0 - (tv * (WT_ - G) / (1 + G)) / nop[-1]
     return (pv + tv * DCF['df_tv'] + DCF['net_cash'] - DCF['nci']) / SH, rr

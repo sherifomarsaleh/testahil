@@ -1,0 +1,169 @@
+{
+ "_rule": "[R-FCAL-01 AMENDED 07-09-2026] a published band declares its BASIS, its COUNT and its ORIENTATION",
+ "_basis": "span — the range of the observations, NOT a percentile: three to seven observations does not support one",
+ "_orientation": "actual_over_forecast — multiply a point projection by these to bracket it",
+ "ticker": "GBCO",
+ "bands": {
+  "revenue": {
+   "h3": {
+    "low": 0.5917,
+    "high": 2.2299,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "n": 7
+   },
+   "h4": {
+    "low": 0.446,
+    "high": 1.8036,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "n": 6
+   },
+   "h5": {
+    "low": 0.3387,
+    "high": 2.0415,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "n": 5
+   }
+  },
+  "gross_profit": {
+   "h3": {
+    "low": 0.9061,
+    "high": 1.5306,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "n": 7
+   },
+   "h4": {
+    "low": 0.9279,
+    "high": 1.8256,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "n": 6
+   },
+   "h5": {
+    "low": 0.6291,
+    "high": 1.926,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "n": 5
+   }
+  },
+  "operating_profit": {
+   "h3": {
+    "low": 1.0428,
+    "high": 1.9641,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "n": 7
+   },
+   "h4": {
+    "low": 1.0564,
+    "high": 2.2604,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "n": 6
+   },
+   "h5": {
+    "low": 0.8485,
+    "high": 2.2929,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "n": 5
+   }
+  },
+  "net_profit": {
+   "h3": {
+    "low": 1.2294,
+    "high": 2.2894,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "n": 3
+   },
+   "h4": {
+    "low": 1.6838,
+    "high": 3.1753,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "n": 2
+   },
+   "h5": {
+    "low": 2.7869,
+    "high": 2.7869,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "n": 1
+   }
+  },
+  "sga": {
+   "h3": {
+    "low": 0.8911,
+    "high": 1.5059,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "n": 7
+   },
+   "h4": {
+    "low": 0.8719,
+    "high": 1.5692,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "n": 6
+   },
+   "h5": {
+    "low": 0.5671,
+    "high": 1.8928,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "n": 5
+   }
+  },
+  "gross_margin": {
+   "h3": {
+    "low": 0.6864,
+    "high": 2.0481,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "n": 7
+   },
+   "h4": {
+    "low": 0.8374,
+    "high": 2.0804,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "n": 6
+   },
+   "h5": {
+    "low": 0.9434,
+    "high": 2.124,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "n": 5
+   }
+  },
+  "finance_cost": {
+   "h3": {
+    "low": 0.1299,
+    "high": 4.1114,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "n": 7
+   },
+   "h4": {
+    "low": 0.1328,
+    "high": 2.4031,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "n": 6
+   },
+   "h5": {
+    "low": 0.1416,
+    "high": 2.1415,
+    "basis": "span",
+    "orientation": "actual_over_forecast",
+    "n": 5
+   }
+  }
+ }
+}

@@ -1,4 +1,4 @@
-"""AMOC_Valuation_Model_03092026_public.xlsx — the workbook CALCULATES.
+"""AMOC_Valuation_Model_{edition}_public.xlsx — the workbook CALCULATES.
 
 The previous edition shipped 488 formulas against 186 pasted cells: 72.4% formula. The pasted
 27.6% was not incidental — it was the sensitivity grids, the beta sweep and the bear/bull
@@ -14,14 +14,20 @@ Exactly ONE class of cell is now pasted: a figure read off an audited or disclos
 Nothing else. There is no "too complex to flatten" class and no "whole-model re-run" class,
 because both were flattened.
 """
+# `sys` was used on line 25 and never imported, so this builder raised NameError
+# before it wrote a cell. The workbook could not be rebuilt at all; the file beside
+# the study was whatever an earlier build had left on disk.
 import json
 import os
+import sys
 
 from openpyxl import Workbook
 from openpyxl.styles import Alignment, Font, PatternFill
 from openpyxl.utils import get_column_letter
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 IN = {k: v['value'] for k, v in D['inputs'].items()}
 # the escalation convention comes from the study's committed record, not from a
@@ -627,10 +633,20 @@ def blockvals(key):
 
 
 BV = D['blocks']['base']
-put(wsF, 'A5', 'Levers for this block — the base case sets them all neutral', bold=True)
+put(wsF, 'A5', 'Levers for this block — neutral except the adopted base-period correction on row 7', bold=True)
 band(wsF, 5)
 put(wsF, 'A6', 'Volume growth added a year'); put(wsF, 'B6', 0.0, color=BLUE, fmt=PCT2, paste=True)
-put(wsF, 'A7', 'Gross-margin shift'); put(wsF, 'B7', 0.0, color=BLUE, fmt=PCT2, paste=True)
+# THE BASE CASE IS NOT NEUTRAL ON THIS ROW, and typing 0.0 here published the
+# SUPERSEDED answer [corrected 13-09-2026]. The study's base-period correction --
+# anchoring the forecast on the reviewed half to 30-Jun-2026 rather than the
+# twelve-month blend -- is carried in compute.py as a gross-margin shift on top of
+# the eight per-line unit builds. This cell is the workbook's only copy of it. At
+# 0.0 the engine rebuilt the twelve-month base and the file beside the study
+# published EGP 12.85 against the study's EGP 20.05, with 1,867 of 6,069 formula
+# cells disagreeing and nothing red, because every one of those cells was
+# internally consistent with the wrong opening margin.
+put(wsF, 'A7', 'Gross-margin shift — the adopted base-period correction')
+put(wsF, 'B7', DCF['adopted_gm_shift'], color=BLUE, fmt=PCT2, paste=True)
 put(wsF, 'A8', 'Realisation-path multiplier'); put(wsF, 'B8', 1.0, color=BLUE, fmt=NUM1, paste=True)
 put(wsF, 'A9', 'Working-capital cycle multiplier'); put(wsF, 'B9', 1.0, color=BLUE, fmt=NUM1,
                                                         paste=True)
@@ -1298,7 +1314,7 @@ assert not missing and not extra, (
     % (missing, extra))
 wb._sheets = [wb[n] for n in WANT]
 assert wb.sheetnames == WANT, wb.sheetnames
-OUT = os.path.join(HERE, 'AMOC_Valuation_Model_03092026_public.xlsx')
+OUT = os.path.join(HERE, _ed.MODEL_XLSX)
 wb.save(OUT)
 json.dump({'expected': EXPECT, 'n_formula': NFORM[0], 'n_pasted': NPASTE[0]},
           open(os.path.join(HERE, 'xlsx_expected_v5.json'), 'w'), indent=1)

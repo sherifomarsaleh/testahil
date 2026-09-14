@@ -110,6 +110,17 @@ DEBT_FY25 = {
 # Operating drivers. These come from the results releases, because no financial
 # statement carries units, prices or backlog.
 OPERATING = {
+    # TESTED AGAINST THE NEWER DISCLOSURE ON 10-09-2026 AND IT IS WORTH NOTHING.
+    # A half-year release of 18 August 2026 puts the backlog at EGP 284bn at 30 June,
+    # 40% up on the year, and a further EGP 75bn was sold at Hacienda Ras El Hekma in
+    # the fortnight after that. Swapping 263,000 for 284,000 and rebuilding moves the
+    # central by ZERO: 21.0897 either way. That is not a defect in the test, it is this
+    # model's central claim arriving as a measurement — revenue here is limited by how
+    # fast this company can DELIVER, never by how much it has sold, and the book is
+    # already further ahead of the build programme than the programme can close.
+    # SO THE ANCHOR STAYS ON THE COMPANY'S OWN QUARTERLY RELEASE rather than moving to
+    # a wire report of a release this study has not read. Swapping a company-sourced
+    # figure for a secondary one buys nothing when the number changes nothing.
     "backlog_1q26":     I(263000.0, ER26Q1 + " — \"the company's backlog of units sold "
                           "and not yet delivered reached EGP263 billion up from EGP190 "
                           "billion in 1Q2025\"", "2026-03-31", "A"),
@@ -172,10 +183,17 @@ GAPS = {
         "deliveries and construction spend are disclosed, so FY2025 has audited "
         "financials and NO operating drivers. Closed by: the FY2025 release, or the "
         "company confirming the figures directly.",
-    "h1_2026_results": "As at this build date (30-Aug-2026) no 2Q/H1-2026 statements or "
-        "release are posted to the result centre; the newest disclosure of any kind is "
-        "1Q2026 (posted 25-Jun-2026). The study's information set therefore ends at "
-        "1Q2026. Closed by: the H1-2026 filing.",
+    # THIS SAID NO HALF-YEAR DISCLOSURE EXISTED, and the input block forty lines below
+    # names one. A release of 18-Aug-2026 is REPORTED; this study has not obtained the
+    # filing and uses nothing from it, which is a sourcing decision and not an absence.
+    "h1_2026_results": "A half-year 2026 release of 18-Aug-2026 is REPORTED in the "
+        "trade press — an order book of EGP 284bn at 30 June, 40% up on the year, and "
+        "a further EGP 75bn sold at Hacienda Ras El Hekma in the fortnight after. This "
+        "study has NOT obtained the filing itself and uses nothing from it: a report "
+        "of a disclosure is a lead and never a source. The newest disclosure this "
+        "study HOLDS is 1Q2026 (posted 25-Jun-2026) and its information set ends "
+        "there, so if those reported figures hold the order book is ahead of what "
+        "this study carries. Closed by: the H1-2026 filing itself, from the company.",
     "securitisation_pricing": "The EGP 2.015bn securitisation of 4-Feb-2026 discloses "
         "tranche sizes, tenors and national-scale ratings but NO coupon on any tranche, "
         "so the company's own marginal cost of debt cannot be read. Closed by: the "

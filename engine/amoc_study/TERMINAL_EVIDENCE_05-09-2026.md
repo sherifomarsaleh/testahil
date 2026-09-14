@@ -1,3 +1,11 @@
+> **SUPERSEDED 6 September 2026 — THE BLOCK BELOW IS CLEARED. DO NOT RE-ASK.**
+> The document this file registers as unobtainable is public and is now held in
+> `filings/`. The block rested on a probe pointed at `amoc.com.eg`, a host that does
+> not resolve; the company's investor site is **`amoceg.com`** and answers 200
+> unauthenticated. The disclosed lives, the footing check, the prior-year cross-check
+> and the priced terminal are in `TERMINAL_EVIDENCE_06-09-2026.md`. The record below
+> is left exactly as it stood on 5 September, as a dated record of what was known then.
+
 # AMOC — the last name on the retired terminal construction, and the one sentence it needs
 
 **Status: BLOCKED on a document, 5 September 2026.** Registered as an escalation

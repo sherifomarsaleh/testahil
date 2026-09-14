@@ -1,0 +1,205 @@
+{
+ "ticker": "ADNOCDRILL",
+ "as_of": "2026-08-09",
+ "published_central": 4.919425418226855,
+ "published_spot": 5.94,
+ "basis": "value_adopted is the study's PUBLISHED answer \u2014 the five-lens weighted central, which is what a reader receives \u2014 and value_alternative is that same answer with ONE fork flipped and every other driver held at its published value. Each alternative is produced by re-running this study's own compute.py end to end, never by restating a delta: the harness reproduces the published central to the last digit before any variant is run, and every source substitution is asserted to have landed exactly once.",
+ "how_the_threshold_bites_here": "MATERIALITY IS MEASURED AGAINST THE PUBLISHED ANSWER, AND ON THIS STUDY THAT IS NOT A NEUTRAL CHOICE \u2014 it is worth saying so rather than letting a reader discover it. The published answer is a five-lens blend, so a judgement governing ONE lens reaches the answer only at that lens's weight: the book lens' return moves its own lens by 17.9% and the published answer by 3.0%, and the normalised lens' Fisher inconsistency moves its own lens by 27.1% and the published answer by 3.8%. 3 judgements clear 5% of the published answer and 11 more are recorded below it. The dampening is real \u2014 a 3.0% move in the answer is a 3.0% move in the answer \u2014 but it is produced by the blend, which is judgement number one in this list, so the architecture that makes the others look small is itself the largest of them. Both counts are published below.",
+ "sign_test_material": {
+  "n": 3,
+  "resolved_upward": 1,
+  "p": 1.0
+ },
+ "sign_test_material_beta_read_the_other_way": {
+  "n": 3,
+  "resolved_upward": 0,
+  "p": 0.25,
+  "note": "the beta fork against the five-year MONTHLY regression rather than the three-year weekly one. It is the only material judgement whose direction the choice of alternative decides, so the test is printed both ways: neither reading reaches the 5% flag, so the CONCLUSION is robust even though the direction of that one entry is not."
+ },
+ "sign_test_all_recorded_judgements": {
+  "n": 13,
+  "resolved_upward": 4,
+  "p": 0.266845703125,
+  "note": "every recorded fork that carries a direction, whatever its size. This is not the gate's test and is not a substitute for it \u2014 it is the count the 5%% threshold necessarily hides, published because the instrument exists to measure the PATTERN of choices rather than any one of them."
+ },
+ "unvalued": [
+  {
+   "name": "the terminal construction",
+   "adopted": "the reinvestment identity \u2014 reinvestment = growth / return on capital, terminal value = profit x (1 - reinvestment) / (rate - growth) \u2014 which carries 76.0% of enterprise value on the expansion framing and 72.3% on the plateau framing",
+   "alternative": "the sanctioned terminal, built on a DISCLOSED asset life with maintenance charged at current cost",
+   "why_unvalued": "the alternative has no value because the input it requires has not been sourced for this name. The sanctioned construction rests on a useful life read from the company's own accounting-policies note; this study commits no such life in its input register, and the house register of disclosed lives carries no entry for this name at all. A LIFE THIS DESK CHOSE IS NOT A DISCLOSED LIFE, so the honest output is stop-and-inform rather than a number: the sign of this fork is decided entirely by the life picked, and picking one here would be this desk choosing the direction of its own audit. What this study DOES commit is the maintenance figure its own register carries from the FY2025 management discussion \u2014 around USD 250 million a year \u2014 and that figure alone cannot close the construction, because the module also needs the life over which the asset base is replaced. This study's own dated gap review rebuilt the terminal across candidate lives and found the answer moving in BOTH directions depending which was used, which is the measured form of the same statement. It is listed here rather than omitted because an absent answer is not a clean one, and this is the largest single construction in the study \u2014 the terminal carries roughly three-quarters of enterprise value on both framings.",
+   "what_would_close_it": "the useful-life band from the FY2025 audited accounting-policies note, committed to the house register of disclosed lives with its page and the route it was read by, and a weighted life derived from the property and equipment note's own composition"
+  }
+ ],
+ "judgements": [
+  {
+   "name": "the central architecture",
+   "adopted": "the five-lens weighted blend the study publishes (0.25/0.25/0.20/0.15/0.15)",
+   "alternative": "the class primary alone \u2014 the cash-flow lens, at the study's own equal weighting of its two framings",
+   "value_adopted": 4.919425418226855,
+   "value_alternative": 5.80264329634913,
+   "why": "an operating company's class primary is the discounted cash flow, and the other lenses are cross-checks published beside it rather than weights averaged into it. Three of the five lenses carrying half the weight here value a 44%-margin franchise on historical-cost book, on trailing peer multiples struck partly off loss-making land drillers, and on flat nominal earnings capitalised at a nominal rate. The weights were typed and have never cleared an out-of-sample test. This is the largest single judgement in the study and it is the one the two cash-flow framings expose: they straddle the traded price and their midpoint lands 0.05% from it, while the blend sits 15.2% below.",
+   "move_from_alternative_to_adopted": -0.8832178781222746,
+   "share_of_published_answer": 0.15220957639735877,
+   "lens_values": {
+    "dcf_A": 6.208275510273871,
+    "dcf_B": 5.397011082424389,
+    "relative": 3.9495499028604715,
+    "book": 4.725141290784334,
+    "normalised": 3.4628173057503044
+   }
+  },
+  {
+   "name": "the beta estimate",
+   "adopted": "the five-year WEEKLY own-stock regression against the published index, 0.795",
+   "alternative": "the study's own three-year weekly regression against the same index, 1.025",
+   "value_adopted": 4.919425418226855,
+   "value_alternative": 4.294421000550224,
+   "why": "THE DIRECTION OF THIS ENTRY IS NOT ROBUST TO THE ALTERNATIVE CHOSEN, AND THAT IS RECORDED HERE RATHER THAN SETTLED BY PICKING ONE. The protocol's first tier is a two-to-five-year own-stock weekly OR MONTHLY regression on the longest usable window, and this study ran four alternatives that all clear the usability gate. Three are weekly and all three sit ABOVE the adopted beta \u2014 two-year 0.890 (answer 4.6372), three-year 1.025 (answer 4.2944), four-year 0.836 (answer 4.7931) \u2014 so against any of them the study took the higher-value side. The fourth is the five-year MONTHLY regression at 0.471, which sits far BELOW it and gives 6.2836: against that one the study took the LOWER-value side, by 21.7%, which is the largest single move in this whole record. A window alternative is recorded as the framing because the adopted choice is a WINDOW choice at the study's own stated frequency, and the sign test is printed BOTH WAYS below so the reader is not asked to take that on trust. Beta is the single most powerful driver in the model and the only input estimated from market data rather than read from a filing.",
+   "move_from_alternative_to_adopted": 0.6250044176766316,
+   "share_of_published_answer": 0.14553869254936877,
+   "alternatives_tested": {
+    "weekly_2y": {
+     "beta": 0.8898089280137128,
+     "answer": 4.637161426564011
+    },
+    "weekly_3y": {
+     "beta": 1.0245736478865013,
+     "answer": 4.294421000550224
+    },
+    "weekly_4y": {
+     "beta": 0.8358415790193425,
+     "answer": 4.79308944642188
+    },
+    "monthly_5y": {
+     "beta": 0.47099338076868474,
+     "answer": 6.283583362969113
+    }
+   },
+   "direction_not_robust": true
+  },
+  {
+   "name": "the risk-free basis",
+   "adopted": "the US ten-year yield of 4.69% normalised by the United States' own default spread of 0.23%, giving 4.46%, on the argument that the cash flows are dollars",
+   "alternative": "the house market path's AED anchor \u2014 the UAE federal AED Treasury Bond auction yield of 4.48% less its own rating-basis default spread of 0.42%, giving 4.06%",
+   "value_adopted": 4.919425418226855,
+   "value_alternative": 5.198341755443697,
+   "why": "both constructions count country risk exactly once and strip the same basis of default spread as the equity premium adds back, so neither double-counts; they differ in WHICH instrument the risk-free is measured on. The house anchor measures the risk-free and the spread on the SAME instrument, which is the construction that keeps country risk entering once by arithmetic rather than by argument. The caveat runs the other way and is stated rather than buried: the house anchor's own source note records that the AED federal instrument is an approximately FIVE-year tenor, against the study's TEN-year US Treasury, so part of the 40-basis-point difference between the two normalised risk-free rates is tenor rather than basis and this fork is smaller than those two numbers make it look. HOW MUCH SMALLER IS NOT QUANTIFIED HERE, because no like-tenor AED figure is committed in this study or in the house path, and estimating one to finish the sentence would be inventing the very number the entry is about.",
+   "move_from_alternative_to_adopted": -0.2789163372168417,
+   "share_of_published_answer": 0.05365486732855932
+  },
+  {
+   "name": "the terminal capitalisation rate",
+   "adopted": "the weighted cost of capital, on the argument that the capital structure weights are struck on gross debt and a firm holding cash alongside undiminished gross borrowings has not de-levered",
+   "alternative": "the cost of equity, on the argument that the model's own 2030 balance sheet has the firm in net cash",
+   "value_adopted": 4.919425418226855,
+   "value_alternative": 4.797302000783781,
+   "why": "this study implemented the alternative, priced it, and REVERSED it \u2014 recorded in its own code beside the line. Two reasons are given and the second is the stronger: reading the terminal capital structure off NET debt after refusing to read today's off net debt treats one quantity two ways in one model; and a rate that switches on the SIGN of terminal net debt is discontinuous, which a driver test caught when a HEAVIER working-capital burden made the company more valuable. The reversal raises the answer, which is why it is recorded here rather than only in the code.",
+   "move_from_alternative_to_adopted": 0.12212341744307409,
+   "share_of_published_answer": 0.02545668740953178
+  },
+  {
+   "name": "the book lens' sustainable return",
+   "adopted": "the return the model itself forecasts for 2030, 30.6%",
+   "alternative": "the realised FY2024-25 average the first edition used, 36.7%",
+   "value_adopted": 4.919425418226855,
+   "value_alternative": 5.074150655225485,
+   "why": "a return entering a perpetual formula has to be one the business can be held to in perpetuity, and this study already forecasts exactly that \u2014 falling as the capital base grows into the fleet being built. Using the realised return would make the book lens richer than the cash-flow model four sections above it on nothing more than the past having been measured on a smaller balance sheet. The average across the forecast window, 32.2%, sits between the two and is published beside them.",
+   "move_from_alternative_to_adopted": -0.1547252369986296,
+   "share_of_published_answer": 0.030492834665697157
+  },
+  {
+   "name": "the normalised lens' capitalisation",
+   "adopted": "flat nominal profit capitalised at the nominal cost of capital, with no growth credited in the denominator",
+   "alternative": "a Fisher-consistent reading \u2014 a real rate on flat real earnings, the nominal rate less the house terminal inflation of 2.0%",
+   "value_adopted": 4.919425418226855,
+   "value_alternative": 5.1126534686098495,
+   "why": "holding earnings flat in NOMINAL terms while discounting at a NOMINAL rate is a perpetual real decline of about two points a year, not prudence, and nothing disclosed supports one for a fleet on multi-year contracts with an explicit fuel escalation pass-through. The adopted construction was itself a correction \u2014 an earlier edition divided by the rate less a growth rate while the text beside it said no growth was credited \u2014 and it corrected the arithmetic without reaching the unit.",
+   "move_from_alternative_to_adopted": -0.19322805038299418,
+   "share_of_published_answer": 0.03779408316432086
+  },
+  {
+   "name": "the segment calibration",
+   "adopted": "the unit build reconciled to the company's own FY2026 segment guidance, as persistent level shifts of 0.900, 1.025 and 1.080 on the three segments' unit rates",
+   "alternative": "the raw ground-up build, uncalibrated",
+   "value_adopted": 4.919425418226855,
+   "value_alternative": 5.0035068559764415,
+   "why": "guidance is scored and never consumed, because management's forward targets lean the same way an optimistic model does \u2014 and this year consumes it, which the study says in terms. It runs AGAINST the value here rather than for it: the raw build totals 5,086mn against a guided 5,000mn, so consuming the guidance cuts the anchor year and every year after it through a persistent level shift. The guidance is also rounded to one decimal, so the shifts are solved against roundings. The study's own forecast-anchor note describes the calibrated path, so it was neutralised for this counterfactual \u2014 the note is what stops being true, not the arithmetic.",
+   "move_from_alternative_to_adopted": -0.08408143774958621,
+   "share_of_published_answer": 0.01680450135671446
+  },
+  {
+   "name": "the cost and day-rate escalators",
+   "adopted": "1.5% on the oilfield-services, general and day-rate lines, sourced to this study's own consumer-price and producer-price reads",
+   "alternative": "2.0% on the same lines, the house market path's published inflation ladder",
+   "value_adopted": 4.919425418226855,
+   "value_alternative": 4.975139407793186,
+   "why": "one escalator per driver class is the rule and this study obeys it \u2014 wages already sit at 2.0% and fuel escalates on its own commodity path, so neither moves here. What is contested is the level on the domestic lines. Raising revenue and the domestic cost lines together RAISES the answer, so the adopted 1.5% is the lower-value side; the study's own reasoning for it is explicit and the gap is flagged rather than smoothed away.",
+   "move_from_alternative_to_adopted": -0.055713989566331,
+   "share_of_published_answer": 0.011198478072606202
+  },
+  {
+   "name": "the relative lens' earnings base",
+   "adopted": "trailing last-twelve-month EBITDA of 2,173mn excluding the joint-venture share",
+   "alternative": "the company's own guided FY2026 EBITDA midpoint of 2,250mn",
+   "value_adopted": 4.919425418226855,
+   "value_alternative": 4.950486921624694,
+   "why": "every multiple in the peer table is an enterprise value struck today over that company's last twelve months, so applying it to a guided forward figure would credit this company with a year of growth no peer in the denominator is credited with. The adopted basis is the internally consistent one and it is also the lower one, which is why it is recorded here rather than treated as merely mechanical.",
+   "move_from_alternative_to_adopted": -0.031061503397838308,
+   "share_of_published_answer": 0.006274433987928661
+  },
+  {
+   "name": "the working-capital ratio",
+   "adopted": "9.008% of revenue, off the 30 June 2026 balance sheet \u2014 the only one that consolidates the two regional acquisitions",
+   "alternative": "5.913% of revenue, the FY2023-25 audited average the first edition used",
+   "value_adopted": 4.919425418226855,
+   "value_alternative": 4.938735509888751,
+   "why": "the audited average is built entirely from year ends that PRE-DATE the acquisitions and was being applied to a revenue line that consolidates them from 2026, which is an internal inconsistency. The mid-year objection was tested against the company's own cash-flow statement and answered: working capital RELEASED 154mn over 1H-2025, so this company runs BELOW its year end at mid-year rather than above it. Raising the ratio lowers the valuation, and the study raised it.",
+   "move_from_alternative_to_adopted": -0.01931009166189579,
+   "share_of_published_answer": 0.003909926260118911
+  },
+  {
+   "name": "the minority deduction",
+   "adopted": "the 62,530 put liability alone",
+   "alternative": "the put liability AND the 53,594 book non-controlling interest",
+   "value_adopted": 4.919425418226855,
+   "value_alternative": 4.908876818618749,
+   "why": "these are two names for one claim: under the shareholders' arrangements the parent may be required to buy the 30% of one subsidiary and the 20% of the other, and the company has recognised the present value of that exercise price as a liability with a matching negative investment reserve in owners' equity. Deducting both charges the parent twice for the same stakes. The put is the deduction that survives because it is the cash the parent would actually pay \u2014 and it is also the larger of the two, so the adopted side is not simply the cheaper one, though the net effect of dropping the double count raises the answer.",
+   "move_from_alternative_to_adopted": 0.01054859960810628,
+   "share_of_published_answer": 0.0021488825240219465
+  },
+  {
+   "name": "FY2026 capital spending",
+   "adopted": "700mn, the middle of the company's guided 600-800mn range",
+   "alternative": "600mn, the guided low end",
+   "value_adopted": 4.919425418226855,
+   "value_alternative": 4.92832266181591,
+   "why": "the company guides a range and the study takes the midpoint rather than an end of it, which is the defensible default; the low end is equally disclosed and would raise the answer. Recorded because a midpoint is still a choice.",
+   "move_from_alternative_to_adopted": -0.00889724358905486,
+   "share_of_published_answer": 0.0018053289525845582
+  },
+  {
+   "name": "the depreciation anchor",
+   "adopted": "the FY2025 charge over the FY2024 closing asset base",
+   "alternative": "the reviewed 1H-2026 charge annualised over the same base",
+   "value_adopted": 4.919425418226855,
+   "value_alternative": 4.914818573129513,
+   "why": "a near-term reviewed actual outranks a stale full-year rate, and this study's own normalised lens uses the annualised half-year charge and argues in terms that it is 'what the fleet being priced actually carries' \u2014 while the primary lens anchors on FY2025. One model, two depreciation anchors, and the study argues for the one it does not use in its primary. The move is tiny and runs the opposite way to intuition, because depreciation is a tax shield here: LOWERING it lowers free cash flow at a 9% tax rate faster than it raises terminal profit, so the adopted anchor is the higher-value side by 0.09%.",
+   "move_from_alternative_to_adopted": 0.004606845097342216,
+   "share_of_published_answer": 0.0009373377732657189
+  },
+  {
+   "name": "the crux \u2014 what happens to drilling demand once the capacity target is met",
+   "adopted": "neither: both futures are computed in full, published side by side as separate lines, and enter the central at a quarter of the weight each",
+   "alternative": "resolving it \u2014 adopting one of the two framings outright",
+   "value_adopted": 4.919425418226855,
+   "value_alternative": 4.919425418226855,
+   "why": "THIS FORK CARRIES NO DIRECTION AND THE ZERO SPREAD ABOVE IS THE REASON, NOT A DODGE. The two resolutions are AED 5.1222 (the expansion case alone in the blend) and AED 4.7166 (the plateau case alone), and they are symmetric about the published answer BY CONSTRUCTION because the study weights them equally \u2014 so there is no single 'other framing' to price against and the sign test cannot be given one without the author choosing which. The spread is 0.4056, 8.2% of the published answer and 14.0% of the cash-flow lens itself, so it is the largest disagreement in the study by width; it is recorded here with both tails valued rather than left out, because what a study may not do is go unmeasured. The company itself has declined to guide 2027 until rig and services phasing is fixed, which is the disclosed reason two cases exist rather than one.",
+   "move_from_alternative_to_adopted": 0.0,
+   "share_of_published_answer": 0.0,
+   "value_if_expansion_case_alone": 5.122241525189226,
+   "value_if_plateau_case_alone": 4.7166093112644845,
+   "directionless": true
+  }
+ ]
+}

@@ -1,0 +1,44 @@
+{
+ "ticker": "ADNOCDRILL",
+ "as_of": "2026-08-09",
+ "spot": 5.8,
+ "spot_date": "close 3 September 2026, engine/prices/SUPPLIED_03-09-2026.json",
+ "spot_at_strike": 5.94,
+ "published_central": 4.919425418226855,
+ "published_spot": 5.94,
+ "why_this_file": "The reverse read \u2014 what the traded price must believe \u2014 is a DIAGNOSTIC and lives outside the numbers file every builder reads. A margin, growth or rate solved from a price and then used anywhere in the valuation is the reverse-engineered terminal the cost-of-capital procedure prohibits outright, arriving through a side door. Nothing in this file is an input to anything: no builder reads it, and the generator asserts that the solved value is absent from study_numbers.json.",
+ "implied": {
+  "quantity": "the group EBITDA margin the traded price implies, as a level shift in points of revenue on this study's own forecast margin path, reported at the last explicit year (FY2030)",
+  "value": 0.4381550272840842,
+  "value_other_framing": 0.5055630474639481,
+  "study_value": 0.4596470233497553,
+  "study_value_other_framing": 0.4803185116377341,
+  "level_shift_points_of_revenue": {
+   "A": -0.02149199606567114,
+   "B": 0.025244535826213985
+  },
+  "solved_on": "this study's own model through compute.revalue(margin_shift=...), the sensitivity axis the study itself publishes \u2014 holding every driver, the fleet plan, the cost stack, the cost of capital, the terminal and the enterprise-to-equity bridge at their published values and varying only the EBITDA margin until the cash-flow lens reproduces the traded price, on each of the two framings of the crux",
+  "company_disclosed": {
+   "filed_group_ebitda_margin": {
+    "FY2023": 0.48510352926936584,
+    "FY2024": 0.499423928579042,
+    "FY2025": 0.4483147272851133,
+    "1H2026_reviewed": 0.44068390564648613
+   },
+   "guided_fy2026_midpoint": 0.45,
+   "note": "audited consolidated statements FY2023-25 and the reviewed 1H-2026 condensed interim; the FY2026 figure is the midpoint of the company's own reaffirmed EBITDA guidance over its own reaffirmed revenue guidance"
+  },
+  "reading": "At AED 5.80 the price is paying for an FY2030 group EBITDA margin of 43.8% on the continued-expansion framing and 50.6% on the capacity-plateau framing, against this study's own forecasts of 46.0% and 48.0%. THE PRICE SITS BETWEEN THE TWO FRAMINGS, so the disagreement changes sign depending on which future a reader holds: on the expansion case the market is 2.1 points BELOW this study, on the plateau case 2.5 points ABOVE it. Neither implied figure is a belief the filings rule out, and the arithmetic is stated exactly rather than rounded in this study's favour: the company has filed 48.5%, 49.9% and 44.8% for FY2023, FY2024 and FY2025 and 44.1% for the reviewed first half of 2026, and guides 45.0% for the full year \u2014 so the expansion framing's implied 43.82% sits 25 basis points BELOW the weakest half-year this company has filed and the plateau framing's implied 50.56% sits 61 basis points ABOVE its best full year. Both are just outside a four-period record rather than inside it, and both are inside a rounding of it. A reverse read landing on a believable number is evidence against a dissent rather than for one. The disagreement is two points of margin on a driver a reader can check in the next filing, which is a more useful statement than \"the study is 15.2% below the price\"."
+ },
+ "also_solved_on_the_same_model": {
+  "flat_cost_of_capital_A": 0.08375067787893262,
+  "terminal_nominal_growth_A": 0.017966424378093815,
+  "equity_beta_A": 0.8775263057939688,
+  "terminal_return_on_capital_A": 0.12064859858189525,
+  "flat_cost_of_capital_B": 0.0758148378471184,
+  "terminal_nominal_growth_B": 0.02301093351814932,
+  "equity_beta_B": 0.6987355426815531,
+  "terminal_return_on_capital_B": null
+ },
+ "also_solved_note": "Every quantity the same model yields at the same price, published so that the choice of ONE quantity above is visible rather than asserted. The margin is the one reported as the reverse read because it is the only one of the five with a comparator in the company's own filings; the beta has one in this study's own regression record (adopted 0.795 five-year weekly, with its own two-, three- and four-year windows at 0.890, 1.025 and 0.836 and a 90% interval of 0.577 to 1.014), and the terminal return on capital is UNREACHABLE on the plateau framing because that framing sits below the price at any return."
+}

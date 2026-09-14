@@ -1,0 +1,503 @@
+{
+ "_": "SWDY forward ranges for years 3-5, from this run's own driver-error distribution. The study applies these to its point path; the point path is not published alone for those years.",
+ "built": "2026-09-07",
+ "orientation": "actual_over_forecast",
+ "orientation_note": "MULTIPLY a point projection by the band. A band of 1.4 to 1.8 says the outturn is expected between 1.4x and 1.8x the point, i.e. the point UNDER-forecasts. The reciprocal convention (forecast over actual) is NOT used here and the two are not interchangeable.",
+ "basis_rule": "percentile at 9 observations or more, otherwise the SPAN of the observations. A span over four observations is the range of four numbers and is not a p10-p90.",
+ "bands": {
+  "D1_cable_volume_t": {
+   "3": {
+    "low": 0.6314603054254709,
+    "high": 0.871622510931911,
+    "basis": "span",
+    "count": 4,
+    "orientation": "actual_over_forecast",
+    "median": 0.7068258014043174
+   },
+   "4": {
+    "low": 0.6303727532486246,
+    "high": 0.689591907053497,
+    "basis": "span",
+    "count": 3,
+    "orientation": "actual_over_forecast",
+    "median": 0.6546232832426735
+   },
+   "5": {
+    "low": 0.5833169117455063,
+    "high": 0.6933251118555247,
+    "basis": "span",
+    "count": 2,
+    "orientation": "actual_over_forecast",
+    "median": 0.6383210118005155
+   }
+  },
+  "D2_cable_price_t": {
+   "3": {
+    "low": 0.39744077473292116,
+    "high": 2.0670721412449287,
+    "basis": "span",
+    "count": 4,
+    "orientation": "actual_over_forecast",
+    "median": 1.38789992170059
+   },
+   "4": {
+    "low": 1.0460699028790619,
+    "high": 1.6786664968345275,
+    "basis": "span",
+    "count": 3,
+    "orientation": "actual_over_forecast",
+    "median": 1.3802869627331502
+   },
+   "5": {
+    "low": 1.0517992366233426,
+    "high": 1.4167300518042765,
+    "basis": "span",
+    "count": 2,
+    "orientation": "actual_over_forecast",
+    "median": 1.2342646442138094
+   }
+  },
+  "D3_cable_cost_t": {
+   "3": {
+    "low": 0.42665046736016593,
+    "high": 2.0204314665068788,
+    "basis": "span",
+    "count": 4,
+    "orientation": "actual_over_forecast",
+    "median": 1.3490041506462989
+   },
+   "4": {
+    "low": 1.0692864465136556,
+    "high": 1.6409464278790533,
+    "basis": "span",
+    "count": 3,
+    "orientation": "actual_over_forecast",
+    "median": 1.3753800779053178
+   },
+   "5": {
+    "low": 1.0481602482945254,
+    "high": 1.3976413999425163,
+    "basis": "span",
+    "count": 2,
+    "orientation": "actual_over_forecast",
+    "median": 1.2229008241185209
+   }
+  },
+  "D4_cables_revenue": {
+   "3": {
+    "low": 0.37836419322425724,
+    "high": 3.7821109251577987,
+    "basis": "percentile",
+    "count": 9,
+    "orientation": "actual_over_forecast",
+    "median": 1.451913302964032
+   },
+   "4": {
+    "low": 0.22485718834172166,
+    "high": 7.107776783191066,
+    "basis": "span",
+    "count": 8,
+    "orientation": "actual_over_forecast",
+    "median": 1.1428798472615667
+   },
+   "5": {
+    "low": 0.23637486166485186,
+    "high": 7.586690472416721,
+    "basis": "span",
+    "count": 7,
+    "orientation": "actual_over_forecast",
+    "median": 0.966765225513338
+   }
+  },
+  "D5_contracting_revenue": {
+   "3": {
+    "low": 0.8741565007544845,
+    "high": 2.50221572973158,
+    "basis": "percentile",
+    "count": 9,
+    "orientation": "actual_over_forecast",
+    "median": 1.4078010895026514
+   },
+   "4": {
+    "low": 0.8397929992366433,
+    "high": 3.1011556376718543,
+    "basis": "span",
+    "count": 8,
+    "orientation": "actual_over_forecast",
+    "median": 1.5523792447308373
+   },
+   "5": {
+    "low": 0.8981749242946796,
+    "high": 4.030377710760445,
+    "basis": "span",
+    "count": 7,
+    "orientation": "actual_over_forecast",
+    "median": 1.4396481412666364
+   }
+  },
+  "D6_other_revenue": {
+   "3": {
+    "low": 0.529297526954452,
+    "high": 3.3602808170990834,
+    "basis": "percentile",
+    "count": 9,
+    "orientation": "actual_over_forecast",
+    "median": 2.30562585998853
+   },
+   "4": {
+    "low": 0.48145195486525616,
+    "high": 5.294044844372673,
+    "basis": "span",
+    "count": 8,
+    "orientation": "actual_over_forecast",
+    "median": 1.772946357561009
+   },
+   "5": {
+    "low": 0.6614311762812947,
+    "high": 3.9288230720404593,
+    "basis": "span",
+    "count": 7,
+    "orientation": "actual_over_forecast",
+    "median": 1.5750674237550544
+   }
+  },
+  "D7_cables_cost": {
+   "3": {
+    "low": 0.3930283546984647,
+    "high": 3.9730689668671006,
+    "basis": "percentile",
+    "count": 9,
+    "orientation": "actual_over_forecast",
+    "median": 1.3814500925306807
+   },
+   "4": {
+    "low": 0.21859944792818492,
+    "high": 6.3290775503569305,
+    "basis": "span",
+    "count": 8,
+    "orientation": "actual_over_forecast",
+    "median": 1.1078229080407
+   },
+   "5": {
+    "low": 0.20919791770788038,
+    "high": 7.0895166819395,
+    "basis": "span",
+    "count": 7,
+    "orientation": "actual_over_forecast",
+    "median": 0.9277595790076038
+   }
+  },
+  "D8_contracting_cost": {
+   "3": {
+    "low": 0.9225938656776954,
+    "high": 2.5291611588753833,
+    "basis": "percentile",
+    "count": 9,
+    "orientation": "actual_over_forecast",
+    "median": 1.4136669706876188
+   },
+   "4": {
+    "low": 0.8815812989210569,
+    "high": 2.983325133855356,
+    "basis": "span",
+    "count": 8,
+    "orientation": "actual_over_forecast",
+    "median": 1.6485141211106744
+   },
+   "5": {
+    "low": 0.968024076380194,
+    "high": 3.7699717600395055,
+    "basis": "span",
+    "count": 7,
+    "orientation": "actual_over_forecast",
+    "median": 1.6031200694154937
+   }
+  },
+  "D9_other_cost": {
+   "3": {
+    "low": 0.5015777424623884,
+    "high": 3.3163300927547708,
+    "basis": "percentile",
+    "count": 9,
+    "orientation": "actual_over_forecast",
+    "median": 2.241809869818172
+   },
+   "4": {
+    "low": 0.4852708060684364,
+    "high": 5.49290660920797,
+    "basis": "span",
+    "count": 8,
+    "orientation": "actual_over_forecast",
+    "median": 1.7878159601330732
+   },
+   "5": {
+    "low": 0.6347782487953229,
+    "high": 4.215249059053746,
+    "basis": "span",
+    "count": 7,
+    "orientation": "actual_over_forecast",
+    "median": 1.5391772468404135
+   }
+  },
+  "D10_sga": {
+   "3": {
+    "low": 0.7026159383845672,
+    "high": 1.7588206233228156,
+    "basis": "span",
+    "count": 6,
+    "orientation": "actual_over_forecast",
+    "median": 1.3579087777252856
+   },
+   "4": {
+    "low": 0.7893692066098381,
+    "high": 1.938053793090509,
+    "basis": "span",
+    "count": 5,
+    "orientation": "actual_over_forecast",
+    "median": 1.4114152111657472
+   },
+   "5": {
+    "low": 1.2604529836286664,
+    "high": 1.8277838801156445,
+    "basis": "span",
+    "count": 4,
+    "orientation": "actual_over_forecast",
+    "median": 1.5941132494384778
+   }
+  },
+  "D11_depreciation": {
+   "3": {
+    "low": 1.7691892586320213,
+    "high": 3.031399420916654,
+    "basis": "span",
+    "count": 6,
+    "orientation": "actual_over_forecast",
+    "median": 2.7211330777113307
+   },
+   "4": {
+    "low": 2.042763327031327,
+    "high": 3.559852582691252,
+    "basis": "span",
+    "count": 5,
+    "orientation": "actual_over_forecast",
+    "median": 3.0310463468405433
+   },
+   "5": {
+    "low": 3.0375574995695227,
+    "high": 4.494830729193096,
+    "basis": "span",
+    "count": 4,
+    "orientation": "actual_over_forecast",
+    "median": 3.4010396889878294
+   }
+  },
+  "D12_capex": {
+   "3": {
+    "low": 0.9270245018640573,
+    "high": 4.273465214312194,
+    "basis": "percentile",
+    "count": 9,
+    "orientation": "actual_over_forecast",
+    "median": 2.69566623202083
+   },
+   "4": {
+    "low": 0.9465413028819402,
+    "high": 6.912245485837886,
+    "basis": "span",
+    "count": 8,
+    "orientation": "actual_over_forecast",
+    "median": 3.120343193917511
+   },
+   "5": {
+    "low": 0.8335938291887526,
+    "high": 11.826966388617578,
+    "basis": "span",
+    "count": 7,
+    "orientation": "actual_over_forecast",
+    "median": 2.9104463099826314
+   }
+  },
+  "D13_other_operating_income": {
+   "3": {
+    "low": 1.1326292918884033,
+    "high": 5.9689343891467415,
+    "basis": "percentile",
+    "count": 9,
+    "orientation": "actual_over_forecast",
+    "median": 2.48706182087201
+   },
+   "4": {
+    "low": 0.9576882000948038,
+    "high": 8.479432228431447,
+    "basis": "span",
+    "count": 8,
+    "orientation": "actual_over_forecast",
+    "median": 4.46754340394753
+   },
+   "5": {
+    "low": 1.3217950638744496,
+    "high": 12.605975833134346,
+    "basis": "span",
+    "count": 7,
+    "orientation": "actual_over_forecast",
+    "median": 3.417564520371598
+   }
+  },
+  "D14_other_operating_expense": {
+   "3": {
+    "low": 0.8014909789598036,
+    "high": 5.2406379757274335,
+    "basis": "percentile",
+    "count": 9,
+    "orientation": "actual_over_forecast",
+    "median": 0.9699858563314196
+   },
+   "4": {
+    "low": 0.6150487792380571,
+    "high": 6.263576071545343,
+    "basis": "span",
+    "count": 8,
+    "orientation": "actual_over_forecast",
+    "median": 1.8817777595405365
+   },
+   "5": {
+    "low": 0.6770682304629911,
+    "high": 8.819001431062384,
+    "basis": "span",
+    "count": 7,
+    "orientation": "actual_over_forecast",
+    "median": 1.800705192684193
+   }
+  },
+  "D15_finance_costs": {
+   "3": {
+    "low": 1.1306625665004602,
+    "high": 9.210997176976058,
+    "basis": "percentile",
+    "count": 9,
+    "orientation": "actual_over_forecast",
+    "median": 2.042895780206987
+   },
+   "4": {
+    "low": 1.3453836922424551,
+    "high": 13.902034234058679,
+    "basis": "span",
+    "count": 8,
+    "orientation": "actual_over_forecast",
+    "median": 3.329585625992103
+   },
+   "5": {
+    "low": 1.7569531313997697,
+    "high": 16.394143746187243,
+    "basis": "span",
+    "count": 7,
+    "orientation": "actual_over_forecast",
+    "median": 3.3966906909634114
+   }
+  },
+  "D16_finance_income": {
+   "3": {
+    "low": 0.613356905781851,
+    "high": 10.40819497647102,
+    "basis": "percentile",
+    "count": 9,
+    "orientation": "actual_over_forecast",
+    "median": 5.351815383493937
+   },
+   "4": {
+    "low": 0.45072662881745434,
+    "high": 18.65352890798842,
+    "basis": "span",
+    "count": 8,
+    "orientation": "actual_over_forecast",
+    "median": 3.662115804410134
+   },
+   "5": {
+    "low": 0.6974161077206337,
+    "high": 11.876632891911756,
+    "basis": "span",
+    "count": 7,
+    "orientation": "actual_over_forecast",
+    "median": 2.4937805884243804
+   }
+  },
+  "A_revenue": {
+   "3": {
+    "low": 0.5419658188244999,
+    "high": 2.5960669898273023,
+    "basis": "percentile",
+    "count": 9,
+    "orientation": "actual_over_forecast",
+    "median": 1.5181861839197612
+   },
+   "4": {
+    "low": 0.3587106558079732,
+    "high": 3.391290698541878,
+    "basis": "span",
+    "count": 8,
+    "orientation": "actual_over_forecast",
+    "median": 1.4871644032316702
+   },
+   "5": {
+    "low": 0.3514002727114548,
+    "high": 3.6448268121062104,
+    "basis": "span",
+    "count": 7,
+    "orientation": "actual_over_forecast",
+    "median": 1.3561973211341996
+   }
+  },
+  "A_cost_of_revenue": {
+   "3": {
+    "low": 0.5598599171432527,
+    "high": 2.636657949910785,
+    "basis": "percentile",
+    "count": 9,
+    "orientation": "actual_over_forecast",
+    "median": 1.4678463625787874
+   },
+   "4": {
+    "low": 0.35422813599267944,
+    "high": 3.7775026397133367,
+    "basis": "span",
+    "count": 8,
+    "orientation": "actual_over_forecast",
+    "median": 1.4224510307804956
+   },
+   "5": {
+    "low": 0.32711065964183833,
+    "high": 3.6772356728884312,
+    "basis": "span",
+    "count": 7,
+    "orientation": "actual_over_forecast",
+    "median": 1.3315832006884336
+   }
+  },
+  "A_gross_profit": {
+   "3": {
+    "low": 0.462524735392641,
+    "high": 2.8643707487289998,
+    "basis": "percentile",
+    "count": 9,
+    "orientation": "actual_over_forecast",
+    "median": 1.788792729809591
+   },
+   "4": {
+    "low": 0.38720561323723757,
+    "high": 4.235961760875169,
+    "basis": "span",
+    "count": 8,
+    "orientation": "actual_over_forecast",
+    "median": 1.8954544805304048
+   },
+   "5": {
+    "low": 0.5125328501456106,
+    "high": 3.464816994579105,
+    "basis": "span",
+    "count": 7,
+    "orientation": "actual_over_forecast",
+    "median": 1.4496724831770966
+   }
+  }
+ }
+}

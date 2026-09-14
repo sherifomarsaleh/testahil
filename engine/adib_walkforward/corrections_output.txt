@@ -1,0 +1,51 @@
+=== STABILITY GATE: does each driver bias hold its sign across eras? ===
+driver               early       late  verdict
+fin_customers       -0.473     -0.182  stable - correctable
+cust_deposits       -0.309     -0.276  stable - correctable
+total_assets        -0.336     -0.295  stable - correctable
+fin_income          -0.556     -0.374  stable - correctable
+cost_funds          -0.537     -0.411  stable - correctable
+net_funds           -0.593     -0.328  stable - correctable
+net_fees            -0.138     -0.223  stable - correctable
+other_nii           -0.027     +0.113  SIGN FLIPS - not a bias, no correction
+admin               -0.030     -0.053  stable - correctable
+other_op            -0.671     -0.342  stable - correctable
+ecl                 +0.089     -0.351  SIGN FLIPS - not a bias, no correction
+pbt                 -0.409     -0.350  stable - correctable
+np                  -0.709     -0.450  stable - correctable
+np_parent           -0.725     -0.445  stable - correctable
+
+=== ADJUSTED vs RAW, BY ORIGIN (MAE on net profit attributable) ===
+origin        n    raw MAE    adj MAE    change  corrections applied
+FY2014        -  (no scorable net-profit cell)
+FY2015        5      1.336      1.336     +0.0%  none
+FY2016        5      0.693      0.327    -52.8%  admin,cost_funds,cust_deposits,fin_customers,fin_income,net_fees,total_assets
+FY2017        5      0.148      0.270    +82.6%  admin,cost_funds,cust_deposits,fin_customers,fin_income,net_fees,total_assets
+FY2018        5      0.304      0.623   +105.0%  admin,cost_funds,cust_deposits,fin_customers,fin_income,net_fees,other_op,total_assets
+FY2019        5      0.431      0.552    +28.2%  admin,cost_funds,cust_deposits,fin_customers,fin_income,net_fees,other_op,total_assets
+FY2020        5      0.926      0.735    -20.7%  admin,cost_funds,cust_deposits,fin_customers,fin_income,net_fees,other_op,total_assets
+FY2021        4      0.754      0.616    -18.3%  admin,cost_funds,cust_deposits,fin_customers,fin_income,net_fees,other_op,total_assets
+FY2022        3      0.990      0.796    -19.7%  admin,cost_funds,cust_deposits,fin_customers,fin_income,net_fees,other_op,total_assets
+FY2023        2      0.796      0.600    -24.7%  admin,cost_funds,cust_deposits,fin_customers,fin_income,net_fees,other_op,total_assets
+FY2024        1      0.322      0.091    -71.8%  admin,cost_funds,cust_deposits,fin_customers,fin_income,net_fees,other_op,total_assets
+
+=== ADJUSTED vs RAW, WHOLE RECORD, PER DRIVER ===
+driver              n  raw bias  adj bias   raw MAE   adj MAE
+fin_customers      45    -0.311    -0.162     0.326     0.315
+cust_deposits      45    -0.291    -0.202     0.315     0.295
+total_assets       45    -0.313    -0.206     0.359     0.339
+fin_income         45    -0.455    -0.279     0.527     0.509
+cost_funds         45    -0.467    -0.328     0.519     0.485
+net_funds          45    -0.446    -0.235     0.564     0.566
+net_fees           45    -0.185    -0.093     0.427     0.475
+other_nii          45    +0.051    +0.051     0.505     0.505
+admin              45    -0.043    +0.002     0.233     0.256
+other_op           32    -0.414    -0.231     0.512     0.440
+ecl                40    -0.186    -0.186     0.734     0.734
+pbt                40    -0.372    -0.068     0.630     0.638
+np                 40    -0.547    -0.243     0.670     0.626
+np_parent          40    -0.550    -0.246     0.677     0.634
+
+=== SENSITIVITY, REPORTED NEVER SELECTED: R2 share-flat vs share-drift ===
+financing volume, 45 cells:  share-FLAT bias -0.311 MAE 0.326  |  share-DRIFT bias -0.064 MAE 0.238
+mean trailing 3-year share drift across origins: +8.7%/yr
