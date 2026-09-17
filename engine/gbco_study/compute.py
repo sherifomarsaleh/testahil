@@ -1373,10 +1373,32 @@ _LENS_RECORD = dict(
                               "net profit attributable and its own share price. Never a "
                               "multiple from the current price. THREE OBSERVATIONS, and "
                               "the count is published with the median."),
-             circularity=dict(spot=spot, shares=SH, net_debt=0.0, metric_value=np26),
+             # THE METRIC IS THE EARNINGS THE MULTIPLE IS ACTUALLY APPLIED TO, WHICH IS
+             # NOT THE ATTRIBUTABLE LINE. The multiples in REL_HIST are struck on the
+             # company's OWN PUBLISHED BASIC EPS, whose numerator is net profit
+             # attributable LESS the employees' and board statutory share of profit
+             # (EPS_DEDUCTION_FY25, 0.676% on the FY2025 framing). This block committed
+             # the raw attributable figure while the lens multiplied the EPS-basis one,
+             # so the two disagreed by exactly that deduction and NOTHING SAID SO -- the
+             # committed operand named a different quantity from the one in use, which is
+             # the same shape as an artefact declaring a vintage it was not built at.
+             # It broke twice from one cause: `multiple x metric_value / shares` gave
+             # 18.2024 against a published 18.0794, and research_protocol's own derived
+             # `_traded_multiple` came out 10.4533 against the 10.52x this study PRINTS.
+             # Committing the operand the lens uses closes both; no printed figure moves.
+             circularity=dict(spot=spot, shares=SH, net_debt=0.0,
+                              metric_value=np26 * (1 - EPS_DEDUCTION_FY25),
+                              metric_basis=("FY2026E net profit attributable LESS the "
+                                            "employees' and board statutory share of "
+                                            "profit -- the SAME basis as the company's "
+                                            "own published basic earnings per share, "
+                                            "which is the denominator every multiple in "
+                                            "this lens's own history was struck on"),
+                              net_profit_attributable=np26),
              note=("earnings multiple, so the enterprise adjustment is nil by "
                    "construction and the traded multiple is simply market "
-                   "capitalisation over the same forward earnings.")),
+                   "capitalisation over the same forward earnings -- on the earnings "
+                   "basis the multiple is struck on, never the attributable line.")),
         dict(kind="book_value",
              value=GRP_EQ_BEFORE_NCI_JUN26 / SH,
              present_value=False,

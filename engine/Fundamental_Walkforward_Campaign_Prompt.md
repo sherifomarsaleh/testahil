@@ -52,7 +52,7 @@ book-wide re-issue into a finite, countable queue instead of an open-ended one:
 | tier | meaning |
 |---|---|
 | 1 · `reissue` | a study exists, built to an older standard or carrying no stamp at all |
-| 2 · `first-build` | no study directory — the name carries a published fair value no current-standard study ever produced |
+| 2 · `reissue-no-record` | a study EXISTS and was delivered, under `files/`, and commits no `engine/{ticker}_study` record — so the record is reconstructed from the delivered documents before anything is rebuilt |
 | 3 · `current` | a study stamped at the live `STANDARD_VERSION` — the incremental case, one new origin |
 
 Alphabetical inside each tier, so the order is deterministic and two readings a week apart
@@ -240,13 +240,21 @@ a range and the reasoning behind it.
 
 ### One thing the fair-value column must not be read as saying
 
-For the 67 names in the `first-build` tier, the "old" fair value is a number **no
-current-standard study produced**. The 23-Aug-2026 book-wide audit found 63 of 90 names not
-built ground up and only 4 carrying an attestable beta. So for most of the book the movement
-column measures *a new study against a number of unknown provenance*, not one method against
-another. Say that wherever the column is quoted. A large move on a first-build name is mostly
-evidence about the old number, and reading it as a valuation change would be the same error as
-publishing a percentage without its count.
+For the 67 names in the `reissue-no-record` tier, the "old" fair value came from a
+DELIVERED STUDY — every covered name has one — but from **no current-standard study**. The
+23-Aug-2026 book-wide audit found 63 of 90 names not built ground up and only 4 carrying an
+attestable beta. So for most of the book the movement column measures *a rebuilt study against
+a number built to an older standard*, not one method against another. Say that wherever the
+column is quoted. A large move on such a name is mostly evidence about the old number, and
+reading it as a valuation change would be the same error as publishing a percentage without
+its count.
+
+**THIS TIER WAS CALLED `first-build` AND DESCRIBED AS "no study" UNTIL 17-09-2026, AND THAT WAS
+FALSE OF ALL 67.** The queue resolved the population of studies by globbing `engine/*_study/`
+and reported the absence of a DIRECTORY as the absence of a STUDY — [R-ENF-04] and [L-355]
+together, a probe reading one naming convention, finding nothing under the other, and reporting
+that as a result. `engine/study_population.py` already held the correct population and this
+queue never imported it; it does now.
 
 ---
 
@@ -265,10 +273,14 @@ Finish an in-flight name before starting a new one.
 
 ## 6 · The scale, stated rather than discovered
 
-Ninety names. Each `first-build` name needs a full study — 16-section Word document, 16-sheet
-live-formula workbook, standalone bibliography, four gates, an independent recalculation of the
-delivered workbook, the external-reader scrub, and every figure inspected as a rendered image —
-**and** a walk-forward run beneath it. This is the largest programme this repository has
+Ninety names, every one of them a RE-ISSUE rather than a first build. A
+`reissue-no-record` name already carries a delivered 16-section document and a 16-sheet
+live-formula workbook; what it does not carry is a record this repository can read, and 63 of
+the 67 carry no standalone bibliography either. So each needs its record built and its study
+brought onto the current standard — the four gates, an independent recalculation of the
+delivered workbook, the external-reader scrub, every figure inspected as a rendered image —
+**and** a walk-forward run beneath it. That is less than a study from nothing and a great deal
+more than a refresh. This is the largest programme this repository has
 attempted, by a wide margin, and the estimate is not improved by leaving it unsaid.
 
 Three consequences follow, and they are the campaign's design rather than concessions:

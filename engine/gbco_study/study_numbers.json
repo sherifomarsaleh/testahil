@@ -1875,10 +1875,12 @@
      "spot": 28.98,
      "shares": 1085.5,
      "net_debt": 0.0,
-     "metric_value": 3009.373180632814
+     "metric_value": 2989.0288889697918,
+     "metric_basis": "FY2026E net profit attributable LESS the employees' and board statutory share of profit -- the SAME basis as the company's own published basic earnings per share, which is the denominator every multiple in this lens's own history was struck on",
+     "net_profit_attributable": 3009.373180632814
     },
-    "note": "earnings multiple, so the enterprise adjustment is nil by construction and the traded multiple is simply market capitalisation over the same forward earnings.",
-    "_traded_multiple": 10.453269871098215
+    "note": "earnings multiple, so the enterprise adjustment is nil by construction and the traded multiple is simply market capitalisation over the same forward earnings -- on the earnings basis the multiple is struck on, never the attributable line.",
+    "_traded_multiple": 10.524418186818643
    },
    {
     "kind": "book_value",
