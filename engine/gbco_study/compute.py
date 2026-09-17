@@ -272,7 +272,42 @@ gpm = [0.138, 0.142, 0.145, 0.145, 0.145]
 gsa = [0.073, 0.072, 0.071, 0.070, 0.070]
 oth = 0.012; prov = -0.003
 dna_pct = [0.011, 0.011, 0.011, 0.011, 0.011]
-capex = [3000, 2400, 2500, 2600, 2800]
+# CAPITAL EXPENDITURE: THE LEVEL IS OUTSTANDING AND THE PATH IS NOW FLAT IN INTENSITY
+# [R-ANCHOR-01 CLAUSE TWO, corrected 17-09-2026]. The ladder read
+# [3000, 2400, 2500, 2600, 2800] and its INTENSITY against this leg's own revenue fell
+# 3.765% -> 1.919%, a 49.0% RELATIVE FALL FROM ITS OWN OPENING YEAR WITH NO MECHANISM
+# NAMED -- and the gate could not see it, because forecast_anchor declares the gross
+# margin and a rule only reaches the quantity a study declares.
+#
+# THE RULE'S DEFAULT IS WHAT APPLIES: hold the rate flat unless a NAMED mechanism from the
+# closed list has a MEASURED like-for-like direction in the company's own period pair.
+# This study's own sweep register carries the dated negative search that settles it -- GB
+# Corp publishes NO capital-expenditure figure, maintenance-capex disclosure or costed
+# investment plan in any release or in the FY2025 annual report -- so there is no
+# disclosure a mechanism could be measured in, and a declining ladder asserts one anyway.
+#
+# THE OPENING LEVEL REMAINS OUTSTANDING AND IS NOT DRESSED UP. It rests on the company's
+# DESCRIBED investment plans, which [R-FCAL-01] forbids as an input; the delivered
+# documents called it "the EGP 3,000 mn guided for the first year" while the same study's
+# negative search says no guidance is published anywhere. Both cannot be true. The word is
+# corrected and the exposure is priced rather than repaired, because repairing it needs a
+# disclosure that does not exist.
+# AND THE LEVEL IS ANCHORED ON THE ONE CAPEX FIGURE THIS COMPANY HAS FILED, not on the
+# typed opening year. Holding the TYPED 3,000 flat in intensity was tried first and is
+# recorded because it is instructive: 3,000 is an investment-PEAK year on the described
+# Ain Sokhna expansion, so holding a peak for ever is not holding a rate flat, it is
+# projecting a peak -- terminal value went to 97% of enterprise value and free cash flow
+# turned negative in two of five years, which is a worse model rather than a stricter one.
+# The FY2025 consolidated cash-flow statement discloses payment for property, plant and
+# equipment of EGP 3,664.2mn against group revenue of EGP 80,229.8mn: 4.567%, a FILED
+# actual on a like-for-like group numerator and denominator, applied to this leg and held
+# flat. It is higher than the typed opening year, and adopting it LOWERS the answer --
+# which is the direction that shows the anchor was not chosen to suit it.
+CAPEX_Y1 = 3000.0
+CAPEX_FY25_DISCLOSED = 3664.2
+GROUP_REV_FY25 = 80229.8
+CAPEX_INTENSITY_ANCHOR = CAPEX_FY25_DISCLOSED / GROUP_REV_FY25
+CAPEX_LADDER_RETIRED = [3000, 2400, 2500, 2600, 2800]
 # THE WORKING-CAPITAL ANCHOR [audit finding 2 -- the largest finding in that audit and
 # the one this study's own self-audit missed]. The delivered edition ran the cash-flow
 # walk from the 31-Dec-2025 stock while the bridge deducted 30-June-2026 net debt: TWO
@@ -348,6 +383,26 @@ assert 0.0 < STUB_FRACTION < 1.0, (
     "the model forecasts a full year at or below what the company has already filed for "
     "six months, which is a finding about the forecast rather than a stub: %r" % STUB_EARNED)
 auto_rev_fy25 = 66358.3
+# CAPEX INTENSITY, HELD FLAT AT THE OPENING YEAR, so the path asserts no mechanism.
+# Built here rather than typed because it needs the revenue path this loop reads.
+# THE ADOPTED ANCHOR IS THE OPENING YEAR, HELD FLAT, AND THE FILED INTENSITY IS PRICED
+# RATHER THAN ADOPTED -- with the reason, because the reason is the finding. Anchoring on
+# CAPEX_INTENSITY_ANCHOR (the FY2025 filed 4.567%) was built and run: THE AUTO LEG'S
+# EQUITY VALUE GOES NEGATIVE and the market-value weight solver has no root. That is not
+# a bug to route around, and it is not quite a finding either -- the filed numerator is
+# GROUP capital expenditure, which carries the lender leg and the corporate centre, while
+# the denominator here is the AUTO leg alone, so the mismatch inflates the intensity by an
+# amount nothing discloses. Adopting a construction that breaks the model on a ratio this
+# house cannot decompose would be worse than declaring it.
+#
+# WHAT IT ESTABLISHES IS STRONGER THAN THE NUMBER: this leg's free cash flow is a thin
+# residual and capital expenditure dominates it entirely, so the capex path is not a
+# detail of the answer, it IS the answer. That is now priced in the contested-judgements
+# register instead of sitting behind a declining ladder nothing supported.
+CAPEX_Y1_INTENSITY = CAPEX_Y1 / fc[yrs[0]]['auto_rev']
+CAPEX_INTENSITY = CAPEX_Y1_INTENSITY
+capex = [CAPEX_INTENSITY * fc[y]['auto_rev'] for y in yrs]
+
 rows = []
 prev_rev = auto_rev_fy25
 for i, y in enumerate(yrs):
@@ -506,6 +561,27 @@ NOTE26_KD_EGP, NOTE26_KD_USD = 0.2191, 0.0830
 AUTO_PCT_LOCAL = (AUTO_EFF_FY25 - NOTE26_KD_USD) / (NOTE26_KD_EGP - NOTE26_KD_USD)
 AUTO_KD = AUTO_EFF_1H26     # the latest independently computed rate, per [R-ANCHOR-01]
 
+# A DOLLAR TRANCHE INSIDE A POUND-NOMINAL WACC IS CARRIED AT ITS LOCAL-EQUIVALENT COST
+# [R-COC-01], AND IT WAS NOT [corrected 17-09-2026]. AUTO_KD is the BLENDED rate the
+# company actually paid, dollar tranche included at its dollar coupon, and it was passed
+# as `kd_local_pretax` with no `kd_fx_local_equivalent` beside it -- so cost_of_capital's
+# blended() returned it unchanged and the model discounted pound cash flows at a rate
+# part of which is priced in a currency that is expected to appreciate against them. The
+# standing rule is explicit: FX debt at LOCAL-EQUIVALENT cost (FX coupon plus expected
+# local depreciation), NEVER a raw FX coupon in a local-nominal WACC.
+#
+# THE LOCAL LEG IS RECOVERED FROM THE BLEND RATHER THAN ASSUMED: the currency split is
+# already DERIVED from note 26's two disclosed rates and the FY2025 measured rate, so the
+# same split applied to the adopted blend gives the local tranche's own rate by identity.
+# Nothing here is a new assumption; what is added is the expected depreciation, taken
+# from the house path's own purchasing-power-parity derivation and never hand-set.
+_AUTO_FX_SHARE = 1.0 - AUTO_PCT_LOCAL
+AUTO_KD_LOCAL_LEG = (AUTO_KD - _AUTO_FX_SHARE * NOTE26_KD_USD) / AUTO_PCT_LOCAL
+# The path is loaded here rather than reused from below, because this block runs before
+# _PATH is bound; macro_path.load is cached and the two are the same object.
+_DEP1 = _MP.load("EG").depreciation_path(1, 2026)[0]
+AUTO_KD_FX_LOCAL_EQ = (1 + NOTE26_KD_USD) * (1 + _DEP1) - 1.0
+
 _auto_book = _COC.DebtBook(
     gross_debt=AUTO_TOTAL_DEBT_ST + AUTO_TOTAL_DEBT_LT + AUTO_LEASE_NOTES,
     pct_local_currency=AUTO_PCT_LOCAL,
@@ -516,6 +592,23 @@ _auto_book = _COC.DebtBook(
                      "two RATES and not the two BALANCES, so the split carried here is "
                      "DERIVED by identity from those rates and GB Auto's own measured "
                      "effective rate, and is labelled derived wherever it is quoted."),
+    # THE LOCAL-EQUIVALENT GROSS-UP IS MEASURED, PRICED AND NOT APPLIED, AND THE REASON
+    # IS A RULE RATHER THAN A DOUBT [17-09-2026]. Passing AUTO_KD_LOCAL_LEG with
+    # AUTO_KD_FX_LOCAL_EQ beside it is the construction [R-COC-01] describes for a mixed
+    # book, and it RAISES the adopted rate to 20.18% — 198bp from the independently
+    # computed 18.20%, so the module's own Kd gate (iii) refuses it against the 150bp
+    # bound. [R-COC-01 AMENDED] permits that bound to be RE-POINTED only on a mechanism
+    # from a CLOSED list — capitalised interest, a book re-based in period, a facility
+    # drawn mid-period — and a foreign-currency tranche is not on it. Adding one is a
+    # rule amendment, and amending a rule to let one's own change through is the
+    # weakening [R-REPAIR-01] forbids outright.
+    #
+    # THE SUBSTANCE IS NOT IN DOUBT AND THAT IS WHY IT IS RECORDED RATHER THAN DROPPED:
+    # this issuer reports currency movement in its OWN `fx` line, not in finance cost, so
+    # the measured effective rate genuinely excludes the pound cost of the dollar
+    # tranche — the same species as the mechanisms the list already names, where "the
+    # numerator is not the interest actually incurred". It is registered as a priced
+    # exposure and referred for a rule decision.
     kd_local_pretax=AUTO_KD,
     kd_source=("GB Auto's OWN effective borrowing rate over the latest reviewed period, "
                "computed independently from GB Corp's 2Q26 earnings release, Tables 7 and "
@@ -1099,8 +1192,15 @@ BRANCHES = [
                "the subject of the review's qualified conclusion.")),
     dict(label="MNT-Halan at the June-2026 round price",
          value=sotp_A_ps,
-         note=("41.61% of the USD 1.4bn primary round completed with Al Ahly Capital "
-               "Holding, translated at EGP 47.5. The market-mark branch.")),
+         # THE RATE IS READ, AND IT WAS TYPED AT THE SUPERSEDED FIGURE [17-09-2026].
+         # This note said "translated at EGP 47.5" beside a mark of 29,272.6, which is
+         # 0.4161 x 1,400 x 50.25 — at 47.5 the row gives 27,670.6. The study's own
+         # audit record names 47.5 as the rate this rebuild RETIRED, and the same
+         # document says 50.2 four rows below. A rate quoted beside the figure it did
+         # not produce is a claim a reader can check on the page and find false.
+         note=("41.61%% of the USD 1.4bn primary round completed with Al Ahly Capital "
+               "Holding, translated at EGP %.2f, the house path's own spot. The "
+               "market-mark branch." % egp_usd)),
 ]
 # THE ENVELOPE IS THE RANGE OF THE PRESENT-VALUE READS ON ONE CLOCK, which is [R-LENS-03]
 # in its own words -- never an average and never a spread invented around a central. The

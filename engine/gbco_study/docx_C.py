@@ -286,8 +286,10 @@ rows.append([
 _cx = _fork('the capital-expenditure path')
 rows.append([
  'Capital expenditure stays where the company has been spending it',
- 'The forward ladder falls to a third of the intensity GB Corp filed for FY2025, and its '
- 'first year is the figure management guided rather than one this study built',
+ 'The path is now held flat as a share of revenue — no mechanism could be measured, '
+ 'because this company publishes no capital-expenditure disclosure at all — but its '
+ 'OPENING LEVEL still rests on described investment plans rather than on a figure this '
+ 'study built or the company published',
  f'PRICED: {pc(_cx["moves_the_carrying_branch_by"],1)} of the lower branch. Spending on at '
  f'the FY2025 filed amount, flat and therefore falling in real terms, gives EGP '
  f'{_cx["value_alternative_carrying_branch"]:.2f} against EGP {V_LO:.2f}'])

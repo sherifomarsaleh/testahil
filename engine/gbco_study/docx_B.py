@@ -226,10 +226,11 @@ for head, body in [
   'The superseded edition published a central that averaged four reads at weights that had never been tested against any '
   'alternative. One class primary is the answer and the other reads are cross-checks; a number produced by averaging '
   'several methods is a new method with untested parameters, wearing the appearance of caution.'),
- ('Working capital is the second-order model. ', 'The operating leg’s value lives in the glide of working-capital '
-  f'intensity from {pc(D["disclosed_drivers"]["cost_stack"]["working_capital_pct"][0],1)} of revenue to '
-  f'{pc(D["disclosed_drivers"]["cost_stack"]["working_capital_pct"][-1],1)}. If the higher figure is the new structural '
-  'cost of holding share — import finance and assembly stock — the auto leg is worth materially less, and the '
+ ('Working capital is the second-order model. ', 'The operating leg’s value lives in where working-capital '
+  f'intensity settles: it {path_words(D["disclosed_drivers"]["cost_stack"]["working_capital_pct"],1)}, anchored on the '
+  'reviewed half. If that level is the new structural cost of holding share — import finance and assembly stock — '
+  'rather than a stock build that unwinds, the auto leg is worth materially less; the company’s own days payable ran '
+  '112.7 to 83.3 and the cash cycle lengthened, which is evidence for the durable reading rather than against it. The '
   '§1.9 grid rather than a single sentence is where that is priced.'),
  ('Terminal-value dependency, and a life that could not be sourced. ',
   f'{pc(dcf["tv_pct"],0)} of the auto leg’s enterprise value is terminal value, at a terminal spread of '

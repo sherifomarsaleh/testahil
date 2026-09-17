@@ -5,14 +5,14 @@ from the latest known price. The trigger is two-sided since 02-Sep-2026, and thi
 the upper side — the side that gets no automatic hold under [R-GAP-02] and therefore needs
 this review most.
 
-- AUDITED CENTRAL: 31.6368  (EGP per share — MNT-Halan at its reviewed carrying value)
-- AUDITED CENTRAL: 44.1187  (EGP per share — MNT-Halan at the June-2026 round price)
+- AUDITED CENTRAL: 17.8331  (EGP per share — MNT-Halan at its reviewed carrying value)
+- AUDITED CENTRAL: 30.3150  (EGP per share — MNT-Halan at the June-2026 round price)
 - AUDITED SPOT: **EGP 28.98**, the supplied close of **3 September 2026**, the latest price
   this repository holds — fourteen days old at this edition's date, which is disclosed here
   rather than carried silently ([R-GAP-01 AMENDED 07-09-2026]: the price is asked for at the
   start, the work routes around it, and the standing default is the latest committed price
   used with its date stated and its age disclosed).
-- AUDITED GAP: +9.2%   (the nearer branch; the far branch is +52.2%)
+- AUDITED GAP: +4.6%   (the nearer branch; the far branch is -38.5%)
 
 **A TWO-SIDED ANSWER IS AUDITED ON EVERY BRANCH.** Publishing two numbers instead of one is
 not a way to publish two unaudited numbers.
@@ -231,3 +231,43 @@ the associate's basis, and that decision is the reader's.
 
 **Nothing in this review moves an answer toward the price.** One correction in this edition
 moved the round branch AWAY from it, and it is kept.
+
+---
+
+## RE-AUDITED 17-09-2026, SECOND PASS — THE CAPITAL-EXPENDITURE PATH
+
+This review was written at +9.2% and +52.2%. **Lever L20 has since moved both branches and
+the gap with them**, so it is re-stated rather than left describing an answer the study no
+longer publishes — a review of a different answer is not a review [R-GAP-01 AMENDED].
+
+**What moved.** The forward capital-expenditure ladder asserted a 49.0% relative fall in
+intensity from its own opening year with no mechanism named, and no gate could see it
+because `forecast_anchor` declares the gross margin and a rule reaches only the quantity a
+study declares. [R-ANCHOR-01 CLAUSE TWO]'s default applies where no mechanism can be
+measured: the rate is held flat. The carrying branch moves 31.6368 → 17.8331 and the
+round branch 44.1187 → 30.3150.
+
+**Heading 2 — BASE YEAR, re-read.** The opening capital-expenditure level is a FORECAST,
+not an actual, and it stays registered as outstanding: this issuer publishes no
+capital-expenditure figure, maintenance disclosure or costed investment plan anywhere, on a
+dated negative search across four earnings releases, the 1Q26 investor presentation and the
+FY2025 annual report including its cash-flow investing section. Two delivered documents
+called it "the EGP 3,000 mn guided"; that word is withdrawn, because the same study's own
+register says no guidance exists.
+
+**Heading 8 — MULTIPLE CROSS-CHECK, and the finding this review now carries.** The FY2025
+FILED intensity — payment for property, plant and equipment of EGP 3,664.2mn over group
+revenue of EGP 80,229.8mn, 4.567%, the only capital-expenditure figure this company has
+ever filed — **takes the auto leg's equity value negative**, and the market-value weight
+solver has no root. It is not adopted, because its numerator is GROUP capital expenditure
+against a denominator that is the AUTO leg alone and nothing discloses the decomposition.
+**The answer is hostage to a driver the issuer discloses nowhere**: terminal value now
+stands at 97% of enterprise value and free cash flow is negative in two of five years.
+That is a statement about how much weight this study can carry, and it is why the nearer
+branch now sits well outside the band.
+
+**What this review does NOT conclude.** That the answer should be moved toward the price.
+The gap widened because a rule was applied, not because a number was chosen. The better
+construction — capital expenditure tied to the ASSET BASE it maintains rather than to
+revenue, which is what the terminal already does on a disclosed life — is named here as
+the next step and is a rebuild of the driver rather than a repair of it.

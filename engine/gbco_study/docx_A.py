@@ -428,9 +428,13 @@ P(f'The Auto leg is built bottom-up on disclosed units × average selling price 
   f'revenue are published per line, so the price is arithmetic rather than an assumption, and the driver table is in §1.6 '
   f'and Appendix A. Gross margin opens at {pc(_cs["gross_margin"][0],2)} and settles at '
   f'{pc(_cs["gross_margin"][-1],2)}; selling and administrative cost holds near {pc(_cs["gsa_pct"][0],1)} of revenue; '
-  f'capital expenditure follows the EGP {_cs["capex"][0]:,.0f} mn guided for the first year and then normalises; and the '
-  f'crux — net working capital — glides from {pc(_cs["working_capital_pct"][0],1)} of revenue to '
-  f'{pc(_cs["working_capital_pct"][-1],1)} as the payables re-extension completes and the Sadat stock build unwinds. The '
+  f'capital expenditure opens at EGP {_cs["capex"][0]:,.0f} mn and is then held FLAT AS A SHARE OF REVENUE — this '
+  'company publishes no capital-expenditure figure, maintenance disclosure or costed investment plan anywhere, so '
+  'there is no disclosure in which a declining path could be measured, and the opening level itself rests on '
+  'described plans and is registered as outstanding rather than repaired; and the '
+  f'crux — net working capital — {path_words(_cs["working_capital_pct"],1)}, anchored on the reviewed half and '
+  'carried unchanged, because the payables re-extension a declining path would need is contradicted by the company’s '
+  'own filings: days payable ran 112.7 to 83.3 and the cash cycle lengthened rather than shortened. The '
   'cost of capital is not one crisis rate held for ever: it is a schedule, built through the house cost-of-capital module '
   f'from a normalised risk-free rate of {pc(COC["rf_star"],2)}, a regression beta of {COC["beta"]:.4f} and an equity risk '
   f'premium of {pc(COC["erp"],2)}, gliding from {pc(COC["wacc_exp"],2)} in the first forecast year to a norm-built terminal '
@@ -677,8 +681,9 @@ P(f'Three judgments drive this valuation, in order of size. First and by a wide 
   f'{pc(1-PRICE_ASSOC/sotp["assoc"],1)} to the round-price read. A discount of that size to a private round is arguable; '
   'a discount of that size to a figure a reviewing accountant has signed a balance sheet on is a different claim, and it '
   'is the one the market is making. Second, where Auto working-capital intensity settles: it is modelled from '
-  f'{pc(_cs["working_capital_pct"][0],1)} of revenue down to {pc(_cs["working_capital_pct"][-1],1)}, and because the auto '
-  'leg’s free cash flow is a thin residual, that path moves it directly — §1.9 prices the grid rather than a single '
+  f'{path_words(_cs["working_capital_pct"],1)}, and because the auto '
+  'leg’s free cash flow is a thin residual, where that intensity settles moves it directly — §1.9 prices the grid '
+  'rather than a single '
   f'point estimate. Third, the Egyptian nominal-rate path: the schedule glides from {pc(COC["wacc_exp"],2)} to '
   f'{pc(COC["wacc_terminal"],2)} against terminal growth of {pc(MAC["terminal_growth_nominal"],2)}, a terminal real '
   f'spread of {pc(COC["wacc_terminal"]-MAC["terminal_growth_nominal"],2)}. A fourth exposure is regional: part of '
@@ -714,7 +719,10 @@ rows = [
  ['Cost of equity, explicit window', pc(COC['ke_exp'], 2), f"reproduces from the normalised rate plus beta times the premium; {pc(D['cost_of_capital_rating_basis']['ke_exp'],2)} on the rating basis"],
  ['Cost of equity, terminal', pc(COC['ke_terminal'], 2), 'the rate the lender’s residual income is capitalised at in §1.1'],
  ['Pre-tax cost of debt', pc(COC['kd_pretax'], 2), 'the company’s own effective borrowing rate, computed on the borrowings that actually bear the interest'],
- ['After-tax cost of debt', pc(COC['kd_aftertax'], 2), 'debt is entirely local-currency on the disclosed facility note'],
+ ['After-tax cost of debt', pc(COC['kd_aftertax'], 2),
+  f"{pc(COC['kd_integrity']['pct_local_currency'],1)} of the book is local-currency on the split DERIVED from note 26's "
+  'two disclosed rates; the dollar tranche is measured at the rate actually paid, and carrying it at its '
+  'LOCAL-EQUIVALENT cost instead is priced in §1.8 and registered rather than applied'],
  ['Weights (equity / debt)', f"{pc(COC['weight_equity'],1)} / {pc(COC['weight_debt'],1)}", 'market capitalisation against disclosed borrowings'],
  ['Weighted cost of capital, first forecast year', pc(COC['wacc_exp'], 2), f"{pc(D['cost_of_capital_rating_basis']['wacc_exp'],2)} on the rating-based alternative"],
  ['Weighted cost of capital, terminal', pc(COC['wacc_terminal'], 2), 'norm-built, reached by a glide inherited from the policy-rate path'],

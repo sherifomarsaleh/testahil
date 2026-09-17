@@ -192,8 +192,14 @@ _CARRY = [v for k, v in _BRANCHES.items() if 'carrying' in k.lower()]
 assert len(_CARRY) == 1, _BRANCHES
 _AUD = _N['audit_2026_09_17']
 
+# L19 CARRIES ITS OWN CLOSING VALUE RATHER THAN READING THE LIVE ONE. It used to read
+# _CARRY[0], which was right while it was the LAST lever and silently wrong the moment a
+# lever was added after it: both then read the same live figure, L19 absorbed L20's move
+# and L20 printed +0.0%. A ledger's whole job is to say which lever moved what, and a
+# lever that reads the answer rather than recording it cannot.
+L19_AFTER = 31.636760646545103
 add("L19 — the exchange rate is the house path's, with its date",
-    "SIGCM clause 1 · [R-MACRO-01]", _CARRY[0],
+    "SIGCM clause 1 · [R-MACRO-01]", L19_AFTER,
     "Audit finding 32: EGP/USD 47.5 was typed with no source and no date on a line worth "
     "roughly half the upper branch, and the audit's complaint that four different dates were "
     "in play for one rate is exactly right.",
@@ -204,6 +210,30 @@ add("L19 — the exchange rate is the house path's, with its date",
     "IS UNTOUCHED, because the carrying value is already in pounds; the ROUND branch is a "
     "dollar figure and moves with the rate."
     % (_AUD['egp_usd'], _AUD['egp_usd_date'], _AUD['egp_usd_typed_before']))
+
+add("L20 — the capital-expenditure path asserts no mechanism",
+    "[R-ANCHOR-01 CLAUSE TWO]", _CARRY[0],
+    "The QC gate of 17-09-2026, written from outside this study: the forward capital-"
+    "expenditure ladder [3000, 2400, 2500, 2600, 2800] falls from 3.765% of this leg's own "
+    "revenue to 1.919%, a 49.0% RELATIVE FALL FROM ITS OWN OPENING YEAR, with no mechanism "
+    "named -- and no gate could see it, because forecast_anchor declares the GROSS MARGIN "
+    "and a rule reaches only the quantity a study declares. The delivered documents also "
+    "called the opening year 'the EGP 3,000 mn guided', while this study's own dated "
+    "negative search records that GB Corp publishes NO capital-expenditure figure, "
+    "maintenance disclosure or costed investment plan anywhere. Both cannot be true.",
+    "The rule's default applies where no mechanism can be measured: the rate is HELD FLAT. "
+    "TWO ANCHORS WERE BUILT AND RUN BEFORE ONE WAS ADOPTED. (i) The FY2025 FILED intensity "
+    "-- payment for property, plant and equipment of EGP 3,664.2mn over group revenue of "
+    "EGP 80,229.8mn, 4.567% -- TAKES THE AUTO LEG'S EQUITY VALUE NEGATIVE and the "
+    "market-value weight solver has no root; it is not adopted because its numerator is "
+    "GROUP capital expenditure against a denominator that is the AUTO leg alone, a mismatch "
+    "nothing discloses a decomposition for. (ii) The opening year held flat, which is "
+    "adopted, and which is itself a forecast rather than an actual and stays REGISTERED AS "
+    "OUTSTANDING. THE MOVE IS LARGE AND ITS SIZE IS THE FINDING: this leg's free cash flow "
+    "is a thin residual, so the capital-expenditure path is not a detail of the answer, it "
+    "IS the answer -- terminal value now stands at 97% of enterprise value and free cash "
+    "flow is negative in two of five years. A study whose answer is hostage to a driver its "
+    "issuer discloses nowhere says so.")
 
 if __name__ == '__main__':
     rec = asdict(L)

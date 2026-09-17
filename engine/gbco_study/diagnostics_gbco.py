@@ -427,10 +427,15 @@ def main():
                                  "transaction'"),
                 'carrying_stake_value_egp_mn': M.mark_carrying,
                 'whole_company_at_carrying_value_usd_mn': carry_usd,
+                # THE FIGURE ATTRIBUTED TO THE FILING IS THE ONE THE MODEL USES, AND IT
+                # WAS TYPED TEN MILLION AWAY [17-09-2026]. This read "EGP 15,733,523
+                # thousand" beside a mark column printing 15,723.5 — the same note, two
+                # figures, and the one attributed to the auditor's own statement was the
+                # one nothing else in the study carries.
                 'carrying_value_source': (
                     "note 34 to GB Corp's reviewed consolidated interim statements at "
-                    '30 June 2026, EGP 15,733,523 thousand, which foots to that balance '
-                    "sheet's own associates line"),
+                    '30 June 2026, EGP %s thousand, which foots to that balance '
+                    "sheet's own associates line" % "{:,.0f}".format(M.mark_carrying * 1000)),
                 'carrying_value_caveat': (
                     'the carrying value is an equity-accounted book figure — cost plus the '
                     "group's share of retained results and the revaluation on "
@@ -803,8 +808,9 @@ def main():
                 'full instead, with both values, and named in the sign test\'s own reading '
                 'so nobody reads that test as covering it.'),
             'basis_a': {'label': L_ROUND, 'mark_egp_mn': M.mark_round, 'value': round_ps,
-                        'what': ('41.61% of the USD 1.4bn primary round completed with Al '
-                                 'Ahly Capital Holding, translated at EGP 47.5'),
+                        'what': ('41.61%% of the USD 1.4bn primary round completed with Al '
+                                 'Ahly Capital Holding, translated at EGP %.2f'
+                                 % N['audit_2026_09_17']['egp_usd']),
                         'against_it': ("a primary round's headline valuation prices NEW "
                                        'money with whatever preferences ride with it, and '
                                        'GB Corp holds an ordinary equity-accounted minority '
@@ -812,8 +818,9 @@ def main():
                                        'realisable price.')},
             'basis_b': {'label': L_CARRY, 'mark_egp_mn': M.mark_carrying, 'value': carry_ps,
                         'what': ('note 34 to the reviewed consolidated interim statements at '
-                                 '30 June 2026, EGP 15,733,523 thousand, footing to that '
-                                 "balance sheet's own associates line"),
+                                 '30 June 2026, EGP %s thousand, footing to that '
+                                 "balance sheet's own associates line"
+                                 % "{:,.0f}".format(M.mark_carrying * 1000)),
                         'against_it': ('it is an ACCOUNTING measure — cost plus accumulated '
                                        'share of profit plus the revaluation on '
                                        'deconsolidation — and book is a floor rather than a '

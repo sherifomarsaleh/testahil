@@ -3,11 +3,11 @@
  "segment": "GB Auto",
  "unit": "EGP mn",
  "as_of": "2026-09-17",
- "published_central": 31.636760646545103,
+ "published_central": 17.83311239606159,
  "published_central_is": "MNT-Halan at its reviewed carrying value",
  "published_central_two_sided": [
-  31.636760646545103,
-  44.11866944433414
+  17.83311239606159,
+  30.31502119385063
  ],
  "published_spot": 28.98,
  "rule": "SIGCM clause 4; QC gate 07-09-2026 row 21",

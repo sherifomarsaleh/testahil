@@ -171,14 +171,23 @@
    "name": "L19 — the exchange rate is the house path's, with its date",
    "rule": "SIGCM clause 1 · [R-MACRO-01]",
    "before": 31.63664910279553,
-   "after": 31.63664910279553,
+   "after": 31.636760646545103,
    "why": "Audit finding 32: EGP/USD 47.5 was typed with no source and no date on a line worth roughly half the upper branch, and the audit's complaint that four different dates were in play for one rate is exactly right.",
    "evidence": "A study may not carry a currency of its own. engine/macro_paths/EG.json holds ONE dated sourced anchor for this market -- USD/EGP 50.25 as at 2026-08-06 -- and every study reads it, which is what stops two studies valuing the same economy differently. The typed 47.5 is committed beside it so the move is countable rather than described. THE CARRYING BRANCH IS UNTOUCHED, because the carrying value is already in pounds; the ROUND branch is a dollar figure and moves with the rate.",
-   "move": 0.0
+   "move": 3.5257763617568827e-06
+  },
+  {
+   "name": "L20 — the capital-expenditure path asserts no mechanism",
+   "rule": "[R-ANCHOR-01 CLAUSE TWO]",
+   "before": 31.636760646545103,
+   "after": 17.83311239606159,
+   "why": "The QC gate of 17-09-2026, written from outside this study: the forward capital-expenditure ladder [3000, 2400, 2500, 2600, 2800] falls from 3.765% of this leg's own revenue to 1.919%, a 49.0% RELATIVE FALL FROM ITS OWN OPENING YEAR, with no mechanism named -- and no gate could see it, because forecast_anchor declares the GROSS MARGIN and a rule reaches only the quantity a study declares. The delivered documents also called the opening year 'the EGP 3,000 mn guided', while this study's own dated negative search records that GB Corp publishes NO capital-expenditure figure, maintenance disclosure or costed investment plan anywhere. Both cannot be true.",
+   "evidence": "The rule's default applies where no mechanism can be measured: the rate is HELD FLAT. TWO ANCHORS WERE BUILT AND RUN BEFORE ONE WAS ADOPTED. (i) The FY2025 FILED intensity -- payment for property, plant and equipment of EGP 3,664.2mn over group revenue of EGP 80,229.8mn, 4.567% -- TAKES THE AUTO LEG'S EQUITY VALUE NEGATIVE and the market-value weight solver has no root; it is not adopted because its numerator is GROUP capital expenditure against a denominator that is the AUTO leg alone, a mismatch nothing discloses a decomposition for. (ii) The opening year held flat, which is adopted, and which is itself a forecast rather than an actual and stays REGISTERED AS OUTSTANDING. THE MOVE IS LARGE AND ITS SIZE IS THE FINDING: this leg's free cash flow is a thin residual, so the capital-expenditure path is not a detail of the answer, it IS the answer -- terminal value now stands at 97% of enterprise value and free cash flow is negative in two of five years. A study whose answer is hostage to a driver its issuer discloses nowhere says so.",
+   "move": -0.43631673940014915
   }
  ],
- "value": 31.63664910279553,
- "cumulative_move": -0.11497966892652134,
+ "value": 17.83311239606159,
+ "cumulative_move": -0.5011270951752482,
  "rules": {
   "[R-COC-01] · [R-COC-02] · [L-004]": {
    "levers": [
@@ -294,14 +303,23 @@
     "L19 — the exchange rate is the house path's, with its date"
    ],
    "first_before": 31.63664910279553,
-   "last_after": 31.63664910279553,
-   "move": 0.0
+   "last_after": 31.636760646545103,
+   "move": 3.5257763617568827e-06
+  },
+  "[R-ANCHOR-01 CLAUSE TWO]": {
+   "levers": [
+    "L20 — the capital-expenditure path asserts no mechanism"
+   ],
+   "first_before": 31.636760646545103,
+   "last_after": 17.83311239606159,
+   "move": -0.43631673940014915
   }
  },
  "distinct_rules": [
   "SIGCM clause 1",
   "SIGCM clause 1 · [R-MACRO-01]",
   "SIGCM clause 2",
+  "[R-ANCHOR-01 CLAUSE TWO]",
   "[R-ANCHOR-01] · [R-BRIDGE-01]",
   "[R-BRIDGE-01]",
   "[R-COC-01]",
@@ -315,14 +333,14 @@
   "the PROMOTION RULE"
  ],
  "start_gap": 0.23349913370524722,
- "gap": 0.09167181169066696,
+ "gap": -0.38464070406964834,
  "second_pass_from": {
   "lever": "L10",
   "value": 52.345259974418816,
   "note": "the 07-09-2026 delivered edition's own answer on the branch the first pass walked; the second pass begins by moving the tracked quantity to the branch every committed artefact declares as this study's central."
  },
  "branches_at_the_end": {
-  "MNT-Halan at its reviewed carrying value": 31.63664910279553,
-  "MNT-Halan at the June-2026 round price": 44.11855790058457
+  "MNT-Halan at its reviewed carrying value": 17.83311239606159,
+  "MNT-Halan at the June-2026 round price": 30.31502119385063
  }
 }

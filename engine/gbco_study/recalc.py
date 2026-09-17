@@ -824,12 +824,27 @@ for name, (sh, cd), want, tol in checks:
 # stress, not an answer, and a gate that condemned it would be firing on correct work.
 # So the test is: (i) the sheets a reader takes an ANSWER from carry nothing strictly
 # between the branches except the branches; and (ii) no formula anywhere averages them.
-ANSWER_CELLS = ([('Summary', 'C%d' % rr) for rr in range(ANS['SUM']['read0'],
-                                                         ANS['SUM']['read1'] + 2)]
+# THE SAME RE-POINTING ON THE SUMMARY SHEET. The read block runs read0..read1+1, which is
+# the two BRANCHES followed by the relative multiple and the book floor — two answers and
+# two cross-checks. Only the branches are answers; a cross-check lens is published
+# precisely so a reader can see where it falls, including between them.
+ANSWER_CELLS = ([('Summary', 'C%d' % rr) for rr in (ANS['SUM']['read0'],
+                                                    ANS['SUM']['read0'] + 1)]
                 + [('Summary', 'C%d' % ANS['SUM']['envlo']),
                    ('Summary', 'C%d' % ANS['SUM']['envhi'])]
+                # GATE 4 ASKS WHETHER AN ANSWER SITS BETWEEN THE TWO BRANCHES, so its
+                # population is the cells that ARE an answer. It carried the whole
+                # C6:C12 block, which also holds a CROSS-CHECK LENS (the relative
+                # multiple), the BOOK FLOOR, the LATEST KNOWN PRICE and the lender leg's
+                # own equity — none of them a central, every one of them free to sit
+                # anywhere. It never fired only because the branches happened to sit
+                # ABOVE all four; when L20 moved the branches to 17.83-30.32 the price
+                # and the multiple fell inside and the gate condemned the workbook for
+                # publishing a price. A check whose population is "the cells near the
+                # answer" measures where the answer happens to be [R-COC-01]: it is
+                # re-pointed at the answers rather than widened.
                 + [('Fundamental Valuation', c) for c in
-                   ('C6', 'C7', 'C8', 'C9', 'B10', 'D10', 'C11', 'C12')]
+                   ('C6', 'C7', 'B10', 'D10')]
                 + [('SOTP Bridge', 'C11'), ('SOTP Bridge', 'D11')])
 lo, hi = BRANCH[0]['value'], BRANCH[1]['value']
 between = ['%s!%s' % (sh, cd) for sh, cd in ANSWER_CELLS
