@@ -60,7 +60,10 @@ rows = [
  ['', '', 'Index flows or an index event', '25%', '+0.8%'],
 ]
 table(rows, [2.15, 0.6, 2.2, 0.8, 0.85], size=8.7)
-caption('The factor stack is the preparer’s own judgment, stated so a reader can disagree with each line. It is '
+caption('The factor stack is the preparer’s own judgment, stated so a reader can disagree with each line. The rows '
+        'above are the DISCRETE events and they do not sum to the whole: the remainder is carried by the continuous '
+        'factors, which have no single dated event behind them, and its magnitude is printed in the row beneath rather '
+        'than left as a residue a reader has to solve for. It is '
         'deliberately modest in aggregate: the whole stack moves the quarter by less than two per cent.')
 
 H2('Percentile map (EGP per share)')

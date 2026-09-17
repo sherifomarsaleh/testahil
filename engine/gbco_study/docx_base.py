@@ -188,7 +188,7 @@ def sotp_per_share(mark, wacc_shift=0.0, tg=None):
         return None
     pv = sum(f * fac[i] for i, f in enumerate(fcffs))
     tv = fcffs[-1] * (1.0 + g) / (wt - g) * fac[-1]
-    auto_eq = pv + tv - dcf['auto_nd'] - dcf['auto_nci']
+    auto_eq = (pv + tv - dcf['auto_nd']) * (1.0 - dcf['auto_nci_share'])
     return (auto_eq + sotp['cap_val'] + mark + sotp['other_assoc']) / D['shares']
 
 
