@@ -129,39 +129,49 @@ or its redness is explained, and any gap over 10% has its review.
 
 ---
 
-## STEP 3 — EXTERNAL NEWS RESEARCH · **NEW**
+## STEP 3 — EXTERNAL NEWS RESEARCH · **NEW** · **HANDS OFF TO THE PRINCIPAL**
 
 **Goal.** Find what the filings do not carry — and keep it out of the model until it
 has been traced.
 
-> **PROMPT.** Run the external research pass on {TICKER}.
+**THIS STEP STOPS.** The session builds the prompt and hands it over; the principal
+runs it on Perplexity and Claude and feeds the answers back. The session does not
+continue until it has them.
+
+> **PROMPT — WHAT THE SESSION DOES.** Build the hand-over prompt for {TICKER} from
+> what this repository already holds, and hand it to the principal. It must carry:
+> - The company's registered name in English AND in the language its own regulator
+>   and trade press write it in — a search in one language only misses the half of
+>   the record that matters most on these exchanges.
+> - The driver headings its industry actually turns on, taken from the study's own
+>   driver list, not from a generic template.
+> - **The study's OWN dated negative searches**, read live out of its sweep register,
+>   so the external pass is told what has already been looked for and not found
+>   rather than rediscovering the same absences.
+> - The period the study's information set already covers, so anything earlier is
+>   known to be already consumed.
 >
-> 1. `python3 engine/research_primer_prompt.py {TICKER}` builds the hand-over prompt
->    [R-PRIME-01]. It is built from what the repository already holds — the company's
->    registered name in English AND in the language its own regulator and trade press
->    write it in, the driver headings its industry turns on, and the study's own dated
->    negative searches read live out of its sweep register. **NEVER hand-write it.**
->    If the generator refuses the name, STOP and say so.
-> 2. Hand that prompt to Gemini and to Perplexity, separately. Keep the two returns
->    apart — where they agree on something neither can source, that is agreement
->    between two models and not evidence.
-> 3. **WHAT COMES BACK IS A LEAD AND NEVER AN INPUT.** Every claim is traced to the
+> Then STOP and hand it over. Do not search the web from inside this session in place
+> of the hand-off — the whole point is a second, independent pass.
+
+> **PROMPT — WHAT COMES BACK.** When the principal returns the answers:
+> 1. **WHAT COMES BACK IS A LEAD AND NEVER AN INPUT.** Every claim is traced to the
 >    PRIMARY source and read there before it moves anything. Historicals come from the
 >    company's own issued statements alone — no vendor, broker, or press-as-a-numbers
->    source, ever (SIGCM clause 1, and two delivered studies have already breached it).
-> 4. **Every untraceable claim is written back into the sweep register as a DATED
->    NEGATIVE SEARCH**, not dropped. A negative search is a search somebody actually
+>    source, ever (SIGCM clause 1; two delivered studies have already breached it).
+> 2. Keep the two returns APART. Where they agree on something neither can source,
+>    that is agreement between two models and not evidence.
+> 3. **Every untraceable claim is written back into the sweep register as a DATED
+>    NEGATIVE SEARCH**, never dropped. A negative search is a search somebody actually
 >    ran; inventing one to clear a coverage check is worse than the gap it clears.
-> 5. Register every new source in `research_sweep.py`'s register, four fields each,
->    with COMPANY_IR tagged distinctly. A period is not swept until BOTH its statements
->    AND its results release are registered.
-> 6. Report: what was found, what traced to a primary source, what did not and became a
->    negative search, and which findings could move a driver.
+> 4. Register every new source in `research_sweep.py`'s register, four fields each,
+>    COMPANY_IR tagged distinctly. A period is not swept until BOTH its statements AND
+>    its results release are registered.
+> 5. Report: what was found, what traced to a primary source, what did not and became
+>    a negative search, and which findings could move a driver.
 
-**Stop condition.** Every return is either traced to a primary source and registered,
-or recorded as a dated negative search. Nothing untraced has entered the model.
-
----
+**Stop condition.** The prompt has been handed over AND the returns have come back and
+been traced. Nothing untraced has entered the model.
 
 ## STEP 4 — DOES IT MOVE A DRIVER? · **replaces your FUNDAMENTAL REFRESH prompt**
 
@@ -221,11 +231,40 @@ ledger walks from the prior answer to the published one.
 
 ---
 
-## STEP 5 — EXTERNAL AUDIT · **canonical instrument exists**
+## STEP 5 — EXTERNAL AUDIT · **HANDS OFF TO THE PRINCIPAL**
 
 **Goal.** Have the study examined by someone who did not build it.
 
-> **PROMPT.** Audit {TICKER}'s delivered study from outside it. Fill the QC gate with
+**THIS STEP STOPS TWICE.** The session delivers the valuation document and the
+financial model to the principal, who takes them OUTSIDE for an independent audit.
+The session does not continue until the audit outcome comes back; it then evaluates
+every finding, updates the documents, and only then goes to step 6.
+
+> **PROMPT — HANDING OVER.** Deliver {TICKER}'s valuation document and workbook to the
+> principal for external audit, with the QC gate beside them. Say plainly what the
+> study's central is, what it was struck against, which contested judgements it resolved
+> and which way, and what would overturn each. An auditor who has to reconstruct the
+> claim before testing it is being asked to do our job.
+
+> **PROMPT — WHEN THE AUDIT COMES BACK.** Read `engine/Critique_Response_Prompt.md` IN
+> FULL and follow it. Its discipline is not optional and is the reason this step exists:
+> SELF-AUDIT FIRST before judging any finding; ONE ROW PER FINDING with no grouping;
+> PRICE each one before judging it; split premise from conclusion; REJECT ONLY WITH
+> RECEIPTS; escalate anything worth more than 5% of the central; and STOP TO REPORT
+> BEFORE IMPLEMENTING ANYTHING. Implementation happens on a second, explicit approval.
+>
+> A finding that is right costs the study nothing to accept and costs the reader a great
+> deal to ignore. A finding that is wrong is refused with the arithmetic that refutes it,
+> never with a restatement of what the study already said.
+
+**Stop condition.** Every finding is priced, ruled on with receipts, and either
+implemented or refused in writing. The documents reflect what survived.
+
+> **The in-house alternative, where no outside audit is run:** use the
+> `testahil-qc-auditor` subagent. It fills the QC gate from outside the study, never
+> edits what it audits, and reads the rendered PDF page by page with every figure
+> inspected as an image — two gates that have caught defects no programmatic check
+> could see. It is NOT a substitute for the external pass when one is available. Fill the QC gate with
 > the artefact, command or number that carries each row — never the study's own printed
 > table and never `gate_result.json`. Re-run the builders in an isolated copy and diff
 > cell by cell against the delivered file. READ THE RENDERED PDF PAGE BY PAGE and
