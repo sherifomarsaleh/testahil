@@ -67,3 +67,22 @@ engine/method_reassessment/board.html
 **/.pg-*.png
 **/__pycache__/
 **/*.pyc
+
+# Regenerable run artefacts. THE TEST IS NOT "is it generated" BUT "can it be
+# rebuilt from what is committed" — fv_vintages.json, escalations.json and the
+# ledger are generated too and must NEVER be listed here, because they record
+# what a number was on the day it was published and nothing can reconstruct
+# that afterwards [R-VCAL-01].
+#
+# ocr/*.png        page images rendered from the PDFs already committed under
+#                  each study's src/pdf/. ~49MB across two names; cheap to
+#                  regenerate, permanent in every future clone if committed.
+# ci_gate_run.json a recorded gate run is evidence about THE TREE IT RAN ON
+#                  [R-ENF-06], and every commit invalidates it — a committed
+#                  one is a claim about a tree that no longer exists.
+# progress.json    written by method_reassessment/progress.py --json, read by
+#                  nothing, and stamps `generated` with the current time, so it
+#                  reads as modified after every run even when nothing moved.
+engine/*_study_pending/**/ocr/*.png
+engine/build_depth_audit/ci_gate_run.json
+engine/method_reassessment/progress.json
