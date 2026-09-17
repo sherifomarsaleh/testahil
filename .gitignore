@@ -92,3 +92,14 @@ engine/method_reassessment/progress.json
 # beside them as txt_*.txt. They are NOT pages this site serves, and committing them
 # made check_page_integrity apply our own page-chrome rules to somebody else's HTML.
 engine/*_study_pending/**/*.html
+
+# QC-AUDIT SCRATCH. An auditor working from outside a study renders its PDF pages to
+# images, extracts text and takes backups, and it writes them where it is standing --
+# the repository root. On 17-09-2026 a `git add -A` in this session swept 37 of them
+# into a commit whose real content was one markdown file, WHILE THE AUDIT WAS STILL
+# RUNNING. The audit caught it; nothing else would have, because the files are
+# individually innocuous and the commit message was about something else.
+# THE LESSON IS ABOUT `git add -A` RATHER THAN ABOUT AUDITS: a blanket add stages
+# whatever else happens to be in the tree, and a session with a concurrent agent
+# always has something else in the tree.
+.qc_*
