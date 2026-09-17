@@ -95,7 +95,18 @@ CONV = {"FY2023": REG["cfo_fy23"] / REG["revenue_fy23"],
         "FY2025": CFO25 / R25}
 CONV_LO = min(CONV.values())
 CONV_HI = max(CONV.values())
-CONV_MID = sum(CONV.values()) / len(CONV)
+# RE-ANCHORED 17-09-2026 [R-ANCHOR-01], AND THE DEFECT UNDERNEATH IT IS WORTH NAMING.
+# This line read `sum(CONV.values()) / len(CONV)` -- a SECOND implementation of the
+# conversion rate valuation_v2.lenses() also computed, from the same three years by the
+# same arithmetic. Two implementations of one quantity agree until somebody moves one,
+# and when the base case was re-anchored on the reviewed half the projection kept the
+# three-year mean: the workbook's own recalculation caught it as 32 mismatches down the
+# DCF column, which is what that gate is for.
+# The rate is now the REVIEWED HALF to 30 June 2026 -- operating cash flow 1,499.068 over
+# revenue 19,528.118 -- and it is DERIVED HERE FROM THE SAME REGISTER ENTRIES rather than
+# copied as a literal, so the two sites cannot drift to different numbers again.
+CONV_1H26 = REG["cfo_1h26"] / REG["revenue_1h26"]
+CONV_MID = CONV_1H26
 
 CAPEX_RATIO = 0.01               # maintenance only; the build itself is inventory
 DIVIDEND = 0.0                   # the company has not paid a cash dividend

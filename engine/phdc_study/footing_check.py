@@ -65,33 +65,54 @@ DECLARED = [
      "sits among unrelated keys rather than beneath its own components. The "
      "register carries no arithmetic down its value column at all."
      ),
-    (_latest('PHDC_Bibliography_*.docx'), 2, "total assets 1q26",
-     "An input-register row keyed by name, as above \u2014 the first-quarter "
-     "balance-sheet inputs, listed as keys rather than summed as a statement."
+    (_latest('PHDC_Bibliography_*.docx'), 1, "total assets bridge",
+     "An input-register row keyed by name, as above \u2014 the BRIDGE "
+     "balance-sheet inputs, listed as keys rather than summed as a statement. "
+     "Re-pointed 17-09-2026: these rows moved from table 2 to table 1 when the "
+     "register merged, and the reason text said 'first-quarter' after the bridge "
+     "had moved to the reviewed half to 30 June 2026."
      ),
-    (_latest('PHDC_Bibliography_*.docx'), 2, "total current assets 1q26",
-     "An input-register row keyed by name, as above \u2014 the first-quarter "
-     "balance-sheet inputs, listed as keys rather than summed as a statement."
+    (_latest('PHDC_Bibliography_*.docx'), 1, "total current assets bridge",
+     "An input-register row keyed by name, as above \u2014 the BRIDGE "
+     "balance-sheet inputs, listed as keys rather than summed as a statement. "
+     "Re-pointed 17-09-2026: these rows moved from table 2 to table 1 when the "
+     "register merged, and the reason text said 'first-quarter' after the bridge "
+     "had moved to the reviewed half to 30 June 2026."
      ),
-    (_latest('PHDC_Bibliography_*.docx'), 2, "total current liabs 1q26",
-     "An input-register row keyed by name, as above \u2014 the first-quarter "
-     "balance-sheet inputs, listed as keys rather than summed as a statement."
+    (_latest('PHDC_Bibliography_*.docx'), 1, "total current liabs bridge",
+     "An input-register row keyed by name, as above \u2014 the BRIDGE "
+     "balance-sheet inputs, listed as keys rather than summed as a statement. "
+     "Re-pointed 17-09-2026: these rows moved from table 2 to table 1 when the "
+     "register merged, and the reason text said 'first-quarter' after the bridge "
+     "had moved to the reviewed half to 30 June 2026."
      ),
-    (_latest('PHDC_Bibliography_*.docx'), 2, "total equity 1q26",
-     "An input-register row keyed by name, as above \u2014 the first-quarter "
-     "balance-sheet inputs, listed as keys rather than summed as a statement."
+    (_latest('PHDC_Bibliography_*.docx'), 1, "total equity bridge",
+     "An input-register row keyed by name, as above \u2014 the BRIDGE "
+     "balance-sheet inputs, listed as keys rather than summed as a statement. "
+     "Re-pointed 17-09-2026: these rows moved from table 2 to table 1 when the "
+     "register merged, and the reason text said 'first-quarter' after the bridge "
+     "had moved to the reviewed half to 30 June 2026."
      ),
-    (_latest('PHDC_Bibliography_*.docx'), 2, "total liabilities 1q26",
-     "An input-register row keyed by name, as above \u2014 the first-quarter "
-     "balance-sheet inputs, listed as keys rather than summed as a statement."
+    (_latest('PHDC_Bibliography_*.docx'), 1, "total liabilities bridge",
+     "An input-register row keyed by name, as above \u2014 the BRIDGE "
+     "balance-sheet inputs, listed as keys rather than summed as a statement. "
+     "Re-pointed 17-09-2026: these rows moved from table 2 to table 1 when the "
+     "register merged, and the reason text said 'first-quarter' after the bridge "
+     "had moved to the reviewed half to 30 June 2026."
      ),
-    (_latest('PHDC_Bibliography_*.docx'), 2, "total noncurrent assets 1q26",
-     "An input-register row keyed by name, as above \u2014 the first-quarter "
-     "balance-sheet inputs, listed as keys rather than summed as a statement."
+    (_latest('PHDC_Bibliography_*.docx'), 1, "total noncurrent assets bridge",
+     "An input-register row keyed by name, as above \u2014 the BRIDGE "
+     "balance-sheet inputs, listed as keys rather than summed as a statement. "
+     "Re-pointed 17-09-2026: these rows moved from table 2 to table 1 when the "
+     "register merged, and the reason text said 'first-quarter' after the bridge "
+     "had moved to the reviewed half to 30 June 2026."
      ),
-    (_latest('PHDC_Bibliography_*.docx'), 2, "total noncurrent liabs 1q26",
-     "An input-register row keyed by name, as above \u2014 the first-quarter "
-     "balance-sheet inputs, listed as keys rather than summed as a statement."
+    (_latest('PHDC_Bibliography_*.docx'), 1, "total noncurrent liabs bridge",
+     "An input-register row keyed by name, as above \u2014 the BRIDGE "
+     "balance-sheet inputs, listed as keys rather than summed as a statement. "
+     "Re-pointed 17-09-2026: these rows moved from table 2 to table 1 when the "
+     "register merged, and the reason text said 'first-quarter' after the bridge "
+     "had moved to the reviewed half to 30 June 2026."
      ),
     (_latest('PHDC_Valuation_Study_*.docx'), 1, "Total assets (EGP mn)",
      "A DISCLOSED LINE ITEM heading a summary balance sheet, printed beside "

@@ -162,7 +162,25 @@ def implied_conversion(spot, sched):
 def lenses():
     lo = BU.REG["cfo_fy25"] / BU.REG["revenue_fy25"]
     hi = BU.REG["cfo_fy24"] / BU.REG["revenue_fy24"]
-    mid = (lo + hi + BU.REG["cfo_fy23"] / BU.REG["revenue_fy23"]) / 3.0
+    # [R-ANCHOR-01], RE-ANCHORED 17-09-2026. The base case was the MEAN of three full-year
+    # conversion rates -- 4.333, 17.870 and 3.938 per cent -- which is a three-year average
+    # standing in for a rate the company has since reported. A near-term REVIEWED actual
+    # outranks a stale full-year rate, and averaging three years of a quantity that swings
+    # by a factor of four is the construction this house objects to everywhere else.
+    #
+    # THE ANCHOR IS THE REVIEWED HALF TO 30 JUNE 2026: operating cash flow of 1,499.068
+    # over revenue of 19,528.118 is 7.676 per cent.
+    #
+    # AND THE DIRECTION IS MEASURED LIKE FOR LIKE IN THE COMPANY'S OWN PERIOD PAIR, which
+    # is what that rule asks for rather than an assertion: the SAME half a year earlier,
+    # from the SAME reviewed statement's own prior-year column, converted at 3.114 per
+    # cent. Half against half, 3.114 -> 7.676, so the level adopted is not a seasonal
+    # artefact of using six months where the old rate used twelve.
+    #
+    # The envelope is unchanged and is still the range of the company's own filed
+    # full-year outcomes: FY2025 at the bottom, FY2024 at the top. The base no longer
+    # sits above both of the two most recent years.
+    mid = BU.REG["cfo_1h26"] / BU.REG["revenue_1h26"]
 
     # the bear and full cases shift the WHOLE schedule, keeping its shape: replacing
     # it with a flat rate would ask two questions at once, and the second one is the

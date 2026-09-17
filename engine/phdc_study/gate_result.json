@@ -1,5 +1,5 @@
 {
- "standard_version": "2026.09.01",
+ "standard_version": "2026.09.07",
  "gates": {
   "assert_beta_provenance": {
    "result": "PASS",
@@ -17,7 +17,7 @@
      "topdown": 0
     },
     "unit_share": 0,
-    "standard_version": "2026.09.01"
+    "standard_version": "2026.09.07"
    }
   },
   "assert_sigcm": {
@@ -47,7 +47,7 @@
     ],
     "formula_cells": 175,
     "scrub_hits": [],
-    "document_chars": 86754,
+    "document_chars": 87590,
     "column_audit": [],
     "figures_rebuilt": [
      "fig1_football.png",
@@ -69,10 +69,12 @@
     "pdfs": [
      "PHDC_Bibliography_02-09-2026.pdf",
      "PHDC_Bibliography_03-09-2026.pdf",
+     "PHDC_Bibliography_17-09-2026.pdf",
      "PHDC_Valuation_Model_02092026.pdf",
      "PHDC_Valuation_Model_03092026.pdf",
      "PHDC_Valuation_Study_02-09-2026.pdf",
-     "PHDC_Valuation_Study_03-09-2026.pdf"
+     "PHDC_Valuation_Study_03-09-2026.pdf",
+     "PHDC_Valuation_Study_17-09-2026.pdf"
     ]
    }
   }
@@ -99,7 +101,7 @@
   ],
   "formula_cells": 175,
   "scrub_hits": [],
-  "document_chars": 86754,
+  "document_chars": 87590,
   "column_audit": [],
   "figures_rebuilt": [
    "fig1_football.png",
@@ -121,10 +123,12 @@
   "pdfs": [
    "PHDC_Bibliography_02-09-2026.pdf",
    "PHDC_Bibliography_03-09-2026.pdf",
+   "PHDC_Bibliography_17-09-2026.pdf",
    "PHDC_Valuation_Model_02092026.pdf",
    "PHDC_Valuation_Model_03092026.pdf",
    "PHDC_Valuation_Study_02-09-2026.pdf",
-   "PHDC_Valuation_Study_03-09-2026.pdf"
+   "PHDC_Valuation_Study_03-09-2026.pdf",
+   "PHDC_Valuation_Study_17-09-2026.pdf"
   ]
  },
  "issuable": true

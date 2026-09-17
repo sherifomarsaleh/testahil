@@ -11,7 +11,20 @@ from openpyxl.utils import get_column_letter, column_index_from_string
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 N = json.load(open(os.path.join(HERE, "study_numbers.json")))
-XL = os.path.join(HERE, "PHDC_Valuation_Model_03092026.xlsx")
+# THE DELIVERED WORKBOOK IS RESOLVED, NOT NAMED [L-066/L-067]. This line carried the
+# 03-09-2026 filename, so the 17-09-2026 re-issue left this check reading the SUPERSEDED
+# file: it reported 46 mismatches that were nothing but the old edition's answers, and a
+# check that opens a delivered file by name must move with the re-issue or it silently
+# audits a file nobody receives. Resolving the newest by edition date cannot go stale.
+import glob as _glob, re as _re
+def _latest_workbook():
+    c = _glob.glob(os.path.join(HERE, "PHDC_Valuation_Model_*.xlsx"))
+    assert c, "no delivered workbook in this study directory"
+    def key(f):
+        m = _re.search(r"(\d{2})(\d{2})(\d{4})", os.path.basename(f))
+        return (m.group(3), m.group(2), m.group(1)) if m else ("", "", "")
+    return max(c, key=key)
+XL = _latest_workbook()
 
 
 def evaluate(wb, sheet, ref, depth=0):

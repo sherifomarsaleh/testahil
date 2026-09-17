@@ -109,7 +109,7 @@ def wide_widths(rows, label_cm=3.5, total_cm=16.2):
 
 def q(key):
     """A line of the 31 March 2026 reviewed balance sheet — what the bridge stands on."""
-    return N["balance_sheet_1q26"][key]["value"]
+    return N["balance_sheet_bridge"][key]["value"]
 
 
 def money(x, dp=0):
@@ -309,7 +309,7 @@ def column_audit(doc_path):
 # three strings and updated one. That is the standing rule "A NUMBER STATED IN PROSE MUST
 # BE COMPUTED, NOT TYPED" applied to a date, which is a figure a reader sees like any
 # other, and it is why a masthead goes stale while every gate reports the document clean.
-EDITION_FILE = "PHDC_Valuation_Study_03-09-2026.docx"
+EDITION_FILE = "PHDC_Valuation_Study_17-09-2026.docx"
 
 
 def _edition_words(fname=EDITION_FILE):

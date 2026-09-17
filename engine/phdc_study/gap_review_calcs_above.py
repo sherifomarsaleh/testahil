@@ -77,8 +77,8 @@ p("  terminal growth %.2f%% = the same inflation, zero real. Real growth assumed
 p("\n[6] BALANCE SHEET — the bridge stands on the latest disclosed sheet")
 p("  %s; net debt %.1f, associates %.1f, investment property %.1f, minority %.2f/sh"
   % (N["derived"]["bridge_balance_sheet"], N["derived"]["net_debt_bridge"],
-     N["balance_sheet_1q26"]["investments_assoc"]["value"],
-     N["balance_sheet_1q26"]["investment_property"]["value"],
+     N["balance_sheet_bridge"]["investments_assoc"]["value"],
+     N["balance_sheet_bridge"]["investment_property"]["value"],
      N["cases"]["base"]["nci_deduction"] / SH))
 
 p("\n[7] CLAIMS AGAINST THE RECORD — every quantity the study asserts, recomputed")
@@ -106,12 +106,12 @@ nd = N["derived"]["net_debt_bridge"]
 for lbl, px in (("central", CENTRAL), ("spot", SPOT),
                 ("the multiple cross-check", N["lenses"][1][2])):
     eqv = px * SH
-    ev = eqv + nd - N["balance_sheet_1q26"]["investments_assoc"]["value"] \
-        - N["balance_sheet_1q26"]["investment_property"]["value"]
+    ev = eqv + nd - N["balance_sheet_bridge"]["investments_assoc"]["value"] \
+        - N["balance_sheet_bridge"]["investment_property"]["value"]
     p("  %-24s %6.2f | mcap %9.0f | EV %9.0f | P/E25 %5.2fx | P/E26e %5.2fx | "
       "EV/EBITDA25 %5.2fx | P/B %4.2fx | mcap/backlog %4.1f%%"
       % (lbl, px, eqv, ev, px / eps25, px / eps26e, ev / ebitda25,
-         px / (N["balance_sheet_1q26"]["equity_parent"]["value"] / SH),
+         px / (N["balance_sheet_bridge"]["equity_parent"]["value"] / SH),
          100 * eqv / R["backlog_1q26"]))
 out["eps25"], out["eps26e"], out["ebitda25"] = eps25, eps26e, ebitda25
 out["pe25_central"] = CENTRAL / eps25

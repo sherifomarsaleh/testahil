@@ -46,7 +46,7 @@ def v(k):
 
 def q(k):
     """A line of the 31 March 2026 reviewed balance sheet — what the bridge stands on."""
-    return N["balance_sheet_1q26"][k]["value"]
+    return N["balance_sheet_bridge"][k]["value"]
 
 
 def head(ws, title, note=None, widths=None):
@@ -790,7 +790,7 @@ def _remaining(wb):
 
 
 if __name__ == "__main__":
-    out = os.path.join(HERE, "PHDC_Valuation_Model_03092026.xlsx")
+    out = os.path.join(HERE, "PHDC_Valuation_Model_17092026.xlsx")
     wb = build(out)
     # the skeleton's order is part of the standard, so it is asserted, not assumed
     ORDER = ["READ FIRST", "Summary", "Fundamental Valuation", "Assumptions",

@@ -19,7 +19,7 @@ import statements as ST
 import research_protocol as RP
 
 IN.assert_balance_sheet_foots()
-BS26_FOOT = IN.assert_balance_sheet_1q26_foots()
+BS26_FOOT = IN.assert_balance_sheet_bridge_foots()
 
 
 
@@ -88,7 +88,7 @@ def main():
                              "interests deducted at their share of value; normalised "
                              "earnings capitalised at cost of equity less growth. The "
                              "discount rate and the lens weights are unchanged."),
-            "base_year": 2025, "information_set_ends": "1Q2026",
+            "base_year": 2025, "information_set_ends": "2Q2026",
             # [R-ASSET-01], ADDED 17-09-2026 AND CORRECTED THE SAME DAY. The bridge
             # had a currency rule and the land bank had none, which on a developer is
             # the quantity the value is built out of.
@@ -103,13 +103,30 @@ def main():
                     "\"spreading over 46 million square meters\". THE SAME BOILERPLATE "
                     "SENTENCE carried 33 in the FY2024 release and 37 in the 1H2025 "
                     "release, so the three are like for like and the movement is the "
-                    "company's own disclosure rather than a re-measurement. This "
-                    "release is already consumed by this study as ER26Q1."),
-                # NO not_restated_since, AND THAT IS THE POINT OF THE CORRECTION. The
-                # base is as at 31 March 2026 and this study's information set ends at
-                # 1Q2026, so the ordering test is satisfied outright and no relief
-                # clause is needed. The version of this record written earlier today
-                # carried one, because it stood on a figure a year older.
+                    "company's own disclosure rather than a re-measurement."),
+                # THE RELIEF CLAUSE RETURNS BECAUSE THE INFORMATION SET MOVED, NOT
+                # BECAUSE THE ASSET BASE WENT STALE. It was deleted earlier today when
+                # the base and the information set both stood at 1Q2026; the reviewed
+                # 30-June-2026 statements have since arrived and carry the information
+                # set to 2Q2026, so the base is three months behind it again.
+                "not_restated_since": {
+                    "disclosures_checked": [
+                        "PHD periodic consolidated financial statements on 30 June 2026 "
+                        "with limited review report (Mostafa Shawki / Forvis Mazars) - "
+                        "the latest filing this study reads and the sheet its bridge now "
+                        "stands on; read page by page and carries NO land-bank figure",
+                    ],
+                    "reason": (
+                        "A LAND BANK IS AN OPERATING KPI AND OPERATING KPIs ARE DISCLOSED "
+                        "IN EARNINGS RELEASES, NOT IN FINANCIAL STATEMENTS. The 30 June "
+                        "2026 filing is a statement and does not carry the figure however "
+                        "recent it is, which is this name's own registered lessons L-116 "
+                        "and L-205. No earnings release after 1Q2026 is held: the result "
+                        "centre was enumerated on 17-09-2026 and its newest release is "
+                        "1Q2026's. What would close it is a DOCUMENT TO OBTAIN rather "
+                        "than a page to re-read - the 1H2026 earnings release, which is "
+                        "a different document from the 1H2026 STATEMENTS now held."),
+                },
                 "note": (
                     "CORRECTED WITHIN THE DAY, AND THE FIRST CORRECTION FAILED THE SAME "
                     "WAY THE ORIGINAL DEFECT DID. The committed figure was 33.0 as at "
@@ -129,10 +146,10 @@ def main():
         },
         "registry": {**{k: v for g in (IN.ACTUALS, IN.BALANCE_SHEET_FY25, IN.DEBT_FY25,
                                        IN.OPERATING, IN.MARKET) for k, v in g.items()},
-                     **{k + "_1q26": v for k, v in IN.BALANCE_SHEET_1Q26.items()}},
+                     **{k + "_bridge": v for k, v in IN.BALANCE_SHEET_BRIDGE.items()}},
         "balance_sheet_fy24": IN.BALANCE_SHEET_FY24,
-        "balance_sheet_1q26": IN.BALANCE_SHEET_1Q26,
-        "balance_sheet_1q26_foot": BS26_FOOT,
+        "balance_sheet_bridge": IN.BALANCE_SHEET_BRIDGE,
+        "balance_sheet_bridge_foot": BS26_FOOT,
         "balance_sheet_subtotals": IN.BALANCE_SHEET_SUBTOTALS,
         "historical_is": IN.HISTORICAL_IS,
         "fy24_cogs_basis": {"as_reported": IN.FY24_COGS_AS_REPORTED,
@@ -148,8 +165,8 @@ def main():
             "bridge_balance_sheet": BU.BRIDGE_BS_DATE,
             "nci_value_share": BU.NCI_VALUE_SHARE,
             "nci_profit_share_3y": BU.NCI_PROFIT_SHARE_3Y,
-            "nci_book_1q26": BU.NCI_BOOK_1Q26,
-            "nci_book_share_1q26": BU.NCI_BOOK_SHARE_1Q26,
+            "nci_book_bridge": BU.NCI_BOOK_BRIDGE,
+            "nci_book_share_bridge": BU.NCI_BOOK_SHARE_BRIDGE,
             "nci_basis": BU.NCI_BASIS,
             "shares_mn": VAL.SHARES_MN,
             "book_equity_per_share": BU.BS_BRIDGE["equity_parent"] / VAL.SHARES_MN,
@@ -207,7 +224,7 @@ def main():
             "latest_disclosed_source": (
                 "PHD consolidated financial statements for the three months ended 31 March 2026 "
                 "(limited review report attached), downloaded 01-Sep-2026 from the company's own "
-                "result centre; registered line by line in bs_1q2026.json and accepted only "
+                "result centre; registered line by line in bs_2q2026.json and accepted only "
                 "because its own subtotals foot. The company had published no later statement at "
                 "this edition's date — the half-year 2026 filing was not out."),
             # the ADDITIVE lines only: the waterfall's own components, not the
@@ -224,9 +241,9 @@ def main():
                     "(EGP 207.2mn of 4,423.8mn) — the company does not disclose the "
                     "subsidiaries carrying the minority with their own economics, so their "
                     "value cannot be built directly"),
-                "book": BU.NCI_BOOK_1Q26,
+                "book": BU.NCI_BOOK_BRIDGE,
                 "profit_share": BU.NCI_VALUE_SHARE,
-                "proportional": BU.NCI_BOOK_SHARE_1Q26,
+                "proportional": BU.NCI_BOOK_SHARE_BRIDGE,
             },
             "cash": {
                 "treatment": "inside_the_flow",

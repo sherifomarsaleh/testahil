@@ -170,8 +170,8 @@ def build(path):
             "proxied by its filed share of 2025 profit after tax (%s), applied to "
             "equity value. At book it would be EGP %s million (%s of equity); on the "
             "three-year mean profit share, %s. Both are shown as reference."
-            % ("{:.2%}".format(D["nci_value_share"]), "{:,.1f}".format(D["nci_book_1q26"]),
-               "{:.1%}".format(D["nci_book_share_1q26"]), "{:.2%}".format(D["nci_profit_share_3y"])),
+            % ("{:.2%}".format(D["nci_value_share"]), "{:,.1f}".format(D["nci_book_bridge"]),
+               "{:.1%}".format(D["nci_book_share_bridge"]), "{:.2%}".format(D["nci_profit_share_3y"])),
             "Disclosure of the subsidiaries that carry the minority with their own "
             "economics, which would let the minority be valued directly."],
            ["Normalised earnings capitalised at cost of equity less growth",
@@ -237,7 +237,7 @@ def build(path):
 
 
 if __name__ == "__main__":
-    out = os.path.join(HERE, "PHDC_Bibliography_03-09-2026.docx")
+    out = os.path.join(HERE, "PHDC_Bibliography_17-09-2026.docx")
     build(out).save(out)
     hits, chars = scrub(out)
     bad = column_audit(out)

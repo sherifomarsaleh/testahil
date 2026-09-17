@@ -157,6 +157,16 @@ OPERATING = {
                           "A", unit="mn sqm"),
     "units_delivered_fy23": I(1500.0, "PHD FY2023 earnings release", "2023-12-31", "A",
                               unit="units"),
+    # THE LATEST REVIEWED PERIOD [R-ANCHOR-01], added 17-09-2026. These supersede the
+    # 1Q2026 figures as the margin anchor: a HALF rather than a quarter, REVIEWED rather
+    # than a release rounding its gross profit to the nearest hundred million, and the
+    # most recent period the company has reported. The margin they imply is 35.4670 per
+    # cent against the 1Q2026 release's 35.4839 -- seventeen hundredths of a point apart,
+    # so this lever is about the QUALITY of the anchor rather than its level, and saying
+    # so is more honest than presenting a rounding difference as a finding.
+    "revenue_1h26":      I(19528.117727, "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), CONSOLIDATED STATEMENT OF INCOME, read by OCR off the rendered pixels and footed: revenue less cost of revenues less cash discount reproduces the printed gross profit EXACTLY", "2026-06-30", "A"),
+    "gross_profit_1h26": I(6926.022076,  "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), CONSOLIDATED STATEMENT OF INCOME, read by OCR off the rendered pixels and footed: revenue less cost of revenues less cash discount reproduces the printed gross profit EXACTLY", "2026-06-30", "A"),
+    "cfo_1h26":          I(1499.068217,  "PHD 30 June 2026 reviewed statements, CONSOLIDATED STATEMENT OF CASH FLOWS; net cash provided by operating activities. The statement's investing line is misprinted on the scan and was RECOVERED from its own components; this operating figure is read directly, and the three activities reproduce the stated net movement exactly with closing cash tying to the balance sheet.", "2026-06-30", "A"),
     "units_sold_fy23":  I(5300.0,   "PHD FY2023 earnings release, chart series",
                           "2023-12-31", "A", unit="units"),
 }
@@ -218,9 +228,9 @@ GAPS = {
 # working-capital cycle measured on full years is not restarted from a quarter.
 import json as _json, os as _os
 _BS26 = _json.load(open(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)),
-                                     "bs_1q2026.json")))
+                                     "bs_2q2026.json")))
 BRIDGE_BS_DATE = _BS26["as_of"]
-BALANCE_SHEET_1Q26 = {k: {"value": r["value"], "source": r["source"], "date": r["date"],
+BALANCE_SHEET_BRIDGE = {k: {"value": r["value"], "source": r["source"], "date": r["date"],
                           "tier": r["tier"], "unit": r.get("unit", "EGP mn"),
                           **({"note": r["note"]} if r.get("note") else {})}
                       for k, r in _BS26["lines"].items()}
@@ -233,21 +243,35 @@ DEBT_LINES = ["loans_long_term", "notes_payable_long_term", "credit_facilities",
 assert set(DEBT_LINES) == set(DEBT_FY25), "the FY2025 debt stack and DEBT_LINES have drifted apart"
 
 
-def assert_balance_sheet_1q26_foots():
-    """The 31-Mar-2026 parse is accepted only if the statement's own subtotals
+def assert_balance_sheet_bridge_foots():
+    """The bridge sheet is accepted only if the statement's own subtotals
     reconcile: assets = liabilities + equity, parent equity + NCI = total equity,
     and each side's subtotals sum to the totals printed beside them."""
-    q = {k: r["value"] for k, r in BALANCE_SHEET_1Q26.items()}
-    assert abs(q["total_assets"] - (q["total_liabilities"] + q["total_equity"])) < 0.5, "1Q26: A != L + E"
-    assert abs(q["total_noncurrent_assets"] + q["total_current_assets"] - q["total_assets"]) < 0.5
+    q = {k: r["value"] for k, r in BALANCE_SHEET_BRIDGE.items()}
+    assert abs(q["total_assets"] - (q["total_liabilities"] + q["total_equity"])) < 0.5, "bridge sheet: A != L + E"
     assert abs(q["total_noncurrent_liabs"] + q["total_current_liabs"] - q["total_liabilities"]) < 0.5
-    assert abs(q["equity_parent"] + q["nci_equity"] - q["total_equity"]) < 0.5, "1Q26: parent + NCI != equity"
+    # the 30-June sheet does not commit two non-current asset lines (see the file's
+    # own note), so the non-current ASSET subtotal is not footed here; the LIABILITY
+    # side is, and A = L + E above covers the asset side as a whole.
+    nl = sum(q[k] for k in ("loans_long_term", "notes_payable_long_term",
+                            "land_purchase_liab_lt", "residents_association_lt",
+                            "deferred_tax_liab", "lease_liabilities_lt", "joint_shares_lt"))
+    assert abs(nl - q["total_noncurrent_liabs"]) < 0.5, "bridge: non-current liabilities do not foot"
+    cl = sum(q[k] for k in ("banks_credit_balances", "credit_facilities",
+                            "current_portion_st_loans", "notes_payable_short_term",
+                            "advances_customers", "deferred_revenue", "checks_undelivered",
+                            "lease_liabilities_st", "land_purchase_liab_st",
+                            "due_to_related", "joint_shares_st", "creditors_other",
+                            "suppliers", "investments_purchase_liab", "provisions",
+                            "income_tax_payable"))
+    assert abs(cl - q["total_current_liabs"]) < 0.5, "bridge: current liabilities do not foot"
+    assert abs(q["equity_parent"] + q["nci_equity"] - q["total_equity"]) < 0.5, "bridge: parent + NCI != equity"
     ca = sum(q[k] for k in ("work_in_progress", "accounts_receivable", "debtors_other",
                             "suppliers_advances", "due_from_related", "fin_inv_amortised",
                             "inv_fair_value", "notes_recv_st", "notes_recv_st_undel", "cash"))
-    assert abs(ca - q["total_current_assets"]) < 0.5, "1Q26 current assets do not foot: %.3f vs %.3f" % (ca, q["total_current_assets"])
+    assert abs(ca - q["total_current_assets"]) < 0.5, "bridge current assets do not foot: %.3f vs %.3f" % (ca, q["total_current_assets"])
     for k in DEBT_LINES:
-        assert k in q, "1Q26 sheet lacks debt line %s" % k
+        assert k in q, "bridge sheet lacks debt line %s" % k
     return {"gross_debt": round(sum(q[k] for k in DEBT_LINES), 3), "cash": q["cash"],
             "net_debt": round(sum(q[k] for k in DEBT_LINES) - q["cash"], 3)}
 
