@@ -1,7 +1,10 @@
 # EXTERNAL NEWS RESEARCH — hand-over pack
 
-**8 names, handed over together.** Runbook step 3: the session builds these and STOPS.
-Run each on Perplexity AND on Claude, keep the two returns APART, and bring both back.
+**8 names, handed over together — but RUN ONE AT A TIME.** Runbook step 3: the session
+builds these and STOPS. Run each name's block on TWO engines independent of each other and
+of the session that wrote it, on its own, keep the two returns APART, label each with the
+ticker and the engine, and bring both back raw.
+
 
 **THREE RULES THAT DECIDE WHETHER A RETURN CAN BE USED AT ALL.**
 

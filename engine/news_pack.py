@@ -72,9 +72,9 @@ def wave_tickers():
     todo = [r for r in rows if r['state'] in (R.DESK, R.UNREADABLE)]
     if not todo:
         raise SystemExit('No name is the desk\'s move; there is no pack to build.')
-    first = min((r['market'], r['wave']) for r in
-                [(x) for x in todo] and [(r['market'], r['wave']) for r in todo])
-    mk, wv = first
+    # EGX first while [R-MARKET-ORDER] holds; within a market, the lowest wave.
+    mk, wv = min((0 if r['market'] == R.MARKET_FIRST else 1, r['market'], r['wave'])
+                 for r in todo)[1:]
     return [r['ticker'] for r in rows
             if r['market'] == mk and r['wave'] == wv and r['state'] in (R.DESK, R.UNREADABLE)]
 
@@ -165,10 +165,25 @@ def build(tickers):
         raise SystemExit('FATAL: %s not on the site register. A pack naming a company the '
                          'book does not carry is a search pointed at nothing.'
                          % ', '.join(missing))
-    head = """# EXTERNAL NEWS RESEARCH — hand-over pack
+    if len(tickers) == 1:
+        opening = ("""# EXTERNAL NEWS RESEARCH — %s
 
-**%d names, handed over together.** Runbook step 3: the session builds these and STOPS.
-Run each on Perplexity AND on Claude, keep the two returns APART, and bring both back.
+**One name, one run.** Runbook step 3: the session builds this and STOPS. Run it on TWO
+engines independent of each other and of the session that wrote it, keep the two returns
+APART, label each with the ticker and the engine, and bring both back raw.
+ONE NAME PER RUN — do not run this alongside another name's block, because a finding
+attributed to the wrong company of the same industry is the error that reads most like a
+result.
+""" % tickers[0])
+    else:
+        opening = ("""# EXTERNAL NEWS RESEARCH — hand-over pack
+
+**%d names, handed over together — but RUN ONE AT A TIME.** Runbook step 3: the session
+builds these and STOPS. Run each name's block on TWO engines independent of each other and
+of the session that wrote it, on its own, keep the two returns APART, label each with the
+ticker and the engine, and bring both back raw.
+""" % len(tickers))
+    head = opening + """
 
 **THREE RULES THAT DECIDE WHETHER A RETURN CAN BE USED AT ALL.**
 
@@ -193,7 +208,7 @@ the company's own filing.
 
 ---
 
-""" % len(tickers)
+"""
     return head + '\n---\n\n'.join(block(t, T) for t in tickers)
 
 

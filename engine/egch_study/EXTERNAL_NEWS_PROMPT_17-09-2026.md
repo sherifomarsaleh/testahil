@@ -1,7 +1,12 @@
-# EXTERNAL NEWS RESEARCH — hand-over pack
+# EXTERNAL NEWS RESEARCH — EGCH
 
-**1 names, handed over together.** Runbook step 3: the session builds these and STOPS.
-Run each on Perplexity AND on Claude, keep the two returns APART, and bring both back.
+**One name, one run.** Runbook step 3: the session builds this and STOPS. Run it on TWO
+engines independent of each other and of the session that wrote it, keep the two returns
+APART, label each with the ticker and the engine, and bring both back raw.
+ONE NAME PER RUN — do not run this alongside another name's block, because a finding
+attributed to the wrong company of the same industry is the error that reads most like a
+result.
+
 
 **THREE RULES THAT DECIDE WHETHER A RETURN CAN BE USED AT ALL.**
 
@@ -49,4 +54,3 @@ the company's own filing.
 - **Cost of debt / WACC glide** (BOTTOM_UP)
 - **ANNA revenue leg** (BOTTOM_UP)
 - **Dividend / distribution policy (q)** (BOTTOM_UP)
-
