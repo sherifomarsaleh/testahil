@@ -1,6 +1,6 @@
 # RECALIBRATION RUNBOOK — the whole process, one step after another
 
-**RUNBOOK REVISION 2026-09-17b.** Every copy of this file carries this line as its
+**RUNBOOK REVISION 2026-09-17c.** Every copy of this file carries this line as its
 first characters after the title. If the copy you are holding does not, or carries an
 earlier revision, IT IS STALE: the current text is
 `engine/Recalibration_Runbook_17-09-2026.md` on the repository's own branch and nothing
@@ -41,6 +41,61 @@ the METHOD — Phase 1 acceptance is not proven — and that includes both GBCO 
 PHDC. Steps 0 to 5 run and finish; step 6 refuses. That is the gate working, not a
 fault, and the work is not wasted: it is what publishes the day Phase 1 closes.
 READ IT LIVE (`python3 scripts/check_publish_block.py`), never from this paragraph.
+
+---
+
+## WHERE A NAME IS — THE BOARD · **ADDED REVISION c**
+
+This file is the order of work for ONE name. At ninety names, across seven steps, two of
+which stop dead and hand the work to you, **the question nobody could answer was which
+name to touch next and what it was waiting for.** A person remembers one name. Nobody
+remembers ninety, and the failure is not forgetting — it is a name sitting in a hand-off
+nobody is tracking while the desk works on something else.
+
+```
+python3 engine/recalibration_run.py             the board — every name, its step, whose move
+python3 engine/recalibration_run.py --next      the next name the DESK can act on
+python3 engine/recalibration_run.py --brief TK  where TK is, plus THIS FILE'S own words
+                                                for the step it is at
+python3 engine/recalibration_run.py --waiting   everything held by you, batched by market
+python3 engine/recalibration_run.py --ticker TK one name, all seven steps, with evidence
+```
+
+**NOTHING IS MARKED DONE AND NO STEP POINTER IS STORED.** Each step is a PROBE over the
+artefacts that step itself produces — the frozen baseline, the walk-forward run and its
+harvested lessons, a QC gate AT THE CURRENT EDITION, the news hand-over and its returns,
+the rebuild ledger, the audit hand-over and its answer, and the publish gate read live. A
+name sits wherever the probes stop; delete an artefact and the name moves back. A board
+somebody has to update by hand goes stale the first busy afternoon, and it goes stale
+SILENTLY, which is the shape that survives — the stale digest, the stale library list and
+the technical read that had to be told its library moved were all this, and so was the
+defect in section 4's new clause below.
+
+`--brief` lifts the step's prompt out of THIS FILE at the moment it is relied on rather
+than copying it, so amending a step here amends what the desk is told [R-DOC-01].
+
+---
+
+## THE POPULATION — WHAT "NO STUDY" MEANS, AND WHAT IT DOES NOT · **ADDED REVISION c**
+
+**EVERY ONE OF THE NINETY COVERED NAMES HAS A DELIVERED VALUATION STUDY.** They sit under
+`files/` — 313 delivered documents, models and bibliographies. Twenty-three of them ALSO
+commit an `engine/{ticker}_study/` record; sixty-seven do not.
+
+**Those are two different facts and only one of them had ever been measured.** The campaign
+queue resolved "does a study exist" by globbing `engine/*_study/`, which returns 24
+directories, and reported the absence of a DIRECTORY as the absence of a STUDY — so this
+programme was planned on 17-09-2026 as "22 re-issues and 67 studies built from nothing",
+which was wrong about seventy-four per cent of the book. It is [R-ENF-04] and [L-355]
+together: a probe that reads one naming convention finds nothing under the other and
+REPORTS THAT AS A RESULT. It produced a number rather than an error, which is what let it
+stand, and the repository already held the correct answer in
+`engine/study_population.py` — nothing had ever joined the two.
+
+**So the tiers mean:** `reissue` — a study with a record the gates can read.
+`reissue-no-record` — a study that was delivered, whose RECORD has to be reconstructed
+from the delivered documents before any gate can open it. **NONE of the ninety is a first
+build**, and no step of this runbook may be skipped on the belief that one is.
 
 ---
 
@@ -234,9 +289,28 @@ it touches.
 > 8. Record the route in the REBUILD LEDGER [R-REBUILD-01] — the levers in the order
 >    applied, each with the answer before and after and the rule it serves. Several
 >    levers serving one rule are ONE piece of evidence, not several.
+> 9. **THE RECORD AND THE PROSE MOVE WITH THE LEVER, IN THE SAME PASS.** · **ADDED
+>    REVISION c.** For every lever applied, name the committed record it changes and the
+>    sentences that describe it, and move both — `forecast_anchor`, `bridge_record`, the
+>    lens record, the cost-of-capital schedule, the inflation inputs, and every sentence
+>    in the document and the bibliography that states the old construction. Then
+>    **RE-RENDER THE PDF**: the Word file is not the artefact a reader receives.
+
+**A LEVER APPLIED TO THE MODEL AND NOT WRITTEN INTO THE RECORD IS INVISIBLE WHERE IT
+COUNTS, AND THIS IS NOT HYPOTHETICAL.** On 17-09-2026 a re-issue correctly moved a study
+onto its reviewed half-year — the bridge, the margin anchor and the cash-conversion rate,
+three levers, all right. The record kept naming the superseded quarter, so a gate reported
+that study as having read half a filing, which it had not; and the delivered document went
+on telling a reader that three published years of 4.3, 17.9 and 3.9 per cent average to
+7.7, because the carried rate was read out of a field still called `mean` after it had
+stopped being one. **A NAME THAT OUTLIVES THE CONSTRUCTION IT DESCRIBES IS A FALSE
+STATEMENT WITH A PLAUSIBLE NUMBER ATTACHED**, and nothing in the arithmetic was wrong:
+every figure was computed and individually correct. Ask of each lever what now describes
+something that is no longer true.
 
 **Stop condition.** Either a stated no-change with its reason, or a rebuild whose
-ledger walks from the prior answer to the published one.
+ledger walks from the prior answer to the published one, **with every record and every
+sentence the levers touched moved in the same pass and the PDFs re-rendered.**
 
 ---
 
@@ -363,3 +437,6 @@ naming explicitly what was left untouched.
 - Publish without an explicit ask.
 - Run two names at once.
 - Treat a lead from a language model as an input to a valuation.
+- Leave a record, a field name or a sentence describing a model the study no longer has.
+- Report an absence it never searched for. A probe that comes back empty has not found
+  nothing; the first hypothesis is that the probe did not run [R-ENF-04].
