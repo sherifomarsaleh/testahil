@@ -15,6 +15,10 @@ Read `CLAUDE.md` first, then this. Then pick ONE numbered item from section 5 an
 build it. Do not start two. Each item names its own acceptance test; an item is
 finished when that test passes and not when the code looks right.
 
+**Section 6 says which box each item repairs, roughly what it costs, and what to
+run it on.** Read it before starting an item; its size and model columns are
+ESTIMATES and say so.
+
 **Re-verify before building.** Every figure in sections 3 and 5 carries the command
 that produced it. Run the command. If it disagrees with this file, the command is
 right and this file is stale — say so and carry on from the live number.
@@ -278,7 +282,75 @@ another. Whatever actuator is chosen must live inside the technical lens.
 
 ---
 
-## 6. RULES THAT BIND ANY OF THIS WORK
+## 6. RUNNING THEM — WHICH BOX, HOW BIG, WHAT TO RUN IT ON
+
+Three tables. The first is fact; the second and third are ESTIMATES and are
+labelled as such — treat them the way this repository treats any unmeasured
+figure.
+
+### 6.1 Which item repairs which box
+
+One item per box, and item 4 does double duty.
+
+| Matrix box | Item | What it does there |
+|---|---|---|
+| **MC · method choice** | **4** | Builds the bake-off — the candidate list that box is missing |
+| **MC · inside** | **4** | Box is already SELF; item 4 only closes the `signal_active` carve-out |
+| **TECH · method choice** | **5** | Supplies the actuator. A ruling from the principal, not code |
+| **TECH · inside** | **2** | Supplies the trigger — the job that detects also fixes |
+| **FUND · method choice** | **3** | Sweeps each discovered defect across all 90 names |
+| **FUND · inside** | **1** | Supplies the counter — `recurred` |
+
+Read the other way: **1 → FUND·inside, 2 → TECH·inside, 3 → FUND·method,
+4 → MC·both, 5 → TECH·method.** THE BUILD ORDER IS NOT MATRIX ORDER — the
+matrix is organised by lens and the order is by value ÷ effort, so it starts at
+the bottom-right cell and works back. The two boxes it reaches last are the two
+hardest: the bake-off because the statistics are genuinely difficult, and the
+technical actuator because it waits on a person rather than on work.
+
+### 6.2 Relative size — ESTIMATED, NOT MEASURED
+
+| Item | Relative size | Why |
+|---|---|---|
+| **2 · auto-heal tech record** | **1× (baseline)** | One workflow step, one entry point, one named trap. The smallest real unit of work here |
+| **1 · instrument `recurred`** | **2–3×** | Schema change, matcher, negative control, page rebuild — but the matcher already exists |
+| **3 · sweep invariants** | **4–6×** | Touches all 90 names; more iterations against gates |
+| **4 · MC bake-off** | **10–20×** | Pre-registration, component registry, cross-product runs, and the statistical judgement about whether a winner is real |
+| **5 · technical actuator** | **0** | A decision, not a session |
+
+**THE COST DRIVER IN THIS REPOSITORY IS THE CONTEXT, NOT THE CODE.** `CLAUDE.md`
+plus the ~55,000-character digest is read before any work starts, and the gate
+suite is 220 steps. Items 1–3 are small edits wrapped in a large read-and-verify
+cycle, which is why item 2 is not much cheaper than item 1 despite being simpler.
+
+**CALIBRATE ON ITEM 2 RATHER THAN TRUSTING THIS COLUMN.** Run item 2 first, read
+the session's own usage before and after, and multiply. One measurement replaces
+the whole table — which is this repository's standing preference and the reason
+these figures are labelled rather than quoted.
+
+### 6.3 What to run each item on — as at 17-09-2026
+
+| Item | Model | Effort | Why |
+|---|---|---|---|
+| **1 · instrument `recurred`** | `claude-opus-5` | **xhigh** | Well specified, acceptance test written, matcher already exists |
+| **2 · auto-heal tech record** | `claude-opus-5` | **high** | Smallest item, proven pattern to copy, and its one trap is named below |
+| **3 · sweep invariants** | `claude-opus-5` | **xhigh** | Multi-file, touches 90 names, needs care about population anchoring |
+| **4 · MC bake-off** | `claude-fable-5-1`, or `claude-opus-5` at **max** | **max** | The only genuinely hard one — multiple testing, holdout design, judging whether a winner is real. Correctness matters more than cost |
+| **5 · technical actuator** | — | — | A ruling, not a coding session |
+
+Two standing points rather than preferences: long-horizon agentic work runs at
+high or xhigh **with the full task spec given up front**, which is what this
+document is for — point the session at this path in its first message rather
+than drip-feeding it; and DO NOT DOWNGRADE THE MODEL TO SAVE COST on items 1–3,
+which is a decision for the principal and not a default.
+
+**THIS TABLE HAS A SHELF LIFE.** Model availability, effort levels and prices
+move, and a recommendation is a claim about the world that rots [R-DOC-02].
+Re-read the current guidance rather than this table before starting an item.
+
+---
+
+## 7. RULES THAT BIND ANY OF THIS WORK
 
 - **[R-ENF-03]** one implementation, not two. Replay the shipped code; never
   re-implement it for testing. A replay that re-derives is scoring a different
@@ -299,7 +371,7 @@ another. Whatever actuator is chosen must live inside the technical lens.
 
 ---
 
-## 7. OPEN ITEMS FOUND DURING THE AUDIT
+## 8. OPEN ITEMS FOUND DURING THE AUDIT
 
 Not part of the five, but found while reading and worth someone's attention.
 
@@ -323,7 +395,7 @@ Not part of the five, but found while reading and worth someone's attention.
 
 ---
 
-## 8. THE ONE-LINE SUMMARY
+## 9. THE ONE-LINE SUMMARY
 
 Four of the five human boxes are human because of a missing trigger, a missing
 candidate list, or a missing counter — engineering gaps, not research ones. Items
