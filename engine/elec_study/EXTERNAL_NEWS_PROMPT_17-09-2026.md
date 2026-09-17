@@ -35,7 +35,7 @@ the company's own filing.
 
 - **Exchange code:** `EGX:ELEC`
 - **Registered Arabic name:** NOT HELD IN THIS REPOSITORY — resolve it first, from the company's own filings or the exchange's listing page, and search under it as well as under the English name. Half the record that matters on this exchange is not written in English.
-- **The information set already covers** everything up to and including Q1-2026 (three months ended 31 March 2026), interim filing — the statements themselves are not held (2026-03-31). Anything earlier is already consumed; what is wanted is what came after.
+- **The information set already covers** everything up to and including Q1-2026 (three months ended 31 March 2026), interim filing — the statements themselves are not held (2026-03-31). This is the period this study's FORECAST is anchored on — the study may have read LATER disclosures than this, so treat it as a floor, not a cutoff. Anything earlier is already consumed; what is wanted is what came after.
 - **Sweep register: NONE.** This study registers no dated searches at all, so NOTHING is known to have been looked for and not found. Nothing below tells you where not to look, and an empty result from you is a first search rather than a second one.
 
 **No committed driver list.** This study registers no drivers through the shared register, so the headings below cannot be given. Search the ordinary operating record — volumes, prices, capacity, input costs, debt and any corporate action — and let the study map the returns.

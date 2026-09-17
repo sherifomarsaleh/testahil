@@ -35,7 +35,7 @@ the company's own filing.
 
 - **Exchange code:** `EGX:PHAR`
 - **Registered Arabic name:** NOT HELD IN THIS REPOSITORY — resolve it first, from the company's own filings or the exchange's listing page, and search under it as well as under the English name. Half the record that matters on this exchange is not written in English.
-- **The information set already covers** everything up to and including Q1-2026, reviewed interim (2026-03-31). Anything earlier is already consumed; what is wanted is what came after.
+- **The information set already covers** everything up to and including Q1-2026, reviewed interim (2026-03-31). This is the period this study's FORECAST is anchored on — the study may have read LATER disclosures than this, so treat it as a floor, not a cutoff. Anything earlier is already consumed; what is wanted is what came after.
 - **Sweep register:** 27 findings, swept 2026-08-09.
 - **ALREADY SEARCHED AND NOT FOUND** — do not spend the pass rediscovering these; if you DO find one, that is the most valuable thing in the return:
     - *Negative search — nothing found (Volume, price or utilisation guidance for the biologicals facility, sought across the company's annual reports, its investor presentation and every 2026 press release on its own site. The plant's products and investment are described; nothing quantifies its expected revenue)* — searched 2026-08-09, in negative search

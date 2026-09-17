@@ -104,12 +104,28 @@ def block(tk, T):
                    'own register (they are search strings, not the registered name): %s'
                    % '; '.join('`%s`' % a for a in ar))
 
+    # THE INFORMATION SET'S END IS THE BRIDGE'S BALANCE-SHEET DATE, NOT THE FORECAST
+    # ANCHOR. The anchor names the latest reviewed period the FORECAST is built on; the
+    # bridge names the latest disclosure the study actually READ, and on ARCC the two
+    # differed by six months — the prompt told two engines the set ended at FY2025 when
+    # the study stood on 30 June 2026, and one of them excluded a capital reduction on
+    # that basis. Prefer the bridge; fall back to the anchor and SAY which is quoted.
+    bridge = (nums or {}).get('bridge_record') if isinstance(nums, dict) else None
     anchor = (nums or {}).get('forecast_anchor') if isinstance(nums, dict) else None
-    if isinstance(anchor, dict) and anchor.get('latest_reviewed_period'):
+    latest = None
+    if isinstance(bridge, dict) and bridge.get('latest_disclosed_date'):
+        latest = (bridge.get('latest_disclosed_source') or 'the latest disclosure this '
+                  'study records reading', bridge['latest_disclosed_date'],
+                  'the balance sheet this study\'s bridge stands on')
+    elif isinstance(anchor, dict) and anchor.get('latest_reviewed_period'):
+        latest = (anchor['latest_reviewed_period'], anchor.get('latest_reviewed_date'),
+                  'the period this study\'s FORECAST is anchored on — the study may have '
+                  'read LATER disclosures than this, so treat it as a floor, not a cutoff')
+    if latest:
         out.append('- **The information set already covers** everything up to and '
-                   'including %s (%s). Anything earlier is already consumed; what is '
-                   'wanted is what came after.'
-                   % (anchor['latest_reviewed_period'], anchor.get('latest_reviewed_date')))
+                   'including %s (%s). This is %s. Anything earlier is already consumed; '
+                   'what is wanted is what came after.'
+                   % (str(latest[0])[:400], latest[1], latest[2]))
     else:
         out.append('- **The information set\'s end is NOT committed by this study** — it '
                    'declares no latest-reviewed period, so nothing here tells you where '

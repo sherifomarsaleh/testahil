@@ -14,8 +14,8 @@ I opened myself on 2026-09-17, named with its URL; what is not, says so.
 | Host | Result | Note |
 |---|---|---|
 | `www.amoceg.com` | **REACHABLE**, HTTP 200 | The company's own site and its full investor-relations tree: news, press releases, financial statements, shareholder structure, board resolutions, general-assembly minutes, IR presentations. |
-| `www.egx.com.eg` | **REFUSED** (empty reply from server) | Two URLs attempted: `NewsDetails.aspx?NewsID=293296`, `CompanyDetails.aspx?ISIN=EGS380P1C010`. Return B's five EGX NewsID citations therefore **could not be verified from here**. |
-| `www.petroleum.gov.eg` | Reachable but **JS-gated** | The page return B cites renders a headline about the general assemblies of **El Nasr Petroleum and Suez Petroleum Processing** — not AMOC. |
+| `www.egx.com.eg` | **REFUSED** (empty reply from server) | Two URLs attempted: `NewsDetails.aspx?NewsID=293296`, `CompanyDetails.aspx?ISIN=EGS380P1C010`. Gemini's five EGX NewsID citations therefore **could not be verified from here**. |
+| `www.petroleum.gov.eg` | Reachable but **JS-gated** | The page Gemini cites renders a headline about the general assemblies of **El Nasr Petroleum and Suez Petroleum Processing** — not AMOC. |
 
 The company's own channel being open matters more than any single lead: SIGCM clause 1 and
 the primary-source rule both say to go there first, and this study has never had a
@@ -49,14 +49,14 @@ registered attempt either way.
 
 ## 2. The findings, adjudicated
 
-### 2.1 CHP / Intro Utilities — REAL, and return A's negative search on it was WRONG
+### 2.1 CHP / Intro Utilities — REAL, and Perplexity's negative search on it was WRONG
 
-Return B reported a 30 July 2026 Heads of Terms with Intro Utilities for a BOOT combined
-heat-and-power plant. Return A ran a negative search on exactly this category and reported
+Gemini reported a 30 July 2026 Heads of Terms with Intro Utilities for a BOOT combined
+heat-and-power plant. Perplexity ran a negative search on exactly this category and reported
 "no AMOC-specific capacity expansion, turnaround/outage, commissioning or production-capacity
 announcement located."
 
-I opened both of B's sources. **The event is real**, and every figure B reports reproduces
+I opened both of Gemini's sources. **The event is real**, and every figure B reports reproduces
 verbatim from `petro-news.com/170955` (bylined محمد أبو الخير, dated 30 July 2026):
 
 - MoU "مذكرة الشروط الأساسية لبدء الدراسة الفنية التفصيلية" — heads of terms to begin the
@@ -74,7 +74,7 @@ verbatim from `petro-news.com/170955` (bylined محمد أبو الخير, dated
    at the company's headquarters, with two EGPC officials present, is absent from the issuer's
    own channel. That absence is itself a registered fact, not an oversight to paper over.
 2. The two sources **disagree on the chairman's first name** (petro-news ماجد الكُردي,
-   alamaltaqa مجدي الكردي), and **return B misattributed an Intro Utilities person to AMOC**
+   alamaltaqa مجدي الكردي), and **Gemini misattributed an Intro Utilities person to AMOC**
    (المهندسة نعيمة حمد الله is named under Intro Utilities in the Arabic, as its project
    manager; B lists her as AMOC's "General Project Coordinator").
 3. **EGP 49mn a year is the company's share of a projected saving, from a press account of a
@@ -82,35 +82,35 @@ verbatim from `petro-news.com/170955` (bylined محمد أبو الخير, dated
    study is not a commitment. **It does not move a driver.** What it does do is bear on the
    capex and utility-cost path if it proceeds, so it is registered and watched.
 
-### 2.2 Return B's shareholder table is WRONG against the issuer's own page
+### 2.2 Gemini's shareholder table is WRONG against the issuer's own page
 
-B sourced its ownership table to a data vendor. Two lines disagree with what the company
+Gemini sourced its ownership table to a data vendor. Two lines disagree with what the company
 publishes itself:
 
-| Line | Return B (vendor) | AMOC's own site | |
+| Line | Gemini (vendor) | AMOC's own site | |
 |---|---|---|---|
 | Misr Capital | 8.047% | **3.544%** | disagrees |
 | Libya Investment Company | 5.265% | **not on the issuer's list** | disagrees |
 | Misr Life Insurance | absent | **4.54%** | omitted by B |
 
-B is also internally inconsistent here: its own negative search records that Libya Investment
+Gemini is also internally inconsistent here: its own negative search records that Libya Investment
 sold down in early 2025 and February 2026 — which is consistent with the issuer's list not
-carrying it — while its table reports the stale holding as current. This is SIGCM clause 1
+carrying it — while its own table reports the stale holding as current. This is SIGCM clause 1
 exactly: a vendor's restated summary standing in for the issuer's own disclosure, and being
 wrong.
 
 ### 2.3 Leads that stand, untraced, and need the EGX archive
 
-- **EGX short-selling / securities-lending eligibility, ~20 Aug 2026** (return A only).
+- **EGX short-selling / securities-lending eligibility, ~20 Aug 2026** (Perplexity only).
   Market structure, not operations. Untraced — EGX refused.
 - **Ministry of Finance state-stake sales Jan–Aug 2026, an AMOC transaction at EGP 338m**
-  (return A only). Return B searched for post-30-June divestments and found none, which does
+  (Perplexity only). Gemini searched for post-30-June divestments and found none, which does
   **not** contradict A, whose window opens in January. Untraced.
-- **Return B's five EGX NewsIDs** (291915, 292184, 293296, 293300, 293305) and the 27 September
+- **Gemini's five EGX NewsIDs** (291915, 292184, 293296, 293300, 293305) and the 27 September
   2026 general assembly convocation. Untraced — EGX refused. Note the 30-6-2026 statements
   they describe **are** on the company's own site, so the substance is independently confirmed
   even though the disclosure references are not.
-- **Second dividend tranche, EGP 0.20/share, scheduled 15 October 2026** (return B). Untraced.
+- **Second dividend tranche, EGP 0.20/share, scheduled 15 October 2026** (Gemini). Untraced.
   If it is a declared distribution dated after the bridge's balance-sheet date it is deductible
   under the bridge rule; if declared before, it is already out of the equity it would come from.
   **That test cannot be run until the declaration date is established from a primary document.**
@@ -124,13 +124,13 @@ engines agreeing on an absence neither can source is two models agreeing. Record
 
 ## 3. What may NOT enter this study, and why
 
-- **Brent at USD 100–107 and EGP/USD crossing 52.00 on 15 Sep 2026** (return B). A study may
+- **Brent at USD 100–107 and EGP/USD crossing 52.00 on 15 Sep 2026** (Gemini). A study may
   not carry a macro number of its own — one house path per market owns inflation, the currency
   and the terminal. If the pound has moved this far it is a **house-path** matter and must come
   from the central bank on a named date, never from a newspaper. **Registered against the EG
   path, not against AMOC.** It is live: the EG path's own FX anchor is dated 2026-08-06 and the
   path was stamped 2026-09-02, already 27 days apart inside one file.
-- **The administered fuel-price table** (return B). Regulated product prices are a real input,
+- **The administered fuel-price table** (Gemini). Regulated product prices are a real input,
   but the table is sourced to newspapers. It needs the Ministry/EGPC decision itself.
 - **FY2026 profit guidance of EGP 2.1bn**, raised by the board and carried on the company's own
   news page dated 29-06-2026. **Guidance is scored and never consumed** — a driver that takes
@@ -144,12 +144,12 @@ engines agreeing on an absence neither can source is two models agreeing. Record
 
 ## 4. Two process findings
 
-1. **Return A's stated search date is 18 September 2026 — a day the calendar has not reached**
+1. **Perplexity's stated search date is 18 September 2026 — a day the calendar has not reached**
    (today is 2026-09-17). Its negative searches are therefore dated in the future. They are
    recorded here at **2026-09-17** with the discrepancy noted, because a negative search is one
    somebody actually ran, and a date nobody has lived through cannot be one.
-2. **Return A warned explicitly against attributing Alexandria Petroleum Company's refinery
-   projects to AMOC, and return B then leaned on exactly that material** — its inter-refinery
+2. **Perplexity warned explicitly against attributing Alexandria Petroleum Company's refinery
+   projects to AMOC, and Gemini then leaned on exactly that material** — its inter-refinery
    integration section rests on a Ministry page whose readable headline is about El Nasr and
    Suez Petroleum Processing, not AMOC. Alexandria Petroleum owns 20.77% of AMOC and sits next
    door, which is precisely what makes the confusion easy. **Neither return's integration

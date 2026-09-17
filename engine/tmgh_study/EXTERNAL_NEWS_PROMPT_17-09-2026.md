@@ -35,7 +35,7 @@ the company's own filing.
 
 - **Exchange code:** `EGX:TMGH`
 - **Registered Arabic name:** NOT HELD IN THIS REPOSITORY — resolve it first, from the company's own filings or the exchange's listing page, and search under it as well as under the English name. Half the record that matters on this exchange is not written in English.
-- **The information set already covers** everything up to and including H1 2026, six months to 30 June, reviewed (2026-06-30). Anything earlier is already consumed; what is wanted is what came after.
+- **The information set already covers** everything up to and including TMG Holding interim consolidated financial statements for the three and six months ended 30 June 2026 (reviewed), taken from the company's own investor relations channel and registered line by line in inputs.BS; the walk-forward document register for this name records no later filing. (2026-06-30). This is the balance sheet this study's bridge stands on. Anything earlier is already consumed; what is wanted is what came after.
 - **Sweep register: NONE.** This study registers no dated searches at all, so NOTHING is known to have been looked for and not found. Nothing below tells you where not to look, and an empty result from you is a first search rather than a second one.
 
 **No committed driver list.** This study registers no drivers through the shared register, so the headings below cannot be given. Search the ordinary operating record — volumes, prices, capacity, input costs, debt and any corporate action — and let the study map the returns.

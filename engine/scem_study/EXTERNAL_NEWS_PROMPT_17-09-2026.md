@@ -35,7 +35,7 @@ the company's own filing.
 
 - **Exchange code:** `EGX:SCEM`
 - **Registered Arabic name:** NOT HELD IN THIS REPOSITORY — resolve it first, from the company's own filings or the exchange's listing page, and search under it as well as under the English name. Half the record that matters on this exchange is not written in English.
-- **The information set already covers** everything up to and including FY2025, audited (2025-12-31). Anything earlier is already consumed; what is wanted is what came after.
+- **The information set already covers** everything up to and including the reviewed condensed interim financial statements for the three months ended 31 March 2026, downloaded from the company's own website and read by OCR off the rendered pixels (the file carries a 37-byte text layer across 37 pages), every statement footed against its own arithmetic. It is the LATEST disclosed sheet; there is none between it and the valuation date. (2026-03-31). This is the balance sheet this study's bridge stands on. Anything earlier is already consumed; what is wanted is what came after.
 - **Sweep register:** 23 findings, swept 2026-08-06.
 - **ALREADY SEARCHED AND NOT FOUND** — do not spend the pass rediscovering these; if you DO find one, that is the most valuable thing in the return:
     - *Negative search — nothing found (sinaicement.com investor relations, EGX disclosure portal, earnings-call transcripts and results presentations for FY2024/FY2025 -- every host refused by egress policy; no transcript or presentation obtainable from search either)* — searched 2026-08-06, in negative search

@@ -1,6 +1,6 @@
 # EXTERNAL NEWS RESEARCH — hand-over pack
 
-**8 names, handed over together — but RUN ONE AT A TIME.** Runbook step 3: the session
+**7 names, handed over together — but RUN ONE AT A TIME.** Runbook step 3: the session
 builds these and STOPS. Run each name's block on TWO engines independent of each other and
 of the session that wrote it, on its own, keep the two returns APART, label each with the
 ticker and the engine, and bring both back raw.
@@ -33,7 +33,7 @@ the company's own filing.
 
 - **Exchange code:** `EGX:AMOC`
 - **Registered Arabic name:** NOT HELD IN THIS REPOSITORY — resolve it first, from the company's own filings or the exchange's listing page, and search under it as well as under the English name. Half the record that matters on this exchange is not written in English.
-- **The information set already covers** everything up to and including six months to 30 June 2026, reviewed (2026-06-30). Anything earlier is already consumed; what is wanted is what came after.
+- **The information set already covers** everything up to and including the company's own latest disclosed statements, registered document by document in this study's investor-relations register under engine/amoc_walkforward. (2026-06-30). This is the balance sheet this study's bridge stands on. Anything earlier is already consumed; what is wanted is what came after.
 - **Sweep register: NONE.** This study registers no dated searches at all, so NOTHING is known to have been looked for and not found. Nothing below tells you where not to look, and an empty result from you is a first search rather than a second one.
 
 **No committed driver list.** This study registers no drivers through the shared register, so the headings below cannot be given. Search the ordinary operating record — volumes, prices, capacity, input costs, debt and any corporate action — and let the study map the returns.
@@ -44,7 +44,7 @@ the company's own filing.
 
 - **Exchange code:** `EGX:ARCC`
 - **Registered Arabic name:** NOT HELD IN THIS REPOSITORY — resolve it first, from the company's own filings or the exchange's listing page, and search under it as well as under the English name. Half the record that matters on this exchange is not written in English.
-- **The information set already covers** everything up to and including FY2025, audited (2025-12-31). Anything earlier is already consumed; what is wanted is what came after.
+- **The information set already covers** everything up to and including the reviewed condensed consolidated interim financial statements for the six months ended 30 June 2026, from the company's own investor-relations channel and registered in this study's sweep. The valuation date IS that balance-sheet date rather than the date of the latest traded price, so no roll-forward stands between the bridge and a filing. (2026-06-30). This is the balance sheet this study's bridge stands on. Anything earlier is already consumed; what is wanted is what came after.
 - **Sweep register:** 26 findings, swept 2026-08-06.
 - **No dated negative search is registered**, so this study records nothing as having been looked for and not found.
 
@@ -68,7 +68,7 @@ the company's own filing.
 - **Exchange code:** `EGX:EGCH`
 - **Registered Arabic name:** NOT HELD IN THIS REPOSITORY — resolve it first, from the company's own filings or the exchange's listing page, and search under it as well as under the English name. Half the record that matters on this exchange is not written in English.
     - Arabic search terms THIS STUDY HAS ALREADY USED, quoted from its own register (they are search strings, not the registered name): `كيما خطة استثمارية`; `كيما مؤتمر المحللين`
-- **The information set already covers** everything up to and including FY2024/25, audited (2025-06-30). Anything earlier is already consumed; what is wanted is what came after.
+- **The information set already covers** everything up to and including the reviewed interim statements for the nine months ended 31 March 2026 (limited review dated 20 May 2026), read from the rendered pages and registered in this study's sweep. No later filing exists: the annual for the year to 30 June 2026 is filed in September or October on the company's own pattern. (2026-03-31). This is the balance sheet this study's bridge stands on. Anything earlier is already consumed; what is wanted is what came after.
 - **Sweep register:** 27 findings, swept 2026-09-01.
 - **ALREADY SEARCHED AND NOT FOUND** — do not spend the pass rediscovering these; if you DO find one, that is the most valuable thing in the return:
     - *Negative search — nothing found (new Egyptian nitrogen/urea plant announcements 2025-2026 beyond existing producers' debottlenecks (searched: Egypt new urea plant 2026, NCIC expansion, green ammonia greenfield urea))* — searched 2026-09-01, in negative search
@@ -93,7 +93,7 @@ the company's own filing.
 
 - **Exchange code:** `EGX:ELEC`
 - **Registered Arabic name:** NOT HELD IN THIS REPOSITORY — resolve it first, from the company's own filings or the exchange's listing page, and search under it as well as under the English name. Half the record that matters on this exchange is not written in English.
-- **The information set already covers** everything up to and including Q1-2026 (three months ended 31 March 2026), interim filing — the statements themselves are not held (2026-03-31). Anything earlier is already consumed; what is wanted is what came after.
+- **The information set already covers** everything up to and including Q1-2026 (three months ended 31 March 2026), interim filing — the statements themselves are not held (2026-03-31). This is the period this study's FORECAST is anchored on — the study may have read LATER disclosures than this, so treat it as a floor, not a cutoff. Anything earlier is already consumed; what is wanted is what came after.
 - **Sweep register: NONE.** This study registers no dated searches at all, so NOTHING is known to have been looked for and not found. Nothing below tells you where not to look, and an empty result from you is a first search rather than a second one.
 
 **No committed driver list.** This study registers no drivers through the shared register, so the headings below cannot be given. Search the ordinary operating record — volumes, prices, capacity, input costs, debt and any corporate action — and let the study map the returns.
@@ -104,7 +104,7 @@ the company's own filing.
 
 - **Exchange code:** `EGX:PHAR`
 - **Registered Arabic name:** NOT HELD IN THIS REPOSITORY — resolve it first, from the company's own filings or the exchange's listing page, and search under it as well as under the English name. Half the record that matters on this exchange is not written in English.
-- **The information set already covers** everything up to and including Q1-2026, reviewed interim (2026-03-31). Anything earlier is already consumed; what is wanted is what came after.
+- **The information set already covers** everything up to and including Q1-2026, reviewed interim (2026-03-31). This is the period this study's FORECAST is anchored on — the study may have read LATER disclosures than this, so treat it as a floor, not a cutoff. Anything earlier is already consumed; what is wanted is what came after.
 - **Sweep register:** 27 findings, swept 2026-08-09.
 - **ALREADY SEARCHED AND NOT FOUND** — do not spend the pass rediscovering these; if you DO find one, that is the most valuable thing in the return:
     - *Negative search — nothing found (Volume, price or utilisation guidance for the biologicals facility, sought across the company's annual reports, its investor presentation and every 2026 press release on its own site. The plant's products and investment are described; nothing quantifies its expected revenue)* — searched 2026-08-09, in negative search
@@ -130,7 +130,7 @@ the company's own filing.
 
 - **Exchange code:** `EGX:SCEM`
 - **Registered Arabic name:** NOT HELD IN THIS REPOSITORY — resolve it first, from the company's own filings or the exchange's listing page, and search under it as well as under the English name. Half the record that matters on this exchange is not written in English.
-- **The information set already covers** everything up to and including FY2025, audited (2025-12-31). Anything earlier is already consumed; what is wanted is what came after.
+- **The information set already covers** everything up to and including the reviewed condensed interim financial statements for the three months ended 31 March 2026, downloaded from the company's own website and read by OCR off the rendered pixels (the file carries a 37-byte text layer across 37 pages), every statement footed against its own arithmetic. It is the LATEST disclosed sheet; there is none between it and the valuation date. (2026-03-31). This is the balance sheet this study's bridge stands on. Anything earlier is already consumed; what is wanted is what came after.
 - **Sweep register:** 23 findings, swept 2026-08-06.
 - **ALREADY SEARCHED AND NOT FOUND** — do not spend the pass rediscovering these; if you DO find one, that is the most valuable thing in the return:
     - *Negative search — nothing found (sinaicement.com investor relations, EGX disclosure portal, earnings-call transcripts and results presentations for FY2024/FY2025 -- every host refused by egress policy; no transcript or presentation obtainable from search either)* — searched 2026-08-06, in negative search
@@ -149,22 +149,11 @@ the company's own filing.
 
 ---
 
-## SWDY — Elsewedy Electric
-
-- **Exchange code:** `EGX:SWDY`
-- **Registered Arabic name:** NOT HELD IN THIS REPOSITORY — resolve it first, from the company's own filings or the exchange's listing page, and search under it as well as under the English name. Half the record that matters on this exchange is not written in English.
-- **The information set's end is NOT committed by this study** — it declares no latest-reviewed period, so nothing here tells you where the already-consumed record stops. Treat the whole of 2026 as open and say in the return what period each finding belongs to.
-- **Sweep register: NONE.** This study registers no dated searches at all, so NOTHING is known to have been looked for and not found. Nothing below tells you where not to look, and an empty result from you is a first search rather than a second one.
-
-**No committed driver list.** This study registers no drivers through the shared register, so the headings below cannot be given. Search the ordinary operating record — volumes, prices, capacity, input costs, debt and any corporate action — and let the study map the returns.
-
----
-
 ## TMGH — Talaat Moustafa Group Holding
 
 - **Exchange code:** `EGX:TMGH`
 - **Registered Arabic name:** NOT HELD IN THIS REPOSITORY — resolve it first, from the company's own filings or the exchange's listing page, and search under it as well as under the English name. Half the record that matters on this exchange is not written in English.
-- **The information set already covers** everything up to and including H1 2026, six months to 30 June, reviewed (2026-06-30). Anything earlier is already consumed; what is wanted is what came after.
+- **The information set already covers** everything up to and including TMG Holding interim consolidated financial statements for the three and six months ended 30 June 2026 (reviewed), taken from the company's own investor relations channel and registered line by line in inputs.BS; the walk-forward document register for this name records no later filing. (2026-06-30). This is the balance sheet this study's bridge stands on. Anything earlier is already consumed; what is wanted is what came after.
 - **Sweep register: NONE.** This study registers no dated searches at all, so NOTHING is known to have been looked for and not found. Nothing below tells you where not to look, and an empty result from you is a first search rather than a second one.
 
 **No committed driver list.** This study registers no drivers through the shared register, so the headings below cannot be given. Search the ordinary operating record — volumes, prices, capacity, input costs, debt and any corporate action — and let the study map the returns.

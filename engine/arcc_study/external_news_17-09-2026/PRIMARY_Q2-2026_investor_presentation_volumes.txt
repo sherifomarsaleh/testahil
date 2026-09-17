@@ -1,0 +1,21 @@
+ACC Sales volumes            Unit    2Q2026    2Q2025    Variance %   1H2026         1H2025     Variance %
+Local Sales Volume          K Tons    768.2     729.9       5%        1,596.8        1,466.0       9%
+Cement Exports Volume       K Tons    141.6     147.1      -4%         271.3          247.4       10%
+Clinker Export volume       K Tons    166.4     269.2      -38%        269.3          549.5       -51%
+ACC Total Volumes           K Tons   1,076.2   1,146.2     -6%        2,137.4        2,263.0      -6%
+                                                         10
+Total Export                K Tons    308.0     416.3    % -26%        540.7          796.9       -32%
+
+ACC Production Indicators    Unit    2Q2026    2Q2025    Variance %   1H2026         1H2025     Variance %
+Clinker Production          K Tons   1,035.5    846.1      22%        1,897.0        1,754.7       8%
+                                               25
+Clinker Utilization Rate     PCT      99%      % 81%       18%         90%            84%          7%
+Cement Production           K Tons    803.0     866.9      -7%        1,601.1        1,735.6      -8%
+                                                                                65
+Cement Utilization Rate      PCT      68%       74%        -5%         68%      %     74%         -6%
+
+Market Overview              Unit    2Q2026    2Q2025    Variance %   1H2026         1H2025     Variance %
+Cement Domestic Sales       K Tons   13,887.3 12,392.4     12%        27,242.0       25,108.6      8%
+Clinker Export Sales        K Tons   1,685.6   2,208.5     -24%       2,971.8        4,264.4      -30%
+Cement Export Sales         K Tons   2,793.9   2,967.5     -6%        4,692.2        5,548.1      -15%
+Total Export Sales          K Tons   4,479.5   5,176.0     -13%       7,664.1        9,812.4      -22%

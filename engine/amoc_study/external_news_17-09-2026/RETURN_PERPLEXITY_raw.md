@@ -1,4 +1,4 @@
-# AMOC — external news return A (engine NOT LABELLED by the principal; delivered in chat)
+# AMOC — external news return, PERPLEXITY (delivered in chat)
 # Received 2026-09-17. Stored verbatim as delivered. Leads only; nothing here is an input.
 
 Search completed for the period **1 July–18 September 2026**. The issuer's Arabic name is
