@@ -429,7 +429,18 @@ def main():
                       "wedge_fy25": ST.WEDGE_25,
                       "wedge_over_revenue": ST.WEDGE_RATIO,
                       "audited_rounding": ST.AUDITED_ROUNDING},
-            "cash_conversion": {**ST.CONV, "mean": ST.CONV_MID,
+            # `mean` IS KEPT AND IS NO LONGER A MEAN, so what it now carries and what it
+            # used to carry are BOTH exposed under names that describe them. The key
+            # outlived its construction when the 17-09-2026 re-anchoring moved the rate
+            # onto the reviewed half, and the delivered document printed it beside the
+            # three published years as their average -- an arithmetic claim a reader can
+            # check on the page and find false. `mean` stays only so nothing reading the
+            # old shape silently loses the figure; every new site reads `carried`.
+            "cash_conversion": {**ST.CONV, "carried": ST.CONV_MID,
+                                "mean_3y": ST.CONV_MEAN3,
+                                "carried_basis": ("the reviewed six months to 30 June "
+                                                  "2026, cfo_1h26 over revenue_1h26"),
+                                "mean": ST.CONV_MID,
                                 "low": ST.CONV_LO, "high": ST.CONV_HI},
             "framing_a": ST.project("cycle"),
             "framing_b": ST.project("conversion"),
@@ -512,38 +523,60 @@ def main():
     _REV1Q = out["registry"]["revenue_1q26"]["value"]
     _GP1Q = out["registry"]["gross_profit_1q26"]["value"]
     _GM1Q = _GP1Q / _REV1Q
+    # THE ANCHOR IS THE REVIEWED HALF, AND THIS RECORD SAID 1Q2026 FOR A DAY AFTER IT
+    # STOPPED BEING TRUE.  The 17-09-2026 re-issue moved the gross-margin anchor onto
+    # the reviewed six months to 30 June 2026 (rebuild ledger, lever 2) and moved the
+    # bridge onto the same filing's balance sheet (lever 1) -- and this block went on
+    # naming 1Q2026 as the latest reviewed period, carrying the 1Q rate as
+    # latest_reviewed_rate, and asserting in its own note that no half-year 2026
+    # statements existed.  The MODEL was right the whole time: first_forecast_rate was
+    # already the half's 35.4670%.  What was stale was the RECORD, which is the only
+    # thing a gate outside this study can read, and check_anchor_ordering read it
+    # exactly as written -- a bridge on 30 June against a profit anchor on 31 March,
+    # which is the half-a-filing defect that gate exists for, reported against a study
+    # that had not committed it.  A LEVER APPLIED TO THE MODEL AND NOT WRITTEN INTO THE
+    # RECORD IS INVISIBLE WHERE IT COUNTS.  Nothing valued moves here.
+    _REV1H = out["registry"]["revenue_1h26"]["value"]
+    _GP1H = out["registry"]["gross_profit_1h26"]["value"]
+    _GM1H = _GP1H / _REV1H
     _GM25 = _gm_hist("2025")
     _CONV = out["statements"]["cash_conversion"]
     _CONVF = float(_FB[0]["cash_conversion"])
     _CS = out["cases"]
     # the drift the two filed periods measure, and what carrying it would cost --
     # computed here so the record states arithmetic rather than quoting a comment
-    _COSTDRIFT = ((1 - _GM1Q) / (1 - _GM25)) - 1.0
-    _c4 = (1 - _GM1Q) * (1 + _COSTDRIFT) ** 4
-    _c5 = (1 - _GM1Q) * (1 + _COSTDRIFT) ** 5
+    # MEASURED ON THE PAIR THE ANCHOR ACTUALLY SITS ON. It was FY2025-against-1Q2026
+    # while the anchor was the quarter; the anchor is the reviewed half, so the
+    # like-for-like pair is FY2025-against-1H2026 and the drift is recomputed on it.
+    _COSTDRIFT = ((1 - _GM1H) / (1 - _GM25)) - 1.0
+    _c4 = (1 - _GM1H) * (1 + _COSTDRIFT) ** 4
+    _c5 = (1 - _GM1H) * (1 + _COSTDRIFT) ** 5
     out["forecast_anchor"] = dict(
         rate_name="gross margin",
-        latest_reviewed_period="1Q2026, three months ended 31 March 2026",
-        latest_reviewed_date="2026-03-31",
-        latest_reviewed_rate=float(_GM1Q),
+        latest_reviewed_period="1H2026, six months ended 30 June 2026",
+        latest_reviewed_date="2026-06-30",
+        latest_reviewed_rate=float(_GM1H),
         first_forecast_rate=float(_GMP[0]),
         forecast_path=_GMP,
         note=(
             "NEITHER CLAUSE FIRES AND THE ANCHOR IS EXACT. The forecast gross margin IS "
             "the latest reviewed period's rate, %.4f%%, and it is held there for every "
             "one of the %d explicit years: the model sets the forward margin equal to the "
-            "1Q2026 margin and solves cost per delivered unit from it, so the opening year "
-            "and the latest reviewed period are the same number by construction and the "
-            "path is flat. THE LATEST REVIEWED PERIOD IS THE NEWEST DISCLOSURE OF ANY "
-            "KIND: this study's own gap register records that no second-quarter or "
-            "half-year 2026 statements or release were posted to the company's result "
-            "centre at this build, so the information set ends at 1Q2026. The two figures "
-            "forming the rate are the company's own 1Q2026 earnings release of 20 May "
-            "2026 -- revenue EGP %s mn and gross profit EGP %s mn, the release itself "
-            "stating the margin as %.0f%% -- and the consolidated "
-            "statements for those same three months, which carry a limited review report, "
-            "are what the balance sheet in the bridge stands on. Nothing here is "
-            "estimated, interpolated or inferred. "
+            "reviewed half's margin and solves cost per delivered unit from it, so the "
+            "opening year and the latest reviewed period are the same number by "
+            "construction and the path is flat. THE LATEST REVIEWED PERIOD IS THE NEWEST "
+            "DISCLOSURE OF ANY KIND: the consolidated statements for the six months ended "
+            "30 June 2026, which carry a limited review report, are held, read and footed, "
+            "so the information set ends there -- AND THE BALANCE SHEET IN THE BRIDGE "
+            "STANDS ON THAT SAME FILING, so the profit anchor and the bridge come out of "
+            "one document rather than out of half of one. The two figures forming the rate "
+            "are that half's own revenue of EGP %s mn and gross profit of EGP %s mn, a "
+            "margin of %.4f%%. The 1Q2026 earnings release of 20 May 2026 -- revenue EGP "
+            "%s mn, gross profit EGP %s mn, the release itself rounding the margin to "
+            "%.0f%% -- IS SUPERSEDED AND IS NAMED RATHER THAN DROPPED: it anchored this "
+            "rate until 17-09-2026 at %.4f%%, seventeen hundredths of a point away, and a "
+            "reviewed half replaces a release that rounded its gross profit to the nearest "
+            "hundred million. Nothing here is estimated, interpolated or inferred. "
             "WHAT THE RECORD MAKES VISIBLE, AND WHICH NO SENTENCE IN THE STUDY SAYS: "
             "against the audited FULL YEAR the forecast sits %.2f%% relatively BELOW -- "
             "FY2025 %.2f%% against a forecast %.2f%% -- and had the anchor been that full "
@@ -554,26 +587,30 @@ def main():
             "is FY2023 %.2f%%, FY2024 %.2f%%, FY2025 %.2f%%, so the forecast sits above "
             "the first two audited years and below the third. "
             "THE DRIFT THAT IS MEASURED AND NOT CARRIED, recorded rather than left out. "
-            "The FY2025-to-1Q2026 pair moves cost per unit of revenue from %.3f%% to "
+            "The FY2025-to-1H2026 pair moves cost per unit of revenue from %.3f%% to "
             "%.3f%%, a rise of %.2f%% -- a like-for-like direction that would support an "
             "input-cost mechanism if a drift were being claimed. None is claimed: price "
             "and cost escalate on the same path, so the margin neither rises nor falls, "
             "and declining to extrapolate a drift is not a decline away from the anchor. "
-            "The model states why it is not extrapolated -- one quarter against one "
+            "The model states why it is not extrapolated -- one reviewed half against one "
             "audited year is a single observation on a developer whose margin moves with "
             "which project happens to hand over. What carrying it would cost is arithmetic on "
             "those two filed periods and is stated rather than asserted: cost per unit of "
             "revenue compounding at that rate reaches %.2f%% of revenue after four years, "
             "a gross margin of %.2f%%, and passes 100%% in the fifth -- a margin of %.2f%%, "
             "which is a loss on every delivered unit. A rate that takes a company to a "
-            "loss inside its own explicit window on the strength of one quarterly print is "
+            "loss inside its own explicit window on the strength of one reviewed half is "
             "an extrapolation, not an anchor. "
             "THE OTHER CANDIDATE RATE IS NAMED HERE BECAUSE IT IS THE ONE THAT CARRIES "
             "THE VALUE. The published central does not stand on the gross margin. It "
             "stands on the framing in which operating cash is set at a fixed share of "
             "revenue and working capital is the derived line, and that share is %.3f%% -- "
-            "the MEAN of the company's three published years, FY2023 %.2f%%, FY2024 "
-            "%.2f%%, FY2025 %.2f%% -- held flat across the window. It sits %.1f%% "
+            "THE REVIEWED SIX MONTHS TO 30 JUNE 2026, not a mean, held flat across the "
+            "window -- the published years it replaces being FY2023 %.2f%%, FY2024 %.2f%% "
+            "and FY2025 %.2f%%, whose mean is a different number and is exposed beside it "
+            "as mean_3y. THIS CLAUSE CALLED THE CARRIED RATE THAT MEAN until the "
+            "17-09-2026 re-anchoring was written into the record, which is a claim a "
+            "reader can check on the page and find false. It sits %.1f%% "
             "relatively ABOVE the latest disclosed year rather than below it, so no "
             "clause of this rule reaches it: a rate above the latest period is what the "
             "two-sided gap trigger and the sign test audit. It is recorded because the "
@@ -583,18 +620,24 @@ def main():
             "a three-year mean, and the study's own grid prices the difference: EGP %.2f "
             "a share at the FY2025 rate, EGP %.2f at the mean and EGP %.2f at the FY2024 "
             "rate, on one discount schedule, with the rate the traded price implies, "
-            "%.2f%%, sitting between the first two. NO REVIEWED COMPARATOR FOR THIS RATE "
-            "CAN BE FORMED FROM WHAT THIS STUDY HOLDS -- 1Q2026 discloses revenue, gross "
-            "profit and net profit and no cash-flow statement -- and none is estimated to "
-            "fill the gap. The same model with the collection cycle held instead of the "
+            "%.2f%%, sitting between the first two. A REVIEWED COMPARATOR FOR THIS RATE "
+            "NOW EXISTS AND IS WHAT THE RATE STANDS ON: the reviewed six months to 30 June "
+            "2026 disclose an operating cash flow, and the 17-09-2026 re-issue anchored the "
+            "conversion on that half rather than on the three-year mean it had carried -- "
+            "the single largest lever in that rebuild. THIS SENTENCE SAID THE OPPOSITE FOR "
+            "A DAY, having been written when the study held only 1Q2026, which discloses "
+            "revenue, gross profit and net profit and no cash-flow statement. Nothing is "
+            "estimated to fill any gap. The same model with the collection cycle held instead of the "
             "conversion yields a NEGATIVE EGP %.2f a share and is published as a funding "
             "statement rather than as a value, which is the disagreement this record sits "
             "inside."
             % (100 * _GMP[0], len(_GMP),
+               "{:,.2f}".format(_REV1H), "{:,.2f}".format(_GP1H), 100 * _GM1H,
                "{:,.0f}".format(_REV1Q), "{:,.0f}".format(_GP1Q), 100 * _GM1Q,
+               100 * _GM1Q,
                100 * (_GM25 - _GMP[0]) / _GM25, 100 * _GM25, 100 * _GMP[0],
                100 * _gm_hist("2023"), 100 * _gm_hist("2024"), 100 * _GM25,
-               100 * (1 - _GM25), 100 * (1 - _GM1Q),
+               100 * (1 - _GM25), 100 * (1 - _GM1H),
                100 * _COSTDRIFT,
                100 * _c4, 100 * (1 - _c4), 100 * (1 - _c5),
                100 * _CONVF,

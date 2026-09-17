@@ -13,7 +13,8 @@ from docx.shared import Pt, Cm
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-from docx_phdc import _style, para, table, bullets, scrub, column_audit, MUTED, ACCENT
+from docx_phdc import (_style, para, table, bullets, scrub, column_audit,
+                       fit_widths, MUTED, ACCENT)
 
 N = json.load(open(os.path.join(HERE, "study_numbers.json")))
 REG, D, W = N["registry"], N["derived"], N["wacc"]
@@ -125,9 +126,21 @@ def build(path):
                     if isinstance(val, float) else "{:,}".format(val))
             rows.append([k.replace("_", " "), sval, rec.get("unit", ""),
                          rec["date"], rec["tier"], rec["source"][:200]])
+        # MEASURED, NOT TYPED. These six widths were chosen by eye and two of them were
+        # a tenth of a centimetre short of the widest figure they carry, so a date and a
+        # value wrapped -- which is how "2025-12-" ends up on one line and "31" on the
+        # next. fit_widths sizes on THIS register's own cells AT THE SIZE THEY ARE SET
+        # (7.5pt, not the document default) and raises rather than squeezing.
+        # THE FIGURE COLUMNS ARE SIZED ON THEIR WIDEST FIGURE; THE SOURCE COLUMN WRAPS BY
+        # DESIGN. fit_widths treats every column as must-not-wrap and so refuses this
+        # table outright -- it wants 10.5cm for a 200-character prose cell -- which is the
+        # right answer to the wrong question: a source sentence is meant to wrap and a
+        # figure is not, and only the second is what the width gate checks. So the five
+        # narrow columns carry their measured minima and the prose column takes the rest.
+        # Value and Date were a tenth of a centimetre short of the figures they print.
         table(doc, ["Input", "Value", "Unit", "Date", "Tier",
                     "Source and construction"], rows,
-              [3.2, 2.1, 1.6, 1.9, 1.4, 6.4], size=7.5)
+              [3.2, 2.35, 1.6, 2.0, 1.4, 6.05], size=7.5)
 
     doc.add_heading("3  Judgements, and what would overturn each", level=1)
     table(doc, ["Judgement", "What was decided", "What would overturn it"],

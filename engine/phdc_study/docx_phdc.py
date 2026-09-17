@@ -83,28 +83,6 @@ def pick(rows, fmt):
     return [fmt(rows[i]) for i in display_years(rows)]
 
 
-def wide_widths(rows, label_cm=3.5, total_cm=16.2):
-    """Column widths for a seven-year table, sized on the WIDEST CELL rather than by feel.
-
-    THE LABEL COLUMN WAS 4.6cm AND IT COST A NUMBER [corrected 03-Sep-2026]. That left
-    1.66cm for each year, and "-110,168" — eight characters — does not fit it in Georgia at
-    this size. Word breaks a line after a hyphen, so the 2035 and 2040 cost-of-revenue
-    cells rendered as a bare "-" with "110,168" on the line beneath: a figure a reader
-    takes for a positive number, or for a dash meaning "not applicable".
-
-    The column audit called the table CLEAN, and correctly by its own lights — the column
-    is not starved ON AVERAGE. One row is a single character wider than every other, and
-    an average cannot see one row.
-
-    A NON-BREAKING MINUS WAS TRIED FIRST AND MADE IT WORSE, which is worth recording: U+2212
-    is typographically correct and is WIDER than a hyphen, so every cell in the row then
-    wrapped mid-number ("-25,90" / "2"). The character was never the problem. Per
-    [R-COC-01], when a fix makes the thing worse the diagnosis was wrong: the column is too
-    narrow for its content, and the fix is to widen it. The label column loses 0.6cm, which
-    it can afford — its longest label already wraps to two lines by design.
-    """
-    n = len(display_years(rows))
-    return [label_cm] + [round((total_cm - label_cm) / n, 2)] * n
 
 
 def q(key):
@@ -162,8 +140,35 @@ def bullets(doc, items, size=10):
         p.paragraph_format.space_after = Pt(3)
 
 
+AUTO = "__fit__"
+
+
+try:
+    from col_width import fit_widths
+except ModuleNotFoundError:  # loaded by path
+    import importlib.util as _ilu, os as _os
+    _sp = _ilu.spec_from_file_location("col_width", _os.path.join(
+        _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))), "col_width.py"))
+    _cw = _ilu.module_from_spec(_sp); _sp.loader.exec_module(_cw)
+    fit_widths = _cw.fit_widths
+
+
 def table(doc, headers, rows, widths, caption=None, size=8.5):
-    """Fixed layout with explicit widths — no column may starve or bloat."""
+    """Fixed layout with explicit widths — no column may starve or bloat.
+
+    `widths=AUTO` sizes the table with engine/col_width.fit_widths() on THIS table's own
+    headers and cells, with every year column tied to one width (equal_from=1).
+
+    IT REPLACES wide_widths(), WHICH DIVIDED THE REMAINDER EVENLY AND THEREFORE SIZED
+    EVERY SEVEN-YEAR TABLE THE SAME WHATEVER IT CONTAINED. That was already known to be
+    the wrong shape -- its own docstring records the label column being cut from 4.6cm to
+    3.5cm after a cost-of-revenue cell rendered as a bare "-" with the digits on the line
+    beneath -- and cutting it once fixed the table in front of somebody rather than the
+    rule. A width computed from a page budget is a guess that happens to be right; a width
+    computed from the widest cell is a measurement, and it RAISES rather than squeezing.
+    """
+    if widths == AUTO:
+        widths = fit_widths(headers, rows, total_cm=16.7, equal_from=1)
     t = doc.add_table(rows=1, cols=len(headers))
     t.style = "Table Grid"
     t.alignment = WD_TABLE_ALIGNMENT.CENTER
@@ -350,7 +355,12 @@ def _count_word(n):
 def build(path):
     doc = Document()
     for s in doc.sections:
-        s.left_margin = s.right_margin = Cm(2.3)
+        # 2.3cm LEFT A TEXT WIDTH OF 16.4cm AND THE WIDEST TABLE HONESTLY NEEDS 16.56.
+        # col_width.fit_widths names three ways out -- widen the page, drop a column,
+        # or shorten a header -- and forbids the fourth, which is to squeeze. Dropping
+        # a forecast year or renaming a header to fit is changing what a reader is
+        # shown to suit the geometry; 1.5mm of margin is not. Text width is now 16.7cm.
+        s.left_margin = s.right_margin = Cm(2.15)
         s.top_margin = s.bottom_margin = Cm(2.0)
     _style(doc)
     sp, prior = PM["spot"], D["prior_edition_fair"]
@@ -577,7 +587,7 @@ def _section_one(doc, sp, base, low, high, cds, prior):
     ]
     table(doc, ["EGP mn unless stated"] + yrs,
           [[lbl] + vals for lbl, vals in body],
-          wide_widths(BU["rows"]),
+          AUTO,
           "Every line follows from the two engines above. Gross margin is what "
           "price per unit and cost per unit leave behind, not an assumption.")
     a = BU["anchors"]
@@ -661,7 +671,7 @@ def _section_one(doc, sp, base, low, high, cds, prior):
            + [("%.1f%%" % (100 * _FWD[i])) for i in display_years(wf)],
            ["Discount factor"] + pick(wf, lambda w: "%.3f" % w["discount_factor"]),
            ["Present value"] + _w("pv")],
-          wide_widths(BU["rows"]),
+          AUTO,
           "The finance charge is added back after tax because the discount rate "
           "already carries the cost of debt; leaving it in the cash flow would "
           "charge for the same thing twice. Capital expenditure is maintenance "
@@ -1236,7 +1246,7 @@ def _appendices(doc, sp, base):
            ["Tax"] + _f(FB, "tax", "{:,.0f}", -1),
            ["Net profit"] + _f(FB, "npat"),
            ["Earnings per share (EGP)"] + _f(FB, "eps", "{:,.2f}")],
-          wide_widths(BU["rows"]),
+          AUTO,
           "Five forecast years. Gross margin is what price per unit and cost "
           "per unit leave behind, never an input. Years three to five should be "
           "read against the range in section 1.9, not as points.")
@@ -1299,14 +1309,18 @@ def _appendices(doc, sp, base):
         "asks what the growth costs to fund if nothing about collection "
         "changes.",
         "The second holds cash conversion. Operating cash is set at the "
-        "company's own disclosed rate — %.1f, %.1f and %.1f per cent of "
-        "revenue in the three published years, %.1f per cent on average — and "
-        "working capital is what is left. It asks what the collection cycle "
-        "must do for the cash to keep converting as it has."
-        % (100 * ST["cash_conversion"]["FY2023"],
+        "company's own disclosed rate — %.1f per cent of revenue in the "
+        "reviewed six months to 30 June 2026, against %.1f, %.1f and %.1f per "
+        "cent in the three published years, whose average is %.1f per cent — "
+        "and working capital is what is left. The reviewed half is the rate "
+        "carried, because a near-term reviewed actual outranks a stale "
+        "full-year rate. It asks what the collection cycle must do for the "
+        "cash to keep converting as it has."
+        % (100 * ST["cash_conversion"]["carried"],
+           100 * ST["cash_conversion"]["FY2023"],
            100 * ST["cash_conversion"]["FY2024"],
            100 * ST["cash_conversion"]["FY2025"],
-           100 * ST["cash_conversion"]["mean"])])
+           100 * ST["cash_conversion"]["mean_3y"])])
     para(doc, "The valuation stands on the second, because that is the reading "
               "the company's own cash-flow statements support. The first is "
               "printed beside it because the two do not agree, and a single "
@@ -1339,7 +1353,7 @@ def _appendices(doc, sp, base):
                ["Shareholders' funds"] + _f(rows, "equity"),
                ["Total liabilities and equity"]
                + _f(rows, "total_liabs_and_equity")],
-              wide_widths(BU["rows"]),
+              AUTO,
               "Assets equal liabilities plus shareholders' funds in every "
               "year, to the same tenth of a million the audited 2025 sheet "
               "itself foots to.")
@@ -1354,7 +1368,7 @@ def _appendices(doc, sp, base):
                ["Capital expenditure"] + _f(rows, "cfi"),
                ["New borrowing drawn"] + _f(rows, "drawn"),
                ["Closing cash"] + _f(rows, "cash")],
-              wide_widths(BU["rows"]),
+              AUTO,
               None)
         table(doc, ["The cycle this implies"] + fy,
               [["Collection period, days"]
@@ -1368,7 +1382,7 @@ def _appendices(doc, sp, base):
                ["Net working capital"] + _f(rows, "net_wc"),
                ["  as a multiple of revenue"]
                + pick(rows, lambda r: "%.2f" % r["nwc_over_revenue"])],
-              wide_widths(BU["rows"]),
+              AUTO,
               ("The collection period falls from %.0f days to %.0f over five "
                "years. That is what this reading requires, and it is a large "
                "improvement to take on trust — which is exactly why the other "
@@ -1420,7 +1434,7 @@ def _appendices(doc, sp, base):
                    + pick(d["waterfall"], lambda w: "{:,.0f}".format(w["fcff"])),
                    ["Present value, on the schedule"]
                    + pick(d["waterfall"], lambda w: "{:,.0f}".format(w["pv"]))],
-                  wide_widths(BU["rows"]),
+                  AUTO,
                   "These are the figures discounted in section 1.1, shown "
                   "again here beside the statements they come out of.")
 
