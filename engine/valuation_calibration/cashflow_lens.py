@@ -106,18 +106,25 @@ class _Isolated:
         return False
 
 
-def _in(rundir):
-    """Import a run's bottom_up with its own directory as cwd, as its score.py does."""
-    if rundir in _CACHE:
-        return _CACHE[rundir]
+def _in(rundir, module="bottom_up"):
+    """Import a run's projection module with its own directory as cwd.
+
+    THE MODULE IS NAMED BECAUSE THE RUNS DO NOT AGREE ON ONE. Five write their
+    projector in bottom_up.py and GBCO writes it in score.py; a loader hard-coded to
+    one filename cannot reach the other, which is the same shape as the panel reader
+    that could not see four committed panels [L-355].
+    """
+    key = (rundir, module)
+    if key in _CACHE:
+        return _CACHE[key]
     import importlib.util
-    p = os.path.join(rundir, "bottom_up.py")
+    p = os.path.join(rundir, "%s.py" % module)
     with _Isolated(rundir):
         spec = importlib.util.spec_from_file_location(
-            "bu_%s" % os.path.basename(rundir), p)
+            "bu_%s_%s" % (os.path.basename(rundir), module), p)
         m = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(m)
-    _CACHE[rundir] = m
+    _CACHE[key] = m
     return m
 
 
@@ -137,6 +144,38 @@ def project_amoc(origin):
         out[h] = {"revenue": p.get("net_sales"),
                   "ebit": p.get("operating_profit"),
                   "dna": p.get("depreciation")}
+    return out
+
+
+def project_gbco(origin):
+    """GBCO's own pre-registered projector, called at `origin`.
+
+    ITS SIGNATURE IS ITS OWN AND SO IS ITS HOME. It lives in score.py rather than
+    bottom_up.py, takes the WHOLE panel plus the origin rather than an origin and a
+    horizon, and returns every horizon in one dict — three differences from the five
+    projectors above, and every one of them a reason a reader expecting a convention
+    finds nothing.
+
+    D&A IS None AND THAT IS DECLARED, NOT A FALLBACK. GBCO's projection carries no
+    separate depreciation line, exactly as EGCH's does not, so the lens's intensity
+    rule applies here on the same named per-name terms rather than on an invented
+    figure. Inventing one would be the fabricated cell [R-FCAL-01] refuses.
+    """
+    d = os.path.join(ENGINE, "gbco_walkforward")
+    B = _in(d, "score")
+    P = _run(d, B.load)
+    proj = _run(d, B.project, P, origin)
+    if not proj:
+        return {}
+    out = {}
+    for h in HORIZONS:
+        if h not in B.HOR:
+            continue
+        p = proj.get(h)
+        if not p:
+            continue
+        out[h] = {"revenue": p.get("revenue"), "ebit": p.get("operating_profit"),
+                  "dna": None}
     return out
 
 
@@ -230,7 +269,7 @@ def project_tmgh(origin):
 
 
 PROJECTORS = {"AMOC": project_amoc, "ARCC": project_arcc, "EGCH": project_egch,
-              "PHDC": project_phdc, "TMGH": project_tmgh}
+              "PHDC": project_phdc, "TMGH": project_tmgh, "GBCO": project_gbco}
 
 
 # --------------------------------------------------- the as-reported actuals
