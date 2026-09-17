@@ -46,6 +46,84 @@ terminal. It is right that the number is underived. It does not know that this h
 
 ---
 
+## 0a · The cause: the rebuild reverted a documented QC closure
+
+Found after the ledger was priced, by running the gates from outside the study and then reading
+what the repository already held. **It reframes the whole exercise.**
+
+`engine/phdc_study/QC_GATE_13-09-2026.md` audits this exact study — edition
+`PHDC_Valuation_Study_10-09-2026` — four days before the 17-September edition was built. Its
+verdict, line 24: **"VERDICT: NOT DELIVERABLE. Eight defects block it."** Seventeen findings
+F1–F17; thirteen recorded as closed. Nothing in `git log` has touched the delivered `.docx` or
+`.xlsx` since.
+
+The 17-September delivery does not merely start from the wrong central. **It undoes that gate's
+closures.** Committed 10-Sep workbook against delivered 17-Sep workbook, read live with openpyxl:
+
+| Cell | 10-Sep committed — closed by the QC gate | 17-Sep delivered | Finding |
+|---|---|---|---|
+| `READ FIRST!A2` | "Edition of **10 September 2026**. Supersedes 3 September 2026." | "Edition of **2 September 2026**. Supersedes 30 August 2026." | **F15 reverted** (= SA-2) |
+| `Assumptions!B8` | 0.3548387 · *"the first quarter of 2026 on its own, the latest disclosure; NOT an average"* | 0.3832237 · *"average of FY2025 and 1Q2026 as reported"* | **F9 reverted** (= audit row 6) |
+| `Assumptions!B11` | 0.07 · *"the terminal growth this model runs, read from the valuation module"* | 0.12 · *"below nominal growth, stated"* | **F12 reverted** (= audit row 10) |
+| `Assumptions!B12` | 0.2496472 · *"the rate this model discounts at; section 1.8 marks it adopted"* | 0.2609671 · *"built on the Fundamental Valuation and Peer sheets"* | **F12 reverted** (= audit row 10) |
+| `Assumptions!B13` | *"Cost of capital — alternative (credit-rating basis)"* 0.2583068 — the row that existed to say which rate is **not** used | **row absent**; every row below shifts up one | **F12 reverted** |
+| `Assumptions!B14` | **23,244.718678** — net debt at 31 March, correct and correctly labelled | 27,471.219989 — 30 June, labelled 31 March | audit row 2 |
+| `Assumptions!B15/B16` | 3,838.697 / 1,020.475 — 31 March | 3,898.478 / 1,008.420 — 30 June | audit row 2 |
+
+Two more the 13-Sep gate had closed and the 17-Sep edition ships broken again:
+
+- **F7 — "Two different headline ranges under the same words."** Closed 10-Sep with an explicit
+  fix: *"Across the full observed range of cash conversion ALONE … EGP 7.65 to EGP 46.85. The
+  wider pair published beside it … moves a second driver as well."* The 17-Sep headline reads
+  *"a range of EGP 2.62 to EGP 45.11 across the full observed range of the one thing that decides
+  it"* — the exact defect F7 closed. **= audit row 15.**
+- **F6 — the supersession prose.** Closed 10-Sep; the gate records *"The headline no longer claims
+  the ERP basis moved in this edition."* The 17-Sep page 1 claims exactly that again.
+
+And the two the gate recorded as **NOT CLOSED** on 13 September shipped again unchanged:
+**F8** (gross margin described as an output — audit row 6) and **F10** (*"§5 Catalysts still reads
+'The half-year 2026 results. None had been published as at 30 August 2026'"* — audit rows 2, 44, 46).
+
+**So at least five defects this house had found, fixed and documented as closed are open again in
+the delivered 17-September files, and two known-open ones were re-shipped.** The audit found them
+as rows 6, 10, 15 and 2 without knowing any of that. Its charge is therefore understated: these
+are not oversights, they are regressions past a written gate.
+
+`Assumptions!B14 = 23244.718678` in the committed workbook also settles §3.2 from a second
+independent artefact: net debt at 31 March is **23,244.719**, not the audit's 23,076.3.
+
+### What the gate sweep adds on its own account
+
+- **`engine/phdc_study/gap_review_calcs_above.json` is committed stale** — it holds
+  `central 17.1517`, `spot 15.2`, `wacc_term 16.2643%`, `wacc_exp 26.25%`: the 3-September
+  vintage, against the committed edition's 21.0897 / 14.40 / 14.9751%. No gate reads this file's
+  own values against `study_numbers.json`. It also holds **`flat_rate_instead = 6.354`** — so the
+  house had already computed the flat-rate counterfactual that is the audit's single largest
+  finding, and did not publish the path. And `eps26e = 1.2410`, the EPS on the 38.32% margin,
+  not the 35.47% the delivered income statement prints (audit row 6, corroborated).
+- **`inputs.py:164` disagrees with itself.** `I(14.40, "…closing price for PHDC, 3 September
+  2026…", "2026-08-23", "B")` — the prose says 3 September, the structured date field says
+  **23 August**, the tier is **B**, and our own OHLC says 23 August closed at **15.200**. Four
+  claims, no two compatible. Sharpens **SA-3**.
+- **`engine/phdc_study/gap_review_calcs.py` does not import** — `TypeError: unsupported operand
+  type(s) for *: 'NoneType' and 'float'` at line 29, a `None` lens weight. Superseded but
+  committed and broken.
+- **PHDC's `asset_base` check FAILS (ratcheted):** the asset base at 2024-12-31 is behind an
+  information set ending 2026-03-31, with no `not_restated_since` declared.
+- **No gate exists for either defect shape.** `check_edition_date.py` never opens an `.xlsx`;
+  `check_workbook_structure.py` reads `wb.sheetnames` only and never a cell's text — so nothing
+  compares the workbook's stamped edition to the study's. And nothing reads a rendered
+  balance-sheet column header against the figures beneath it: `check_anchor_ordering.py` and
+  `check_bridge.py` compare declared date *fields*, `footing_check.py` reconciles totals
+  arithmetically, `check_typed_dates.py` never opens a delivered document. Two blind spots,
+  both load-bearing here.
+- PHDC's own gates are otherwise clean: `gate_check.py` `ISSUABLE: True`, 44 sections, 16 sheets,
+  231/231 recalc; `footing_check.py` 47 tables, 0 unreconciled; `prose_check.py` 238 figures,
+  0 unmatched; `check_valuation_gap.py` OK. **"The gates are clean" and "this edition is
+  deliverable" are two different claims** — the 13-Sep audit says the second is false.
+
+---
+
 ## 1 · Self-audit, done before the critique was read in detail
 
 Eleven findings. The five marked **NEW** are not in the audit's 51.
