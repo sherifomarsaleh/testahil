@@ -195,6 +195,27 @@ cv_vg = [0.25, 0.18, 0.12, 0.10, 0.08]; cv_ag = [0.05]*5
 lm_vol = {'FY25': 33906}; lm_rev = {'FY25': 2203.8}
 lm_vg = [0.30, 0.20, 0.15, 0.12, 0.10]; lm_ag = [0.05]*5
 tr_rev = {'FY25': 4242.8}; tr_g = [0.18, 0.15, 0.12, 0.10, 0.10]
+# THE FIFTH LINE, WHICH THE DELIVERED EDITION ZEROED FOR EVERY FORECAST YEAR [audit
+# finding 5]. GB Auto's FY2025 total revenue is EGP 66,358.3mn and the four lines above
+# sum to 65,230.7 -- the base year carried a fifth line of 1,127.6 that the forecast did
+# not. It is two disclosed components, and both are named rather than merged:
+#   * 682.8 of revenue outside the four published business lines. The 4Q25 release gives
+#     GB Auto's external revenue as 65,913.5 against those four lines' 65,230.7, and its
+#     line tables are headed "Sales AND AFTER-SALES Activity" without publishing the
+#     after-sales revenue separately.
+#   * 444.8 of inter-segment revenue (Table 8, "Inter-Segment Revenue"), which is real
+#     revenue to this segment and is removed again at group level by the elimination line.
+# IT MATTERS BECAUSE THE MARGIN IS STRUCK ON THE WHOLE. Table 8's gross margin of 14.8%
+# is computed on TOTAL revenue of 66,358.3, so applying that margin to a forecast revenue
+# that omits the fifth line understates gross profit by construction.
+# HELD FLAT, per [R-ANCHOR-01]'s discipline on an observable the company does not break
+# out: the company publishes no volume, price or growth rate for it, so it is carried at
+# its own filed level rather than grown at a rate nothing measures.
+os_rev = {'FY25': 682.8}      # outside the four published lines
+is_rev = {'FY25': 444.8}      # inter-segment
+of_rev = {'FY25': os_rev['FY25'] + is_rev['FY25']}
+assert abs(pc_rev['FY25'] + cv_rev['FY25'] + lm_rev['FY25'] + tr_rev['FY25']
+           + of_rev['FY25'] - 66358.3) < 0.05
 yrs = ['FY26E', 'FY27E', 'FY28E', 'FY29E', 'FY30E']
 fc = {}
 pv_, pa_ = pc_vol['FY25'], pc_rev['FY25']/pc_vol['FY25']
@@ -207,8 +228,9 @@ for i, y in enumerate(yrs):
     lmv *= (1+lm_vg[i]); lma *= (1+lm_ag[i])
     trr *= (1+tr_g[i])
     fc[y] = dict(pc_vol=pv_, pc_asp=pa_, pc_rev=pv_*pa_/1,  # ASP in mn
-                 cv_rev=cvv*cva, lm_rev=lmv*lma, tr_rev=trr)
-    fc[y]['auto_rev'] = fc[y]['pc_rev'] + fc[y]['cv_rev'] + fc[y]['lm_rev'] + fc[y]['tr_rev']
+                 cv_rev=cvv*cva, lm_rev=lmv*lma, tr_rev=trr, of_rev=of_rev['FY25'])
+    fc[y]['auto_rev'] = (fc[y]['pc_rev'] + fc[y]['cv_rev'] + fc[y]['lm_rev']
+                         + fc[y]['tr_rev'] + fc[y]['of_rev'])
 # ---- GROUP-LEVEL FORECAST DRIVERS ------------------------------------------------
 # THESE LIVED ONLY INSIDE THE WORKBOOK BUILDER AND THE DOCUMENT TYPED THE RESULT. The
 # consolidated forecast income statement a reader receives was transcribed by hand from an
@@ -342,8 +364,29 @@ ev_auto = pv_sum + pv_tv
 # and its 2Q26 earnings release (13 August 2026) were both published and on its own IR site.
 # Auto-leg net debt on the COMPANY'S OWN definition (short- and long-term debt plus lease
 # obligations and due-to-related-parties, less cash), as at 30 June 2026:
-#   20,943.0 + 1,790.1 + 1,333.3 + 2.3 - 9,445.0
-auto_nd = 20943.0 + 1790.1 + 1333.3 + 2.3 - 9445.0
+# THE COMPANY'S OWN DEFINITION IS THE ONE THE COMPANY PRINTS, AND THE DELIVERED EDITION
+# DID NOT REPRODUCE IT [audit finding 24, and self-audit S-2 reached independently]. The
+# code above claimed "the COMPANY'S OWN definition" and came out at 14,623.7 against a
+# published 14,493.6, because it took only the NON-CURRENT portion of the notes payable to
+# leasing (1,333.3 of 2,345.8) and omitted the due-FROM-related-parties balance the
+# company's own table nets. A definition asserted in a comment is not a definition; the
+# five rows below are Table 7's own, in its own order, and they foot to its own total.
+#
+#   Total debt                                   22 733.1   (20,943.0 short + 1,790.1 long)
+#   Notes payable (due to leasing)                2 345.8
+#   less Cash                                    (9 445.0)
+#   Due to related parties - inter segment            1.8
+#   less Due from related parties - inter segment (1 142.1)
+#   NET DEBT                                     14 493.6
+AUTO_TOTAL_DEBT_ST   = 20943.0
+AUTO_TOTAL_DEBT_LT   = 1790.1
+AUTO_LEASE_NOTES     = 2345.8
+AUTO_CASH            = 9445.0
+AUTO_DUE_TO_RELATED  = 1.8
+AUTO_DUE_FROM_RELATED = 1142.1
+auto_nd = (AUTO_TOTAL_DEBT_ST + AUTO_TOTAL_DEBT_LT + AUTO_LEASE_NOTES - AUTO_CASH
+           + AUTO_DUE_TO_RELATED - AUTO_DUE_FROM_RELATED)
+assert abs(auto_nd - 14493.6) < 0.05, auto_nd   # GB Corp 2Q26 earnings release, Table 7
 auto_nci = 590.7        # GB Auto segment "Total NCI", 2Q26 release Table 12, 30-Jun-2026
 auto_eq = ev_auto - auto_nd - auto_nci
 # ---- GB CAPITAL: A LENDER IS WORTH ITS OWN EQUITY TIMES WHAT IT EARNS ON IT --------
@@ -385,8 +428,20 @@ cap_operating_equity = CAPITAL_SEG_EQUITY - ASSOC_CARRYING
 # of tax and outside NCI, so the subtraction is clean.
 CAP_FY25_NP_AFTER_NCI = 1365.9    # 4Q25 release Table 13
 CAP_FY25_ASSOC        = 986.4     # same table, "Investment Gains from Associates"
-CAP_FY25_EQ_BEFORE_NCI = 18312.6  # 4Q25 release Table 12, GB Capital column
-ASSOC_CARRYING_DEC25   = 15732.426  # reviewed BS 30-Jun-2026, comparative column
+# A RESTATED FIGURE MINUS AN UNRESTATED ONE IS NOT A BASE [audit finding 8]. The
+# delivered edition subtracted the associates at their RESTATED 31-Dec-2025 carrying value
+# from GB Capital's segment equity as the 4Q25 release printed it -- a release of 26
+# February 2026, four months BEFORE the restatement appeared. Note 34's adjustment of
+# +2,460,218 thousand raises the associate AND the equity that carries it by the same
+# amount, so netting one restated against the other unrestated HALVED the operating base
+# and doubled every return struck on it. Both sides are moved onto the restated basis
+# here; the unrestated equity is kept beside it so the reader can see the step.
+CAP_FY25_EQ_BEFORE_NCI_AS_RELEASED = 18312.6   # 4Q25 release Table 12, GB Capital column
+ASSOC_RESTATEMENT_DEC25 = 2460.218             # note 34, "adjustments on the beginning
+                                               # balance", the only adjustment in the table
+CAP_FY25_EQ_BEFORE_NCI = CAP_FY25_EQ_BEFORE_NCI_AS_RELEASED + ASSOC_RESTATEMENT_DEC25
+ASSOC_CARRYING_DEC25   = 15732.426  # reviewed BS 30-Jun-2026, comparative column, and
+                                    # note 34's own restated total: 13,272.208 + 2,460.218
 CAP_H126_NP_AFTER_NCI = 649.6     # 2Q26 release Table 13
 CAP_H126_ASSOC        = 426.2     # same table
 cap_fy25_ex_assoc = CAP_FY25_NP_AFTER_NCI - CAP_FY25_ASSOC
@@ -472,12 +527,27 @@ mnt_halan_value = mnt_halan_stake * mnt_halan_round_usd * egp_usd
 # one of two disclosed figures for the same fact has decided something silently.
 mnt_stake_statements = 0.4293
 mnt_stake_statements_prior = 0.4401
-# Other associates by IDENTITY off the note's own total rather than by summing its rows:
-# the total (16,230,465) and the MNT row (15,733,523) each foot -- restated 15,315,532 +
-# 8,006 of other comprehensive income + 409,985 of period profit -- while the three
-# smaller rows carry a ten-thousand OCR ambiguity in one cell, so the residual is the
-# figure that can be reproduced.
-MNT_CARRYING = 15733.523
+# THE ASSOCIATES NOTE, RE-READ OFF THE RENDERED PIXELS AND FOOTED IN EVERY DIRECTION
+# [audit finding 16]. The delivered edition carried 15,733,523 with a comment that
+# reconstructed it as "restated 15,315,532 + 8,006 of other comprehensive income +
+# 409,985 of period profit", and recorded a "ten-thousand OCR ambiguity" in the three
+# smaller rows. THE AMBIGUITY WAS IN THE MNT ROW ITSELF and the reconstruction was wrong
+# in two cells: MNT's restated opening is 15,313,538, and MNT has NO other comprehensive
+# income at all -- the 32,119 in that column is Bedaia's. Note 34 as filed:
+#
+#   row (EGP 000)      31-Dec-25    adjustment   restated    div      OCI     profit    add'ns   30-Jun-26
+#   MNT Investment BV  12 853 320    2 460 218  15 313 538     -        -    409 985        -   15 723 523
+#   Misr E-commerce       125 701            -     125 701     -        -    (16 060)       -      109 641
+#   Bedaia                152 983            -     152 983 (21 220) 32 119     12 959       -      176 841
+#   Kaf for life          140 204            -     140 204     -        -      3 256   77 000      220 460
+#   TOTAL              13 272 208    2 460 218  15 732 426 (21 220) 32 119    410 140   77 000   16 230 465
+#
+# EVERY COLUMN AND EVERY ROW FOOTS EXACTLY on this reading and the delivered figure foots
+# on none of them, which is the arbitration the four-field rule asks for: ARITHMETIC IS
+# THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE. Route: 500-dpi render of page 34 of the
+# reviewed consolidated interim statements, read as an image, the filing carrying no text
+# layer at all (0 characters across 51 pages).
+MNT_CARRYING = 15723.523
 other_assoc = ASSOC_CARRYING - MNT_CARRYING
 # ---- THE CONTESTED JUDGEMENT, COMPUTED BOTH WAYS AND NEVER AVERAGED ------------------
 # Depth-bar standard 8 requires the study's single most consequential contested judgement
@@ -819,6 +889,23 @@ _DL = [
                   "build stops at the segment and says so rather than inventing a unit. "
                   "It is grown on a stated rate; that rate is not measured against "
                   "anything the company publishes.")),
+    _RP.DriverLine(
+        name="other and inter-segment auto revenue", level="topdown",
+        share_of_revenue=fc['FY26E']['of_rev'] / _REV26,
+        cost_basis=("the auto leg's gross margin, which is the margin this line is ALREADY "
+                    "inside: the release strikes GB Auto's 14.8% on TOTAL revenue of "
+                    "66,358.3, so applying that margin to a revenue figure that omits this "
+                    "line is what understated gross profit in the delivered edition"),
+        gap_note=("NEITHER A UNIT NOR A SEGMENT IS DISCLOSED FOR IT, and it is not one "
+                  "activity: EGP 682.8mn is GB Auto's external revenue outside its four "
+                  "published business lines (65,913.5 less 65,230.7), which the release's "
+                  "own tables head 'Sales AND AFTER-SALES Activity' without ever publishing "
+                  "the after-sales revenue separately; EGP 444.8mn is inter-segment revenue, "
+                  "real to this segment and removed again by the group elimination line. It "
+                  "is HELD FLAT at its own filed level rather than grown, because the "
+                  "company publishes no volume, price or growth rate for it and a growth "
+                  "rate nothing measures is worse than no growth rate. THE DELIVERED "
+                  "EDITION ZEROED IT for every forecast year [audit finding 5].")),
     _RP.DriverLine(
         name="GB Capital (the financing businesses)", level="segment",
         share_of_revenue=_F26['capital_revenue'] / _REV26,

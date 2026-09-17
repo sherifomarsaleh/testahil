@@ -127,3 +127,45 @@ numbers, and are listed in the completion report rather than in this ledger.
 
 Findings 14 and 31 stay in bucket 3, unproven and research-required. Findings 15, 25 and the
 fix-half of 1 stay in bucket 2, defect accepted and fix rejected with the reason on the record.
+
+---
+
+# AMENDMENT — three further levers, declared before their figures move
+
+Committed after L11–L14 landed and **before L15 was applied**, so the same discipline holds for
+them as for the first four: the order is a fact about the commit graph.
+
+**Why an amendment rather than a silent addition.** §4 above said the non-value findings "move
+no figure in the valuation and are therefore not levers". Working through them showed that three
+of them do, and each is a finding whose implementation surfaced something the response's own
+pricing had missed:
+
+| # | lever | finding | rule it serves | what §4 got wrong |
+|---|---|---|---|---|
+| **L17** | the minority at its **share of value**, not at book | self-audit S-1 | [R-BRIDGE-01] | writing the bridge record forces the minority basis to be *chosen*, and [R-BRIDGE-01] does not allow book to be the adopted basis. The bridge record was filed under "records choices, moves no number"; it moves one. |
+| **L18** | the **relative cross-check on derived inputs** — the finance-cost ladder computed rather than typed, the FY2026E group profit following from it, and earnings per share on the audited basic figure | 9, 10, 26 | depth-bar standard 3 · [R-LENS-03] | all three were priced "nil on the SOTP primary", which is true and not the whole truth: the relative lens **is** the published bear, so a change to it moves the envelope a reader is shown. |
+| **L19** | **EGP/USD registered with its date and source** | 32 | SIGCM clause 1 | priced as "round branch only; a 3% move ≈ EGP 0.76/share". Registering the rate may move it, and the round branch is a published answer. |
+
+**AUDIT POINT, amended:** the second stop moves from "after L16" to **after L19** — the
+constructions are not complete until the bridge, the discount rate and the cross-check are all
+in. The standing ±10% trigger is unchanged and is already live.
+
+## What is deliberately NOT a lever, with the reason
+
+- **S-3 — capital expenditure consumes management guidance**, which [R-FCAL-01] forbids
+  outright. It is in no bucket, because it is not one of the audit's 34 findings; the response
+  found it in its own self-audit and priced it "−22.91/share through the current terminal;
+  **unpriceable through a correct one**". The current terminal is the retired Gordon-on-last-FCFF
+  construction (S-4), which stands only because `terminal_value.build()` refuses this name for
+  want of a sourceable asset life (`useful_lives.json`). Correcting capital expenditure inside a
+  terminal that is itself retired would multiply the correction by roughly fifteen through a
+  construction nobody defends. It stays outstanding, with its reason, and is reported rather
+  than quietly dropped.
+- **S-5 — no property-plant-and-equipment roll-forward.** Capital expenditure, depreciation and
+  working capital are three independent typed ratios with no balance sheet joining them. Building
+  one is a rebuild of the forecast rather than a repair of it, and it is what finding 9's *full*
+  remedy would need: the group's borrowings path is a typed ladder too. L18 derives the finance
+  cost from the model's own cost-of-debt schedule on the book held flat, which removes the typed
+  ladder without inventing a borrowings forecast — and that limitation is stated where the number
+  is published.
+- **Findings 14 and 31** stay in bucket 3, unproven and research-required.
