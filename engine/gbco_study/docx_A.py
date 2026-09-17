@@ -705,8 +705,13 @@ P(f'GB Corp is a leveraged play on Egyptian nominal normalisation. Every cut low
   f'delivered edition said it did: the interest-rate-risk note shows the lending book is overwhelmingly '
   f'VARIABLE-rate, with only about a quarter of it fixed, so a cut passes through to the asset side as well as to '
   f'the funding side. '
-  f'The pound sets assembly input costs and the pound value of the MNT-Halan round-price mark; a step devaluation is the '
-  f'single nastiest macro scenario for both margin and multiple. The cost-of-capital build below is produced by the house '
+  f'The pound sets assembly input costs and the pound value of the MNT-Halan round-price mark, so a step devaluation is '
+  f'the single nastiest macro scenario for both margin and multiple — AND ONLY ONE OF THOSE TWO IS IN THIS MODEL. The '
+  f'round-price mark is translated at the house path\u2019s own rate and moves with it; the margin is NOT built from a '
+  f'cost stack that responds to the pound. It is anchored on the segment gross margin GB Corp filed for the half and '
+  f'carried forward, because the releases disclose gross profit BY LEG and no cost line beneath it, so there is no '
+  f'input this study could escalate. That is a stated limitation of the cost side rather than a claim about it, and it '
+  f'is why the devaluation scenario is named here and not priced on the margin. The cost-of-capital build below is produced by the house '
   f'module rather than assembled by hand, and the whole schedule is published — not one rate held for ever:', size=10.5)
 rows = [
  ['Cost-of-capital build', 'Value', 'Source'],
