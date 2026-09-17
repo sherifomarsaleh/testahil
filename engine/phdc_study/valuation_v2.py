@@ -182,13 +182,28 @@ def lenses():
     # sits above both of the two most recent years.
     mid = BU.REG["cfo_1h26"] / BU.REG["revenue_1h26"]
 
-    # the bear and full cases shift the WHOLE schedule, keeping its shape: replacing
-    # it with a flat rate would ask two questions at once, and the second one is the
-    # assumption the schedule exists to remove
+    # ONE DRIVER, ONE CLOCK [R-LENS-03], CORRECTED 17-09-2026. The bear and full reads
+    # ALSO shifted the discount schedule -- +200bp on the bear, -100bp on the full,
+    # asymmetric and disclosed nowhere -- while the record they feed states ONE driver
+    # (cash conversion), names its low and high as the two observed rates, and asserts
+    # macro_held. The rule requires the envelope to be the range of the present-value
+    # reads ON ONE CLOCK, and a moved discount rate is a second clock.
+    #
+    # WHAT IT COST A READER, WHICH IS HOW IT WAS FOUND: the headline said the answer runs
+    # "EGP 2.62 to EGP 45.11 across the full observed range of the one thing that decides
+    # it", while section 4, the named sensitivity and the expert room all said that moving
+    # that one thing across exactly that range gives EGP 4.75 to EGP 38.90. Same claim,
+    # two answers, three places against one — and the wider pair was the headline.
+    #
+    # THE SHIFT IS NOT DELETED, IT IS DISCLOSED. It is a real and interesting sensitivity;
+    # what it may not be is the envelope, silently. Returned below as
+    # `schedule_shift_sensitivity` and printed as its own labelled line.
     S = SCHEDULES["cds"]   # [R-COC-01] house default; see build_numbers.py
-    d_bear = dcf(lo, S.shifted(0.02))
+    d_bear = dcf(lo, S)
     d_base = dcf(mid, S)
-    d_full = dcf(hi, S.shifted(-0.01))
+    d_full = dcf(hi, S)
+    d_bear_shift = dcf(lo, S.shifted(0.02))
+    d_full_shift = dcf(hi, S.shifted(-0.01))
     # book value on the SAME numerator as the share count: equity attributable
     # to the parent, on the latest disclosed sheet (the 30-Aug edition divided
     # TOTAL equity, minority included, by parent shares)
@@ -239,6 +254,14 @@ def lenses():
                 rel["bear"], rel["base"], rel["full"]]
     w = {"bear": min(pv_reads), "base": d_base["per_share"], "full": max(pv_reads)}
     return {"rows": rows, "weighted": w,
+            # the retired construction, kept and LABELLED rather than dropped
+            "schedule_shift_sensitivity": {
+                "bear_plus_200bp": d_bear_shift["per_share"],
+                "full_less_100bp": d_full_shift["per_share"],
+                "note": ("the same two conversion rates with the whole cost-of-capital "
+                         "schedule shifted +200bp and -100bp respectively. A SECOND "
+                         "driver, published here as its own sensitivity rather than "
+                         "folded into the envelope, which moves one driver only.")},
             "primary": {"kind": "dcf", "value": d_base["per_share"]},
             "envelope": {"low": min(pv_reads), "high": max(pv_reads)},
             "normalised_diagnostic": nep,

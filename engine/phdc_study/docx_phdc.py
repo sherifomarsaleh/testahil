@@ -20,6 +20,26 @@ from docx.oxml import OxmlElement
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 N = json.load(open(os.path.join(HERE, "study_numbers.json")))
+
+# THE EXPLICIT WINDOW, COUNTED ONCE AT MODULE LEVEL. Five separate sentences in this
+# builder said the model runs FIVE years while it runs fifteen, two of them labelling
+# the SAME figure both ways on facing pages. They were words in prose, so no gate
+# reading figures could see them. Counted here, from the projection itself, and read
+# everywhere -- a length is not a thing to remember.
+NEXP = len(N["statements"]["framing_b"])
+LAST_YEAR = N["statements"]["framing_b"][-1]["year"]
+BRIDGE_BS_DATE = N["bridge_record"]["balance_sheet_date"]
+# THE SHEET THE BRIDGE STANDS ON, IN WORDS, COMPUTED FROM THE RECORD [17-09-2026].
+# Five sentences and a table header in this builder and eleven labels in the workbook
+# said "31 March 2026" while every _bridge line in the registry is dated 2026-06-30
+# and sourced to the 30 June statements. The re-issue moved the sheet; the labels were
+# typed, so they stayed. A date a reader is given is a claim about which filing was
+# opened, and it is now read off the record that answers that.
+_BSM = ["January", "February", "March", "April", "May", "June", "July", "August",
+        "September", "October", "November", "December"]
+BRIDGE_BS_WORDS = "%d %s %d" % (int(BRIDGE_BS_DATE[8:10]),
+                                _BSM[int(BRIDGE_BS_DATE[5:7]) - 1],
+                                int(BRIDGE_BS_DATE[0:4]))
 M, D, W = N["meta"], N["derived"], N["wacc"]
 # THE DATE BESIDE THE PRICE WAS TYPED IN FOUR PLACES AND THE PRICE WAS NOT
 # [corrected 03-Sep-2026]. Three delivered surfaces dated the 3-September close of
@@ -78,6 +98,49 @@ def display_years(rows):
     return idx
 
 
+def _e2_rows(q, D, money):
+    """Expert 2's asset-based working, AS A COLUMN THAT FOOTS.
+
+    IT DID NOT FOOT AND A READER COULD SEE THAT [corrected 17-09-2026]. The table printed
+    FOUR asset lines and then deducted EVERY liability, so a reader adding the column
+    reached minus EGP 24,484mn against a printed EGP 20,634mn — out by 45,118, on a row
+    the table itself labels "balancing". The word was doing no work: the figure balanced
+    the LIABILITY side against a total, while the asset side was a selection.
+
+    The remaining assets are now their own printed line, which is what a reader following
+    an asset-based working is owed, and the column is ASSERTED to reach the equity it
+    prints. A table nobody can add up is indistinguishable from one that is wrong.
+    """
+    shown = (q("work_in_progress")
+             + q("accounts_receivable") + q("notes_recv_st") + q("notes_recv_lt")
+             + q("notes_recv_st_undel") + q("notes_recv_lt_undel")
+             + q("cash") + q("investments_assoc") + q("investment_property"))
+    other_assets = q("total_assets") - shown
+    other_liab = q("total_liabilities") - q("advances_customers") - D["gross_debt_bridge"]
+    col = [q("work_in_progress"),
+           q("accounts_receivable") + q("notes_recv_st") + q("notes_recv_lt")
+           + q("notes_recv_st_undel") + q("notes_recv_lt_undel"),
+           q("cash"),
+           q("investments_assoc") + q("investment_property"),
+           other_assets,
+           -q("advances_customers"), -D["gross_debt_bridge"], -other_liab]
+    assert abs(sum(col) - q("total_equity")) < 0.5, (
+        "Expert 2's working does not foot: the printed rows sum to %.1f against a printed "
+        "equity of %.1f. This assertion exists because that table shipped out by 45,118."
+        % (sum(col), q("total_equity")))
+    return [["Work in progress", money(col[0])],
+            ["Receivables, trade and instalment", money(col[1])],
+            ["Cash", money(col[2])],
+            ["Investments and investment property", money(col[3])],
+            ["Land, property and all other assets", money(col[4])],
+            ["less advances from customers", "(%s)" % money(-col[5])],
+            ["less gross borrowings", "(%s)" % money(-col[6], 1)],
+            ["less all other liabilities", "(%s)" % money(-col[7], 1)],
+            ["Shareholders' funds as reported", money(q("total_equity"))],
+            ["  of which attributable to the parent", money(q("equity_parent"))],
+            ["Per share, parent (EGP)", "%.2f" % D["book_equity_per_share"]]]
+
+
 def pick(rows, fmt):
     """Format one row of a wide table on the displayed years only."""
     return [fmt(rows[i]) for i in display_years(rows)]
@@ -86,7 +149,7 @@ def pick(rows, fmt):
 
 
 def q(key):
-    """A line of the 31 March 2026 reviewed balance sheet — what the bridge stands on."""
+    """A line of the reviewed balance sheet the bridge stands on (see BRIDGE_BS_DATE)."""
     return N["balance_sheet_bridge"][key]["value"]
 
 
@@ -405,11 +468,18 @@ def build(path):
               "reported history. Where something needed is not disclosed, this study "
               "says so and does not fill the hole. There are %s such gaps and they "
               "are listed in section 7." % _count_word(len(N["gaps"])))
-    para(doc, "Information set: everything the company had published as at 2 "
-              "September 2026, which ends at its first-quarter 2026 results — the "
-              "reviewed statements of 31 March 2026 included. No half-year 2026 "
-              "figures had been released at that date.", size=9, italic=True,
-         color=MUTED)
+    # THE INFORMATION SET IS READ OFF THE RECORD, AND IT WAS TYPED [17-09-2026]. This
+    # sentence said the set "ends at its first-quarter 2026 results" and that "no
+    # half-year 2026 figures had been released" — in an edition whose bridge, gross-margin
+    # anchor and cash-conversion rate ALL stand on the reviewed half to 30 June. A
+    # statement about what this study read is the one sentence a reader has no way to
+    # check, so it is computed from the two records that answer it.
+    para(doc, "Information set: everything the company had published up to and including "
+              "its reviewed consolidated statements for the period ended %s, which is "
+              "the latest disclosure of any kind. The half-year results release, which "
+              "carries units sold and new sales, is not posted; that gap is listed in "
+              "section 7."
+              % BRIDGE_BS_WORDS, size=9, italic=True, color=MUTED)
 
     # --- 2 Headline ---------------------------------------------------------
     doc.add_heading("Headline", level=1)
@@ -528,7 +598,7 @@ def _section_one(doc, sp, base, low, high, cds, prior):
     doc.add_heading("1  Fundamental valuation", level=1)
 
     doc.add_heading("1.1  The cash-flow model", level=2)
-    para(doc, "The model runs five years from the audited 2025 base and then a "
+    para(doc, "The model runs %d years from the audited 2025 base and then a "
               "terminal value. Revenue is limited by how much the company can "
               "build and hand over, not by how much it has sold: the order book "
               "is EGP %sbn against 2025 revenue of EGP %sbn, so sales are not "
@@ -538,7 +608,8 @@ def _section_one(doc, sp, base, low, high, cds, prior):
               "company's own disclosed run of handovers, at EGP %.2f million a "
               "unit escalating with inflation. Nothing here is a ratio applied "
               "to last year's revenue."
-              % (money(v("backlog_1q26") / 1000, 0),
+              % (NEXP,
+                 money(v("backlog_1q26") / 1000, 0),
                  money(v("revenue_fy25") / 1000, 1),
                  "{:,.0f}".format(BU["rows"][0]["units_delivered"]),
                  100 * BU["anchors"]["delivery_growth"],
@@ -548,8 +619,16 @@ def _section_one(doc, sp, base, low, high, cds, prior):
               "edition. Since January 2016 the company has recognised revenue on "
               "standalone units as construction progresses; a model that accrues "
               "revenue that way but accrues cost on handover has the two legs on "
-              "different clocks, and it systematically overstates profit. Gross "
-              "margin here is an output of price against cost, never an input.")
+              "different clocks, and it systematically overstates profit. "
+              "GROSS MARGIN HERE IS ANCHORED RATHER THAN SOLVED OUT OF TWO INDEPENDENT "
+              "LEGS, and this study says so rather than claiming otherwise. The company "
+              "publishes no delivered-unit count for any period after FY2024, so every "
+              "later count in this model is implied from revenue divided by price per "
+              "unit — which leaves no independent cost per unit to build, whichever way "
+              "the arithmetic is written. The margin is therefore set at the latest "
+              "reviewed period and cost per delivered unit is solved from it. The "
+              "missing disclosure is registered in section 7.")
+
     def _r(key, fmt="%,.0f", scale=1.0):
         return pick(BU["rows"], lambda x: ("{:,.0f}".format(x[key]*scale) if "f" not in fmt
                  else fmt % (x[key]*scale)))
@@ -588,8 +667,10 @@ def _section_one(doc, sp, base, low, high, cds, prior):
     table(doc, ["EGP mn unless stated"] + yrs,
           [[lbl] + vals for lbl, vals in body],
           AUTO,
-          "Every line follows from the two engines above. Gross margin is what "
-          "price per unit and cost per unit leave behind, not an assumption.")
+          "Every line follows from the two engines above. Gross margin is ANCHORED on "
+          "the latest reviewed period and cost per delivered unit is solved from it — "
+          "the company discloses no unit count after FY2024, so there is no independent "
+          "cost per unit to build. See section 7.")
     a = BU["anchors"]
     para(doc, "Three anchors hold this table to what was actually reported. "
               "FY2026 is part-reported: the company disclosed first-quarter "
@@ -731,7 +812,7 @@ def _section_one(doc, sp, base, low, high, cds, prior):
 
     doc.add_heading("1.2  Book value and sustainable return", level=2)
     para(doc, "Shareholders' funds attributable to the parent were EGP %s million "
-              "at 31 March 2026, or EGP %.2f a share, against a market price of EGP "
+              "at %s, or EGP %.2f a share, against a market price of EGP "
               "%.2f — the shares change hands at about %.1f times book. The earlier "
               "edition divided total equity, minority interests included, by the "
               "parent's shares; this one puts the numerator on the same footing as "
@@ -741,7 +822,8 @@ def _section_one(doc, sp, base, low, high, cds, prior):
               "cost of equity of %s, the company is not currently earning its cost of "
               "capital on book, which is why book value sits well below every "
               "cash-flow read in this study rather than acting as a floor."
-              % (money(q("equity_parent")), D["book_equity_per_share"], sp,
+              % (money(q("equity_parent")), BRIDGE_BS_WORDS,
+                 D["book_equity_per_share"], sp,
                  sp / D["book_equity_per_share"], money(v("npat_mi_fy25")),
                  pct(v("npat_mi_fy25") / ((v("total_equity")
                       + N["balance_sheet_subtotals"]["2024"]["total_equity"]["value"]) / 2)),
@@ -1121,21 +1203,64 @@ def _sections_two_to_seven(doc, sp):
     para(doc, "%s things are not disclosed by the company and are therefore not in "
               "this study. Each is named with what would close it."
               % _count_word(len(N["gaps"])).capitalize(), bold=True)
-    gap_rows = [
-        ["Collection schedule", "Down payment, instalment tenor and post-handover "
-         "tail are not published. This is the crux; it is measured from outcomes "
-         "instead of built from terms.", "Disclosure of contract terms."],
-        ["Project unit economics", "No per-project unit mix, unit area, price per "
-         "square metre or construction cost per square metre is disclosed.",
-         "Project-level disclosure or an investor presentation carrying them."],
-        ["Cost of debt", "The February 2026 securitisation publishes sizes, tenors "
-         "and ratings but no coupon.", "A coupon on any tranche."],
-        ["Full-year 2025 operating figures", "The audited statements were published; "
-         "the results release, which carries units and new sales, was not.",
-         "The 2025 results release."],
-        ["Half-year 2026", "Nothing newer than the first quarter of 2026 had been "
-         "published as at this edition's date.", "The half-year filing."],
-    ]
+    # THE TABLE IS DERIVED FROM THE GAP RECORD AND WAS TYPED BESIDE IT [corrected
+    # 17-09-2026]. The sentence above computes its count from N["gaps"]; the table below
+    # was five hand-written rows against a record of six, so the study told a reader
+    # "Six things are not disclosed" and then listed five. The 03-09 QC pass found it and
+    # it survived the 17-09 re-issue, because a re-issue moves the model and nobody had
+    # made the table move with it.
+    #
+    # WORSE THAN THE COUNT: one typed row read "Nothing newer than the first quarter of
+    # 2026 had been published as at this edition's date" IN AN EDITION WHOSE BRIDGE, MARGIN
+    # ANCHOR AND CASH-CONVERSION RATE ALL STAND ON THE REVIEWED HALF TO 30 JUNE. The row
+    # was not merely miscounted, it contradicted the study printed around it.
+    #
+    # The short label and the "why" are editorial — a table cell cannot carry the
+    # register's full paragraph — so they are written HERE, and asserted to cover EXACTLY
+    # the keys the record holds. The count can no longer disagree, and a gap added or
+    # closed in inputs.py breaks this build until somebody writes its row.
+    GAP_LABEL = {
+        "cash_flow_statement_detail": (
+            "Line-by-line 2025 cash flow",
+            "Published in its three totals only, so the working-capital wedge cannot be "
+            "decomposed. It is why the projection is published in two framings."),
+        "fy2025_results_release": (
+            "Full-year 2025 operating figures",
+            "The audited statements were published; the results release, which carries "
+            "units sold, new sales and deliveries, was not."),
+        "h1_2026_release_operating_drivers": (
+            "Half-year 2026 operating figures",
+            "The reviewed half-year STATEMENTS are held and the model stands on them. "
+            "The half-year RELEASE, which carries units and new sales, is not posted."),
+        "securitisation_pricing": (
+            "Cost of debt",
+            "The February 2026 securitisation publishes sizes, tenors and ratings but no "
+            "coupon on any tranche."),
+        "per_project_pricing": (
+            "Project unit economics",
+            "No per-project unit mix, unit area, price per square metre or construction "
+            "cost per square metre is disclosed."),
+        "backlog_cost_to_complete": (
+            "Cost to complete the order book",
+            "Not disclosed as a single figure. It is inferred from the realised gross "
+            "margin and flagged where used."),
+    }
+    _missing = sorted(set(N["gaps"]) - set(GAP_LABEL))
+    _extra = sorted(set(GAP_LABEL) - set(N["gaps"]))
+    assert not _missing and not _extra, (
+        "the gap table and the gap record disagree — record has no row for %s, table has "
+        "a row for %s. A table that can differ in COUNT from the sentence above it is the "
+        "defect this assertion exists to make impossible." % (_missing, _extra))
+
+    def _closed_by(text):
+        """The record's own 'Closed by:' clause, or a stated absence — never invented."""
+        for marker in ("Closed by:", "Closed by "):
+            if marker in text:
+                return text.split(marker, 1)[1].strip().rstrip(".").capitalize() + "."
+        return "Not stated in the register."
+
+    gap_rows = [[GAP_LABEL[k][0], GAP_LABEL[k][1], _closed_by(why)]
+                for k, why in N["gaps"].items()]
     table(doc, ["What is missing", "Why it matters", "What would close it"],
           gap_rows, [3.6, 7.0, 5.2])
     para(doc, "What would change our mind, in order of force:", bold=True)
@@ -1247,9 +1372,10 @@ def _appendices(doc, sp, base):
            ["Net profit"] + _f(FB, "npat"),
            ["Earnings per share (EGP)"] + _f(FB, "eps", "{:,.2f}")],
           AUTO,
-          "Five forecast years. Gross margin is what price per unit and cost "
-          "per unit leave behind, never an input. Years three to five should be "
-          "read against the range in section 1.9, not as points.")
+          "%d forecast years, the first five and then every fifth. Gross margin is "
+          "anchored on the latest reviewed period and cost per delivered unit solved "
+          "from it, for the reason given in section 1.1. Years three to five should be "
+          "read against the range in section 1.9, not as points." % NEXP)
 
     doc.add_heading("A.2  Balance sheet", level=2)
     SB, B24 = N["balance_sheet_subtotals"], N["balance_sheet_fy24"]
@@ -1396,7 +1522,7 @@ def _appendices(doc, sp, base):
             para(doc, "This reading does not produce a value per share, and "
                       "the reason is worth stating plainly rather than "
                       "burying. Free cash flow is negative in every one of the "
-                      "five years and reaches minus EGP %s million in 2030. A "
+                      "%d years and reaches minus EGP %s million in %s. A "
                       "terminal "
                       "value taken on a negative flow returns a large negative "
                       "number that looks like a valuation and is not one: it "
@@ -1404,23 +1530,33 @@ def _appendices(doc, sp, base):
                       "compounding rate, which is not a forecast anybody made. "
                       "So none is taken. What this reading measures instead is "
                       "the funding the growth would need."
-                      % "{:,.0f}".format(abs(d["terminal_flow"])))
+                      % (NEXP, "{:,.0f}".format(abs(d["terminal_flow"])),
+                         LAST_YEAR))
+            # THE YEAR IS READ OFF THE ROW THE FIGURE COMES FROM, AND IT WAS TYPED
+            # [corrected 17-09-2026]. statements.py builds this block from rows[-1] of a
+            # FIFTEEN-row projection, so every figure here is 2040 and all four labels
+            # said 2030 — and the caption then asserted that the interest "would exceed
+            # operating profit outright" against a printed share that does not. Both
+            # halves came from the same typed year: the figures were right, the year was
+            # remembered, and the claim was checked against the wrong one.
+            _fy = LAST_YEAR
+            _share = 100 * d["funding_interest_vs_ebit"]
             table(doc, ["If the cycle holds, what the growth costs", "EGP mn"],
-                  [["Present value of the five forecast years",
+                  [["Present value of the %d forecast years" % NEXP,
                     "{:,.0f}".format(d["pv_explicit"])],
-                   ["New borrowing required by 2030",
+                   ["New borrowing required by %s" % _fy,
                     "{:,.0f}".format(d["funding_required"])],
-                   ["Its annual interest by 2030, at %.2f per cent"
-                    % (100 * W["kd_pretax_local"]),
+                   ["Its annual interest by %s, at %.2f per cent"
+                    % (_fy, 100 * W["kd_pretax_local"]),
                     "{:,.0f}".format(d["funding_interest"])],
-                   ["That interest as a share of 2030 operating profit",
-                    "%.0f%%" % (100 * d["funding_interest_vs_ebit"])]],
+                   ["That interest as a share of %s operating profit" % _fy,
+                    "%.0f%%" % _share]],
                   [10.6, 5.6],
-                  "The interest on that borrowing is not in the profit "
-                  "forecast above, and by 2030 it would exceed operating "
-                  "profit outright. The collection cycle and this growth path "
-                  "cannot both hold — which is the finding, not a defect in "
-                  "the arithmetic.")
+                  "The interest on that borrowing is not in the profit forecast above, "
+                  "and by %s it would %s operating profit — %.0f per cent of it. The "
+                  "collection cycle and this growth path cannot both hold, which is the "
+                  "finding rather than a defect in the arithmetic."
+                  % (_fy, "exceed" if _share > 100 else "absorb", _share))
         else:
             d = ST["dcf_b"]
             table(doc, ["Free cash flow to the firm, EGP million"] + fy,
@@ -1502,12 +1638,18 @@ def _appendices(doc, sp, base):
               "discounted at what that cash costs. When it works: businesses with "
               "stable conversion of profit to cash. When it fails: businesses where "
               "that conversion is the unknown — which is exactly this one.")
+    # THE EXPLICIT WINDOW IS COUNTED, NOT TYPED, AND THE BRIDGE SHEET IS READ, NOT
+    # REMEMBERED [corrected 17-09-2026]. This table said "five explicit years" and
+    # "beyond year five" over a model that runs FIFTEEN, and dated the net debt and the
+    # associates to the previous quarter after the re-issue moved the bridge onto the reviewed
+    # 30 June sheet. Both are facts the record already carries; both were words.
+    _NEXP, _BSD = NEXP, BRIDGE_BS_DATE
     table(doc, ["Working", "EGP mn"],
-          [["Present value of five explicit years", money(base["pv_explicit"])],
-           ["Present value beyond year five", money(base["pv_terminal"])],
+          [["Present value of the %d explicit years" % _NEXP, money(base["pv_explicit"])],
+           ["Present value beyond year %d" % _NEXP, money(base["pv_terminal"])],
            ["Enterprise value", money(base["ev"])],
-           ["less net debt, 31 March 2026", "(%s)" % money(D["net_debt_bridge"])],
-           ["plus associates and investment property, 31 March 2026",
+           ["less net debt, %s" % _BSD, "(%s)" % money(D["net_debt_bridge"])],
+           ["plus associates and investment property, %s" % _BSD,
             money(q("investments_assoc") + q("investment_property"))],
            ["Equity before minority interests", money(base["equity_before_nci"])],
            ["less minority interests at their share of value",
@@ -1515,39 +1657,35 @@ def _appendices(doc, sp, base):
            ["Equity attributable to shareholders", money(base["equity"])],
            ["Per share (EGP)", "%.2f" % base["per_share"]]],
           [9.0, 5.0])
+    # THE SECOND DRIVER IS PRINTED RATHER THAN FOLDED IN [17-09-2026]. Until today the
+    # bear and full reads ALSO shifted the discount schedule, +200bp and -100bp, which
+    # produced the wider pair the headline used to carry and which no sentence disclosed.
+    # The envelope now moves ONE driver; the shift is a real sensitivity and is stated.
+    _SS = N["schedule_shift_sensitivity"]
     para(doc, "Named sensitivity: a move in cash conversion from %s to %s takes the "
-              "answer from EGP %.2f to EGP %.2f. Falsifier stated in advance: if the "
+              "answer from EGP %.2f to EGP %.2f, with the cost-of-capital schedule held "
+              "so that one driver moves. Shifting the whole schedule as well — 200 basis "
+              "points up on the low case, 100 down on the high — widens that to EGP %.2f "
+              "and EGP %.2f; that is a second driver, and it is published here rather "
+              "than folded into the range. Falsifier stated in advance: if the "
               "2026 and 2027 cash-flow statements show conversion inside two "
               "percentage points of %s, this reading is right and the range should "
               "collapse toward its centre; if they straddle the full observed spread "
               "again, the method should be abandoned for this company."
               % (pct(D["cfo_lo"]), pct(D["cfo_hi"]),
                  CASES["low_conversion"]["per_share"],
-                 CASES["high_conversion"]["per_share"], pct(D["cfo_mid"])))
+                 CASES["high_conversion"]["per_share"],
+                 _SS["bear_plus_200bp"], _SS["full_less_100bp"],
+                 pct(D["cfo_mid"])))
 
     doc.add_heading("C.2  Expert 2 — the asset-based analyst", level=2)
     para(doc, "Worldview: a developer is a pile of land, work in progress and "
               "receivables, less what it owes. Earnings are an accident of timing. "
               "When it works: asset-heavy businesses in distress or in wind-down. "
               "When it fails: going concerns whose value is in execution.")
-    table(doc, ["Working, on the reviewed balance sheet of 31 March 2026", "EGP mn"],
-          [["Work in progress", money(q("work_in_progress"))],
-           ["Receivables, trade and instalment",
-            money(q("accounts_receivable") + q("notes_recv_st")
-                  + q("notes_recv_lt") + q("notes_recv_st_undel")
-                  + q("notes_recv_lt_undel"))],
-           ["Cash", money(q("cash"))],
-           ["Investments and investment property",
-            money(q("investments_assoc") + q("investment_property"))],
-           ["less advances from customers",
-            "(%s)" % money(q("advances_customers"))],
-           ["less gross borrowings", "(%s)" % money(D["gross_debt_bridge"], 1)],
-           ["less other liabilities, balancing",
-            "(%s)" % money(q("total_liabilities") - q("advances_customers")
-                           - D["gross_debt_bridge"], 1)],
-           ["Shareholders' funds as reported", money(q("total_equity"))],
-           ["  of which attributable to the parent", money(q("equity_parent"))],
-           ["Per share, parent (EGP)", "%.2f" % D["book_equity_per_share"]]],
+    table(doc, ["Working, on the reviewed balance sheet of %s" % BRIDGE_BS_WORDS,
+                "EGP mn"],
+          _e2_rows(q, D, money),
           [9.0, 5.0])
     para(doc, "Named sensitivity: the instalment receivable book is carried at face "
               "value less unwinding discount. A 10 per cent write-down of that book "

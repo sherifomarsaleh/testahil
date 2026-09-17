@@ -31,6 +31,15 @@
    "why": "The base case was the MEAN of three full-year conversion rates -- 4.333, 17.870 and 3.938 per cent -- a three-year average standing in for a rate the company has since reported, and an average of a quantity that swings by a factor of four. This is the study's own crux.",
    "evidence": "Operating cash flow 1,499.068 over revenue 19,528.118 = 7.676 per cent, against the 8.714 the mean produced. THE DIRECTION IS MEASURED LIKE FOR LIKE IN THE COMPANY'S OWN PERIOD PAIR, from the same reviewed statement's own prior-year column: the SAME half a year earlier converted at 3.114 per cent, so 3.114 -> 7.676 half against half, and the adopted level is not a seasonal artefact of using six months where the old rate used twelve. The envelope is unchanged and is still the range of filed full-year outcomes.",
    "move": -0.15449089587565168
+  },
+  {
+   "name": "the envelope onto one driver and one clock",
+   "rule": "R-LENS-03",
+   "before": 13.912894753552722,
+   "after": 13.912894753552722,
+   "why": "The bear and full reads ALSO shifted the cost-of-capital schedule -- +200bp and -100bp, asymmetric -- while the record they feed names ONE driver, gives its low and high as the two observed conversion rates, and asserts macro_held. [R-LENS-03] requires the envelope to be the range of the present-value reads ON ONE CLOCK, and a moved discount rate is a second clock.",
+   "evidence": "THE CENTRAL DOES NOT MOVE AND THE ENVELOPE DOES: bear 2.6200 -> 4.7490 and full 45.1061 -> 38.8970, the schedule now held across the range and the shifted pair published beside it as its own named sensitivity. What made it findable is that the study disagreed with itself in public -- the headline read 'EGP 2.62 to EGP 45.11 across the full observed range of the one thing that decides it' while section 4, the named sensitivity and the expert room all said that same move gives 4.75 to 38.90. Three places against one, and the one was the headline. A LEVER WORTH ZERO ON THE CENTRAL IS STILL A LEVER: it moves what a reader is told the answer's range is, which is most of what a range is for.",
+   "move": 0.0
   }
  ],
  "value": 13.912894753552722,
@@ -52,11 +61,20 @@
    "first_before": 16.455050200744573,
    "last_after": 13.912894753552722,
    "move": -0.15449089587565168
+  },
+  "R-LENS-03": {
+   "levers": [
+    "the envelope onto one driver and one clock"
+   ],
+   "first_before": 13.912894753552722,
+   "last_after": 13.912894753552722,
+   "move": 0.0
   }
  },
  "distinct_rules": [
   "R-ANCHOR-01",
-  "R-BRIDGE-01"
+  "R-BRIDGE-01",
+  "R-LENS-03"
  ],
  "start_gap": 0.23942811067618042,
  "gap": -0.033826753225505435

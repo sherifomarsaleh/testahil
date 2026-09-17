@@ -199,10 +199,19 @@ GAPS = {
         "deliveries and construction spend are disclosed, so FY2025 has audited "
         "financials and NO operating drivers. Closed by: the FY2025 release, or the "
         "company confirming the figures directly.",
-    "h1_2026_results": "As at this build date (30-Aug-2026) no 2Q/H1-2026 statements or "
-        "release are posted to the result centre; the newest disclosure of any kind is "
-        "1Q2026 (posted 25-Jun-2026). The study's information set therefore ends at "
-        "1Q2026. Closed by: the H1-2026 filing.",
+    # CLOSED 17-09-2026 AND THE ENTRY IS REPLACED RATHER THAN DELETED. It read "no
+    # 2Q/H1-2026 statements or release are posted ... the study's information set
+    # therefore ends at 1Q2026" for the whole of the day on which the reviewed half was
+    # read, footed and made the bridge AND the margin anchor AND the cash-conversion
+    # rate. A gap register that still names a gap the study has closed is the same defect
+    # as a record naming a superseded period: it describes a study that no longer exists,
+    # and a reader counting gaps counts one that is not there.
+    "h1_2026_release_operating_drivers": "The reviewed consolidated statements for the six "
+        "months ended 30 June 2026 ARE held and are what the bridge, the gross-margin "
+        "anchor and the cash-conversion rate stand on. What is NOT posted is the H1-2026 "
+        "RESULTS RELEASE, which is where units sold, new sales, deliveries and "
+        "construction spend are disclosed — so the half has reviewed financials and no "
+        "operating drivers, exactly as FY2025 does. Closed by: the H1-2026 release.",
     "securitisation_pricing": "The EGP 2.015bn securitisation of 4-Feb-2026 discloses "
         "tranche sizes, tenors and national-scale ratings but NO coupon on any tranche, "
         "so the company's own marginal cost of debt cannot be read. Closed by: the "
@@ -219,11 +228,13 @@ GAPS = {
 
 
 # ---------------------------------------------------------------------------
-# The LATEST disclosed balance sheet — 31 March 2026, reviewed — registered from
-# bs_1q2026.json, the four-field record the [R-GAP-01] review of 01-Sep-2026
-# read off the company's own interim statements (a scan; OCR at 300dpi, every
-# subtotal held to the statement's own arithmetic). The bridge, the book lens and
-# the debt stack stand on THIS sheet [GAP_REVIEW_01-09-2026 heading 6]; the
+# The LATEST disclosed balance sheet — 30 JUNE 2026, reviewed — registered from
+# bs_2q2026.json, which is what the line below actually reads. THIS COMMENT SAID
+# 31 MARCH AND bs_1q2026.json until 17-09-2026, having been written for the sheet
+# the study stood on before the re-issue moved it. The four-field record was read
+# off the company's own interim statements (a scan; OCR at 300dpi, every subtotal
+# held to the statement's own arithmetic). The bridge, the book lens and the debt
+# stack stand on THIS sheet [R-BRIDGE-01]; the
 # projected statements keep FY2025 as their audited base year, because a
 # working-capital cycle measured on full years is not restarted from a quarter.
 import json as _json, os as _os

@@ -47,8 +47,17 @@ LAYER = {
     "units_": "Company — operating", "revenue_1q26": "Company — operating",
     "shares_": "Market", "spot": "Market",
 }
-# every line of the 31 March 2026 reviewed sheet is registered with a _1q26 suffix
-LAYER_1Q26 = "Company — balance sheet, 31 March 2026 (reviewed)"
+# THE LAYER NAME IS BUILT FROM THE RECORD [17-09-2026]. It read "31 March 2026" after
+# the re-issue moved the bridge onto the reviewed half to 30 June, so the bibliography —
+# the one document whose whole job is to say where each figure came from — named the
+# wrong filing for every balance-sheet line in it. The _1q26 SUFFIX on the keys is left
+# alone deliberately: renaming several dozen committed registry keys is a re-issue of the
+# record, not a label fix, and the layer a reader is shown is what was wrong.
+_BSM = ["January", "February", "March", "April", "May", "June", "July", "August",
+        "September", "October", "November", "December"]
+_BSD = N["bridge_record"]["balance_sheet_date"]
+BRIDGE_BS_WORDS = "%d %s %d" % (int(_BSD[8:10]), _BSM[int(_BSD[5:7]) - 1], int(_BSD[0:4]))
+LAYER_1Q26 = "Company — balance sheet, %s (reviewed)" % BRIDGE_BS_WORDS
 
 
 def layer_of(key):
@@ -87,11 +96,17 @@ def build(path):
             "Palm Hills Developments", "prior-year balance sheet and cash flow"],
            ["Consolidated financial statements", "FY2023",
             "Palm Hills Developments", "revenue and gross profit"],
-           ["Consolidated financial statements (reviewed)", "1Q2026 — 31 March 2026",
-            "Palm Hills Developments", "the most recent reported quarter, and the "
-            "balance sheet the bridge, the book value and the borrowings stand on "
+           ["Consolidated financial statements (reviewed)", "1H2026 — %s"
+            % BRIDGE_BS_WORDS,
+            "Palm Hills Developments", "the most recent reported period, and the "
+            "balance sheet the bridge, the book value and the borrowings stand on; "
+            "also the gross-margin anchor and the cash-conversion rate "
             "(a scan; figures read off the rendered pages and held to the "
             "statement's own subtotals)"],
+           ["Consolidated financial statements (reviewed)", "1Q2026 — 31 March 2026",
+            "Palm Hills Developments", "the prior reported quarter, superseded as the "
+            "bridge sheet and the anchor by the half above and retained as its "
+            "comparative"],
            ["Results release", "1Q2026", "Palm Hills Developments",
             "order book, new sales, the land-plot launch"],
            ["Results release", "FY2024", "Palm Hills Developments",
@@ -172,11 +187,12 @@ def build(path):
             "Project-level disclosure of unit mix, area, price and cost."],
            ["The bridge stands on the latest disclosed balance sheet",
             "Net debt, associates, investment property and book equity are taken "
-            "from the reviewed statement of 31 March 2026 (net debt EGP %s million "
+            "from the reviewed statement of %s (net debt EGP %s million "
             "against %s million at 31 December 2025); the projected statements keep "
             "the audited full year 2025 as their base."
-            % ("{:,.1f}".format(D["net_debt_bridge"]), "{:,.1f}".format(D["net_debt"])),
-            "A later balance sheet — the half-year 2026 statements, once published."],
+            % (BRIDGE_BS_WORDS, "{:,.1f}".format(D["net_debt_bridge"]),
+               "{:,.1f}".format(D["net_debt"])),
+            "A later balance sheet than the one named here."],
            ["Minority interests deducted at their share of value",
             "The cash-flow model capitalises all of the subsidiaries' cash flow, so "
             "the minority's claim comes out at its share of the resulting value, "

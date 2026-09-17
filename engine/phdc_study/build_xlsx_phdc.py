@@ -33,6 +33,18 @@ YEARS = [r["year"] for r in N["cases"]["base"]["rows"]]
 ASSUMPTION_AT = {}
 
 
+# THE SHEET THE BRIDGE STANDS ON, IN WORDS, COMPUTED FROM THE RECORD
+# [17-09-2026]. Eleven labels in this workbook said "31 March 2026" while every
+# _bridge line in the registry is dated 2026-06-30. The re-issue moved the sheet
+# and the labels were typed, so they stayed — and a workbook is where a reader
+# goes to check exactly this.
+_BSM = ["January", "February", "March", "April", "May", "June", "July", "August",
+        "September", "October", "November", "December"]
+_BSD = N["bridge_record"]["balance_sheet_date"]
+BRIDGE_BS_WORDS = "%d %s %d" % (int(_BSD[8:10]), _BSM[int(_BSD[5:7]) - 1],
+                                int(_BSD[0:4]))
+
+
 def AT(label):
     if label not in ASSUMPTION_AT:
         raise KeyError("no assumption row named %r; have %s"
@@ -45,7 +57,7 @@ def v(k):
 
 
 def q(k):
-    """A line of the 31 March 2026 reviewed balance sheet — what the bridge stands on."""
+    """A line of the reviewed balance sheet the bridge stands on (BRIDGE_BS_WORDS)."""
     return N["balance_sheet_bridge"][k]["value"]
 
 
@@ -151,15 +163,18 @@ def build(path):
          "All formulas; drivers live on Assumptions.", [46, 18])
     b = CASES["base"]
     r = 4
-    r = row(ws, r, "Present value of the explicit five years",
+    # COUNTED, NOT TYPED: the model runs fifteen explicit years and this row said five.
+    r = row(ws, r, "Present value of the explicit %d years"
+            % len(N["statements"]["framing_b"]),
             [round(b["pv_explicit"], 1)], fmt="#,##0.0")
     r = row(ws, r, "Present value of the terminal value",
             [round(b["pv_terminal"], 1)], fmt="#,##0.0")
     r = row(ws, r, "Enterprise value", ["=B4+B5"], fmt="#,##0.0", bold=True)
-    # the bridge stands on the 31 March 2026 reviewed balance sheet; the four
+    # the bridge stands on the reviewed balance sheet named by the record; the four
     # Assumptions addresses below are asserted against their labels once that
     # sheet is written (A_NET_DEBT .. A_SHARES)
-    r = row(ws, r, "less net debt, 31 March 2026", ["=-Assumptions!B13"], fmt="#,##0.0")
+    r = row(ws, r, "less net debt, %s" % BRIDGE_BS_WORDS, ["=-Assumptions!B13"],
+            fmt="#,##0.0")
     r = row(ws, r, "plus investments in associates",
             ["=Assumptions!B14"], fmt="#,##0.0")
     r = row(ws, r, "plus investment property", ["=Assumptions!B15"], fmt="#,##0.0")
@@ -191,8 +206,17 @@ def build(path):
          "mean of the three published cash-flow statements"),
         ("Cash conversion — weak", D["cfo_lo"], "0.00%", "2023 and 2025 outcome"),
         ("Cash conversion — strong", D["cfo_hi"], "0.00%", "2024 outcome"),
-        ("Gross margin", (D["gross_margin_fy25"] + D["gross_margin_1q26"]) / 2,
-         "0.00%", "average of FY2025 and 1Q2026 as reported"),
+        # THE WORKBOOK PUBLISHED A MARGIN THE MODEL HAD REJECTED [corrected 17-09-2026].
+        # This cell carried the AVERAGE of FY2025 and 1Q2026 — 38.32% — and the DCF sheet
+        # computes gross profit from it, so that sheet published a 2026 gross profit 8.0%
+        # above the one the Income Statement sheet and the document both print. The
+        # averaging construction is the one this study's own record says it stopped using
+        # on 03-09-2026 because it "took neither" period; the forward margin is ANCHORED
+        # on the latest reviewed period. A driver cell a reader is invited to change must
+        # be the driver the model actually ran.
+        ("Gross margin", N["forecast_anchor"]["first_forecast_rate"], "0.00%",
+         "anchored on the latest reviewed period, %s — the rate the model runs"
+         % N["forecast_anchor"]["latest_reviewed_period"]),
         ("Overheads as a share of revenue", D["sga_ratio_fy25"], "0.00%",
          "FY2025 as reported"),
         ("Price escalation", D["cpi_trailing3"], "0.00%",
@@ -201,17 +225,17 @@ def build(path):
         ("Cost of capital", W["wacc_rating"], "0.00%",
          "built on the Fundamental Valuation and Peer sheets"),
         ("Net debt (EGP mn)", D["net_debt_bridge"], "#,##0.0",
-         "gross borrowings less cash, 31 March 2026 reviewed balance sheet"),
+         "gross borrowings less cash, %s reviewed balance sheet" % BRIDGE_BS_WORDS),
         ("Investments in associates (EGP mn)", q("investments_assoc"), "#,##0.0",
-         "31 March 2026 reviewed balance sheet"),
+         "%s reviewed balance sheet" % BRIDGE_BS_WORDS),
         ("Investment property (EGP mn)", q("investment_property"), "#,##0.0",
-         "31 March 2026 reviewed balance sheet"),
+         "%s reviewed balance sheet" % BRIDGE_BS_WORDS),
         ("Minority interests, share of equity value", D["nci_value_share"], "0.00%",
          "the minority's filed share of FY2025 profit after tax, as its share of value"),
         ("Shares outstanding (mn)", D["shares_mn"], "#,##0.0", "FY2025"),
         ("Opening revenue (EGP mn)", v("revenue_fy25"), "#,##0.0", "FY2025 audited"),
         ("Opening order book (EGP mn)", v("backlog_1q26"), "#,##0.0",
-         "as at 31 March 2026"),
+         "as at %s" % BRIDGE_BS_WORDS),
         ("Units delivered, 2026", BU["rows"][0]["units_delivered"], "#,##0",
          "implied by the reported first quarter of 2026"),
         ("Units delivered, annual growth", BU["anchors"]["delivery_growth"],
@@ -276,10 +300,10 @@ def _remaining(wb):
          "the operating cash flows.", [46, 18])
     r = 4
     for lbl, val in (("Operating business, discounted cash flow", b["ev"]),
-                     ("Investments in associates, 31 March 2026", q("investments_assoc")),
-                     ("Investment property, 31 March 2026", q("investment_property")),
-                     ("Cash, 31 March 2026", D["cash_bridge"]),
-                     ("Gross borrowings, 31 March 2026", -D["gross_debt_bridge"])):
+                     ("Investments in associates, %s" % BRIDGE_BS_WORDS, q("investments_assoc")),
+                     ("Investment property, %s" % BRIDGE_BS_WORDS, q("investment_property")),
+                     ("Cash, %s" % BRIDGE_BS_WORDS, D["cash_bridge"]),
+                     ("Gross borrowings, %s" % BRIDGE_BS_WORDS, -D["gross_debt_bridge"])):
         r = row(ws, r, lbl, [round(val, 1)], fmt="#,##0.0")
     r = row(ws, r, "Minority interests at their share of value",
             ["=-(B4+B5+B6+B7+B8)*Assumptions!B16"], fmt="#,##0.0")
@@ -512,7 +536,9 @@ def _remaining(wb):
     # 9-11 statements --------------------------------------------------------
     ws = wb.create_sheet("Income Statement")
     head(ws, "Income statement — built from units and prices",
-         "Gross margin is an OUTPUT of price per unit against cost per unit.",
+         "Gross margin is ANCHORED on the latest reviewed period and cost per unit is "
+         "solved from it; the company discloses no unit count after FY2024, so there is "
+         "no independent cost per unit to build. See the study, section 1.1.",
          [34, 14, 14, 14, 14, 14])
     rr = 4
     ws.cell(rr, 1, "EGP mn unless stated").font = HEAD
@@ -752,7 +778,7 @@ def _remaining(wb):
         ("Price to book", PM["spot"] / D["book_equity_per_share"], "0.00"),
         ("Earnings per share, 2025 (EGP)",
          v("npat_mi_fy25") / D["shares_mn"], "#,##0.00"),
-        ("Net debt per share, 31 March 2026 (EGP)", D["net_debt_bridge"] / D["shares_mn"], "#,##0.00"),
+        ("Net debt per share, %s (EGP)" % BRIDGE_BS_WORDS, D["net_debt_bridge"] / D["shares_mn"], "#,##0.00"),
         ("Order book per share (EGP)",
          v("backlog_1q26") / D["shares_mn"], "#,##0.00"),
         ("Gross margin, 2025", D["gross_margin_fy25"], "0.0%"),

@@ -263,15 +263,19 @@ def main():
         "lenses": V2.lenses()["rows"],
         "lens_weighted": V2.lenses()["weighted"],
         "lens_detail": {k: V2.lenses()[k] for k in ("normalised_inputs", "book_reference")},
+        # the second driver, committed so the document READS it rather than typing it
+        "schedule_shift_sensitivity": V2.lenses()["schedule_shift_sensitivity"],
         # [R-LENS-03] the architecture as a record the outside gate reads
         "lens_record": {
             "class": "real-estate developer, off-plan, percentage-of-completion",
             "primary": {"kind": "dcf", "value": V2.lenses()["primary"]["value"],
                         "range": {"low": V2.lenses()["rows"][0][1],
                                   "high": V2.lenses()["rows"][0][3]},
-                        "range_note": ("the cash-flow lens across the full observed range of "
-                                       "the crux — cash conversion — with the whole schedule "
-                                       "shifted rather than flattened"),
+                        "range_note": ("the cash-flow lens across the full observed range "
+                                       "of the crux — cash conversion — with the "
+                                       "cost-of-capital schedule HELD, so the range moves "
+                                       "one driver. The same two rates with the schedule "
+                                       "shifted are published as a separate sensitivity."),
                         "note": ("the cash-flow lens on the company's own units and prices, "
                                  "discounted on the cost-of-capital schedule over a window "
                                  "that runs until growth has converged on the terminal"),
@@ -291,12 +295,23 @@ def main():
                             "high": 0.17870012846326283,
                             "units": ("fraction of contracted sales converting to "
                                       "operating cash in the year"),
+                            # THE FORECAST IT IS COMPARED AGAINST IS READ, NOT TYPED
+                            # [17-09-2026]. This clause said "against a forecast of
+                            # 0.0871" -- the three-year mean the model carried BEFORE the
+                            # re-anchoring onto the reviewed half. The evidence field of a
+                            # record is the last place a superseded number should sit,
+                            # because it is what an outside reader checks the range against.
                             "evidence": (
                                 "the full observed span of that rate in the company's own "
                                 "filed cash-flow statements, recorded in this study's "
                                 "diagnostics as study_value_range against a forecast of "
-                                "0.0871. Not a chosen percentage band: the low and the "
-                                "high are values this company has actually printed."),
+                                "%.4f, the reviewed half to 30 June 2026. Not a chosen "
+                                "percentage band: the low and the high are values this "
+                                "company has actually printed. ONE DRIVER AND ONE CLOCK: "
+                                "the cost-of-capital schedule is held across the range; "
+                                "a shifted schedule is published beside it as its own "
+                                "sensitivity and is not folded in here."
+                                % ST.CONV_MID),
                             "macro_held": True,
                             "macro_note": (
                                 "one inflation path, one currency path, one cost-of-capital "

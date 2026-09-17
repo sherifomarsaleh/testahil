@@ -51,6 +51,25 @@ L = Ledger(
                         "half, and the adopted level is not a seasonal artefact of using six "
                         "months where the old rate used twelve. The envelope is unchanged and "
                         "is still the range of filed full-year outcomes.")),
+        Lever(name="the envelope onto one driver and one clock",
+              rule="R-LENS-03", before=13.912894753552722, after=13.912894753552722,
+              why=("The bear and full reads ALSO shifted the cost-of-capital schedule -- "
+                   "+200bp and -100bp, asymmetric -- while the record they feed names ONE "
+                   "driver, gives its low and high as the two observed conversion rates, and "
+                   "asserts macro_held. [R-LENS-03] requires the envelope to be the range of "
+                   "the present-value reads ON ONE CLOCK, and a moved discount rate is a "
+                   "second clock."),
+              evidence=("THE CENTRAL DOES NOT MOVE AND THE ENVELOPE DOES: bear 2.6200 -> "
+                        "4.7490 and full 45.1061 -> 38.8970, the schedule now held across "
+                        "the range and the shifted pair published beside it as its own "
+                        "named sensitivity. What made it findable is that the study "
+                        "disagreed with itself in public -- the headline read 'EGP 2.62 to "
+                        "EGP 45.11 across the full observed range of the one thing that "
+                        "decides it' while section 4, the named sensitivity and the expert "
+                        "room all said that same move gives 4.75 to 38.90. Three places "
+                        "against one, and the one was the headline. A LEVER WORTH ZERO ON "
+                        "THE CENTRAL IS STILL A LEVER: it moves what a reader is told the "
+                        "answer's range is, which is most of what a range is for.")),
     ])
 
 if __name__ == "__main__":
