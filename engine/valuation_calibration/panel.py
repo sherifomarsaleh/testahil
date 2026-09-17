@@ -105,6 +105,9 @@ def _block_shares():
 SHARES = _shares()
 BLOCK_SHARES = _block_shares()
 
+# ticker -> the artefact that answered for its panel, or a SKIPPED/UNREADABLE sentinel
+PANEL_SOURCE = {}
+
 OHLC = os.path.join(ENGINE, "raw_ohlc")
 
 
@@ -115,12 +118,108 @@ def runs():
     return out
 
 
+# ONE NAMED ADAPTER PER RUN, BECAUSE A READER THAT GUESSES A SHAPE FINDS NOTHING AND
+# REPORTS THAT AS A RESULT [L-355].
+#
+# WHAT THE GUESSING COST, MEASURED 17-09-2026. The search below used to be "by SHAPE" —
+# try six filenames, accept the first whose TOP LEVEL is keyed by four-digit years — and
+# it reported FIVE runs as having committed no as-reported panel at all. FOUR OF THE FIVE
+# COMMIT ONE. GBCO and SWDY nest theirs one level down under `years`; SCEM and PHAR key
+# theirs "FY2021" under `income_statement`. Every one of those files was on disk, tracked,
+# and full of footed figures with their sources.
+#
+# AND THE TOOL DID NOT GO QUIET ABOUT IT — IT EXPLAINED. It printed that their statements
+# "came from engine/*_walkforward/filings/, which is gitignored", which is a specific,
+# confident and WRONG account of why a number was zero, and it is the reason nobody looked
+# for three weeks: an absence with a plausible story attached stops being a question.
+#
+# So the route is NAMED per run rather than inferred. A run this table does not name and
+# whose file is not top-level year-keyed is REPORTED as unreadable [R-ENF-04] — never
+# silently empty, which is the state this whole comment is about.
+def _years_top(d):
+    """{year: cell} where the years ARE the top-level keys — PHDC, TMGH."""
+    return {int(k): v for k, v in d.items() if k.isdigit() and len(k) == 4}
+
+
+def _years_nested(key):
+    """{year: cell} from a dict nested one level under `key` — GBCO, SWDY."""
+    def read(d):
+        inner = d.get(key) or {}
+        return {int(k): v for k, v in inner.items()
+                if isinstance(k, str) and k.isdigit() and len(k) == 4}
+    return read
+
+
+def _years_fy(key):
+    """{year: cell} from FY-prefixed keys under `key` — SCEM, PHAR."""
+    def read(d):
+        inner = d.get(key) or {}
+        out = {}
+        for k, v in inner.items():
+            digits = "".join(ch for ch in str(k) if ch.isdigit())
+            if len(digits) == 4:
+                out[int(digits)] = v
+        return out
+    return read
+
+
+PANEL_ADAPTER = {
+    "PHDC": ("panel.json", _years_top),
+    "TMGH": ("panel_annual.json", _years_top),
+    "GBCO": ("panel.json", _years_nested("years")),
+    "SWDY": ("panel.json", _years_nested("years")),
+    "SCEM": ("panel_export.json", _years_fy("income_statement")),
+    "PHAR": ("panel_export.json", _years_fy("income_statement")),
+}
+
+
+def _skip_reason(rundir):
+    """The run's own recorded reason for not running, or None.
+
+    A SKIP IS NOT A MISSING PANEL AND MUST NOT BE COUNTED AS ONE. ELEC records
+    "walk-forward not run — insufficient sourceable history (4 years)" in the words
+    [R-FCAL-01] prescribes; reporting that as an absent artefact would turn a correct
+    refusal into an outstanding debt, which is how a clean result gets manufactured in
+    the other direction.
+    """
+    p = os.path.join(rundir, "skip_record.json")
+    if not os.path.exists(p):
+        return None
+    try:
+        d = json.load(open(p, encoding="utf-8"))
+    except Exception:
+        return "skip_record.json will not parse"
+    return d.get("scope_words") or "recorded as skipped"
+
+
 def _panel(rundir):
-    """The walk-forward's as-reported panel, keyed by year, or {}."""
-    # The runs do not agree on a filename — PHDC writes panel.json, TMGH
-    # panel_annual.json — so the search is by SHAPE (a dict keyed by
-    # four-digit years) across the candidates, and the file that answered
-    # is recorded so a reader knows which artefact a cell stands on.
+    """The walk-forward's as-reported panel, keyed by year, or {}.
+
+    Returns (panel, source) where source is the filename that answered, or one of
+    the sentinels "SKIPPED: ..." / "UNREADABLE: ..." so a caller can tell a run that
+    correctly did not run from one this reader cannot open.
+    """
+    tk = os.path.basename(rundir.rstrip(os.sep)).replace("_walkforward", "").upper()
+    skip = _skip_reason(rundir)
+    if skip:
+        return {}, "SKIPPED: %s" % skip
+    named = PANEL_ADAPTER.get(tk)
+    if named:
+        fn, route = named
+        p = os.path.join(rundir, fn)
+        if not os.path.exists(p):
+            return {}, "UNREADABLE: %s names %s and it is not on disk" % (tk, fn)
+        try:
+            d = json.load(open(p, encoding="utf-8"))
+        except Exception as e:
+            return {}, "UNREADABLE: %s will not parse (%s)" % (fn, e)
+        got = route(d) if isinstance(d, dict) else {}
+        if not got:
+            return {}, ("UNREADABLE: %s adapter found no year-keyed cells in %s — the "
+                        "shape moved and the adapter did not" % (tk, fn))
+        return got, fn
+    # No named adapter: the top-level convention is still accepted, and anything else
+    # is reported rather than returned empty.
     for fn in ("panel.json", "panel_annual.json", "panel_export.json",
                "panel_kpi_verified.json", "bottom_up.json", "fs_parsed.json"):
         p = os.path.join(rundir, fn)
@@ -132,7 +231,8 @@ def _panel(rundir):
             continue
         if isinstance(d, dict) and any(k.isdigit() and len(k) == 4 for k in d):
             return {int(k): v for k, v in d.items() if k.isdigit()}, fn
-    return {}, None
+    return {}, ("UNREADABLE: %s commits no panel this reader is taught to read — add a "
+                "named adapter rather than letting the name drop out" % tk)
 
 
 def _forward(rundir):
@@ -186,9 +286,15 @@ def close_at(ticker, year):
 def build(market="EG"):
     usable = set(MH.usable_origins(market))
     declared = [int(o["year"]) for o in MH.load(market).get("origins", [])]
+    # WHICH ARTEFACT ANSWERED, PER NAME, so the report can say WHY a name is empty
+    # instead of offering one explanation for three different facts. Module-level rather
+    # than a fifth return value: build() has ten callers and changing its arity to carry
+    # a diagnostic would be a breaking change for a message.
+    PANEL_SOURCE.clear()
     cells, names = {}, runs()
     for tk, rundir in names.items():
         panel, panel_src = _panel(rundir)
+        PANEL_SOURCE[tk] = panel_src
         fwd = _forward(rundir)
         for y in declared:
             px, pxdate = close_at(tk, y)
@@ -296,15 +402,25 @@ def report(market="EG"):
     nostate = [t for t in names
                if not any(cells[(t, y)]["statements"] for y in declared)]
     if nostate:
-        print("\n  NO AS-REPORTED PANEL COMMITTED (%d): %s"
+        # A NAME WITH NO STATEMENTS IS THREE DIFFERENT FACTS AND THIS PRINTED ONE
+        # EXPLANATION FOR ALL OF THEM [corrected 17-09-2026]. It said their statements
+        # "came from engine/*_walkforward/filings/, which is gitignored" — true of
+        # nobody, as it turned out. Each name now says which of the three it is, read
+        # off the source sentinel _panel returned rather than assumed.
+        print("\n  NO USABLE AS-REPORTED PANEL (%d): %s"
               % (len(nostate), ", ".join(nostate)))
-        print("     These walk-forwards ran and scored, but they left no year-keyed")
-        print("     panel of as-reported figures in the repository — their statements")
-        print("     came from engine/*_walkforward/filings/, which is gitignored. So a")
-        print("     later job cannot rebuild a value at their past origins from what")
-        print("     is committed, and the calibration cannot use them however good the")
-        print("     original run was. That is a REPRODUCIBILITY gap, not a data one:")
-        print("     the fix is for those runs to commit the panel PHDC and TMGH did.")
+        for t in nostate:
+            why = PANEL_SOURCE.get(t) or "no panel artefact found"
+            if str(why).startswith("SKIPPED:"):
+                print("     %-8s CORRECTLY DID NOT RUN — %s" % (t, why[8:].strip()))
+            elif str(why).startswith("UNREADABLE:"):
+                print("     %-8s %s" % (t, why[11:].strip()))
+            else:
+                print("     %-8s panel read from %s and it yielded no origin in the "
+                      "declared window" % (t, why))
+        print("     A SKIP IS NOT A DEBT and an unreadable panel is not an absent one.")
+        print("     Where a run commits a panel this reader cannot open, the fix is a")
+        print("     NAMED ADAPTER in PANEL_ADAPTER — not a re-run of the walk-forward.")
 
     noshares = sum(1 for c in cells.values() if not c["shares"])
     if noshares == len(cells):
