@@ -110,16 +110,27 @@ def trailing_twelve_months():
                 source="1H2025 auto revenue 30,493.8 and cost of sales 25,741.9 from the "
                        "2Q26 release's own prior-year column")
 
+import json as _json_n
+_N = _json_n.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                    'study_numbers.json'), encoding='utf-8'))
+_BR = {b['label']: b['value'] for b in _N['central_two_sided']['branches']}
+_BRANCHES = [b['value'] for b in _N['central_two_sided']['branches']]
+_BRANCH_CARRYING = [v for k, v in _BR.items() if 'carrying' in k.lower()][0]
+
 RECORD = dict(
     ticker="GBCO", segment="GB Auto", unit="EGP mn", as_of="2026-09-17",
     # [R-ENF-06]: an artefact a builder reads declares the answer it was built against.
     # THIS STUDY PUBLISHES NO SINGLE CENTRAL. The field names the branch this record is
     # anchored on -- the reviewed carrying value, the LOWER of the two -- exactly as
     # contested_judgements.json does, and both branches are declared beside it.
-    published_central=41.348367298232716,
+    # READ FROM THE STUDY'S OWN COMMITTED NUMBERS, NEVER TYPED. These three fields were
+    # literals and they went stale the moment the audit rebuild moved the answer, which is
+    # exactly the defect [R-ENF-06] names: an artefact every builder reads and nothing
+    # writes is a number frozen at the date somebody last typed it.
+    published_central=_BRANCH_CARRYING,
     published_central_is="MNT-Halan at its reviewed carrying value",
-    published_central_two_sided=[41.348367298232716, 52.345259974418816],
-    published_spot=28.98,
+    published_central_two_sided=_BRANCHES,
+    published_spot=_N["spot"],
     rule="SIGCM clause 4; QC gate 07-09-2026 row 21",
     disclosed=DISCLOSED, flows=FLOWS, footing=foot(), cycle=cycle(),
     ttm_to_30_june_2026=trailing_twelve_months(),
