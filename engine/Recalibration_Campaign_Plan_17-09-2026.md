@@ -1,6 +1,6 @@
 # THE 90-NAME RECALIBRATION — how the programme runs
 
-**PLAN REVISION 2026-09-17c.** Per instruction, 17 September 2026: *"I want all 90 stocks
+**PLAN REVISION 2026-09-17d.** Per instruction, 17 September 2026: *"I want all 90 stocks
 recalibrated. All of them."*
 
 **THIS IS A SPINE OVER THREE DOCUMENTS THAT ALREADY EXIST AND IT RESTATES NONE OF THEM.**
@@ -89,6 +89,40 @@ and saying so is part of the design rather than a concession.**
 
 ## 2 · THE ORDERING DECISION, AND WHY IT IS THE WHOLE PLAN
 
+**EGX IS FINISHED BEFORE ANY OTHER MARKET STARTS** [per instruction, 17-09-2026: *"Delay
+other markets till we finish EGX first"*]. **This SUPERSEDES the record-backed-first
+ordering below**, which reordered the queue across markets; the queue's own fixed market
+order now runs, and all thirty-seven EGX names — both tiers — complete before UAE begins.
+Inside EGX the record-backed names still go first, for the reason the rest of this section
+gives.
+
+**"Finished" means step 6, not step 7, and that is not a softening.** While the method hold
+stands NO name can reach step 7 — the publish gate refuses every study in the book until
+Phase 1 closes — so a constraint keyed on step 7 would never release, which is the gate
+with no release `[R-CAL-01]` forbids, arriving as an ordering rule instead of a gate. A
+name standing at step 6 has had every step of the runbook done to it and waits on a
+book-wide event.
+
+**The cost is stated rather than discovered.** Every other market now waits the length of
+the EGX campaign — thirty-seven names rather than the nine the previous ordering would
+have taken before UAE started — and their pages carry their pre-rebuild fair values
+throughout. That is the debt `[R-GAP-03]` measures, and it does not shorten meanwhile.
+
+**What it buys.** Phase 1's panel becomes EGX-dense rather than thin across three markets,
+which is what its gating clauses actually need: leave-one-name-out has more to leave out,
+and one market means one macro path, so nothing in the panel is comparing companies valued
+in economies the study beside them does not recognise. The campaign's own hard stop after
+EGX still applies at the boundary.
+
+**Encoded, not noted.** `recalibration_run.py --next` sorts the first market ahead of every
+other and refuses to name a non-EGX name while EGX is short, with the count and the names
+outstanding. A `--next` that named a UAE name and printed a caution beside it would be
+handing out the work it is meant to withhold.
+
+---
+
+### The superseded ordering, kept because its argument still governs INSIDE a market
+
 **ALL 22 RECORD-BACKED REISSUES FIRST. NO RECORD RECONSTRUCTION UNTIL THEY ARE DONE.**
 
 Revision a reached this same order for a reason that turned out to be false — that the other
@@ -133,6 +167,15 @@ computed on. The two problems have one solution.
                                               │
   W5  the 67 reconstructions ◄─  W4  publish ◄┘  W3  Phase 1, measured ONCE
 ```
+
+**THE WAVE STRUCTURE BELOW IS RESTATED UNDER THE EGX-FIRST ORDERING.** W1 and W2 were two
+markets' record-backed names; they are now W1 (EGX record-backed, 9) followed by W1b (EGX
+record reconstructions, 27), with every other market after Phase 1. W3, W4 and W5 keep
+their meaning. **AND "WAVE" WAS DOING TWO JOBS IN THIS PLAN** — W1..W5 label programme
+PHASES here, two of which ("Phase 1", "publish") are not batches of names at all, while
+the board and the release unit use "wave" for a BATCH OF NAMES RELEASED TOGETHER. The
+release batch is the one to decide about; where this section says W-something it means a
+phase.
 
 **W1 — the nine EGX record-backed reissues.** AMOC · ARCC · EGCH · ELEC · GBCO ✔ · PHAR ·
 SCEM · SWDY · TMGH. Serial, full runbook, one name at a time. The campaign's own **hard stop

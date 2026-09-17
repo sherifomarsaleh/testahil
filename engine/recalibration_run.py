@@ -337,15 +337,49 @@ def wave_of(q):
 # judgement somebody makes out loud; a tool that simply refused to name the next UAE name
 # would look like a bug, and one that crossed the boundary without saying so would hide
 # the decision. So it is announced when it is reached and the name is still given.
-def checkpoint_note(rows, nxt):
-    if nxt['market'] == 'EG' or wave_of(nxt) != 1:
+# EGX IS FINISHED BEFORE ANY OTHER MARKET STARTS [per instruction, 17-09-2026:
+# "Delay other markets till we finish EGX first"]. This REPLACES the plan's
+# record-backed-first ordering across markets: the queue's own fixed market order runs,
+# and EGX -- ALL of it, both tiers -- completes before UAE begins.
+#
+# WHAT "FINISHED" MEANS HERE IS STEP 6, NOT STEP 7, and that is not a softening. While
+# the method hold stands, NO name can reach step 7: the publish gate refuses every study
+# in the book until Phase 1 closes. A definition keyed on step 7 would therefore never be
+# satisfied and this constraint would never release -- the gate with no release
+# [R-CAL-01] forbids, arriving as an ordering rule instead of a gate. A name standing at
+# step 6 has had every step of the runbook done to it and is waiting on a book-wide
+# event, which is the finished state available.
+#
+# THE COST IS STATED RATHER THAN DISCOVERED: every non-EGX market waits the length of the
+# EGX campaign -- 37 names against the 9 the previous ordering would have taken before
+# UAE started -- and their pages carry their pre-rebuild fair values throughout, which is
+# the debt [R-GAP-03] measures and which does not shorten meanwhile.
+MARKET_FIRST = 'EG'
+
+
+def market_blocked(rows, nxt):
+    """Why `nxt` may not be started yet, or None."""
+    if nxt['market'] == MARKET_FIRST:
         return None
-    eg = [r for r in rows if r['market'] == 'EG' and r['wave'] == 1]
-    if eg and all(r['step'] == 7 for r in eg):
-        return ('EGX CHECKPOINT: every EGX re-issue is complete and this is the first '
-                'name of the next market. The campaign\'s hard stop applies -- state '
-                'whether the method generalised before this name starts.')
-    return None
+    first = [r for r in rows if r['market'] == MARKET_FIRST]
+    if not first:
+        return ('the first-market constraint names %s and the board carries no %s name '
+                'at all, which is the resolver breaking rather than that market being '
+                'clear [R-ENF-04]' % (MARKET_FIRST, MARKET_FIRST))
+    outstanding = [r for r in first if r['step'] < 6]
+    if not outstanding:
+        return None
+    return ('%s IS NOT FINISHED: %d of %d of its names are still short of the publish '
+            'gate (%s%s). Per the standing instruction, no other market starts until it '
+            'is. The campaign\'s own hard stop then applies at the boundary -- state '
+            'whether the method generalised before the first name of the next market.'
+            % (MARKET_FIRST, len(outstanding), len(first),
+               ', '.join(r['ticker'] for r in outstanding[:8]),
+               ' …' if len(outstanding) > 8 else ''))
+
+
+def checkpoint_note(rows, nxt):
+    return market_blocked(rows, nxt)
 
 
 def position(tk, q, upto=None):
@@ -482,8 +516,13 @@ def main(argv):
         return 0
 
     if '--next' in argv:
+        # THE FIRST MARKET SORTS AHEAD OF EVERY OTHER, then wave, then queue position.
+        # Ordering it here rather than only warning at the boundary is the difference
+        # between a rule and a note: a `--next` that named a UAE name and printed a
+        # caution beside it would be handing out the work it is meant to withhold.
         todo = sorted((r for r in rows if r['state'] in (DESK, UNREADABLE)),
-                      key=lambda r: (r['wave'], r['position']))
+                      key=lambda r: (0 if r['market'] == MARKET_FIRST else 1,
+                                     r['wave'], r['position']))
         if not todo:
             print('NEXT: nothing the desk can act on — every name is waiting on you, held '
                   'on the method, or complete.')
