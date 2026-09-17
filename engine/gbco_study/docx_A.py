@@ -31,6 +31,7 @@ import json as _json_beta                                             # noqa: E4
 COC_SE = _json_beta.load(open(_os.path.join(_HERE, 'beta_result.json'),
                               encoding='utf-8'))['se']
 HIS = D['history']['income_statement']; DRV = D['disclosed_drivers']
+AUD = D['audit_2026_09_17']   # what the 17-09-2026 audit response needed and the study did not carry
 spot = D['spot']; spot_date_iso = D['spot_date']; SH = D['shares']
 EDITION = D['edition']
 # THE TECHNICAL READ SITS ON A DIFFERENT CLOCK FROM THE PRICE AND THE DOCUMENT SAYS SO.
@@ -330,6 +331,11 @@ P(f'Each leg is marked on the basis that fits it. The Auto leg takes the §1.2 c
   f'the segment’s own shareholders’ equity before minority interests LESS the associate holdings carried inside it, so the '
   f'stake this table adds back at its own mark is not also funding the lender. On a reviewed return of '
   f'{pc(CAP["roe_adopted"],2)} against a terminal cost of equity of {pc(CAP["ke_terminal"],2)} that justifies '
+  f'— GB CORP PUBLISHES A HIGHER FIGURE FOR THE SAME SEGMENT, {pc(AUD["capital_return_disclosed"]["fy2025"],1)} for '
+  f'FY2025 and {pc(AUD["capital_return_disclosed"]["h1_2026"],1)} for the first half of 2026, and this study does not '
+  f'adopt it: its numerator carries EGP 986.4 mn of investment gains from associates and its denominator is an equity '
+  f'base those associates sit inside, so importing it would count MNT-Halan once here and again as the largest single '
+  f'line of the sum of the parts. The company’s figure is printed rather than rebutted in silence — '
   f'{CAP["justified_pb"]:.2f}× of the EGP {n0(CAP["operating_equity"])} mn operating equity. The associates are the '
   f'branch: MNT-Halan is carried at EGP {n0(MARK_LO)} mn in the reviewed balance sheet at 30 June 2026 and marks at EGP '
   f'{n0(MARK_HI)} mn on GB Corp’s stated {pc(STAKE,2)} of the US${sotp["mnt_halan_round_usd"]:,.0f} mn June-2026 round at '
@@ -436,14 +442,27 @@ labels = [('rev', 'Auto revenue'), ('ebitda', 'Operating profit before depreciat
           ('dna', 'Depreciation & amortisation'), ('ebit', 'Operating profit'),
           ('nopat', f"Operating profit after tax at {pc(_cs['tax_rate'],0)}"),
           ('dna', 'Plus depreciation & amortisation'), ('capex', 'Less capital expenditure'),
-          ('dwc', 'Less increase in working capital'), ('fcff', 'Free cash flow to the firm'),
+          ('dwc', 'Less increase in working capital'),
+          ('_stub', 'Less the part of 2026 earned before the bridge date'),
+          ('fcff', 'Free cash flow to the firm'),
           ('df', 'Discount factor'), ('pv', 'Present value of free cash flow')]
+# THE STUB IS A PRINTED LINE, NOT AN INVISIBLE SCALING [audit finding 2, one layer down].
+# The bridge is struck at 30 June 2026 and already reflects the cash the first half
+# produced, so the first forecast year's profit, depreciation and capital expenditure are
+# scaled to the part of the year still unearned. A reader following the column has to be
+# able to reach the printed answer, so the deduction is a row rather than a multiplier
+# hidden between two rows.
+for _rr in dcf['rows']:
+    _rr['_stub'] = -((_rr['nopat'] + _rr['dna'] - _rr['capex'])
+                     * (1.0 - _rr['unearned_fraction']))
 for key, lbl in labels:
     row = [lbl]
     for rrow in dcf['rows']:
         v = rrow[key]
         if key == 'df':
             row.append(f"{v:.3f}")
+        elif key == '_stub':
+            row.append(paren(-v) if abs(v) > 0.05 else '—')
         elif key in ('capex', 'dwc'):
             row.append(paren(v))
         elif key == 'dna' and lbl.startswith('Depreciation'):
@@ -456,7 +475,8 @@ for _r in dcf['rows']:
     TR.waterfall(_r['nopat'],
                  [('Plus depreciation & amortisation', _r['dna']),
                   ('Less capital expenditure', _r['capex']),
-                  ('Less increase in working capital', _r['dwc'])],
+                  ('Less increase in working capital', _r['dwc']),
+                  ('Less the part of 2026 earned before the bridge date', -_r['_stub'])],
                  _r['fcff'], dp=0, what='§1.2 free cash flow, %s' % _r['year'])
 caption('The discount factors are the cost-of-capital schedule’s own cumulative factors, one forward rate per year; '
         'they are not a single rate compounded. Deductions are printed as magnitudes in brackets and the labels state the '
@@ -470,13 +490,19 @@ rows = [
  ['Enterprise value — Auto leg', n0(dcf['ev'])],
  ['Terminal value as a share of enterprise value', pc(dcf['tv_pct'], 0)],
  ['less: Auto net debt', paren(dcf['auto_nd'])],
- ['less: Auto non-controlling interests', paren(dcf['auto_nci'])],
+ ['Auto equity value, before the minority', n0(dcf['auto_total_eq'])],
+ [f"less: the minority's {pc(dcf['auto_nci_share'], 2)} share of it",
+  paren(dcf['auto_nci_value'])],
  ['Auto equity value', n0(dcf['auto_eq'])],
 ]
 table(rows, [4.0, 1.6], first_col_bold=True)
+# THE MINORITY IS DEDUCTED AT ITS SHARE OF THE VALUE AND THE PAGE PRINTS BOTH STEPS
+# [R-BRIDGE-01]. The delivered edition printed a single 'less: non-controlling interests'
+# line at the minority's BOOK, which a reader could follow and which was not what the model
+# deducted once the basis moved.
 TR.waterfall(dcf['ev'],
              [('less: Auto net debt', dcf['auto_nd']),
-              ('less: Auto non-controlling interests', dcf['auto_nci'])],
+              ("less: the minority's share of it", dcf['auto_nci_value'])],
              dcf['auto_eq'], dp=0, what='§1.2 enterprise-to-equity bridge')
 P(f"Two honesty notes. First, {pc(dcf['tv_pct'],0)} of the enterprise value sits in the terminal value — this is a "
   "growth-and-rates bet dressed as a five-year model, which is why §1.9 sensitises the discount-rate and terminal-growth "
@@ -505,14 +531,24 @@ P(f"On the model's own forward build — group net profit attributable of EGP {n
 rows = [
  ['Relative basis', 'Value'],
  ['FY2026E group net profit attributable (EGP mn)', n0(_r['np_fy26e'])],
+ [f"Less the employees’ share of profit and the board bonus, at the {pc(_r['eps_deduction_fy25'],2)} "
+  'rate the latest audited year discloses',
+  paren(_r['np_fy26e'] * _r['eps_deduction_fy25'])],
+ ['Earnings the company divides (EGP mn)', n0(_r['np_fy26e'] * (1 - _r['eps_deduction_fy25']))],
  ['Divided by shares in issue (mn)', n1(SH)],
- ['Earnings per share (EGP)', f"{_r['eps_fy26e']:.2f}"],
+ ['Earnings per share (EGP), on the published basic basis', f"{_r['eps_fy26e']:.2f}"],
  ['Times the multiple applied — the median of the company’s own three year-end closes', f"{_r['pe']:.2f}×"],
  ['Fair value per share (EGP)', f"{REL['value']:.2f}"],
  ['Memo — the multiple the traded price implies on the same earnings', f"{_r['traded_pe']:.2f}×"],
 ]
 table(rows, [4.3, 1.8], first_col_bold=True)
-TR.waterfall(_r['np_fy26e'], [('Divided by shares in issue (mn)', SH)],
+# THE DEDUCTION NOTE 10 MAKES IS A PRINTED LINE [audit finding 26]. A multiple struck on
+# the company's own published basic earnings per share, applied to earnings that have not
+# had the same deduction, is two bases in one arithmetic.
+TR.waterfall(_r['np_fy26e'],
+             [(f"Less the employees’ share of profit and the board bonus",
+               _r['np_fy26e'] * _r['eps_deduction_fy25']),
+              ('Divided by shares in issue (mn)', SH)],
              _r['eps_fy26e'], dp=2, what='§1.3 earnings per share')
 TR.waterfall(_r['eps_fy26e'], [('Times the multiple applied', _r['pe'])],
              REL['value'], dp=2, what='§1.3 relative fair value')
@@ -609,11 +645,27 @@ rows = [['Driver', 'FY2023', 'FY2024', 'FY2025', 'FY2026E', 'FY2030E'],
 ]
 table(rows, [2.2, 0.95, 0.95, 0.95, 1.0, 1.0], first_col_bold=True, size=8.9)
 caption('Sources: the company’s own FY2023, FY2024 and FY2025 earnings releases, segment volume and revenue tables. '
+        'THE OPERATING-PROFIT LINE IS COMPUTED FROM THE ROWS ABOVE IT AND THE COMPANY’S OWN PRESENTATION CHANGED. '
+        f'GB Corp’s “Operating Profit” EXCLUDED provisions in its FY2023 presentation and includes them from FY2024, '
+        f'so the two years as reported — {n0(AUD["operating_profit_basis_break"]["fy2023_as_reported"])} and '
+        f'{n0(AUD["operating_profit_basis_break"]["fy2024_as_first_reported"])} — are not on one basis and neither '
+        f'sums from the rows printed above it. One basis is used across all three years here, giving '
+        f'{n0(AUD["operating_profit_basis_break"]["fy2023_on_the_current_basis"])} and '
+        f'{n0(AUD["operating_profit_basis_break"]["fy2024_as_restated"])}; the company’s own FY2025 release prints '
+        f'the second of those in its own table. A restatement is noted beside, never substituted. '
         'A dash marks a line this TABLE does not carry for that year rather than a nil figure. The earlier delivered '
         'edition said the study’s committed record did not carry them, which was not right: the record does carry '
         'FY2023 and FY2024 segment splits and the workbook prints them. What this table shows is the base year and the '
         'forecast, because those are the years the driver build actually uses. The forecast columns are the model’s '
         'own driver path.')
+
+P(f'One further pair of figures the workbook carries and this document did not: the study’s own committed SCENARIO '
+  f'SPAN on the primary, EGP {AUD["scenario_span"]["low"]:.2f} to {AUD["scenario_span"]["high"]:.2f} per share. It '
+  f'is a stress on the model at once rather than one driver at a time — a gross-margin shift, the whole '
+  f'cost-of-capital ladder moved together, terminal growth shifted in real terms, and the marks on the lender and the '
+  f'associates moved with them. IT IS NOT THE ENVELOPE and sits outside it on both sides: the envelope is the range of '
+  f'the present-value READS, which is a different object. Both are published here rather than one in each file.',
+  size=9.6)
 
 H2('1.7  The crux: the basis of the associate mark, then cash conversion and the rate path')
 P(f'Three judgments drive this valuation, in order of size. First and by a wide margin: not what GB Corp’s MNT-Halan '
@@ -677,6 +729,12 @@ P('Three honesty notes on this build. First, the beta is the stock’s own regre
   'by this sovereign’s own default spread and the premium added back carries the country risk, rather than the raw '
   'yield being combined with a country-loaded premium. Third, both premium bases are published and the market basis is '
   'named as the adopted one; the rating basis is shown beside it rather than averaged into it. '
+  f'Fourth, and it belongs here because a refusal can still leave a charge behind: the terminal spends '
+  f'{AUD["terminal_capex_to_dna"]:.2f} times its own book depreciation on capital expenditure — EGP '
+  f'{n0(AUD["terminal_capex"])} mn against {n0(AUD["terminal_dna"])} mn. A company replacing its base over the '
+  f'{AUD["disclosed_life_range"][0]:.1f}-to-{AUD["disclosed_life_range"][1]:.1f}-year composite the filings support '
+  f'would spend about book depreciation grossed for cost inflation, so this terminal charges ABOVE replacement rather '
+  f'than below it. That is the one direction the inference runs without a sourced life, and it is the conservative one. '
   f'And the beta’s own uncertainty is priced on the regression’s OWN standard error of {COC_SE:.4f} rather than '
   f'against a unit beta: one standard error either side is {COC["beta"]-COC_SE:.4f} to {COC["beta"]+COC_SE:.4f}, '
   f'which is a wider exposure than the distance to 1.0 and is the honest way to state it.', size=9.6)
@@ -705,7 +763,16 @@ for _m in _mark_rows:
 table(rows, [2.35, 0.85, 0.85, 0.85, 0.85, 0.85], first_col_bold=True, size=8.8)
 _cells = [sotp_per_share(_m, s) for _m in _mark_rows for s in _wshift]
 _cells = [c for c in _cells if c is not None]
+_supp = [(n0(_m), pc(dcf['forward_wacc'][0] + s, 1))
+         for _m in _mark_rows for s in _wshift if sotp_per_share(_m, s) is None]
 caption(f"Sum-of-the-parts fair value, EGP per share, spanning EGP {min(_cells):.1f} to {max(_cells):.1f} across the grid. "
+        + (f"{len(_supp)} cell{'s' if len(_supp) != 1 else ''} print n.m. rather than a figure, and the rule is stated "
+           f"rather than left to be inferred: where the shift leaves less than 4.5 percentage points between the "
+           f"terminal cost of capital and terminal growth, a perpetuity is arithmetically explosive and economically "
+           f"meaningless, so it is not printed as a valuation. Those cells are computable and they run to roughly "
+           f"EGP 102, which is the number the suppression withholds and is stated here so nothing is hidden. "
+           if _supp else "")
+        + f""
         f"The two rows marked ‡ are the study’s two published branches; the centre column is the model’s own first-year "
         f"cost of capital of {pc(dcf['wacc'],2)}. The rate axis shifts the WHOLE schedule, explicit years and terminal "
         f"together, because moving one rate and not the others would price one date at two prices.")

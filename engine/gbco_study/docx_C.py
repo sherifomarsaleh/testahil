@@ -172,18 +172,26 @@ rows = [['Line'] + [r['year'] for r in dcf['rows']]]
 for key, lbl in [('rev', 'Auto revenue'), ('ebit', 'Operating profit'),
                  ('nopat', 'Operating profit after tax'), ('dna', 'Plus depreciation and amortisation'),
                  ('capex', 'Less capital expenditure'), ('dwc', 'Less increase in working capital'),
+                 ('_stub', 'Less the part of 2026 earned before the bridge date'),
                  ('fcff', 'Free cash flow to the firm')]:
     row = [lbl]
     for r in dcf['rows']:
+        if key == '_stub':
+            v = -((r['nopat'] + r['dna'] - r['capex']) * (1.0 - r['unearned_fraction']))
+            row.append(paren(-v) if abs(v) > 0.05 else '—')
+            continue
         v = r[key]
         row.append(paren(v) if key in ('capex', 'dwc') else n0(v))
     rows.append(row)
-table(rows, [2.4, 0.86, 0.86, 0.86, 0.86, 0.86], first_col_bold=True, size=8.6, band_rows=[7])
+table(rows, [2.4, 0.86, 0.86, 0.86, 0.86, 0.86], first_col_bold=True, size=8.6, band_rows=[8])
 for _r in dcf['rows']:
     TR.waterfall(_r['nopat'],
                  [('Plus depreciation and amortisation', _r['dna']),
                   ('Less capital expenditure', _r['capex']),
-                  ('Less increase in working capital', _r['dwc'])],
+                  ('Less increase in working capital', _r['dwc']),
+                  ('Less the part of 2026 earned before the bridge date',
+                   (_r['nopat'] + _r['dna'] - _r['capex'])
+                   * (1.0 - _r['unearned_fraction']))],
                  _r['fcff'], dp=0, what='Table A3 free cash flow, %s' % _r['year'])
 caption('Table A3 — the Auto leg’s cash flow, line for line as §1.2 discounts it. Deductions are printed as '
         'magnitudes in brackets and the labels state the operation, so the column can be followed to the result.')

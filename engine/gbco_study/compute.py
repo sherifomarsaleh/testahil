@@ -296,8 +296,19 @@ WC_TOTAL_REV_FY25 = 66358.3     # 4Q25 release Table 8, GB Auto Total Revenue FY
 WC_TOTAL_REV_1H25 = 30672.7     # 2Q26 release Table 8, prior-year column
 WC_TOTAL_REV_1H26 = 40021.5     # 2Q26 release Table 8
 WC_TTM_REV = WC_TOTAL_REV_FY25 - WC_TOTAL_REV_1H25 + WC_TOTAL_REV_1H26
+# THE ANCHOR IS THE SUM OF THE FOUR DISCLOSED COMPONENTS, NOT THE TABLE'S STATED TOTAL,
+# and the difference between them is a tenth of a million -- the release's own rounding,
+# five rows printed to one decimal place. Both are GB Corp's own figures; the components
+# are the ones the workbook projects its balance sheet from, so taking the anchor from
+# them is what stops the model and the workbook carrying two numbers for one quantity.
+WC_COMPONENTS_2Q26 = 22959.1 + 5873.5 + 1153.7 + 2598.9 - 15492.5   # Table 6, 30-Jun-2026
+assert abs(WC_COMPONENTS_2Q26 - 17092.8) <= 0.25   # 5 rows x 0.5 x 10^-1, the printed rounding
 WC_BASE_INTENSITY = 18917.0 / WC_TOTAL_REV_FY25          # 28.51% at 31-Dec-2025
-WC_ANCHOR = 17092.8 / WC_TTM_REV                          # 22.58% at 30-Jun-2026
+WC_ANCHOR = WC_COMPONENTS_2Q26 / WC_TTM_REV               # 22.58% at 30-Jun-2026
+# THE FOUR COMPONENTS REPRODUCE THE NET FIGURE, asserted rather than assumed: the workbook
+# projects its balance sheet from them and the cash-flow model from the net intensity, and
+# nothing compared the two until the recalculation gate did.
+assert abs(WC_COMPONENTS_2Q26 / WC_TTM_REV - WC_ANCHOR) < 1e-12
 wc_pct = [WC_ANCHOR] * 5
 # THE OPENING WORKING CAPITAL, CAPTURED BEFORE THE LOOP CONSUMES THE NAME. The record
 # committed `working_capital_fy2025=wc_prev` four hundred lines below, and wc_prev is the
@@ -310,7 +321,7 @@ wc_pct = [WC_ANCHOR] * 5
 # THE WALK NOW STARTS WHERE THE BRIDGE STANDS. 17,092.8 is GB Auto's working capital at
 # 30 June 2026 on Table 6's own definition, the same date the net-debt bridge below is
 # struck at.
-WC_OPENING = 17092.8
+WC_OPENING = WC_COMPONENTS_2Q26
 wc_prev = WC_OPENING
 # ...AND THE FIRST FORECAST YEAR IS THEREFORE A STUB. This is the same defect one layer
 # down, and it is not one the audit raised. A bridge struck at 30 June 2026 already
@@ -978,6 +989,9 @@ norm = None
 LENS_INPUTS = dict(
     relative=dict(np_fy26e=np26, eps_fy26e=eps26, pe=REL_PE_OWN,
                   observations=len(REL_HIST), history=REL_HIST,
+                  eps_deduction_fy25=EPS_DEDUCTION_FY25,
+                  eps_deduction_fy24_framing=EPS_DEDUCTION_FY24,
+                  eps26=eps26, eps26_fy24_framing=eps26_fy24_framing,
                   pe_observed=sorted(_rel_pes), traded_pe=rel_traded_pe,
                   basis=("FY2026E group net profit attributable, READ from this model's "
                          "own consolidated forecast rather than typed; the multiple is "
@@ -990,6 +1004,14 @@ LENS_INPUTS = dict(
                          "the count is published with the median for that reason.")),
     capital=dict(segment_equity_before_nci=CAPITAL_SEG_EQUITY,
                  associates_carried_within=ASSOC_CARRYING,
+                 # RESTATED AGAINST RESTATED [audit finding 8] -- both figures committed
+                 # so the workbook cannot quietly carry the as-released one.
+                 segment_equity_before_nci_dec2025_as_released=(
+                     CAP_FY25_EQ_BEFORE_NCI_AS_RELEASED),
+                 associates_restatement_dec2025=ASSOC_RESTATEMENT_DEC25,
+                 segment_equity_before_nci_dec2025=CAP_FY25_EQ_BEFORE_NCI,
+                 associates_carried_within_dec2025=ASSOC_CARRYING_DEC25,
+                 operating_equity_dec2025=cap_eq_dec25,
                  operating_equity=cap_operating_equity,
                  roe_h126=cap_roe_h126, roe_fy25=cap_roe_fy25,
                  roe_adopted=cap_roe_adopted, justified_pb=cap_pb,
@@ -1314,22 +1336,31 @@ _LENS_RECORD = dict(
             driver=("the basis on which GB Corp's minority interest in MNT-Halan is "
                     "carried -- its reviewed carrying value against the June-2026 "
                     "primary round"),
-            low=15733.523, high=27670.65,
+            # READ, NOT TYPED. Both ends were typed literals and both went stale in this
+            # pass: the carrying value moved when note 34 was re-read off the pixels and
+            # the round value moved when the currency came from the house path.
+            low=MNT_CARRYING, high=mnt_halan_value,
             units="EGP million, the associate holding",
             macro_held=True,
-            evidence=("BOTH ENDS ARE THE COMPANY'S OWN DISCLOSURES AND NEITHER IS THIS "
-                      "DESK'S. The low end is note 34 to the reviewed consolidated "
-                      "interim statements at 30 June 2026, EGP 15,733,523 thousand, "
-                      "which foots to that balance sheet's own associates line. The high "
-                      "end is 41.61% of the USD 1.4bn primary round GB Corp announced on "
-                      "9 June 2026, at EGP 47.5. The macro path stood still across the "
-                      "range: nothing in it moves inflation, the currency or the price of "
-                      "time, and the currency used is the path's own. THE REVIEW "
-                      "CONCLUSION ON THOSE STATEMENTS IS QUALIFIED AT EXACTLY THIS LINE "
-                      "-- the reviewers were not provided with the associate's own "
-                      "financial statements and could not verify the EGP 409.9mn share "
+            evidence=("THE TWO ENDS ARE NOT THE SAME KIND OF NUMBER, AND AN EARLIER "
+                      "EDITION OF THIS RECORD SAID THEY WERE. The low end is GB Corp's "
+                      "OWN: note 34 to the reviewed consolidated interim statements at 30 "
+                      "June 2026, EGP %s thousand, every column and row of which foots on "
+                      "this reading and on no other. The high end is a THIRD-PARTY MARK "
+                      "the company has never adopted as its own carrying value -- %.2f%% "
+                      "of the USD %s mn primary round completed with Al Ahly Capital "
+                      "Holding, which GB Corp's 9 June 2026 release names for the STAKE "
+                      "and not for the round figure, translated at the house path's own "
+                      "USD/EGP %.2f of %s. The macro path stood still across the range: "
+                      "nothing in it moves inflation, the currency or the price of time. "
+                      "THE REVIEW CONCLUSION ON THOSE STATEMENTS IS QUALIFIED AT EXACTLY "
+                      "THIS LINE -- the reviewers were not provided with the associate's "
+                      "own financial statements and could not verify the EGP %s mn share "
                       "of profit recorded in the period -- so the low end is not a safe "
-                      "harbour either, and the study says so rather than resting on it."),
+                      "harbour either, and the study says so rather than resting on it."
+                      % (format(MNT_CARRYING * 1000, ',.0f'), 100 * mnt_halan_stake,
+                         format(mnt_halan_round_usd, ',.0f'), egp_usd, EGP_USD_DATE,
+                         format(409.985, ',.3f'))),
         ),
     ),
     cross_checks=[
@@ -1457,6 +1488,7 @@ out = dict(
              tv_pct=pv_tv/ev_auto, wacc=WACC, tg=TG,
              auto_nd=auto_nd, auto_nci=auto_nci, auto_eq=auto_eq,
              auto_total_eq=auto_total_eq, auto_nci_share=AUTO_NCI_SHARE,
+             working_capital_opening=WC_OPENING, working_capital_anchor=WC_ANCHOR,
              auto_nci_value=auto_nci_value, unearned_fraction=STUB_FRACTION,
              wacc_terminal=_sch.wacc_terminal,
              forward_wacc=list(_sch.forward_wacc),
@@ -1530,15 +1562,30 @@ out = dict(
                      capital_dna=cap_dna,
                      capital_loanbook_growth=[0.35, 0.28, 0.24, 0.20, 0.18],
                      rental_and_other_capex=[700.0, 800.0, 900.0, 1000.0, 1100.0],
-                     auto_inventory_pct=[0.36, 0.338, 0.32, 0.308, 0.296],
-                     auto_receivables_pct=[0.08]*5,
-                     auto_advances_pct=[0.07, 0.069, 0.0675, 0.066, 0.0645],
-                     auto_payables_pct=[0.245, 0.237, 0.2325, 0.229, 0.2255],
+                     # THE WORKBOOK'S WORKING CAPITAL IS THE MODEL'S WORKING CAPITAL,
+                     # COMPONENT BY COMPONENT. These four ratios were a typed glide and
+                     # they are a SECOND IMPLEMENTATION of the quantity L15 re-anchored --
+                     # the delivered workbook projected its balance sheet from them while
+                     # the cash-flow model used wc_pct, and the study's own recalculation
+                     # gate is what caught the two disagreeing after the anchor moved.
+                     # They are now the company's OWN disclosed components at 30 June 2026
+                     # over the same trailing-twelve-month revenue, held flat on the same
+                     # [R-ANCHOR-01] reasoning, and they reproduce WC_ANCHOR by identity:
+                     #   30.326 + 7.758 + 4.957 - 20.463 = 22.578%
+                     auto_inventory_pct=[22959.1 / WC_TTM_REV] * 5,
+                     auto_receivables_pct=[5873.5 / WC_TTM_REV] * 5,
+                     auto_advances_pct=[(1153.7 + 2598.9) / WC_TTM_REV] * 5,
+                     auto_payables_pct=[15492.5 / WC_TTM_REV] * 5,
+                     auto_working_capital_pct=wc_pct,
+                     auto_unearned_fraction=STUB_FRACTION,
                      net_new_borrowings=[5500.0, 5200.0, 5600.0, 5800.0, 6100.0],
                      dividend_payout=[0.14, 0.15, 0.16, 0.18, 0.20])),
     bridge_record=BRIDGE_RECORD,
     lens_inputs=LENS_INPUTS,
-    edition='2026-09-07',
+    # THE EDITION IS THE DAY THE WORK WAS DONE. This re-issue answers the forensic
+    # audit of the 07-09-2026 edition and moves the published answer, so it is a new
+    # edition rather than a restamp of the old one.
+    edition='2026-09-17',
     experts=dict(e1=exp1, e2=exp2, e3=exp3, e3_roce=roce, e3_ce=ce),
     # ---- WHAT THIS STUDY COMMITS ABOUT THE ANSWER ITSELF, beyond the answer ----------
     audit_2026_09_17=dict(
@@ -1614,6 +1661,11 @@ out = dict(
     cost_of_capital_rating_basis=_SCHED["rating"].as_record(),
     macro=dict(path="EG", path_asof=_PATH.as_of,
                terminal_inflation=_PATH.terminal_inflation,
+               # THE TERMINAL ANCHORS, COMMITTED SO THE WORKBOOK CAN BUILD THE TERMINAL
+               # RATE AS A FORMULA RATHER THAN CARRY IT AS A CONSTANT [audit finding 18].
+               real_rate_convention=_PATH.real_rate_convention,
+               erp_terminal=_PATH.erp_terminal,
+               kd_terminal=_PATH.kd_terminal,
                terminal_growth_real=TG_REAL, terminal_growth_nominal=TG,
                anchor_staleness_accepted=(
                    # COMPUTED, NOT TYPED. This sentence stated the wrong strike date and the

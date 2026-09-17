@@ -111,7 +111,11 @@ class Model:
         self.rows = N['dcf']['rows']
         self.SH = N['shares']
         self.nd = N['dcf']['auto_nd']
-        self.nci = N['dcf']['auto_nci']
+        # THE MINORITY IS A SHARE OF THIS LEG'S EQUITY VALUE, NOT ITS BOOK
+        # [R-BRIDGE-01]: the model capitalises 100% of the segment's cash flow, so
+        # a diagnostic deducting a constant book figure re-prices a different
+        # company at every point it moves a driver.
+        self.nci_share = N['dcf']['auto_nci_share']
         self.wacc = N['dcf']['wacc']
         self.tg = N['dcf']['tg']
         self.wb = N['dcf']['wacc_build']
@@ -225,7 +229,7 @@ class Model:
         g = self.tg if g is None else g
         mark = self.mark if mark is None else mark
         cap = self.cap if cap is None else cap
-        auto_eq = self.auto_ev(fcff, w, g) - self.nd - self.nci
+        auto_eq = (self.auto_ev(fcff, w, g) - self.nd) * (1.0 - self.nci_share)
         return auto_eq, auto_eq + cap + self.other + mark
 
     def primary(self, disc=None, **kw):

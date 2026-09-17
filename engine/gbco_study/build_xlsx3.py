@@ -24,7 +24,7 @@ from openpyxl import load_workbook
 from openpyxl.styles import Font, PatternFill
 from openpyxl.utils import get_column_letter
 
-OUT = 'GBCO_Valuation_Model_07092026_public.xlsx'
+OUT = 'GBCO_Valuation_Model_17092026_public.xlsx'
 wb = load_workbook(OUT)
 A = json.load(open('_asm_rows.json')); SR = json.load(open('_seg_rows.json'))
 DCJ = json.load(open('_dcf_rows.json'))
@@ -343,6 +343,13 @@ for col in 'BCD':
     put(ws, '%s%d' % (col, NWC), "=%s%d+%s%d+%s%d-(%s%d-$B$%d)"
         % (col, BS['Inventories'], col, BS['Trade receivables — Auto'],
            col, BS['Advances, debtors & other current'], col, PAY, NONAUTO), BLACK, NUM0)
+# THE BALANCE SHEET KEEPS ITS OWN YEAR-TO-YEAR MOVEMENT, because the cash-flow statement
+# has to roll forward from a year end to a year end or the balance check stops being zero.
+# The DCF's walk starts at 30 June 2026 instead, and that adjustment is made ON THE DCF
+# SHEET where a reader can see it rather than hidden inside this roll-forward.
+r = brow(r, 'memo: net Auto working capital at 30 June 2026 (the DCF walk\'s opening)',
+         [None, None, D['dcf']['working_capital_opening']], None, NUM0, BLACK)
+WCOPEN = BS['memo: net Auto working capital at 30 June 2026 (the DCF walk\'s opening)']
 r = brow(r, 'Increase in net Auto working capital', [None] * 3,
          lambda j, c: "=%s%d-%s%d" % (c, NWC, chr(ord(c) - 1), NWC), NUM0, BLACK)
 DNWC = BS['Increase in net Auto working capital']
@@ -361,7 +368,14 @@ json.dump(dict(BS=BS, NWC=NWC, DNWC=DNWC, CASH=CASH, EQ=EQ, TA=TA, TLE=TLE, CHK=
 dws = wb['DCF']; DC = DCJ['DC']
 for j, c in enumerate(['B', 'C', 'D', 'E', 'F']):
     cell = '%s%d' % (c, DC['- Increase in net working capital'])
-    dws[cell] = "=-'Balance Sheet'!%s%d" % (FCOLS[j], DNWC)
+    if j == 0:
+        # THE WALK STARTS WHERE THE BRIDGE STANDS [audit finding 2]. The bridge deducts
+        # net debt at 30 June 2026, which already reflects the working capital the first
+        # half released, so the first forecast year's movement is taken against that stock
+        # rather than against the 31-December-2025 column.
+        dws[cell] = "=-('Balance Sheet'!%s%d-'Balance Sheet'!$D$%d)" % (FCOLS[j], NWC, WCOPEN)
+    else:
+        dws[cell] = "=-'Balance Sheet'!%s%d" % (FCOLS[j], DNWC)
     dws[cell].font = GREEN
 
 # ================= CASH FLOW =================================================

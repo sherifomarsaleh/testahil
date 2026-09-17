@@ -32,7 +32,7 @@ from openpyxl.styles import Font, PatternFill
 from openpyxl.utils import get_column_letter
 import research_protocol as _RP
 
-OUT = 'GBCO_Valuation_Model_07092026_public.xlsx'
+OUT = 'GBCO_Valuation_Model_17092026_public.xlsx'
 wb = load_workbook(OUT)
 D = json.load(open('study_numbers.json'))
 A = json.load(open('_asm_rows.json')); SR = json.load(open('_seg_rows.json'))
@@ -70,7 +70,9 @@ MNT_A = AB('BRANCH A — MNT-Halan at the June-2026 round price')
 MNT_B = AB('BRANCH B — MNT-Halan at its reviewed carrying value, 30 June 2026')
 OTHASSOC = AB("Other associates (Bedaya, Kaf) — by identity off the note's own total")
 AUTO_ND = AB('GB Auto net debt (30 June 2026, reviewed)')
-AUTO_NCI = AB('GB Auto non-controlling interests (30 June 2026)')
+AUTO_NCI = AB('GB Auto non-controlling interests (30 June 2026)')   # BOOK, the
+# reference framing [R-BRIDGE-01] requires published beside the adopted basis
+AUTO_NCI_SHARE = AB("GB Auto minority's share of that leg's equity")
 TG = AB('Terminal growth (nominal EGP, DERIVED)')
 AEQ = "DCF!$B$%d" % DCJ['AEQ']
 
@@ -215,16 +217,19 @@ title(ws, 'The cross-checks — a relative multiple off the company\'s own histo
 r = 5
 put(ws, 'A%d' % r, 'GB Corp\'s OWN trailing price-to-earnings, at its last three year-end closes',
     BLACK, None, True, FILL_H)
-for j, hd in enumerate(['Close (EGP)', 'Net profit attributable', 'EPS (EGP)', 'Trailing P/E']):
+for j, hd in enumerate(['Close (EGP)', 'Basic EPS as published (EGP)', 'Trailing P/E']):
     put(ws, '%s%d' % (get_column_letter(2 + j), r), hd, BLACK, None, True, FILL_H)
 r += 1
 PE0 = r
 for y in ('2023', '2024', '2025'):
     put(ws, 'A%d' % r, 'FY%s year-end' % y)
     put(ws, 'B%d' % r, '=' + AB('GB Corp close, year-end %s (EGP)' % y), GREEN, PX)
-    put(ws, 'C%d' % r, '=' + AB('Net profit attributable, FY%s' % y), GREEN, NUM)
-    put(ws, 'D%d' % r, '=C%d/%s' % (r, SHARES), BLACK, PX)
-    put(ws, 'E%d' % r, '=B%d/D%d' % (r, r), BLACK, MULT)
+    # THE COMPANY'S OWN PUBLISHED BASIC FIGURE, NOT ATTRIBUTABLE PROFIT OVER THE SHARE
+    # COUNT [audit finding 26]: note 10 deducts the employees' share of profit and the
+    # board bonus before dividing, and a multiple and its earnings must be on one basis.
+    put(ws, 'C%d' % r, '=' + AB("Basic earnings per share, FY%s (the company's own "
+                                "published figure)" % y), GREEN, PX)
+    put(ws, 'E%d' % r, '=B%d/C%d' % (r, r), BLACK, MULT)
     r += 1
 PE1 = r - 1
 put(ws, 'A%d' % r, 'Adopted multiple — the MEDIAN of those three', BLACK, None, True)
@@ -243,8 +248,17 @@ put(ws, 'B%d' % r, "='Income Statement'!E%d" % IS['Net profit (attributable)'], 
 put(ws, 'C%d' % r, 'READ from this model\'s own consolidated forecast rather than typed.',
     SUB, None)
 NP26 = r; r += 1
-put(ws, 'A%d' % r, 'FY26E earnings per share (EGP)')
-put(ws, 'B%d' % r, '=B%d/%s' % (NP26, SHARES), BLACK, PX)
+# THE FORECAST EARNINGS CARRY THE SAME DEDUCTION AS THE HISTORICAL MULTIPLE'S EARNINGS
+# [audit finding 26]: the employees' share of profit and the board bonus that note 10 takes
+# out before it divides. The rate is the latest audited year's, with the earlier year's
+# published beside it, because the two differ by a factor of five -- the employees' share
+# follows the DISTRIBUTION and none was made in FY2025.
+put(ws, 'A%d' % r, "less: the employees' share of profit and the board bonus, at FY2025's "
+                   'disclosed rate')
+put(ws, 'B%d' % r, -D['lens_inputs']['relative']['eps_deduction_fy25'], BLUE, PCT2)
+EPSDED = r; r += 1
+put(ws, 'A%d' % r, 'FY26E earnings per share (EGP), on the published basic basis')
+put(ws, 'B%d' % r, '=B%d*(1+B%d)/%s' % (NP26, EPSDED, SHARES), BLACK, PX)
 EPS26 = r; r += 1
 put(ws, 'A%d' % r, 'Relative multiple read (EGP/share)', BLACK, None, True)
 put(ws, 'B%d' % r, '=B%d*E%d' % (EPS26, PEROW), BLACK, PX, True)
@@ -253,7 +267,11 @@ put(ws, 'A%d' % r, 'Difference against the price')
 put(ws, 'B%d' % r, '=B%d/%s-1' % (RELROW, SPOT), BLACK, PCT)
 r += 1
 put(ws, 'A%d' % r, 'memo: the multiple the shares ALREADY trade at, on the same forward earnings')
-put(ws, 'B%d' % r, '=%s*%s/B%d' % (SPOT, SHARES, NP26), BLACK, MULT)
+# ON THE SAME EARNINGS AS THE MULTIPLE IT IS COMPARED WITH [audit finding 26]: the
+# published basic basis, which is the cell two rows above rather than the attributable
+# line. A traded multiple on one basis beside an own-history multiple on another is not a
+# comparison at all.
+put(ws, 'B%d' % r, '=%s/B%d' % (SPOT, EPS26), BLACK, MULT)
 TRADED = r
 put(ws, 'C%d' % r, 'committed so the non-circularity claim is arithmetic rather than prose: '
                    'a lens whose multiple IS the traded one values the company at what it '
@@ -505,8 +523,12 @@ for i, mm in enumerate(gm):
     for k in range(len(_RUNGS)):
         col = get_column_letter(2 + k)
         put(ws, '%s%d' % (col, rr),
-            '=(DCF!$B$%d+$A%d*100*DCF!$B$%d-%s-%s+%s+%s$5+%s)/%s'
-            % (DCJ['EVR'], rr, DCJ['EVPP'], AUTO_ND, AUTO_NCI, CAPLEG, col, OTHASSOC, SHARES),
+            # THE MINORITY IS A SHARE OF THE LEG'S EQUITY VALUE IN EVERY CELL OF THE
+            # GRID TOO [R-BRIDGE-01]: a grid deducting a constant book figure while the
+            # bridge deducts a proportion prices a different company in every cell but one.
+            '=((DCF!$B$%d+$A%d*100*DCF!$B$%d-%s)*(1-%s)+%s+%s$5+%s)/%s'
+            % (DCJ['EVR'], rr, DCJ['EVPP'], AUTO_ND, AUTO_NCI_SHARE, CAPLEG, col,
+               OTHASSOC, SHARES),
             BLACK, PX)
 G1_1 = G1_0 + len(gm) - 1
 r = G1_1 + 1
@@ -528,7 +550,13 @@ HELP_HDR = G2_0 + len(SHIFTS) + 2
 HELP_0 = HELP_HDR + 1
 put(ws, 'A%d' % G2_HDR, 'Ladder shift \\ terminal growth', BLACK, None, True, FILL_H)
 for j, t in enumerate(TGS):
-    put(ws, '%s%d' % (get_column_letter(2 + j), G2_HDR), '=%s+%s' % (TG, repr(t)),
+    # A ZERO SHIFT IS WRITTEN AS THE CELL ITSELF, NOT AS A PLUS-ZERO. Any spreadsheet
+    # that opens and recalculates this file normalises '+0.0' away, which makes the
+    # delivered formula differ from the generated one for no reason -- and the
+    # value-caching step's own guard, which asserts the model is unchanged either
+    # side of a recalculation, is right to refuse that rather than wave it through.
+    put(ws, '%s%d' % (get_column_letter(2 + j), G2_HDR),
+        ('=%s' % TG) if t == 0 else ('=%s+%s' % (TG, repr(t))),
         BLACK, PCT, True, FILL_H)
 for i, s in enumerate(SHIFTS):
     rr = G2_0 + i
@@ -537,12 +565,12 @@ for i, s in enumerate(SHIFTS):
     for j in range(5):
         col = get_column_letter(2 + j)
         put(ws, '%s%d' % (col, rr),
-            '=(SUMPRODUCT(DCF!$B$%d:$F$%d,$B$%d:$F$%d)'
+            '=((SUMPRODUCT(DCF!$B$%d:$F$%d,$B$%d:$F$%d)'
             '+DCF!$F$%d*(1+%s$%d)/($G$%d-%s$%d)*$F$%d'
-            '-%s-%s+%s+%s)/%s'
+            '-%s)*(1-%s)+%s+%s)/%s'
             % (DCJ['FCFF'], DCJ['FCFF'], hr, hr,
                DCJ['FCFF'], col, G2_HDR, hr, col, G2_HDR, hr,
-               AUTO_ND, AUTO_NCI, CAPLEG, ASSOC_A, SHARES),
+               AUTO_ND, AUTO_NCI_SHARE, CAPLEG, ASSOC_A, SHARES),
             BLACK, PX)
 put(ws, 'A%d' % HELP_HDR,
     'helper — the shifted discount factors, one forward rate per year moved together',
