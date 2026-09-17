@@ -167,14 +167,16 @@ RUNS = [
 # list may only ever SHORTEN, and a listed entry that stops flipping goes RED so
 # the removal is forced rather than tidy.
 OUTSTANDING = {
-    ("PHDC", "asp"): (
-        "Applied by the expanding-window rule with the reason 'sign stable across "
-        "eras', and it flips at FOUR of five cuts. The run itself declined to "
-        "promote it — its training record says only one correction passed its own "
-        "test — and its scored path does not import the corrections module, so no "
-        "published number rests on it. Listed rather than deleted because the "
-        "adjusted-vs-raw test is a required artefact and rebuilding it under a "
-        "cut-invariant rule moves that run's record, which is its own measured pass."),
+    # ("PHDC", "asp") and ("PHDC", "units_sold") CAME OFF 17-09-2026, and the reason
+    # is the rework this ratchet was created to defer rather than a fix to the gate.
+    # Both entries said the same thing: the corrections were applied under a rule
+    # reading "sign stable across eras", the era boundary is the year the currency
+    # moved, and neither driver survives its own admissible cuts. PHDC's
+    # corrections.py now CALLS boundary_sensitivity.cuts_for() instead of comparing
+    # era means of its own [R-ENF-03], and both corrections fell out on the rebuild
+    # -- asp at 2 of 4 cuts, units_sold at 1 of 4 and 1 of 5. The adjusted-vs-raw
+    # artefact was rebuilt in the same pass, which is what the original entries said
+    # the removal would cost.
     # ("PHDC", "units_delivered") CAME OFF 07-09-2026, the same day it went on, and
     # the reason is the rework rather than a fix to the run. Judged on the whole
     # record it flips at two of five cuts; judged on what origin 2023 could actually
@@ -184,10 +186,6 @@ OUTSTANDING = {
     # first draft of this gate could only express the second. The whole-record
     # reading is still printed beside it, because it is worth knowing and is not a
     # verdict on the method.
-    ("PHDC", "units_sold"): (
-        "Same rule, same stated reason, flips at ONE of five cuts. Declined by the "
-        "run for a separate reason its record states — FY2024-25 units are not "
-        "disclosed, so the correction cannot be scored at all."),
 }
 
 

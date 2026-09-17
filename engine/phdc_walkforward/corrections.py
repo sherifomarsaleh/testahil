@@ -5,16 +5,27 @@ The rule was fixed in the pre-registration and is not relaxed here:
   * expanding window — a correction used at origin o is estimated only from
     forecasts that had already RESOLVED before o;
   * half strength — the applied correction is 0.5 x the estimated bias;
-  * applied only where the bias holds its sign across eras;
+  * applied only where the bias holds its sign AT EVERY CUT THE DATA ADMITS
+    [R-FCAL-01 AMENDED 07-09-2026]. The rule used to read "across eras", and the era
+    boundary here is the year the currency moved -- the right cut for a currency and
+    not every driver's break. Three of this run's four applied corrections passed the
+    era test and FLIP at some other admissible boundary. The cut-invariant test is the
+    shared instrument's, called rather than reimplemented [R-ENF-03], and a driver too
+    thin to cut is UNTESTABLE rather than stable, because an absence of contrary
+    evidence is not evidence [R-ENF-04];
   * reset after a structural break, defined as a driver error beyond its own
     two sigma.
 
 Corrections are applied to the DRIVERS and the aggregates are rebuilt from
 them, so a correction cannot quietly become a fudge on the bottom line.
 """
-import json, os, math, statistics as st
+import json, os, sys, math, statistics as st
 import bottom_up as B
 import score as S
+
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(
+    os.path.abspath(__file__))), "valuation_calibration"))
+from boundary_sensitivity import cuts_for, MIN_SIDE   # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 CORRECTABLE = ["units_sold", "asp", "units_delivered", "is.sga", "is.finance_cost"]
@@ -60,8 +71,10 @@ def estimate(panel, origin):
         for r in rows:
             by_era.setdefault(r["era"], []).append(r["e"])
         era_means = {k: sum(v) / len(v) for k, v in by_era.items() if len(v) >= 2}
-        signs = {(1 if m > 0 else -1) for m in era_means.values()}
-        stable = len(era_means) >= 2 and len(signs) == 1
+        # THE TEST IS EVERY ADMISSIBLE CUT, NOT THE ONE THE MARKET CHOSE. era_means is
+        # kept because it is evidence a reader wants; it decides nothing.
+        cuts, flipped = cuts_for([(r["target"], r["e"]) for r in rows])
+        stable = bool(cuts) and not flipped
         # structural break: the most recent error beyond the driver's own 2 sigma
         sd = st.pstdev(es) if len(es) > 1 else 0.0
         latest = max(rows, key=lambda r: (r["target"], r["h"]))
@@ -73,13 +86,20 @@ def estimate(panel, origin):
                       "era_means": {k: round(v, 4) for k, v in era_means.items()}}
         elif not stable:
             out[f] = {"applied": 0.0, "bias": round(bias, 4), "n": len(rows),
-                      "reason": "bias does not hold its sign across eras"
-                                if len(era_means) >= 2 else
-                                "only one era has two or more resolved errors",
+                      "reason": ("bias flips sign at %d of %d admissible cut(s)"
+                                 % (len(flipped), len(cuts))) if cuts else
+                                ("too thin to cut -- no boundary leaves %d cells each "
+                                 "side, so the sign is UNTESTABLE rather than stable"
+                                 % MIN_SIDE),
+                      "cuts": len(cuts), "cuts_flipped": len(flipped),
+                      "flipped_at": [b for b, _, _ in flipped],
                       "era_means": {k: round(v, 4) for k, v in era_means.items()}}
         else:
             out[f] = {"applied": round(HALF * bias, 4), "bias": round(bias, 4),
-                      "n": len(rows), "reason": "sign stable across eras; half strength",
+                      "n": len(rows),
+                      "reason": "sign holds at all %d admissible cuts; half strength"
+                                % len(cuts),
+                      "cuts": len(cuts), "cuts_flipped": 0,
                       "era_means": {k: round(v, 4) for k, v in era_means.items()}}
     return out
 

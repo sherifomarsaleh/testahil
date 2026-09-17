@@ -135,9 +135,20 @@ OPERATING = {
                            "2024-12-31", "A"),
     "construction_fy23": I(7500.0,  "PHD FY2023 earnings release", "2023-12-31", "A"),
     "collections_fy24": I(25400.0,  "PHD FY2024 earnings release", "2024-12-31", "A"),
-    "land_bank_sqm_mn": I(33.0,     "PHD FY2024 earnings release — land bank \"spreading "
-                          "over 33 million square meters\"", "2024-12-31", "A",
-                          unit="mn sqm"),
+    # CORRECTED 17-09-2026 [R-ASSET-01]. This read 33.0 as at 2024-12-31 while the
+    # 1H2025 earnings release -- ALREADY IN THIS REPOSITORY and already parsed by this
+    # name's own walk-forward -- states 37 in the SAME "spreading over N million square
+    # meters" sentence of the same boilerplate, so the two are like for like and the
+    # committed figure understated the operating asset base of a DEVELOPER by 12.1%.
+    # The release says in its own words that the company is "actively seeking to
+    # replenish our landbank in 2025", so the movement is disclosed rather than
+    # inferred. Nothing in this model reads this figure -- it is printed to the
+    # workbook and nowhere else [R-ASSET-02] -- so no valuation number moves; what
+    # moves is what a reader is told, which was wrong.
+    "land_bank_sqm_mn": I(37.0,     "PHD 1H2025 earnings release (Cairo, 13 August "
+                          "2025, for the period ended 30 June 2025) — land bank "
+                          "\"spreading over 37 million square meters\"", "2025-06-30",
+                          "A", unit="mn sqm"),
     "units_delivered_fy23": I(1500.0, "PHD FY2023 earnings release", "2023-12-31", "A",
                               unit="units"),
     "units_sold_fy23":  I(5300.0,   "PHD FY2023 earnings release, chart series",

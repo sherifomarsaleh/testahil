@@ -68,7 +68,7 @@
    "default_spread": 0.0341,
    "rf_star": 0.19590000000000002,
    "erp": 0.0941,
-   "erp_basis": "cds",
+   "erp_basis": "market",
    "beta": 1.0493083523382887,
    "ke_exp": 0.29463991595503297,
    "kd_pretax": 0.255,
@@ -79,6 +79,7 @@
    "rf_terminal": 0.125,
    "erp_terminal": 0.07,
    "ke_terminal": 0.1984515846636802,
+   "ke_terminal_construction": "same_beta",
    "kd_terminal_pretax": 0.15,
    "kd_terminal_aftertax": 0.11624999999999999,
    "weight_debt_terminal": 0.448952351296066,
@@ -152,10 +153,12 @@
    },
    "disclosures": [
     "The glide fractions are the policy-rate path's own cumulative progress, so the front-loaded shape is inherited from the assumed easing calendar rather than being a second free parameter.",
-    "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (3.41%) on the cds basis, and the premium added back is on the same basis.",
+    "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (3.41%) on the market basis, and the premium added back is on the same basis.",
     "The terminal is norm-built and no line in it is an observable quote: risk-free 12.50% = the inflation target in force (7.00%) plus the real-rate convention (5.50%); cost of debt 15.00% is the long-run corporate norm; the premium is normalised to 7.00%.",
-    "DISCLOSED STALENESS: the sovereign quote is 28 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
-   ]
+    "DISCLOSED STALENESS: the sovereign quote is 42 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
+   ],
+   "beta_source": "own_stock_regression",
+   "beta_source_note": "Tier 1 \u2014 own-stock weekly regression against the PUBLISHED index of the exchange PHDC is listed on (EGX30, raw_indices/EG/EGX30.csv, as-of 2026-07-22), produced by engine/beta_regression.own_stock_beta() and attested by research_protocol.assert_beta_provenance(). beta 1.0493, R^2 29.9%, SE 0.1823, n=251 weekly observations over 4.85 years, Dimson-adjusted; 90% CI [0.749, 1.349]; Blume cross-check 1.0329. No constituent composite is used anywhere in this study."
   },
   "rating": {
    "market": "EG",
@@ -176,6 +179,7 @@
    "rf_terminal": 0.125,
    "erp_terminal": 0.07,
    "ke_terminal": 0.1984515846636802,
+   "ke_terminal_construction": "same_beta",
    "kd_terminal_pretax": 0.15,
    "kd_terminal_aftertax": 0.11624999999999999,
    "weight_debt_terminal": 0.448952351296066,
@@ -243,7 +247,7 @@
     "limitation": "the independent effective-rate check could not be performed on this company's disclosure; the adopted rate rests on the sovereign plus a stated corporate spread and this is a limitation of the study, recorded rather than passed over"
    },
    "sensitivity": {
-    "other_basis": "cds",
+    "other_basis": "market",
     "other_default_spread": 0.0341,
     "rf_star_other_basis": 0.19590000000000002
    },
@@ -251,8 +255,10 @@
     "The glide fractions are the policy-rate path's own cumulative progress, so the front-loaded shape is inherited from the assumed easing calendar rather than being a second free parameter.",
     "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (6.37%) on the rating basis, and the premium added back is on the same basis.",
     "The terminal is norm-built and no line in it is an observable quote: risk-free 12.50% = the inflation target in force (7.00%) plus the real-rate convention (5.50%); cost of debt 15.00% is the long-run corporate norm; the premium is normalised to 7.00%.",
-    "DISCLOSED STALENESS: the sovereign quote is 28 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
-   ]
+    "DISCLOSED STALENESS: the sovereign quote is 42 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
+   ],
+   "beta_source": "own_stock_regression",
+   "beta_source_note": "Tier 1 \u2014 own-stock weekly regression against the PUBLISHED index of the exchange PHDC is listed on (EGX30, raw_indices/EG/EGX30.csv, as-of 2026-07-22), produced by engine/beta_regression.own_stock_beta() and attested by research_protocol.assert_beta_provenance(). beta 1.0493, R^2 29.9%, SE 0.1823, n=251 weekly observations over 4.85 years, Dimson-adjusted; 90% CI [0.749, 1.349]; Blume cross-check 1.0329. No constituent composite is used anywhere in this study."
   }
  },
  "cost_of_capital_record": {
@@ -263,7 +269,7 @@
   "default_spread": 0.0341,
   "rf_star": 0.19590000000000002,
   "erp": 0.0941,
-  "erp_basis": "cds",
+  "erp_basis": "market",
   "beta": 1.0493083523382887,
   "ke_exp": 0.29463991595503297,
   "kd_pretax": 0.255,
@@ -274,6 +280,7 @@
   "rf_terminal": 0.125,
   "erp_terminal": 0.07,
   "ke_terminal": 0.1984515846636802,
+  "ke_terminal_construction": "same_beta",
   "kd_terminal_pretax": 0.15,
   "kd_terminal_aftertax": 0.11624999999999999,
   "weight_debt_terminal": 0.448952351296066,
@@ -347,10 +354,12 @@
   },
   "disclosures": [
    "The glide fractions are the policy-rate path's own cumulative progress, so the front-loaded shape is inherited from the assumed easing calendar rather than being a second free parameter.",
-   "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (3.41%) on the cds basis, and the premium added back is on the same basis.",
+   "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (3.41%) on the market basis, and the premium added back is on the same basis.",
    "The terminal is norm-built and no line in it is an observable quote: risk-free 12.50% = the inflation target in force (7.00%) plus the real-rate convention (5.50%); cost of debt 15.00% is the long-run corporate norm; the premium is normalised to 7.00%.",
-   "DISCLOSED STALENESS: the sovereign quote is 28 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
-  ]
+   "DISCLOSED STALENESS: the sovereign quote is 42 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
+  ],
+  "beta_source": "own_stock_regression",
+  "beta_source_note": "Tier 1 \u2014 own-stock weekly regression against the PUBLISHED index of the exchange PHDC is listed on (EGX30, raw_indices/EG/EGX30.csv, as-of 2026-07-22), produced by engine/beta_regression.own_stock_beta() and attested by research_protocol.assert_beta_provenance(). beta 1.0493, R^2 29.9%, SE 0.1823, n=251 weekly observations over 4.85 years, Dimson-adjusted; 90% CI [0.749, 1.349]; Blume cross-check 1.0329. No constituent composite is used anywhere in this study."
  },
  "cost_of_capital_record_alt": {
   "market": "EG",
@@ -371,6 +380,7 @@
   "rf_terminal": 0.125,
   "erp_terminal": 0.07,
   "ke_terminal": 0.1984515846636802,
+  "ke_terminal_construction": "same_beta",
   "kd_terminal_pretax": 0.15,
   "kd_terminal_aftertax": 0.11624999999999999,
   "weight_debt_terminal": 0.448952351296066,
@@ -438,7 +448,7 @@
    "limitation": "the independent effective-rate check could not be performed on this company's disclosure; the adopted rate rests on the sovereign plus a stated corporate spread and this is a limitation of the study, recorded rather than passed over"
   },
   "sensitivity": {
-   "other_basis": "cds",
+   "other_basis": "market",
    "other_default_spread": 0.0341,
    "rf_star_other_basis": 0.19590000000000002
   },
@@ -446,7 +456,9 @@
    "The glide fractions are the policy-rate path's own cumulative progress, so the front-loaded shape is inherited from the assumed easing calendar rather than being a second free parameter.",
    "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (6.37%) on the rating basis, and the premium added back is on the same basis.",
    "The terminal is norm-built and no line in it is an observable quote: risk-free 12.50% = the inflation target in force (7.00%) plus the real-rate convention (5.50%); cost of debt 15.00% is the long-run corporate norm; the premium is normalised to 7.00%.",
-   "DISCLOSED STALENESS: the sovereign quote is 28 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
-  ]
+   "DISCLOSED STALENESS: the sovereign quote is 42 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
+  ],
+  "beta_source": "own_stock_regression",
+  "beta_source_note": "Tier 1 \u2014 own-stock weekly regression against the PUBLISHED index of the exchange PHDC is listed on (EGX30, raw_indices/EG/EGX30.csv, as-of 2026-07-22), produced by engine/beta_regression.own_stock_beta() and attested by research_protocol.assert_beta_provenance(). beta 1.0493, R^2 29.9%, SE 0.1823, n=251 weekly observations over 4.85 years, Dimson-adjusted; 90% CI [0.749, 1.349]; Blume cross-check 1.0329. No constituent composite is used anywhere in this study."
  }
 }

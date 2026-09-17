@@ -10,8 +10,24 @@
   "edition_note": "interim edition applying the three corrections of the 01-Sep-2026 valuation review: bridge, book lens and debt stack on the 31-Mar-2026 reviewed balance sheet; minority interests deducted at their share of value; normalised earnings capitalised at cost of equity less growth. The discount rate and the lens weights are unchanged.",
   "base_year": 2025,
   "information_set_ends": "1Q2026",
+  "asset_base_record": {
+   "quantity": "land bank",
+   "unit": "mn sqm",
+   "value": 37.0,
+   "as_at": "2025-06-30",
+   "disclosure": "PHD 1H2025 earnings release, Cairo 13 August 2025, for the period ended 30 June 2025: a land bank in Egypt and Abu Dhabi \"spreading over 37 million square meters\". The FIGURE THIS STUDY PREVIOUSLY CARRIED came from the same boilerplate sentence of the FY2024 release at 33, so the two are like for like and the movement is the company's own disclosure, not a re-measurement -- the same release states that PHD is \"actively seeking to replenish our landbank in 2025\".",
+   "not_restated_since": {
+    "disclosures_checked": [
+     "PHD consolidated financial statements for the three months ended 31 March 2026 (limited review report attached) \u2014 the latest filing this study reads and the sheet its bridge stands on; carries no land-bank figure",
+     "PHD consolidated financial statements for the year ended 31 December 2025 \u2014 carries no land-bank figure",
+     "PHD consolidated financial statements Q3 2025 \u2014 carries no land-bank figure"
+    ],
+    "reason": "THE LAND BANK IS AN OPERATING KPI AND OPERATING KPIs ARE DISCLOSED IN EARNINGS RELEASES, NOT IN FINANCIAL STATEMENTS. Every document this study holds after 13 August 2025 is a financial statement, and a statement does not carry the figure however recent it is -- which is exactly what this name's own registered lessons say of it, that a developer's operating KPIs can stop years before its statements do and that Palm Hills' operating drivers stop a year before its financial statements do. No earnings release after 1H2025 is held in this repository. The search that would close this is therefore a DOCUMENT to obtain rather than a page to re-read, and it is named here so the next pass looks for the right thing: the FY2025 and 1H2026 earnings releases."
+   },
+   "note": "NOTHING IN THIS MODEL READS THIS FIGURE. It is printed to the workbook and grouped in the bibliography and reaches no arithmetic, so correcting it moves no valuation number -- which is the second half of the same defect and is recorded rather than left for a reader to discover: new land raises the value by zero here and exhausted land lowers it by zero."
+  },
   "bridge_balance_sheet": "2026-03-31",
-  "standard_version": "2026.09.01",
+  "standard_version": "2026.09.07",
   "spot": 14.4,
   "spot_date": "close 3 Sep 2026",
   "central": 17.847764793737,
@@ -475,9 +491,9 @@
    "unit": "EGP mn"
   },
   "land_bank_sqm_mn": {
-   "value": 33.0,
-   "source": "PHD FY2024 earnings release \u2014 land bank \"spreading over 33 million square meters\"",
-   "date": "2024-12-31",
+   "value": 37.0,
+   "source": "PHD 1H2025 earnings release (Cairo, 13 August 2025, for the period ended 30 June 2025) \u2014 land bank \"spreading over 37 million square meters\"",
+   "date": "2025-06-30",
    "tier": "A",
    "unit": "mn sqm"
   },
@@ -1795,7 +1811,7 @@
     "default_spread": 0.0341,
     "rf_star": 0.19590000000000002,
     "erp": 0.0941,
-    "erp_basis": "cds",
+    "erp_basis": "market",
     "beta": 1.0493083523382887,
     "ke_exp": 0.29463991595503297,
     "kd_pretax": 0.255,
@@ -1806,6 +1822,7 @@
     "rf_terminal": 0.125,
     "erp_terminal": 0.07,
     "ke_terminal": 0.1984515846636802,
+    "ke_terminal_construction": "same_beta",
     "kd_terminal_pretax": 0.15,
     "kd_terminal_aftertax": 0.11624999999999999,
     "weight_debt_terminal": 0.448952351296066,
@@ -1879,10 +1896,12 @@
     },
     "disclosures": [
      "The glide fractions are the policy-rate path's own cumulative progress, so the front-loaded shape is inherited from the assumed easing calendar rather than being a second free parameter.",
-     "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (3.41%) on the cds basis, and the premium added back is on the same basis.",
+     "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (3.41%) on the market basis, and the premium added back is on the same basis.",
      "The terminal is norm-built and no line in it is an observable quote: risk-free 12.50% = the inflation target in force (7.00%) plus the real-rate convention (5.50%); cost of debt 15.00% is the long-run corporate norm; the premium is normalised to 7.00%.",
-     "DISCLOSED STALENESS: the sovereign quote is 28 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
-    ]
+     "DISCLOSED STALENESS: the sovereign quote is 42 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
+    ],
+    "beta_source": "own_stock_regression",
+    "beta_source_note": "Tier 1 \u2014 own-stock weekly regression against the PUBLISHED index of the exchange PHDC is listed on (EGX30, raw_indices/EG/EGX30.csv, as-of 2026-07-22), produced by engine/beta_regression.own_stock_beta() and attested by research_protocol.assert_beta_provenance(). beta 1.0493, R^2 29.9%, SE 0.1823, n=251 weekly observations over 4.85 years, Dimson-adjusted; 90% CI [0.749, 1.349]; Blume cross-check 1.0329. No constituent composite is used anywhere in this study."
    },
    "rating": {
     "market": "EG",
@@ -1903,6 +1922,7 @@
     "rf_terminal": 0.125,
     "erp_terminal": 0.07,
     "ke_terminal": 0.1984515846636802,
+    "ke_terminal_construction": "same_beta",
     "kd_terminal_pretax": 0.15,
     "kd_terminal_aftertax": 0.11624999999999999,
     "weight_debt_terminal": 0.448952351296066,
@@ -1970,7 +1990,7 @@
      "limitation": "the independent effective-rate check could not be performed on this company's disclosure; the adopted rate rests on the sovereign plus a stated corporate spread and this is a limitation of the study, recorded rather than passed over"
     },
     "sensitivity": {
-     "other_basis": "cds",
+     "other_basis": "market",
      "other_default_spread": 0.0341,
      "rf_star_other_basis": 0.19590000000000002
     },
@@ -1978,8 +1998,10 @@
      "The glide fractions are the policy-rate path's own cumulative progress, so the front-loaded shape is inherited from the assumed easing calendar rather than being a second free parameter.",
      "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (6.37%) on the rating basis, and the premium added back is on the same basis.",
      "The terminal is norm-built and no line in it is an observable quote: risk-free 12.50% = the inflation target in force (7.00%) plus the real-rate convention (5.50%); cost of debt 15.00% is the long-run corporate norm; the premium is normalised to 7.00%.",
-     "DISCLOSED STALENESS: the sovereign quote is 28 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
-    ]
+     "DISCLOSED STALENESS: the sovereign quote is 42 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
+    ],
+    "beta_source": "own_stock_regression",
+    "beta_source_note": "Tier 1 \u2014 own-stock weekly regression against the PUBLISHED index of the exchange PHDC is listed on (EGX30, raw_indices/EG/EGX30.csv, as-of 2026-07-22), produced by engine/beta_regression.own_stock_beta() and attested by research_protocol.assert_beta_provenance(). beta 1.0493, R^2 29.9%, SE 0.1823, n=251 weekly observations over 4.85 years, Dimson-adjusted; 90% CI [0.749, 1.349]; Blume cross-check 1.0329. No constituent composite is used anywhere in this study."
    }
   },
   "cost_of_capital_record": {
@@ -1990,7 +2012,7 @@
    "default_spread": 0.0341,
    "rf_star": 0.19590000000000002,
    "erp": 0.0941,
-   "erp_basis": "cds",
+   "erp_basis": "market",
    "beta": 1.0493083523382887,
    "ke_exp": 0.29463991595503297,
    "kd_pretax": 0.255,
@@ -2001,6 +2023,7 @@
    "rf_terminal": 0.125,
    "erp_terminal": 0.07,
    "ke_terminal": 0.1984515846636802,
+   "ke_terminal_construction": "same_beta",
    "kd_terminal_pretax": 0.15,
    "kd_terminal_aftertax": 0.11624999999999999,
    "weight_debt_terminal": 0.448952351296066,
@@ -2074,10 +2097,12 @@
    },
    "disclosures": [
     "The glide fractions are the policy-rate path's own cumulative progress, so the front-loaded shape is inherited from the assumed easing calendar rather than being a second free parameter.",
-    "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (3.41%) on the cds basis, and the premium added back is on the same basis.",
+    "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (3.41%) on the market basis, and the premium added back is on the same basis.",
     "The terminal is norm-built and no line in it is an observable quote: risk-free 12.50% = the inflation target in force (7.00%) plus the real-rate convention (5.50%); cost of debt 15.00% is the long-run corporate norm; the premium is normalised to 7.00%.",
-    "DISCLOSED STALENESS: the sovereign quote is 28 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
-   ]
+    "DISCLOSED STALENESS: the sovereign quote is 42 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
+   ],
+   "beta_source": "own_stock_regression",
+   "beta_source_note": "Tier 1 \u2014 own-stock weekly regression against the PUBLISHED index of the exchange PHDC is listed on (EGX30, raw_indices/EG/EGX30.csv, as-of 2026-07-22), produced by engine/beta_regression.own_stock_beta() and attested by research_protocol.assert_beta_provenance(). beta 1.0493, R^2 29.9%, SE 0.1823, n=251 weekly observations over 4.85 years, Dimson-adjusted; 90% CI [0.749, 1.349]; Blume cross-check 1.0329. No constituent composite is used anywhere in this study."
   },
   "cost_of_capital_record_alt": {
    "market": "EG",
@@ -2098,6 +2123,7 @@
    "rf_terminal": 0.125,
    "erp_terminal": 0.07,
    "ke_terminal": 0.1984515846636802,
+   "ke_terminal_construction": "same_beta",
    "kd_terminal_pretax": 0.15,
    "kd_terminal_aftertax": 0.11624999999999999,
    "weight_debt_terminal": 0.448952351296066,
@@ -2165,7 +2191,7 @@
     "limitation": "the independent effective-rate check could not be performed on this company's disclosure; the adopted rate rests on the sovereign plus a stated corporate spread and this is a limitation of the study, recorded rather than passed over"
    },
    "sensitivity": {
-    "other_basis": "cds",
+    "other_basis": "market",
     "other_default_spread": 0.0341,
     "rf_star_other_basis": 0.19590000000000002
    },
@@ -2173,8 +2199,10 @@
     "The glide fractions are the policy-rate path's own cumulative progress, so the front-loaded shape is inherited from the assumed easing calendar rather than being a second free parameter.",
     "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (6.37%) on the rating basis, and the premium added back is on the same basis.",
     "The terminal is norm-built and no line in it is an observable quote: risk-free 12.50% = the inflation target in force (7.00%) plus the real-rate convention (5.50%); cost of debt 15.00% is the long-run corporate norm; the premium is normalised to 7.00%.",
-    "DISCLOSED STALENESS: the sovereign quote is 28 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
-   ]
+    "DISCLOSED STALENESS: the sovereign quote is 42 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
+   ],
+   "beta_source": "own_stock_regression",
+   "beta_source_note": "Tier 1 \u2014 own-stock weekly regression against the PUBLISHED index of the exchange PHDC is listed on (EGX30, raw_indices/EG/EGX30.csv, as-of 2026-07-22), produced by engine/beta_regression.own_stock_beta() and attested by research_protocol.assert_beta_provenance(). beta 1.0493, R^2 29.9%, SE 0.1823, n=251 weekly observations over 4.85 years, Dimson-adjusted; 90% CI [0.749, 1.349]; Blume cross-check 1.0329. No constituent composite is used anywhere in this study."
   }
  },
  "derived": {
@@ -4037,7 +4065,7 @@
   "default_spread": 0.0341,
   "rf_star": 0.19590000000000002,
   "erp": 0.0941,
-  "erp_basis": "cds",
+  "erp_basis": "market",
   "beta": 1.0493083523382887,
   "ke_exp": 0.29463991595503297,
   "kd_pretax": 0.255,
@@ -4048,6 +4076,7 @@
   "rf_terminal": 0.125,
   "erp_terminal": 0.07,
   "ke_terminal": 0.1984515846636802,
+  "ke_terminal_construction": "same_beta",
   "kd_terminal_pretax": 0.15,
   "kd_terminal_aftertax": 0.11624999999999999,
   "weight_debt_terminal": 0.448952351296066,
@@ -4121,10 +4150,12 @@
   },
   "disclosures": [
    "The glide fractions are the policy-rate path's own cumulative progress, so the front-loaded shape is inherited from the assumed easing calendar rather than being a second free parameter.",
-   "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (3.41%) on the cds basis, and the premium added back is on the same basis.",
+   "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (3.41%) on the market basis, and the premium added back is on the same basis.",
    "The terminal is norm-built and no line in it is an observable quote: risk-free 12.50% = the inflation target in force (7.00%) plus the real-rate convention (5.50%); cost of debt 15.00% is the long-run corporate norm; the premium is normalised to 7.00%.",
-   "DISCLOSED STALENESS: the sovereign quote is 28 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
-  ]
+   "DISCLOSED STALENESS: the sovereign quote is 42 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
+  ],
+  "beta_source": "own_stock_regression",
+  "beta_source_note": "Tier 1 \u2014 own-stock weekly regression against the PUBLISHED index of the exchange PHDC is listed on (EGX30, raw_indices/EG/EGX30.csv, as-of 2026-07-22), produced by engine/beta_regression.own_stock_beta() and attested by research_protocol.assert_beta_provenance(). beta 1.0493, R^2 29.9%, SE 0.1823, n=251 weekly observations over 4.85 years, Dimson-adjusted; 90% CI [0.749, 1.349]; Blume cross-check 1.0329. No constituent composite is used anywhere in this study."
  },
  "bridge": [
   [
@@ -6812,9 +6843,9 @@
   ]
  },
  "walkforward": {
-  "corrections_applied_in_walkforward": 6,
+  "corrections_applied_in_walkforward": 8,
   "corrections_adopted": 0,
-  "corrections_note": "The expanding-window rule applied six half-strength shifts inside the test itself, at the 2023 and 2024 origins, on four drivers \u2014 units sold, average selling price, units delivered and the finance charge \u2014 each on a sign-stability reason. NONE was promoted into the live drivers and the forward model carries no correction. The finance-cost candidate passed a bias test and failed the consistency clause, which is what exposed the interest-bearing-denominator defect; it is carried as a watch flag and acted on by nobody.",
+  "corrections_note": "REBUILT 17-09-2026 UNDER THE CUT-INVARIANT RULE, and the previous text is superseded rather than adjusted: it named six shifts at two origins on four drivers, and after the rebuild it is eight shifts at four origins on three. The test used to ask whether a bias held its sign ACROSS ERAS, and this market's era boundary is the year the currency moved -- the right cut for a currency and not every driver's. It now asks whether the sign holds at EVERY cut the data admits, through the shared instrument rather than a comparison of this run's own. IT CUT BOTH WAYS, WHICH IS WHY IT IS WORTH SAYING: average selling price and units sold were WITHDRAWN, flipping at two of four and one of four cuts; and units delivered, the selling and administrative line and the finance charge were ADMITTED at the 2021 and 2022 origins, where the old test could not run at all because only one era then had two resolved errors. NONE was promoted into the live drivers and the forward model carries no correction, so no figure in this study moves. The finance-cost candidate passed a bias test and failed the consistency clause, which is what exposed the interest-bearing-denominator defect; it is carried as a watch flag",
   "origins": 10,
   "horizons": "1-5y",
   "revenue_bias": 0.105,
@@ -6855,6 +6886,6 @@
   "note": "NEITHER CLAUSE FIRES AND THE ANCHOR IS EXACT. The forecast gross margin IS the latest reviewed period's rate, 35.4839%, and it is held there for every one of the 15 explicit years: the model sets the forward margin equal to the 1Q2026 margin and solves cost per delivered unit from it, so the opening year and the latest reviewed period are the same number by construction and the path is flat. THE LATEST REVIEWED PERIOD IS THE NEWEST DISCLOSURE OF ANY KIND: this study's own gap register records that no second-quarter or half-year 2026 statements or release were posted to the company's result centre at this build, so the information set ends at 1Q2026. The two figures forming the rate are the company's own 1Q2026 earnings release of 20 May 2026 -- revenue EGP 9,300 mn and gross profit EGP 3,300 mn, the release itself stating the margin as 35% -- and the consolidated statements for those same three months, which carry a limited review report, are what the balance sheet in the bridge stands on. Nothing here is estimated, interpolated or inferred. WHAT THE RECORD MAKES VISIBLE, AND WHICH NO SENTENCE IN THE STUDY SAYS: against the audited FULL YEAR the forecast sits 13.79% relatively BELOW -- FY2025 41.16% against a forecast 35.48% -- and had the anchor been that full year the opening-year clause would have fired and a mechanism would have been owed. It is not the anchor precisely because the standing rule says a near-term reviewed actual outranks a stale full-year rate, and this study averaged the two until 03-Sep-2026, which took neither. The audited record is FY2023 31.54%, FY2024 34.34%, FY2025 41.16%, so the forecast sits above the first two audited years and below the third. THE DRIFT THAT IS MEASURED AND NOT CARRIED, recorded rather than left out. The FY2025-to-1Q2026 pair moves cost per unit of revenue from 58.839% to 64.516%, a rise of 9.65% -- a like-for-like direction that would support an input-cost mechanism if a drift were being claimed. None is claimed: price and cost escalate on the same path, so the margin neither rises nor falls, and declining to extrapolate a drift is not a decline away from the anchor. The model states why it is not extrapolated -- one quarter against one audited year is a single observation on a developer whose margin moves with which project happens to hand over. What carrying it would cost is arithmetic on those two filed periods and is stated rather than asserted: cost per unit of revenue compounding at that rate reaches 93.26% of revenue after four years, a gross margin of 6.74%, and passes 100% in the fifth -- a margin of -2.25%, which is a loss on every delivered unit. A rate that takes a company to a loss inside its own explicit window on the strength of one quarterly print is an extrapolation, not an anchor. THE OTHER CANDIDATE RATE IS NAMED HERE BECAUSE IT IS THE ONE THAT CARRIES THE VALUE. The published central does not stand on the gross margin. It stands on the framing in which operating cash is set at a fixed share of revenue and working capital is the derived line, and that share is 8.714% -- the MEAN of the company's three published years, FY2023 4.33%, FY2024 17.87%, FY2025 3.94% -- held flat across the window. It sits 121.3% relatively ABOVE the latest disclosed year rather than below it, so no clause of this rule reaches it: a rate above the latest period is what the two-sided gap trigger and the sign test audit. It is recorded because the same standing sentence the gross-margin anchor obeys -- a near-term actual outranks a stale full-year rate, hold everything flat INCLUDING observed improvements -- read on this rate would point at FY2025's 3.94% and not at a three-year mean, and the study's own grid prices the difference: EGP 6.14 a share at the FY2025 rate, EGP 17.85 at the mean and EGP 40.29 at the FY2024 rate, on one discount schedule, with the rate the traded price implies, 7.31%, sitting between the first two. NO REVIEWED COMPARATOR FOR THIS RATE CAN BE FORMED FROM WHAT THIS STUDY HOLDS -- 1Q2026 discloses revenue, gross profit and net profit and no cash-flow statement -- and none is estimated to fill the gap. The same model with the collection cycle held instead of the conversion yields a NEGATIVE EGP 17.59 a share and is published as a funding statement rather than as a value, which is the disagreement this record sits inside."
  },
  "central": 17.847764793737,
- "standard_version": "2026.09.01",
+ "standard_version": "2026.09.07",
  "spot": 14.4
 }
