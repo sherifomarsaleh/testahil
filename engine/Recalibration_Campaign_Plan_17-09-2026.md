@@ -1,6 +1,6 @@
 # THE 90-NAME RECALIBRATION — how the programme runs
 
-**PLAN REVISION 2026-09-17b.** Per instruction, 17 September 2026: *"I want all 90 stocks
+**PLAN REVISION 2026-09-17c.** Per instruction, 17 September 2026: *"I want all 90 stocks
 recalibrated. All of them."*
 
 **THIS IS A SPINE OVER THREE DOCUMENTS THAT ALREADY EXIST AND IT RESTATES NONE OF THEM.**
@@ -238,7 +238,61 @@ a decision rather than applied silently in code.
 
 ---
 
-## 8 · THE GENERAL LESSON, WHICH IS NOT ABOUT THIS PROGRAMME
+## 8 · HOW IT ACTUALLY RUNS — `engine/recalibration_run.py`
+
+Sections 1 to 7 decide the order and the shape. **None of them answers the question this
+programme asks every morning: WHICH NAME DO I TOUCH NEXT, AND WHAT IS IT WAITING FOR.**
+At one name a person remembers. At ninety, across seven steps, two of which stop dead and
+hand the work to the principal, nobody does — and the failure is not that somebody
+forgets, it is that a name sits in a hand-off nobody is tracking while the desk works on
+something else.
+
+```
+python3 engine/recalibration_run.py                the board — every name, its step, whose move
+python3 engine/recalibration_run.py --next         the next name the DESK can act on
+python3 engine/recalibration_run.py --brief TK     where TK is, plus the runbook's OWN words
+python3 engine/recalibration_run.py --waiting      everything held by the principal, by market
+python3 engine/recalibration_run.py --ticker TK    one name, all seven steps, with evidence
+python3 engine/recalibration_run.py --selfcheck    every artefact name this reader looks for
+```
+
+**STATE IS DERIVED, NEVER STORED, AND THAT IS THE ONE DESIGN DECISION THAT MATTERS.**
+There is no step pointer per name and no "mark step 2 done" command. Each step is a PROBE
+over the artefacts that step itself produces — the frozen baseline in `fv_movement.json`,
+the walk-forward run directory and its harvested lessons, a `QC_GATE_{date}.md` **at the
+current edition**, the news hand-over and its returns, the rebuild ledger, the audit
+hand-over and its answer, and `check_publish_block.verdict()` read live. A name's position
+is wherever the probes stop. Delete an artefact and the name moves back; that is wanted.
+
+A hand-maintained board would go stale the first afternoon somebody was in a hurry, and it
+would go stale SILENTLY, which is the shape that survives. This repository has paid for
+that record repeatedly — the stale digest, the stale library list, and this same week a
+lever applied to a model and never written into the record a gate outside it reads.
+
+**THE WAVE IS ENCODED OR IT IS IGNORED.** The campaign queue runs market-major; §2 decides
+something the queue does not — all 22 record-backed re-issues before any record
+reconstruction. Left unencoded, `--next` would hand out an EGX reconstruction the moment
+the ninth EGX re-issue closed, and this plan would be quietly contradicted by the tool
+meant to implement it. The wave is computed from the tier and the queue's market order
+runs inside it. The EGX checkpoint is ANNOUNCED when reached and never enforced silently:
+a tool that refused to name the next name would look like a bug, and one that crossed the
+boundary without saying so would hide the decision.
+
+**IT READS THE RUNBOOK, IT DOES NOT COPY IT.** `--brief` lifts the step's own prompt out of
+`Recalibration_Runbook_17-09-2026.md` at the moment it is relied on. A prompt copied into a
+second file stops moving when the first is amended, which is [R-DOC-01] in miniature.
+
+**WHAT IT DELIBERATELY DOES NOT DO.** It runs no step, decides nothing and writes nothing.
+The steps are judgement work governed by the runbook and the standing rules. What it
+supplies is the thing neither of those can — an honest answer to where ninety names are.
+
+**AS AT 17-09-2026, ON ITS FIRST RUN:** 89 names are the desk's move and one is held on the
+method; 79 of the 89 have not had their fair value frozen, which is step 0 and cannot be
+done afterwards. Read it live — never from this paragraph.
+
+---
+
+## 9 · THE GENERAL LESSON, WHICH IS NOT ABOUT THIS PROGRAMME
 
 **A PLAN INHERITS THE POPULATION ITS FIRST PROBE HAPPENED TO RETURN.** Every number in
 revision a — the sixty-seven, the ordering, the wave structure, the months — descended from
