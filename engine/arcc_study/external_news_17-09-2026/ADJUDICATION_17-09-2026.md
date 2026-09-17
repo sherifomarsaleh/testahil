@@ -105,32 +105,66 @@ directly, 1H2026 against 1H2025:
 | EBITDA (EGP mn) | 2,854 | 1,162 | +146% |
 | Net profit (EGP mn) | **2,159** | 1,394 | +55% |
 
-**Two of this study's ten committed drivers are named in that table** — sales volume (Mt) and
-realised price (EGP/t) — at a granularity the study's FY2025 base cannot reach.
+**What is unconsumed is the VOLUME AND PER-TONNE DECOMPOSITION, not the financials.** The
+study holds every financial line of the reviewed half to the pound (§3.1). What it does not
+hold is any H1-2026 volume: it calibrates FY2026 by scaling the half's REVENUE to a full year
+on FY2025's own half-year split, per channel, and its volume and price split comes from
+FY2025 relationships. The presentation supplies the actual split — **volumes −6% while
+revenue per ton rose +17%**, with clinker exports halving — and those are two of this study's
+ten committed drivers, sales volume (Mt) and realised price (EGP/t), measured rather than
+inferred. A revenue calibration that is right in total can still carry the wrong split
+between the two drivers it is built from, and nothing in the statements can say which.
 
-### 3.1 The flag this raises, stated as a question and not as a finding
+### 3.1 RECONCILED — the flag I raised was wrong, on three counts
 
-The standing anchor rule fires where a forecast opens **materially below** the latest
-reviewed period, at a relative 5%. This study's forecast opens on a gross margin of
-**39.03%**. The company's own 1H2026 **cash** gross margin is **44%**; deducting the
-disclosed 1H2026 D&A of EGP 159mn on revenue of 6,008mn (2.6pp) puts the comparable figure
-near **41.4%** — **about 6% relative above the forecast's opening year.**
+I flagged the presentation's margins against the study's forecast and called the rate a
+**gross margin**. It is an **EBITDA margin**, and the reconciliation closes with no change
+to the study.
 
-**That is a flag, not a verdict, and the difference matters.** "Cash gross profit" as the
-company defines it and "gross margin" as this study builds it are not established to be the
-same measure, and until they are reconciled on one basis the comparison is suggestive only.
-What it does establish is that the question must be asked against a document the study has
-not read. The register also records the study's own last sweep as 2026-08-06 — before this
-presentation existed.
+**First, the rate.** `forecast_anchor.rate_name` is `EBITDA margin`: FY2025 audited
+**39.2502%**, first forecast year **39.0282%**, rising to 40.40% by year five.
 
-### 3.2 An unresolved discrepancy between two of the company's own documents
+**Second, the half is already consumed.** This study holds every line of the reviewed
+H1-2026 statements to the pound — revenue 6,080.578, cost of sales 3,619.040, G&A 225.745,
+provisions 31.498, D&A 161.255, cash 1,970.501 — and carries its own assertion that the
+FY2026 forecast margin reproduces what the half implies to within half a point, under a
+comment recording that an earlier revision's downward-glide claim "cannot survive a
+calibration onto a reviewed half that shows the margin HOLDING."
 
-Gemini reports 1H2026 consolidated net profit of **EGP 2,172,453,474**, precise to the pound.
-The company's own investor presentation reports **EGP 2,159mn**. The gap is ~13mn, 0.6% —
-**too large to be rounding**. Most likely consolidated versus attributable, but that is a
-guess. **It is resolved from the statements or not at all**, and neither figure is used here.
+**Third, the whole 8.6-point wedge is one line, and it is a government subsidy.**
 
----
+| | EGP mn | on revenue | margin |
+|---|---|---|---|
+| Presentation "EBITDA", 1H2026 | 2,854.0 | 6,008.0 | **47.50%** |
+| less other income | −480.3 | | |
+| = operating EBITDA | 2,373.7 | 6,008.0 | 39.51% |
+| **Study's basis, on the statements' own revenue** | **2,365.6** | **6,080.6** | **38.90%** |
+| **Study's FY2026 first forecast year** | | | **39.03%** |
+
+**Of that EGP 480.3mn of other income, EGP 467.8mn — 97.4% — is an export subsidy**,
+disclosed in note 29 of the interim statements. The study keeps it out of EBITDA and carries
+it below, at EBIT. That is the right treatment: a government export subsidy is not an
+operating margin, and an anchor that swallowed it would have lifted the forecast by nearly
+eight points on a support scheme.
+
+**The forecast opens 0.12 points ABOVE the reviewed half — +0.32% relative**, against a rule
+that fires at 5% relative and only on a forecast opening BELOW. Comfortably satisfied, and
+the study's own check already tested it.
+
+**The subsidy itself is handled more conservatively than I would have guessed.** FY2025's
+export subsidy was EGP 32.6mn, 0.856% of export revenue. **H1-2026's EGP 467.8mn is fourteen
+times the whole of FY2025's, collected inside one quarter.** The study forecasts other income
+at the FY2025 *disclosed rate* and states in terms that the H1-2026 collection "is NOT in it",
+pricing the alternative across the range instead of extrapolating it. Nothing to change.
+
+### 3.2 RESOLVED — the net-profit discrepancy
+
+Gemini's EGP 2,172,453,474 is **exactly** this study's committed `pat_h1_26 = 2172.453474`,
+straight from the reviewed statements. The presentation's EGP 2,159mn differs because **the
+presentation's revenue base differs from the statements'** — 6,008 against 6,080.578, the
+presentation allocating services revenue between its local and export lines and not carrying
+all of it. **The statements outrank the presentation**, the study is on the statements, and
+Gemini's figure is right.
 
 ## 4. THE OTHER LEADS, UNTRACED
 
