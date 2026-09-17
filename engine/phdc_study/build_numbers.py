@@ -89,63 +89,39 @@ def main():
                              "earnings capitalised at cost of equity less growth. The "
                              "discount rate and the lens weights are unchanged."),
             "base_year": 2025, "information_set_ends": "1Q2026",
-            # [R-ASSET-01], ADDED 17-09-2026. THE BRIDGE HAD A CURRENCY RULE AND THE
-            # LAND BANK HAD NONE, which on a developer is the quantity the value is
-            # built out of. This study committed 33.0 mn sqm as at 2024-12-31 inside an
-            # information set ending 1Q2026 -- the defect that rule was adopted on, and
-            # this rebuild is the pass its ratchet entry said would close it.
+            # [R-ASSET-01], ADDED 17-09-2026 AND CORRECTED THE SAME DAY. The bridge
+            # had a currency rule and the land bank had none, which on a developer is
+            # the quantity the value is built out of.
             "asset_base_record": {
                 "quantity": "land bank",
                 "unit": "mn sqm",
                 "value": IN.OPERATING["land_bank_sqm_mn"]["value"],
-                "as_at": "2025-06-30",
+                "as_at": "2026-03-31",
                 "disclosure": (
-                    "PHD 1H2025 earnings release, Cairo 13 August 2025, for the period "
-                    "ended 30 June 2025: a land bank in Egypt and Abu Dhabi "
-                    "\"spreading over 37 million square meters\". The FIGURE THIS "
-                    "STUDY PREVIOUSLY CARRIED came from the same boilerplate sentence "
-                    "of the FY2024 release at 33, so the two are like for like and the "
-                    "movement is the company's own disclosure, not a re-measurement -- "
-                    "the same release states that PHD is \"actively seeking to "
-                    "replenish our landbank in 2025\"."),
-                # THE BASE IS STILL BEHIND THE INFORMATION SET AND THE RULE IS NOT
-                # SATISFIED BY SAYING SO -- it is satisfied by naming what was actually
-                # checked. Three later documents are held and read by this study and
-                # none restates the land bank, for a reason this name has already
-                # registered twice as a lesson of its own.
-                "not_restated_since": {
-                    "disclosures_checked": [
-                        "PHD consolidated financial statements for the three months "
-                        "ended 31 March 2026 (limited review report attached) — the "
-                        "latest filing this study reads and the sheet its bridge "
-                        "stands on; carries no land-bank figure",
-                        "PHD consolidated financial statements for the year ended "
-                        "31 December 2025 — carries no land-bank figure",
-                        "PHD consolidated financial statements Q3 2025 — carries no "
-                        "land-bank figure",
-                    ],
-                    "reason": (
-                        "THE LAND BANK IS AN OPERATING KPI AND OPERATING KPIs ARE "
-                        "DISCLOSED IN EARNINGS RELEASES, NOT IN FINANCIAL STATEMENTS. "
-                        "Every document this study holds after 13 August 2025 is a "
-                        "financial statement, and a statement does not carry the "
-                        "figure however recent it is -- which is exactly what this "
-                        "name's own registered lessons say of it, that a developer's "
-                        "operating KPIs can stop years before its statements do and "
-                        "that Palm Hills' operating drivers stop a year before its "
-                        "financial statements do. No earnings release after 1H2025 is "
-                        "held in this repository. The search that would close this is "
-                        "therefore a DOCUMENT to obtain rather than a page to re-read, "
-                        "and it is named here so the next pass looks for the right "
-                        "thing: the FY2025 and 1H2026 earnings releases."),
-                },
+                    "PHD 1Q2026 earnings release, Cairo 20 May 2026, for the period "
+                    "ended 31 March 2026: a land bank in Egypt and Abu Dhabi "
+                    "\"spreading over 46 million square meters\". THE SAME BOILERPLATE "
+                    "SENTENCE carried 33 in the FY2024 release and 37 in the 1H2025 "
+                    "release, so the three are like for like and the movement is the "
+                    "company's own disclosure rather than a re-measurement. This "
+                    "release is already consumed by this study as ER26Q1."),
+                # NO not_restated_since, AND THAT IS THE POINT OF THE CORRECTION. The
+                # base is as at 31 March 2026 and this study's information set ends at
+                # 1Q2026, so the ordering test is satisfied outright and no relief
+                # clause is needed. The version of this record written earlier today
+                # carried one, because it stood on a figure a year older.
                 "note": (
-                    "NOTHING IN THIS MODEL READS THIS FIGURE. It is printed to the "
-                    "workbook and grouped in the bibliography and reaches no "
-                    "arithmetic, so correcting it moves no valuation number -- which "
-                    "is the second half of the same defect and is recorded rather "
-                    "than left for a reader to discover: new land raises the value by "
-                    "zero here and exhausted land lowers it by zero."),
+                    "CORRECTED WITHIN THE DAY, AND THE FIRST CORRECTION FAILED THE SAME "
+                    "WAY THE ORIGINAL DEFECT DID. The committed figure was 33.0 as at "
+                    "31-12-2024; it was corrected this morning to 37.0 from the 1H2025 "
+                    "release, found by searching the PDFs in filings/, and the right "
+                    "figure was in a release THIS STUDY ALREADY CITES and which is "
+                    "referenced by URL rather than stored as a file. A search of the "
+                    "study's own sources beats a search of its directory. Against 33.0 "
+                    "the understatement was 28.3%. NOTHING IN THIS MODEL READS THIS "
+                    "FIGURE -- it is printed to the workbook and reaches no arithmetic "
+                    "[R-ASSET-02] -- so no valuation number moves either time, which is "
+                    "why neither error could ever have surfaced as a wrong answer."),
             },
             "bridge_balance_sheet": IN.BRIDGE_BS_DATE,
             "standard_version": RP.STANDARD_VERSION,

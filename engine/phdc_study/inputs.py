@@ -135,19 +135,25 @@ OPERATING = {
                            "2024-12-31", "A"),
     "construction_fy23": I(7500.0,  "PHD FY2023 earnings release", "2023-12-31", "A"),
     "collections_fy24": I(25400.0,  "PHD FY2024 earnings release", "2024-12-31", "A"),
-    # CORRECTED 17-09-2026 [R-ASSET-01]. This read 33.0 as at 2024-12-31 while the
-    # 1H2025 earnings release -- ALREADY IN THIS REPOSITORY and already parsed by this
-    # name's own walk-forward -- states 37 in the SAME "spreading over N million square
-    # meters" sentence of the same boilerplate, so the two are like for like and the
-    # committed figure understated the operating asset base of a DEVELOPER by 12.1%.
-    # The release says in its own words that the company is "actively seeking to
-    # replenish our landbank in 2025", so the movement is disclosed rather than
-    # inferred. Nothing in this model reads this figure -- it is printed to the
-    # workbook and nowhere else [R-ASSET-02] -- so no valuation number moves; what
-    # moves is what a reader is told, which was wrong.
-    "land_bank_sqm_mn": I(37.0,     "PHD 1H2025 earnings release (Cairo, 13 August "
-                          "2025, for the period ended 30 June 2025) — land bank "
-                          "\"spreading over 37 million square meters\"", "2025-06-30",
+    # CORRECTED TWICE ON 17-09-2026, AND THE FIRST CORRECTION WAS WRONG THE SAME WAY
+    # THE DEFECT WAS. This read 33.0 as at 2024-12-31. It was corrected this morning to
+    # 37.0 from the 1H2025 release -- right direction, still a year stale, and reached by
+    # searching the PDFs sitting in filings/ rather than by asking WHAT THIS STUDY ALREADY
+    # CITES. The 1Q2026 earnings release is cited in this very file as ER26Q1 and consumed
+    # for other inputs; it is referenced BY URL through the walk-forward's investor-
+    # relations register and is not stored under filings/, so a filesystem search could
+    # not see it and a search of the study's own sources would have found it at once.
+    # THE COMPANY'S OWN SENTENCE, same boilerplate as the 33 and the 37, three documents
+    # apart: "one of the most diversified land bank portfolios in Egypt and Abu Dhabi,
+    # spreading over 46 million square meters". Cairo, 20 May 2026, for the period ended
+    # 31 March 2026 -- which is EXACTLY this study's stated information-set end, so the
+    # asset base now satisfies the ordering test outright and needs no relief clause.
+    # The committed figure understated a developer's operating asset base by 28.3%.
+    # BOTH EXTERNAL RESEARCH RETURNS WERE ALSO WRONG, IN THE SAME DIRECTION: one reported
+    # 38 and one 40.5, each sourced to press reporting rather than to this document.
+    "land_bank_sqm_mn": I(46.0,     "PHD 1Q2026 earnings release (Cairo, 20 May 2026, "
+                          "for the period ended 31 March 2026) \u2014 land bank "
+                          "\"spreading over 46 million square meters\"", "2026-03-31",
                           "A", unit="mn sqm"),
     "units_delivered_fy23": I(1500.0, "PHD FY2023 earnings release", "2023-12-31", "A",
                               unit="units"),
