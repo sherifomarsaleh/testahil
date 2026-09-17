@@ -76,7 +76,12 @@ DESK, PRINCIPAL, DONE, UNREADABLE, HELD = ('DESK', 'PRINCIPAL', 'DONE',
 # the two names that have been through it; where they differ both are accepted.
 NAMES = {
     'news_handover': ('EXTERNAL_NEWS_PROMPT_*.md',),
-    'news_returns':  ('EXTERNAL_NEWS_*.md',),
+    # THE RETURNS LIVE IN A DATED SUBDIRECTORY AND THE ADJUDICATION IS WHAT SAYS
+    # THEY WERE WORKED. A glob on the study-dir top level alone finds nothing and
+    # reports that as a result — the naming-convention failure this repo keeps
+    # paying for. The raw returns are evidence; the ADJUDICATION is the artefact.
+    'news_returns':  ('EXTERNAL_NEWS_*.md',
+                      'external_news_*/ADJUDICATION_*.md'),
     'qc_gate':       ('QC_GATE_*.md',),
     'gap_review':    ('GAP_REVIEW_*.md',),
     'driver_call':   ('DRIVER_IMPACT_*.md', 'RECALIBRATION_*.md', 'UPDATE_*.md'),
