@@ -48,11 +48,29 @@ ACTUALS = {
 }
 
 BALANCE_SHEET_FY25 = {
-    "total_assets":        I(172129.8, FS25, "2025-12-31", "A"),
-    "total_liabilities":   I(153364.1, FS25, "2025-12-31", "A"),
-    "total_equity":        I(18765.8,  FS25, "2025-12-31", "A"),
-    "equity_parent":       I(17431.4,  FS25, "2025-12-31", "A"),
-    "nci_equity":          I(1334.3,   FS25, "2025-12-31", "A"),
+    # THE FY2025 SUBTOTALS AT THE PRECISION THE COMPANY PUBLISHES THEM [17-09-2026].
+    #
+    # These were carried to one decimal, and the balance check built on them does not
+    # foot: 172,129.8 against 153,364.1 + 18,765.8 = 172,129.9, a residual of 0.1 that is
+    # pure rounding and that a live check in the workbook now displays. It was invisible
+    # while the check was a computed constant.
+    #
+    # The 1Q2026 release prints this same December column in THOUSANDS as its comparative,
+    # so the precision is available from the company and did not have to be estimated:
+    # 172,129,829 / 153,364,060 / 17,431,419 / 1,334,332 / 18,765,751. On those figures
+    # assets less liabilities and equity is 0.018, which is the filing's own residual
+    # rather than this study's arithmetic. A check that reports the issuer's rounding is
+    # worth having; one that reports ours is noise.
+    "total_assets":        I(172129.829, FS25 + " — the same column at thousands "
+                             "precision in the 1Q2026 release's comparative",
+                             "2025-12-31", "A"),
+    "total_liabilities":   I(153364.060, FS25 + " — as above", "2025-12-31", "A"),
+    "total_equity":        I(18765.751,  FS25 + " — \"Total Shareholders' Equity\", as "
+                             "above", "2025-12-31", "A"),
+    "equity_parent":       I(17431.419,  FS25 + " — \"Total Equity\", as above",
+                             "2025-12-31", "A"),
+    "nci_equity":          I(1334.332,   FS25 + " — \"Non-Controlling Interest\", as "
+                             "above", "2025-12-31", "A"),
     "cash":                I(9419.5,   FS25, "2025-12-31", "A"),
     "work_in_progress":    I(17570.9,  FS25, "2025-12-31", "A"),
     "accounts_receivable": I(28118.1,  FS25, "2025-12-31", "A"),
@@ -623,15 +641,21 @@ FY24_COGS_AS_REPORTED = 17739.9
 FY24_COGS_FY25_BASIS = 17837.2
 
 # The reported balance-sheet subtotals, both years, on the FY2025 presentation.
+# A SECOND COPY OF THE SAME SUBTOTALS, AND IT IS THE ONE THE WORKBOOK PRINTS
+# [17-09-2026]. BALANCE_SHEET_FY25 above carries these figures too; the delivered
+# balance sheet reads THIS block, so upgrading only the other one changed nothing a
+# reader sees. Both now carry the thousands precision the company publishes, and the
+# duplication is named here rather than left to be discovered a third time.
+_REL_Q1 = " — the same December column at thousands precision in the 1Q2026 release's comparative"
 BALANCE_SHEET_SUBTOTALS = {
     "2025": {
-        "total_noncurrent_assets": I(65900.2, FS25, "2025-12-31", "A"),
-        "total_current_assets":    I(106229.6, FS25, "2025-12-31", "A"),
-        "total_assets":            I(172129.8, FS25, "2025-12-31", "A"),
-        "total_current_liabs":     I(105099.0, FS25, "2025-12-31", "A"),
-        "total_noncurrent_liabs":  I(48265.1, FS25, "2025-12-31", "A"),
-        "total_liabilities":       I(153364.1, FS25, "2025-12-31", "A"),
-        "total_equity":            I(18765.8, FS25, "2025-12-31", "A"),
+        "total_noncurrent_assets": I(65900.163, FS25 + _REL_Q1, "2025-12-31", "A"),
+        "total_current_assets":    I(106229.649, FS25 + _REL_Q1, "2025-12-31", "A"),
+        "total_assets":            I(172129.829, FS25 + _REL_Q1, "2025-12-31", "A"),
+        "total_current_liabs":     I(105098.969, FS25 + _REL_Q1, "2025-12-31", "A"),
+        "total_noncurrent_liabs":  I(48265.091, FS25 + _REL_Q1, "2025-12-31", "A"),
+        "total_liabilities":       I(153364.060, FS25 + _REL_Q1, "2025-12-31", "A"),
+        "total_equity":            I(18765.751, FS25 + _REL_Q1, "2025-12-31", "A"),
     },
     "2024": {
         "total_noncurrent_assets": I(54166.4, FS25 + " (comparative)",

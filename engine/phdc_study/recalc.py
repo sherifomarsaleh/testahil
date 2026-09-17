@@ -141,6 +141,71 @@ def main():
         raise ValueError("%r not found on %s after row %d"
                          % (label, sheet, after))
 
+    # THE STATEMENT SHEETS, EVERY FORMULA CELL, AGAINST THE MODEL [added 17-09-2026].
+    #
+    # The Income Statement, the Cash Flow and the projected Balance Sheet held 1,518
+    # computed values and no formulas, so there was nothing on them for this file to
+    # recalculate and it checked 231 cells out of 2,241. They are formulas now — driven off
+    # the Assumptions cells and the discounted-cash-flow sheet — and a formula nothing
+    # verifies is worse than a value, because it looks like it has been checked. Every one
+    # is resolved BY LABEL, per the note above, and held to the model's own figure.
+    def _sheet_rows(sheet, mapping, series, sign=None, tol=0.01, after=0, tag=""):
+        """Check one labelled row per key, across every forecast year."""
+        ws = wb[sheet]
+        ncols = 1 + len(series)
+        for label, key in mapping:
+            rr = at(sheet, label, after)
+            for j in range(2, ncols + 1):
+                col = get_column_letter(j)
+                cell = "%s%d" % (col, rr)
+                if not str(ws[cell].value or "").startswith("="):
+                    continue            # a value row, checked by the builder's own record
+                want = (sign or {}).get(key, 1) * series[j - 2][key]
+                chk("%s%s %s %s" % (sheet, tag, label, col),
+                    evaluate(wb, sheet, cell), want,
+                    max(abs(want) * 1e-6, tol))
+
+    BUR = N["bottom_up"]["rows"]
+    _sheet_rows("Income Statement", [
+        ("Units delivered", "units_delivered"),
+        ("Revenue per delivered unit", "rev_per_unit"),
+        ("Revenue", "revenue"),
+        ("Cost per delivered unit", "cost_per_unit"),
+        ("Cost of revenue", "cogs"),
+        ("Gross profit", "gross"),
+        ("Gross margin", "gross_margin"),
+        ("Overheads", "sga"),
+        ("Depreciation and amortisation", "da"),
+        ("Operating profit", "ebit"),
+        ("Finance cost", "interest"),
+        ("Profit before tax", "npbt"),
+        ("Net profit", "npat"),
+        ("Earnings per share (EGP)", "eps"),
+    ], BUR, tol=1e-6)
+
+    ST_ = N["statements"]
+    _sheet_rows("Cash Flow", [
+        ("Cash from operations", "cfo"),
+        ("as a share of revenue", "cash_conversion"),
+        ("Change in working capital, cash effect", "d_wc"),
+        ("Capital expenditure", "cfi"),
+    ], ST_["framing_b"], sign={"d_wc": -1}, tol=1e-6, tag=" (conversion holds)")
+
+    # BOTH FRAMINGS, AND THE SECOND ONE FOUND BY WALKING PAST THE FIRST rather than by a
+    # remembered row. An earlier draft of this check used a typed offset and read framing
+    # B's rows while comparing them against framing A's figures — it reported forty-five
+    # mismatches that were entirely its own, which is the failure mode the by-label rule
+    # above exists to prevent, reproduced by the same author two hundred lines later.
+    _BS_ROWS = [("TOTAL ASSETS", "total_assets"),
+                ("TOTAL LIABILITIES", "total_liabilities"),
+                ("TOTAL LIABILITIES AND EQUITY", "total_liabs_and_equity")]
+    _first_end = at("Balance Sheet", "TOTAL LIABILITIES AND EQUITY")
+    for _tag, _fr, _after in ((" (conversion holds)", "framing_b", 0),
+                              (" (cycle holds)", "framing_a", _first_end)):
+        _sheet_rows("Balance Sheet", _BS_ROWS, ST_[_fr], tol=0.01,
+                    after=_after, tag=_tag)
+
+
     ws = wb["DCF"]
     for lbl, key, tol in (("Units delivered", "units_delivered", 0.01),
                           ("Revenue per delivered unit", "rev_per_unit", 0.01),

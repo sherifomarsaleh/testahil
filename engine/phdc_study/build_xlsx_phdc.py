@@ -72,6 +72,7 @@ DCF_CELLS = {
     "Terminal value, discounted": "B25",
 }
 DCF_LABEL_AT = {}
+DCF_ROWS = {}   # the DCF sheet's own row numbers, for the statements written after it
 A_PV_EXPLICIT = DCF_CELLS["Sum of the explicit years"]
 A_PV_TERMINAL = DCF_CELLS["Terminal value, discounted"]
 
@@ -335,6 +336,44 @@ def build(path):
         ("Maintenance capital expenditure, share of revenue",
          N["statements"]["capex_ratio"], "0.00%",
          "the building itself is inventory and sits in operating cash"),
+        # FOUR DRIVERS THE MODEL RUNS ON AND THIS SHEET DID NOT PUBLISH [added 17-09-2026].
+        #
+        # The Income Statement, Cash Flow and Sensitivity sheets held 677 numbers and not
+        # one formula: every figure was written as a computed value, so the workbook's own
+        # warranty — change a blue cell and the statements recompute — was false across
+        # three of its sixteen sheets. The reason it was false is that the drivers those
+        # statements run on had no cells to reference. They do now, and the statements are
+        # formulas off them.
+        #
+        # APPENDED RATHER THAN INSERTED, deliberately: BRIDGE_CELLS pre-resolves B10 and
+        # B14-B18 because three sheets are written before this one, and inserting a driver
+        # above them shifted every one on 13-09-2026 and published a value per share of
+        # minus 2.4 billion. Everything below B18 is resolved by label at write time, so
+        # appending is safe and a tripwire catches it if it stops being.
+        #
+        # THE FINANCE CHARGE IS THE POINT OF TWO OF THESE. The model holds it at the
+        # FY2025 level for all fifteen years: the interest-bearing subset of the balance
+        # sheet times the effective rate that subset actually carried. Both halves were
+        # invisible, so a reader could not see that the charge is flat and nominal while
+        # revenue grows sixfold — which is the study's largest unresolved construction and
+        # is priced in the contested register. Publishing the two cells makes it arguable.
+        ("Depreciation and amortisation, share of revenue",
+         v("da_fy25") / v("revenue_fy25"), "0.00%",
+         "FY2025 as reported: depreciation and amortisation over revenue"),
+        ("Interest-bearing borrowings (EGP mn)",
+         N["bottom_up"]["anchors"]["interest_bearing_debt"], "#,##0.0",
+         "the bank and loan lines only, FY2025: a large part of the balance sheet "
+         "(notes payable to land sellers, customer balances) does not bear interest"),
+        ("Effective P&L rate on those borrowings",
+         N["bottom_up"]["anchors"]["effective_pl_rate"], "0.00%",
+         "FY2025 finance cost over the interest-bearing subset above. NOT the marginal "
+         "rate: part of the interest incurred is capitalised into work in progress. The "
+         "charge is held at this level, flat and nominal, for all fifteen years while "
+         "revenue grows sixfold — the alternative footing is priced in the study's "
+         "contested-judgement record"),
+        ("Tax rate", BU["rows"][0]["tax_rate"], "0.00%",
+         "PHD's own tax note computes FY2025 and FY2024 current tax at this rate on net "
+         "taxable profit"),
     ]
     ASSUMPTION_AT.clear()
     for lbl, val, fmt, src in rows:
@@ -670,6 +709,11 @@ def _remaining(wb):
     c.number_format = "0.0%"
     # THE TRIPWIRE. The bridge emitted "=DCF!B20" and "=DCF!B25" before this sheet existed;
     # hold those addresses to the labels this sheet actually wrote there.
+    # THE DRIVER ROWS, PUBLISHED FOR THE STATEMENTS WRITTEN AFTER THIS SHEET. The Income
+    # Statement and the Cash Flow held 639 computed values and no formulas because they had
+    # nothing to reference; they reference these.
+    DCF_ROWS.update(units=u_row, price=p_row, revenue=rev_row, fcff=fcff_row,
+                    wacc=fw_row, factor=df_row, pv=pv_row)
     for _lbl, _addr in DCF_CELLS.items():
         assert DCF_LABEL_AT.get(_lbl) == _addr, (
             "DCF address drift: the bridge reads %s for %r and this sheet put it at %s"
@@ -695,32 +739,104 @@ def _remaining(wb):
     for j, x in enumerate(BU["rows"], start=2):
         c = ws.cell(rr, j, x["year"]); c.font = HEAD; c.fill = FILL
     rr += 1
-    for lbl, key, fmt in (
-            ("Units sold", "units_sold", "#,##0"),
-            ("New sales", "new_sales", "#,##0"),
-            ("Units delivered", "units_delivered", "#,##0"),
-            ("Revenue per delivered unit", "rev_per_unit", "#,##0.00"),
-            ("Revenue", "revenue", "#,##0"),
-            ("Cost per delivered unit", "cost_per_unit", "#,##0.00"),
-            ("Cost of revenue", "cogs", "#,##0"),
-            ("Gross profit", "gross", "#,##0"),
-            ("Gross margin", "gross_margin", "0.0%"),
-            ("Overheads", "sga", "#,##0"),
-            ("Operating profit", "ebit", "#,##0"),
-            ("Finance cost", "interest", "#,##0"),
-            ("Profit before tax", "npbt", "#,##0"),
-            ("Net profit", "npat", "#,##0"),
-            ("Earnings per share (EGP)", "eps", "#,##0.00"),
-            ("Order book, closing", "backlog", "#,##0")):
+    # EVERY DERIVED ROW ON THIS SHEET IS A FORMULA NOW [17-09-2026].
+    #
+    # It held 255 numbers and no formulas. So did the Cash Flow sheet, and so did the
+    # Sensitivity grid — 677 computed values across three sheets, under a READ FIRST page
+    # promising that changing a blue cell recomputes the statements. It did not, and an
+    # external audit was right to call the warranty false. The cause was not laziness: the
+    # drivers these statements run on had no cells to reference until the four appended to
+    # the Assumptions sheet above, and the DCF sheet's own row numbers were not published
+    # to the sheets written after it.
+    #
+    # WHAT STAYS A VALUE, AND WHY, because that is the honest half of this. The units-sold
+    # and new-sales rows come from the segment engine and are NOT read by anything that
+    # reaches the answer — the audit called that apparatus decorative and it was right
+    # about the mechanics. Writing them as formulas would dress up a dependency that does
+    # not exist. They are labelled for what they are instead.
+    _A = "Assumptions!"
+    _GM, _SGA = _A + AT("Gross margin"), _A + AT("Overheads as a share of revenue")
+    _DA = _A + AT("Depreciation and amortisation, share of revenue")
+    _IB = _A + AT("Interest-bearing borrowings (EGP mn)")
+    _EPR = _A + AT("Effective P&L rate on those borrowings")
+    _TAX, _SH = _A + AT("Tax rate"), _A + AT("Shares outstanding (mn)")
+    _D = "DCF!%s"
+    _at = {}
+    _spec = [
+        ("Units sold", "units_sold", "#,##0", None,
+         "the segment engine; read by nothing that reaches the value"),
+        ("New sales", "new_sales", "#,##0", None,
+         "the segment engine; read by nothing that reaches the value"),
+        ("Units delivered", "units_delivered", "#,##0",
+         lambda c, a: "=DCF!%s%d" % (c, DCF_ROWS["units"]), ""),
+        ("Revenue per delivered unit", "rev_per_unit", "#,##0.00",
+         lambda c, a: "=DCF!%s%d" % (c, DCF_ROWS["price"]), ""),
+        ("Revenue", "revenue", "#,##0",
+         lambda c, a: "=DCF!%s%d" % (c, DCF_ROWS["revenue"]), ""),
+        ("Cost per delivered unit", "cost_per_unit", "#,##0.00",
+         lambda c, a: "=%s%d*(1-%s)" % (c, a["Revenue per delivered unit"], _GM),
+         "price per unit times one minus the held margin: no delivered-unit count is "
+         "published after FY2024, so there is no independent cost per unit to build"),
+        ("Cost of revenue", "cogs", "#,##0",
+         lambda c, a: "=%s%d*%s%d" % (c, a["Units delivered"], c,
+                                      a["Cost per delivered unit"]), ""),
+        ("Gross profit", "gross", "#,##0",
+         lambda c, a: "=%s%d-%s%d" % (c, a["Revenue"], c, a["Cost of revenue"]), ""),
+        ("Gross margin", "gross_margin", "0.0%",
+         lambda c, a: "=%s%d/%s%d" % (c, a["Gross profit"], c, a["Revenue"]),
+         "an output of the two rows above, which is what makes it flat: one escalator "
+         "drives price and cost alike"),
+        ("Overheads", "sga", "#,##0",
+         lambda c, a: "=%s%d*%s" % (c, a["Revenue"], _SGA), ""),
+        ("Depreciation and amortisation", "da", "#,##0",
+         lambda c, a: "=%s%d*%s" % (c, a["Revenue"], _DA), ""),
+        ("Operating profit", "ebit", "#,##0",
+         lambda c, a: "=%s%d-%s%d-%s%d" % (c, a["Gross profit"], c, a["Overheads"],
+                                           c, a["Depreciation and amortisation"]), ""),
+        ("Finance cost", "interest", "#,##0",
+         lambda c, a: "=%s*%s" % (_IB, _EPR),
+         "the interest-bearing subset times its effective rate, HELD FLAT AND NOMINAL "
+         "for all fifteen years while revenue grows sixfold; the alternative footing is "
+         "priced in the study's contested-judgement record"),
+        ("Profit before tax", "npbt", "#,##0",
+         lambda c, a: "=%s%d-%s%d" % (c, a["Operating profit"], c, a["Finance cost"]), ""),
+        ("Net profit", "npat", "#,##0",
+         lambda c, a: "=%s%d*(1-%s)" % (c, a["Profit before tax"], _TAX),
+         "pre-tax profit is positive in every forecast year, so this is the tax charge "
+         "the model applies"),
+        ("Earnings per share (EGP)", "eps", "#,##0.00",
+         lambda c, a: "=%s%d/%s" % (c, a["Net profit"], _SH), ""),
+        ("Order book, closing", "backlog", "#,##0", None,
+         "rolls the segment engine's new sales behind revenue; read by nothing that "
+         "reaches the value"),
+    ]
+    for lbl, key, fmt, fx, note in _spec:
         ws.cell(rr, 1, lbl).font = SUB if key in ("revenue", "gross", "npat") else FORM
+        _at[lbl] = rr
         for j, x in enumerate(BU["rows"], start=2):
-            c = ws.cell(rr, j, round(x[key], 4)); c.number_format = fmt
+            col = get_column_letter(j)
+            c = ws.cell(rr, j, fx(col, _at) if fx else round(x[key], 4))
+            c.number_format = fmt
+            if fx:
+                c.font = FORM
+        if note:
+            ws.cell(rr, 2 + len(BU["rows"]), note).font = MUT
         rr += 1
 
     FA, FB = ST["framing_a"], ST["framing_b"]
     FY = [x["year"] for x in FB]
 
-    def _proj(ws, rr, rows, spec):
+    def _proj(ws, rr, rows, spec, fx=None, notes=None):
+        """One projected statement. `fx` maps a row key to a formula builder.
+
+        FORMULAS WHERE THE DERIVATION IS THE POINT [17-09-2026]. These sheets held 639
+        computed values and no formulas, so a reader could not see that operating cash is
+        SET at a share of revenue and the working-capital movement is the PLUG — which is
+        the single most important thing to know about this forecast, and the study says it
+        in prose while the workbook hid it. The rows whose whole content is that
+        relationship are formulas; the rest stay values, and which is which is visible.
+        """
+        fx, notes = fx or {}, notes or {}
         ws.cell(rr, 1, "EGP mn unless stated").font = HEAD
         ws.cell(rr, 1).fill = FILL
         for j, y in enumerate(FY, start=2):
@@ -729,12 +845,21 @@ def _remaining(wb):
             ws.column_dimensions[get_column_letter(j)].width = 13
         ws.column_dimensions["A"].width = 42
         rr += 1
+        # EVERY ROW'S ADDRESS RESOLVED BEFORE ANY FORMULA IS WRITTEN. Building the map
+        # incrementally works only while formulas point upward, and the
+        # working-capital plug points DOWN at the operating-cash row it is derived from.
+        at = {key: rr + i for i, (_l, key, _f, _s) in enumerate(spec)}
         for lbl, key, fmt, strong in spec:
             ws.cell(rr, 1, lbl).font = SUB if strong else FORM
             sign = -1 if key == "d_wc" else 1
             for j, x in enumerate(rows, start=2):
-                c = ws.cell(rr, j, round(sign * x[key], 4)); c.number_format = fmt
+                col = get_column_letter(j)
+                f = fx.get(key)
+                c = ws.cell(rr, j, f(col, at, j) if f else round(sign * x[key], 4))
+                c.number_format = fmt
                 c.font = SUB if strong else FORM
+            if notes.get(key):
+                ws.cell(rr, 2 + len(FY), notes[key]).font = MUT
             rr += 1
         return rr + 1
 
@@ -757,7 +882,34 @@ def _remaining(wb):
           ("Cumulative new borrowing", "drawn_cum", "#,##0", False)]
     rr = 4
     ws.cell(rr, 1, "IF CASH CONVERSION HOLDS — the basis of the valuation").font = SUB
-    rr = _proj(ws, rr + 1, FB, CF)
+    # THE THREE ROWS THAT ARE THE READING ITSELF, AS FORMULAS. Operating cash is revenue
+    # times the conversion rate; its share of revenue is therefore that rate, and showing
+    # the division proves it rather than asserting it; and the working-capital movement is
+    # what is LEFT — the plug — which is the whole difference between this framing and the
+    # one below it. Reading those three off computed constants told a reader nothing.
+    _ISROW = _at   # the Income Statement's own row map, captured above
+    _CFFX = {
+        "cfo": lambda c, a, j: "=DCF!%s%d*Assumptions!%s"
+                               % (c, DCF_ROWS["revenue"], AT("Cash conversion — central")),
+        "cash_conversion": lambda c, a, j: "=%s%d/DCF!%s%d"
+                                           % (c, a["cfo"], c, DCF_ROWS["revenue"]),
+        "d_wc": lambda c, a, j: "=%s%d-'Income Statement'!%s%d-'Income Statement'!%s%d"
+                                % (c, a["cfo"], c, _ISROW["Net profit"],
+                                   c, _ISROW["Depreciation and amortisation"]),
+        "cfi": lambda c, a, j: "=-DCF!%s%d*Assumptions!%s"
+                               % (c, DCF_ROWS["revenue"],
+                                  AT("Maintenance capital expenditure, share of revenue")),
+    }
+    _CFNOTE = {
+        "cfo": "SET at the conversion rate times revenue — this is the crux input, and "
+               "the row below proves the division",
+        "cash_conversion": "the conversion rate, recovered from the row above: flat by "
+                           "construction because operating cash is set as a share of revenue",
+        "d_wc": "THE PLUG. Operating cash is set and working capital is what is left, "
+                "which is the whole difference between this framing and the one below",
+        "cfi": "maintenance only, at the share of revenue on the Assumptions sheet",
+    }
+    rr = _proj(ws, rr + 1, FB, CF, fx=_CFFX, notes=_CFNOTE)
     ws.cell(rr, 1, "IF THE COLLECTION CYCLE HOLDS").font = SUB
     rr = _proj(ws, rr + 1, FA, CF)
     ws.cell(rr, 1, "Cash conversion, the three published years").font = SUB
@@ -826,9 +978,41 @@ def _remaining(wb):
               ("  as a multiple of revenue", "nwc_over_revenue",
                "#,##0.00", False)]
     ws.cell(r, 1, "FORECAST — IF CASH CONVERSION HOLDS").font = SUB
-    r = _proj(ws, r + 1, FB, BSSPEC)
+    # THE SUBTOTALS AND THE BALANCE CHECK, AS FORMULAS, IN BOTH FRAMINGS [17-09-2026].
+    #
+    # THE CHECK ROW IS THE POINT. "Check: assets less liabilities and equity" was written
+    # as a COMPUTED CONSTANT — the model's own difference, rounded and printed. A check
+    # whose value is computed by the thing it is checking cannot fail, and this house has
+    # found that exact defect before: the SWDY self-audit turned up a balance-check row
+    # hardcoded to zero and it is one of the findings the critique-response prompt was
+    # rewritten around. It is now a subtraction of two cells that are themselves sums of
+    # the rows above them, so a driver that breaks the balance sheet shows up here as a
+    # non-zero number in a workbook a reader has open.
+    _ASSETS = ["receivables", "wip", "bs_debtors_other", "bs_suppliers_advances",
+               "cash", "ppe", "other_assets"]
+    _LIABS = ["advances", "suppliers", "bs_creditors_other", "bs_checks_undelivered",
+              "debt", "other_liabs"]
+
+    def _sum_rows(keys):
+        return lambda c, a, j: "=" + "+".join("%s%d" % (c, a[k]) for k in keys)
+
+    _BSFX = {
+        "total_assets": _sum_rows(_ASSETS),
+        "total_liabilities": _sum_rows(_LIABS),
+        "total_liabs_and_equity": lambda c, a, j: "=%s%d+%s%d" % (c, a["total_liabilities"],
+                                                                  c, a["equity"]),
+        "balance_check": lambda c, a, j: "=%s%d-%s%d" % (c, a["total_assets"],
+                                                         c, a["total_liabs_and_equity"]),
+    }
+    _BSNOTE = {
+        "total_assets": "the seven asset rows above, summed in the cell",
+        "total_liabilities": "the six liability rows above, summed in the cell",
+        "balance_check": "A LIVE CHECK: two sums subtracted. It used to be the model's own "
+                         "computed difference, which is a check that cannot fail",
+    }
+    r = _proj(ws, r + 1, FB, BSSPEC, fx=_BSFX, notes=_BSNOTE)
     ws.cell(r, 1, "FORECAST — IF THE COLLECTION CYCLE HOLDS").font = SUB
-    r = _proj(ws, r + 1, FA, BSSPEC)
+    r = _proj(ws, r + 1, FA, BSSPEC, fx=_BSFX, notes=_BSNOTE)
     ws.cell(r, 1, "The cycle as reported, both audited years").font = SUB
     r += 1
     cy = ST["cycle_measured"]

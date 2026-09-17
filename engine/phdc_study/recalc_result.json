@@ -42,6 +42,2166 @@
   "ok": true
  },
  {
+  "check": "Income Statement Units delivered B",
+  "workbook": 2041.734,
+  "study": 2041.734,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Units delivered C",
+  "workbook": 2347.9941,
+  "study": 2347.9941,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Units delivered D",
+  "workbook": 2664.9733,
+  "study": 2664.9733,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Units delivered E",
+  "workbook": 2984.7701,
+  "study": 2984.7701,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Units delivered F",
+  "workbook": 3298.171,
+  "study": 3298.171,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Units delivered G",
+  "workbook": 3595.0064,
+  "study": 3595.0064,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Units delivered H",
+  "workbook": 3864.6319,
+  "study": 3864.6319,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Units delivered I",
+  "workbook": 4096.5098,
+  "study": 4096.5098,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Units delivered J",
+  "workbook": 4280.8527,
+  "study": 4280.8527,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Units delivered K",
+  "workbook": 4409.2783,
+  "study": 4409.2783,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Units delivered L",
+  "workbook": 4475.4175,
+  "study": 4475.4175,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Units delivered M",
+  "workbook": 4475.4175,
+  "study": 4475.4175,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Units delivered N",
+  "workbook": 4475.4175,
+  "study": 4475.4175,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Units delivered O",
+  "workbook": 4475.4175,
+  "study": 4475.4175,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Units delivered P",
+  "workbook": 4475.4175,
+  "study": 4475.4175,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Revenue per delivered unit B",
+  "workbook": 19.7278,
+  "study": 19.7278,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Revenue per delivered unit C",
+  "workbook": 22.0951,
+  "study": 22.0951,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Revenue per delivered unit D",
+  "workbook": 24.0837,
+  "study": 24.0837,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Revenue per delivered unit E",
+  "workbook": 25.89,
+  "study": 25.89,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Revenue per delivered unit F",
+  "workbook": 27.7023,
+  "study": 27.7023,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Revenue per delivered unit G",
+  "workbook": 29.6414,
+  "study": 29.6414,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Revenue per delivered unit H",
+  "workbook": 31.7163,
+  "study": 31.7163,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Revenue per delivered unit I",
+  "workbook": 33.9365,
+  "study": 33.9365,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Revenue per delivered unit J",
+  "workbook": 36.312,
+  "study": 36.312,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Revenue per delivered unit K",
+  "workbook": 38.8539,
+  "study": 38.8539,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Revenue per delivered unit L",
+  "workbook": 41.5737,
+  "study": 41.5737,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Revenue per delivered unit M",
+  "workbook": 44.4838,
+  "study": 44.4838,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Revenue per delivered unit N",
+  "workbook": 47.5977,
+  "study": 47.5977,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Revenue per delivered unit O",
+  "workbook": 50.9295,
+  "study": 50.9295,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Revenue per delivered unit P",
+  "workbook": 54.4946,
+  "study": 54.4946,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Revenue B",
+  "workbook": 40278.934,
+  "study": 40278.934,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Revenue C",
+  "workbook": 51879.267,
+  "study": 51879.267,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Revenue D",
+  "workbook": 64182.4351,
+  "study": 64182.4351,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Revenue E",
+  "workbook": 77275.6519,
+  "study": 77275.6519,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Revenue F",
+  "workbook": 91366.867,
+  "study": 91366.867,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Revenue G",
+  "workbook": 106561.177,
+  "study": 106561.177,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Revenue H",
+  "workbook": 122571.9939,
+  "study": 122571.9939,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Revenue I",
+  "workbook": 139021.1555,
+  "study": 139021.1555,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Revenue J",
+  "workbook": 155446.505,
+  "study": 155446.505,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Revenue K",
+  "workbook": 171317.5931,
+  "study": 171317.5931,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Revenue L",
+  "workbook": 186059.472,
+  "study": 186059.472,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Revenue M",
+  "workbook": 199083.6351,
+  "study": 199083.6351,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Revenue N",
+  "workbook": 213019.4895,
+  "study": 213019.4895,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Revenue O",
+  "workbook": 227930.8538,
+  "study": 227930.8538,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Revenue P",
+  "workbook": 243886.0136,
+  "study": 243886.0136,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Cost per delivered unit B",
+  "workbook": 12.7411,
+  "study": 12.7411,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Cost per delivered unit C",
+  "workbook": 14.2701,
+  "study": 14.2701,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Cost per delivered unit D",
+  "workbook": 15.5544,
+  "study": 15.5544,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Cost per delivered unit E",
+  "workbook": 16.7209,
+  "study": 16.7209,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Cost per delivered unit F",
+  "workbook": 17.8914,
+  "study": 17.8914,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Cost per delivered unit G",
+  "workbook": 19.1438,
+  "study": 19.1438,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Cost per delivered unit H",
+  "workbook": 20.4839,
+  "study": 20.4839,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Cost per delivered unit I",
+  "workbook": 21.9177,
+  "study": 21.9177,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Cost per delivered unit J",
+  "workbook": 23.452,
+  "study": 23.452,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Cost per delivered unit K",
+  "workbook": 25.0936,
+  "study": 25.0936,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Cost per delivered unit L",
+  "workbook": 26.8502,
+  "study": 26.8502,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Cost per delivered unit M",
+  "workbook": 28.7297,
+  "study": 28.7297,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Cost per delivered unit N",
+  "workbook": 30.7408,
+  "study": 30.7408,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Cost per delivered unit O",
+  "workbook": 32.8926,
+  "study": 32.8926,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Cost per delivered unit P",
+  "workbook": 35.1951,
+  "study": 35.1951,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Cost of revenue B",
+  "workbook": 26013.9771,
+  "study": 26013.9771,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Cost of revenue C",
+  "workbook": 33506.0026,
+  "study": 33506.0026,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Cost of revenue D",
+  "workbook": 41451.9511,
+  "study": 41451.9511,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Cost of revenue E",
+  "workbook": 49908.1491,
+  "study": 49908.1491,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Cost of revenue F",
+  "workbook": 59008.9001,
+  "study": 59008.9001,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Cost of revenue G",
+  "workbook": 68822.0801,
+  "study": 68822.0801,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Cost of revenue H",
+  "workbook": 79162.5977,
+  "study": 79162.5977,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Cost of revenue I",
+  "workbook": 89786.2183,
+  "study": 89786.2183,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Cost of revenue J",
+  "workbook": 100394.46,
+  "study": 100394.46,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Cost of revenue K",
+  "workbook": 110644.7344,
+  "study": 110644.7344,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Cost of revenue L",
+  "workbook": 120165.7137,
+  "study": 120165.7137,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Cost of revenue M",
+  "workbook": 128577.3137,
+  "study": 128577.3137,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Cost of revenue N",
+  "workbook": 137577.7257,
+  "study": 137577.7257,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Cost of revenue O",
+  "workbook": 147208.1665,
+  "study": 147208.1665,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Cost of revenue P",
+  "workbook": 157512.7381,
+  "study": 157512.7381,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Gross profit B",
+  "workbook": 14264.9569,
+  "study": 14264.9569,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Gross profit C",
+  "workbook": 18373.2644,
+  "study": 18373.2644,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Gross profit D",
+  "workbook": 22730.4841,
+  "study": 22730.4841,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Gross profit E",
+  "workbook": 27367.5028,
+  "study": 27367.5028,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Gross profit F",
+  "workbook": 32357.967,
+  "study": 32357.967,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Gross profit G",
+  "workbook": 37739.0969,
+  "study": 37739.0969,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Gross profit H",
+  "workbook": 43409.3962,
+  "study": 43409.3962,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Gross profit I",
+  "workbook": 49234.9372,
+  "study": 49234.9372,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Gross profit J",
+  "workbook": 55052.045,
+  "study": 55052.045,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Gross profit K",
+  "workbook": 60672.8588,
+  "study": 60672.8588,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Gross profit L",
+  "workbook": 65893.7583,
+  "study": 65893.7583,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Gross profit M",
+  "workbook": 70506.3214,
+  "study": 70506.3214,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Gross profit N",
+  "workbook": 75441.7639,
+  "study": 75441.7639,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Gross profit O",
+  "workbook": 80722.6873,
+  "study": 80722.6873,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Gross profit P",
+  "workbook": 86373.2754,
+  "study": 86373.2754,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Gross margin B",
+  "workbook": 0.3542,
+  "study": 0.3542,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Gross margin C",
+  "workbook": 0.3542,
+  "study": 0.3542,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Gross margin D",
+  "workbook": 0.3542,
+  "study": 0.3542,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Gross margin E",
+  "workbook": 0.3542,
+  "study": 0.3542,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Gross margin F",
+  "workbook": 0.3542,
+  "study": 0.3542,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Gross margin G",
+  "workbook": 0.3542,
+  "study": 0.3542,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Gross margin H",
+  "workbook": 0.3542,
+  "study": 0.3542,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Gross margin I",
+  "workbook": 0.3542,
+  "study": 0.3542,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Gross margin J",
+  "workbook": 0.3542,
+  "study": 0.3542,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Gross margin K",
+  "workbook": 0.3542,
+  "study": 0.3542,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Gross margin L",
+  "workbook": 0.3542,
+  "study": 0.3542,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Gross margin M",
+  "workbook": 0.3542,
+  "study": 0.3542,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Gross margin N",
+  "workbook": 0.3542,
+  "study": 0.3542,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Gross margin O",
+  "workbook": 0.3542,
+  "study": 0.3542,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Gross margin P",
+  "workbook": 0.3542,
+  "study": 0.3542,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Overheads B",
+  "workbook": 7088.8732,
+  "study": 7088.8732,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Overheads C",
+  "workbook": 9130.4687,
+  "study": 9130.4687,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Overheads D",
+  "workbook": 11295.7594,
+  "study": 11295.7594,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Overheads E",
+  "workbook": 13600.0943,
+  "study": 13600.0943,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Overheads F",
+  "workbook": 16080.0715,
+  "study": 16080.0715,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Overheads G",
+  "workbook": 18754.1874,
+  "study": 18754.1874,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Overheads H",
+  "workbook": 21572.004,
+  "study": 21572.004,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Overheads I",
+  "workbook": 24466.9669,
+  "study": 24466.9669,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Overheads J",
+  "workbook": 27357.7391,
+  "study": 27357.7391,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Overheads K",
+  "workbook": 30150.9642,
+  "study": 30150.9642,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Overheads L",
+  "workbook": 32745.4547,
+  "study": 32745.4547,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Overheads M",
+  "workbook": 35037.6365,
+  "study": 35037.6365,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Overheads N",
+  "workbook": 37490.2711,
+  "study": 37490.2711,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Overheads O",
+  "workbook": 40114.5901,
+  "study": 40114.5901,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Overheads P",
+  "workbook": 42922.6114,
+  "study": 42922.6114,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Depreciation and amortisation B",
+  "workbook": 393.8882,
+  "study": 393.8882,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Depreciation and amortisation C",
+  "workbook": 507.3279,
+  "study": 507.3279,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Depreciation and amortisation D",
+  "workbook": 627.6408,
+  "study": 627.6408,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Depreciation and amortisation E",
+  "workbook": 755.6795,
+  "study": 755.6795,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Depreciation and amortisation F",
+  "workbook": 893.4776,
+  "study": 893.4776,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Depreciation and amortisation G",
+  "workbook": 1042.063,
+  "study": 1042.063,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Depreciation and amortisation H",
+  "workbook": 1198.6329,
+  "study": 1198.6329,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Depreciation and amortisation I",
+  "workbook": 1359.4895,
+  "study": 1359.4895,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Depreciation and amortisation J",
+  "workbook": 1520.1132,
+  "study": 1520.1132,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Depreciation and amortisation K",
+  "workbook": 1675.3167,
+  "study": 1675.3167,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Depreciation and amortisation L",
+  "workbook": 1819.4777,
+  "study": 1819.4777,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Depreciation and amortisation M",
+  "workbook": 1946.8412,
+  "study": 1946.8412,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Depreciation and amortisation N",
+  "workbook": 2083.12,
+  "study": 2083.12,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Depreciation and amortisation O",
+  "workbook": 2228.9384,
+  "study": 2228.9384,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Depreciation and amortisation P",
+  "workbook": 2384.9641,
+  "study": 2384.9641,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Operating profit B",
+  "workbook": 6782.1955,
+  "study": 6782.1955,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Operating profit C",
+  "workbook": 8735.4678,
+  "study": 8735.4678,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Operating profit D",
+  "workbook": 10807.084,
+  "study": 10807.084,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Operating profit E",
+  "workbook": 13011.7291,
+  "study": 13011.7291,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Operating profit F",
+  "workbook": 15384.4179,
+  "study": 15384.4179,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Operating profit G",
+  "workbook": 17942.8466,
+  "study": 17942.8466,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Operating profit H",
+  "workbook": 20638.7593,
+  "study": 20638.7593,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Operating profit I",
+  "workbook": 23408.4808,
+  "study": 23408.4808,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Operating profit J",
+  "workbook": 26174.1928,
+  "study": 26174.1928,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Operating profit K",
+  "workbook": 28846.5778,
+  "study": 28846.5778,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Operating profit L",
+  "workbook": 31328.8259,
+  "study": 31328.8259,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Operating profit M",
+  "workbook": 33521.8437,
+  "study": 33521.8437,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Operating profit N",
+  "workbook": 35868.3727,
+  "study": 35868.3727,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Operating profit O",
+  "workbook": 38379.1588,
+  "study": 38379.1588,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Operating profit P",
+  "workbook": 41065.6999,
+  "study": 41065.6999,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Finance cost B",
+  "workbook": 3347.5,
+  "study": 3347.5,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Finance cost C",
+  "workbook": 3347.5,
+  "study": 3347.5,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Finance cost D",
+  "workbook": 3347.5,
+  "study": 3347.5,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Finance cost E",
+  "workbook": 3347.5,
+  "study": 3347.5,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Finance cost F",
+  "workbook": 3347.5,
+  "study": 3347.5,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Finance cost G",
+  "workbook": 3347.5,
+  "study": 3347.5,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Finance cost H",
+  "workbook": 3347.5,
+  "study": 3347.5,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Finance cost I",
+  "workbook": 3347.5,
+  "study": 3347.5,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Finance cost J",
+  "workbook": 3347.5,
+  "study": 3347.5,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Finance cost K",
+  "workbook": 3347.5,
+  "study": 3347.5,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Finance cost L",
+  "workbook": 3347.5,
+  "study": 3347.5,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Finance cost M",
+  "workbook": 3347.5,
+  "study": 3347.5,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Finance cost N",
+  "workbook": 3347.5,
+  "study": 3347.5,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Finance cost O",
+  "workbook": 3347.5,
+  "study": 3347.5,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Finance cost P",
+  "workbook": 3347.5,
+  "study": 3347.5,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Profit before tax B",
+  "workbook": 3434.6955,
+  "study": 3434.6955,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Profit before tax C",
+  "workbook": 5387.9678,
+  "study": 5387.9678,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Profit before tax D",
+  "workbook": 7459.584,
+  "study": 7459.584,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Profit before tax E",
+  "workbook": 9664.2291,
+  "study": 9664.2291,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Profit before tax F",
+  "workbook": 12036.9179,
+  "study": 12036.9179,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Profit before tax G",
+  "workbook": 14595.3466,
+  "study": 14595.3466,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Profit before tax H",
+  "workbook": 17291.2593,
+  "study": 17291.2593,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Profit before tax I",
+  "workbook": 20060.9808,
+  "study": 20060.9808,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Profit before tax J",
+  "workbook": 22826.6928,
+  "study": 22826.6928,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Profit before tax K",
+  "workbook": 25499.0778,
+  "study": 25499.0778,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Profit before tax L",
+  "workbook": 27981.3259,
+  "study": 27981.3259,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Profit before tax M",
+  "workbook": 30174.3437,
+  "study": 30174.3437,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Profit before tax N",
+  "workbook": 32520.8727,
+  "study": 32520.8727,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Profit before tax O",
+  "workbook": 35031.6588,
+  "study": 35031.6588,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Profit before tax P",
+  "workbook": 37718.1999,
+  "study": 37718.1999,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Net profit B",
+  "workbook": 2661.889,
+  "study": 2661.889,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Net profit C",
+  "workbook": 4175.675,
+  "study": 4175.675,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Net profit D",
+  "workbook": 5781.1776,
+  "study": 5781.1776,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Net profit E",
+  "workbook": 7489.7775,
+  "study": 7489.7775,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Net profit F",
+  "workbook": 9328.6114,
+  "study": 9328.6114,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Net profit G",
+  "workbook": 11311.3936,
+  "study": 11311.3936,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Net profit H",
+  "workbook": 13400.7259,
+  "study": 13400.7259,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Net profit I",
+  "workbook": 15547.2601,
+  "study": 15547.2601,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Net profit J",
+  "workbook": 17690.6869,
+  "study": 17690.6869,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Net profit K",
+  "workbook": 19761.7853,
+  "study": 19761.7853,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Net profit L",
+  "workbook": 21685.5275,
+  "study": 21685.5275,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Net profit M",
+  "workbook": 23385.1163,
+  "study": 23385.1163,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Net profit N",
+  "workbook": 25203.6764,
+  "study": 25203.6764,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Net profit O",
+  "workbook": 27149.5356,
+  "study": 27149.5356,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Net profit P",
+  "workbook": 29231.6049,
+  "study": 29231.6049,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Earnings per share (EGP) B",
+  "workbook": 0.9308,
+  "study": 0.9308,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Earnings per share (EGP) C",
+  "workbook": 1.4601,
+  "study": 1.4601,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Earnings per share (EGP) D",
+  "workbook": 2.0214,
+  "study": 2.0214,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Earnings per share (EGP) E",
+  "workbook": 2.6189,
+  "study": 2.6189,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Earnings per share (EGP) F",
+  "workbook": 3.2618,
+  "study": 3.2618,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Earnings per share (EGP) G",
+  "workbook": 3.9551,
+  "study": 3.9551,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Earnings per share (EGP) H",
+  "workbook": 4.6857,
+  "study": 4.6857,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Earnings per share (EGP) I",
+  "workbook": 5.4363,
+  "study": 5.4363,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Earnings per share (EGP) J",
+  "workbook": 6.1857,
+  "study": 6.1857,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Earnings per share (EGP) K",
+  "workbook": 6.9099,
+  "study": 6.9099,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Earnings per share (EGP) L",
+  "workbook": 7.5826,
+  "study": 7.5826,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Earnings per share (EGP) M",
+  "workbook": 8.1768,
+  "study": 8.1768,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Earnings per share (EGP) N",
+  "workbook": 8.8127,
+  "study": 8.8127,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Earnings per share (EGP) O",
+  "workbook": 9.4931,
+  "study": 9.4931,
+  "ok": true
+ },
+ {
+  "check": "Income Statement Earnings per share (EGP) P",
+  "workbook": 10.2211,
+  "study": 10.2211,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) Cash from operations B",
+  "workbook": 3509.7709,
+  "study": 3509.7709,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) Cash from operations C",
+  "workbook": 4520.5849,
+  "study": 4520.5849,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) Cash from operations D",
+  "workbook": 5592.6416,
+  "study": 5592.6416,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) Cash from operations E",
+  "workbook": 6733.5405,
+  "study": 6733.5405,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) Cash from operations F",
+  "workbook": 7961.4016,
+  "study": 7961.4016,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) Cash from operations G",
+  "workbook": 9285.3826,
+  "study": 9285.3826,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) Cash from operations H",
+  "workbook": 10680.5114,
+  "study": 10680.5114,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) Cash from operations I",
+  "workbook": 12113.836,
+  "study": 12113.836,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) Cash from operations J",
+  "workbook": 13545.0857,
+  "study": 13545.0857,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) Cash from operations K",
+  "workbook": 14928.039,
+  "study": 14928.039,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) Cash from operations L",
+  "workbook": 16212.5967,
+  "study": 16212.5967,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) Cash from operations M",
+  "workbook": 17347.4785,
+  "study": 17347.4785,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) Cash from operations N",
+  "workbook": 18561.802,
+  "study": 18561.802,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) Cash from operations O",
+  "workbook": 19861.1281,
+  "study": 19861.1281,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) Cash from operations P",
+  "workbook": 21251.4071,
+  "study": 21251.4071,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) as a share of revenue B",
+  "workbook": 0.0871,
+  "study": 0.0871,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) as a share of revenue C",
+  "workbook": 0.0871,
+  "study": 0.0871,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) as a share of revenue D",
+  "workbook": 0.0871,
+  "study": 0.0871,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) as a share of revenue E",
+  "workbook": 0.0871,
+  "study": 0.0871,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) as a share of revenue F",
+  "workbook": 0.0871,
+  "study": 0.0871,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) as a share of revenue G",
+  "workbook": 0.0871,
+  "study": 0.0871,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) as a share of revenue H",
+  "workbook": 0.0871,
+  "study": 0.0871,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) as a share of revenue I",
+  "workbook": 0.0871,
+  "study": 0.0871,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) as a share of revenue J",
+  "workbook": 0.0871,
+  "study": 0.0871,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) as a share of revenue K",
+  "workbook": 0.0871,
+  "study": 0.0871,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) as a share of revenue L",
+  "workbook": 0.0871,
+  "study": 0.0871,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) as a share of revenue M",
+  "workbook": 0.0871,
+  "study": 0.0871,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) as a share of revenue N",
+  "workbook": 0.0871,
+  "study": 0.0871,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) as a share of revenue O",
+  "workbook": 0.0871,
+  "study": 0.0871,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) as a share of revenue P",
+  "workbook": 0.0871,
+  "study": 0.0871,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) Change in working capital, cash effect B",
+  "workbook": 453.9937,
+  "study": 453.9937,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) Change in working capital, cash effect C",
+  "workbook": -162.4181,
+  "study": -162.4181,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) Change in working capital, cash effect D",
+  "workbook": -816.1768,
+  "study": -816.1768,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) Change in working capital, cash effect E",
+  "workbook": -1511.9166,
+  "study": -1511.9166,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) Change in working capital, cash effect F",
+  "workbook": -2260.6874,
+  "study": -2260.6874,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) Change in working capital, cash effect G",
+  "workbook": -3068.0739,
+  "study": -3068.0739,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) Change in working capital, cash effect H",
+  "workbook": -3918.8475,
+  "study": -3918.8475,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) Change in working capital, cash effect I",
+  "workbook": -4792.9136,
+  "study": -4792.9136,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) Change in working capital, cash effect J",
+  "workbook": -5665.7143,
+  "study": -5665.7143,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) Change in working capital, cash effect K",
+  "workbook": -6509.063,
+  "study": -6509.063,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) Change in working capital, cash effect L",
+  "workbook": -7292.4085,
+  "study": -7292.4085,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) Change in working capital, cash effect M",
+  "workbook": -7984.479,
+  "study": -7984.479,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) Change in working capital, cash effect N",
+  "workbook": -8724.9944,
+  "study": -8724.9944,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) Change in working capital, cash effect O",
+  "workbook": -9517.3459,
+  "study": -9517.3459,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) Change in working capital, cash effect P",
+  "workbook": -10365.162,
+  "study": -10365.162,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) Capital expenditure B",
+  "workbook": -402.7893,
+  "study": -402.7893,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) Capital expenditure C",
+  "workbook": -518.7927,
+  "study": -518.7927,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) Capital expenditure D",
+  "workbook": -641.8244,
+  "study": -641.8244,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) Capital expenditure E",
+  "workbook": -772.7565,
+  "study": -772.7565,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) Capital expenditure F",
+  "workbook": -913.6687,
+  "study": -913.6687,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) Capital expenditure G",
+  "workbook": -1065.6118,
+  "study": -1065.6118,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) Capital expenditure H",
+  "workbook": -1225.7199,
+  "study": -1225.7199,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) Capital expenditure I",
+  "workbook": -1390.2116,
+  "study": -1390.2116,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) Capital expenditure J",
+  "workbook": -1554.465,
+  "study": -1554.465,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) Capital expenditure K",
+  "workbook": -1713.1759,
+  "study": -1713.1759,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) Capital expenditure L",
+  "workbook": -1860.5947,
+  "study": -1860.5947,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) Capital expenditure M",
+  "workbook": -1990.8364,
+  "study": -1990.8364,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) Capital expenditure N",
+  "workbook": -2130.1949,
+  "study": -2130.1949,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) Capital expenditure O",
+  "workbook": -2279.3085,
+  "study": -2279.3085,
+  "ok": true
+ },
+ {
+  "check": "Cash Flow (conversion holds) Capital expenditure P",
+  "workbook": -2438.8601,
+  "study": -2438.8601,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (conversion holds) TOTAL ASSETS B",
+  "workbook": 174203.5954,
+  "study": 174203.5953,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (conversion holds) TOTAL ASSETS C",
+  "workbook": 178589.6736,
+  "study": 178589.6736,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (conversion holds) TOTAL ASSETS D",
+  "workbook": 185428.1612,
+  "study": 185428.1611,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (conversion holds) TOTAL ASSETS E",
+  "workbook": 194876.5393,
+  "study": 194876.5393,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (conversion holds) TOTAL ASSETS F",
+  "workbook": 207133.7409,
+  "study": 207133.7409,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (conversion holds) TOTAL ASSETS G",
+  "workbook": 222419.6472,
+  "study": 222419.6473,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (conversion holds) TOTAL ASSETS H",
+  "workbook": 240897.0141,
+  "study": 240897.0141,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (conversion holds) TOTAL ASSETS I",
+  "workbook": 262653.2172,
+  "study": 262653.2173,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (conversion holds) TOTAL ASSETS J",
+  "workbook": 287683.5104,
+  "study": 287683.5104,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (conversion holds) TOTAL ASSETS K",
+  "workbook": 315877.4115,
+  "study": 315877.4115,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (conversion holds) TOTAL ASSETS L",
+  "workbook": 347009.8337,
+  "study": 347009.8337,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (conversion holds) TOTAL ASSETS M",
+  "workbook": 380738.3821,
+  "study": 380738.3821,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (conversion holds) TOTAL ASSETS N",
+  "workbook": 417244.7856,
+  "study": 417244.7855,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (conversion holds) TOTAL ASSETS O",
+  "workbook": 456723.4938,
+  "study": 456723.4938,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (conversion holds) TOTAL ASSETS P",
+  "workbook": 499382.5683,
+  "study": 499382.5683,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (conversion holds) TOTAL LIABILITIES B",
+  "workbook": 152775.9553,
+  "study": 152775.9553,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (conversion holds) TOTAL LIABILITIES C",
+  "workbook": 152986.3586,
+  "study": 152986.3586,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (conversion holds) TOTAL LIABILITIES D",
+  "workbook": 154043.6684,
+  "study": 154043.6685,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (conversion holds) TOTAL LIABILITIES E",
+  "workbook": 156002.2692,
+  "study": 156002.2692,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (conversion holds) TOTAL LIABILITIES F",
+  "workbook": 158930.8594,
+  "study": 158930.8594,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (conversion holds) TOTAL LIABILITIES G",
+  "workbook": 162905.3722,
+  "study": 162905.3723,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (conversion holds) TOTAL LIABILITIES H",
+  "workbook": 167982.0132,
+  "study": 167982.0132,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (conversion holds) TOTAL LIABILITIES I",
+  "workbook": 174190.9563,
+  "study": 174190.9563,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (conversion holds) TOTAL LIABILITIES J",
+  "workbook": 181530.5624,
+  "study": 181530.5624,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (conversion holds) TOTAL LIABILITIES K",
+  "workbook": 189962.6782,
+  "study": 189962.6782,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (conversion holds) TOTAL LIABILITIES L",
+  "workbook": 199409.573,
+  "study": 199409.5729,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (conversion holds) TOTAL LIABILITIES M",
+  "workbook": 209753.0049,
+  "study": 209753.0049,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (conversion holds) TOTAL LIABILITIES N",
+  "workbook": 221055.732,
+  "study": 221055.732,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (conversion holds) TOTAL LIABILITIES O",
+  "workbook": 233384.9047,
+  "study": 233384.9047,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (conversion holds) TOTAL LIABILITIES P",
+  "workbook": 246812.3742,
+  "study": 246812.3743,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (conversion holds) TOTAL LIABILITIES AND EQUITY B",
+  "workbook": 174203.5953,
+  "study": 174203.5953,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (conversion holds) TOTAL LIABILITIES AND EQUITY C",
+  "workbook": 178589.6736,
+  "study": 178589.6736,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (conversion holds) TOTAL LIABILITIES AND EQUITY D",
+  "workbook": 185428.161,
+  "study": 185428.1611,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (conversion holds) TOTAL LIABILITIES AND EQUITY E",
+  "workbook": 194876.5393,
+  "study": 194876.5393,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (conversion holds) TOTAL LIABILITIES AND EQUITY F",
+  "workbook": 207133.7409,
+  "study": 207133.7409,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (conversion holds) TOTAL LIABILITIES AND EQUITY G",
+  "workbook": 222419.6472,
+  "study": 222419.6473,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (conversion holds) TOTAL LIABILITIES AND EQUITY H",
+  "workbook": 240897.0142,
+  "study": 240897.0141,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (conversion holds) TOTAL LIABILITIES AND EQUITY I",
+  "workbook": 262653.2174,
+  "study": 262653.2173,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (conversion holds) TOTAL LIABILITIES AND EQUITY J",
+  "workbook": 287683.5103,
+  "study": 287683.5104,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (conversion holds) TOTAL LIABILITIES AND EQUITY K",
+  "workbook": 315877.4115,
+  "study": 315877.4115,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (conversion holds) TOTAL LIABILITIES AND EQUITY L",
+  "workbook": 347009.8338,
+  "study": 347009.8337,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (conversion holds) TOTAL LIABILITIES AND EQUITY M",
+  "workbook": 380738.3821,
+  "study": 380738.3821,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (conversion holds) TOTAL LIABILITIES AND EQUITY N",
+  "workbook": 417244.7855,
+  "study": 417244.7855,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (conversion holds) TOTAL LIABILITIES AND EQUITY O",
+  "workbook": 456723.4938,
+  "study": 456723.4938,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (conversion holds) TOTAL LIABILITIES AND EQUITY P",
+  "workbook": 499382.5683,
+  "study": 499382.5683,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (cycle holds) TOTAL ASSETS B",
+  "workbook": 183965.1735,
+  "study": 183965.1735,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (cycle holds) TOTAL ASSETS C",
+  "workbook": 227223.0146,
+  "study": 227223.0145,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (cycle holds) TOTAL ASSETS D",
+  "workbook": 275899.7721,
+  "study": 275899.7721,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (cycle holds) TOTAL ASSETS E",
+  "workbook": 327704.2929,
+  "study": 327704.293,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (cycle holds) TOTAL ASSETS F",
+  "workbook": 383459.2987,
+  "study": 383459.2988,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (cycle holds) TOTAL ASSETS G",
+  "workbook": 443580.7202,
+  "study": 443580.7203,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (cycle holds) TOTAL ASSETS H",
+  "workbook": 506935.1998,
+  "study": 506935.1998,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (cycle holds) TOTAL ASSETS I",
+  "workbook": 572027.0941,
+  "study": 572027.0941,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (cycle holds) TOTAL ASSETS J",
+  "workbook": 637028.4346,
+  "study": 637028.4346,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (cycle holds) TOTAL ASSETS K",
+  "workbook": 699841.0191,
+  "study": 699841.0191,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (cycle holds) TOTAL ASSETS L",
+  "workbook": 758190.5136,
+  "study": 758190.5135,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (cycle holds) TOTAL ASSETS M",
+  "workbook": 810647.9464,
+  "study": 810647.9464,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (cycle holds) TOTAL ASSETS N",
+  "workbook": 866959.0014,
+  "study": 866959.0015,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (cycle holds) TOTAL ASSETS O",
+  "workbook": 927393.4324,
+  "study": 927393.4323,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (cycle holds) TOTAL ASSETS P",
+  "workbook": 992239.8751,
+  "study": 992239.8752,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (cycle holds) TOTAL LIABILITIES B",
+  "workbook": 162537.5335,
+  "study": 162537.5335,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (cycle holds) TOTAL LIABILITIES C",
+  "workbook": 201619.6995,
+  "study": 201619.6995,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (cycle holds) TOTAL LIABILITIES D",
+  "workbook": 244515.2796,
+  "study": 244515.2796,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (cycle holds) TOTAL LIABILITIES E",
+  "workbook": 288830.0227,
+  "study": 288830.0229,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (cycle holds) TOTAL LIABILITIES F",
+  "workbook": 335256.4173,
+  "study": 335256.4173,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (cycle holds) TOTAL LIABILITIES G",
+  "workbook": 384066.4453,
+  "study": 384066.4452,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (cycle holds) TOTAL LIABILITIES H",
+  "workbook": 434020.1988,
+  "study": 434020.1988,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (cycle holds) TOTAL LIABILITIES I",
+  "workbook": 483564.833,
+  "study": 483564.833,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (cycle holds) TOTAL LIABILITIES J",
+  "workbook": 530875.4866,
+  "study": 530875.4866,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (cycle holds) TOTAL LIABILITIES K",
+  "workbook": 573926.2858,
+  "study": 573926.2858,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (cycle holds) TOTAL LIABILITIES L",
+  "workbook": 610590.2528,
+  "study": 610590.2527,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (cycle holds) TOTAL LIABILITIES M",
+  "workbook": 639662.5693,
+  "study": 639662.5693,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (cycle holds) TOTAL LIABILITIES N",
+  "workbook": 670769.948,
+  "study": 670769.948,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (cycle holds) TOTAL LIABILITIES O",
+  "workbook": 704054.8433,
+  "study": 704054.8432,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (cycle holds) TOTAL LIABILITIES P",
+  "workbook": 739669.6812,
+  "study": 739669.6811,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (cycle holds) TOTAL LIABILITIES AND EQUITY B",
+  "workbook": 183965.1735,
+  "study": 183965.1735,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (cycle holds) TOTAL LIABILITIES AND EQUITY C",
+  "workbook": 227223.0145,
+  "study": 227223.0145,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (cycle holds) TOTAL LIABILITIES AND EQUITY D",
+  "workbook": 275899.7722,
+  "study": 275899.7721,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (cycle holds) TOTAL LIABILITIES AND EQUITY E",
+  "workbook": 327704.2928,
+  "study": 327704.293,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (cycle holds) TOTAL LIABILITIES AND EQUITY F",
+  "workbook": 383459.2988,
+  "study": 383459.2988,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (cycle holds) TOTAL LIABILITIES AND EQUITY G",
+  "workbook": 443580.7203,
+  "study": 443580.7203,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (cycle holds) TOTAL LIABILITIES AND EQUITY H",
+  "workbook": 506935.1998,
+  "study": 506935.1998,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (cycle holds) TOTAL LIABILITIES AND EQUITY I",
+  "workbook": 572027.0941,
+  "study": 572027.0941,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (cycle holds) TOTAL LIABILITIES AND EQUITY J",
+  "workbook": 637028.4345,
+  "study": 637028.4346,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (cycle holds) TOTAL LIABILITIES AND EQUITY K",
+  "workbook": 699841.0191,
+  "study": 699841.0191,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (cycle holds) TOTAL LIABILITIES AND EQUITY L",
+  "workbook": 758190.5136,
+  "study": 758190.5135,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (cycle holds) TOTAL LIABILITIES AND EQUITY M",
+  "workbook": 810647.9465,
+  "study": 810647.9464,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (cycle holds) TOTAL LIABILITIES AND EQUITY N",
+  "workbook": 866959.0015,
+  "study": 866959.0015,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (cycle holds) TOTAL LIABILITIES AND EQUITY O",
+  "workbook": 927393.4324,
+  "study": 927393.4323,
+  "ok": true
+ },
+ {
+  "check": "Balance Sheet (cycle holds) TOTAL LIABILITIES AND EQUITY P",
+  "workbook": 992239.8753,
+  "study": 992239.8752,
+  "ok": true
+ },
+ {
   "check": "DCF units delivered 2026",
   "workbook": 2041.734,
   "study": 2041.734,
@@ -505,7 +2665,7 @@
  },
  {
   "check": "balance sheet balances, 2025",
-  "workbook": -0.1,
+  "workbook": 0.018,
   "study": 0.0,
   "ok": true
  },
@@ -517,14 +2677,14 @@
  },
  {
   "check": "forecast sheet balances, cash conversion holds, 2026",
-  "workbook": 0.0,
+  "workbook": 0.0001,
   "study": 0.0,
   "ok": true
  },
  {
   "check": "forecast total assets, cash conversion holds, 2026",
-  "workbook": 174203.5663,
-  "study": 174203.5663,
+  "workbook": 174203.5954,
+  "study": 174203.5953,
   "ok": true
  },
  {
@@ -535,44 +2695,44 @@
  },
  {
   "check": "forecast total assets, cash conversion holds, 2027",
-  "workbook": 178589.6446,
-  "study": 178589.6446,
+  "workbook": 178589.6736,
+  "study": 178589.6736,
   "ok": true
  },
  {
   "check": "forecast sheet balances, cash conversion holds, 2028",
-  "workbook": -0.0,
+  "workbook": 0.0002,
   "study": 0.0,
   "ok": true
  },
  {
   "check": "forecast total assets, cash conversion holds, 2028",
-  "workbook": 185428.1321,
-  "study": 185428.1321,
+  "workbook": 185428.1612,
+  "study": 185428.1611,
   "ok": true
  },
  {
   "check": "forecast sheet balances, cash conversion holds, 2029",
-  "workbook": -0.0,
+  "workbook": 0.0,
   "study": 0.0,
   "ok": true
  },
  {
   "check": "forecast total assets, cash conversion holds, 2029",
-  "workbook": 194876.5103,
-  "study": 194876.5103,
+  "workbook": 194876.5393,
+  "study": 194876.5393,
   "ok": true
  },
  {
   "check": "forecast sheet balances, cash conversion holds, 2030",
-  "workbook": -0.0,
+  "workbook": 0.0,
   "study": 0.0,
   "ok": true
  },
  {
   "check": "forecast total assets, cash conversion holds, 2030",
-  "workbook": 207133.7119,
-  "study": 207133.7119,
+  "workbook": 207133.7409,
+  "study": 207133.7409,
   "ok": true
  },
  {
@@ -583,8 +2743,8 @@
  },
  {
   "check": "forecast total assets, cash conversion holds, 2031",
-  "workbook": 222419.6183,
-  "study": 222419.6183,
+  "workbook": 222419.6472,
+  "study": 222419.6473,
   "ok": true
  },
  {
@@ -595,20 +2755,20 @@
  },
  {
   "check": "forecast total assets, cash conversion holds, 2032",
-  "workbook": 240896.9851,
-  "study": 240896.9851,
+  "workbook": 240897.0141,
+  "study": 240897.0141,
   "ok": true
  },
  {
   "check": "forecast sheet balances, cash conversion holds, 2033",
-  "workbook": -0.0001,
+  "workbook": -0.0002,
   "study": 0.0,
   "ok": true
  },
  {
   "check": "forecast total assets, cash conversion holds, 2033",
-  "workbook": 262653.1883,
-  "study": 262653.1883,
+  "workbook": 262653.2172,
+  "study": 262653.2173,
   "ok": true
  },
  {
@@ -619,8 +2779,8 @@
  },
  {
   "check": "forecast total assets, cash conversion holds, 2034",
-  "workbook": 287683.4814,
-  "study": 287683.4814,
+  "workbook": 287683.5104,
+  "study": 287683.5104,
   "ok": true
  },
  {
@@ -631,20 +2791,20 @@
  },
  {
   "check": "forecast total assets, cash conversion holds, 2035",
-  "workbook": 315877.3825,
-  "study": 315877.3825,
+  "workbook": 315877.4115,
+  "study": 315877.4115,
   "ok": true
  },
  {
   "check": "forecast sheet balances, cash conversion holds, 2036",
-  "workbook": 0.0,
+  "workbook": -0.0001,
   "study": 0.0,
   "ok": true
  },
  {
   "check": "forecast total assets, cash conversion holds, 2036",
-  "workbook": 347009.8047,
-  "study": 347009.8047,
+  "workbook": 347009.8337,
+  "study": 347009.8337,
   "ok": true
  },
  {
@@ -655,20 +2815,20 @@
  },
  {
   "check": "forecast total assets, cash conversion holds, 2037",
-  "workbook": 380738.3531,
-  "study": 380738.3531,
+  "workbook": 380738.3821,
+  "study": 380738.3821,
   "ok": true
  },
  {
   "check": "forecast sheet balances, cash conversion holds, 2038",
-  "workbook": 0.0,
+  "workbook": 0.0001,
   "study": 0.0,
   "ok": true
  },
  {
   "check": "forecast total assets, cash conversion holds, 2038",
-  "workbook": 417244.7565,
-  "study": 417244.7565,
+  "workbook": 417244.7856,
+  "study": 417244.7855,
   "ok": true
  },
  {
@@ -679,20 +2839,20 @@
  },
  {
   "check": "forecast total assets, cash conversion holds, 2039",
-  "workbook": 456723.4648,
-  "study": 456723.4648,
+  "workbook": 456723.4938,
+  "study": 456723.4938,
   "ok": true
  },
  {
   "check": "forecast sheet balances, cash conversion holds, 2040",
-  "workbook": -0.0001,
+  "workbook": 0.0,
   "study": 0.0,
   "ok": true
  },
  {
   "check": "forecast total assets, cash conversion holds, 2040",
-  "workbook": 499382.5393,
-  "study": 499382.5393,
+  "workbook": 499382.5683,
+  "study": 499382.5683,
   "ok": true
  },
  {
@@ -877,26 +3037,26 @@
  },
  {
   "check": "forecast sheet balances, the cycle holds, 2026",
-  "workbook": -0.0,
-  "study": 0.0,
-  "ok": true
- },
- {
-  "check": "forecast total assets, the cycle holds, 2026",
-  "workbook": 183965.1445,
-  "study": 183965.1445,
-  "ok": true
- },
- {
-  "check": "forecast sheet balances, the cycle holds, 2027",
   "workbook": 0.0,
   "study": 0.0,
   "ok": true
  },
  {
+  "check": "forecast total assets, the cycle holds, 2026",
+  "workbook": 183965.1735,
+  "study": 183965.1735,
+  "ok": true
+ },
+ {
+  "check": "forecast sheet balances, the cycle holds, 2027",
+  "workbook": 0.0001,
+  "study": 0.0,
+  "ok": true
+ },
+ {
   "check": "forecast total assets, the cycle holds, 2027",
-  "workbook": 227222.9855,
-  "study": 227222.9855,
+  "workbook": 227223.0146,
+  "study": 227223.0145,
   "ok": true
  },
  {
@@ -907,56 +3067,56 @@
  },
  {
   "check": "forecast total assets, the cycle holds, 2028",
-  "workbook": 275899.7431,
-  "study": 275899.7431,
+  "workbook": 275899.7721,
+  "study": 275899.7721,
   "ok": true
  },
  {
   "check": "forecast sheet balances, the cycle holds, 2029",
-  "workbook": 0.0,
-  "study": 0.0,
-  "ok": true
- },
- {
-  "check": "forecast total assets, the cycle holds, 2029",
-  "workbook": 327704.264,
-  "study": 327704.264,
-  "ok": true
- },
- {
-  "check": "forecast sheet balances, the cycle holds, 2030",
-  "workbook": 0.0,
-  "study": 0.0,
-  "ok": true
- },
- {
-  "check": "forecast total assets, the cycle holds, 2030",
-  "workbook": 383459.2698,
-  "study": 383459.2698,
-  "ok": true
- },
- {
-  "check": "forecast sheet balances, the cycle holds, 2031",
   "workbook": 0.0001,
   "study": 0.0,
   "ok": true
  },
  {
+  "check": "forecast total assets, the cycle holds, 2029",
+  "workbook": 327704.2929,
+  "study": 327704.293,
+  "ok": true
+ },
+ {
+  "check": "forecast sheet balances, the cycle holds, 2030",
+  "workbook": -0.0001,
+  "study": 0.0,
+  "ok": true
+ },
+ {
+  "check": "forecast total assets, the cycle holds, 2030",
+  "workbook": 383459.2987,
+  "study": 383459.2988,
+  "ok": true
+ },
+ {
+  "check": "forecast sheet balances, the cycle holds, 2031",
+  "workbook": -0.0001,
+  "study": 0.0,
+  "ok": true
+ },
+ {
   "check": "forecast total assets, the cycle holds, 2031",
-  "workbook": 443580.6913,
-  "study": 443580.6913,
+  "workbook": 443580.7202,
+  "study": 443580.7203,
   "ok": true
  },
  {
   "check": "forecast sheet balances, the cycle holds, 2032",
-  "workbook": 0.0,
+  "workbook": -0.0,
   "study": 0.0,
   "ok": true
  },
  {
   "check": "forecast total assets, the cycle holds, 2032",
-  "workbook": 506935.1708,
-  "study": 506935.1708,
+  "workbook": 506935.1998,
+  "study": 506935.1998,
   "ok": true
  },
  {
@@ -967,8 +3127,8 @@
  },
  {
   "check": "forecast total assets, the cycle holds, 2033",
-  "workbook": 572027.0651,
-  "study": 572027.0651,
+  "workbook": 572027.0941,
+  "study": 572027.0941,
   "ok": true
  },
  {
@@ -979,8 +3139,8 @@
  },
  {
   "check": "forecast total assets, the cycle holds, 2034",
-  "workbook": 637028.4056,
-  "study": 637028.4056,
+  "workbook": 637028.4346,
+  "study": 637028.4346,
   "ok": true
  },
  {
@@ -991,8 +3151,8 @@
  },
  {
   "check": "forecast total assets, the cycle holds, 2035",
-  "workbook": 699840.9901,
-  "study": 699840.9901,
+  "workbook": 699841.0191,
+  "study": 699841.0191,
   "ok": true
  },
  {
@@ -1003,8 +3163,8 @@
  },
  {
   "check": "forecast total assets, the cycle holds, 2036",
-  "workbook": 758190.4845,
-  "study": 758190.4845,
+  "workbook": 758190.5136,
+  "study": 758190.5135,
   "ok": true
  },
  {
@@ -1015,20 +3175,20 @@
  },
  {
   "check": "forecast total assets, the cycle holds, 2037",
-  "workbook": 810647.9174,
-  "study": 810647.9174,
+  "workbook": 810647.9464,
+  "study": 810647.9464,
   "ok": true
  },
  {
   "check": "forecast sheet balances, the cycle holds, 2038",
-  "workbook": 0.0,
+  "workbook": -0.0001,
   "study": 0.0,
   "ok": true
  },
  {
   "check": "forecast total assets, the cycle holds, 2038",
-  "workbook": 866958.9725,
-  "study": 866958.9725,
+  "workbook": 866959.0014,
+  "study": 866959.0015,
   "ok": true
  },
  {
@@ -1039,20 +3199,20 @@
  },
  {
   "check": "forecast total assets, the cycle holds, 2039",
-  "workbook": 927393.4033,
-  "study": 927393.4033,
+  "workbook": 927393.4324,
+  "study": 927393.4323,
   "ok": true
  },
  {
   "check": "forecast sheet balances, the cycle holds, 2040",
-  "workbook": 0.0,
+  "workbook": -0.0002,
   "study": 0.0,
   "ok": true
  },
  {
   "check": "forecast total assets, the cycle holds, 2040",
-  "workbook": 992239.8462,
-  "study": 992239.8462,
+  "workbook": 992239.8751,
+  "study": 992239.8752,
   "ok": true
  },
  {
