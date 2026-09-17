@@ -1,5 +1,14 @@
 # RECALIBRATION RUNBOOK — the whole process, one step after another
 
+**RUNBOOK REVISION 2026-09-17b.** Every copy of this file carries this line as its
+first characters after the title. If the copy you are holding does not, or carries an
+earlier revision, IT IS STALE: the current text is
+`engine/Recalibration_Runbook_17-09-2026.md` on the repository's own branch and nothing
+else is authoritative. Bump the revision on every edit, however small — an unbumped
+stamp is worse than none, because it certifies a copy that has moved. This stamp exists
+because revision `a` was sent out, edited twice the same day, and the copy outside the
+repository had no way to know: the same failure [R-DOC-01] was adopted on.
+
 **Invoke with: "start a recalibration on {TICKER}".** The session then works steps 0
 through 6 IN ORDER, stopping at each step's stop condition and reporting before it
 moves on. ONE NAME AT A TIME. Never two in parallel — a defect found on the first
