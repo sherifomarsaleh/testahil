@@ -1511,6 +1511,24 @@
       "bear": 0.0,
       "full": -0.0
      }
+    },
+    {
+     "delivered": "2026-09-17",
+     "edition": 8,
+     "fair": {
+      "base": 20.8823,
+      "bear": 4.9365,
+      "full": 54.52
+     },
+     "lessons": [],
+     "origins": "",
+     "scope": "full",
+     "vs_baseline_pct": null,
+     "vs_previous_pct": {
+      "base": -1.0,
+      "bear": -0.9,
+      "full": -1.0
+     }
     }
    ],
    "exchange": "EGX",
