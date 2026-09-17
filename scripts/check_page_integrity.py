@@ -396,6 +396,16 @@ def served_pages() -> dict[str, Path]:
         rel = p.relative_to(REPO)
         if any(part in skip for part in rel.parts):
             continue
+        # A *_study_pending/ directory holds SOURCE CAPTURES — a company's own IR
+        # page saved as it stood on a date, kept as evidence beside the filings it
+        # came from. It is not a page this site serves and never reaches a browser,
+        # so holding it to our own chrome rules tests somebody else's HTML and
+        # reports a defect in work that is right. Added 17-09-2026 after committing
+        # two of OCDI's saved IR pages turned this gate red on their favicon paths:
+        # per [R-COC-01], a check firing on correct work is RE-POINTED, never widened
+        # and never satisfied by deleting the evidence.
+        if any(part.endswith("_study_pending") for part in rel.parts):
+            continue
         out[rel.as_posix()] = p
     return out
 

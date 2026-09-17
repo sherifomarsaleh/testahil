@@ -86,3 +86,9 @@ engine/method_reassessment/board.html
 engine/*_study_pending/**/ocr/*.png
 engine/build_depth_audit/ci_gate_run.json
 engine/method_reassessment/progress.json
+
+# Saved copies of third-party web pages captured as study source (an IR site as it
+# stood on a date). ~4MB each; the research value is the extracted text committed
+# beside them as txt_*.txt. They are NOT pages this site serves, and committing them
+# made check_page_integrity apply our own page-chrome rules to somebody else's HTML.
+engine/*_study_pending/**/*.html
