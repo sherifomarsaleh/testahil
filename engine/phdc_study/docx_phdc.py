@@ -494,44 +494,63 @@ def build(path):
               "recommendation and no price target. What it publishes is a range of "
               "value and the reasoning behind it, so that a reader can disagree with "
               "the reasoning rather than with a number.")
-    para(doc, "It supersedes the edition of %s and it changes ONE INPUT in it: the "
-              "long-run real interest rate. Three numbers move from that one change, "
-              "and they are named in the next paragraph; the first of them is the "
-              "rate at which the perpetuity is discounted. That rate was built inside "
-              "this study, from a long-run real interest rate of 5.5%% typed into its "
-              "own file. It now reads the house Egyptian macro path, where the "
-              "convention is 3.5%%. The retired figure was a description of a "
-              "restrictive policy stance — the real rate the central bank was running "
-              "in order to break an inflation — and a company does not live inside a "
-              "policy stance for ever. Carrying it into perpetuity charged this "
-              "developer, permanently, for a monetary condition that is by "
-              "construction temporary. The terminal cost of capital falls from "
-              "%.2f%% to %.2f%% and the central figure moves from EGP %.2f to EGP "
-              "%.2f a share."
-              % (_EDN.PRIOR_WORDS, 100 * PRIOR_WACC_T, 100 * base["wacc_terminal"],
-                 prior["base"], LW["base"]))
-    # WHAT ELSE MOVED IS NAMED, BECAUSE IT DID. This paragraph read "Nothing else in
-    # the study moves", and two other things moved with the terminal: the house path
-    # also sets the explicit-window rate, which fell from the superseded edition's
-    # %s to %s in all fifteen years, and the terminal cost of equity is now built on
-    # the split premium rather than on the same beta.
-    para(doc, "Two other numbers move with it, and they move for the same reason. "
-              "The house path sets the explicit-window rate as well as the terminal "
-              "one, so the rate applied to all fifteen forecast years falls from "
-              "%s to %s; and the terminal cost of equity is now built by splitting "
-              "the country premium out of the market premium rather than by carrying "
-              "the measured beta across both, which is the house construction. "
-              "Nothing else moves. The forecast, the three "
-              "cash-conversion cases, the bridge from enterprise value to equity and "
-              "the weights across the lenses are exactly as they were issued on %s, "
-              "and the reader can hold the two documents side by side and see that "
-              "one number and its consequences are the whole of the difference. THE "
-              "DIRECTION IS NOT THE REASON. This correction happens to raise the "
-              "value and move it further above the traded price; it would have been "
-              "made had it done the opposite, and the house rule that a fair value is "
-              "never adjusted toward a quotation cuts both ways."
-              % (pct(_PRIOR["wacc_adopted"], 3), pct(W["wacc_cds"], 3),
-                 _EDN.PRIOR_WORDS))
+    # THE SUPERSESSION PROSE IS THIS EDITION'S, NOT THE LAST ONE'S [rewritten 17-09-2026].
+    # What stood here described the 10-September terminal-rate recalibration, and the
+    # prose-figure check caught it the moment the edition date moved: it still said the
+    # terminal cost of capital falls from 16.15% to 14.97%, which is what the PREVIOUS
+    # edition did. A change-log inherited from the edition it replaces is how a document
+    # comes to describe work that is not in it — the failure an external audit found in a
+    # rebuild struck outside this repository, where page 1 carried the 2-September
+    # change-log with one number swapped. It is generated from the edition module and the
+    # committed numbers, so it cannot describe the wrong edition again.
+    para(doc, "It supersedes the edition of %s. That edition's numbers stand: the "
+              "discount-rate path, the forecast, the fifteen-year window and the "
+              "cash-conversion cases are as they were issued. What changed is the "
+              "quality of six inputs and the accuracy of four descriptions, each found "
+              "by working an external forensic audit of this study finding by finding "
+              "and by auditing the study against its own filings again."
+              % _EDN.PRIOR_WORDS)
+    para(doc, "The changes, in the order they matter. FIRST, the first-quarter 2026 "
+              "anchors now read the release's own income statement in thousands rather "
+              "than its headline bullets in rounded billions: revenue of EGP 9,346.1 "
+              "million rather than 9,300, gross profit of EGP 3,310.0 million rather "
+              "than 3,300, and the prior-year quarter read outright at EGP 8,392.6 "
+              "million rather than inferred from a rounded \u201cup 11 per cent\u201d. "
+              "The full-year 2026 revenue anchor is built from that quarter, so the "
+              "rounding compounded through all fifteen forecast years. SECOND, the "
+              "minority's share of value is now the MEAN of its filed profit share over "
+              "2023 to 2025 rather than the 2025 share alone: a one-observation anchor "
+              "is the construction this study refuses everywhere else, and the single "
+              "year was also the branch that maximised the answer. THIRD, the price this "
+              "study compares itself against is the close its own price history actually "
+              "holds, dated to that close, and it is the same price in every section. "
+              "The superseded edition compared the valuation against one close and "
+              "computed its trend read and its distribution from another.")
+    para(doc, "FOURTH, and this one is about the workbook rather than the answer: the "
+              "bridge from enterprise value to equity now READS the discounted "
+              "cash-flow sheet instead of carrying rounded copies of its totals, and "
+              "the terminal value is published as its own construction \u2014 the "
+              "terminal flow, the growth rate, the rate it is capitalised at and the "
+              "formula that combines them, each in a cell. A third of the answer sat in "
+              "a single hardcoded number in every earlier edition of this workbook, and "
+              "a reader could not see where it came from. FIFTH, four sentences that "
+              "described the model wrongly are corrected: a catalyst that said the "
+              "half-year results were still to come, an appendix caption that called a "
+              "fifteen-year forecast five years, and two passages that reasoned off the "
+              "credit-rating cost of equity when this study adopts and discounts on the "
+              "traded default-swap basis. SIXTH, a negative result in the bibliography "
+              "is withdrawn: it said the disclosed regional unit series cannot be summed "
+              "to the company total because the charts overlap by about a third, and on "
+              "this study's own extract they sum exactly in nineteen of twenty-one "
+              "year-and-vintage pairs.")
+    para(doc, "The central figure moves from EGP %.2f to EGP %.2f a share. Almost all "
+              "of that is the minority basis and the sharper first-quarter anchors; "
+              "neither was chosen for its direction, and the direction is the "
+              "uncomfortable one \u2014 it moves the answer further above the traded "
+              "price, not toward it. The house rule that a fair value is never adjusted "
+              "toward a quotation cuts both ways, and a correction is made or not made "
+              "on whether it is right."
+              % (prior["base"], LW["base"]))
     para(doc, "Two things in the edition of 11 June 2026 were wrong and remain "
               "corrected, and both are set out plainly in section 1.8 rather than "
               "buried: its discount rate was below Egypt's own government bond "
@@ -941,14 +960,22 @@ def _section_one(doc, sp, base, low, high, cds, prior):
               "the share count, and on the latest disclosed sheet. Profit after tax "
               "and minority interest of EGP %s million in 2025 on average "
               "shareholders' funds gives a return on equity of roughly %s. Against a "
-              "cost of equity of %s, the company is not currently earning its cost of "
+              "cost of equity of %s — the traded default-swap basis this study adopts "
+              "and discounts on, not the credit-rating basis of %s that section 1.8 "
+              "publishes beside it — the company is not currently earning its cost of "
               "capital on book, which is why book value sits well below every "
               "cash-flow read in this study rather than acting as a floor."
               % (money(q("equity_parent")), D["book_equity_per_share"], sp,
                  sp / D["book_equity_per_share"], money(v("npat_mi_fy25")),
                  pct(v("npat_mi_fy25") / ((v("total_equity")
                       + N["balance_sheet_subtotals"]["2024"]["total_equity"]["value"]) / 2)),
-                 pct(W["ke_rating"], 1)))
+                 # THIS QUOTED THE BASIS THE STUDY DID NOT ADOPT. Section 1.8 marks the
+                 # swap basis ADOPTED and the model discounts on it; this paragraph and
+                 # section 1.4 both reasoned off the rating basis, so two sections argued
+                 # about whether the company earns a cost of capital it is not charged.
+                 # An external audit caught it and the 13-09-2026 QC gate had it open as
+                 # (H8). Both bases are named now, with the adopted one first.
+                 pct(W["ke_cds"], 1), pct(W["ke_rating"], 1)))
 
     doc.add_heading("1.3  Relative multiples", level=2)
     para(doc, "The Egyptian listed developers are compared in Appendix B on the "
@@ -975,7 +1002,7 @@ def _section_one(doc, sp, base, low, high, cds, prior):
     NI = N["lens_detail"]["normalised_inputs"]
     para(doc, "Normalised earnings of EGP %s million — the average of the last two "
               "years' revenue carried one year forward at inflation, at the 2025 "
-              "net margin of %s — would capitalise at the cost of equity of %s less "
+              "net margin of %s — would capitalise at the ADOPTED cost of equity of %s less "
               "growth to about EGP %.2f a share, and at the cost of equity alone, "
               "as an earlier edition did, to EGP %.2f. Neither figure is published "
               "as a lens here, and the reason is not the arithmetic. This company "
@@ -1280,8 +1307,21 @@ def _sections_two_to_seven(doc, sp):
 
     doc.add_heading("5  Catalysts to watch", level=1)
     bullets(doc, [
-        "The half-year 2026 results. None had been published as at 30 August 2026, "
-        "which is itself notable this late in the year.",
+        # THIS CATALYST WAS FALSE AND STALE, AND IT WAS THE FIFTH PLACE THE SAME CLAIM
+        # APPEARED [corrected 17-09-2026]. It carried the date of a superseded edition
+        # (30 August) inside a document dated later, and it told a reader the half-year
+        # results were still to come. The 13-09-2026 QC gate recorded it as NOT CLOSED
+        # (F10) after READ FIRST and section 7 were fixed, and an external audit found it
+        # again. What is true is narrower and is now what is printed: a filing is reported
+        # to exist, this study has not obtained it, and the search is dated in section 7.
+        "The half-year 2026 results. PHD's reviewed statements to 30 June 2026 are "
+        "REPORTED to have been filed with the Exchange on 18 August 2026, and this "
+        "study has not obtained them: the company's own result centre carried nothing "
+        "newer than the first quarter when it was read on 17 September 2026, and the "
+        "Exchange's own site could not be reached. Section 7 records the search. "
+        "Obtaining the filing would move the bridge, the book value and the borrowings "
+        "onto a newer sheet and would settle the cash-conversion rate for a fourth "
+        "period.",
         "The full-year 2025 results release. The audited statements were published "
         "but the accompanying release, which is where units sold, new sales, "
         "deliveries and construction spending are disclosed, was not.",
@@ -1461,10 +1501,15 @@ def _appendices(doc, sp, base):
            ["Net profit"] + _f(FB, "npat"),
            ["Earnings per share (EGP)"] + _f(FB, "eps", "{:,.2f}")],
           wide_widths(BU["rows"]),
-          "Five forecast years. Gross margin is a HELD input and cost per unit is "
-          "solved from it, for the disclosure reason given in section 1.1. Years "
-          "three to five should be read against the range in section 1.9, not as "
-          "points.")
+          "FIFTEEN forecast years, 2026 to 2040, shown at the first five and then "
+          "every fifth. This caption said five, and so did the workbook's own bridge "
+          "row and the expert appendix, against a model that runs fifteen — which is "
+          "not a wording slip: on a five-year window the terminal carries about 68 per "
+          "cent of the answer instead of 36, so the label tells a reader the wrong "
+          "thing about where the value comes from. Gross margin is a HELD input and "
+          "cost per unit is solved from it, for the disclosure reason given in section "
+          "1.1. Years three to five should be read against the range in section 1.9, "
+          "not as points.")
 
     doc.add_heading("A.2  Balance sheet", level=2)
     SB, B24 = N["balance_sheet_subtotals"], N["balance_sheet_fy24"]
@@ -1617,7 +1662,7 @@ def _appendices(doc, sp, base):
                       "the funding the growth would need."
                       % "{:,.0f}".format(abs(d["terminal_flow"])))
             table(doc, ["If the cycle holds, what the growth costs", "EGP mn"],
-                  [["Present value of the five forecast years",
+                  [["Present value of the fifteen forecast years",
                     "{:,.0f}".format(d["pv_explicit"])],
                    ["New borrowing required by 2030",
                     "{:,.0f}".format(d["funding_required"])],

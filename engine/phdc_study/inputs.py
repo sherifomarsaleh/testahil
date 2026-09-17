@@ -135,12 +135,44 @@ OPERATING = {
                           "land plot Village de La Capitale in New administrative "
                           "Capital with total sales of EGP24 billion\"",
                           "2026-03-31", "A"),
-    "revenue_1q26":     I(9300.0,   ER26Q1, "2026-03-31", "A"),
-    "gross_profit_1q26": I(3300.0,  ER26Q1 + " — margin 35% versus 44% in 1Q2025",
+    # EXACT, FROM THE RELEASE'S OWN INCOME STATEMENT, NOT ITS HEADLINE [17-09-2026].
+    # Every 1Q2026 figure below was carried at the rounded billions the bullet points
+    # print — 9,300 / 3,300 / 1,200 / "up 11%" — while page 8 of the same release prints
+    # the statement in thousands. The rounding is not cosmetic: 9,300 understates the
+    # quarter by 0.49%, and because FY2026 is anchored on that quarter divided by 1Q2025's
+    # share of FY2025, the error compounds through all fifteen forecast years. A margin
+    # taken as 3.3/9.3 = 35.4839% likewise is not the margin: 3,309,973/9,346,133 is
+    # 35.4171%. THE HEADLINE IS A SUMMARY OF THE STATEMENT AND NEVER A SUBSTITUTE FOR IT.
+    "revenue_1q26":     I(9346.133,  ER26Q1 + " — Consolidated Income Statement, "
+                          "\"Revenue 9,346,133\" EGP thousand", "2026-03-31", "A"),
+    "revenue_1q25":     I(8392.553,  ER26Q1 + " — Consolidated Income Statement, "
+                          "prior-year column, \"Revenue 8,392,553\" EGP thousand. The "
+                          "prior-year quarter is DISCLOSED, so the FY2026 anchor no longer "
+                          "derives it from a rounded YoY percentage", "2025-03-31", "A"),
+    "gross_profit_1q26": I(3309.973, ER26Q1 + " — Consolidated Income Statement, "
+                           "\"Gross Profit 3,309,973\" EGP thousand (the release's own "
+                           "headline rounds the margin to 35% versus 45% in 1Q2025)",
                            "2026-03-31", "A"),
+    "cost_of_revenue_1q26": I(6036.161, ER26Q1 + " — Consolidated Income Statement, "
+                              "\"Cost of Revenue (6,036,161)\" EGP thousand",
+                              "2026-03-31", "A"),
+    # THE QUARTERLY CASH CONVERSION, NEWLY CONSUMED [17-09-2026]. The release publishes a
+    # cash-flow statement in three totals, and 1Q2026 operating cash of 1,766,705 over
+    # revenue of 9,346,133 is 18.90% — far above the three full-year rates. It is NOT the
+    # forecast anchor and the reason is the study's own: a quarter is not a year for a
+    # company whose collections and construction both swing with which project completes,
+    # and 1Q2025's own 12.07% against FY2025's 3.94% measures that seasonality directly.
+    # Recorded and reported so the reader sees the newest observation and why it is not used.
+    "cfo_1q26":         I(1766.705,  ER26Q1 + " — Consolidated Cash Flow Statement, "
+                          "\"Cash Flows from Operating Activities 1,766,705\" EGP thousand",
+                          "2026-03-31", "A"),
+    "cfo_1q25":         I(1013.148,  ER26Q1 + " — Consolidated Cash Flow Statement, "
+                          "prior-year column, \"1,013,148\" EGP thousand", "2025-03-31", "A"),
     "revenue_1q26_yoy": I(0.11,    ER26Q1 + " — \"Revenue reached EGP 9.3 billion in "
                           "1Q2026, up 11% YoY\"", "2026-03-31", "A", unit="YoY"),
-    "npat_1q26":        I(1200.0,   ER26Q1, "2026-03-31", "A"),
+    "npat_1q26":        I(1205.253, ER26Q1 + " — Consolidated Income Statement, \"Net "
+                          "Profit After Tax & Minority Interest 1,205,253\" EGP thousand",
+                          "2026-03-31", "A"),
     "construction_fy24": I(8500.0,  "PHD FY2024 earnings release — \"The Company spent "
                            "EGP8.5 billion on construction activities during FY2024\"",
                            "2024-12-31", "A"),
@@ -151,6 +183,46 @@ OPERATING = {
                           unit="mn sqm"),
     "units_delivered_fy23": I(1500.0, "PHD FY2023 earnings release", "2023-12-31", "A",
                               unit="units"),
+    # THE COMPANY'S OWN FY2026 HANDOVER DISCLOSURE, REGISTERED RATHER THAN PASSED OVER
+    # [17-09-2026]. The forecast's 2026 delivery count is IMPLIED from the disclosed
+    # revenue anchor divided by the escalated price per unit, and the company separately
+    # publishes a figure for the same year. The two are not the same measure — "ready to
+    # be handed over" is inventory available, not deliveries booked, and the identical
+    # 1,200 appears in the 3Q2025 release for end-9M2025, so the company is repeating it
+    # rather than updating it — but a study that anchors on deliveries owes the reader the
+    # company's own number and the reason it is not the anchor. Registered so it prints.
+    "units_rtm_fy26":   I(1200.0,   ER26Q1 + " — Operational Review, \"A total of 1,200 "
+                          "contractual units were ready to be handed over in FY2026\"",
+                          "2026-03-31", "A", unit="units"),
+    "units_delivered_fy24": I(2000.0, "PHD 4Q2024 earnings release — \"handed over units "
+                              "exceeding c. 2,000 units during the period\". The count is "
+                              "DISCLOSED, approximately, and the register previously said "
+                              "FY2024 unit counts were absent; corrected 17-09-2026",
+                              "2024-12-31", "A", unit="units"),
+    "units_rtm_fy24":   I(111.0,    "PHD 4Q2024 earnings release — \"Ready-to-Move "
+                          "inventory reached EGP3.5 billion, representing 111 units "
+                          "across all regions\"", "2024-12-31", "A", unit="units"),
+    # FY2025 REGIONAL NEW SALES — DISCLOSED ON A PAGE THIS STUDY ALREADY CITES, AND THE
+    # YEAR THE STUDY'S OWN RECONCILIATION BREAKS ON [17-09-2026]. The 1Q2026 release
+    # charts new sales by region for 2023, 2024, 2025, 1Q2025 and 1Q2026. The study's
+    # integrity check — the three regions summing to the all-regions figure the same
+    # release prints — holds EXACTLY in 2024 (151,016) and 1Q2026 (52,059) and BREAKS in
+    # FY2025: 88,337 + 20,751 + 54,904 = 163,992 against 215,384, a gap of 51,392mn
+    # (23.9%) attributed to no charted region. The check is kept and the break is
+    # published; a check that is only run on the years it passes is not a check.
+    "new_sales_fy25_west":  I(88337.0, ER26Q1 + " — West Cairo & Badya chart, 2025",
+                              "2025-12-31", "A"),
+    "new_sales_fy25_east":  I(20751.0, ER26Q1 + " — East Cairo chart, 2025",
+                              "2025-12-31", "A"),
+    "new_sales_fy25_north": I(54904.0, ER26Q1 + " — North Coast & Alexandria chart, 2025",
+                              "2025-12-31", "A"),
+    "new_sales_fy25_all":   I(215384.0, ER26Q1 + " — New Sales, All Regions chart, 2025. "
+                              "The three regions above sum to 163,992, so 51,392mn (23.9%) "
+                              "of the disclosed group total is not attributed to any "
+                              "charted region in FY2025", "2025-12-31", "A"),
+    "construction_1q26": I(4600.0,  ER26Q1 + " — \"The Company spent EGP4.6 billion on "
+                           "construction activities during 1Q2026, a growth of 60% YoY\"",
+                           "2026-03-31", "A"),
     "units_sold_fy23":  I(5300.0,   "PHD FY2023 earnings release, chart series",
                           "2023-12-31", "A", unit="units"),
 }
@@ -161,17 +233,157 @@ MARKET = {
     "shares_outstanding_bn": I(2.85992, "Share capital per FY2025 balance sheet and the "
                                "share count carried on the covered-name record",
                                "2025-12-31", "A", unit="bn shares"),
-    "spot":                  I(14.40, "Egyptian Exchange closing price for PHDC, 3 September 2026. The previous edition was struck on the 23 August close of 15.20; no study in this series is delivered against a stale price, because a fair value published beside a month-old quote is a comparison a reader cannot use",
-                               "2026-08-23", "B", unit="EGP/share"),
+    # ONE PRICE, THE LATEST THIS REPOSITORY HOLDS, CORRECTLY DATED AND SOURCED TO THE
+    # CHANNEL IT ACTUALLY CAME FROM [17-09-2026].
+    #
+    # WHAT WAS WRONG WAS THE DATE, NOT THE NUMBER, and an intermediate pass of this
+    # correction got that backwards — recorded here because the mistake is instructive.
+    # The row read: 14.40, "closing price for PHDC, 3 September 2026", date field
+    # "2026-08-23", tier B. Three of those four claims are right. The price is real and
+    # dated: engine/prices/SUPPLIED_03-09-2026.json registers PHDC at 14.40 on 2026-09-03,
+    # committed, and that is the register [R-GAP-01]'s own checker reads as the latest
+    # known price. What was false was the STRUCTURED DATE — 2026-08-23, which is the date
+    # of the 15.20 close named one clause later in the same prose — and the tier, which
+    # called a committed house register a B.
+    #
+    # THE DEFECT THAT REMAINS REAL IS THAT TWO READERS OF ONE FACT DISAGREED [R-ENF-03].
+    # The persistent price library ends 23-Aug-2026 at 15.200 and has no September
+    # observation, and it is what section 2's moving averages, section 3's distribution
+    # and the ticker page on the site are computed from — so the site displays 15.20 while
+    # the valuation compared itself against 14.40, and the same resistance level was
+    # "1.2 per cent above the close" in one section and "6.8 per cent away" in another.
+    # Neither number was invented; nothing reconciled them.
+    #
+    # THE RULE DECIDES IT. [R-GAP-01] compares a fair value against THE LATEST KNOWN
+    # MARKET PRICE, which is the newer of the supplied register and the library: 14.40 of
+    # 3 September, not 15.20 of 23 August. That is also the stricter comparison — it widens
+    # the gap this study has to defend from +37.4% to +45.0% — and the instruction to use
+    # the latest price points the same way. So the valuation strikes against 14.40, dated
+    # to its own close and sourced to the register that holds it, and the LIBRARY's date is
+    # registered separately below so the document can say plainly that its cone and its
+    # trend read stand on 23 August. One comparison price, two vintages, both named.
+    "spot":                  I(14.40, "the Egyptian Exchange close for PHDC on 3 September "
+                               "2026, from this study's own supplied-price register "
+                               "(SUPPLIED_03-09-2026). It is the latest close this "
+                               "repository holds and the one [R-GAP-01] measures the gap "
+                               "against; the persistent price history ends earlier, on "
+                               "23 August 2026 at 15.200, and that is the vintage the "
+                               "trend read and the distribution are computed from",
+                               "2026-09-03", "A", unit="EGP/share"),
+    # The library's own last close, registered so no section can quietly treat the two
+    # dates as one. This is the price the site's ticker page displays.
+    "price_library_last":    I(15.20, "the last close in this study's persistent price "
+                               "history: 23 August 2026 at 15.200. Section 2's moving "
+                               "averages and section 3's distribution are computed from "
+                               "this history, so they carry this date and the document "
+                               "says so. It is also the close the site's ticker page "
+                               "shows, which is why that page reads 15.20 while the "
+                               "valuation compares itself against the newer 3 September "
+                               "close of 14.40",
+                               "2026-08-23", "A", unit="EGP/share"),
+    # A LATER OBSERVATION STILL, REGISTERED AS EVIDENCE ABOUT STALENESS AND READ BY
+    # NOTHING. The market has moved since both dates above, and a study that publishes a
+    # gap should say so rather than let the reader discover it.
+    "spot_later_observed":   I(13.77, "PHDC close of 16 September 2026 per african-markets "
+                               "(EGX:PHDC), read live 17-09-2026: 13.77 EGP, previous "
+                               "close 13.81, volume 3,252,373. A third-party feed, "
+                               "recorded to SIZE how far the market has moved beyond the "
+                               "prices this repository holds — 4.4% below the 3 September "
+                               "close and 9.4% below the library's last row — and used in "
+                               "no calculation. egx.com.eg returned an empty reply from "
+                               "this environment and Mubasher HTTP 403",
+                               "2026-09-16", "C", unit="EGP/share"),
+    # Third-party share count, registered because it CONTRADICTS a claim made against this
+    # study. An external audit asserts PHDC publishes an "Outstanding shares" figure net of
+    # treasury — 2,839,980,164 at 31-Mar-2026 — against the 2,859,914,173 issued count this
+    # study divides by. Neither of the company's own releases carries a share count at all
+    # (checked live, 17-09-2026), and the one third-party source reachable from here reports
+    # 2,859.91mn, which AGREES with this study's divisor. The claim is therefore unresolved,
+    # not accepted and not dismissed, and it is registered with both figures so the next
+    # reader starts from the evidence rather than from either assertion.
+    "shares_third_party":    I(2859.91, "african-markets (EGX:PHDC), \"Shares Outstanding "
+                               "2,859.91 mln\", read live 17-09-2026. An external audit "
+                               "asserts a treasury-net count of 2,839.980164mn at "
+                               "31-Mar-2026; no company document reachable from here "
+                               "carries either figure", "2026-09-16", "C", unit="mn shares"),
+}
+
+# ---------------------------------------------------------------------------
+# COST-OF-CAPITAL AND MACRO INPUTS — REGISTERED [17-09-2026].
+#
+# THESE HAD NO REGISTER ROWS AT ALL, and that was the one class of input the study's own
+# Appendix B.3 singled out as third-party: "The only third-party inputs are the exogenous
+# macroeconomic series and the market price." The register held 125 rows and not one of
+# them carried the government bond yield, either sovereign spread, either equity risk
+# premium, the beta, the tax rate, the cost of debt or the inflation path — the inputs
+# behind the largest single number in the valuation. A figure that reaches the answer and
+# has no row is not sourced, however defensible it is, and the discount rate was the
+# largest such figure in this study. Values are READ FROM wacc_result.json at build time
+# so these rows carry provenance and never a second copy of the number.
+COST_OF_CAPITAL_SOURCES = {
+    "rf_observed": ("Egyptian ten-year government bond yield. LIMITATION, STATED: the "
+                    "Central Bank of Egypt has auctioned no ten-year EGP benchmark since "
+                    "31 May 2022 and nothing above five years since 2023, so this is a "
+                    "secondary-market quote and not an auction clearing level. cbe.org.eg's "
+                    "auction pages return an empty shell from this environment "
+                    "(269 bytes, 17-09-2026). The tenors that do clear are shorter and the "
+                    "curve is inverted, so a rate built from them would be HIGHER, not "
+                    "lower. Closed by: a dated secondary-market quote from the EGX, the "
+                    "CBE yield curve, or the Ministry of Finance.", "C"),
+    "sovereign_spread_rating": ("Damodaran country-risk file, January 2026, Egypt row, "
+                                "\"Adj. Default Spread\"", "C"),
+    "sovereign_spread_cds": ("Damodaran country-risk file, January 2026, Egypt row, "
+                             "sovereign CDS net of the Swiss CDS", "C"),
+    "erp_rating": ("Damodaran January 2026: mature-market ERP scaled by the rating-based "
+                   "default spread and the relative-volatility factor", "C"),
+    "erp_cds": ("Damodaran January 2026: mature-market ERP plus the CDS-based country "
+                "premium. THE ADOPTED BASIS, and section 1.8 marks it so", "C"),
+    "beta": ("PHDC's own weekly returns regressed on the EGX30 published index through "
+             "the house regression routine, which resolves the index itself; the "
+             "regression, its window, its "
+             "observation count and its standard error are published in Appendix B and "
+             "the estimator is named there", "A"),
+    "tax_rate": ("PHD FY2025 consolidated financial statements, tax note: current tax "
+                 "computed at 22.5% of net taxable profit in FY2025 and FY2024", "A"),
+    "kd_pretax": ("The sovereign yield above plus a stated corporate spread. NOT SOURCED "
+                  "and flagged as the study's one unsourced cost-of-capital input: the "
+                  "EGP 2.015bn securitisation of 4-Feb-2026 discloses tranche sizes, "
+                  "tenors and national-scale ratings and NO coupon. Closed by: a coupon "
+                  "on any tranche.", "D"),
+    "inflation_path": ("the house Egyptian macro path [R-MACRO-01], "
+                       "shared across every EG study; the terminal rate is the Central "
+                       "Bank of Egypt's published Q4-2026 inflation target", "C"),
 }
 
 # ---------------------------------------------------------------------------
 # GAPS — disclosed nowhere, and therefore NOT filled. Each names what closes it.
 GAPS = {
+    # THE CLAIM WAS WIDER THAN THE SEARCH BEHIND IT [corrected 17-09-2026]. This row said
+    # the FY2025 cash-flow statement "is published in its three totals only". What was
+    # actually established is that PHD's EARNINGS RELEASES print the cash-flow statement in
+    # three totals — verified again 17-09-2026 on the 1Q2026 release (operating 1,766,705,
+    # investing (1,891,835), financing (571,788)) and the 4Q2024 release (3,131,882 /
+    # (3,092,025) / 3,143,286). The AUDITED statements are a scan with no text layer; this
+    # study read the balance sheet and income statement off it by OCR and never extracted a
+    # cash-flow page. An external audit reports that the audited FY2025 statement carries a
+    # full indirect-method statement of roughly 45 lines, two of which — Residents'
+    # Association +9,646.5 and notes payable +4,466.0 — would cover EGP 14,112.5mn of the
+    # wedge. THAT IS A LEAD AND IT IS RECORDED AS ONE. The wedge is still not split, but the
+    # reason is now the true one: this study has not read the statement, not that the
+    # statement does not exist. The distinction matters because the whole two-framing
+    # architecture of Appendix A.3 rests on it.
     "cash_flow_statement_detail": (
-        "The FY2025 cash-flow statement is published in its three totals only "
-        "(operating EGP 1,424.2mn, investing EGP -4,031.7mn, financing "
-        "EGP 5,628.8mn); no line-by-line statement is posted. Working capital "
+        "PHD's earnings releases publish the cash-flow statement in three totals only — "
+        "re-verified 17-09-2026 on the 1Q2026 and 4Q2024 releases — and FY2025 has no "
+        "release at all, so the three FY2025 totals this study holds (operating "
+        "EGP 1,424.2mn, investing EGP -4,031.7mn, financing EGP 5,628.8mn) come from the "
+        "audited statements. THE AUDITED STATEMENTS ARE A SCAN WITH NO TEXT LAYER and this "
+        "study extracted the balance sheet and income statement from it, never a cash-flow "
+        "page; an external audit reports that a full indirect-method statement of roughly "
+        "45 lines is printed there, including two operating movements that would cover "
+        "EGP 14,112.5mn of the wedge below. That is a lead this study has not verified, so "
+        "the wedge is not split — because the line detail has not been READ, not because it "
+        "is unpublished. Working capital "
         "on the two audited balance sheets rose EGP 20,084.7mn in 2025 while "
         "net profit plus depreciation less operating cash implies a rise of "
         "EGP 3,146.2mn — a wedge of EGP 16,938.5mn, 46.8% of revenue, which "
@@ -183,17 +395,42 @@ GAPS = {
         "deliveries and construction spend are disclosed, so FY2025 has audited "
         "financials and NO operating drivers. Closed by: the FY2025 release, or the "
         "company confirming the figures directly.",
-    # THIS SAID NO HALF-YEAR DISCLOSURE EXISTED, and the input block forty lines below
-    # names one. A release of 18-Aug-2026 is REPORTED; this study has not obtained the
-    # filing and uses nothing from it, which is a sourcing decision and not an absence.
-    "h1_2026_results": "A half-year 2026 release of 18-Aug-2026 is REPORTED in the "
-        "trade press — an order book of EGP 284bn at 30 June, 40% up on the year, and "
-        "a further EGP 75bn sold at Hacienda Ras El Hekma in the fortnight after. This "
-        "study has NOT obtained the filing itself and uses nothing from it: a report "
-        "of a disclosure is a lead and never a source. The newest disclosure this "
-        "study HOLDS is 1Q2026 (posted 25-Jun-2026) and its information set ends "
-        "there, so if those reported figures hold the order book is ahead of what "
-        "this study carries. Closed by: the H1-2026 filing itself, from the company.",
+    # THE H1-2026 FILING: WHAT WAS SEARCHED, ON WHICH CHANNEL, AND WHAT CAME BACK
+    # [rewritten 17-09-2026 from searches run that day, not from a prior edition's text].
+    #
+    # A previous rebuild of this study CONSUMED 30-June-2026 figures — a net debt of
+    # 27,471.2, associates of 3,898.5, investment property of 1,008.4 — and printed them
+    # under a column headed "31 Mar 2026 (reviewed)". This edition does not carry them, and
+    # the reason is a sourcing rule rather than a doubt about the numbers: they could not be
+    # obtained from any channel reachable here, and a figure this study cannot read is not a
+    # figure this study publishes, however well attested it is elsewhere.
+    #
+    # SEARCHED 17-09-2026, both channels, results recorded either way:
+    #   - the company's own result centre, fetched live (HTTP 200, 102,142 bytes): the
+    #     newest documents of any kind are "PHD Consolidated FS Q1 2026 (English).pdf" and
+    #     "PHD - 1Q2026 Earnings Release - English.pdf". Of 86 PDFs on the page not one is
+    #     a 2Q/H1-2026 statement or release. The IR presentations paths return HTTP 404.
+    #   - egx.com.eg: empty reply from the server, twice. Mubasher: HTTP 403.
+    #
+    # REPORTED BUT NOT HELD: an external audit of this study states that PHDC filed reviewed
+    # consolidated statements to 30 June 2026 with the Exchange on 18 August 2026, and
+    # reports figures from the attachment. The trade press reports an order book of EGP 284bn
+    # at 30 June and a further EGP 75bn sold at Hacienda Ras El Hekma in the fortnight after.
+    # BOTH ARE LEADS AND NEITHER IS A SOURCE. The information set of this edition therefore
+    # ends at 1Q2026 and every date-bearing claim in the document says 31 March 2026 and
+    # means it. If the reported figures hold, the order book is ahead of what this study
+    # carries — and the study's own measurement is that the backlog is not the binding
+    # constraint, so being behind on it moves the answer by nothing.
+    # Closed by: the H1-2026 filing itself, from the company or the Exchange.
+    "h1_2026_results": "PHD's reviewed consolidated statements to 30 June 2026 are "
+        "REPORTED to have been filed with the Egyptian Exchange on 18 August 2026, and an "
+        "external audit of this study quotes figures from that attachment. This study has "
+        "NOT obtained the filing. Searched 17-09-2026: the company's own result centre was "
+        "fetched live and its newest documents of any kind are the 1Q2026 statements and "
+        "the 1Q2026 release — of 86 PDFs on the page, none is a 2Q or H1-2026 document; "
+        "egx.com.eg returned an empty reply and Mubasher HTTP 403. A report of a disclosure "
+        "is a lead and never a source, so nothing from it is used and the information set "
+        "ends at 1Q2026. Closed by: the H1-2026 filing itself.",
     "securitisation_pricing": "The EGP 2.015bn securitisation of 4-Feb-2026 discloses "
         "tranche sizes, tenors and national-scale ratings but NO coupon on any tranche, "
         "so the company's own marginal cost of debt cannot be read. Closed by: the "
@@ -208,6 +445,46 @@ GAPS = {
         "the realised gross margin and flagged where used.",
 }
 
+
+# ---------------------------------------------------------------------------
+# DATED NEGATIVE SEARCHES — a register, NOT a disclosure gap [R-PRIME-01].
+#
+# KEPT SEPARATE FROM GAPS ON PURPOSE, and the build caught the conflation. GAPS is the
+# six-row table section 7 prints: things the COMPANY does not disclose. A negative search
+# is something THIS STUDY looked for and did not find, which is a fact about the search and
+# not about the issuer — and section 7's own count is asserted at six, so a research record
+# filed among them breaks the document rather than informing it.
+#
+# WHY IT IS RECORDED AT ALL. A claim that something is not disclosed is a claim about a
+# search, and a search with no date and no channel is not evidence. The superseded edition
+# asserted that no half-year filing existed; the search behind that assertion was never
+# written down, so nothing could tell a later reader whether the filing was absent or
+# merely unlooked-for. It was the latter.
+    # DATED NEGATIVE SEARCHES, RECORDED SO THE NEXT EDITION STARTS FROM WHAT WAS TRIED
+    # RATHER THAN REPEATING IT [R-PRIME-01]. A claim that something is not disclosed is a
+    # claim about a search, and a search with no date and no channel is not evidence.
+NEGATIVE_SEARCHES = {
+    "17-09-2026": (
+        "Run 17-09-2026, each with its channel and its result. "
+        "(1) PHDC IR result centre — HTTP 200, 86 PDFs, newest of any kind is 1Q2026; no "
+        "2Q/H1-2026 statement or release. "
+        "(2) PHDC IR presentations — HTTP 404 on both candidate paths, so the September "
+        "2022 investor presentation and the corporate brochure an external audit cites for "
+        "price and construction cost per square metre, per-project unit mix and a "
+        "disclosed 5-7 year receivable life COULD NOT BE REACHED from here. They are "
+        "therefore neither consumed nor denied: the register no longer says those series "
+        "are undisclosed, it says this study has not read them. "
+        "(3) egx.com.eg — empty reply from the server, twice; the Exchange's own filing "
+        "record, its treasury-share disclosures and its board-resolution and Article-48 "
+        "filings are unreachable, so any claim about what PHDC has or has not filed with "
+        "the Exchange is outside this study's evidence. "
+        "(4) english.mubasher.info — HTTP 403. "
+        "(5) cbe.org.eg auction pages — HTTP 200 but a 269-byte empty shell, so no "
+        "Egyptian auction curve could be read; the ten-year yield's limitation is stated "
+        "in COST_OF_CAPITAL_SOURCES rather than papered over. "
+        "(6) A company-published share count net of treasury — absent from both the "
+        "1Q2026 and 4Q2024 releases, which carry no share count at all."),
+}
 
 # ---------------------------------------------------------------------------
 # The LATEST disclosed balance sheet — 31 March 2026, reviewed — registered from

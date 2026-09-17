@@ -72,11 +72,35 @@ NET_DEBT_BRIDGE = GROSS_DEBT_BRIDGE - BS_BRIDGE["cash"]
 # (never to enterprise value). Book (1,432.7 at 31-Mar-2026) and the three-year
 # mean profit share are published beside it as reference framings.
 _HIS = {y: {k: r["value"] for k, r in d.items()} for y, d in IN.HISTORICAL_IS.items()}
-NCI_VALUE_SHARE = _HIS["2025"]["nci"] / _HIS["2025"]["npat_pre_nci"]          # adopted proxy
+# THE ADOPTED BASIS IS NOW THE THREE-YEAR MEAN [17-09-2026, per instruction].
+#
+# WHY IT CHANGED, AND THE REASON IS NOT THE ARITHMETIC. Three bases were available and all
+# three were computed: the minority's share of FY2025 profit after tax (4.68%), the mean of
+# that share over 2023-25 (5.94%), and its book share of equity (8.35%). The study adopted
+# the lowest of the three, which is also the one that maximises equity value, and the reason
+# for preferring a single year over the mean was never given. An external audit priced the
+# choice — it is worth up to 3.9% of the answer — and put it back to the principal as a
+# judgement rather than resolving it, which is the right handling of a judgement with a
+# price on it.
+#
+# THE MEAN IS ADOPTED BECAUSE A ONE-OBSERVATION ANCHOR IS THE ERROR THIS STUDY REJECTS
+# EVERYWHERE ELSE. Section 1.7 declines to read a collection rate off any single year and
+# publishes the whole observed spread instead; section 1.1 declines to carry a cost drift
+# measured from one quarter against one year. A minority share taken from FY2025 alone is
+# the same construction those passages refuse, applied to a smaller number — and the
+# minority's filed share moves with which subsidiary happened to earn, exactly as the
+# margin moves with which project happened to complete. The other two bases stay published
+# beside it as reference framings, so a reader can price the choice themselves.
+NCI_PROFIT_SHARE_FY25 = _HIS["2025"]["nci"] / _HIS["2025"]["npat_pre_nci"]     # reference
 NCI_PROFIT_SHARE_3Y = sum(_HIS[y]["nci"] / _HIS[y]["npat_pre_nci"] for y in ("2023", "2024", "2025")) / 3.0
+NCI_VALUE_SHARE = NCI_PROFIT_SHARE_3Y                                          # ADOPTED
 NCI_BOOK_1Q26 = BS_BRIDGE["nci_equity"]                                        # reference: at book
 NCI_BOOK_SHARE_1Q26 = BS_BRIDGE["nci_equity"] / BS_BRIDGE["total_equity"]       # reference: book share
-NCI_BASIS = "share of equity value, proxied by the minority's filed share of FY2025 profit after tax"
+NCI_BASIS = ("share of equity value, proxied by the MEAN of the minority's filed share of "
+             "profit after tax over FY2023, FY2024 and FY2025 (%.4f%%). The FY2025 share "
+             "alone (%.4f%%) and the book share of equity (%.4f%%) are published beside it; "
+             "the single year is not adopted because a one-observation anchor is the "
+             "construction this study refuses elsewhere")
 
 # --- the disclosed regional history ----------------------------------------
 LEGEND = {95082: "North Coast & Alexandria", 44570: "West Cairo & Badya",
@@ -93,7 +117,18 @@ for b in _lat["regions"]:
 # FY2024: the company handed over about 2,000 units and reported revenue of
 # EGP 27,167mn, so revenue per delivered unit was EGP 13.58mn. Cost of revenue
 # of EGP 17,837mn over the same units is EGP 8.92mn per unit.
-DELIVERED_FY24 = 2000.0
+# READ FROM THE REGISTRY [17-09-2026]. This was typed here as 2000.0 while the 4Q2024
+# release discloses it ("handed over units exceeding c. 2,000 units during the period") and
+# the bibliography simultaneously claimed FY2024 unit counts were absent. One figure, one
+# place, and the claim of absence withdrawn where it was made.
+DELIVERED_FY24 = REG["units_delivered_fy24"]
+# THE COMPANY'S OWN FY2026 FIGURE, CARRIED SO THE DOCUMENT CAN PRINT IT AND SAY WHY IT IS
+# NOT THE ANCHOR: 1,200 contractual units ready to be handed over in FY2026 (1Q2026
+# release). The model's 2026 count is implied from the disclosed revenue anchor over the
+# escalated price per unit; "ready to be handed over" is inventory available rather than
+# deliveries booked, and the identical 1,200 appears in the 3Q2025 release for end-9M2025,
+# so the company is repeating it rather than updating it. Both are reported.
+UNITS_RTM_FY26 = REG["units_rtm_fy26"]
 REV_PER_DELIVERED_FY24 = REG["revenue_fy24"] / DELIVERED_FY24
 COST_PER_DELIVERED_FY24 = REG["cogs_fy24"] / DELIVERED_FY24
 # FY2025 is a CHECK, not an input: deliveries are not disclosed for that year,
@@ -192,8 +227,15 @@ def build():
     # EGP 9,300mn, up 11% on 1Q2025, which puts 1Q2025 at EGP 8,378mn — 23.2% of
     # that year's EGP 36,169mn. Carrying the same first-quarter share forward
     # gives an FY2026 revenue anchor from the actual, not from the trend.
+    # THE PRIOR-YEAR QUARTER IS DISCLOSED, SO IT IS READ AND NOT DERIVED [17-09-2026].
+    # This divided the quarter by one plus a ROUNDED "up 11% YoY" from the release's bullet
+    # points to infer 1Q2025 — while page 8 of the same release prints the prior-year column
+    # outright at EGP 8,392,553 thousand. Deriving a disclosed figure from a rounded
+    # percentage put ~0.2% of error into the denominator of the FY2026 anchor, and the
+    # anchor compounds through all fifteen forecast years. Both quarters are now read from
+    # the statement. The rounded YoY stays in the registry as the release's own headline.
     q1_26 = REG["revenue_1q26"]
-    q1_25 = q1_26 / (1 + REG["revenue_1q26_yoy"])
+    q1_25 = REG["revenue_1q25"]
     q1_share = q1_25 / REG["revenue_fy25"]
     fy26_anchor = q1_26 / q1_share
     # FY2025 is anchored on the DISCLOSED revenue, not on a projection of it:

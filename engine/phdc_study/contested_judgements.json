@@ -1,15 +1,45 @@
 {
  "ticker": "PHDC",
  "as_of": "2026-09-10",
- "central_adopted": 21.08966329162309,
+ "central_adopted": 20.88233293705894,
  "generated_by": "engine/phdc_study/contested.py \u2014 never hand-edited",
  "direction_count": {
-  "priced": 3,
-  "alternative_worth_more": 1,
-  "alternative_worth_less": 2,
+  "priced": 6,
+  "alternative_worth_more": 3,
+  "alternative_worth_less": 3,
   "note": "a study resolving every contested choice the same way is how a lean survives an audit of its steps. This is a flag and not a failure."
  },
  "judgements": [
+  {
+   "name": "the interest add-back's footing",
+   "adopted": "the FY2025 finance charge, flat and nominal, for fifteen years",
+   "alternative": "the same charge at its FY2025 share of revenue, scaling with the business, which is what the flat conversion rate implies",
+   "value_alternative": 35.42165609687563,
+   "why": "operating cash is exogenous here, so raising the charge raises free cash flow and nothing offsets it. The conservative footing is kept BECAUSE the alternative is worth seventy per cent upward and a consistency correction that large in that direction is indistinguishable from fitting. Which footing is right depends on where the company presents interest paid, and its cash-flow statement is a scan this study has not read \u2014 so this is the study's largest unresolved construction, named rather than resolved in the direction that flatters it",
+   "value_adopted": 20.88233293705894,
+   "cost_of_the_judgement": 14.53932315981669,
+   "share_of_value": 0.6962499450439469
+  },
+  {
+   "name": "the minority's share of value",
+   "adopted": "the MEAN of the minority's filed profit share over FY2023-FY2025",
+   "alternative": "the FY2025 share alone, as the superseded editions carried",
+   "value_alternative": 21.160485438452582,
+   "why": "a one-observation anchor is the construction this study refuses elsewhere, and the single year is also the branch that maximises equity value. Adopted on instruction of 17-09-2026 after an external audit priced the choice",
+   "value_adopted": 20.88233293705894,
+   "cost_of_the_judgement": 0.27815250139364167,
+   "share_of_value": 0.013319991699778759
+  },
+  {
+   "name": "the minority at book instead of at value",
+   "adopted": "the minority's share of VALUE",
+   "alternative": "its book share of equity on the 31-Mar-2026 sheet",
+   "value_alternative": 20.640303771267085,
+   "why": "the model capitalises all of a subsidiary's cash flow, so the minority's claim is worth its share of that value and not what it historically cost. Published because an external audit named book as a third basis, quoting 8.35 per cent, where this study's own 31-Mar-2026 sheet gives 7.03 per cent \u2014 the audit's figure for it is wrong",
+   "value_adopted": 20.88233293705894,
+   "cost_of_the_judgement": -0.2420291657918554,
+   "share_of_value": 0.011590140168790102
+  },
   {
    "name": "the central lens",
    "adopted": "the cash-flow lens alone",
@@ -18,37 +48,37 @@
    "alternative_priced_at": "the edition of 2 September 2026, EGP 10.9412",
    "why_not_repriced": "three of the four lenses in that blend were retired with it and are not built by this model, so the alternative cannot be run against the current numbers. The figure beside it is what it was worth when it was retired, and it is named as that rather than carried as current.",
    "why": "three of the four blended lenses value a developer on reported earnings and historical-cost book, which for a company whose worth sits in an undelivered order book measures a floor; and the weights had never cleared any out-of-sample test",
-   "value_adopted": 21.08966329162309
+   "value_adopted": 20.88233293705894
   },
   {
    "name": "the discount rate's shape",
    "adopted": "a rate that glides with the house Egyptian macro path",
    "alternative": "a flat rate held for the whole window and the perpetuity",
-   "value_alternative": 7.33812589666521,
+   "value_alternative": 7.273685487447129,
    "why": "holding a crisis-level rate to year fifteen and into perpetuity asserts that Egypt never normalises, while this study's own cost of debt already follows the disinflation path",
-   "value_adopted": 21.08966329162309,
-   "cost_of_the_judgement": -13.751537394957879,
-   "share_of_value": 0.6520510642965102
+   "value_adopted": 20.88233293705894,
+   "cost_of_the_judgement": -13.608647449611812,
+   "share_of_value": 0.6516823331296071
   },
   {
    "name": "the length of the explicit window",
    "adopted": "fifteen years, run until growth meets the terminal",
    "alternative": "five years, as the earlier editions carried",
-   "value_alternative": 5.350896426917972,
+   "value_alternative": 5.305578900740845,
    "why": "a five-year window closes while deliveries are still compounding, so the terminal capitalises a growth rate the model never reached",
-   "value_adopted": 21.08966329162309,
-   "cost_of_the_judgement": -15.738766864705118,
-   "share_of_value": 0.7462787170697328
+   "value_adopted": 20.88233293705894,
+   "cost_of_the_judgement": -15.576754036318096,
+   "share_of_value": 0.7459297810866107
   },
   {
    "name": "terminal growth",
    "adopted": "the house Egyptian terminal at zero real growth",
    "alternative": "the 12% the earlier editions carried",
-   "value_alternative": 38.83870842305231,
+   "value_alternative": 38.44827927812449,
    "why": "12% nominal in perpetuity is above Egypt's own long-run nominal GDP in the same currency, which makes the company the economy eventually",
-   "value_adopted": 21.08966329162309,
-   "cost_of_the_judgement": 17.74904513142922,
-   "share_of_value": 0.841599265289324
+   "value_adopted": 20.88233293705894,
+   "cost_of_the_judgement": 17.565946341065548,
+   "share_of_value": 0.84118696862131
   },
   {
    "name": "the delivery path",
@@ -58,7 +88,7 @@
    "alternative_priced_at": "the edition of 2 September 2026, EGP 32.5882",
    "why_not_repriced": "the fade is built into the model's own delivery ladder rather than exposed as a parameter, so holding it flat is a rebuild and not a re-run. Named as the edition it was priced at.",
    "why": "the company's own handover record fades; holding the peak year flat for fifteen years is a claim about something it has not done",
-   "value_adopted": 21.08966329162309
+   "value_adopted": 20.88233293705894
   }
  ]
 }

@@ -20,11 +20,36 @@ N = json.load(open(os.path.join(HERE, "study_numbers.json")))
 XL = os.path.join(HERE, _ed.MODEL_XLSX)
 
 
-def evaluate(wb, sheet, ref, depth=0):
+def evaluate(wb, sheet, ref, depth=0, _visiting=None):
     """Resolve one cell, following formula references. Raises on anything it
-    cannot parse — an unparseable cell is a failure, not a skip."""
-    if depth > 24:
-        raise ValueError("reference cycle at %s!%s" % (sheet, ref))
+    cannot parse — an unparseable cell is a failure, not a skip.
+
+    A REAL CYCLE DETECTOR, NOT A DEPTH PROXY [17-09-2026]. This raised
+    "reference cycle" at depth 24, which is a different claim from the one it
+    was making: a deep chain is not a cycle. The distinction stopped being
+    academic the moment the bridge was wired to the DCF sheet instead of
+    carrying a hardcoded copy of its total — the longest legitimate chain then
+    runs value per share -> equity -> enterprise value -> the fifteen-year sum
+    -> one year's present value -> its free cash flow -> its revenue -> its
+    units -> the prior fourteen years of compounding -> the Assumptions cell,
+    which is twenty-six links of perfectly acyclic arithmetic. The old guard
+    called that a cycle and failed the build, so the cheapest way to keep the
+    check green was to leave the bridge hardcoded. A checker that punishes
+    wiring is a checker that rewards constants.
+
+    The set below tracks the cells on the CURRENT path, so a genuine cycle is
+    caught immediately and by name, at any depth; the depth limit stays only as
+    a runaway stop and is now far above any real chain.
+    """
+    if _visiting is None:
+        _visiting = set()
+    here = (sheet, ref)
+    if here in _visiting:
+        raise ValueError("reference cycle at %s!%s — the path back to itself is %s"
+                         % (sheet, ref, " -> ".join("%s!%s" % x for x in _visiting)))
+    if depth > 256:
+        raise ValueError("reference chain deeper than 256 at %s!%s" % (sheet, ref))
+    _visiting = _visiting | {here}
     val = wb[sheet][ref].value
     if val is None:
         return 0.0
@@ -47,7 +72,7 @@ def evaluate(wb, sheet, ref, depth=0):
         for cc in range(min(a, b), max(a, b) + 1):
             for rr in range(min(r1, r2), max(r1, r2) + 1):
                 total += evaluate(wb, sh, "%s%d" % (get_column_letter(cc), rr),
-                                  depth + 1)
+                                  depth + 1, _visiting)
         return repr(total)
 
     expr = re.sub(
@@ -60,8 +85,10 @@ def evaluate(wb, sheet, ref, depth=0):
     def sub(m):
         if m.group(3):
             sh = (m.group(1) or m.group(2)).strip()
-            return repr(evaluate(wb, sh, "%s%s" % (m.group(3), m.group(4)), depth + 1))
-        return repr(evaluate(wb, sheet, "%s%s" % (m.group(5), m.group(6)), depth + 1))
+            return repr(evaluate(wb, sh, "%s%s" % (m.group(3), m.group(4)),
+                                 depth + 1, _visiting))
+        return repr(evaluate(wb, sheet, "%s%s" % (m.group(5), m.group(6)),
+                             depth + 1, _visiting))
 
     py = tok.sub(sub, expr).replace("^", "**")
     if re.search(r"SUM\(", py, re.I):

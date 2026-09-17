@@ -18,6 +18,7 @@ import valuation as VAL
 import bottom_up_model as BU
 import valuation_v2 as V2
 import statements as ST
+import edition as _ed                              # the one place the edition date lives
 import research_protocol as RP
 # THE CLAIM IS FROZEN ON PURPOSE AND I BROKE THAT [restored 13-09-2026].
 # This literal was read as staleness on 13-09-2026 and replaced with
@@ -91,6 +92,26 @@ def _diag_implied():
     return d["implied"]["value"]
 
 
+def _edition_note():
+    """This edition's own change-log, from the edition module and the committed numbers."""
+    return (
+        "audit-response edition: an external forensic audit of a rebuild struck outside "
+        "this repository was worked finding by finding (CRITIQUE_RESPONSE_%s.md), and the "
+        "study was re-audited against its own filings. Six inputs improve and four "
+        "descriptions are corrected. The 1Q2026 anchors now read the release's own income "
+        "statement in thousands rather than its rounded headline billions; the minority's "
+        "share of value moves from the FY2025 share alone to the MEAN of FY2023-FY2025, on "
+        "instruction; the price is the close this study's own history holds, dated to it, "
+        "and is the same price in every section; five separate typed copies of that price "
+        "are wired to one registry row, as are the edition dates and this note. In the "
+        "workbook the bridge now reads the discounted cash-flow sheet instead of carrying "
+        "rounded copies of its totals, and the terminal is published as its own "
+        "construction rather than one hardcoded number holding a third of the answer. The "
+        "discount-rate path, the forecast, the fifteen-year window and the cash-conversion "
+        "cases are unchanged from the edition of %s."
+        % (_ed.EDITION.strftime("%d-%m-%Y"), _ed.PRIOR_WORDS))
+
+
 def main():
     W = json.load(open(os.path.join(HERE, "wacc_result.json")))
     peers = json.load(open(os.path.join(HERE, "peers.json")))
@@ -130,14 +151,20 @@ def main():
         "meta": {
             "ticker": "PHDC", "name": "Palm Hills Developments",
             "exchange": "EGX", "market": "EG", "currency": "EGP",
-            "edition": "2026-09-10", "prior_edition": "2026-09-03",
-            "edition_note": ("recalibration edition: the terminal risk-free rate now "
-                             "reads the house Egyptian macro path rather than a real-rate "
-                             "convention carried inside this study, which moves the "
-                             "terminal cost of capital from 16.15% to 14.97% and the "
-                             "central from EGP 17.86 to EGP 21.09. Nothing else changes: "
-                             "the forecast, the cash-conversion cases, the bridge and the "
-                             "lens weights are as issued on 3 September 2026."),
+            # TWO DATES AND A CHANGE-LOG, ALL TYPED, BESIDE A MODULE THAT EXISTS TO OWN
+            # THEM [fixed 17-09-2026]. edition.py's docstring says the date lives there
+            # because it had been typed in three places; these two survived that
+            # consolidation, so the numbers file — the one file every builder reads — went
+            # on stamping 2026-09-10 through a re-strike, and diagnostics.json takes its
+            # as_of from here and stamped the wrong edition too. Found by noticing a stale
+            # as_of, not by any gate: nothing here reads a typed date against edition.py.
+            #
+            # THE NOTE IS GENERATED for the same reason the document's prose is: a
+            # change-log carried forward from the edition it replaces describes work the
+            # document does not contain.
+            "edition": _ed.ISO,
+            "prior_edition": _ed.SUPERSEDES[-1].isoformat(),
+            "edition_note": _edition_note(),
             "base_year": 2025, "information_set_ends": "1Q2026",
             "bridge_balance_sheet": IN.BRIDGE_BS_DATE,
             # THE STAMP IS FROZEN, NOT TAKEN FROM THE LIVE CONSTANT. [R-STD-02]: a version read
@@ -148,7 +175,24 @@ def main():
             # conformance the ratchet records it does not have. It moves back to the live constant in
             # the same pass that meets the requirement, and not before.
             "standard_version": _STD_VERSION,
-            "spot": 14.40, "spot_date": "close 3 Sep 2026",
+            # THE SPOT WAS TYPED HERE, AND AGAIN IN price_map BELOW, AND AGAIN IN
+            # inputs.py — THREE COPIES AND NOTHING RECONCILING THEM [fixed 17-09-2026].
+            # That is the whole mechanism behind a study delivered against a price no file
+            # in this repository held: engine/raw_ohlc/EG/PHDC.csv ends 23-Aug-2026 at
+            # 15.200 and has no September observation at all, while these two literals
+            # said 14.40 and "close 3 Sep 2026" and the registry row said 14.40 dated
+            # 2026-08-23. Four claims, no two compatible, and no gate reads a typed
+            # constant against its own registry row. ONE SOURCE NOW: the registry, which
+            # reads the committed price library.
+            "spot": IN.MARKET["spot"]["value"],
+            "spot_date": "close " + IN.MARKET["spot"]["date"],
+            "spot_source": IN.MARKET["spot"]["source"],
+            "spot_tier": IN.MARKET["spot"]["tier"],
+            # The later third-party observation is carried as EVIDENCE ABOUT STALENESS and
+            # reaches no arithmetic: the library is 25 days old at this edition and the
+            # market has moved 9.4% since its last row. Stated, not smoothed over.
+            "spot_later_observed": IN.MARKET["spot_later_observed"]["value"],
+            "spot_later_observed_date": IN.MARKET["spot_later_observed"]["date"],
         },
         "registry": {**{k: v for g in (IN.ACTUALS, IN.BALANCE_SHEET_FY25, IN.DEBT_FY25,
                                        IN.OPERATING, IN.MARKET) for k, v in g.items()},
@@ -211,7 +255,9 @@ def main():
         "peers": peers,
         # published price engine output, read from the live site data, not re-derived
         "price_map": {
-            "spot": 14.40, "spot_date": "close 3 Sep 2026",
+            # the SECOND typed copy of the spot; read from the registry like the first
+            "spot": IN.MARKET["spot"]["value"],
+            "spot_date": "close " + IN.MARKET["spot"]["date"],
             "dist": {"m1": {"p5": 13.08, "p25": 14.67, "p50": 15.64,
                             "p75": 16.68, "p95": 18.71, "resolve": "2026-09-23"},
                      "m3": {"p5": 11.98, "p25": 14.61, "p50": 16.34,
@@ -337,7 +383,11 @@ def main():
                 # is the traded price-to-earnings ratio on the same earnings.
                 {"kind": "relative_multiple", "value": V2.lenses()["relative"]["base"],
                  "multiple": 9.0,
-                 "circularity": {"spot": 14.40,
+                 # the FOURTH typed copy of the spot, in the one block whose whole
+                 # purpose is to let a gate test this lens for circularity against the
+                 # traded price. A circularity check run against the wrong price is not
+                 # a check. Read from the registry [17-09-2026].
+                 "circularity": {"spot": IN.MARKET["spot"]["value"],
                                  "shares": float(V2.SHARES),
                                  "net_debt": 0.0,
                                  "metric_value": float(V2.ROWS[0]["npat"])},
@@ -625,7 +675,11 @@ def main():
     # actually never typed: this line carried the literal "2026.09.01" beside a
     # comment saying it was not typed, which is how a rebuilt study went on
     # reporting a superseded standard to the campaign queue.
-    out["spot"] = 14.40
+    # THE FIFTH TYPED COPY, and the one every consumer actually reads: diagnostics_phdc.py
+    # takes N['spot'] from here, so the reverse read and the published gap stood on this
+    # literal while meta.spot and price_map.spot stood on another. One registry row now
+    # feeds all five [17-09-2026].
+    out["spot"] = IN.MARKET["spot"]["value"]
     out["meta"]["central"] = out["central"]
     out["meta"]["gap_vs_spot"] = out["central"] / out["spot"] - 1
     out["meta"]["central_note"] = (

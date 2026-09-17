@@ -48,9 +48,25 @@ def ground_up_record():
                      "total and by region, and units delivered; PHD consolidated "
                      "statements disclose revenue, cost of revenue and work in "
                      "progress. FY2011-FY2025 assembled in engine/phdc_walkforward."),
-        price_basis=("Realised revenue per period from the audited statements; gross "
-                     "margin is an OUTPUT of price against cost on the same completion "
-                     "clock, never an input."),
+        # THE MACHINE-READABLE RECORD SAID THE OPPOSITE OF WHAT THE CODE DOES, and it was
+        # the fourth and last surface carrying the claim [corrected 17-09-2026]. Three
+        # prose surfaces were fixed on 10-09-2026; the 13-09-2026 QC gate recorded this one
+        # as NOT CLOSED (F8) because it is the DriverLine that assert_ground_up() actually
+        # reads, and an external audit then found the same contradiction from the document
+        # side. bottom_up_model.py computes cost_per = rev_per * (1 - GM_FORWARD): the
+        # margin is held at the latest disclosed level and the cost is solved from it,
+        # because PHD publishes no delivered-unit count after FY2024 and so there is no
+        # independent cost per unit to build. A driver record that states the reverse makes
+        # the gate attest to a construction the model does not use.
+        price_basis=("Realised revenue per delivered unit, escalated on the house "
+                     "inflation path from the FY2024 disclosure; gross margin is a HELD "
+                     "INPUT at the latest disclosed level and cost per unit is SOLVED "
+                     "from it on the same completion clock. It is an input and is declared "
+                     "as one: no delivered-unit count is published after FY2024, so every "
+                     "later count is implied from revenue over price per unit and cost per "
+                     "unit collapses to price times one minus the margin by construction, "
+                     "whichever way it is written. What is decided is WHICH disclosed "
+                     "margin anchors it — the latest reviewed period, not an average."),
         cost_basis=("Cost of revenue from the audited statements, recognised on the "
                     "SAME completion schedule as revenue — the correction the "
                     "walk-forward training run earned on this company's history."),

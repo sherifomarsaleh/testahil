@@ -193,12 +193,38 @@ def build(path):
 
     doc.add_heading("4  Negative results — what was tried and rejected", level=1)
     table(doc, ["Attempt", "Why it was rejected"],
-          [["Recover the missing FY2024 unit count by summing the disclosed "
-            "regional unit series",
-            "On the four years where the company total IS disclosed, the sum "
-            "overstates it by about a third because the regional charts overlap. "
-            "FY2024 and FY2025 unit counts are therefore absent rather than "
-            "inferred."],
+          # THE NEGATIVE RESULT WAS FALSE, AND IT WAS TESTED AGAINST THIS STUDY'S OWN
+          # EXTRACTED DATA [withdrawn 17-09-2026]. The claim was that summing the three
+          # regional unit series overstates the disclosed company total "by about a third
+          # because the regional charts overlap", on "the four years where the company
+          # total IS disclosed". This study's own regional extract holds the company total
+          # for EIGHT years across five release vintages — twenty-one year-and-vintage
+          # pairs — and the sums are EXACT in nineteen of them: 2017 2,136; 2018 3,102;
+          # 2019 2,470; 2020 1,840; 2021 3,350; 2022 4,033, each equal to the printed
+          # group total. The worst discrepancy anywhere is 2016 at -3.0%, and 2023 is
+          # +0.8%. Nothing is near a third, and the charts do not overlap.
+          #
+          # AND THE SECOND HALF WAS FALSE TOO. FY2024 unit counts are DISCLOSED: the
+          # 4Q2024 release states handovers "exceeding c. 2,000 units during the period"
+          # and charts FY2024 units sold by region at 4,192 / 2,839 / 453 — the very
+          # figures this study already carries and builds its regional price series from.
+          # Only the FY2025 half of the claim survives.
+          #
+          # A FALSE NEGATIVE RESULT IS WORSE THAN A MISSING ONE: it tells the next reader
+          # a road is closed when it is open, and this one justified withholding a figure
+          # the company publishes. Withdrawn, with what was actually measured.
+          [["Recover the FY2024 unit count by summing the disclosed regional unit "
+            "series — WITHDRAWN",
+            "This was recorded as rejected on the grounds that the regional sums "
+            "overstate the disclosed company total by about a third. Re-tested on 17 "
+            "September 2026 against this study's own extract of the release charts: "
+            "across twenty-one year-and-vintage pairs the three regional unit series "
+            "equal the printed company total EXACTLY in nineteen, the worst "
+            "discrepancy anywhere being -3.0% in 2016 and +0.8% in 2023. The stated "
+            "reason was wrong. Separately, FY2024 handovers are disclosed outright in "
+            "the 4Q2024 release (\"exceeding c. 2,000 units\"), and that release also "
+            "charts FY2024 units sold by region at 4,192 / 2,839 / 453 — which this "
+            "study already uses. Only FY2025 unit counts are genuinely absent."],
            ["Use the accounting cost of debt",
             "Finance cost of EGP 3,347.5mn on average gross borrowings of about "
             "EGP 26,700mn implies 12.5%, far below the sovereign, because much of "

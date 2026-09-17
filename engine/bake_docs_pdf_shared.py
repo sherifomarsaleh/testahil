@@ -38,12 +38,40 @@ def bake(here, edn):
             print('%-46s MISSING — the edition names it and it is not on disk' % doc)
             fails.append(doc)
             continue
+        out = os.path.join(here, pdf)
+        # THE SUCCESS TEST WAS SATISFIABLE WITHOUT THE WORK BEING DONE [fixed 17-09-2026].
+        #
+        # soffice EXITS 0 AND LEAVES THE OLD FILE IN PLACE when it has no filter for the
+        # input — a machine with libreoffice-core but not libreoffice-writer converts
+        # nothing, says nothing, and returns success. The old test was `returncode != 0 or
+        # not os.path.exists(out)`, and the stale PDF from the previous edition satisfies
+        # os.path.exists, so this script printed "2 delivered document(s) rendered" over
+        # two files it had not touched. That is precisely the defect the docstring above
+        # says this file exists to stop, reappearing one level up: the reader's own file
+        # stayed at the pre-fix render while the build reported clean. It was found on
+        # PHDC on 17-09-2026 by reading the PDF's mtime, not by any gate.
+        #
+        # THE TEST IS NOW THAT THE OUTPUT IS NEWER THAN ITS SOURCE. A render that did not
+        # happen cannot pass it, whatever soffice's exit code says, and the failure names
+        # the missing filter as the likely cause so the next person does not have to
+        # rediscover it.
+        before = os.path.getmtime(out) if os.path.exists(out) else -1.0
         r = subprocess.run(['soffice', '--headless', '--convert-to', 'pdf',
                             '--outdir', here, src],
                            stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=900)
-        out = os.path.join(here, pdf)
         if r.returncode != 0 or not os.path.exists(out):
             print('%-46s RENDER FAILED' % doc)
+            print(r.stdout.decode('utf-8', 'replace')[-400:])
+            fails.append(doc)
+            continue
+        after = os.path.getmtime(out)
+        if after <= before or after < os.path.getmtime(src):
+            print('%-46s NOT WRITTEN — soffice exited 0 and left the existing PDF in '
+                  'place. It is older than the document it is rendered from, so this '
+                  'build did NOT refresh the file a reader opens. The usual cause is a '
+                  'missing document filter (libreoffice-writer for .docx, '
+                  'libreoffice-calc for .xlsx) on a machine that has libreoffice-core.'
+                  % doc)
             print(r.stdout.decode('utf-8', 'replace')[-400:])
             fails.append(doc)
             continue

@@ -67,8 +67,94 @@ def short_window(n=5):
         V.ROWS = saved
 
 
+def interest_addback(mode):
+    """The 15-year interest add-back, priced on each coherent footing.
+
+    THE WEAKEST JOINT IN THIS MODEL, FOUND 17-09-2026 AND PRICED RATHER THAN TUNED.
+
+    Free cash flow here is operating cash, plus the finance charge after tax, less
+    maintenance capital expenditure. Operating cash is set as a SHARE OF REVENUE, measured
+    on the three years the company has published a cash-flow statement. The finance charge
+    is held at the FY2025 level, flat and nominal, for all fifteen years.
+
+    Those two do not sit on the same footing, and the mismatch is measurable: the charge ran
+    at 9.26% of revenue in FY2025 and the model holds it at a level that is 8.3% of revenue
+    in 2026 and 1.4% by 2040, while the conversion rate it adjusts stays flat. Either debt
+    is flat in nominal terms — in which case the interest drag inside operating cash falls
+    away and the conversion rate should RISE across the window — or debt scales with the
+    business, in which case the charge should scale and the conversion rate can stay flat.
+    The model has taken the conservative half of each world.
+
+    AND THE FIX IS NOT AVAILABLE, WHICH IS THE POINT. Because operating cash is exogenous,
+    RAISING the modelled charge raises free cash flow: nothing falls when the charge rises.
+    Putting the add-back on the revenue ratio — the internally consistent reading of world
+    two — is worth +70% of the answer. A consistency correction worth seventy per cent that
+    happens to raise the number is the shape of fitting, and this house does not publish it
+    as a central. Whether the add-back belongs there at all depends on where PHDC presents
+    interest paid in its cash-flow statement, and that statement is a scan this study has
+    not read (see the cash-flow-detail gap). So the conservative construction is kept, the
+    alternative is priced here, and the dependency is named in the study.
+    """
+    dc = COC.Discounter(SCHED)
+    ratio = BU.REG["finance_cost_fy25"] / BU.REG["revenue_fy25"]
+
+    def charge(r):
+        return r["revenue"] * ratio if mode == "revenue_ratio" else r["interest"]
+
+    pv = 0.0
+    for i, r in enumerate(V.ROWS, start=1):
+        fcff = (r["revenue"] * CFO_MID + charge(r) * (1 - BU.TAX)
+                - r["revenue"] * 0.01)
+        pv += fcff * dc.factor(i)
+    last = V.ROWS[-1]
+    tail = (last["revenue"] * CFO_MID + charge(last) * (1 - BU.TAX)
+            - last["revenue"] * 0.01)
+    pv_tv = dc.perpetuity_pv(tail, V.TG)
+    ev = pv + pv_tv
+    eq = ev - V.NET_DEBT + V.BS["investments_assoc"] + V.BS["investment_property"]
+    return (eq - eq * V.NCI_SHARE) / V.SHARES
+
+
+def nci_at(share):
+    """The bridge on a different minority share of value; nothing else moves."""
+    d = V.dcf(CFO_MID, SCHED)
+    eq_gross = d["equity_before_nci"]
+    return (eq_gross - eq_gross * share) / V.SHARES
+
+
 def main():
     rows = [
+        {"name": "the interest add-back's footing",
+         "adopted": "the FY2025 finance charge, flat and nominal, for fifteen years",
+         "alternative": "the same charge at its FY2025 share of revenue, scaling with "
+                        "the business, which is what the flat conversion rate implies",
+         "value_alternative": interest_addback("revenue_ratio"),
+         "why": "operating cash is exogenous here, so raising the charge raises free cash "
+                "flow and nothing offsets it. The conservative footing is kept BECAUSE "
+                "the alternative is worth seventy per cent upward and a consistency "
+                "correction that large in that direction is indistinguishable from "
+                "fitting. Which footing is right depends on where the company presents "
+                "interest paid, and its cash-flow statement is a scan this study has not "
+                "read — so this is the study's largest unresolved construction, named "
+                "rather than resolved in the direction that flatters it"},
+        {"name": "the minority's share of value",
+         "adopted": "the MEAN of the minority's filed profit share over FY2023-FY2025",
+         "alternative": "the FY2025 share alone, as the superseded editions carried",
+         "value_alternative": nci_at(BU.NCI_PROFIT_SHARE_FY25),
+         "why": "a one-observation anchor is the construction this study refuses "
+                "elsewhere, and the single year is also the branch that maximises equity "
+                "value. Adopted on instruction of 17-09-2026 after an external audit "
+                "priced the choice"},
+        {"name": "the minority at book instead of at value",
+         "adopted": "the minority's share of VALUE",
+         "alternative": "its book share of equity on the 31-Mar-2026 sheet",
+         "value_alternative": nci_at(BU.NCI_BOOK_SHARE_1Q26),
+         "why": ("the model capitalises all of a subsidiary's cash flow, so the "
+                 "minority's claim is worth its share of that value and not what it "
+                 "historically cost. Published because an external audit named book as a "
+                 "third basis, quoting 8.35 per cent, where this study's own 31-Mar-2026 "
+                 "sheet gives %.2f per cent — the audit's figure for it is wrong"
+                 % (100 * BU.NCI_BOOK_SHARE_1Q26))},
         {"name": "the central lens",
          "adopted": "the cash-flow lens alone",
          "alternative": "the retired 45/15/20/20 blend of four lenses",

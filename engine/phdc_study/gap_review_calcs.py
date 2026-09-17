@@ -1,8 +1,22 @@
-"""Arithmetic behind GAP_REVIEW_01-09-2026.md [R-GAP-01].
+"""Arithmetic behind GAP_REVIEW_01-09-2026.md [R-GAP-01] — SUPERSEDED, AND IT SAYS SO.
 
-Every figure in that review that is not read straight off a filing is computed
-here, from the study's own committed numbers, and printed. Nothing in the
-review is typed.
+Every figure in that review that is not read straight off a filing was computed here, from
+the study's own committed numbers, and printed. Nothing in that review was typed.
+
+IT DOES NOT RUN AGAINST THE CURRENT MODEL, AND UNTIL 17-09-2026 IT DID NOT SAY SO — IT
+CRASHED. Its first section decomposes the gap by LENS WEIGHT, which is the pre-02-September
+architecture: four lenses blended at fixed weights. That architecture was retired on
+02-09-2026, when the cash-flow lens became the central outright and the others became
+cross-checks that are published beside it and never averaged in. So every weight this module
+reads is now None, and the line `contrib = wt * (ba - SPOT)` raised TypeError AT IMPORT —
+the exact failure mode this repository verifies against by importing every module rather
+than parsing it, found by a gate sweep on 17-09-2026 and not by anything in the build.
+
+THE SUCCESSOR IS gap_review_calcs_above.py, which is what the live gap reviews are computed
+from. This module is kept rather than deleted because the review it produced is a delivered
+document and a reader received it: deleting the arithmetic behind a published review destroys
+the only record of how its figures were reached. It now REFUSES with a reason instead of
+crashing, which is the difference between a retired tool and a broken one.
 """
 import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -18,6 +32,19 @@ CENTRAL, SPOT = N["central"], N["spot"]
 
 out = {}
 p = lambda *a: print(*a)
+
+# THE REFUSAL, AT THE TOP, BEFORE ANY ARITHMETIC IS ATTEMPTED.
+_WEIGHTED = [r for r in L["rows"] if len(r) > 4 and r[4] is not None]
+if not _WEIGHTED:
+    print(__doc__.strip().splitlines()[0])
+    print()
+    print("REFUSED: this module decomposes the gap by LENS WEIGHT, and the lens "
+          "architecture of\n02-09-2026 has no weights — the cash-flow lens IS the "
+          "central and the others are\ncross-checks that are never averaged in. "
+          "Nothing here can be computed against the\ncurrent model, and reporting a "
+          "number anyway would be worse than refusing.\n\nUse gap_review_calcs_above.py, "
+          "which the live gap reviews are computed from.")
+    raise SystemExit(0)
 
 p("=" * 74); p("PHDC GAP REVIEW — arithmetic"); p("=" * 74)
 p("central %.4f   spot %.2f   gap %+.1f%%" % (CENTRAL, SPOT, 100 * (CENTRAL / SPOT - 1)))

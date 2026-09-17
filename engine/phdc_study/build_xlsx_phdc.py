@@ -49,17 +49,38 @@ ASSUMPTION_AT = {}
 # by the bridge formulas AND asserted against their labels once the Assumptions sheet
 # exists -- so the next inserted row fails the build instead of the bridge.
 BRIDGE_CELLS = {
+    # The DCF sheet is written before the Assumptions sheet too, so the one escalation cell
+    # it reads is pre-resolved here with the bridge's five. Asserted against its label once
+    # the Assumptions sheet exists, like the others.
+    "Price and cost escalation, 2026 — the house path": "B10",
     "Net debt (EGP mn)": "B14",
     "Investments in associates (EGP mn)": "B15",
     "Investment property (EGP mn)": "B16",
     "Minority interests, share of equity value": "B17",
     "Shares outstanding (mn)": "B18",
 }
+# THE DCF SHEET'S TWO OUTPUTS THE BRIDGE READS, pre-resolved for the same reason: the
+# Fundamental Valuation sheet is written BEFORE the DCF sheet, so it cannot resolve a label
+# there either. Wiring the bridge to these addresses instead of hardcoding copies of their
+# values is the fix for a workbook whose own warranty said everything recomputes; adding the
+# terminal's construction rows then shifted the discounted terminal from B21 to B25 and the
+# bridge silently lost a third of the answer, with the workbook still footing internally.
+# Registered here and ASSERTED against the labels the DCF sheet actually emits, so the next
+# inserted row fails the build rather than the bridge.
+DCF_CELLS = {
+    "Sum of the explicit years": "B20",
+    "Terminal value, discounted": "B25",
+}
+DCF_LABEL_AT = {}
+A_PV_EXPLICIT = DCF_CELLS["Sum of the explicit years"]
+A_PV_TERMINAL = DCF_CELLS["Terminal value, discounted"]
+
 _BC = BRIDGE_CELLS
 A_ND, A_ASSOC = _BC["Net debt (EGP mn)"], _BC["Investments in associates (EGP mn)"]
 A_IP = _BC["Investment property (EGP mn)"]
 A_NCI = _BC["Minority interests, share of equity value"]
 A_SH = _BC["Shares outstanding (mn)"]
+A_ESC1 = _BC["Price and cost escalation, 2026 — the house path"]
 
 
 def AT(label):
@@ -183,10 +204,25 @@ def build(path):
          "All formulas; drivers live on Assumptions.", [46, 18])
     b = CASES["base"]
     r = 4
-    r = row(ws, r, "Present value of the explicit five years",
-            [round(b["pv_explicit"], 1)], fmt="#,##0.0")
+    # TWO DEFECTS ON ONE ROW, FIXED TOGETHER [17-09-2026].
+    #
+    # THE LABEL SAID FIVE YEARS AND THE NUMBER WAS FIFTEEN. This row read "Present value of
+    # the explicit five years" against a 2026-2040 model, and the same wrong window was
+    # printed in the document's Appendix A.1 caption and in its expert appendix — while the
+    # document's own bridge four pages earlier says "the explicit 15 years". On a genuine
+    # five-year window the answer is materially different and the terminal carries 68% of it
+    # rather than 31%, so this is not a wording slip: it tells a reader the wrong thing about
+    # where the value comes from.
+    #
+    # AND THE VALUE WAS A HARDCODED CONSTANT beside a sheet that computes it. DCF!B20 is
+    # =SUM(B18:P18) and has been all along; this cell carried a rounded copy of the same
+    # number, so the workbook's own warranty — "Change a blue cell and the statements, the
+    # discounted cash flow and the value per share all recompute" — was false at the one
+    # junction where the discounted cash flow meets the answer. It is a reference now.
+    r = row(ws, r, "Present value of the explicit 15 years (2026-2040)",
+            ["=DCF!" + A_PV_EXPLICIT], fmt="#,##0.0")
     r = row(ws, r, "Present value of the terminal value",
-            [round(b["pv_terminal"], 1)], fmt="#,##0.0")
+            ["=DCF!" + A_PV_TERMINAL], fmt="#,##0.0")
     r = row(ws, r, "Enterprise value", ["=B4+B5"], fmt="#,##0.0", bold=True)
     # the bridge stands on the 31 March 2026 reviewed balance sheet; the four
     # Assumptions addresses below are asserted against their labels once that
@@ -218,6 +254,9 @@ def build(path):
     for c in "ABC":
         ws["%s%d" % (c, r)].fill = FILL
     r += 1
+    # the escalation path the model runs, read from the committed numbers; year one is the
+    # input cell below and the whole path is published on the DCF sheet
+    ESC_PATH = [x["price_growth"] for x in N["bottom_up"]["rows"]]
     rows = [
         ("Cash conversion — central", D["cfo_mid"], "0.00%",
          "mean of the three published cash-flow statements"),
@@ -233,8 +272,31 @@ def build(path):
          % (100 * D["gross_margin_fy25"], 100 * D["gross_margin_1q26"])),
         ("Overheads as a share of revenue", D["sga_ratio_fy25"], "0.00%",
          "FY2025 as reported"),
-        ("Price escalation", D["cpi_trailing3"], "0.00%",
-         "Egyptian consumer price inflation, three-year mean"),
+        # THE LAST ORPHAN ON THIS SHEET [17-09-2026]. Two cells beside this one were
+        # fixed on 10-09-2026 for publishing a rate the model does not run; this one
+        # survived the same pass. It printed the trailing three-year Egyptian CPI of 25.2%
+        # under the bare label "Price escalation" while the model escalates price and cost
+        # on the house path — 16% in 2026 falling to 7% — which is a different number in
+        # every year and is not this one in any of them. No formula on any sheet read it.
+        #
+        # IT IS A LIVE REFERENCE NOW, to the first year of the path the model actually
+        # runs, with the rest of the path published year by year on the DCF sheet row 5
+        # where the model reads it. THE ROW COUNT IS DELIBERATELY UNCHANGED: BRIDGE_CELLS
+        # above hardcodes B14-B18 because the bridge sheets are written before this one,
+        # and inserting a driver row here shifted every one of them on 13-09-2026 and
+        # published a value per share of minus 2.4 billion. A fix that re-creates the
+        # defect it is fixing is not a fix.
+        ("Price and cost escalation, 2026 — the house path", ESC_PATH[0], "0.00%",
+         "the house Egyptian inflation path [R-MACRO-01], read by the model: 16 per cent "
+         "in 2026 falling to 12 / 9 / 7.5 / 7 and holding 7 to the terminal, published "
+         "year by year on the DCF sheet row 5. ONE escalator drives price and cost alike, "
+         "which is why gross margin is flat by construction and is sensitised in the "
+         "study rather than extrapolated. The Egyptian CPI three-year trailing mean of "
+         + ("%.1f per cent" % (100 * D["cpi_trailing3"])) +
+         " (World Bank WDI, 2023-25) is NOT used and is named here so the reader knows it "
+         "was considered and rejected: a trailing mean of the worst inflation in Egypt's "
+         "recent record is not a forecast, and the central bank's own published target "
+         "contradicts it"),
         # TYPED 0.12 AGAINST A MODEL RUNNING 0.07, and 12% is the alternative the
         # study's own contested-judgement record marks REJECTED, worth EGP 21.00 a
         # share. It is read from the model now.
@@ -255,7 +317,10 @@ def build(path):
         ("Investment property (EGP mn)", q("investment_property"), "#,##0.0",
          "31 March 2026 reviewed balance sheet"),
         ("Minority interests, share of equity value", D["nci_value_share"], "0.00%",
-         "the minority's filed share of FY2025 profit after tax, as its share of value"),
+         "the MEAN of the minority's filed share of profit after tax over FY2023-FY2025, "
+         "as its share of value [adopted 17-09-2026]. The FY2025 share alone and the book "
+         "share of equity are published in the study beside it; the single year is not "
+         "adopted because a one-observation anchor is what this study refuses elsewhere"),
         ("Shares outstanding (mn)", D["shares_mn"], "#,##0.0", "FY2025"),
         ("Opening revenue (EGP mn)", v("revenue_fy25"), "#,##0.0", "FY2025 audited"),
         ("Opening order book (EGP mn)", v("backlog_1q26"), "#,##0.0",
@@ -428,7 +493,10 @@ def _remaining(wb):
     A_UNITS = AT("Units delivered, 2026")
     A_UGROW = AT("Units delivered, annual growth")
     A_PRICE = AT("Revenue per delivered unit, 2026 (EGP mn)")
-    A_CPI = AT("Price escalation")
+    # RESOLVED AND NEVER USED, like A_WACC below: the per-year escalation PATH on this
+    # sheet is what the model reads, so a single-cell escalator has no consumer. Kept as a
+    # named resolution so the label assert fires if that Assumptions row is renamed again.
+    A_CPI = AT("Price and cost escalation, 2026 — the house path")
     A_GM = AT("Gross margin")
     A_SGA = AT("Overheads as a share of revenue")
     A_CFO = AT("Cash conversion — central")
@@ -437,7 +505,7 @@ def _remaining(wb):
     # the other half of why the Assumptions sheet could publish the wrong rate
     # under a bare label without anything going red.
 
-    def _path_row(label, values, fmt, note=""):
+    def _path_row(label, values, fmt, note="", first_ref=None):
         """A per-year INPUT row: growth is a path, not a single number.
 
         The 30-Aug workbook grew both drivers at one cell each — a flat 15% for
@@ -449,8 +517,8 @@ def _remaining(wb):
         nonlocal r
         ws.cell(r, 1, label).font = FORM
         for j, val in enumerate(values, start=2):
-            c = ws.cell(r, j, round(val, 6))
-            c.font = INPUT
+            c = ws.cell(r, j, first_ref if (j == 2 and first_ref) else round(val, 6))
+            c.font = FORM if (j == 2 and first_ref) else INPUT
             c.number_format = fmt
         if note:
             ws.cell(r, 2 + len(values), note).font = MUT
@@ -458,9 +526,16 @@ def _remaining(wb):
         return r - 1
 
     ROWS_BU = N["bottom_up"]["rows"]
+    # THE FIRST YEAR READS THE ASSUMPTIONS CELL, so that cell has a consumer and the
+    # dependency runs the way the workbook says it does: Assumptions is the source and
+    # every other sheet reads it. Pointing the Assumptions cell AT this sheet instead --
+    # which is what a first attempt at this fix did -- inverts the direction and recalc.py
+    # correctly refused it as a reference cycle. Years two onward stay per-year inputs
+    # because the escalator is a PATH and a single cell cannot express one.
     pg_row = _path_row("Price and cost escalation",
                        [x["price_growth"] for x in ROWS_BU], "0.0%",
-                       "the house inflation path")
+                       "the house inflation path; year one reads Assumptions!" + A_ESC1,
+                       first_ref="=Assumptions!" + A_ESC1)
     dg_row = _path_row("Growth in units delivered",
                        [x["delivery_growth"] for x in ROWS_BU], "0.0%",
                        "the disclosed run, fading to nothing")
@@ -549,19 +624,70 @@ def _remaining(wb):
         ws.cell(r, j).number_format = "#,##0"
     pv_row = r
     r += 2
+    DCF_LABEL_AT["Sum of the explicit years"] = "B%d" % r
     ws.cell(r, 1, "Sum of the explicit years").font = SUB
     ws.cell(r, 2, "=SUM(B%d:%s%d)" % (pv_row, LAST, pv_row)).number_format = "#,##0"
     r += 1
+    # THE TERMINAL WAS A HARDCODED CONSTANT HOLDING ROUGHLY A THIRD OF THE ANSWER, with no
+    # construction anywhere in sixteen sheets [17-09-2026]. A reader could not see the
+    # terminal flow, the growth rate, the rate it was capitalised at, or the formula that
+    # combined them — and the one cell on the Assumptions sheet labelled "Terminal growth"
+    # had, until 10-09-2026, published a rate the model does not run. Every line of the
+    # construction is a cell now, and the result is a formula, so changing the terminal
+    # growth or the terminal rate moves the answer the way the workbook promises it does.
+    tg_row = r
+    ws.cell(r, 1, "Terminal growth").font = FORM
+    c = ws.cell(r, 2, "=Assumptions!" + AT("Terminal growth")); c.font = FORM
+    c.number_format = "0.00%"
+    r += 1
+    trate_row = r
+    ws.cell(r, 1, "Terminal cost of capital").font = FORM
+    c = ws.cell(r, 2, "=%s%d" % (LAST, fw_row)); c.font = FORM
+    c.number_format = "0.00%"
+    ws.cell(r, 3, "the last year of the path above, held in perpetuity").font = MUT
+    r += 1
+    tflow_row = r
+    ws.cell(r, 1, "Terminal-year free cash flow, grown one year").font = FORM
+    c = ws.cell(r, 2, "=%s%d*(1+B%d)" % (LAST, fcff_row, tg_row)); c.font = FORM
+    c.number_format = "#,##0"
+    r += 1
+    tv_row = r
+    ws.cell(r, 1, "Terminal value at the horizon").font = FORM
+    c = ws.cell(r, 2, "=B%d/(B%d-B%d)" % (tflow_row, trate_row, tg_row)); c.font = FORM
+    c.number_format = "#,##0"
+    r += 1
+    DCF_LABEL_AT["Terminal value, discounted"] = "B%d" % r
     ws.cell(r, 1, "Terminal value, discounted").font = SUB
-    ws.cell(r, 2, round(b["pv_terminal"], 1)).number_format = "#,##0"
+    c = ws.cell(r, 2, "=B%d*%s%d" % (tv_row, LAST, df_row)); c.font = SUB
+    c.number_format = "#,##0"
+    _tpv_row = r
     r += 1
     ws.cell(r, 1, "Enterprise value").font = SUB
-    ws.cell(r, 2, "=B%d+B%d" % (r - 2, r - 1)).number_format = "#,##0"
+    ws.cell(r, 2, "=B%d+B%d" % (r - 6, _tpv_row)).number_format = "#,##0"
+    r += 1
+    ws.cell(r, 1, "Terminal share of enterprise value").font = FORM
+    c = ws.cell(r, 2, "=B%d/B%d" % (_tpv_row, r - 1)); c.font = FORM
+    c.number_format = "0.0%"
+    # THE TRIPWIRE. The bridge emitted "=DCF!B20" and "=DCF!B25" before this sheet existed;
+    # hold those addresses to the labels this sheet actually wrote there.
+    for _lbl, _addr in DCF_CELLS.items():
+        assert DCF_LABEL_AT.get(_lbl) == _addr, (
+            "DCF address drift: the bridge reads %s for %r and this sheet put it at %s"
+            % (_addr, _lbl, DCF_LABEL_AT.get(_lbl)))
 
     # 9-11 statements --------------------------------------------------------
     ws = wb.create_sheet("Income Statement")
+    # THE FOURTH SURFACE THAT SAID "OUTPUT" [corrected 17-09-2026]. Three were fixed on
+    # 10-09-2026; the QC gate of 13-09-2026 recorded the fourth as NOT CLOSED and it is
+    # this one, plus the DriverLine record in gate_check.py. The model holds the margin at
+    # the latest disclosed level and SOLVES cost per unit from it, because this company
+    # publishes no delivered-unit count after FY2024, so there is no independent cost per
+    # unit to build. Saying "output" where the code says input is the defect an external
+    # audit called two mutually exclusive claims on one page, and it was right.
     head(ws, "Income statement — built from units and prices",
-         "Gross margin is an OUTPUT of price per unit against cost per unit.",
+         "Gross margin is a HELD INPUT at the latest disclosed level and cost per unit is "
+         "SOLVED from it; no delivered-unit count is published after FY2024, so there is "
+         "no independent cost per unit to build. The gap is named, not hidden.",
          [34, 14, 14, 14, 14, 14])
     rr = 4
     ws.cell(rr, 1, "EGP mn unless stated").font = HEAD
@@ -746,9 +872,16 @@ def _remaining(wb):
     ):
         r = row(ws, r, lbl, ["" if x is None else x for x in vals],
                 fmt="#,##0.0")
+    # THREE CIRCULAR SELF-REFERENCES, NOT ONE [17-09-2026]. `r` is the row the formula is
+    # being written INTO, so "=B{r}/B5" pointed at itself: B14 read =B14/B5, C14 =C14/C5,
+    # D14 =D14/D5. Excel returns a circular-reference warning and zero for all three, so
+    # the one derived row on this sheet could never show a number. The cash-from-operations
+    # row is the one above, and an off-by-one is why a check that cannot compute shipped in
+    # four consecutive editions: nothing in the build reads a formula's result back.
+    _cfo_row = r - 1
     r = row(ws, r, "Cash from operations, share of revenue",
-            ["=B%d/B5" % r, "=C%d/C5" % r, "=D%d/D5" % r], fmt="0.0%",
-            bold=True)
+            ["=B%d/B5" % _cfo_row, "=C%d/C5" % _cfo_row, "=D%d/D5" % _cfo_row],
+            fmt="0.0%", bold=True)
 
     # 13 Monte Carlo ---------------------------------------------------------
     ws = wb.create_sheet("Monte Carlo")
