@@ -1127,3 +1127,59 @@ conclusion from it before asking what wrote the field. It is now committed as
 `working_capital_closing_fy30e`. A FIELD WHOSE NAME SAYS ONE YEAR AND WHOSE VALUE IS
 ANOTHER IS WORSE THAN A MISSING FIELD, because a missing field stops a reader and a
 mislabelled one does not.
+
+**CORRECTED 17-09-2026 — appended rather than rewritten, because a dated record says what was
+true when it was written.** Two things in the entry above are wrong and one is superseded.
+
+**(i) THE CAPEX FIGURE IS UNDERSTATED BY A FACTOR OF FOUR AND A HALF.** "EGP 8.98 a share off
+both branches" is the change in the present value of the EXPLICIT window alone. Held at the
+filed intensity through FY2030E, the terminal — a perpetuity struck on that final year's free
+cash flow — falls with it: **−40.34 a share, not −8.98.** Held instead at the filed FY2025
+COVERAGE of depreciation, **−22.91.**
+
+**(ii) THE SECOND MITIGATION RUNS BACKWARDS AND SHOULD BE STRUCK.** "The terminal carries 84%
+of the auto leg, so an explicit-window driver moves less of the answer than its own size
+suggests" is true of a driver that ends inside the window and **false of one held flat to the
+last explicit year**, which is what a corrected capex path is. A terminal carrying 84% of the
+leg makes such a driver matter MORE, not less — roughly fifteen times more, that being the
+terminal multiple. The first mitigation stands: capex does still run above replacement.
+
+**(iii) THE DISCLOSED COVERAGE SHARPENS THE FINDING RATHER THAN SOFTENING IT.**
+
+| | capex | D&A | capex / D&A | capex / auto revenue |
+|---|---|---|---|---|
+| FY2023 | 2,056.0 | 531.4 | 3.87× | 8.78% |
+| FY2024 | 3,171.9 | 1,138.5 | 2.79× | 6.79% |
+| FY2025 | 3,664.2 | 999.3 | 3.67× | 5.56% |
+
+The guided first year lands at 3.47× coverage against FY2025's filed 3.67× — close. **What is
+unsourced is the DECLINE to 1.76×**, below every year the company has filed, which is
+[R-ANCHOR-01 CLAUSE TWO]: a rate falling materially from its own opening year makes the same
+claim as one opening below the record and must name a mechanism. None is named. Note also that
+holding intensity flat is itself a hypothesis, not a measurement — intensity fell 8.78% → 5.56%
+while revenue nearly tripled, so a flat ratio asserts a capacity build that never ends.
+
+**(iv) AND THE CORRECTION CANNOT BE PRICED HONESTLY ON THIS NAME YET.** GBCO's terminal is
+`FCFF_FY2030E × (1+g)/(w−g)`, which capitalises a growth year's capital spending and
+working-capital build into perpetuity. It sits on the [R-TERM-01] ratchet, and the sanctioned
+module REFUSES to rebuild it because `useful_lives.json` records that no usable asset life is
+sourceable. **Order of levers, fixed here in advance per [R-REBUILD-01]: terminal, then capex,
+then working capital.** Correcting capex first would multiply a real correction through a
+retired construction.
+
+**(v) THE WORKING-CAPITAL ENTRY'S EVIDENCE IS SUPERSEDED.** `engine/gbco_study/asset_cycle.json`
+now builds the conversion cycle from the disclosed segment tables, four periods, every table
+footed. Against the LATEST REVIEWED period rather than the FY2025 opening, the ladder runs
+26.5% → 21.5% against **22.78% of trailing-twelve-month revenue** — so it opens ABOVE the
+latest actual, not below the base, and is conservative. Its stated mechanism is half
+contradicted: the inventory pre-build unwind is measured (DIO 149.0 → 127.1), payables
+"re-extending" is not (DPO 112.7 → **83.3**, the largest mover in the cycle).
+
+**WHAT IS STILL MISSING FROM THIS LEDGER AND FROM THE MODEL: A PPE ROLL-FORWARD.** Capex,
+depreciation and working capital are three independent typed ratios with no balance sheet
+joining them — capex at 3.82% of revenue, depreciation at a flat 1.1% — so the asset base the
+model buys never appears, never depreciates and never constrains anything. SIGCM clause 7 asks
+for driver → IS → **BS** → CF → DCF as a live formula model, and for property, plant and
+equipment it is not met. **That is the defect underneath both rows**, and it is why row 30's
+obvious fix produced a negative equity value on a company filing EGP 66bn of revenue: fixing
+one of three unjoined ratios is arithmetic, not modelling.

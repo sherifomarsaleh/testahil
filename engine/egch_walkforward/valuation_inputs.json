@@ -1548,5 +1548,14 @@
     "vintage": "read off this year's own filing; no later count is carried back to this origin"
    }
   }
+ },
+ "fx_split_sourced_but_unread": {
+  "_": "DEFAULT TAKEN 17-09-2026. escalations.json -> EGCH-loan-drawn-amounts-by-currency-FY2019-20, opened 06-09-2026, default date 13-09-2026. The date passed with no reading supplied, so [R-IND-01]'s default fires: a gate with no release is a stall, and an escalation carries a date precisely so the waiting ends.",
+  "status": "sourced_but_unread",
+  "what_is_missing": "the FY2019-20 drawn amounts split by currency",
+  "where_it_is": "engine/egch_walkforward/src/EGCH_FY2019-20_Annual.pdf, page 61",
+  "why_unread": "Arabic-Indic digits in a low-quality scan; every extraction route this environment admits was run and failed, and the failures are listed in the register entry with their outcomes.",
+  "what_was_done_instead": "NOTHING WAS ESTIMATED. The FX driver is left exactly as it is and the run stays on the frozen-escalator ratchet. A dollar weight invented to make the line behave is the free parameter the promotion rule forbids, and the finding that does not need the digits already stands without it: four filings state the facility in BOTH currencies (~117m USD and 1.887bn EGP from six named Egyptian banks, interest and instalments in both), so the 100%-dollar treatment is refuted on four filings rather than one, and the FX line was bounded with no currency assumption at all.",
+  "what_would_close_it": "a person opening that page and reading the two figures. The page reference is recorded here so the next reader finds the PAGE rather than the QUESTION, which is the whole point of writing an answer where the next session reads it."
  }
 }
