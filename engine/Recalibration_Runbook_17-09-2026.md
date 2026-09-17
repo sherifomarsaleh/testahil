@@ -1,6 +1,6 @@
 # RECALIBRATION RUNBOOK — the whole process, one step after another
 
-**RUNBOOK REVISION 2026-09-17c.** Every copy of this file carries this line as its
+**RUNBOOK REVISION 2026-09-17d.** Every copy of this file carries this line as its
 first characters after the title. If the copy you are holding does not, or carries an
 earlier revision, IT IS STALE: the current text is
 `engine/Recalibration_Runbook_17-09-2026.md` on the repository's own branch and nothing
@@ -198,9 +198,23 @@ or its redness is explained, and any gap over 10% has its review.
 **Goal.** Find what the filings do not carry — and keep it out of the model until it
 has been traced.
 
-**THIS STEP STOPS.** The session builds the prompt and hands it over; the principal
-runs it on Perplexity and Claude and feeds the answers back. The session does not
-continue until it has them.
+**THIS STEP STOPS.** The session builds the prompt and hands it over; the principal runs
+it on TWO INDEPENDENT ENGINES and feeds both answers back. The session does not continue
+until it has them.
+
+**TWO ENGINES, NAMED BY REQUIREMENT RATHER THAN BY PRODUCT** · *revision d.* This read
+"Perplexity and Claude", which is a rule that goes stale the first time a tool is swapped
+and which says nothing about what the second pass is FOR. What is required is that the two
+are INDEPENDENT of each other and independent of this session — Perplexity and Gemini
+satisfy it exactly as Perplexity and Claude do. What is NOT permitted is one engine run
+twice, or this session searching the web in place of the hand-off.
+
+**ONE NAME PER RUN, NOT A PACK PER RUN.** The pack is batched for the HAND-OVER, so the
+prompts go out together and the returns come back together; it is not a single prompt
+covering every name. Eight companies in one pass dilutes the coverage of each, and worse,
+it invites a finding about one to be attributed to another — which on an exchange where
+two of the eight are cement producers is the error that reads most like a result. Run each
+name's block on its own, and label every return with the ticker and the engine.
 
 > **PROMPT — WHAT THE SESSION DOES.** Build the hand-over prompt for {TICKER} from
 > what this repository already holds, and hand it to the principal. It must carry:
