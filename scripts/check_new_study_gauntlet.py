@@ -409,6 +409,20 @@ ARTEFACT_GATES = {
         'a study struck long after the currency anchor its own path derives from',
         lambda: {'study_numbers.json': ('json', {
             'meta': {'spot_date': '2026-09-03', 'currency': 'EGP'}})}),
+    # ADDED 18-Sep-2026 IN THE COMMIT THAT ADOPTS THE GATE [R-ENF-07]. ARTEFACT-conditional
+    # rather than directory-conditional: an empty study directory commits no four-field
+    # input register, so it carries no price path, and refusing it would be a FALSE CLAIM
+    # about what this gate checks. It bites the moment the study registers one — and the
+    # minimal offender is the real thing, PHAR's own path, which reads 5.0 / 8.0 / 7.5 /
+    # 6.5 / 5.5 against a house ladder of 16 / 12 / 9 / 7.5 / 7.
+    'check_real_terms_paths.py': (
+        'a price path falling in real terms with the study saying so nowhere',
+        lambda: {'study_numbers.json': ('json', {
+            'market': 'EG',
+            'inputs': {'dom_price_growth': {
+                'value': [0.05, 0.080, 0.075, 0.065, 0.055],
+                'source': 'Realised price per unit, annual growth',
+                'date': '2026-08-09', 'layer': 'House'}}})}),
 }
 
 # NOT IN EITHER SET, and each with the reason, because a name in a list that resolves to

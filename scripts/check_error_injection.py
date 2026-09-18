@@ -361,6 +361,42 @@ case("revenue-asserted-not-built",
      "STC", "check_ground_up.py", _m_revenue_asserted, _l_revenue_asserted)
 
 
+# ---- the error four studies were carrying on 18-09-2026, planted on a fifth
+# THE POINT OF THIS CASE IS THE NEW NAME. Fixing the eight studies already on the
+# real-terms ratchet says nothing about the next company somebody values, and the next
+# company is where this defect actually costs something: a revenue line that does not
+# move with inflation while the cost lines do manufactures a margin collapse, and the
+# model then reports the collapse as a finding. The path planted here is PHAR's own,
+# which reads 5.0 / 8.0 / 7.5 / 6.5 / 5.5 against a house ladder of 16 / 12 / 9 / 7.5 / 7
+# -- a 15.9% REAL fall under a driver note saying it "tracks domestic inflation".
+def _m_price_below_inflation(repo, tk):
+    doc = _load(repo, tk)
+    reg = doc.get("inputs")
+    if not isinstance(reg, dict):
+        reg = doc["inputs"] = {}
+    reg["dom_price_growth"] = {
+        "value": [0.05, 0.080, 0.075, 0.065, 0.055],
+        "source": "Realised price per unit, annual growth. The path assumes price growth "
+                  "tracks domestic inflation as it converges on the central bank's "
+                  "target, with no real price gain",
+        "date": "2026-08-09", "layer": "House"}
+    _save(repo, tk, doc)
+
+
+def _l_price_below_inflation(repo, tk):
+    v = ((_load(repo, tk).get("inputs") or {}).get("dom_price_growth") or {}).get("value")
+    return v == [0.05, 0.080, 0.075, 0.065, 0.055]
+
+
+# PLANTED IN A STUDY THAT IS NOT ON THE REAL-TERMS RATCHET, for the reason the landbank
+# case records: a ratchet excuses the whole gate for that name, so planting a new error
+# of a ratcheted class in a ratcheted study tests nothing.
+case("price-falls-in-real-terms-unsaid",
+     "the study quietly assumes the company's product gets cheaper every year",
+     "TMGH", "check_real_terms_paths.py",
+     _m_price_below_inflation, _l_price_below_inflation)
+
+
 # ---------------------------------------------------------------- the harness
 
 def sandbox():
