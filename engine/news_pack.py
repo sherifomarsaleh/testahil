@@ -218,6 +218,30 @@ capacity and plant news, contract awards and losses, regulatory and tariff decis
 input-cost and currency events, management changes, litigation, and anything a competitor
 or the regulator said about this company — dated, and attributed to a named source.
 
+**SEARCH THE REGULATOR, NOT ONLY THE ISSUER. THIS IS A SEPARATE PASS AND IT IS NOT
+OPTIONAL.** A search pointed at one company cannot see an action aimed at its whole class, and
+a class-level event reaches this company's value just as surely as a company-level one. On
+18 September 2026 a central-bank investigation into the financing of an entire industry was
+missed by two independent engines on the same name, because both ran "searched, not found" on
+company-specific regulatory action and neither searched the regulator.
+
+So run a SECOND sweep, by institution rather than by company, over the window above:
+
+- **the central bank** — circulars to banks, investigations, lending caps, exposure limits,
+  reserve or provisioning rules, anything touching credit to this company's industry;
+- **the market regulator and the exchange** — listing decisions, disclosure penalties, index
+  reviews, trading suspensions, rule changes;
+- **the sector ministry or authority** that licenses, prices or supplies this industry —
+  tariffs, quotas, administered prices, allocation, export caps, subsidy programmes;
+- **the tax and competition authorities**.
+
+**Report a class-level action even when it names no company**, and say plainly that it names
+none. "The regulator has opened an investigation into how banks finance this industry" is a
+finding about this company whether or not this company is mentioned in it.
+
+**Name the institution you searched and the date, for each one**, so that an empty result is a
+dated negative search against a named regulator rather than a silence.
+
 **WHAT NOT TO BRING BACK:** a price target, a broker's estimate, an aggregator's restated
 financials, or any number presented as the company's own results that did not come from
 the company's own filing.
