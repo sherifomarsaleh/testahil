@@ -95,3 +95,29 @@ that the blocker is now named cell by cell with a kind against each — code, da
 research, or the terminal module correctly refusing — instead of standing as "criterion
 3 is not met". Three of the four kinds are work with a rate. The fourth, SWDY's missing
 operating profit, is a question its own run has to answer.
+
+
+---
+
+# Later the same day: the blocker is not the wiring
+
+The section above reads the nine as blocked by projectors that are not wired and
+valuation-input blocks that do not reach three years. **Both are true and neither is
+what blocks Phase 1.**
+
+Running the cash-flow lens against [R-MACRO-01]'s convergence bound — the house's
+own, imported rather than minted — refuses **every cell it has ever scored**, and
+the refusal became the largest drop class in the run at a stroke: 21 of 60, spanning
+six of the nine names. The full measurement and its addendum are in
+`engine/valuation_calibration/CONVERGENCE_REFUSAL_18-09-2026.md`.
+
+**What that changes about this document.** Wiring SCEM, SWDY and GBCO would have
+added cells of the same inadmissible kind. The queue in the section above is real
+work and it is not the critical path; the critical path is that the mechanical lens
+rebuilds PHDC's fifteen-year construction on five years, and would do the same to
+every name added to it.
+
+**What it does not change.** The nine stay held, for the reason they were already
+held — [R-GAP-02] clause three, the method hold — and no fair value moves. The
+difference is that the hold now has a measured cause with a named route out, rather
+than a queue of wiring.

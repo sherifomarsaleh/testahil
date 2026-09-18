@@ -138,3 +138,98 @@ admissible cell and says so.
 before an instrument was built did not reach it, because the instrument was not a
 study and every gate for that rule was pointed at studies. Where a rule governs a
 *construction*, ask what else in the repository performs that construction.
+
+---
+
+# Addendum, same day: why the mechanical paths do not converge
+
+The refusal above is correct and it is not the whole finding. Asking *why* every
+cell breached the bound turned up something larger.
+
+## The delivered studies converge. The lens does not run their window.
+
+Every delivered study that commits the record converges exactly:
+
+| study | explicit years | growth at the last one | terminal |
+|---|---|---|---|
+| PHDC | **15** | 7.00% | 7.00% |
+| TMGH | **10** | 7.00% | 7.00% |
+| AMOC · ARCC · EGCH · SCEM | 5 | 7.00% | 7.00% |
+| ADNOCLS · STC | 5 | 2.00% | 2.00% |
+| FERTIGLOBE | 5 | 1.37% | — |
+
+The mechanical lens runs **five years for every name**, because §1 of the sealed
+declaration fixes the explicit window at the walk-forward's own horizons 1–5 and
+says in terms that it "is not re-derived here".
+
+So on PHDC the lens rebuilds on a five-year window a study that uses fifteen. That
+is not a calibration of the house's method with a wide error bar; it is a different
+construction that happens to share the drivers.
+
+## The mechanism is a flat escalator, and it is in the runs' own rules
+
+The walk-forward driver rules compound the **last published** inflation rate flat at
+every horizon — `(1 + cpi(o)) ** h` in ARCC's projector, the same shape in SWDY's,
+AMOC's and EGCH's. At a 31-December-2019 Egyptian origin the last published print is
+13.87%, so the path compounds at 13.87% for five straight years and arrives at the
+terminal still growing at four times it.
+
+The house's studies converge because their escalators sit on a **declining ladder**
+that reaches the terminal — which is what [R-MACRO-01] requires of a study and what
+nothing required of a walk-forward.
+
+## A converging point-in-time ladder is constructible, and the archive already holds it
+
+This is the part worth keeping. Point-in-time discipline does not forbid a declining
+path — it forbids *foresight*, and a forecast published at the origin is not
+foresight. `engine/macro_history/_extract_weo_egypt.json` already holds eleven IMF
+World Economic Outlook vintages for Egypt, each with its file name and sha256, and
+each carrying a **forward** inflation projection made at its own publication date.
+
+The October 2019 edition, which existed at a 31-December-2019 origin, projects
+Egyptian CPI at:
+
+> **13.866 → 9.965 → 7.217 → 7.011 → 7.002 → 7.078**
+
+It converges to the house terminal by year three, on its own. A five-year window
+built on that ladder would satisfy the convergence bound at that origin without a
+fade, without an extension, and without one free parameter.
+
+## What is NOT done tonight, and why that is the discipline rather than a gap
+
+Rebuilding the lens on the vintage ladder would close this. **It is not done, and it
+must not be done in this pass.**
+
+The pre-registration's whole claim on credibility is an ordering of commits: it was
+written, hashed and committed before any figure existed, so *"no lever was fitted to
+the gap"* is a fact about commit topology rather than an assurance — and
+`check_valuation_calibration.py` reads that topology precisely to catch a score file
+whose design followed its results. A new declaration written now would be written
+with the gap in full view, and the evidence that it was not fitted would be gone.
+
+What is recorded instead: the route, its source, its measurement, and the fact that
+it was available before the finding rather than invented by it.
+
+## Where this leaves Phase 1, stated plainly
+
+[R-VCAL-01] states its own falsifier: *if the mechanically rebuilt series turns out
+not to resemble the as-delivered one, this calibration is grading a method the house
+does not use and every promotion must be withdrawn.* That falsifier anticipated a
+statistical comparison over a long record. **What has arrived instead is structural
+and stronger**: the two constructions differ in the explicit window itself, fifteen
+years against five on the name carrying most of the cells.
+
+**No promotion has to be withdrawn, because none was ever made** — no lever record
+exists and clause A never passed. The stack is empty and stays empty.
+
+So criterion 3's gating clauses are UNMEASURED, and the reason is not a thin archive
+and not a clock. It is that the instrument declared for them does not rebuild the
+construction it is meant to grade. [R-GAP-02] clause three therefore continues to
+hold every study in the book, which is the correct outcome and not a new one.
+
+**The general lesson, which is not about inflation:** an instrument built to grade a
+method must reproduce the method, and *sharing the inputs is not reproducing it*.
+Series (a) takes the same drivers, the same statements, the same point-in-time
+archive and the same sanctioned terminal module as the studies it grades — and
+stops the forecast ten years earlier than one of them does. Every input agreed and
+the answer was a third of the size.

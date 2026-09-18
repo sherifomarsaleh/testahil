@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**315 lessons**, of which 270 bind on every study, 34 on a class of company, and 11 on a single name.
+**317 lessons**, of which 272 bind on every study, 34 on a class of company, and 11 on a single name.
 
-By how they were learned: 62 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 28 from outside critiques, 29 from self-audits, 194 found while building.
+By how they were learned: 62 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 28 from outside critiques, 31 from self-audits, 194 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -2778,6 +2778,26 @@ A clause that can be met, failed or unmeasured must print all three. Where the p
 > **What it cost, or how we know.** criterion3.py printed clause A as 'MET if a_met else NOT MET' while clauses B and C printed all three states correctly. The line was right for as long as the series could not be empty, and the moment the convergence refusal emptied it, an UNMEASURED clause printed as a FAILED one — in the clause that gates Phase 1 hardest. The same run found the reporter crashing on the empty series and a header count typed as a literal (28 of 33) that had gone on printing through two population changes.
 
 > **What would overturn it.** A clause genuinely binary by construction, where no third state can arise — which must then be argued rather than assumed from the printer.
+
+### L-395 · An instrument built to grade a method must reproduce the method, and sharing its inputs is not reproducing it.
+
+The mechanical valuation lens takes the same drivers, the same audited statements, the same point-in-time macro archive and the same sanctioned terminal module as the studies it grades. It still is not those studies, because it stops the forecast where the driver walk-forward stops rather than where a valuation converges — and nothing about the shared inputs made that visible.
+
+**Applies to:** every study  ·  *Learned from:* self-audit, valuation calibration, 18-09-2026
+
+> **What it cost, or how we know.** Every delivered study committing the record converges exactly to its terminal: PHDC on FIFTEEN explicit years, TMGH on ten, the rest on five. The mechanical lens runs five for every name, because its sealed declaration fixes the window at the walk-forward's own horizons 1-5. On PHDC it therefore rebuilds a fifteen-year construction on five years, and produced 6.08, 2.49, 8.81, 6.37, 6.46 and 7.51 across six origins against a delivered central of 17.85. Every input agreed and the answer was a third of the size.
+
+> **What would overturn it.** A rebuild on the study's own window landing in the same place as the five-year one, which would make the window immaterial to the comparison rather than the whole of it.
+
+### L-396 · Point-in-time discipline forbids foresight, not a declining forecast — and the difference decides whether a past origin can converge at all.
+
+A mechanical rule that compounds the LAST PUBLISHED inflation print flat at every horizon looks like the strictest possible reading of 'only what was known at the origin'. It is stricter than the rule requires and wrong in a way that compounds: a forecast PUBLISHED at the origin was known at the origin, and published forecasts decline where a realised print does not.
+
+**Applies to:** every study  ·  *Learned from:* self-audit, valuation calibration, 18-09-2026
+
+> **What it cost, or how we know.** The walk-forward projectors escalate on (1 + cpi(origin)) ** h, so a 31-December-2019 Egyptian origin compounds at the 13.87% realised print for five straight years and ends still growing at four times its terminal. The IMF World Economic Outlook of October 2019 — already extracted in engine/macro_history/ with its file name and sha256, and in existence at that origin — projects 13.866, 9.965, 7.217, 7.011, 7.002, 7.078, converging to the house terminal by year three with no fade and no free parameter.
+
+> **What would overturn it.** An origin where no forecast had been published by the origin date, which is the case the flat rule is actually right for — and which must then be named rather than assumed.
 
 
 ---

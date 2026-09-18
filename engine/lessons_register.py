@@ -7190,6 +7190,68 @@ LESSONS = [
           "one-line grep is telling a tri-state from a genuine boolean, which "
           "needs the callee's own contract; filed with its measurement so the debt "
           "is countable rather than remembered.")),
+
+    L("L-395", "ALL", None,
+      "An instrument built to grade a method must reproduce the method, and "
+      "sharing its inputs is not reproducing it.",
+      "The mechanical valuation lens takes the same drivers, the same audited "
+      "statements, the same point-in-time macro archive and the same sanctioned "
+      "terminal module as the studies it grades. It still is not those studies, "
+      "because it stops the forecast where the driver walk-forward stops rather "
+      "than where a valuation converges — and nothing about the shared inputs "
+      "made that visible.",
+      "valuation calibration, 18-09-2026", "self_audit",
+      "Every delivered study committing the record converges exactly to its "
+      "terminal: PHDC on FIFTEEN explicit years, TMGH on ten, the rest on five. "
+      "The mechanical lens runs five for every name, because its sealed "
+      "declaration fixes the window at the walk-forward's own horizons 1-5. On "
+      "PHDC it therefore rebuilds a fifteen-year construction on five years, and "
+      "produced 6.08, 2.49, 8.81, 6.37, 6.46 and 7.51 across six origins against "
+      "a delivered central of 17.85. Every input agreed and the answer was a "
+      "third of the size.",
+      "A rebuild on the study's own window landing in the same place as the "
+      "five-year one, which would make the window immaterial to the comparison "
+      "rather than the whole of it.",
+      promotion="outstanding",
+      promotion_note=(
+          "TESTABLE AND NOT YET DONE. A check can compare a calibration "
+          "instrument's declared explicit window against the explicit_years each "
+          "delivered study commits, and refuse an instrument claiming to grade a "
+          "study it does not reproduce — the records for both sides already exist "
+          "(study_numbers.json carries explicit_years; the lens declaration "
+          "carries its horizons). Not built tonight because the repair it would "
+          "demand is a re-sealed declaration, which must not be written with the "
+          "gap in view.")),
+
+    L("L-396", "ALL", None,
+      "Point-in-time discipline forbids foresight, not a declining forecast — and "
+      "the difference decides whether a past origin can converge at all.",
+      "A mechanical rule that compounds the LAST PUBLISHED inflation print flat "
+      "at every horizon looks like the strictest possible reading of 'only what "
+      "was known at the origin'. It is stricter than the rule requires and wrong "
+      "in a way that compounds: a forecast PUBLISHED at the origin was known at "
+      "the origin, and published forecasts decline where a realised print does "
+      "not.",
+      "valuation calibration, 18-09-2026", "self_audit",
+      "The walk-forward projectors escalate on (1 + cpi(origin)) ** h, so a "
+      "31-December-2019 Egyptian origin compounds at the 13.87% realised print "
+      "for five straight years and ends still growing at four times its terminal. "
+      "The IMF World Economic Outlook of October 2019 — already extracted in "
+      "engine/macro_history/ with its file name and sha256, and in existence at "
+      "that origin — projects 13.866, 9.965, 7.217, 7.011, 7.002, 7.078, "
+      "converging to the house terminal by year three with no fade and no free "
+      "parameter.",
+      "An origin where no forecast had been published by the origin date, which "
+      "is the case the flat rule is actually right for — and which must then be "
+      "named rather than assumed.",
+      promotion="outstanding",
+      promotion_note=(
+          "TESTABLE AND NOT YET DONE. Whether a projector escalates on a scalar "
+          "print or on a dated published path is readable from its own code and "
+          "from what the archive holds at that origin. Deliberately not built in "
+          "the same pass as the finding: the repair changes a pre-registered "
+          "driver rule, which may not move on the strength of a valuation "
+          "result [R-FCAL-01].")),
 ]
 
 
