@@ -91,6 +91,16 @@ PRICE_TOKEN = re.compile(
     r"per_pack|per_t\b|per_tonne|per_unit|usd_t|egp_t|ppp|day_rate|charter_rate)",
     re.I)
 
+# A MARGIN IS NOT A PRICE, and this rule's own text says so — it matches PRICE tokens
+# only, "never volume, margin or utilisation". The first run fired on ELEC's
+# `ebitda_per_t`, a unit CONVERSION MARGIN caught by the `per_t` token, and a unit margin
+# rising in real terms is an ordinary consequence of recovering utilisation rather than a
+# claim about a price. Re-pointed per [R-COC-01] rather than widened: the gate was not
+# matching its own specification. A per-unit COST is deliberately NOT excluded here — a
+# cost falling in real terms is as much a claim as a price falling, and this rule reaches
+# it.
+NOT_PRICE_TOKEN = re.compile(r"ebitda|margin|profit|netback|spread|ebit\b", re.I)
+
 
 class RealTermsError(ValueError):
     pass
@@ -190,7 +200,7 @@ def candidates(numbers: dict):
         if not (isinstance(v, list) and 2 <= len(v) <= 12
                 and all(isinstance(x, (int, float)) for x in v)):
             continue
-        if PRICE_TOKEN.search(name):
+        if PRICE_TOKEN.search(name) and not NOT_PRICE_TOKEN.search(name):
             out[name] = v
     return out, None
 
