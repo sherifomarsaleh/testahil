@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**318 lessons**, of which 273 bind on every study, 34 on a class of company, and 11 on a single name.
+**320 lessons**, of which 275 bind on every study, 34 on a class of company, and 11 on a single name.
 
-By how they were learned: 62 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 29 from outside critiques, 31 from self-audits, 194 found while building.
+By how they were learned: 62 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 29 from outside critiques, 33 from self-audits, 194 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -2808,6 +2808,26 @@ Every figure in a committed record is computed, sourced and dated, and the one s
 > **What it cost, or how we know.** AMOC's forecast-anchor record gave [R-VCAL-01]'s one-lever-at-a-time guard as the reason a correction priced at +55% was not applied. That guard governs levers promoted from the valuation calibration, never corrections to defects, and the standing digest had repeated the same false reason in its own [R-ANCHOR-01] paragraph. Measured the day the clause was adopted, the misreading had reached SIX passages across two study builders and one ratchet, and EVERY ONE OF THEM DEFERRED A CORRECTION THAT RAISES THE VALUE — so an interpretation that always ran one way was behaving exactly like a house lean while every individual step in it was defensible. All six carried their own measurement already, so correcting them was rewriting the reason and keeping the number; no value moved.
 
 > **What would overturn it.** A deferral citing a rule that genuinely does govern it — which would make the citation a fact to check rather than a reason to believe.
+
+### L-398 · A pile of individually-correct lists has a total, and nobody who maintains one of them can see it.
+
+Every ratchet entry in this repository was a correct decision to carry a known defect rather than fix it in passing, and every list may only ever shorten. What no list can show is how many there are altogether, because each is maintained by whoever wrote the rule it belongs to.
+
+**Applies to:** every study  ·  *Learned from:* self-audit, recorded debt census, 18-09-2026
+
+> **What it cost, or how we know.** [R-REPAIR-01] was adopted on '47 ratchet entries accumulated on five studies', read off the lists somebody happened to open. Counted across all 67 ratchets the figure is 386 entries across 94 names — 274 on the 24 studies that exist on disk and 112 on 70 names the site publishes with no study directory at all. The gap between 47 and 386 is not an error in either number; it is what a total looks like when nothing computes it.
+
+> **What would overturn it.** A census finding the total close to what the separate lists suggested, which would mean the lists were being read together already.
+
+### L-399 · A reader that classifies by pattern finds what the pattern was written for; one that REFUSES what it cannot place finds what nobody thought of.
+
+The difference is not strictness, it is what happens to the residue. A pattern-based reader silently absorbs anything it does not recognise into whichever bucket it falls through to, and reports a number. A reader that names every category and refuses the rest reports a QUESTION, and the questions are where the findings are.
+
+**Applies to:** every study  ·  *Learned from:* self-audit, recorded debt census, 18-09-2026
+
+> **What it cost, or how we know.** The first run of the ratchet census refused eleven keys across 67 files and every one needed a decision a pattern could not make — an unrunnable figure script is a debt, a resolved-and-kept entry is not, an [R-ENF-08] failure signature sitting beside its entry is not, a walk-forward run owing a valuation-input block is. It also refused two NAMES that turned out to be index series rather than studies, which resolve against a different population entirely. And it found 2POINTZERO — a ticker starting with a digit, which the first draft's ticker pattern silently dropped, and which this protocol already records as having been dropped from three separate tools by a regex written the same way.
+
+> **What would overturn it.** A residue that turns out to be uniform, where one rule really does cover every case the reader could not place.
 
 
 ---

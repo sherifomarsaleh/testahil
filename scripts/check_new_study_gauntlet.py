@@ -399,6 +399,13 @@ ARTEFACT_GATES = {
 #                                   read, and its own population anchoring covers the case
 #                                   where the whole book has none
 EXCLUDED = {
+    'check_study_debt.py':
+        'its subject is the RECORDED DEBT across every ratchet in the repository, not any '
+        'one study. A planted empty study is on no ratchet and therefore correctly owes '
+        'nothing, so refusing one would be a false claim about what this gate checks; its '
+        'own population guard already fails a run that reads no ratchet or finds no entry',
+    'check_study_debt_negative_control.py':
+        'the control for the above, and a control is not a gate over studies',
     'check_deferral_reason.py':
         'its subject is the REASON a record gives for deferring a correction, read across '
         'the whole repository rather than inside any study. A planted empty study defers '

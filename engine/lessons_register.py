@@ -7291,6 +7291,64 @@ LESSONS = [
           "and a gate unable to tell the two apart would push builders to stop "
           "explaining things. Ratchet EMPTY at adoption, since all six passages were "
           "corrected rather than excused.")),
+
+    L("L-398", "ALL", None,
+      "A pile of individually-correct lists has a total, and nobody who maintains one "
+      "of them can see it.",
+      "Every ratchet entry in this repository was a correct decision to carry a known "
+      "defect rather than fix it in passing, and every list may only ever shorten. "
+      "What no list can show is how many there are altogether, because each is "
+      "maintained by whoever wrote the rule it belongs to.",
+      "recorded debt census, 18-09-2026", "self_audit",
+      "[R-REPAIR-01] was adopted on '47 ratchet entries accumulated on five studies', "
+      "read off the lists somebody happened to open. Counted across all 67 ratchets "
+      "the figure is 386 entries across 94 names — 274 on the 24 studies that exist "
+      "on disk and 112 on 70 names the site publishes with no study directory at all. "
+      "The gap between 47 and 386 is not an error in either number; it is what a total "
+      "looks like when nothing computes it.",
+      "A census finding the total close to what the separate lists suggested, which "
+      "would mean the lists were being read together already.",
+      promotion="enforced",
+      promoted_by="scripts/check_study_debt.py",
+      promotion_note=(
+          "Built the same day, and it sets NO CEILING deliberately: a new standard "
+          "legitimately adds entries on the day it is adopted, so a bar on the total "
+          "would fire on a rule being written, which is the permanently-red check "
+          "[R-ENF-02] forbids. What it refuses is the three ways a count stops being "
+          "a count — an unrecognised key, a name that resolves to no study, no "
+          "published name and no index, and a run that read nothing.")),
+
+    L("L-399", "ALL", None,
+      "A reader that classifies by pattern finds what the pattern was written for; "
+      "one that REFUSES what it cannot place finds what nobody thought of.",
+      "The difference is not strictness, it is what happens to the residue. A "
+      "pattern-based reader silently absorbs anything it does not recognise into "
+      "whichever bucket it falls through to, and reports a number. A reader that "
+      "names every category and refuses the rest reports a QUESTION, and the "
+      "questions are where the findings are.",
+      "recorded debt census, 18-09-2026", "self_audit",
+      "The first run of the ratchet census refused eleven keys across 67 files and "
+      "every one needed a decision a pattern could not make — an unrunnable figure "
+      "script is a debt, a resolved-and-kept entry is not, an [R-ENF-08] failure "
+      "signature sitting beside its entry is not, a walk-forward run owing a "
+      "valuation-input block is. It also refused two NAMES that turned out to be "
+      "index series rather than studies, which resolve against a different "
+      "population entirely. And it found 2POINTZERO — a ticker starting with a digit, "
+      "which the first draft's ticker pattern silently dropped, and which this "
+      "protocol already records as having been dropped from three separate tools by a "
+      "regex written the same way.",
+      "A residue that turns out to be uniform, where one rule really does cover every "
+      "case the reader could not place.",
+      promotion="enforced",
+      promoted_by="engine/study_debt.py",
+      promotion_note=(
+          "The refusal IS the enforcement and it lives in the shared reader rather "
+          "than in the gate: study_debt.read_one classifies every key against two "
+          "CLOSED named lists and raises on anything else, so a new ratchet key "
+          "cannot enter the count by falling through. The gate turns that refusal "
+          "into a red build and prints the keys that need a decision. The general "
+          "claim — prefer refusing to classifying by pattern — is not itself "
+          "mechanisable and travels as prose; what is mechanised is this instance.")),
 ]
 
 
