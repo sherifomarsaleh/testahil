@@ -1055,12 +1055,64 @@
    "done_meanwhile": "The refusal is IN the lens, imported from research_protocol.HORIZON_CONVERGENCE rather than typed, two-sided exactly as the study gate reads it, negative-controlled on eight conditions. criterion3.py now reports clause A as UNMEASURED rather than crashing or printing NOT MET on inadmissible cells, and names the convergence refusal as the largest drop class rather than burying it in 'other'. score_cashflow's typed header count is computed. No fair value moved and no publish decision changed -- the book was held before and is held now.",
    "default_if_no_answer": "Leave the seal alone and leave Phase 1 blocked, with the state reported at every run. The honest default is inaction: a backtest that cannot produce a cell blocks the book, which is uncomfortable and true, whereas a re-sealed instrument that closes Phase 1 would be an instrument built after seeing what the old one said.",
    "default_date": "2026-10-31",
-   "status": "open",
-   "resolves_when": "engine/valuation_calibration/ carries a declaration for the explicit window that is either the existing seal reaffirmed, or a new one whose introducing commit is an ancestor of every score file built under it.",
+   "status": "resolved",
+   "resolves_when": {
+    "file": "engine/valuation_calibration/PRE_REGISTRATION_18-09-2026.md",
+    "must_contain": "SUPERSEDES"
+   },
    "recommendation": "RE-SEAL, and state in the new declaration that it was written after the old one was measured and why -- which is the only honest way to do it. The argument is that the current seal fails [R-VCAL-01]'s own falsifier on its face: it does not rebuild the construction it grades, and a calibration of a method the house does not use tells nobody anything. The converging ladder is available from a source dated BEFORE each origin, so the new construction needs no free parameter and no foresight. What it cannot claim is that it was designed blind, and the record should say so plainly rather than imply otherwise.",
-   "resolved": null,
-   "answer": null,
-   "answer_written_to": null
+   "resolved": "2026-09-18",
+   "answer": "ANSWERED BY THE PRINCIPAL, 18-09-2026, in these words: 'rebuild the lens and run Phase 1 and include SWDY because we are ready to republish SWDY if we find a need to.' The lens is rebuilt on the archive's own point-in-time forward inflation ladder, the terminal rate is read at the window's last year, SWDY and SCEM are wired, and PRE_REGISTRATION_18-09-2026.md supersedes the sealed first edition through the route that document itself prescribes.",
+   "answer_written_to": "engine/valuation_calibration/PRE_REGISTRATION_18-09-2026.md"
+  },
+  {
+   "key": "mechanical-lens-terminal-real-growth",
+   "opened": "2026-09-18",
+   "cls": "instruction",
+   "question": "The rebuilt lens escalates on the archive's own declining forward ladder and STILL scores nothing: 22 of 60 cells are refused because the explicit window ends growing materially above its terminal. The cause is now measured and is not the inflation path -- it is REAL growth. Running the window longer makes it WORSE, not better: asked for fifteen horizons rather than five, PHDC's projection ends growing at 20.66% and TMGH's at 39.37%, because these driver rules compound a population or intensity term that never decays. They were pre-registered to score three to five years of DRIVERS and were never built to reach a steady state. So a mechanical value cannot be built out of them under [R-MACRO-01] at ANY window length. Three constructions could close it and each is a methodological decision with a large, one-directional effect on every value: (a) let the terminal carry a STATED real growth equal to the window's own last real growth, charging the incremental capital behind it -- satisfies the bound by construction and capitalises a growth rate no economy sustains; (b) extend each run's projector with a declared decay of real growth to zero -- needs a fade rate nobody has tested, which is the free parameter the PROMOTION RULE forbids; (c) accept that series (a) is not constructible on these runs and move criterion 3's clauses A, B, C and F onto series (b), the fair values this house actually published, whose pooled interval already covers zero on 16 names across 4 markets.",
+   "routes": [
+    {
+     "route": "every run's projector asked for fifteen horizons instead of five, to test whether a longer explicit window converges on its own",
+     "when": "2026-09-18",
+     "outcome": "it does not. PHDC ends at 20.66% and TMGH at 39.37% at h=15; ARCC, EGCH and SWDY cap at five by their own HORIZONS constants and cannot be asked. The obvious repair was tested and refuted rather than assumed.",
+     "rerun": true
+    },
+    {
+     "route": "the archive's forward ladder at every origin, to establish that the inflation half is fully closed (engine/valuation_calibration/pit_inflation.py)",
+     "when": "2026-09-18",
+     "outcome": "closed. A window ending at horizon h now carries the ladder's own rate for that year, so growth there and the terminal are the same number by construction and the residual is exactly the run's real growth.",
+     "rerun": true
+    },
+    {
+     "route": "delivered.py -- whether series (b) can answer what series (a) cannot",
+     "when": "2026-09-18",
+     "outcome": "16 readable single-central studies across 4 markets, mean log(FV/P) -0.1880, median -0.0958, 95% interval resampling NAMES -0.4633 to +0.0233 and resampling MARKETS -0.5618 to +0.0912 -- BOTH COVER ZERO. criterion3.py prints it beside clause A and refuses to count it, in its own words, because the criterion says AT EVERY ORIGIN and this is one origin per name.",
+     "rerun": true
+    },
+    {
+     "route": "every delivered study's committed explicit window, for what the house itself does",
+     "when": "2026-09-18",
+     "outcome": "every study committing the record converges exactly; PHDC on fifteen explicit years, TMGH on ten, the rest on five.",
+     "rerun": true
+    },
+    {
+     "route": "engine/terminal_value.py, whether it admits a stated real growth at all",
+     "when": "2026-09-18",
+     "outcome": "it does, and refuses real growth with no incremental capital behind it. Option (a) is therefore expressible without touching the sanctioned module.",
+     "rerun": true
+    }
+   ],
+   "refs_searched": 262,
+   "why_only_the_principal": "All three options change what a mechanical value IS, and two of them move every value in one direction. A desk that has just measured the series at zero cells cannot choose the construction that makes it non-zero and be believed afterwards -- that is the same reason the first reseal was escalated rather than taken, and the reason has not weakened by the principal having answered the first question. Option (c) additionally decides what Phase 1 MEANS, which [R-VCAL-02 CLAUSE TWO] establishes is the principal's to state.",
+   "recommendation": "(c). Series (a) exists only because the pre-registration judged series (b) 'far too short to score' in September 2025 terms; it is now 16 names across 4 markets and its interval covers zero on both resamplings. Option (a) capitalises a growth rate no economy sustains and would raise every value, which is exactly the shape of a correction chosen because it helps. Option (b) is a free parameter. What (c) costs is stated rather than discovered later: one origin per name is a CROSS-SECTION and not the every-origin series the criterion names, so the evidence is weaker than the design asked for, the era split and the leave-one-out lose most of their power, and criterion 3 would have to be amended in terms rather than reinterpreted.",
+   "done_meanwhile": "The lens is rebuilt and committed; the inflation half of the problem is closed; SWDY and SCEM are wired; the unit-suspect refusal caught a cell reading +75,727.6% that every other gate passed; PRE_REGISTRATION_18-09-2026.md records the whole construction and states what it cost; the score record is dated and committed after it. No fair value moved and no publish decision changed.",
+   "default_if_no_answer": "Take (c) and amend criterion 3 in terms -- clauses A, B, C and F read on series (b), with the cross-section limitation stated in the criterion itself rather than in a footnote. The default is the option that changes no valuation construction: (a) and (b) both alter what every mechanical value IS and neither may be taken by default.",
+   "default_date": "2026-09-25",
+   "resolves_when": {
+    "file": "engine/method_reassessment/criterion3.py",
+    "must_contain": "TERMINAL REAL GROWTH RULED ON"
+   },
+   "status": "open"
   }
  ]
 }

@@ -41,6 +41,7 @@ never met [R-ENF-04], and a clause whose object does not exist says so.
 from __future__ import annotations
 
 import datetime as dt
+import glob
 import json
 import os
 import sys
@@ -54,7 +55,23 @@ if VCAL not in sys.path:
 if ENGINE not in sys.path:
     sys.path.insert(0, ENGINE)
 
-CASHFLOW_SCORES = os.path.join(VCAL, "SCORES_cashflow_06-09-2026.json")
+def _latest_scores():
+    """The NEWEST dated cash-flow score record, never a filename typed once.
+
+    A score file is dated for the pre-registration it was produced under, so a hard-coded
+    name reads the SUPERSEDED record for ever and reports its drop taxonomy as the current
+    one — which is what happened the first evening a second record existed: this criterion
+    printed "13 no projector wired for this name" for two runs that had been wired an hour
+    earlier. A reader cannot tell a stale record from a current one by looking at it, which
+    is why the resolution is by date and the file it chose is PRINTED beside the verdict.
+    """
+    got = sorted(glob.glob(os.path.join(VCAL, "SCORES_cashflow_*.json")))
+    if not got:
+        return None
+    return got[-1]
+
+
+CASHFLOW_SCORES = _latest_scores() or os.path.join(VCAL, "SCORES_cashflow_18-09-2026.json")
 
 # The criterion's own words, split at its semicolons. Not paraphrased: the
 # clause list is what the instrument is held to.

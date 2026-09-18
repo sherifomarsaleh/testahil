@@ -1,0 +1,990 @@
+{
+ "DECLARED": {
+  "score": null,
+  "cells": [],
+  "dropped": [
+   {
+    "ticker": "AMOC",
+    "origin": 2021,
+    "why": "capex intensity needs 3 years and the block carries 1"
+   },
+   {
+    "ticker": "AMOC",
+    "origin": 2022,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "AMOC",
+    "origin": 2023,
+    "why": "the explicit window ends growing at 0.0% against a terminal of 13.8% -- 13.8pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2015,
+    "why": "TypeError: unsupported operand type(s) for *: 'NoneType' and 'float'"
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2016,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2017,
+    "why": "the explicit window ends growing at 34.6% against a terminal of 7.0% -- 27.7pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2018,
+    "why": "terminal refused: implied payout of terminal NOPAT is 110.7%, outside [0, 1]: the terminal distributes more than it earns"
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2019,
+    "why": "terminal refused: implied payout of terminal NOPAT is 123.5%, outside [0, 1]: the terminal distributes more than it earns"
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2020,
+    "why": "the projection runs to horizon 1 and 3 explicit years is the floor for a terminal to stand on"
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2021,
+    "why": "terminal refused: implied payout of terminal NOPAT is 164.6%, outside [0, 1]: the terminal distributes more than it earns"
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2022,
+    "why": "the explicit window ends growing at 11.4% against a terminal of 7.0% -- 4.4pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2023,
+    "why": "the explicit window ends growing at 36.9% against a terminal of 9.5% -- 27.4pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2013,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2015,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2016,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2017,
+    "why": "terminal refused: terminal free cash flow is -1,150,390,838.6, not positive: a going concern that consumes cash for ever is not a terminal"
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2018,
+    "why": "the explicit window ends growing at 4.8% against a terminal of 7.0% -- 2.2pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2019,
+    "why": "the explicit window ends growing at 4.5% against a terminal of 7.1% -- 2.6pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2020,
+    "why": "the projection runs to horizon 1 and 3 explicit years is the floor for a terminal to stand on"
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2021,
+    "why": "terminal refused: terminal free cash flow is -2,089,719,603.6, not positive: a going concern that consumes cash for ever is not a terminal"
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2022,
+    "why": "the explicit window ends growing at 2.2% against a terminal of 7.0% -- 4.8pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2023,
+    "why": "the explicit window ends growing at 1.4% against a terminal of 9.5% -- 8.1pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "GBCO",
+    "origin": 2016,
+    "why": "no quantity appears in both this run's panel and its valuation-input block, so the unit cannot be measured"
+   },
+   {
+    "ticker": "GBCO",
+    "origin": 2017,
+    "why": "no quantity appears in both this run's panel and its valuation-input block, so the unit cannot be measured"
+   },
+   {
+    "ticker": "GBCO",
+    "origin": 2018,
+    "why": "no quantity appears in both this run's panel and its valuation-input block, so the unit cannot be measured"
+   },
+   {
+    "ticker": "GBCO",
+    "origin": 2019,
+    "why": "no quantity appears in both this run's panel and its valuation-input block, so the unit cannot be measured"
+   },
+   {
+    "ticker": "GBCO",
+    "origin": 2020,
+    "why": "no quantity appears in both this run's panel and its valuation-input block, so the unit cannot be measured"
+   },
+   {
+    "ticker": "GBCO",
+    "origin": 2021,
+    "why": "no quantity appears in both this run's panel and its valuation-input block, so the unit cannot be measured"
+   },
+   {
+    "ticker": "GBCO",
+    "origin": 2022,
+    "why": "no quantity appears in both this run's panel and its valuation-input block, so the unit cannot be measured"
+   },
+   {
+    "ticker": "GBCO",
+    "origin": 2023,
+    "why": "no quantity appears in both this run's panel and its valuation-input block, so the unit cannot be measured"
+   },
+   {
+    "ticker": "PHAR",
+    "origin": 2020,
+    "why": "the projection runs to horizon 0 and 3 explicit years is the floor for a terminal to stand on"
+   },
+   {
+    "ticker": "PHAR",
+    "origin": 2021,
+    "why": "capex intensity needs 3 years and the block carries 1"
+   },
+   {
+    "ticker": "PHAR",
+    "origin": 2022,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "PHAR",
+    "origin": 2023,
+    "why": "the explicit window ends growing at 22.1% against a terminal of 13.8% -- 8.4pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2015,
+    "why": "the projection has no revenue or operating profit at h=1"
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2016,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2017,
+    "why": "the explicit window ends growing at 11.7% against a terminal of 7.0% -- 4.7pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2018,
+    "why": "the explicit window ends growing at 11.6% against a terminal of 7.0% -- 4.6pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2019,
+    "why": "the explicit window ends growing at 11.1% against a terminal of 7.1% -- 4.0pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2020,
+    "why": "the projection has no revenue or operating profit at h=2"
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2021,
+    "why": "the explicit window ends growing at 12.1% against a terminal of 7.1% -- 4.9pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2022,
+    "why": "the explicit window ends growing at 13.3% against a terminal of 7.0% -- 6.3pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2023,
+    "why": "no finance charge in the as-reported panel at this origin"
+   },
+   {
+    "ticker": "SCEM",
+    "origin": 2021,
+    "why": "KeyError: 'shares_from_capital'"
+   },
+   {
+    "ticker": "SCEM",
+    "origin": 2022,
+    "why": "KeyError: 'shares_from_capital'"
+   },
+   {
+    "ticker": "SCEM",
+    "origin": 2023,
+    "why": "KeyError: 'shares_from_capital'"
+   },
+   {
+    "ticker": "SWDY",
+    "origin": 2014,
+    "why": "the explicit window ends growing at 15.2% against a terminal of 12.0% -- 3.2pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "SWDY",
+    "origin": 2015,
+    "why": "the cell reads 2782.87 against a price of 3.67 \u2014 a factor of 758.3, which is a power of ten and therefore a UNIT rather than a view; the share count or the price series is not in the currency the block is"
+   },
+   {
+    "ticker": "SWDY",
+    "origin": 2016,
+    "why": "the explicit window ends growing at 12.4% against a terminal of 7.1% -- 5.3pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "SWDY",
+    "origin": 2017,
+    "why": "the explicit window ends growing at 24.0% against a terminal of 7.0% -- 17.1pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "SWDY",
+    "origin": 2018,
+    "why": "the explicit window ends growing at 70.4% against a terminal of 7.0% -- 63.4pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "SWDY",
+    "origin": 2019,
+    "why": "the explicit window ends growing at 10.9% against a terminal of 7.1% -- 3.9pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "SWDY",
+    "origin": 2020,
+    "why": "the projection runs to horizon 1 and 3 explicit years is the floor for a terminal to stand on"
+   },
+   {
+    "ticker": "SWDY",
+    "origin": 2021,
+    "why": "the explicit window ends growing at 10.0% against a terminal of 7.1% -- 2.9pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "SWDY",
+    "origin": 2022,
+    "why": "the explicit window ends growing at 9.9% against a terminal of 7.0% -- 2.9pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "SWDY",
+    "origin": 2023,
+    "why": "the projection runs to horizon 0 and 3 explicit years is the floor for a terminal to stand on"
+   },
+   {
+    "ticker": "TMGH",
+    "origin": 2020,
+    "why": "the projection has no revenue or operating profit at h=2"
+   },
+   {
+    "ticker": "TMGH",
+    "origin": 2021,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "TMGH",
+    "origin": 2022,
+    "why": "the explicit window ends growing at 14.8% against a terminal of 7.0% -- 7.8pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "TMGH",
+    "origin": 2023,
+    "why": "no finance charge in the as-reported panel at this origin"
+   }
+  ]
+ },
+ "maintenance read as intensity x origin revenue": {
+  "score": null,
+  "cells": [],
+  "dropped": [
+   {
+    "ticker": "AMOC",
+    "origin": 2021,
+    "why": "capex intensity needs 3 years and the block carries 1"
+   },
+   {
+    "ticker": "AMOC",
+    "origin": 2022,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "AMOC",
+    "origin": 2023,
+    "why": "the explicit window ends growing at 0.0% against a terminal of 13.8% -- 13.8pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2015,
+    "why": "TypeError: unsupported operand type(s) for *: 'NoneType' and 'float'"
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2016,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2017,
+    "why": "the explicit window ends growing at 34.6% against a terminal of 7.0% -- 27.7pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2018,
+    "why": "terminal refused: implied payout of terminal NOPAT is 110.7%, outside [0, 1]: the terminal distributes more than it earns"
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2019,
+    "why": "terminal refused: implied payout of terminal NOPAT is 125.4%, outside [0, 1]: the terminal distributes more than it earns"
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2020,
+    "why": "the projection runs to horizon 1 and 3 explicit years is the floor for a terminal to stand on"
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2021,
+    "why": "terminal refused: implied payout of terminal NOPAT is 164.6%, outside [0, 1]: the terminal distributes more than it earns"
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2022,
+    "why": "the explicit window ends growing at 11.4% against a terminal of 7.0% -- 4.4pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2023,
+    "why": "the explicit window ends growing at 36.9% against a terminal of 9.5% -- 27.4pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2013,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2015,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2016,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2017,
+    "why": "terminal refused: terminal free cash flow is -2,075,095,486.4, not positive: a going concern that consumes cash for ever is not a terminal"
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2018,
+    "why": "the explicit window ends growing at 4.8% against a terminal of 7.0% -- 2.2pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2019,
+    "why": "the explicit window ends growing at 4.5% against a terminal of 7.1% -- 2.6pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2020,
+    "why": "the projection runs to horizon 1 and 3 explicit years is the floor for a terminal to stand on"
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2021,
+    "why": "terminal refused: terminal free cash flow is -8,429,035,336.4, not positive: a going concern that consumes cash for ever is not a terminal"
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2022,
+    "why": "the explicit window ends growing at 2.2% against a terminal of 7.0% -- 4.8pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2023,
+    "why": "the explicit window ends growing at 1.4% against a terminal of 9.5% -- 8.1pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "GBCO",
+    "origin": 2016,
+    "why": "no quantity appears in both this run's panel and its valuation-input block, so the unit cannot be measured"
+   },
+   {
+    "ticker": "GBCO",
+    "origin": 2017,
+    "why": "no quantity appears in both this run's panel and its valuation-input block, so the unit cannot be measured"
+   },
+   {
+    "ticker": "GBCO",
+    "origin": 2018,
+    "why": "no quantity appears in both this run's panel and its valuation-input block, so the unit cannot be measured"
+   },
+   {
+    "ticker": "GBCO",
+    "origin": 2019,
+    "why": "no quantity appears in both this run's panel and its valuation-input block, so the unit cannot be measured"
+   },
+   {
+    "ticker": "GBCO",
+    "origin": 2020,
+    "why": "no quantity appears in both this run's panel and its valuation-input block, so the unit cannot be measured"
+   },
+   {
+    "ticker": "GBCO",
+    "origin": 2021,
+    "why": "no quantity appears in both this run's panel and its valuation-input block, so the unit cannot be measured"
+   },
+   {
+    "ticker": "GBCO",
+    "origin": 2022,
+    "why": "no quantity appears in both this run's panel and its valuation-input block, so the unit cannot be measured"
+   },
+   {
+    "ticker": "GBCO",
+    "origin": 2023,
+    "why": "no quantity appears in both this run's panel and its valuation-input block, so the unit cannot be measured"
+   },
+   {
+    "ticker": "PHAR",
+    "origin": 2020,
+    "why": "the projection runs to horizon 0 and 3 explicit years is the floor for a terminal to stand on"
+   },
+   {
+    "ticker": "PHAR",
+    "origin": 2021,
+    "why": "capex intensity needs 3 years and the block carries 1"
+   },
+   {
+    "ticker": "PHAR",
+    "origin": 2022,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "PHAR",
+    "origin": 2023,
+    "why": "the explicit window ends growing at 22.1% against a terminal of 13.8% -- 8.4pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2015,
+    "why": "the projection has no revenue or operating profit at h=1"
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2016,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2017,
+    "why": "the explicit window ends growing at 11.7% against a terminal of 7.0% -- 4.7pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2018,
+    "why": "the explicit window ends growing at 11.6% against a terminal of 7.0% -- 4.6pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2019,
+    "why": "the explicit window ends growing at 11.1% against a terminal of 7.1% -- 4.0pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2020,
+    "why": "the projection has no revenue or operating profit at h=2"
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2021,
+    "why": "the explicit window ends growing at 12.1% against a terminal of 7.1% -- 4.9pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2022,
+    "why": "the explicit window ends growing at 13.3% against a terminal of 7.0% -- 6.3pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2023,
+    "why": "no finance charge in the as-reported panel at this origin"
+   },
+   {
+    "ticker": "SCEM",
+    "origin": 2021,
+    "why": "KeyError: 'shares_from_capital'"
+   },
+   {
+    "ticker": "SCEM",
+    "origin": 2022,
+    "why": "KeyError: 'shares_from_capital'"
+   },
+   {
+    "ticker": "SCEM",
+    "origin": 2023,
+    "why": "KeyError: 'shares_from_capital'"
+   },
+   {
+    "ticker": "SWDY",
+    "origin": 2014,
+    "why": "the explicit window ends growing at 15.2% against a terminal of 12.0% -- 3.2pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "SWDY",
+    "origin": 2015,
+    "why": "the cell reads 2776.94 against a price of 3.67 \u2014 a factor of 756.7, which is a power of ten and therefore a UNIT rather than a view; the share count or the price series is not in the currency the block is"
+   },
+   {
+    "ticker": "SWDY",
+    "origin": 2016,
+    "why": "the explicit window ends growing at 12.4% against a terminal of 7.1% -- 5.3pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "SWDY",
+    "origin": 2017,
+    "why": "the explicit window ends growing at 24.0% against a terminal of 7.0% -- 17.1pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "SWDY",
+    "origin": 2018,
+    "why": "the explicit window ends growing at 70.4% against a terminal of 7.0% -- 63.4pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "SWDY",
+    "origin": 2019,
+    "why": "the explicit window ends growing at 10.9% against a terminal of 7.1% -- 3.9pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "SWDY",
+    "origin": 2020,
+    "why": "the projection runs to horizon 1 and 3 explicit years is the floor for a terminal to stand on"
+   },
+   {
+    "ticker": "SWDY",
+    "origin": 2021,
+    "why": "the explicit window ends growing at 10.0% against a terminal of 7.1% -- 2.9pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "SWDY",
+    "origin": 2022,
+    "why": "the explicit window ends growing at 9.9% against a terminal of 7.0% -- 2.9pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "SWDY",
+    "origin": 2023,
+    "why": "the projection runs to horizon 0 and 3 explicit years is the floor for a terminal to stand on"
+   },
+   {
+    "ticker": "TMGH",
+    "origin": 2020,
+    "why": "the projection has no revenue or operating profit at h=2"
+   },
+   {
+    "ticker": "TMGH",
+    "origin": 2021,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "TMGH",
+    "origin": 2022,
+    "why": "the explicit window ends growing at 14.8% against a terminal of 7.0% -- 7.8pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "TMGH",
+    "origin": 2023,
+    "why": "no finance charge in the as-reported panel at this origin"
+   }
+  ]
+ },
+ "maintenance on the DISCLOSED LIFE \u2014 A SENSITIVITY, NOT THE DECLARED RUN": {
+  "score": {
+   "n": {
+    "cells": 3,
+    "origins": 3,
+    "names": 1
+   },
+   "mean": 0.30694174821623,
+   "median": 0.185924071314796,
+   "mae": 0.30694174821623,
+   "below": 0,
+   "above": 3,
+   "bootstrap": {
+    "2": {
+     "lo": 0.1438283565238639,
+     "hi": 0.5121508546995283,
+     "half_width": 0.18416124908783219,
+     "n_boot": 2000
+    },
+    "3": {
+     "lo": 0.30694174821623,
+     "hi": 0.30694174821623,
+     "half_width": 0.0,
+     "n_boot": 2000
+    },
+    "4": null
+   },
+   "lono": {
+    "ARCC": {
+     "left_out": "ARCC",
+     "cells": 0,
+     "mean": null,
+     "names_left": 0
+    }
+   },
+   "eras": {
+    "E1 pre-float": {
+     "cells": 0,
+     "mean": null
+    },
+    "E2 post-float": {
+     "cells": 3,
+     "mean": 0.30694174821623
+    },
+    "E3 devaluation": {
+     "cells": 0,
+     "mean": null
+    }
+   }
+  },
+  "cells": [
+   {
+    "ticker": "ARCC",
+    "origin": 2018,
+    "fv": 9.803114645537187,
+    "price": 4.99,
+    "log": 0.6752642463918943,
+    "wacc": 0.21352720921539228,
+    "terminal_share": 0.5021431246611914,
+    "price_date": "2018-12-31",
+    "kd_bound": "FLOORED at the sovereign (effective 11.44%)",
+    "scale": 1.0
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2019,
+    "fv": 4.034508225729938,
+    "price": 3.35,
+    "log": 0.185924071314796,
+    "wacc": 0.1889587239858775,
+    "terminal_share": 0.4956649997393266,
+    "price_date": "2019-12-31",
+    "kd_bound": "the company's own effective rate",
+    "scale": 1.0
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2021,
+    "fv": 4.7977589371127065,
+    "price": 4.52,
+    "log": 0.05963692694199967,
+    "wacc": 0.17715479648936805,
+    "terminal_share": 0.3480045133910523,
+    "price_date": "2021-12-30",
+    "kd_bound": "FLOORED at the sovereign (effective 11.18%)",
+    "scale": 1.0
+   }
+  ],
+  "dropped": [
+   {
+    "ticker": "AMOC",
+    "origin": 2021,
+    "why": "capex intensity needs 3 years and the block carries 1"
+   },
+   {
+    "ticker": "AMOC",
+    "origin": 2022,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "AMOC",
+    "origin": 2023,
+    "why": "the explicit window ends growing at 0.0% against a terminal of 13.8% -- 13.8pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2015,
+    "why": "TypeError: unsupported operand type(s) for *: 'NoneType' and 'float'"
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2016,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2017,
+    "why": "the explicit window ends growing at 34.6% against a terminal of 7.0% -- 27.7pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2020,
+    "why": "the projection runs to horizon 1 and 3 explicit years is the floor for a terminal to stand on"
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2022,
+    "why": "the explicit window ends growing at 11.4% against a terminal of 7.0% -- 4.4pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "ARCC",
+    "origin": 2023,
+    "why": "the explicit window ends growing at 36.9% against a terminal of 9.5% -- 27.4pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2013,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2015,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2016,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2017,
+    "why": "terminal refused: terminal free cash flow is -387,151,187.2, not positive: a going concern that consumes cash for ever is not a terminal, "
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2018,
+    "why": "the explicit window ends growing at 4.8% against a terminal of 7.0% -- 2.2pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2019,
+    "why": "the explicit window ends growing at 4.5% against a terminal of 7.1% -- 2.6pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2020,
+    "why": "the projection runs to horizon 1 and 3 explicit years is the floor for a terminal to stand on"
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2021,
+    "why": "terminal refused: terminal free cash flow is -1,654,451,426.4, not positive: a going concern that consumes cash for ever is not a terminal"
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2022,
+    "why": "the explicit window ends growing at 2.2% against a terminal of 7.0% -- 4.8pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "EGCH",
+    "origin": 2023,
+    "why": "the explicit window ends growing at 1.4% against a terminal of 9.5% -- 8.1pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "GBCO",
+    "origin": 2016,
+    "why": "no quantity appears in both this run's panel and its valuation-input block, so the unit cannot be measured"
+   },
+   {
+    "ticker": "GBCO",
+    "origin": 2017,
+    "why": "no quantity appears in both this run's panel and its valuation-input block, so the unit cannot be measured"
+   },
+   {
+    "ticker": "GBCO",
+    "origin": 2018,
+    "why": "no quantity appears in both this run's panel and its valuation-input block, so the unit cannot be measured"
+   },
+   {
+    "ticker": "GBCO",
+    "origin": 2019,
+    "why": "no quantity appears in both this run's panel and its valuation-input block, so the unit cannot be measured"
+   },
+   {
+    "ticker": "GBCO",
+    "origin": 2020,
+    "why": "no quantity appears in both this run's panel and its valuation-input block, so the unit cannot be measured"
+   },
+   {
+    "ticker": "GBCO",
+    "origin": 2021,
+    "why": "no quantity appears in both this run's panel and its valuation-input block, so the unit cannot be measured"
+   },
+   {
+    "ticker": "GBCO",
+    "origin": 2022,
+    "why": "no quantity appears in both this run's panel and its valuation-input block, so the unit cannot be measured"
+   },
+   {
+    "ticker": "GBCO",
+    "origin": 2023,
+    "why": "no quantity appears in both this run's panel and its valuation-input block, so the unit cannot be measured"
+   },
+   {
+    "ticker": "PHAR",
+    "origin": 2020,
+    "why": "the projection runs to horizon 0 and 3 explicit years is the floor for a terminal to stand on"
+   },
+   {
+    "ticker": "PHAR",
+    "origin": 2021,
+    "why": "capex intensity needs 3 years and the block carries 1"
+   },
+   {
+    "ticker": "PHAR",
+    "origin": 2022,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "PHAR",
+    "origin": 2023,
+    "why": "the explicit window ends growing at 22.1% against a terminal of 13.8% -- 8.4pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2015,
+    "why": "the projection has no revenue or operating profit at h=1"
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2016,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2017,
+    "why": "the explicit window ends growing at 11.7% against a terminal of 7.0% -- 4.7pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2018,
+    "why": "the explicit window ends growing at 11.6% against a terminal of 7.0% -- 4.6pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2019,
+    "why": "the explicit window ends growing at 11.1% against a terminal of 7.1% -- 4.0pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2020,
+    "why": "the projection has no revenue or operating profit at h=2"
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2021,
+    "why": "the explicit window ends growing at 12.1% against a terminal of 7.1% -- 4.9pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2022,
+    "why": "the explicit window ends growing at 13.3% against a terminal of 7.0% -- 6.3pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "PHDC",
+    "origin": 2023,
+    "why": "no finance charge in the as-reported panel at this origin"
+   },
+   {
+    "ticker": "SCEM",
+    "origin": 2021,
+    "why": "KeyError: 'shares_from_capital'"
+   },
+   {
+    "ticker": "SCEM",
+    "origin": 2022,
+    "why": "KeyError: 'shares_from_capital'"
+   },
+   {
+    "ticker": "SCEM",
+    "origin": 2023,
+    "why": "KeyError: 'shares_from_capital'"
+   },
+   {
+    "ticker": "SWDY",
+    "origin": 2014,
+    "why": "the explicit window ends growing at 15.2% against a terminal of 12.0% -- 3.2pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "SWDY",
+    "origin": 2015,
+    "why": "the cell reads 2622.94 against a price of 3.67 \u2014 a factor of 714.7, which is a power of ten and therefore a UNIT rather than a view; the share count or the price series is not in the currency the block is"
+   },
+   {
+    "ticker": "SWDY",
+    "origin": 2016,
+    "why": "the explicit window ends growing at 12.4% against a terminal of 7.1% -- 5.3pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "SWDY",
+    "origin": 2017,
+    "why": "the explicit window ends growing at 24.0% against a terminal of 7.0% -- 17.1pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "SWDY",
+    "origin": 2018,
+    "why": "the explicit window ends growing at 70.4% against a terminal of 7.0% -- 63.4pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "SWDY",
+    "origin": 2019,
+    "why": "the explicit window ends growing at 10.9% against a terminal of 7.1% -- 3.9pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "SWDY",
+    "origin": 2020,
+    "why": "the projection runs to horizon 1 and 3 explicit years is the floor for a terminal to stand on"
+   },
+   {
+    "ticker": "SWDY",
+    "origin": 2021,
+    "why": "the explicit window ends growing at 10.0% against a terminal of 7.1% -- 2.9pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "SWDY",
+    "origin": 2022,
+    "why": "the explicit window ends growing at 9.9% against a terminal of 7.0% -- 2.9pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "SWDY",
+    "origin": 2023,
+    "why": "the projection runs to horizon 0 and 3 explicit years is the floor for a terminal to stand on"
+   },
+   {
+    "ticker": "TMGH",
+    "origin": 2020,
+    "why": "the projection has no revenue or operating profit at h=2"
+   },
+   {
+    "ticker": "TMGH",
+    "origin": 2021,
+    "why": "capex intensity needs 3 years and the block carries 2"
+   },
+   {
+    "ticker": "TMGH",
+    "origin": 2022,
+    "why": "the explicit window ends growing at 14.8% against a terminal of 7.0% -- 7.8pp apart, against a bound of 2pp [R-MACRO-01]. The terminal would capitalise a rate the projection never reached."
+   },
+   {
+    "ticker": "TMGH",
+    "origin": 2023,
+    "why": "no finance charge in the as-reported panel at this origin"
+   }
+  ]
+ }
+}
