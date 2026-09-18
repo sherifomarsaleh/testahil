@@ -6791,6 +6791,268 @@ LESSONS = [
       "small enough that the reported earnings track the operating "
       "legs, which would make a normalised read of the group "
       "meaningful again."),
+
+    # ---- from the seven forensic audits of 18 September 2026 -----------------
+    # 292 findings raised across seven delivered studies by three outside
+    # readers, 254 accepted. The rules that could be made arithmetic went into
+    # the standing protocol by their own route ([R-REBUILD-01 CLAUSE TWO],
+    # [R-BETA-05]); what follows is what was learned and could not.
+
+    L("L-378", "ALL", None,
+      "A charge conceded in a give-back table must be conceded at its own "
+      "line, or the concession understates itself.",
+      "A give-back table asks what the value would be if a contested charge "
+      "were surrendered. Adding the charge back as a MARGIN improvement is "
+      "not the same thing: it then flows down through tax, through the "
+      "employees' profit share and through every rate struck on profit, so "
+      "part of what was conceded is taken away again on the way down. Concede "
+      "it where the model charges it.",
+      "AMOC critique response, 18-09-2026", "critique",
+      "AMOC's adversarial.py conceded the employees' profit share as "
+      "gm_shift and published EGP 11.6888. Setting the rate itself to zero "
+      "and re-running the same waterfall gives 12.0632 — the published row "
+      "understates the concession by EGP 0.3744, 3.3% of the central. An "
+      "outside auditor reached 12.0632 independently.",
+      "A model where the conceded charge sits outside every rate struck "
+      "below it, so the two routes coincide."),
+
+    L("L-379", "ALL", None,
+      "A sensitivity row that moves the answer by exactly zero is re-running "
+      "nothing.",
+      "Every row of a give-back or sensitivity table is a claim that some "
+      "input was changed and the model re-run. A row printing the base case "
+      "to the last decimal is almost never a finding about the input; it is "
+      "a row that never re-ran. Exact zero is the signature, and it is easy "
+      "to read as reassurance.",
+      "AMOC critique response, 18-09-2026", "critique",
+      "AMOC's adversarial.py line 83 reads row('effective_tax', "
+      "waterfall(B)) — the row IS the base case by construction, and it is "
+      "excluded from the assertion loop that would have caught it. The "
+      "delivered table publishes it as a tested alternative.",
+      "A sensitivity genuinely insensitive to its input over the range "
+      "tested, demonstrated by re-running it at a second value."),
+
+    L("L-380", "ALL", None,
+      "A row labelled 'all of the above at once' that runs a subset is a "
+      "defect no arithmetic check can see.",
+      "Every figure in such a row is computed and individually correct, so "
+      "recalculation, provenance and prose-figure checks all pass. What is "
+      "wrong is the relationship between the label and the set — which is a "
+      "claim about the table rather than about any number in it.",
+      "AMOC critique response, 18-09-2026", "critique",
+      "AMOC's ALL_GIVEBACKS is case(nci=0.0, prov=0.0, divp=0.0) — three "
+      "concessions — published under a table listing six, in a document that "
+      "passed 6,069 formula cells with zero disagreements.",
+      "A label that enumerates the cases it runs, so the set and the claim "
+      "cannot drift apart."),
+
+    L("L-381", "ALL", None,
+      "A registered, sourced, four-field input that no arithmetic reads is a "
+      "dead input, and the register cannot tell it from a live one.",
+      "The four-field discipline proves where a number came from. It says "
+      "nothing about whether the model uses it. An input can be sourced to a "
+      "named document, dated, layered and described as the anchor for a "
+      "driver while the driver is built another way entirely — and every "
+      "provenance check passes, because provenance is not consumption.",
+      "AMOC critique response, 18-09-2026", "critique",
+      "AMOC registers capex_pct at 1.45% tapering to 1.25%, sourced to the "
+      "approved EGP 580.19mn capital budget and described in the bibliography "
+      "as 'the anchor for the capital-expenditure driver'. waterfall() builds "
+      "capex as MAINT_CAPEX0 x inflation + growth capital; capex_pct is read "
+      "by nothing. TMGH carries the same shape in two sensitivity rows that "
+      "move the answer by 1.00x and 0.0%.",
+      "A check that reads consumption rather than presence, which "
+      "[R-ASSET-02] now does for the operating asset base and nothing yet "
+      "does for an ordinary driver."),
+
+    L("L-382", "ALL", None,
+      "A declared absence is re-searched before it is published, because a "
+      "gap that is not a gap is load-bearing in the wrong direction.",
+      "Saying 'the company does not disclose this' is a claim about the "
+      "world, and it is the one kind of claim a study makes that nothing "
+      "downstream can test — every other figure is checkable and an absence "
+      "is not. It is also the most consequential, because a declared gap is "
+      "what licenses a judgement in its place.",
+      "TMGH critique response, 18-09-2026", "critique",
+      "TMGH declares four gaps and all four are disclosed. Its crux rests on "
+      "'one number that the company does not publish: how long its order book "
+      "takes to convert' and adopts fourteen years; TMG has published 'the "
+      "backlog will be delivered over the coming 4-5 years' in every earnings "
+      "release since FY2018. Its cost of debt rests on 'TMG does not disclose "
+      "the rate on any of its own facilities'; note 25 of the interim "
+      "statements states 28.6%. Both documents were fetched from the "
+      "company's own archive on the first request.",
+      "A study whose declared gap survives a fresh search of the company's "
+      "own channel, logged with its date."),
+
+    L("L-383", "ALL", None,
+      "A study's own diagnostic can be right while the page prints the sign "
+      "backwards, and nothing compares the two.",
+      "Diagnostics are generated and pages are written. Where both state the "
+      "same quantity, only the generated one is checked — so a page can "
+      "reverse it and every instrument still reports the study clean, because "
+      "each is correct about its own half.",
+      "AMOC critique response, 18-09-2026", "critique",
+      "AMOC's reverse_read.json commits shift = +0.009264 and its "
+      "diagnostics.json reads it correctly in words — 'the price is 87 basis "
+      "points ABOVE the study's own forecast'. The delivered page states 'a "
+      "REDUCTION of -0.93%', in the headline box, and builds the direction of "
+      "proof on it.",
+      "A page that reads its direction words from the committed sign rather "
+      "than stating them, which is the prose-figure discipline applied to a "
+      "direction instead of to a figure."),
+
+    L("L-384", "ALL", None,
+      "A panel median computed over a set containing a figure the study has "
+      "already withdrawn is not the panel's read.",
+      "An expert panel earns its place by disagreeing. When the "
+      "cross-examination concedes that one expert's number is wrong and "
+      "restates it, the median must be taken over the restated set — "
+      "otherwise the concession is published two pages before a headline that "
+      "ignores it.",
+      "AMOC critique response, 18-09-2026", "critique",
+      "AMOC's Appendix C concedes Expert 1 is an undiscounted 2028 number "
+      "worth 8.10 rather than 14.50, and prints the panel median as 12.32 "
+      "over the set containing 14.50. The median of the discounted set "
+      "(8.10, 9.34, 12.32) is 9.34 — the panel read moves from -8.8% against "
+      "the price to -30.8%.",
+      "A panel whose concessions are all immaterial to its own median, "
+      "demonstrated rather than assumed."),
+
+    L("L-385", "ALL", None,
+      "A cross-check lens struck on a different capital basis does not walk "
+      "through the same bridge, and the difference is invisible until "
+      "somebody walks it.",
+      "Two lenses can be individually correct, individually reconciled and "
+      "still not comparable, because the enterprise value each produces "
+      "stands on a different definition of invested capital. A study that "
+      "claims the lenses reconcile has made a testable claim, and the test is "
+      "to put the second lens's enterprise value through the first lens's own "
+      "bridge.",
+      "AMOC critique response, 18-09-2026", "critique",
+      "AMOC's section 1.9 declares 'one view is now applied across the "
+      "model'. Its terminal runs on GROSS capital at 30.3%, Table A.3 carries "
+      "a net-book memo at 42.3%, and Expert 3 runs wholly on net book. "
+      "Expert 3's enterprise value of 13,536 walked through the study's own "
+      "bridge gives EGP 11.9144, against a published 12.3183 — reproduced "
+      "here and independently by an outside auditor.",
+      "A study whose lenses genuinely share one capital basis, shown by the "
+      "walk rather than by the sentence."),
+
+    L("L-386", "ALL", None,
+      "A spread quoted across 'N consecutive filed periods' must name which "
+      "N, because the subset chosen can exclude the period that matters.",
+      "A range over filed history is a fact, and which periods it spans is "
+      "part of the fact. Quoting a spread over a subset without naming it is "
+      "not a rounding difference — the excluded period is usually the "
+      "extreme one, which is why the subset was convenient.",
+      "AMOC critique response, 18-09-2026", "critique",
+      "AMOC's section 5 states 'the filed record spans 514 basis points' "
+      "while Table 6 and section 1.2 state 737 basis points across five "
+      "periods. 514bp is the spread of the FIRST FOUR — it excludes the "
+      "12.43% half the company had just reported, which is the best period in "
+      "the record and the one the margin thesis turns on. The defect was "
+      "already recorded in this house's own standing digest as a worked "
+      "example and shipped anyway.",
+      "A quoted spread that reproduces from the full filed set."),
+
+    L("L-387", "ALL", None,
+      "A source claim in the delivered bibliography is read by no gate, "
+      "because the source gate reads the committed input register.",
+      "The two artefacts make the same kind of claim about where numbers came "
+      "from, and only one of them is checked. A bibliography can tell a "
+      "reader that an aggregator supplied figures the model in fact takes "
+      "from the filings, and the study passes the source-integrity check "
+      "because that check never opens the bibliography.",
+      "AMOC critique response, 18-09-2026", "critique",
+      "AMOC's bibliography cites stockanalysis.com, Investing.com and "
+      "TradingView for total assets, total liabilities, cash and equivalents "
+      "and total debt — every one of which exists in the statements the study "
+      "holds and takes them from. check_source_integrity.py reads the input "
+      "register, where every AMOC source names a filing, and passes the "
+      "study.",
+      "A source gate whose population is the delivered documents as well as "
+      "the committed register."),
+
+    L("L-388", "CLASS", "refiner, commodity pass-through on a thin spread",
+      "Holding a dollar-linked price flat in nominal dollars while domestic "
+      "costs escalate at full inflation is a real-terms price decline, not "
+      "the absence of a forecast.",
+      "On a pass-through processor the slate is priced off a dollar "
+      "benchmark and the conversion costs are domestic. Declining to forecast "
+      "the benchmark is right; holding it flat in NOMINAL dollars is not the "
+      "way to decline, because it forecasts the price falling in real terms "
+      "at foreign inflation every year for ever, against domestic costs that "
+      "do not. The neutral assumption is flat in REAL terms.",
+      "AMOC critique response, 18-09-2026", "critique",
+      "AMOC derives realisation growth as (1 + Egyptian inflation) / 1.025 - "
+      "1 while operating expense and capital expenditure take the full "
+      "Egyptian ladder — an undisclosed 2.5%-a-year wedge that drifts "
+      "opex/revenue from 3.795% to 4.189% where parity holds it at 3.703%. "
+      "Closing it, re-run through the study's own compute.py, is +17.84%: "
+      "EGP 11.4012 to 13.4350. Four studies in the book carry the "
+      "convention.",
+      "Evidence that the real dollar price of this slate has in fact "
+      "declined at foreign inflation over a long enough record to measure, "
+      "which would make the nominal convention the right one."),
+
+    L("L-389", "CLASS",
+      "real-estate developer, off-plan, point-in-time on handover",
+      "A partial-adjustment conversion model cannot reach the period it is "
+      "labelled with, and the label is what the study sensitises.",
+      "Where revenue moves a fraction of the way toward a target each year "
+      "and the target itself compounds, realised conversion never reaches the "
+      "rate the target was built from. The cell carrying the period is then a "
+      "label rather than a driver — and it is the label the crux grid, the "
+      "headline and the sensitivity all move.",
+      "TMGH critique response, 18-09-2026", "critique",
+      "TMGH commits CAPACITY_YEARS 14 and CAPACITY_RAMP 0.25. Revenue moves "
+      "a quarter of the way to (opening book + sales) / 14 each year while "
+      "the book compounds at 15%, so the committed book cover runs 15.03 to "
+      "20.97 to 19.75 years and never 14. The 2027 recursion reproduces the "
+      "workbook to ten decimals. The words ramp, partial adjustment and "
+      "adjustment speed appear zero times in the delivered document.",
+      "A conversion model whose realised rate reaches its stated period "
+      "within the explicit window, shown by the committed series."),
+
+    L("L-390", "CLASS",
+      "real-estate developer, off-plan, point-in-time on handover",
+      "Contracted sales earned as a development fee never enter the backlog, "
+      "and must not drive the collections line.",
+      "A developer can sell on its own balance sheet and sell for somebody "
+      "else on a commission. Only the first creates a deliverable obligation "
+      "and only the first is collected against. Feeding total reported sales "
+      "into an advances driver treats fee volume as if it were an order book, "
+      "and the company usually says so in a footnote on the same page as the "
+      "backlog chart.",
+      "TMGH critique response, 18-09-2026", "critique",
+      "TMG discloses that SouthMed sales sit outside the backlog under an "
+      "asset-light model earning a c.8% fee; SouthMed was EGP 93.9bn of the "
+      "219.1bn of 1H2026 sales, 43%. The FY2023 release separately states "
+      "EGP 47.8bn of third-party commission volume, which the study's "
+      "register characterises as a land transaction. TMGH's model injects "
+      "EGP 300bn of new sales a year at face into the collections driver, "
+      "and by 2035 that line supplies 152,135 against total free cash flow "
+      "of 137,742.",
+      "A company of this class whose fee-based volume does create a "
+      "collectable obligation, disclosed as such."),
+
+    L("L-391", "STOCK", "TMGH",
+      "TMG publishes its own discount rate, projection period and terminal "
+      "growth in its goodwill note, and no study here has read them.",
+      "The goodwill impairment test is a discounted cash flow the company "
+      "runs on itself and discloses annually. It is the one place a filing "
+      "states what the company believes about its own cost of capital and "
+      "horizon — a free cross-check on the two inputs a study argues hardest "
+      "about.",
+      "TMGH critique response, 18-09-2026", "critique",
+      "Note 9 of TMG's 30 June 2026 interim consolidated statements: a "
+      "pre-tax discount rate of 33.9% applied to cash-flow projections, a "
+      "20-year period, and a terminal growth rate of 5%. The study runs a "
+      "terminal WACC of 21.93% and terminal growth of 7%. Neither the study "
+      "nor either outside audit found it.",
+      "A year in which the note stops disclosing the rate, or discloses one "
+      "built on a basis the study's own rate cannot be compared with."),
 ]
 
 
