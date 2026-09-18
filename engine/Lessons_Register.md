@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**317 lessons**, of which 272 bind on every study, 34 on a class of company, and 11 on a single name.
+**318 lessons**, of which 273 bind on every study, 34 on a class of company, and 11 on a single name.
 
-By how they were learned: 62 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 28 from outside critiques, 31 from self-audits, 194 found while building.
+By how they were learned: 62 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 29 from outside critiques, 31 from self-audits, 194 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -2798,6 +2798,16 @@ A mechanical rule that compounds the LAST PUBLISHED inflation print flat at ever
 > **What it cost, or how we know.** The walk-forward projectors escalate on (1 + cpi(origin)) ** h, so a 31-December-2019 Egyptian origin compounds at the 13.87% realised print for five straight years and ends still growing at four times its terminal. The IMF World Economic Outlook of October 2019 — already extracted in engine/macro_history/ with its file name and sha256, and in existence at that origin — projects 13.866, 9.965, 7.217, 7.011, 7.002, 7.078, converging to the house terminal by year three with no fade and no free parameter.
 
 > **What would overturn it.** An origin where no forecast had been published by the origin date, which is the case the flat rule is actually right for — and which must then be named rather than assumed.
+
+### L-397 · A rule cited as a reason is not checked the way a number is.
+
+Every figure in a committed record is computed, sourced and dated, and the one sentence carrying a rule identifier is simply believed — by the record that wrote it, by the standing digest that repeated it, and by every reader since. Where a record gives a standing rule as the reason something was not done, read the rule.
+
+**Applies to:** every study  ·  *Learned from:* outside critique, AMOC forecast anchor, 18-09-2026
+
+> **What it cost, or how we know.** AMOC's forecast-anchor record gave [R-VCAL-01]'s one-lever-at-a-time guard as the reason a correction priced at +55% was not applied. That guard governs levers promoted from the valuation calibration, never corrections to defects, and the standing digest had repeated the same false reason in its own [R-ANCHOR-01] paragraph. Measured the day the clause was adopted, the misreading had reached SIX passages across two study builders and one ratchet, and EVERY ONE OF THEM DEFERRED A CORRECTION THAT RAISES THE VALUE — so an interpretation that always ran one way was behaving exactly like a house lean while every individual step in it was defensible. All six carried their own measurement already, so correcting them was rewriting the reason and keeping the number; no value moved.
+
+> **What would overturn it.** A deferral citing a rule that genuinely does govern it — which would make the citation a fact to check rather than a reason to believe.
 
 
 ---

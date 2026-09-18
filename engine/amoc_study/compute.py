@@ -2031,12 +2031,23 @@ say(f"[The base anchor — PRICED, NOT ADOPTED] the most recent reviewed period 
     f"{_GM_Q1_2025:.3%} against Q1-2026 {_GM_Q1_2026:.3%} is the SAME QUARTER doubled, which "
     f"seasonality cannot produce. Anchoring there and holding it flat gives EGP "
     f"{_PS_H1_ANCHOR:.2f} a share ({_PS_H1_ANCHOR/SPOT-1:+.1%} against spot) against the "
-    f"adopted EGP {dcf_ps:.2f}. IT IS NOT TAKEN HERE. One correction has already moved this "
-    f"study from {_PS_POUND_AT_INFL/SPOT-1:+.1%} to {dcf_ps/SPOT-1:+.1%} against the price; a "
-    f"second would land {_PS_H1_ANCHOR/SPOT-1:+.1%}, crossing from one side of the price to the "
-    f"other in a single pass. Levers are taken one at a time and stop at the crossing, so this "
-    f"one is published as the study's most consequential contested judgement and left for the "
-    f"next edition.")
+    f"adopted EGP {dcf_ps:.2f}. IT IS NOT TAKEN IN THIS EDITION, AND THE REASON GIVEN HERE "
+    f"WAS FALSE UNTIL 18-09-2026. It read: 'a second would land "
+    f"{_PS_H1_ANCHOR/SPOT-1:+.1%}, crossing from one side of the price to the other in a "
+    f"single pass. Levers are taken one at a time and stop at the crossing.' TWO THINGS ARE "
+    f"WRONG WITH THAT. The one-lever-at-a-time stop rule governs LEVERS PROMOTED FROM THE "
+    f"VALUATION CALIBRATION and its stop is the POOLED BIAS across the book crossing zero -- "
+    f"never a single study's distance from a single quote; and applying it to this gap makes "
+    f"THE PRICE the thing a correction may not pass, which is the reverse-engineering this "
+    f"house prohibits outright, arriving as a reason for INACTION rather than action and "
+    f"therefore invisible to every check that watches for a value being moved TOWARD a quote. "
+    f"THE HONEST REASON IS SEQUENCING AND IT IS RECORDED AS A DECISION: re-anchoring changes "
+    f"the central, so the workbook, the delivered document, the bibliography, the gap review "
+    f"and the QC gate all move with it -- a re-issue rather than a field -- and it belongs "
+    f"with the four other undisputed corrections that stack with it. WHAT IT IS WORTH IS "
+    f"UNCHANGED AND IS THE POINT OF RECORDING IT: EGP {_PS_H1_ANCHOR:.2f} against the adopted "
+    f"EGP {dcf_ps:.2f}, {_PS_H1_ANCHOR/dcf_ps-1:+.1%}. That the corrected value lands above "
+    f"the price is an OUTCOME and is not a reason either way.")
 
 # ---- synthesis --------------------------------------------------------------
 W = V['lens_weights']
@@ -2654,12 +2665,21 @@ FORECAST_ANCHOR = dict(
     # filings is the finding.
     #
     # So the honest state is: this forecast opens 22% relatively below the latest
-    # reviewed period and CANNOT name a mechanism the filings support. The reason it
-    # is not simply re-anchored is [R-VCAL-01]'s one-lever-at-a-time guard -- the
-    # move is priced at +55% in the contested judgements and would carry this study
-    # from 12.3% below the price to 35.9% above it in a single pass. AMOC is
-    # therefore listed on the forecast-anchor ratchet with that reason, and comes off
-    # it when the base anchor is taken at the next edition.
+    # reviewed period and CANNOT name a mechanism the filings support.
+    #
+    # THE REASON THIS COMMENT GAVE WAS FALSE AND IS CORRECTED [R-REBUILD-01 CLAUSE
+    # TWO, 18-09-2026]. It read "the reason it is not simply re-anchored is
+    # [R-VCAL-01]'s one-lever-at-a-time guard". That guard governs LEVERS PROMOTED
+    # FROM THE VALUATION CALIBRATION, not corrections to defects -- and this record
+    # is the case the clause was adopted on, so the false reason was here first and
+    # was repeated into the standing digest before anybody read the rule it cited.
+    #
+    # THE MEASUREMENT IS UNCHANGED: the move is priced at +55% in the contested
+    # judgements and would carry this study from 12.3% below the price to 35.9%
+    # above it in a single edition. What defers it is a DECISION about sequencing --
+    # the re-anchor belongs with the four other undisputed corrections that stack
+    # with it, which is a re-issue rather than a field -- and a decision is what the
+    # ratchet now records. AMOC comes off that list when the base anchor is taken.
     mechanism=None,
     note=(
         f"THE FORECAST OPENS BELOW THE LATEST REVIEWED PERIOD AND NO MECHANISM IS CLAIMED, "
@@ -2691,9 +2711,15 @@ FORECAST_ANCHOR = dict(
         f"forecast path rising rather than falling. SO THE RECORD STANDS AS A REFUSAL, AND THE "
         f"REFUSAL IS THE FINDING. Anchoring on the reviewed half and holding it flat is this "
         f"study's largest contested judgement, priced at EGP {_PS_H1_ANCHOR:.2f} a share "
-        f"against the adopted EGP {dcf_ps:.2f}; it is published beside the answer and left for "
-        f"the next edition because levers are taken one at a time and this one crosses the "
-        f"traded price of EGP {SPOT:.2f} in a single pass."))
+        f"against the adopted EGP {dcf_ps:.2f} ({_PS_H1_ANCHOR/dcf_ps-1:+.1%}). It is "
+        f"published beside the answer and deferred to the next edition BY SEQUENCING -- "
+        f"re-anchoring moves the central and therefore the workbook, the document, the "
+        f"bibliography, the gap review and the QC gate with it, which is a re-issue rather "
+        f"than a field. THE REASON RECORDED HERE UNTIL 18-09-2026 WAS FALSE: it read "
+        f"'because levers are taken one at a time and this one crosses the traded price in a "
+        f"single pass'. That stop rule belongs to the valuation calibration's POOLED BIAS "
+        f"across the book, never to one study's distance from one quote, and reading it that "
+        f"way makes the price the thing a correction may not pass."))
 
 BRIDGE_RECORD = dict(
     market='EG',

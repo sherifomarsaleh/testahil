@@ -99,23 +99,52 @@ the census, two outside audits, and the cross-section of published values — co
 
 ## WHAT I AM NOT DOING, AND WHY
 
-**I am not lifting the price paths across four studies by hand.** The promotion guard is
-explicit: one lever at a time, in an order fixed before any score exists, halted the moment the
-pooled bias would cross zero. The pooled lean ex the two broken studies is **−1.6% mean,
-−5.3% median**. A correction worth +17.8% on one name and +68.7% on another, applied to four
-studies at once, would not centre that distribution — **it would throw it hard positive**, and
-a house that corrects its pessimism into optimism has fixed nothing.
+> **CORRECTED LATER THE SAME DAY, BY THE RULE ADOPTED THE SAME DAY.** This section originally
+> read: *"I am not lifting the price paths across four studies by hand. The promotion guard is
+> explicit: one lever at a time, in an order fixed before any score exists, halted the moment
+> the pooled bias would cross zero… What this is: the first candidate lever for the valuation
+> calibration's promotion sequence."*
+>
+> **That reason is false, and [R-REBUILD-01] CLAUSE TWO — adopted on this very pattern, hours
+> earlier, on AMOC's own forecast-anchor record — says so in terms:** the promotion guard
+> governs **levers promoted from the valuation calibration**, candidates seeking evidence. It
+> does **not** govern **corrections to defects**, and citing it to defer one puts a false
+> reason where the next study will read it. The clause exists because every correction deferred
+> under that reading raised the value, *"so the misreading behaved exactly like a house lean
+> while every individual step in it was defensible"* — and this document is another instance of
+> it, written the same afternoon.
+>
+> **This is a defect, not a lever, and it is a defect under two standing rules rather than by
+> assertion.** [R-MACRO-01] requires growth rates to be stored as *(real, inflation-path id)*
+> and to recompute to their nominal, because *"a typed nominal rate is unfalsifiable — nobody
+> can tell whether 12% meant inflation plus one point or inflation minus three"*. A price held
+> flat in nominal dollars is a typed nominal rate of zero whose real component is minus US
+> inflation, stated nowhere. [R-ANCHOR-01 CLAUSE TWO] separately requires a rate that declines
+> materially across the explicit window to name a mechanism from a closed list, carry the
+> disclosure and supply a like-for-like measurement; a permanent real price decline does none
+> of the three.
+>
+> **The pooled-bias concern was real and belongs to the calibration, not here** — and as of
+> this evening the calibration's contemporaneous series has **zero admissible cells**, so the
+> guard being invoked has nothing to guard with. See
+> `engine/valuation_calibration/CONVERGENCE_REFUSAL_18-09-2026.md`.
 
-**What this is:** the first candidate lever for the valuation calibration's promotion sequence,
-with a measured mechanism, an independent confirmation on two names, and a census that predicts
-its shape.
+**What is still true, and is the reason the four models are not patched by hand:** the fix
+belongs in a **rule**, not in four builders. Porting one study's corrected escalator into three
+others produces four hand-maintained conventions with four different holes, which is this
+book's own repeated lesson and the argument Part A of the consolidated audit opens with.
 
 **What is required before it moves any published number:**
 1. Re-derive both corrections from the primary sources, per the escalation rule — both are far
    above the 5% threshold.
 2. Establish the convention as a **rule** — a traded price is held flat in REAL terms and the
    real path is stated — rather than patching four models.
-3. Run it through the promotion sequence and stop where the guard says stop.
+3. ~~Run it through the promotion sequence and stop where the guard says stop.~~ **Struck by
+   the correction above.** A defect repair does not enter through the promotion sequence; it is
+   applied when it is found, and each study records it in its rebuild ledger with the rule it
+   serves and the measurement, so the move is visible rather than deferred. A study may still
+   sequence the work — that is a real judgement about what a pass can carry — but it records
+   the deferral as a **decision with its measurement**, never as a rule that forbids it.
 
 ---
 

@@ -7260,6 +7260,37 @@ LESSONS = [
           "the same pass as the finding: the repair changes a pre-registered "
           "driver rule, which may not move on the strength of a valuation "
           "result [R-FCAL-01].")),
+
+    L("L-397", "ALL", None,
+      "A rule cited as a reason is not checked the way a number is.",
+      "Every figure in a committed record is computed, sourced and dated, and the one "
+      "sentence carrying a rule identifier is simply believed — by the record that "
+      "wrote it, by the standing digest that repeated it, and by every reader since. "
+      "Where a record gives a standing rule as the reason something was not done, read "
+      "the rule.",
+      "AMOC forecast anchor, 18-09-2026", "critique",
+      "AMOC's forecast-anchor record gave [R-VCAL-01]'s one-lever-at-a-time guard as "
+      "the reason a correction priced at +55% was not applied. That guard governs "
+      "levers promoted from the valuation calibration, never corrections to defects, "
+      "and the standing digest had repeated the same false reason in its own "
+      "[R-ANCHOR-01] paragraph. Measured the day the clause was adopted, the "
+      "misreading had reached SIX passages across two study builders and one ratchet, "
+      "and EVERY ONE OF THEM DEFERRED A CORRECTION THAT RAISES THE VALUE — so an "
+      "interpretation that always ran one way was behaving exactly like a house lean "
+      "while every individual step in it was defensible. All six carried their own "
+      "measurement already, so correcting them was rewriting the reason and keeping "
+      "the number; no value moved.",
+      "A deferral citing a rule that genuinely does govern it — which would make the "
+      "citation a fact to check rather than a reason to believe.",
+      promotion="enforced",
+      promoted_by="scripts/check_deferral_reason.py",
+      promotion_note=(
+          "Built the same day. A committed RECORD giving the guard as a deferral "
+          "reason is a hard refusal; a builder COMMENT is measured and printed and "
+          "never a bar, because a comment that merely EXPLAINS the guard is ordinary "
+          "and a gate unable to tell the two apart would push builders to stop "
+          "explaining things. Ratchet EMPTY at adoption, since all six passages were "
+          "corrected rather than excused.")),
 ]
 
 

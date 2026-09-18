@@ -399,6 +399,15 @@ ARTEFACT_GATES = {
 #                                   read, and its own population anchoring covers the case
 #                                   where the whole book has none
 EXCLUDED = {
+    'check_deferral_reason.py':
+        'its subject is the REASON a record gives for deferring a correction, read across '
+        'the whole repository rather than inside any study. A planted empty study defers '
+        'nothing and cites nothing, so refusing one would be a false claim about what this '
+        'gate checks; its own population guard already fails a run that reads no file or '
+        'finds no reference to the guard anywhere',
+    'check_deferral_reason_negative_control.py':
+        'the control for the above, and a control is not a gate over studies',
+
     'check_lesson_promotion.py': 'its subject is THE LESSONS REGISTER rather '
                                  'than any study — it asks how many lessons '
                                  'reach the layer that binds, and a planted '

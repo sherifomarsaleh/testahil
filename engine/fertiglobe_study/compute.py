@@ -1201,8 +1201,18 @@ cost_of_capital_record = dict(
     # spot — which is the shape of discounting a perpetuity at a rate the economy
     # is not expected to hold, milder here than in a crisis market but the same
     # error. Correcting it RAISES the value, as does the net-weights finding
-    # recorded in the bridge; two levers pointing the same way in one pass is what
-    # the promotion guard forbids, so both are named and neither is taken here.
+    # recorded in the bridge.
+    #
+    # THE REASON THIS COMMENT GAVE WAS FALSE AND IS CORRECTED [R-REBUILD-01 CLAUSE
+    # TWO, 18-09-2026]. It read "two levers pointing the same way in one pass is
+    # what the promotion guard forbids, so both are named and neither is taken
+    # here". That guard governs LEVERS PROMOTED FROM THE VALUATION CALIBRATION, not
+    # corrections to defects, and [R-REBUILD-01] says in terms that a study wrong in
+    # six ways moves a long way when all six are fixed. Two corrections pointing the
+    # same way are not forbidden; what is forbidden is the move being invisible.
+    # Both remain named and untaken HERE because this pass rebuilt the terminal and
+    # taking them belongs with the cost-of-capital pass -- a sequencing decision,
+    # recorded with its measurement below, not a prohibition.
     rf_terminal=float(rf_star_rating),
     wacc_exp=float(wacc_rating), wacc_terminal=float(wacc_term_rating),
     forward_wacc=[float(wacc_rating + (wacc_term_rating - wacc_rating) * g_) for g_ in glide],
@@ -1374,9 +1384,12 @@ bridge_record = dict(
         # weights with a net-debt deduction, or net weights with a gross-debt
         # deduction; this is neither. It is worth 105 basis points of cost of capital
         # and it RAISES the value, so it is not left unsaid because it is comfortable.
-        # It is a cost-of-capital question rather than a bridge one, it is a second
-        # lever in the same pass as the terminal rebuild, and the promotion guard
-        # forbids stacking those — so it is registered here and belongs to that pass.
+        # It is a cost-of-capital question rather than a bridge one. It is
+        # registered here and belongs to the cost-of-capital pass BY SEQUENCING,
+        # with its 105 basis points recorded so the debt is countable. The earlier
+        # wording -- "the promotion guard forbids stacking those" -- was a false
+        # reason and is corrected [R-REBUILD-01 CLAUSE TWO, 18-09-2026]: that guard
+        # governs levers promoted from the valuation calibration, never corrections.
         finding_for_the_cost_of_capital_pass=dict(
             wacc_on_net_weights=float(wacc['wacc_rating']),
             wacc_on_gross_weights=float(
@@ -1483,9 +1496,14 @@ macro_record = dict(
 # default spread, flat across the window and the terminal because the peg makes the
 # schedule flat; the path derives a terminal risk-free rate of terminal inflation plus
 # its real-rate convention, which is lower. Omitting the field would switch the check
-# off, and moving the number to meet the path would be a second lever in the same pass
-# as the terminal rebuild, which the promotion guard forbids. It is named here, left to
-# the cost-of-capital pass, and the study stays on the macro ratchet until then.
+# off. Moving the number to meet the path is work for the cost-of-capital pass BY
+# SEQUENCING, and the study stays on the macro ratchet until then.
+#
+# THE EARLIER WORDING -- "a second lever in the same pass as the terminal rebuild,
+# which the promotion guard forbids" -- WAS A FALSE REASON and is corrected
+# [R-REBUILD-01 CLAUSE TWO, 18-09-2026]. The promotion guard governs levers promoted
+# from the valuation calibration; it does not forbid a correction, and a deferral is
+# recorded as a decision with its measurement rather than as a rule.
 #
 # THE FIELD IS THE ONE THE GATE READS. A first version of this record put the two rates
 # under names of its own and passed — which is declaration without execution, the exact
