@@ -1,4 +1,4 @@
-"""Negative control for check_real_terms_paths.  [R-ENF-01]
+"""Negative control for check_real_terms_paths.  [R-REAL-01]
 
 Every condition the gate refuses, reinjected, and every clean case it must not fire on.
 EVERY MUTATION ASSERTS THAT IT LANDED and the case COUNT is asserted against a declared
@@ -102,7 +102,7 @@ def case(name, studies, want_red, landed, results, ratchet=None):
 
 
 def main():
-    print("NEGATIVE CONTROL - check_real_terms_paths  [R-ENF-01]")
+    print("NEGATIVE CONTROL - check_real_terms_paths  [R-REAL-01]")
     print("   %d conditions that must go RED, %d that must stay GREEN"
           % (RED_EXPECTED, CLEAN_EXPECTED))
     res = []

@@ -1,8 +1,8 @@
-PROTOCOL REVISION 2026-09-18f — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-18g — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
-Updated 18 September 2026 (rev. 13) — A LESSON SAYS WHETHER IT REACHES THE LAYER THAT BINDS [R-LESSON-02] · A DOCUMENT THAT QUOTES THE BETA DIAGNOSTICS NAMES THE ESTIMATOR [R-BETA-05] · THE GUARD RECORDS A ROUTE; IT DOES NOT DEFER A CORRECTION [R-REBUILD-01 CLAUSE TWO]: "the guard forbids it" is not a reason, and every correction deferred under that reading raised the value
+Updated 18 September 2026 (rev. 13) — EVERY PER-UNIT MONEY PATH SAYS WHAT IT DOES IN REAL TERMS [R-REAL-01]: a nominal number cannot be read, and a revenue line that does not move with inflation while the cost lines do manufactures a margin collapse the model then reports as a finding · A LESSON SAYS WHETHER IT REACHES THE LAYER THAT BINDS [R-LESSON-02] · A DOCUMENT THAT QUOTES THE BETA DIAGNOSTICS NAMES THE ESTIMATOR [R-BETA-05] · THE GUARD RECORDS A ROUTE; IT DOES NOT DEFER A CORRECTION [R-REBUILD-01 CLAUSE TWO]: "the guard forbids it" is not a reason, and every correction deferred under that reading raised the value
 (rev. 12, 7 September 2026 — SIX STANDING RULES ADOPTED IN ONE COMMIT: the operating asset base is as at the latest disclosure the study read [R-ASSET-01] · the cost of equity reproduces from its own committed inputs [R-COC-02] · the gap a READER sees is audited, not only the gap the study was struck at [R-GAP-03] · a red gate is worked until it is green [R-REPAIR-01] · every error this house claims to catch is planted and caught [R-PROOF-01] · a ratchet excuses the failure it RECORDED, not every failure of its class [R-ENF-08]
 (rev. 11, 5 September 2026 — THE RECALCULATION EVERY STUDY ATTESTS TO IS RUN FROM OUTSIDE [R-ENF-01 EXTENDED]: a check somebody has to remember to run is run until the day it matters)
 (rev. 10, 1 September 2026 — CAMPAIGN WORK IS MERGED ON GREEN [R-MERGE-01]: an unmerged rule binds on nothing)
@@ -5353,3 +5353,135 @@ making a forecast can be a forecast.** *"We hold it flat because no forecast is 
 sounds like restraint and reads like rigour, and in an economy with inflation in it **flat is
 a direction**. Where a model declines to forecast something, ask what the declining itself
 assumes.
+
+# [R-REAL-01] Every per-unit money path says what it does in real terms (18-Sep-2026, per instruction — "do all three. proceed based on the best way")
+
+**Every per-unit money path a study commits declares what it does in REAL terms against the
+house inflation ladder.** A revenue line that does not move with inflation while the cost
+lines do manufactures a margin collapse, and the model then reports the collapse as a
+finding.
+
+## Where it came from, which is not a defect report
+
+This rule was not adopted on somebody noticing an error. The principal read the spread of
+delivered fair values against the prices they were struck at and reached the conclusion
+`[R-VCAL-01]`'s own first measurement had reached from the other direction — **this house is
+INCONSISTENT rather than pessimistic** — and then asked the two questions that matter about
+any such finding: how it gets sorted out, and **how the fix would be detected on a NEW
+company**. The answer to the second is what makes this a rule rather than eight repairs: the
+eight studies already carrying the defect can be fixed by hand, and fixing them says nothing
+whatever about the next name somebody values.
+
+## The evidence, in four costumes and then book-wide
+
+Four studies audited 18 September 2026 carried one defect wearing four different faces, and
+the sentence describing each was reassuring rather than alarming:
+
+| | | |
+|---|---|---|
+| **PHAR** | domestic drug price 5.0 / 8.0 / 7.5 / 6.5 / 5.5 against a house ladder of 16 / 12 / 9 / 7.5 / 7 | **−15.9% real**, under a driver note reading *"tracks domestic inflation ... with no real price gain"* |
+| **EGCH** | export price pinned at exactly US$530 for five years while the pound falls 25% | worth **+68.75%** |
+| **AMOC** | crude held flat in dollars while costs escalate at full domestic inflation | worth **+17.8%** |
+| **ARCC** | export dollar price declining 10.5% nominal | sourced by nothing |
+
+The gate's first run over the book read 24 study directories and 4,067 register inputs, and
+found **eight studies carrying thirteen undeclared material real moves** — ADNOCDIST (four),
+AMOC, ARCC (two), DU, ELEC, PHAR (two), SCEM, SWDY. Read the population live with
+`python3 scripts/check_real_terms_paths.py`, never from this document, because both halves
+move: an entry is closed, and a study is rebuilt.
+
+## What the rule does not do, and this has to be stated plainly
+
+**It does not decide that a real decline is wrong.** Egyptian medicine prices are set
+administratively and do lag inflation. A commodity held flat in hard currency is a declared
+convention, not a slip. A gate can prove that a price falls in real terms; **it cannot prove
+that is a mistake**, and one that tried would be making a claim about the world it has no
+instrument for. **What is caught is SILENCE, and a human rules.**
+
+## Three parts, because detection alone would not answer the second question
+
+**(1) Unwritable at the input.** `engine/real_terms.py`'s `nominal_from_real()` takes a REAL
+path and lets the house ladder supply the nominal, so PHAR's *"5%"* has to be written as
+*"−9.5% real"* — which nobody writes by accident and no reviewer reads past. This is
+`[R-MACRO-01]`'s own argument, growth stored as *(real, inflation-path id)* with the nominal
+recomputed, applied to the price lines that rule does not reach: `[R-MACRO-01]` binds what a
+study **declares** as an inflation input, and a revenue price is not declared as one. **Two
+studies in this book already do it this way and the pattern is read off them rather than
+invented** — STC commits `segment_real_growth_path` beside its own `inflation_ladder`, SWDY
+commits `cables_real_growth`.
+
+**(2) The quantity is checked, not the declaration.** `scripts/check_real_terms_paths.py`
+scans the four-field register for price-class paths, **so a study cannot opt out by declaring
+nothing.** That is `[R-MACRO-01 AMENDED 03-Sep-2026]`'s own lesson: a study once declared a
+perfectly TRUE exemption about a line that was not doing the work, while the input that drove
+the currency was named nowhere. The name scan is a **FLOOR under the study's own
+declaration, never its definition**, on the delivered-vocabulary precedent — it matches PRICE
+tokens only and never volume, margin or utilisation, because a check that condemns correct
+work gets switched off.
+
+**(3) Proved on a NEW name.** `scripts/check_error_injection.py` carries it in the words
+somebody would complain in — *"the study quietly assumes the company's product gets cheaper
+every year"* — planted in **TMGH**, which had never carried it and is **not on the ratchet**,
+because a ratchet excuses the whole gate for a name and planting a new error in a listed
+study tests nothing `[R-ENF-08]`. Baseline green, mutation asserted to have landed, gate red
+and naming the study. Ten of ten.
+
+## The declaration
+
+A `real_terms_block` names each price-class path with its **kind**, its **measured
+`real_change`** — the arithmetic is the arbiter and the gate reproduces it from the path's own
+figures — a **mechanism from a CLOSED list** and the **disclosure** establishing it from the
+filings. The list is closed for `[R-COC-01 AMENDED]`'s reason, that an open one lets any study
+opt out by inventing a mechanism: `administered_price`, `traded_commodity_flat_in_hard_currency`,
+`contractual_escalator`, `regulated_tariff_glide`, `competitive_erosion_measured_in_own_history`.
+**An empty disclosure has switched the check off rather than declared it.** An entry closes by
+**NAMING** the real change — never by deleting the figure and never by changing the path,
+**because what is wrong is the claim and not the construction.**
+
+## The basis depends on the currency, and the first draft got it wrong
+
+A price set in local currency is measured against the **domestic** ladder. A price set in hard
+currency is measured against **long-run foreign inflation**, because the house currency path
+derives by purchasing-power parity from the inflation differential. The first draft compared a
+dollar growth rate against the domestic ladder and reported **−35.5% real on a path running
++1% a year** — which would have condemned correct work, on an instrument built to stop exactly
+that. Per `[R-COC-01]`: **when a check fires on work that is right, RE-POINT it.** The negative
+control keeps both halves as a **pair**, because either alone proves nothing — 1%/yr is −5.7%
+real and must fire, 2.2%/yr is −1.2% and must not, while on the wrong basis that same 2.2%
+path reads −28.3%.
+
+**Materiality is reused, never minted:** 5% cumulative, the line this house already draws round
+a contested judgement and which `[R-ANCHOR-01]` already reused for this same question.
+
+## Enforced from outside, per [R-ENF-01]
+
+`engine/real_terms.py` is the shared instrument and `scripts/check_real_terms_paths.py` the
+gate. Ratcheted `[R-ENF-02]` at eight, **each entry carrying its MEASUREMENT** `[R-ENF-08]` so
+the debt is countable rather than remembered and the list may only ever SHORTEN.
+Population-anchored `[R-ENF-04]` **both ways**: zero study directories fails, and so does zero
+register inputs read across the directories present, because a reader that stopped finding
+registers reads exactly like a book with no price paths in it. Artefact-conditional in the
+new-study gauntlet `[R-ENF-07]`, listed in the commit that adopts it, since an empty study
+directory commits no register. Negative-controlled by
+`scripts/check_real_terms_paths_negative_control.py` on 14 conditions, nine red and five clean,
+every mutation asserting that it landed.
+
+**A study clean by ABSENCE is printed apart from one clean by DECLARATION**, because all twelve
+that passed the first run passed for the first reason — which says nothing about the gate and
+everything about those registers.
+
+## The instrument's own first draft, recorded because it is the standing failure
+
+The market a study belongs to is read from `assets/data.js` through a **real JavaScript
+parse** `[R-ENF-03]` — the one place this protocol says an exchange is recorded — rather than
+guessed from a study's own fields. The first draft searched four plausible keys inside each
+numbers file and returned nothing for **fourteen of twenty-four studies**, which reads exactly
+like a book with no price paths in it. That is `[L-355]` landing on the instrument written to
+close it, and **it was caught by the count rather than by reading**.
+
+**The general lesson, which is not about prices: a nominal number cannot be read.** *"5%
+growth"* is unfalsifiable — nobody can tell whether it means a real gain, a real hold or an
+eleven-point real cut, and **the reader of a driver note cannot tell either**, which is why
+PHAR's sentence survived every review it passed. The same figure written as *"−9.5% real"* is
+read correctly by everybody at a glance. Where a quantity carries a unit, **write it in the
+unit the claim is made in**.

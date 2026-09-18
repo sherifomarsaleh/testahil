@@ -141,6 +141,13 @@ diff-only summary leaves that copy silently behind.
   book runs both; until this existed nothing distinguished a relevered beta from a typo. A
   relevered terminal must STATE its tax rate — the module can solve the implied one and
   reports it so the fix is a single line, but never accepts it.
+- `engine/real_terms.py` — [R-REAL-01]. What a per-unit money path does in REAL terms against
+  the house inflation ladder. `nominal_from_real()` is the half that makes the defect
+  unwritable: state the REAL rate and the ladder supplies the nominal, so a price "tracking
+  inflation" at 5% against a 16% ladder has to be written as −9.5% real. The basis follows the
+  currency the price is SET in — local against the domestic ladder, hard currency against
+  long-run foreign inflation. It decides nothing about whether a real decline is right; it
+  makes the claim sayable, and the gate catches silence.
 - `engine/ratchet_shape.py` — [R-ENF-08]. A ratchet entry excuses the failure it RECORDED,
   not every failure of its class. Use it in any new gate that carries a ratchet: `excused()`
   compares the failure's SHAPE with live figures stripped, `worsened()` compares a recorded

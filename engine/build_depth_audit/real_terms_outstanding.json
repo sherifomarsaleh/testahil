@@ -1,5 +1,5 @@
 {
- "rule": "R-ENF-01 / a price path declares what it does in REAL terms",
+ "rule": "R-REAL-01 / a price path declares what it does in REAL terms",
  "note": "Studies committing a per-unit money path that moves materially in real terms against the house inflation ladder and saying so nowhere. SEEDED 18-09-2026 on the gate's first run, each entry carrying its MEASUREMENT [R-ENF-08]. May only ever SHORTEN. An entry closes by NAMING the real change in a real_terms_block with its mechanism and disclosure -- NEVER by deleting the figure and NEVER by changing the path, because what is wrong is the claim and not the construction. A real decline may be entirely correct: Egyptian medicine prices are set administratively and do lag inflation. What it may not be is unsaid.",
  "adopted": "2026-09-18",
  "measurements": {

@@ -89,6 +89,16 @@ The delivered valuation study, rebuilt to carry this run's results. **The depth 
   forecasting method is any good, and a method that quietly walks a rate back toward a longer average
   is making an untested claim in the direction that always lowers value.
 
+- **[R-REAL-01] Every per-unit money path says what it does in REAL terms.**
+  Build price paths through `engine/real_terms.py`'s `nominal_from_real()` — state the REAL rate
+  and let the house inflation ladder supply the nominal — and commit a `real_terms_block` naming
+  each price-class path with its kind, its measured `real_change`, a mechanism from the closed
+  list and the disclosure behind it. `python3 scripts/check_real_terms_paths.py` must clear. The
+  gate does not decide that a real decline is wrong; it catches SILENCE. It matters most here for
+  the same reason [R-ASSET-01] does: a run rebuilds the drivers at every origin, and a price path
+  drifting below the ladder manufactures a margin collapse the scoring then reads as a finding
+  about the company — the error being measured is then the method's own.
+
 - **[R-ASSET-01] The operating asset base is as at the latest disclosure the study read.**
   Where the class carries an asset-based lens, commit an `asset_base_record` naming the quantity,
   its unit and value, the date it is AS AT and the disclosure it came from, and clear

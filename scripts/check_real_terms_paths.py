@@ -1,4 +1,4 @@
-"""Every price path a study commits says what it does in REAL terms.  [R-ENF-01]
+"""Every price path a study commits says what it does in REAL terms.  [R-REAL-01]
 
 A revenue line that does not move with inflation while the cost lines do manufactures a
 margin collapse, and the model then reports the collapse as a finding. Four studies
@@ -185,7 +185,7 @@ def main(argv=None):
             clean.append((tk, len([r for r in rep["rows"] if r["material"]]),
                           len(rep["rows"])))
 
-    print("[R-ENF-01] price paths declare what they do in REAL terms")
+    print("[R-REAL-01] price paths declare what they do in REAL terms")
     print("  study directories examined : %d" % len(dirs))
     print("  register inputs read       : %d" % read_inputs)
     print("  studies clean              : %d" % len(clean))

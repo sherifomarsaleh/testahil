@@ -371,7 +371,7 @@ def assert_beta_provenance(rec: dict, tier2_fallback_documented: bool = False) -
 # study built to an older one. Bump this ONLY when a change would alter a
 # delivered number or a required artefact — not for prose.
 # ---------------------------------------------------------------------------
-STANDARD_VERSION = "2026.09.07"
+STANDARD_VERSION = "2026.09.18"
 STANDARD_VERSION_NOTE = (
     "v2 cost of capital (rf normalised by the sovereign's own default spread); beta via "
     "beta_regression.own_stock_beta() against the registered index of the listing exchange, "
@@ -383,7 +383,10 @@ STANDARD_VERSION_NOTE = (
     "[R-ASSET-01] an asset_base_record whose vintage is at least as new as the study's "
     "own information set, on every study whose class carries an asset-based lens; and "
     "[R-COC-02] a cost-of-capital record declaring the construction its terminal cost of "
-    "equity reproduces under (same_beta or relevered, the relevering tax rate STATED)."
+    "equity reproduces under (same_beta or relevered, the relevering tax rate STATED); and "
+    "[R-REAL-01] a real_terms_block declaring every per-unit money path that moves more "
+    "than 5% in REAL terms against the house inflation ladder, with its measured real_change, "
+    "a mechanism from the closed list and the disclosure establishing it from the filings."
 )
 # Bumped 01-Sep-2026 for [R-GAP-01]. This clears the "prose only" bar deliberately: the
 # rule adds a REQUIRED ARTEFACT — a study whose central sits more than 10% below the
@@ -403,6 +406,18 @@ STANDARD_VERSION_NOTE = (
 # bump; what moves is that a study built before today is countable rather than assumed
 # current [R-STD-01]. See engine/build_depth_audit/asset_base_outstanding.json and
 # ke_outstanding.json for what was outstanding on the day.
+#
+# Bumped 18-09-2026 for [R-REAL-01], and for that rule ONLY. It adds a REQUIRED ARTEFACT:
+# a real_terms_block naming every per-unit money path that moves materially in real terms
+# against the house inflation ladder, with its measured real_change, a mechanism from the
+# closed list and the disclosure behind it. A nominal path cannot be read -- "5% growth"
+# is a real gain, a real hold or an eleven-point real cut and nobody can tell which -- so a
+# study built before this requirement is countable rather than assumed current. NO DELIVERED
+# NUMBER MOVES ON THIS BUMP and the rule decides nothing about whether a real decline is
+# right: it catches SILENCE, and a human rules. The other amendments recorded the same day
+# do NOT bump it and saying so is the point, a version justified by the wrong rule being
+# worse than none. See engine/build_depth_audit/real_terms_outstanding.json for the eight
+# studies outstanding on the day, each entry carrying its measurement [R-ENF-08].
 
 
 # ---------------------------------------------------------------------------

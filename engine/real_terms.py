@@ -1,5 +1,7 @@
 """What a price path does in REAL terms, measured against the house inflation ladder.
 
+[R-REAL-01] -- the shared instrument. scripts/check_real_terms_paths.py is the gate.
+
 ADOPTED 18-09-2026 on four studies audited the same night, all four carrying the same
 defect in four costumes. A revenue line that does not move with inflation while the cost
 lines do manufactures a margin collapse, and the model then reports the collapse as a
