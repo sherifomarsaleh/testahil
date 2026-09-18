@@ -153,14 +153,35 @@ def company_named_not_ticker_named(tmp):
 
 
 def ratcheted_breach_stays_green(tmp):
-    """The known breach is on the list and must not turn the build red."""
+    """A breach that IS on the list must not turn the build red.
+
+    THE BREACH IS PLANTED, NOT BORROWED [L-403]. This case used to take the first
+    entry off the live ratchet and assert that study was genuinely breaching — correct
+    the day it was written, and dead the day the debt was PAID: the list was pruned to
+    empty, the fixture had nothing to stand on, and the control refused. A control whose
+    condition is supplied by a debt somebody is working to remove has an expiry date
+    nobody sets, and the more diligently the debt is cleared the sooner the control
+    stops proving anything.
+
+    So the case builds its own: a study directory carrying a delivered document and NO
+    bibliography, named on the ratchet in the same breath. It tests the ratchet
+    MECHANISM, which is what the case is for, and it keeps testing it whether the book
+    owes this debt or not.
+    """
+    tk = "NCRATCHET"
+    d = _dir(tmp, tk.lower() + "_study")
+    os.makedirs(d, exist_ok=True)
+    open(os.path.join(d, "%s_Valuation_Study_01-01-2026_public.docx" % tk), "w").close()
+    assert not _biblio_of(tmp, tk.lower() + "_study"), \
+        "fixture: the planted study is not actually breaching"
     p = os.path.join(tmp, "engine", "build_depth_audit",
                      "bibliography_outstanding.json")
     o = json.load(open(p))
-    assert o.get("outstanding"), "fixture: the ratchet is empty, so this proves nothing"
-    tk = o["outstanding"][0]
-    assert not _biblio_of(tmp, tk.lower() + "_study"), \
-        "fixture: the ratcheted study is not actually breaching"
+    o.setdefault("outstanding", [])
+    assert tk not in o["outstanding"], "fixture: the planted ticker was already listed"
+    o["outstanding"].append(tk)
+    json.dump(o, open(p, "w"))
+    assert tk in json.load(open(p))["outstanding"], "fixture: the ratchet entry did not land"
     return None
 
 

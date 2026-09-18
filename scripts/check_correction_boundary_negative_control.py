@@ -125,17 +125,50 @@ def adopt_a_phantom(tmp):
 
 
 def stale_ratchet(tmp):
-    """A listed entry that stops flipping must go RED, not quietly pass."""
+    """A listed entry that stops flipping must go RED, not quietly pass.
+
+    BOTH HALVES ARE PLANTED [L-403]. This case used to name `asp` and take the entry
+    off the live ratchet, and both halves died the same week for the same GOOD reason:
+    the debt was paid. PHDC's corrections.py was rebuilt to call cuts_for() instead of
+    comparing era means of its own, asp and units_sold fell out, the ratchet was pruned
+    to empty — and a control whose condition is a debt somebody is clearing stops
+    proving anything precisely when the work is going well.
+
+    So the driver is DERIVED from the sandbox's own log rather than named, and the
+    ratchet entry is written into the sandbox's copy of the gate rather than borrowed.
+    It tests the mechanism, which is what the case is for.
+    """
     p = _log(tmp, "phdc_walkforward")
     o = json.load(open(p))
+    drv = None
+    for e in o["log"]:
+        for d, v in (e.get("corrections") or {}).items():
+            if v.get("applied"):
+                drv = d
+                break
+        if drv:
+            break
+    assert drv, ("FIXTURE CANNOT BE BUILT: this run carries no applied correction at "
+                 "all, so there is nothing a ratchet could be listing")
     removed = 0
     for e in o["log"]:
-        for drv, v in (e.get("corrections") or {}).items():
-            if drv == "asp" and v.get("applied"):
+        for d, v in (e.get("corrections") or {}).items():
+            if d == drv and v.get("applied"):
                 v["applied"] = 0.0
                 removed += 1
-    assert removed, "MUTATION DID NOT LAND: asp carried no applied correction"
+    assert removed, "MUTATION DID NOT LAND: %s carried no applied correction" % drv
     json.dump(o, open(p, "w"))
+
+    g = os.path.join(tmp, "scripts", "check_correction_boundary.py")
+    body = open(g, encoding="utf-8").read()
+    marker = "OUTSTANDING = {"
+    assert marker in body, "FIXTURE: the gate no longer declares a ratchet to plant into"
+    body = body.replace(marker,
+                        marker + '\n    ("PHDC", %r): "planted by the negative control",'
+                        % drv, 1)
+    open(g, "w", encoding="utf-8").write(body)
+    assert ('("PHDC", %r)' % drv) in open(g, encoding="utf-8").read(), \
+        "MUTATION DID NOT LAND: the planted ratchet entry is not in the gate"
     return "may only SHORTEN"
 
 

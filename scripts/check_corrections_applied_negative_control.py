@@ -261,14 +261,26 @@ def clean_silent_without_a_run(tmp):
 
 
 def clean_phdc_conformed(tmp):
-    """PHDC declaring both numbers: six shifts APPLIED inside the test, zero
-    PROMOTED. Two quantities under two names, which is the point — writing either
-    alone under a name that could mean the other is the defect the declaration was
-    written to avoid."""
+    """PHDC declaring BOTH numbers: shifts APPLIED inside the test, zero PROMOTED.
+
+    Two quantities under two names, which is the point — writing either alone under a
+    name that could mean the other is the defect the declaration was written to avoid.
+
+    THE COUNT IS DERIVED, NOT PINNED [L-403]. This case asserted the applied count was
+    exactly six and the study legitimately moved to eight: the run was rebuilt under the
+    cut-invariant rule, average selling price and units sold were WITHDRAWN and three
+    drivers were ADMITTED at origins the old test could not reach. The fixture then
+    refused, on a study that had done exactly the right thing — which is what a control
+    pinned to a live figure does the moment the work moves, and the better the work the
+    sooner it happens. What this case is ABOUT is the shape: two names, one positive,
+    one zero. So the shape is what it asserts.
+    """
     o = json.load(open(_nums(tmp, "phdc")))
     wf = o.get("walkforward", {})
-    assert wf.get("corrections_applied_in_walkforward") == 6, \
-        "FIXTURE IS NOT THE REAL CASE: PHDC's applied count moved"
+    n = wf.get("corrections_applied_in_walkforward")
+    assert isinstance(n, int) and n > 0, \
+        ("FIXTURE IS NOT THE REAL CASE: PHDC declares %r applied, and this case needs a "
+         "study that applied some" % (n,))
     assert wf.get("corrections_adopted") == 0, \
         "FIXTURE IS NOT THE REAL CASE: PHDC no longer declares zero adopted"
     return None
@@ -280,7 +292,7 @@ CLEAN = [
     ("a study using the word for editorial corrections", clean_editorial_word),
     ("a study declaring none whose run adopted none", clean_declared_none),
     ("a study with NO run that says nothing", clean_silent_without_a_run),
-    ("PHDC declaring six applied and zero adopted", clean_phdc_conformed),
+    ("PHDC declaring some applied and zero adopted", clean_phdc_conformed),
 ]
 
 EXPECTED_RED, EXPECTED_CLEAN = 8, 5
