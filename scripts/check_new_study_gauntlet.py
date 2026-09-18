@@ -108,6 +108,26 @@ DIRECTORY_GATES = [
 # ARTEFACT GATES: bite once the study produces the artefact they read, and are tested by
 # planting one that should trip them. `plant` returns the files to create.
 ARTEFACT_GATES = {
+    'check_beta_estimator_disclosure.py': (
+        # An empty study commits no beta record and delivers no document, so refusing a bare
+        # directory would be a false claim about what this gate checks [R-ENF-07]. Planted
+        # with the defect exactly as it was found: a Dimson record whose delivered document
+        # quotes the diagnostics a reader would test and names no estimator.
+        'a Dimson beta whose document quotes the diagnostics and names no estimator',
+        lambda: {
+            'study_numbers.json': ('json', {
+                'wacc': {'beta_record': {'beta': 1.4718, 'se': 0.185, 'r2': 0.326,
+                                         'n': 251, 'dimson': True}}}),
+            # A PARAGRAPH, not a list. plant() reads a list payload as a TABLE fixture
+            # [[cell, ...], ...], so a list holding one string builds a one-row table with
+            # every CHARACTER in its own cell — the sentence is there and no regex can
+            # match across the cell boundaries. The first registration did exactly that and
+            # the harness reported MISS, which is the harness working: a fixture that does
+            # not land is not a gate that does not fire.
+            '%s_Valuation_Study_18-09-2026.docx' % TICKER: ('docx',
+                "Beta 1.4718 - the stock's own weekly returns regressed against the "
+                "exchange's published index over 4.85 years, 251 observations, explaining "
+                "32.6% of the variation, standard error 0.185.")}),
     'check_ke_reproduction.py': (
         # An empty study commits no cost-of-capital record, so refusing a bare directory
         # would be a false claim about what this gate checks [R-ENF-07]. Planted with a

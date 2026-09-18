@@ -15,7 +15,7 @@ Recalculation runs through the explicit evaluator in xlcalc.py rather than throu
 that wrote the file: an independent reimplementation that has to agree cell-for-cell is the
 stronger check.
 """
-import fnmatch, json, os, re, sys
+import fnmatch, json, os, re, subprocess, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import openpyxl
@@ -53,16 +53,34 @@ def latest(pattern):
     return max(hits, key=_stamp)
 
 
-raise SystemExit(
-    "SUPERSEDED — this recalculator was written for the NINE-sheet workbook of "
-    "06-08-2026 (it expects a 'Product and Cost' sheet, which the model-report "
-    "standard does not have). THE LIVE RECALCULATION GATE IS recalc_v5.py, and it "
-    "is the one the QC gate cites. This file refuses rather than running, because "
-    "it was pinned by name to a workbook two editions old and would have reported "
-    "clean on it — a check that opens a delivered file by name reports on whatever "
-    "edition that name happened to be when the line was written [L-067]. It is "
-    "kept rather than deleted so that anything still calling it fails loudly "
-    "instead of silently checking the wrong file.")
+# THIS FILE IS THE ENTRY POINT, NOT THE RECALCULATOR.
+#
+# The body below was written for the NINE-sheet workbook of 06-08-2026 (it expects a
+# 'Product and Cost' sheet, which the model-report standard does not have) and would have
+# reported clean on a file nobody receives — a check that opens a delivered file by name
+# reports on whatever edition that name happened to be when the line was written [L-067].
+# It was made to REFUSE for that reason on 05-09-2026, and refusing was right.
+#
+# What refusing did NOT anticipate is that something outside this study opens it BY NAME
+# too. scripts/check_workbook_values.py carries a two-name allowlist — recalc.py and
+# lo_recalc_gate.py — so it ran this stub, read the refusal, and recorded AMOC as FAILING
+# the workbook-recalculation standard. The delivered workbook in fact passes: recalc_v5.py
+# reconciles 6,069 formula cells with zero unresolvable and zero disagreements, and eleven
+# headline reconciliations besides. Across 23 studies AMOC is the ONLY one whose live
+# recalculator goes by a third name, so the gate is right 22 times and wrong once — on the
+# one study it then condemned. THE DEBT WAS RECORDED AGAINST A FILE, NOT AGAINST THE WORK.
+#
+# The fix belongs HERE and not in the gate. Editing a gate so that a study goes green is
+# precisely what [R-REPAIR-01] forbids, and the distinction is worth keeping even though
+# the gate is the thing that is wrong about this study: a study owns its own entry point,
+# and an entry point that refuses to say where the live instrument is has not finished the
+# job of being retired. So this DELEGATES rather than refusing — the caller gets the live
+# recalculation, with its exit status, and the stale body below never runs.
+print("recalc.py — SUPERSEDED BODY. The live recalculation for this study is recalc_v5.py "
+      "(the edition this file was written for is two workbooks old). Delegating, so that a "
+      "caller opening this file BY NAME reaches the instrument that reads the delivered "
+      "file rather than a refusal that reads as a failure. [L-067]")
+raise SystemExit(subprocess.call([sys.executable, os.path.join(HERE, 'recalc_v5.py')]))
 wb = openpyxl.load_workbook(XLSX)
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 XP = json.load(open(os.path.join(HERE, 'xlsx_expected.json')))

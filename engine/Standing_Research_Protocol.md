@@ -1,8 +1,8 @@
-PROTOCOL REVISION 2026-09-18a — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-18b — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
-Updated 18 September 2026 (rev. 13) — THE GUARD RECORDS A ROUTE; IT DOES NOT DEFER A CORRECTION [R-REBUILD-01 CLAUSE TWO]: "the guard forbids it" is not a reason, and every correction deferred under that reading raised the value
+Updated 18 September 2026 (rev. 13) — A DOCUMENT THAT QUOTES THE BETA DIAGNOSTICS NAMES THE ESTIMATOR [R-BETA-05] · THE GUARD RECORDS A ROUTE; IT DOES NOT DEFER A CORRECTION [R-REBUILD-01 CLAUSE TWO]: "the guard forbids it" is not a reason, and every correction deferred under that reading raised the value
 (rev. 12, 7 September 2026 — SIX STANDING RULES ADOPTED IN ONE COMMIT: the operating asset base is as at the latest disclosure the study read [R-ASSET-01] · the cost of equity reproduces from its own committed inputs [R-COC-02] · the gap a READER sees is audited, not only the gap the study was struck at [R-GAP-03] · a red gate is worked until it is green [R-REPAIR-01] · every error this house claims to catch is planted and caught [R-PROOF-01] · a ratchet excuses the failure it RECORDED, not every failure of its class [R-ENF-08]
 (rev. 11, 5 September 2026 — THE RECALCULATION EVERY STUDY ATTESTS TO IS RUN FROM OUTSIDE [R-ENF-01 EXTENDED]: a check somebody has to remember to run is run until the day it matters)
 (rev. 10, 1 September 2026 — CAMPAIGN WORK IS MERGED ON GREEN [R-MERGE-01]: an unmerged rule binds on nothing)
@@ -3784,6 +3784,82 @@ THE WAY A NUMBER IS. Every figure in that record was computed, sourced and dated
 one sentence carrying a rule identifier was simply believed -- by the study that wrote it,
 by the digest that repeated it, and by every reader since. WHERE A RECORD GIVES A STANDING
 RULE AS ITS REASON, READ THE RULE.
+
+
+[R-BETA-05] A DOCUMENT THAT QUOTES THE BETA DIAGNOSTICS NAMES THE ESTIMATOR
+[ADOPTED 18-09-2026, on an outside forensic audit of a delivered study].
+
+The audit applied the textbook single-regressor identity
+
+    t^2 = R^2 (n - 2) / (1 - R^2)
+
+to the four diagnostics one study prints -- beta 1.4718, standard error 0.185, R-squared
+32.6%, n 251 -- and found them mutually inconsistent: the printed (t, n) pair implies an
+R-squared of 20.30%, the printed (R-squared, n) pair implies a standard error of 0.1341,
+and the two agree only at n = 133 against a printed 251. IT CONCLUDED THAT THE DIAGNOSTICS
+CANNOT COME FROM ONE REGRESSION, AND IT WAS RIGHT.
+
+They do not. beta_regression.own_stock_beta() -- the only sanctioned route to a beta in this
+book -- runs a DIMSON estimator: the stock's weekly return regressed on the index's return
+in the same week AND in the week either side, beta the SUM of the three coefficients, the
+standard error the square root of the summed 3x3 covariance block, the R-squared that of
+the whole three-term model. The identity does not apply to any of it. Measured that day,
+TEN OF TEN committed beta records in this book are Dimson and SEVEN of the ten delivered
+documents quote diagnostics a reader would test while naming no estimator.
+
+THE ESTIMATOR IS SOUND AND THE DISCLOSURE IS NOT, and keeping those apart is the whole
+rule. This is [R-COC-02]'s general lesson arriving on a different quantity: A CHECK THAT
+FIRES ON CORRECT WORK HAS USUALLY FOUND A CONSTRUCTION NOBODY WROTE DOWN. The repair is
+neither to widen the check until the honest case passes, nor -- far worse -- to change the
+estimator so that a reader's shortcut happens to work; it is to make the construction
+DECLARABLE and then require the declaration.
+
+THE RULE: where a study's committed record says the estimator is Dimson AND the delivered
+document quotes a diagnostic a reader could test -- a standard error, an explained
+variation, an R-squared -- the document NAMES THE CONSTRUCTION. The sentence is emitted
+from the record by beta_regression.estimator_note() rather than typed, for the reason every
+shared instrument here exists: a sentence hand-written into ten studies is ten sentences
+that drift, and this one has to stay true of whatever estimator the module runs.
+
+THE CONDITION IS DELIBERATELY NARROW AND EACH NARROWING IS EARNED. A study that quotes a
+beta and NO diagnostics has given a reader nothing to test and is out of scope -- the defect
+is a reader misled by figures, not a beta being unexplained. A study that names the
+estimator ANYWHERE in the document passes, wherever it names it, because this is a
+disclosure test and not a placement test; the exemplar names it in a cost-of-capital TABLE
+CELL ("The estimate is a lead-lag sum beta: the routine regresses on one lag, the
+contemporaneous return and one lead and sums the three slopes") and a paragraph-only reader
+would have condemned the one study that already conforms. That case is in the negative
+control for exactly that reason.
+
+THE RECORD IS READ THROUGH NAMED ADAPTERS RATHER THAN GUESSED. Two shapes exist in this
+book: a flat record whose `dimson` is a BOOLEAN, and one whose `dimson` is a SUB-RECORD
+carrying the coefficients and its own internal note. A reader that guesses finds the
+sub-record, sees no `beta` beside it and reports the study as carrying none -- which is what
+the first measurement of this population did, [L-355] landing on the instrument written to
+close it. An UNRECOGNISED shape is RED, never skipped, AND THE GATE'S OWN FIRST DRAFT FAILED
+THAT CLAUSE: it fell through to the recursion and returned "no beta record", which reads
+exactly like a study that has none. Its negative control caught it on the first run, and the
+gate was re-pointed rather than the case dropped.
+
+ENFORCED FROM OUTSIDE per [R-ENF-01]: scripts/check_beta_estimator_disclosure.py, ratcheted
+[R-ENF-02] at seven with EVERY ENTRY CARRYING ITS MEASUREMENT [R-ENF-08] so the debt is
+countable and each entry names its own fix, population-anchored [R-ENF-04] BOTH ways (zero
+study directories fails, and so does zero beta records read across directories that are
+present), ARTEFACT-conditional in the new-study gauntlet [R-ENF-07] since an empty directory
+commits no beta record. Negative-controlled on ten conditions, six red and FOUR CLEAN, every
+mutation asserting that it landed and every case first requiring the sandbox green before
+the mutation. THE EXEMPLAR IS NOT ON THE RATCHET -- ADNOCLS already names the construction,
+so per [R-ENF-01 EXTENDED 04-Sep-2026] this standard is MET by the exemplar rather than
+consciously added to its debt. READ THE POPULATION LIVE -- python3
+scripts/check_beta_estimator_disclosure.py -- never from this block.
+
+THE GENERAL LESSON, WHICH IS NOT ABOUT BETA: A NUMBER IS ONLY CHECKABLE AGAINST THE METHOD
+THAT PRODUCED IT, AND A PAGE THAT NAMES THE NUMBER WITHOUT THE METHOD INVITES THE WRONG
+CHECK. The diagnostics here were correct, the estimator was the right one, the record
+carried it, and a careful outside reader doing exactly what a careful outside reader should
+do arrived at the conclusion that they had been fabricated. Where a deliverable publishes
+statistics, publish what they are statistics OF -- because the reader who tests them is the
+reader worth having, and they are the one this omission misleads.
 
 
 ## [R-ENF-01 EXTENDED 07-09-2026] A committed record carries the shape the module that writes it emits today
