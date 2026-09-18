@@ -42,6 +42,16 @@ import re
 import sys
 import tempfile
 
+# RECLAIM BEFORE MAKING. This harness copies the whole repository and removes
+# the copy in a `finally`, which runs exactly as often as the process finishes —
+# and a kill, a timeout or an out-of-space error skips it. Twenty-five abandoned
+# copies at 1.4-1.6 GB each once filled the disk, after which EVERY gate in the
+# repository went red with an empty message, because none could write its output.
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(
+    os.path.abspath(__file__))), "engine"))
+import sandbox_reclaim as SBX  # noqa: E402
+
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TICKER = 'ZZTEST'
 
@@ -569,7 +579,7 @@ def sandbox():
     accident, must not be able to touch the real tree. This repository has already paid for
     running repo-mutating steps against a live checkout once.
     """
-    tmp = tempfile.mkdtemp(prefix='gauntlet_')
+    tmp = SBX.make("gauntlet_")
     def ignore(d, names):
         # raw_indices was excluded in the first draft and check_study_provenance CRASHED on
         # its absence — going red for the wrong reason, which reads exactly like going red

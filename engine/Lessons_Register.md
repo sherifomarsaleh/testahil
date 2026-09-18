@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**328 lessons**, of which 283 bind on every study, 34 on a class of company, and 11 on a single name.
+**329 lessons**, of which 284 bind on every study, 34 on a class of company, and 11 on a single name.
 
-By how they were learned: 62 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 31 from outside critiques, 36 from self-audits, 197 found while building.
+By how they were learned: 62 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 31 from outside critiques, 37 from self-audits, 197 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -2908,6 +2908,16 @@ The valuation pre-registration says in terms that it may never be edited and tha
 > **What it cost, or how we know.** check_valuation_calibration.py now pairs each score with the pre-registration in force AT THAT SCORE'S OWN COMMIT, read off topology, and verifies EVERY sealed document rather than only the current one — the superseded one being exactly where a rationalisation would go, since it is the design the earlier scores claim to follow and nobody opens it again. Negative-controlled on twelve conditions, the decisive pair being a score under design 1 with design 2 committed later, which must PASS and which the old gate condemned, and a superseded document edited after its seal, which must FAIL and which the old gate could not see.
 
 > **What would overturn it.** A supersession the changed gate lets through that the old one would have caught, which would mean the pairing weakened the order test rather than sharpening it.
+
+### L-408 · AN INFRASTRUCTURE FAILURE WEARING A REPOSITORY FAILURE'S CLOTHES IS WORSE THAN EITHER — a full disk turned every gate in the book red with an empty message.
+
+Two harnesses copy the whole repository into a sandbox and remove it in a `finally`, which runs exactly as often as the process finishes. A kill, a timeout or an out-of-space error skips it. Twenty-five abandoned copies accumulated, the session's disk allowance ran out, and a sweep of 172 checks reported 66 consecutive RED results — not one of them true. The first thing a false catastrophe costs is the reader's belief that anything is working, and the second is the hours spent looking for a defect in the work rather than under it.
+
+**Applies to:** every study  ·  *Learned from:* self-audit, the full gate sweep, 18-09-2026
+
+> **What it cost, or how we know.** The sandboxes ran 1.4 to 1.6 GB each. Every RED line carried an EMPTY message, which is what an unwritable output file looks like and is indistinguishable on the page from a gate that failed silently — including check_valuation_calibration, which had returned OK minutes earlier and returned OK again once space was freed. engine/sandbox_reclaim.py now RECLAIMS BEFORE MAKING: a process that died cannot clean up after itself and the next one can. The test is exact and carries no threshold — each sandbox records its making process and one whose process is gone is finished with, whatever its age. An age cutoff would be a free parameter and would be wrong in both directions, deleting a long run's live sandbox and keeping a short run's dead one.
+
+> **What would overturn it.** A harness that leaves a sandbox behind while its process is still alive, which would mean the ownership stamp is not the right test and reclamation needs something other than liveness.
 
 
 ---

@@ -7594,6 +7594,41 @@ LESSONS = [
           "a gate should be tested against the corrections its own rule prescribes, is "
           "prose: it is a question about what a rule permits, which no checker can read "
           "off a repository.")),
+
+    L("L-408", "ALL", None,
+      "AN INFRASTRUCTURE FAILURE WEARING A REPOSITORY FAILURE'S CLOTHES IS WORSE THAN "
+      "EITHER — a full disk turned every gate in the book red with an empty message.",
+      "Two harnesses copy the whole repository into a sandbox and remove it in a "
+      "`finally`, which runs exactly as often as the process finishes. A kill, a "
+      "timeout or an out-of-space error skips it. Twenty-five abandoned copies "
+      "accumulated, the session's disk allowance ran out, and a sweep of 172 checks "
+      "reported 66 consecutive RED results — not one of them true. The first thing a "
+      "false catastrophe costs is the reader's belief that anything is working, and the "
+      "second is the hours spent looking for a defect in the work rather than under it.",
+      "the full gate sweep, 18-09-2026", "self_audit",
+      "The sandboxes ran 1.4 to 1.6 GB each. Every RED line carried an EMPTY message, "
+      "which is what an unwritable output file looks like and is indistinguishable on "
+      "the page from a gate that failed silently — including check_valuation_calibration, "
+      "which had returned OK minutes earlier and returned OK again once space was freed. "
+      "engine/sandbox_reclaim.py now RECLAIMS BEFORE MAKING: a process that died cannot "
+      "clean up after itself and the next one can. The test is exact and carries no "
+      "threshold — each sandbox records its making process and one whose process is gone "
+      "is finished with, whatever its age. An age cutoff would be a free parameter and "
+      "would be wrong in both directions, deleting a long run's live sandbox and keeping "
+      "a short run's dead one.",
+      "A harness that leaves a sandbox behind while its process is still alive, which "
+      "would mean the ownership stamp is not the right test and reclamation needs "
+      "something other than liveness.",
+      promotion="enforced",
+      promoted_by="engine/sandbox_reclaim.py",
+      promotion_note=(
+          "Reclamation is arithmetic and is in the code, called by both harnesses before "
+          "they copy. What is NOT enforced is the general claim — that a sweep reporting "
+          "many gates red at once should first ask whether the SWEEP is broken — because "
+          "no checker can tell a real mass failure from an infrastructure one without "
+          "knowing what the failure means. The injection harness's own docstring says "
+          "'there is no undo that has to run', and it was right about the tree it mutates "
+          "and wrong about the copy it makes to mutate it.")),
 ]
 
 
