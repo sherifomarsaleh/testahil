@@ -23,6 +23,7 @@ VERIFY BY IMPORT, NOT BY PARSE.
 """
 from __future__ import annotations
 
+import contextlib
 import json
 import math
 import os
@@ -37,6 +38,8 @@ import macro_history as MH       # noqa: E402
 import panel as P                # noqa: E402
 import terminal_value as TV      # noqa: E402
 import research_protocol as RP   # noqa: E402  [R-MACRO-01]'s own bound, never a second one
+import pit_inflation as PI       # noqa: E402  the archive's own forward ladder
+import pit_substitution as S     # noqa: E402  one named adapter per run
 
 BETA = 1.00              # declaration 2, carried forward unchanged
 HORIZONS = (1, 2, 3, 4, 5)
@@ -134,21 +137,45 @@ def _run(rundir, fn, *a, **kw):
         return fn(*a, **kw)
 
 
-def project_amoc(origin):
+@contextlib.contextmanager
+def _esc(adapter, B, origin_label, h, esc, **kw):
+    """Apply a run's NAMED adapter for one horizon, or run the pre-registered path.
+
+    Yields False where the ladder cannot reach this horizon, so the caller SKIPS the
+    horizon rather than silently falling back to the run's own flat escalator — a
+    fallback here would produce a cell built on two different inflation paths and
+    nothing downstream could see it.
+    """
+    if esc is None:
+        yield True
+        return
+    r = esc(h)
+    if r is None:
+        yield False
+        return
+    rate, cum = r[0], r[1]
+    with adapter(B, origin_label, h, rate, cum, **kw):
+        yield True
+
+
+def project_amoc(origin, esc=None):
     d = os.path.join(ENGINE, "amoc_walkforward")
     B = _in(d)
     out = {}
     for h in HORIZONS:
         if h not in B.HORIZONS:
             continue
-        p = _run(d, B.project, "FY%d" % origin, h)
+        with _esc(S.ADAPTERS["AMOC"], B, "FY%d" % origin, h, esc) as ok:
+            if not ok:
+                continue
+            p = _run(d, B.project, "FY%d" % origin, h)
         out[h] = {"revenue": p.get("net_sales"),
                   "ebit": p.get("operating_profit"),
                   "dna": p.get("depreciation")}
     return out
 
 
-def project_gbco(origin):
+def project_gbco(origin, esc=None):
     """GBCO's own pre-registered projector, called at `origin`.
 
     ITS SIGNATURE IS ITS OWN AND SO IS ITS HOME. It lives in score.py rather than
@@ -180,14 +207,17 @@ def project_gbco(origin):
     return out
 
 
-def project_arcc(origin):
+def project_arcc(origin, esc=None):
     d = os.path.join(ENGINE, "arcc_walkforward")
     B = _in(d)
     out = {}
     for h in HORIZONS:
         if h not in B.HORIZONS:
             continue
-        p = _run(d, B.project, "FY%d" % origin, h)
+        with _esc(S.ADAPTERS["ARCC"], B, "FY%d" % origin, h, esc) as ok:
+            if not ok:
+                continue
+            p = _run(d, B.project, "FY%d" % origin, h)
         ebit = (p["gross_profit"] - p["ga"] - p["provisions"] + p["reversals"]
                 - p["impairments"])
         out[h] = {"revenue": p.get("revenue"), "ebit": ebit,
@@ -195,14 +225,17 @@ def project_arcc(origin):
     return out
 
 
-def project_egch(origin):
+def project_egch(origin, esc=None):
     d = os.path.join(ENGINE, "egch_walkforward")
     B = _in(d)
     out = {}
     for h in HORIZONS:
         if h not in B.HORIZONS:
             continue
-        p = _run(d, B.project, "FY%d" % origin, h)
+        with _esc(S.ADAPTERS["EGCH"], B, "FY%d" % origin, h, esc) as ok:
+            if not ok:
+                continue
+            p = _run(d, B.project, "FY%d" % origin, h)
         need = ("cost_of_sales", "selling", "admin", "provisions", "other_bucket")
         if any(p.get(k) is None for k in need):
             out[h] = {"revenue": p.get("revenue"), "ebit": None, "dna": None}
@@ -216,14 +249,30 @@ def project_egch(origin):
     return out
 
 
-def project_phdc(origin):
+def project_phdc(origin, esc=None):
     d = os.path.join(ENGINE, "phdc_walkforward")
     B = _in(d)
 
     def go():
         pan = B.load()
         return B.project(pan, origin, macro="as_known")
-    r = _run(d, go)
+
+    # THIS RUN RETURNS EVERY HORIZON FROM ONE CALL on ONE flat rate, so a single call
+    # cannot carry a ladder. It is therefore called once per horizon, each time with the
+    # rate whose compounding over that horizon equals the ladder's — which reproduces
+    # the ladder's cumulative at every horizon exactly, and its year-on-year rate across
+    # adjacent horizons exactly, which is what the convergence bound reads.
+    if esc is None:
+        r = _run(d, go)
+    else:
+        r = {}
+        for h in HORIZONS:
+            with _esc(S.ADAPTERS["PHDC"], B, origin, h, esc) as ok:
+                if not ok:
+                    continue
+                rh = _run(d, go)
+            if rh.get(h):
+                r[h] = rh[h]
     out = {}
     for h in HORIZONS:
         f = r.get(h) or {}
@@ -233,15 +282,27 @@ def project_phdc(origin):
     return out
 
 
-def project_tmgh(origin):
+def project_tmgh(origin, esc=None):
     d = os.path.join(ENGINE, "tmgh_walkforward")
     B = _in(d)
+    A, M = _run(d, B.load)
+    cpi, urb = _run(d, B.macro_paths, M)
 
     def go():
-        A, M = B.load()
-        cpi, urb = B.macro_paths(M)
         return B.project(A, cpi, urb, origin, horizons=list(HORIZONS))
-    res, _notes = _run(d, go)
+
+    if esc is None:
+        res, _notes = _run(d, go)
+    else:
+        res = {"projection": {}}
+        for h in HORIZONS:
+            with _esc(S.ADAPTERS["TMGH"], B, origin, h, esc, cpi_dict=cpi) as ok:
+                if not ok:
+                    continue
+                rh, _n = _run(d, go)
+            f = ((rh or {}).get("projection") or {}).get(h)
+            if f:
+                res["projection"][h] = f
     out = {}
     for h in HORIZONS:
         f = (res.get("projection") or {}).get(h) or {}
@@ -269,7 +330,7 @@ def project_tmgh(origin):
     return out
 
 
-def project_phar(origin):
+def project_phar(origin, esc=None):
     """PHAR's own pre-registered projector, called at `origin`.
 
     THE POPULATION WAS ALWAYS MEANT TO INCLUDE THIS NAME. The sealed
@@ -313,7 +374,18 @@ def project_phar(origin):
         # None means the flag could not be read, which is not the same as False and
         # is not treated as it — an absent answer is not a clean one [R-ENF-04].
         return {}
-    proj = _run(d, B.project, "FY%d" % origin)
+    if esc is None:
+        proj = _run(d, B.project, "FY%d" % origin)
+    else:
+        proj = {}
+        for h in HORIZONS:
+            with _esc(S.ADAPTERS["PHAR"], B, origin, h, esc) as ok:
+                if not ok:
+                    continue
+                ph = _run(d, B.project, "FY%d" % origin)
+            key = "FY%d" % (origin + h)
+            if ph and ph.get(key):
+                proj[key] = ph[key]
     if not proj:
         return {}
     out = {}
@@ -339,26 +411,131 @@ def project_phar(origin):
     return out
 
 
+def project_swdy(origin, esc=None):
+    """SWDY's own pre-registered projector, called at `origin`.
+
+    WIRED 18-09-2026 ON INSTRUCTION, and the population clause it falls under is the
+    sealed one's own: FULL on "AMOC, ARCC, EGCH, PHDC, TMGH, and each name the campaign
+    adds thereafter". This run was completed after that sentence was written.
+
+    ITS CONVENTION IS A FOURTH ONE — an origin INTEGER and a horizon, returning a flat
+    dict of driver keys prefixed D1..D12, where every other run returns statement labels.
+    Revenue and operating profit are composed from the run's own driver names below
+    rather than read off a line, because this model has no single top line.
+    """
+    d = os.path.join(ENGINE, "swdy_walkforward")
+    B = _in(d)
+    out = {}
+    for h in HORIZONS:
+        if h not in B.HORIZONS:
+            continue
+        with _esc(S.ADAPTERS["SWDY"], B, origin, h, esc) as ok:
+            if not ok:
+                continue
+            p = _run(d, B.project, origin, h)
+        # ITS RETURN IS A FIFTH CONVENTION: a (drivers, paths) TUPLE where every other
+        # run returns the mapping alone. A reader expecting a dict gets an attribute
+        # error five frames down, which is how this name dropped all ten origins on its
+        # first wiring [L-355].
+        if isinstance(p, tuple):
+            p = p[0]
+        if not p:
+            continue
+        rev = sum(v for k, v in p.items()
+                  if k.endswith("_revenue") and isinstance(v, (int, float)))
+        cost = sum(v for k, v in p.items()
+                   if k.endswith("_cost") and isinstance(v, (int, float)))
+        sga = p.get("D10_sga")
+        if not rev or sga is None:
+            continue
+        out[h] = {"revenue": rev, "ebit": rev - cost - abs(sga), "dna": None}
+    return out
+
+
+def project_scem(origin, esc=None):
+    """SCEM's own pre-registered projector, called at `origin`.
+
+    THE ONLY RUN THAT NEEDED NO PATCH: its projector takes `macro_override`, a callable
+    from year to a macro dict, as an ARGUMENT — so the archive's ladder goes in through
+    the run's own public signature and the year-by-year rates are used AS PUBLISHED
+    rather than through a per-horizon flat equivalent. Every other run in this file would
+    have this shape if anyone had known to ask for it, and the difference is worth
+    naming: a hook is a declaration that the macro path is an input, and the seven runs
+    without one had made it a constant.
+
+    REAL GDP GROWTH IS THE RUN'S OWN at every year. Only inflation moves.
+    """
+    d = os.path.join(ENGINE, "scem_walkforward")
+    B = _in(d)
+    label = "FY%d" % origin
+    hs = list(B.project.__defaults__[0]) if B.project.__defaults__ else [1, 2, 3]
+
+    def go(override):
+        return B.project(label, horizons=tuple(hs), macro_override=override)
+
+    if esc is None:
+        r = _run(d, go, None)
+    else:
+        believed = _run(d, B.M.path, label, tuple(hs))
+        rates = {}
+        for h in hs:
+            got = esc(h)
+            if got is None:
+                continue
+            rates[origin + h] = got
+        if not rates:
+            return {}
+
+        def override(y):
+            base = believed.get(y - origin) or {}
+            got = rates.get(y)
+            # A YEAR THE LADDER DOES NOT REACH IS RECORDED AS UNAVAILABLE, never filled
+            # with the run's own rate — the run itself returns None for such a year and
+            # this hands it the same answer rather than mixing two paths in one column.
+            return {"real_gdp_growth": base.get("real_gdp_growth"),
+                    "cpi": None if got is None else got[2]}
+        r = _run(d, go, override)
+    out = {}
+    for h in hs:
+        f = (r or {}).get(h)
+        if not f:
+            continue
+        rev, ebitda, dna = f.get("revenue"), f.get("ebitda"), f.get("dna")
+        if rev is None or ebitda is None:
+            continue
+        out[h] = {"revenue": rev, "ebit": ebitda - abs(dna or 0.0),
+                  "dna": None if dna is None else abs(dna),
+                  "capex": f.get("capex")}
+    return out
+
+
 PROJECTORS = {"AMOC": project_amoc, "ARCC": project_arcc, "EGCH": project_egch,
               "PHDC": project_phdc, "TMGH": project_tmgh, "GBCO": project_gbco,
-              "PHAR": project_phar}
+              "PHAR": project_phar, "SWDY": project_swdy, "SCEM": project_scem}
 
 
 # --------------------------------------------------- the as-reported actuals
 REVENUE = {"AMOC": ["is.net_sales"], "ARCC": ["is.revenue"], "EGCH": ["is.revenue"],
            "PHDC": ["is.revenue"], "TMGH": ["total_revenue"],
            # each run names its own top line and no two agree
-           "PHAR": ["revenue"], "SCEM": ["sales"]}
+           "PHAR": ["revenue"], "SCEM": ["sales"], "SWDY": ["revenue"]}
 FINANCE = {"AMOC": ["is.finance_expenses"], "ARCC": ["other.finance_costs"],
            "EGCH": ["is.debit_interest"], "PHDC": ["is.finance_cost"],
            "TMGH": ["finance_cost"],
-           "PHAR": ["finance"], "SCEM": ["finance"]}
+           "PHAR": ["finance"], "SCEM": ["finance"],
+           # SWDY'S OWN PROJECTOR CARRIES THIS ALIAS AND SAYS WHY: the results releases
+           # write "Interest Expense" and the audited statements "Finance costs", and
+           # its source comments that one spelling "reads half the window as absent".
+           # A reader taught one spelling finds nothing in the other half and reports
+           # it as an absent charge [L-355] — which is exactly what happened here on
+           # the first wiring, on a run that had already written the warning down.
+           "SWDY": ["finance_cost", "interest_exp"]}
 MINORITY = {"AMOC": ["is.nci"], "ARCC": ["is.nci"], "EGCH": [], "PHDC": ["is.nci"],
             "TMGH": ["nci_equity"],
             # PHAR's panel carries an nci line; SCEM's carries none and the empty list
             # is the declaration that it does not, on EGCH's own precedent — never a
             # zero invented to fill the column.
-            "PHAR": ["nci"], "SCEM": []}
+            "PHAR": ["nci"], "SCEM": [], "SWDY": ["nci"]}
 
 
 # THE PANELS AND THE BLOCKS DO NOT SHARE A UNIT AND NOTHING SAID SO. Measured
@@ -414,6 +591,16 @@ SCALE_PAIR = {
     # copied off the face of the statement and so is the panel's balance sheet.
     "PHAR": (["balance.ppe"], "ppe", "identical"),
     "SCEM": (["balance.ppe"], "ppe", "identical"),
+    # SWDY's panel is INCOME-STATEMENT ONLY — no cash, no debt, no property — so no
+    # quantity is common to the two records and the measured route cannot run. What
+    # establishes the unit instead is THE RUN'S OWN CONSTRUCTION: its projector reads
+    # property and capital spending out of the valuation-input block and selling and
+    # administrative expense out of the panel, and adds them into ONE income statement
+    # with no conversion between them. A run that mixes two records unscaled has
+    # asserted they share a unit, and that assertion is checked against its source
+    # below rather than taken on trust — which is a weaker instrument than a measured
+    # ratio and is declared as such rather than dressed as one.
+    "SWDY": (None, None, "run_mixes"),
 }
 
 
@@ -493,6 +680,21 @@ def panel_scale(tk, panel, blk):
         return None, ("no quantity appears in both this run's panel and its "
                       "valuation-input block, so the unit cannot be measured")
     keys, item, kind = pair
+    if kind == "run_mixes":
+        # The declaration is only worth what its evidence is, so the evidence is read:
+        # the run's own projector must genuinely consume BOTH records. A run that stops
+        # doing so — because its block moved, or its projector was rewritten — loses the
+        # only thing establishing its unit, and this refuses rather than carrying a
+        # scale nothing supports any more.
+        srcp = os.path.join(ENGINE, "%s_walkforward" % tk.lower(), "bottom_up.py")
+        try:
+            body = open(srcp, encoding="utf-8").read()
+        except OSError:
+            return None, "the run's projector cannot be read to check its unit declaration"
+        if "valuation_inputs.json" not in body or "YEARS" not in body:
+            return None, ("this run's unit rests on its projector consuming both records "
+                          "and its source no longer shows both")
+        return 1.0, None
     ratios = []
     for y in sorted(set(panel) & set(blk)):
         a = _sum_actual(panel, y, keys)
@@ -635,7 +837,38 @@ def wacc_at(tk, origin, market, panel, blk, price, shares):
              "erp": need["erp"], "sovereign": sov, "equity_mv": e, "debt": d}, None)
 
 
-def terminal_inflation(market, origin):
+def escalator(market, origin):
+    """The substitution handed to a run's projector: h -> (flat equivalent, cumulative,
+    the ladder's own rate for that year), or None where the ladder does not reach h.
+
+    A HORIZON THE ARCHIVE CANNOT REACH IS DROPPED, NOT BRIDGED. The projection then runs
+    short and the cell is judged on MIN_EXPLICIT like any other short window, which is
+    the honest outcome: an origin whose vintage published one forward year cannot support
+    a five-year value and saying so is the measurement.
+    """
+    lad, why = PI.ladder(market, origin)
+    if lad is None:
+        return None, why
+
+    def esc(h):
+        cum, _ = PI.cumulative(market, origin, h)
+        flat, _ = PI.flat_equivalent(market, origin, h)
+        if cum is None or flat is None or h not in lad:
+            return None
+        return (flat, cum, lad[h])
+    return esc, None
+
+
+def terminal_inflation(market, origin, h_last=None):
+    """RETIRED AS A FIXED-HORIZON READ, kept only for the callers that predate the fix.
+
+    The terminal is now read at the LAST EXPLICIT YEAR through PI.terminal_rate; reading
+    it at a fixed module horizon is what let a three-year window capitalise a rate two
+    years further down the ladder than anything it projected.
+    """
+    if h_last is not None:
+        r, _why = PI.terminal_rate(market, origin, h_last)
+        return r
     v = MH.origin(market, origin)
     fwd = (v.extras.get("cpi_annual") or {}).get("forward_path") or {}
     last = str(origin + max(HORIZONS))
@@ -723,7 +956,10 @@ def cell(tk, origin, market, cellinfo, horizons=HORIZONS, maintenance="amount"):
     # mixing two of them. A run whose projection reaches fewer than MIN_EXPLICIT years is
     # still refused, because a terminal capitalising a one- or two-year path is a terminal
     # doing all the work.
-    proj = PROJECTORS[tk](origin)
+    esc, why = escalator(market, origin)
+    if esc is None:
+        return None, "the point-in-time ladder: %s" % why
+    proj = PROJECTORS[tk](origin, esc=esc)
     hs = [h for h in horizons if h in proj]
     if len(hs) < MIN_EXPLICIT:
         return None, ("the projection runs to horizon %d and %d explicit years is the "
@@ -752,9 +988,9 @@ def cell(tk, origin, market, cellinfo, horizons=HORIZONS, maintenance="amount"):
     coc, why = wacc_at(tk, origin, market, panel, blk, price, shares)
     if coc is None:
         return None, why
-    infl = terminal_inflation(market, origin)
+    infl, why = PI.terminal_rate(market, origin, max(hs))
     if infl is None:
-        return None, "the archive carries no forward inflation at this origin"
+        return None, "the terminal rate at the window's last year: %s" % why
 
     b0 = blk.get(origin) or {}
     wc_prev = b0.get("wc")
@@ -860,6 +1096,27 @@ def cell(tk, origin, market, cellinfo, horizons=HORIZONS, maintenance="amount"):
     ev = pv + pv_tv
     equity = ev + cash - (debt or 0.0)
     per_share = equity / shares
+
+    # ------------------------------------------------- A POWER OF TEN IS A UNIT, NOT A VIEW
+    # The first run of the rebuilt lens scored exactly one cell and it read +75,727.6% —
+    # a fair value of 2,782.87 against a price of 3.67 — which is not a disagreement with
+    # a market, it is a share count or a price series in the wrong unit. Every gate above
+    # passed it: the unit ratio measured, the terminal built, the bridge footed, the
+    # convergence bound held. Nothing in this module was looking at the ANSWER, which is
+    # [R-GAP-01]'s own lesson arriving inside the instrument built to measure gaps.
+    #
+    # THE BOUND IS NOT CHOSEN AND IS NOT A TOLERANCE ON DISAGREEMENT. It is ONE ORDER OF
+    # MAGNITUDE because the failure it catches IS an order of magnitude — the same
+    # argument panel_scale() already makes when it pins a unit to a power of ten, reused
+    # rather than minted, which is the only honest justification for a cutoff here. A
+    # genuine ten-fold disagreement with a market is not something this house has ever
+    # published or ever should without saying so first, and a cell reading one is
+    # reported as a UNIT SUSPECT rather than pooled into a bias it would dominate.
+    if per_share > 0 and price > 0 and abs(math.log10(per_share / price)) >= 1.0:
+        return None, ("the cell reads %.6g against a price of %.6g — a factor of %.4g, "
+                      "which is a power of ten and therefore a UNIT rather than a view; "
+                      "the share count or the price series is not in the currency the "
+                      "block is" % (per_share, price, per_share / price))
     return ({"ticker": tk, "origin": origin, "fv": per_share, "price": price,
              "log": math.log(per_share / price) if per_share > 0 and price > 0 else None,
              "equity": equity, "ev": ev, "pv_explicit": pv, "pv_terminal": pv_tv,

@@ -253,6 +253,12 @@ if __name__ == "__main__":
                 "dropped": [{"ticker": t, "origin": y, "why": w}
                             for t, y, w in v["dropped"]],
             }
-        p = os.path.join(HERE, "SCORES_cashflow_06-09-2026.json")
+        # A SCORE FILE IS DATED FOR THE PRE-REGISTRATION IT WAS PRODUCED UNDER, not
+        # overwritten in place. The 06-09 record stands as the evidence of what the
+        # superseded construction produced — its seven cells are what the convergence
+        # measurement was made ON — and deleting it to make a directory tidy would
+        # delete the only thing showing that the rebuild made the result worse rather
+        # than better, which is this rebuild's own argument that nothing was fitted.
+        p = os.path.join(HERE, "SCORES_cashflow_18-09-2026.json")
         json.dump(payload, open(p, "w"), indent=1, default=str)
         print("\n  written %s" % os.path.relpath(p, os.path.dirname(ENGINE)))

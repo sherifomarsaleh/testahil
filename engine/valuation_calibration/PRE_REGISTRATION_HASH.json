@@ -1,7 +1,15 @@
 {
  "_": "The hash of the pre-registration, written in the same commit as the document itself. The gate compares this to the file on disk: an edited pre-registration is a pre-registration that was not one, and the whole value of the exercise is that the levers were fixed before any score existed.",
- "file": "PRE_REGISTRATION_03-09-2026.md",
- "sha256": "744cfb559e4ba74beba545136d5aa5c3a2d77d0da02f2aaea722bc61ec0d1404",
- "committed": "2026-09-03",
- "note": "Nothing may be scored against a lever this document does not name, and nothing may be promoted out of the order it fixes. A correction is a NEW dated pre-registration that supersedes this one and says so."
+ "file": "PRE_REGISTRATION_18-09-2026.md",
+ "sha256": "6f1f51c228bc37ebd081c28d71f48d30e6823272d5c2791f9db3c206e4d8cad2",
+ "committed": "2026-09-18",
+ "note": "Nothing may be scored against a lever this document does not name, and nothing may be promoted out of the order it fixes. A correction is a NEW dated pre-registration that supersedes this one and says so.",
+ "superseded": [
+  {
+   "file": "PRE_REGISTRATION_03-09-2026.md",
+   "sha256": "744cfb559e4ba74beba545136d5aa5c3a2d77d0da02f2aaea722bc61ec0d1404",
+   "committed": "2026-09-03",
+   "why": "Superseded 18-09-2026 by a second dated pre-registration, through the route this record's own note prescribes. The first edition is NOT edited, NOT withdrawn and its seal is kept here so an edit to it would still leave a trace — a superseded document whose hash stops being recorded is a document nobody can check any more."
+  }
+ ]
 }

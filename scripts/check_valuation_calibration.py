@@ -105,22 +105,61 @@ def main():
         fails.append("no PRE_REGISTRATION_HASH.json — the document is unsealed, so "
                      "an edit to it would leave no trace at all")
 
+    # EVERY SEALED DOCUMENT IS CHECKED, NOT ONLY THE CURRENT ONE. A superseded
+    # pre-registration whose hash stops being verified is a document nobody can check
+    # any more, and the superseded one is precisely where a rationalisation would be
+    # inserted afterwards — it is the design the earlier scores claim to follow.
+    seals = {recorded.get("file"): recorded.get("sha256")} if recorded.get("file") else {}
+    seals.update({k: v for k, v in (recorded.get("files") or {}).items()})
+    for old in (recorded.get("superseded") or []):
+        if old.get("file"):
+            seals[old["file"]] = old.get("sha256")
+
     latest = pregs[-1]
     digest = hashlib.sha256(open(latest, "rb").read()).hexdigest()
-    claimed = (recorded.get("sha256") or recorded.get(os.path.basename(latest))
-               or (recorded.get("files") or {}).get(os.path.basename(latest)))
-    if claimed and not str(claimed).startswith(digest[:16]) and claimed != digest:
-        fails.append("%s hashes to %s and its seal records %s. A pre-registration "
-                     "that changed after it was sealed is a rationalisation with a "
-                     "date on it; supersede it with a NEW dated document that says "
-                     "so, never by editing this one."
-                     % (os.path.basename(latest), digest[:16], str(claimed)[:16]))
+    for q in pregs:
+        base = os.path.basename(q)
+        dg = hashlib.sha256(open(q, "rb").read()).hexdigest()
+        claimed = seals.get(base) or (recorded.get("sha256") if q is latest else None)
+        if claimed is None:
+            fails.append("%s carries no seal in the hash record. An unsealed "
+                         "pre-registration could be edited afterwards and leave no "
+                         "trace, which is the one thing this record exists to stop."
+                         % base)
+        elif not str(claimed).startswith(dg[:16]) and claimed != dg:
+            fails.append("%s hashes to %s and its seal records %s. A pre-registration "
+                         "that changed after it was sealed is a rationalisation with a "
+                         "date on it; supersede it with a NEW dated document that says "
+                         "so, never by editing this one."
+                         % (base, dg[:16], str(claimed)[:16]))
 
-    preg_sha = first_commit(latest)
-    if preg_sha is None:
-        fails.append("%s has no commit — it exists only in the working tree, so "
-                     "nothing establishes when it was written"
-                     % os.path.basename(latest))
+    # THE DESIGN A SCORE FOLLOWS IS THE ONE IN FORCE WHEN THE SCORE WAS WRITTEN.
+    # The first version of this gate held every score against the LATEST document, which
+    # made supersession impossible — the moment a second pre-registration was committed,
+    # every score written under the first became "a score that predates the design it
+    # claims to follow", although each had been produced correctly under the design that
+    # existed at the time. The sealed document ITSELF prescribes supersession as the only
+    # way to correct it, so a gate that cannot express one is a gate disagreeing with the
+    # rule it enforces. NOTHING IS EXCUSED BY THE CHANGE: each score is still required to
+    # come strictly after a committed, sealed design, and a score produced today is still
+    # held against today's document. What changes is only WHICH document a given score is
+    # paired with, and the pairing is read off commit topology rather than asserted.
+    preg_shas = []
+    for q in pregs:
+        sha = first_commit(q)
+        if sha is None:
+            fails.append("%s has no commit — it exists only in the working tree, so "
+                         "nothing establishes when it was written" % os.path.basename(q))
+        preg_shas.append((q, sha))
+    preg_sha = dict(preg_shas).get(latest)
+
+    def design_in_force(score_sha):
+        """The LATEST pre-registration whose commit is an ancestor of this score's."""
+        best = None
+        for q, sha in preg_shas:
+            if sha is not None and is_ancestor(sha, score_sha):
+                best = (q, sha)
+        return best
 
     # ---- 3: every score came after ------------------------------------------
     scores, checked = [], 0
@@ -138,10 +177,12 @@ def main():
         if e is None:
             fails.append("%s is uncommitted, so its order against the "
                          "pre-registration cannot be established" % base)
-        elif preg_sha is not None and not is_ancestor(preg_sha, e):
-            fails.append("%s was first committed BEFORE the pre-registration. A "
-                         "score that predates the design it claims to follow is "
-                         "not evidence about that design." % base)
+        else:
+            held = design_in_force(e)
+            if held is None:
+                fails.append("%s was first committed BEFORE any pre-registration. A "
+                             "score that predates the design it claims to follow is "
+                             "not evidence about that design." % base)
 
     print("pre-registration: %s (sealed %s, introduced in %s)"
           % (os.path.basename(latest), digest[:12],
