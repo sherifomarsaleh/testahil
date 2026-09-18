@@ -209,12 +209,23 @@ def main():
          lambda r: ("later_rate" not in NOMEAS["anchor_ordering_reason"],
                     "the rates were not removed"), results)
 
+    # THE BREACH IS PLANTED, NOT BORROWED [L-403]. This case took ADNOCLS's dates
+    # exactly as they stood and only emptied the reason, which was correct while that
+    # study's profit anchor sat behind its own balance sheet — and became a GREEN case
+    # the day the study was corrected, because where no reason is NEEDED an empty one
+    # releases nothing and the gate is right to stay quiet. The case is about an empty
+    # reason on a record that DOES need one, so both halves are now built and both are
+    # asserted.
     EMPTY = copy.deepcopy(ADN)
+    EMPTY["forecast_anchor"]["latest_reviewed_date"] = "2024-12-31"
+    EMPTY["bridge_record"]["balance_sheet_date"] = "2026-06-30"
     EMPTY["anchor_ordering_reason"] = "  "
     case("10 an EMPTY reason has switched the check off, not declared it",
          {"HHH": EMPTY}, {}, True,
-         lambda r: (EMPTY.get("anchor_ordering_reason", "x").strip() == "",
-                    "the reason is not empty"), results)
+         lambda r: (EMPTY.get("anchor_ordering_reason", "x").strip() == ""
+                    and (EMPTY["forecast_anchor"]["latest_reviewed_date"]
+                         < EMPTY["bridge_record"]["balance_sheet_date"]),
+                    "the reason is not empty, or the record does not need one"), results)
 
     # COUNTED, NOT DECLARED. This line used to print the declared constant TWICE — "cases
     # run: 15 (declared 15)" — which is true whatever ran, so deleting a case left the
