@@ -79,7 +79,8 @@ CLAUSES = [
     ("A", "pooled contemporaneous bias, log(FV/P) at every origin, 90% "
           "block-bootstrap CI includes zero"),
     ("B", "LONO-stable in sign"),
-    ("C", "holds in both eras"),
+    ("C", "holds across the groupings the series admits — eras where it spans "
+          "them, markets where it does not [REPORTED, gates nothing]"),
     ("D", "the gap-closure series shows whether any residual lean predicts "
           "returns"),
     ("E", "beats 'FV = price' and 'trailing P/E x EPS' on MAE"),
@@ -113,8 +114,53 @@ CLAUSES = [
 # the meantime. D and E are REPORTED at every run with their maturity date, so the debt is
 # visible rather than dropped; what changes is that they no longer hold the book.
 # [R-VCAL-02] is the rule this map implements.
-PHASE = {"A": 1, "B": 1, "C": 1, "F": 1, "D": "2b", "E": "2b"}
-GATING = [c for c in "ABCF"]
+# [AMENDED 18-09-2026, per instruction — "clause C should be changed to something
+# realistic or scrapped altogether"] CLAUSE C MOVES FROM GATING TO REPORTED, and both
+# halves of why were measured rather than argued.
+#
+# AS AN ERA TEST IT CANNOT BE ASKED OF THE SERIES PHASE 1 WOULD USE. Every delivered fair
+# value in this book was struck in 2026, so the cross-section sits entirely on one side of
+# this market's own era boundary and no further work on those names creates a second side
+# — the vintages that would carry it were never published.
+#
+# AS A MARKET TEST IT FAILS, AND WHAT IT DETECTS IS WORTH MORE THAN A BAR: split by the
+# market each name trades in, the delivered series reads AE +0.0288 on six names, SA
+# -0.0315 on three and EG -0.4408 on seven. THE UNITED ARAB EMIRATES AND SAUDI ARABIA ARE
+# CALIBRATED AND THE WHOLE LEAN IS EGYPTIAN. Blocking the book on that would hold the ten
+# names that are not the problem in order to punish the market that is — which is
+# [R-VCAL-01]'s own warning in another costume, that moving a rate to correct the mean
+# pushes every well-centred name off its price to fix the few that were wrong.
+#
+# SO IT IS REPORTED AT EVERY RUN AND HOLDS NOTHING, exactly as D and E are, and for the
+# same reason: the debt stays visible rather than dropped. THE COST IS STATED RATHER THAN
+# DISCOVERED LATER — Phase 1 now closes with NO robustness test across regimes at all, and
+# the per-market split is the standing reminder of why that matters, because one market
+# carrying the entire lean is the shape a regime test exists to catch.
+PHASE = {"A": 1, "B": 1, "F": 1, "C": "reported", "D": "2b", "E": "2b"}
+GATING = [c for c in "ABF"]
+
+# WHICH SERIES THE GATING CLAUSES ARE MEASURED ON [ADOPTED 18-09-2026, per instruction].
+# Series (a) is the mechanical lens rebuilt at every past origin and it is the series this
+# criterion was designed around; it scores ZERO admissible cells, because [R-MACRO-01]'s
+# convergence requirement refuses every window the runs' own pre-registered projections
+# produce. Three ways out were put to the principal and two of them — capitalise the growth
+# each window ends at, or declare a fade to terminal — need a number nobody has tested,
+# which the PROMOTION RULE forbids outright.
+#
+# SERIES (b) NEEDS NO NEW NUMBER: it is the fair values this house actually published, each
+# against the spot it was struck at. WHAT IS GIVEN UP IS STATED RATHER THAN DISCOVERED
+# LATER, and it is not small — ONE OBSERVATION PER NAME INSTEAD OF ONE PER ORIGIN, sixteen
+# instead of the ninety-nine the design asked for, no split across regimes, and a sample of
+# values this desk CHOSE rather than a mechanical rebuild no judgement could have tilted.
+# The last of those is the real cost: series (a) existed precisely to remove the analyst
+# from the measurement, and series (b) cannot.
+#
+# THE FALSIFIER FROM [R-VCAL-01] THEREFORE BINDS HARDER, NOT LESS: if the mechanically
+# rebuilt series ever turns out not to resemble the as-delivered one, this calibration is
+# grading a method the house does not use and every promotion must be withdrawn. Series (a)
+# stays REPORTED at every run with its drop taxonomy, which is the work order for getting
+# it back.
+GATING_SERIES = "delivered"
 
 
 def _cashflow():
@@ -211,10 +257,32 @@ def clause_e():
     ]
 
 
-def clause_f(a_met):
+def clause_f(a_met, market_split=None):
+    """The decomposition attributes ANY residual bias to a named lever.
+
+    [CORRECTED 18-09-2026] This returned None when clause A was MET, and the verdict line
+    then read that as NOT MET — a clause satisfied because its subject is empty, reported
+    as a clause that failed. The reading was harmless while A could never be met, since
+    the mechanical series scored nothing; it stopped being harmless the moment A was
+    measured. "ANY residual bias" over an empty set is satisfied, and that is what the
+    word means rather than a convenience.
+
+    IT IS NOT ALLOWED TO BE SATISFIED QUIETLY. Where the per-market split shows the
+    pooled zero resting on groups that disagree, this clause SAYS SO and names where a
+    lever would belong — which is precisely its job, and the difference between a clause
+    that is satisfied and a clause that has been switched off.
+    """
     if a_met:
-        return None, ["conditional: no residual bias to attribute while the "
-                      "interval covers zero."]
+        lines = ["SATISFIED BECAUSE THE SUBJECT IS EMPTY: the pooled interval covers "
+                 "zero, so there is no residual book-wide bias for a lever to be named "
+                 "against."]
+        if market_split:
+            lines += market_split + [
+                "AND THE POOLED ZERO IS NOT EVENLY HELD. Where the groups disagree, a "
+                "lever belongs to the group carrying the lean and NOT to the book — "
+                "[R-VCAL-01]'s promotion guard is symmetric and a book-wide correction "
+                "would push the calibrated names off their prices to fix one market."]
+        return True, lines
     if a_met is None:
         return None, ["conditional on clause A, and clause A is UNMEASURED: there "
                       "is no measured residual bias for a lever to be named "
@@ -267,6 +335,29 @@ def blocking(dec):
     return c
 
 
+def verdict():
+    """The gating verdict, computed and returned rather than printed.
+
+    ADDED 18-09-2026 because progress.acceptance() HELD ITS OWN COPY of this criterion's
+    state — derived from the point-in-time archive rather than from the instrument that
+    measures the criterion — so criterion 3 could read MET here and BLOCKED there, and the
+    publish block consulted the copy. Two records of one thing diverge the moment either
+    moves, and this one had already moved.
+
+    Returns {"met": bool|None, "gating": {clause: bool|None}}.
+    """
+    import criterion3_on_delivered as CD
+    rows, _np, _un, _ts = CD.series()
+    a_met, _ = CD.clause_a(rows)
+    b_met, _ = CD.clause_b(rows)
+    c_met, c_lines = CD.clause_c_markets(rows)
+    f_met, _ = clause_f(a_met, None if c_met else c_lines)
+    gating = {"A": a_met, "B": b_met, "F": f_met}
+    met = all(v is True for v in gating.values())
+    return {"met": met, "gating": gating, "reported": {"C": c_met},
+            "series": GATING_SERIES, "n": len(rows)}
+
+
 def main():
     today = dt.date.today()
     print("Part E criterion 3 — CLAUSE BY CLAUSE, printed not attested")
@@ -278,12 +369,21 @@ def main():
     d = _cashflow()
     dec = d["DECLARED"]
 
+    import criterion3_on_delivered as CD
+    rows, _np, _un, _ts = CD.series()
+
     verdicts = {}
     print("=" * 74)
-    a_met, lines = clause_a(dec)
+    print("GATING SERIES: (b), the delivered cross-section — %d scoreable names."
+          % len(rows))
+    print("  Series (a) scores zero admissible cells and is REPORTED below with the")
+    print("  work order that would bring it back. What is given up by measuring on")
+    print("  (b) is one observation per NAME rather than one per ORIGIN, and a")
+    print("  sample this desk chose rather than a mechanical rebuild.\n")
+    a_met, lines = CD.clause_a(rows)
     verdicts["A"] = a_met
     print("A  %s" % CLAUSES[0][1])
-    print("   SERIES (a), the mechanical lens — struck at every origin")
+    print("   SERIES (b), the delivered cross-section")
     for l in lines:
         print("     " + l)
     # THREE STATES, NOT TWO. This line collapsed None onto NOT MET, so an
@@ -293,17 +393,29 @@ def main():
     print("   -> %s\n" % ("MET" if a_met else
                           "NOT MET" if a_met is False else "UNMEASURED"))
 
-    for tag, fn in (("B", lambda: clause_b(dec)), ("C", lambda: clause_c(dec))):
-        met, lines = fn()
-        verdicts[tag] = met
-        print("%s  %s" % (tag, dict(CLAUSES)[tag]))
-        for l in lines:
-            print("     " + l)
-        print("   -> %s\n" % ("MET" if met else
-                              "NOT MET" if met is False else "UNMEASURED"))
+    met, lines = CD.clause_b(rows)
+    verdicts["B"] = met
+    print("B  %s" % dict(CLAUSES)["B"])
+    for l in lines:
+        print("     " + l)
+    print("   -> %s\n" % ("MET" if met else
+                          "NOT MET" if met is False else "UNMEASURED"))
+
+    # CLAUSE C IS REPORTED AND GATES NOTHING [AMENDED 18-09-2026]. Printed as the
+    # per-market split because that is the grouping this series admits, and printed
+    # whatever it says — a clause moved out of the gating set to stop it blocking the
+    # book is not a clause moved out of sight.
+    met, lines = CD.clause_c_markets(rows)
+    _market_lines = None if met else list(lines)
+    verdicts["C"] = met
+    print("C  %s" % dict(CLAUSES)["C"])
+    for l in lines:
+        print("     " + l)
+    print("   -> %s  [REPORTED, gates nothing]\n"
+          % ("holds" if met else "DOES NOT HOLD" if met is False else "unmeasured"))
 
     for tag, fn in (("D", clause_d), ("E", clause_e),
-                    ("F", lambda: clause_f(a_met))):
+                    ("F", lambda: clause_f(a_met, _market_lines))):
         met, lines = fn()
         verdicts[tag] = met
         print("%s  %s" % (tag, dict(CLAUSES)[tag]))
@@ -318,7 +430,7 @@ def main():
         print("  " + l)
 
     print("\n" + "=" * 74)
-    print("WHAT ACTUALLY BLOCKS A, B AND C — and none of it is a clock")
+    print("SERIES (a), REPORTED — what it would take to bring the mechanical lens back")
     tot = len(dec.get("dropped", []))
     _sc = dec.get("score") or {}
     _cells = (_sc.get("n") or {}).get("cells", 0)

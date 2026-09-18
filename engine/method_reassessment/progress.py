@@ -306,7 +306,30 @@ def acceptance() -> list:
         {"n": 6, "text": "the publish queue holds the files per name on the new standard",
          "state": None, "waits_on": "the five, above"},
     ]
-    # 3 — the two things it waits on, one dated and one not.
+    # 3 IS READ FROM THE INSTRUMENT THAT MEASURES IT [R-ENF-03], not decided here.
+    # This function used to derive criterion 3's state from the point-in-time ARCHIVE —
+    # how many origins were usable — which is a fact about the INPUTS the mechanical lens
+    # needs and not the criterion's verdict at all. So criterion3.py could read MET while
+    # this said BLOCKED, and the publish block consulted this one. A second record of one
+    # thing diverges the moment either moves, and this one had already moved.
+    try:
+        import criterion3 as _c3
+        _v = _c3.verdict()
+        items[2]["state"] = "MET" if _v["met"] else "BLOCKED"
+        items[2]["waits_on"] = (
+            "measured by criterion3.py on series (%s), %d names: %s"
+            % (_v["series"], _v["n"],
+               ", ".join("%s %s" % (k, "MET" if val is True else
+                                    "NOT MET" if val is False else "UNMEASURED")
+                         for k, val in sorted(_v["gating"].items()))))
+    except Exception as _e:
+        items[2]["state"] = "BLOCKED"
+        items[2]["waits_on"] = ("criterion3.py could not be read (%s), so this "
+                                "criterion is UNMEASURED and therefore not met "
+                                "[R-ENF-04]" % _e)
+
+    # The point-in-time archive is still REPORTED, because it is the work order for
+    # bringing series (a) back — it is simply not this criterion's verdict.
     try:
         arc = best_archive("EG")
         if "error" in arc:
@@ -316,8 +339,7 @@ def acceptance() -> list:
             miss = arc.get("unsourced", {}).get("fields") or []
             items[2]["origins_usable"], items[2]["origins_declared"] = n, tot
             items[2]["archive_source"] = arc["source"]
-            items[2]["state"] = "RUNNING" if n else "BLOCKED"
-            items[2]["waits_on"] = (
+            items[2]["archive_note"] = (
                 "%d of %d point-in-time origins usable, read at the frontier (%s)%s"
                 % (n, tot, arc["source"],
                    "" if not miss else "; still unsourced: %s" % ", ".join(miss)))

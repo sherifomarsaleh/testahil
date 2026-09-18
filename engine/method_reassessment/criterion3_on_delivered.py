@@ -136,6 +136,37 @@ def clause_c(rows):
     return len(signs) == 1, lines
 
 
+def clause_c_markets(rows):
+    """Clause C on the grouping THIS series admits: the market each name trades in.
+
+    REPORTED, GATES NOTHING [AMENDED 18-09-2026, per instruction]. The era form cannot be
+    asked of a cross-section struck in one quarter; the market form can, and it is the
+    same robustness question — does the result survive being driven by one economy?
+
+    IT IS PRINTED WHATEVER IT SAYS. A clause moved out of the gating set so that one
+    market's lean does not hold the whole book is not a clause moved out of sight, and on
+    its first run this one does NOT hold: the United Arab Emirates and Saudi Arabia sit
+    within a few points of zero and Egypt carries the entire lean. That is a finding to
+    act on through [R-VCAL-01]'s promotion guard — a lever aimed at one market — and it is
+    the standing reminder of what gating on A, B and F alone gives up.
+    """
+    by = {}
+    for r in rows:
+        by.setdefault(r.get("market") or "UNKNOWN", []).append(r["log_gap"])
+    lines = ["%-9s n=%-3d mean %+.4f  (%+.1f%% in price terms)"
+             % (m, len(v), sum(v) / len(v),
+                (math.exp(sum(v) / len(v)) - 1.0) * 100.0)
+             for m, v in sorted(by.items())]
+    if len(by) < 2:
+        return None, lines + ["only one grouping populated: nothing to hold across"]
+    signs = {(sum(v) / len(v) > 0) for v in by.values()}
+    if len(signs) != 1:
+        lines.append("THE SIGN DOES NOT HOLD ACROSS MARKETS. The pooled figure is not a "
+                     "book-wide lean — it is one market's, and correcting it book-wide "
+                     "would push the calibrated names off their prices.")
+    return len(signs) == 1, lines
+
+
 def main():
     rows, nonpositive, unreadable, two_sided = series()
     print("CRITERION 3's GATING CLAUSES, PUT ON SERIES (b) — A MEASUREMENT, NOT AN ADOPTION")

@@ -68,14 +68,43 @@ DRAWS = 10000
 # The exchange prefix in assets/data.js is the authority on which market a name
 # trades in; this map is only for the studies, keyed by directory name, and any
 # name not in it is reported as market UNKNOWN rather than guessed into a bucket.
-MARKET = {
+# TYPED, AND IT WAS MISSING A NAME. This dict is kept only as a FALLBACK: STC resolved to
+# "UNKNOWN" and was pooled as a market of one, which matters the moment anything clusters
+# by market — it moved a Saudi name out of Saudi Arabia and into a group of its own. A
+# hand-kept list of a population that grows is [L-355] again, so the market is now read
+# from THE PLACE THIS PROTOCOL SAYS RECORDS AN EXCHANGE — assets/data.js, through a real
+# JavaScript parse [R-ENF-03] — and this list answers only where the site cannot.
+_MARKET_TYPED = {
     "AMOC": "EG", "ARCC": "EG", "EGCH": "EG", "PHDC": "EG", "TMGH": "EG",
     "ELEC": "EG", "GBCO": "EG", "PHAR": "EG", "SCEM": "EG", "SWDY": "EG",
     "ADNOCDIST": "AE", "ADNOCDRILL": "AE", "ADNOCLS": "AE", "AIRARABIA": "AE",
     "AMR": "AE", "BOROUGE": "AE", "DU": "AE", "EMPOWER": "AE",
     "FERTIGLOBE": "AE", "MODON": "AE",
-    "RIYADHCABLE": "SA", "SAVOLA": "SA",
+    "RIYADHCABLE": "SA", "SAVOLA": "SA", "STC": "SA",
 }
+
+
+def _markets_from_site():
+    """Ticker -> market from the site's own code prefix, or {} if it cannot be read."""
+    out = {}
+    try:
+        sys.path.insert(0, os.path.dirname(ENGINE))
+        import site_data
+        pref = {"EGX": "EG", "ADX": "AE", "DFM": "AE", "TADAWUL": "SA", "QSE": "QA",
+                "KRX": "KR", "NSE": "IN", "NASDAQ": "US"}
+        for tk, rec in (site_data.read_object("TICKERS") or {}).items():
+            code = (rec or {}).get("code") or ""
+            if ":" in code:
+                m = pref.get(code.split(":", 1)[0].upper())
+                if m:
+                    out[tk.upper()] = m
+    except Exception:
+        return {}
+    return out
+
+
+MARKET = dict(_MARKET_TYPED)
+MARKET.update(_markets_from_site())
 
 
 def studies():
