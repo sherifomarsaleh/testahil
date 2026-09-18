@@ -1,8 +1,8 @@
-PROTOCOL REVISION 2026-09-18b — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-18c — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
-Updated 18 September 2026 (rev. 13) — A DOCUMENT THAT QUOTES THE BETA DIAGNOSTICS NAMES THE ESTIMATOR [R-BETA-05] · THE GUARD RECORDS A ROUTE; IT DOES NOT DEFER A CORRECTION [R-REBUILD-01 CLAUSE TWO]: "the guard forbids it" is not a reason, and every correction deferred under that reading raised the value
+Updated 18 September 2026 (rev. 13) — A LESSON SAYS WHETHER IT REACHES THE LAYER THAT BINDS [R-LESSON-02] · A DOCUMENT THAT QUOTES THE BETA DIAGNOSTICS NAMES THE ESTIMATOR [R-BETA-05] · THE GUARD RECORDS A ROUTE; IT DOES NOT DEFER A CORRECTION [R-REBUILD-01 CLAUSE TWO]: "the guard forbids it" is not a reason, and every correction deferred under that reading raised the value
 (rev. 12, 7 September 2026 — SIX STANDING RULES ADOPTED IN ONE COMMIT: the operating asset base is as at the latest disclosure the study read [R-ASSET-01] · the cost of equity reproduces from its own committed inputs [R-COC-02] · the gap a READER sees is audited, not only the gap the study was struck at [R-GAP-03] · a red gate is worked until it is green [R-REPAIR-01] · every error this house claims to catch is planted and caught [R-PROOF-01] · a ratchet excuses the failure it RECORDED, not every failure of its class [R-ENF-08]
 (rev. 11, 5 September 2026 — THE RECALCULATION EVERY STUDY ATTESTS TO IS RUN FROM OUTSIDE [R-ENF-01 EXTENDED]: a check somebody has to remember to run is run until the day it matters)
 (rev. 10, 1 September 2026 — CAMPAIGN WORK IS MERGED ON GREEN [R-MERGE-01]: an unmerged rule binds on nothing)
@@ -3784,6 +3784,97 @@ THE WAY A NUMBER IS. Every figure in that record was computed, sourced and dated
 one sentence carrying a rule identifier was simply believed -- by the study that wrote it,
 by the digest that repeated it, and by every reader since. WHERE A RECORD GIVES A STANDING
 RULE AS ITS REASON, READ THE RULE.
+
+
+[R-LESSON-02] A LESSON SAYS WHETHER IT REACHES THE LAYER THAT BINDS, AND THE DEBT
+IS COUNTED
+[ADOPTED 18-09-2026, per instruction].
+
+[R-LESSON-01] settles that the register BINDS NOTHING -- no standing rule refers to it,
+no QC gate consults it, and every fundamental walk-forward lesson stays PROVISIONAL
+until the method is validated across more names. THAT IS RIGHT AND THIS RULE DOES NOT
+MOVE IT BY AN INCH. It enforces no lesson on any study, it consults no study, and a
+provisional lesson is skipped rather than declared.
+
+WHAT WAS MISSING IS NOT A GATE ON THE REGISTER. IT IS THAT NOBODY COUNTED THE
+CONVERSION. Measured 18-09-2026: 19 of 312 lessons reach the binding layer at all,
+SIX PER CENT. The cost is already in this book's own words -- [L-048] and [L-055] were
+registered, correct, and re-violated by the studies delivered after them, which is why
+[R-MACRO-01] exists and says so in its own general lesson: A LESSON THAT BINDS NOTHING
+IS ADVICE, AND ADVICE LOSES TO THE NEXT DEADLINE. The debt was real, it was growing,
+and nothing could name it, because nothing distinguished a lesson a rule enforces from
+one that genuinely cannot be enforced from one somebody meant to get to.
+
+THE FIRST MEASUREMENT OF THAT SIX PER CENT WAS WRONG, AND THE CORRECTION IS WHY THE
+PROBE NOW NAMES ITS EXCLUSIONS: it searched scripts/ and engine/ for each lesson id and
+reported 312 OF 312, because lessons_register.py lives in engine/ and every id matched
+its own source. [L-355] on the instrument again -- a reader that finds what it planted,
+producing a number rather than an error.
+
+THE CLASSIFICATION IS DECLARED, NOT INFERRED, AND THAT IS FORCED RATHER THAN PREFERRED.
+"States a testable claim" is not decidable from prose; a keyword classifier would be a
+free parameter with no evidence behind it, which the PROMOTION RULE forbids, and it
+would be wrong in the direction that READS AS A MEASUREMENT. So the lesson declares and
+the gate holds the declaration to the world, which is [R-COC-02]'s shape exactly: make
+the construction DECLARABLE and then require the declaration.
+
+THE LIST IS CLOSED AT THREE, for [R-COC-01 AMENDED]'s reason that an open one lets a
+lesson opt out by inventing a category:
+
+  ENFORCED    -- names a rule id that resolves in a governing document, or a file on
+                 disk. The gate verifies the named thing EXISTS.
+  PROSE       -- genuinely not expressible as a test, WITH A REASON. An empty reason
+                 has switched the check off rather than declared it.
+  OUTSTANDING -- testable and not built. THIS IS A DEBT AND NOT A DEFECT, and the gate
+                 prints it rather than failing on it: a gate refusing `outstanding`
+                 would push a lesson to be declared prose to stay green, which is the
+                 exact opposite of what this measures. That case is in the negative
+                 control for precisely that reason.
+
+WHAT IT CHECKS IS THE EASIER HALF AND THAT IS SAID PLAINLY RATHER THAN IMPLIED
+[R-ASSET-02]: it checks that a lesson claiming enforcement NAMES SOMETHING THAT EXISTS.
+IT DOES NOT CHECK THAT THE NAMED THING BINDS THAT LESSON, which is judgement and a gate
+asserting it would be making a claim it cannot support. The half it does check still
+catches the rot that matters -- a rule retired or a module deleted leaves a lesson
+reading as enforced while nothing enforces it, which is [R-DOC-02] on a third artefact.
+
+SCOPE IS ALL AND ADOPTED, and both halves are earned: a CLASS or STOCK lesson is a fact
+about one kind of company and enforcing it book-wide is the superstition [R-LESSON-01]
+names outright; a PROVISIONAL lesson rests on one name and promoting it is what the
+promotion rule forbids, so demanding a declaration on one would ask a question the rule
+has already answered. 89 of 312 are skipped on those two grounds and the gate SAYS HOW
+MANY, because a silent skip is an absent answer in a clean answer's clothes [R-ENF-04].
+
+ENFORCED FROM OUTSIDE per [R-ENF-01]: engine/lesson_promotion.py is the shared
+instrument and scripts/check_lesson_promotion.py the gate. RATCHETED [R-ENF-02] at 211
+-- the ALL-scope adopted lessons carrying no declaration on adoption day -- and THE LIST
+IS THE WORK ORDER: it may only ever SHORTEN, and a lesson added afterwards with no
+declaration is a NEW breach, which is the debt this rule is actually about.
+Population-anchored [R-ENF-04] BOTH ways: zero lessons fails, and zero ELIGIBLE lessons
+across a register that is present fails, because an eligibility test that stopped
+matching looks exactly like a register with nothing in it. EXCLUDED from the new-study
+gauntlet with its reason, its subject being the register rather than any study.
+Negative-controlled on sixteen conditions, ten red and SIX CLEAN.
+
+THE CONTROL'S OWN FIRST TWO DRAFTS FAILED AND BOTH ARE RECORDED. The first tested the
+population guards by setting the lesson list to empty and then asserting the list was
+empty -- true by construction, invoking nothing, the fifth time in one session a
+control was caught proving its own fixture; the population cases now run THE REAL GATE
+as a subprocess against a sandbox register. The second ran the two eligibility cases
+through the classification reporter and overwrote their results afterwards, so the line
+printed MISSED while the tally counted a pass -- A CONTROL WHOSE OUTPUT DISAGREES WITH
+ITS OWN VERDICT -- and they now have their own reporter.
+
+READ THE POPULATION LIVE -- python3 scripts/check_lesson_promotion.py -- never from
+this block, because both halves move: a lesson is ruled on, and an instrument is built.
+
+THE GENERAL LESSON, WHICH IS NOT ABOUT LESSONS: A RECORD AND AN ENFORCEMENT LAYER NEED
+A COUNTED PATH BETWEEN THEM, OR THE RECORD BECOMES A PLACE FINDINGS GO TO BE SAFE. Both
+artefacts were working exactly as designed -- the register honest and cheap to write
+to, the gates arithmetic and binding -- and the traffic between them was nobody's
+subject, so it ran at six per cent for a year and no instrument would have noticed if
+it had run at nothing. WHERE A PROCESS HAS TWO HALVES AND ONLY ONE OF THEM BINDS, COUNT
+WHAT CROSSES.
 
 
 [R-BETA-05] A DOCUMENT THAT QUOTES THE BETA DIAGNOSTICS NAMES THE ESTIMATOR

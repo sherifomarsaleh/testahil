@@ -386,6 +386,13 @@ ARTEFACT_GATES = {
 #                                   read, and its own population anchoring covers the case
 #                                   where the whole book has none
 EXCLUDED = {
+    'check_lesson_promotion.py': 'its subject is THE LESSONS REGISTER rather '
+                                 'than any study — it asks how many lessons '
+                                 'reach the layer that binds, and a planted '
+                                 'study directory adds no lesson. Demanding a '
+                                 'nonzero exit would make it claim a new study '
+                                 'had introduced an undeclared lesson when it '
+                                 'had introduced none [R-LESSON-02]',
     'check_tree_unmodified.py': 'its subject is THE RUN rather than any study — it asks '
                                 'whether the checks that ran modified the tracked tree, '
                                 'and a planted study directory is untracked, which this '

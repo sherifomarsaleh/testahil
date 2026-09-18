@@ -179,7 +179,14 @@ CLASSES = (
 
 
 def L(id, scope, applies_to, headline, plain, source, origin, evidence,
-      overturned_by, status=None):
+      overturned_by, status=None,
+      promotion=None, promoted_by=None, promotion_note=None):
+    # promotion / promoted_by / promotion_note are [R-LESSON-02]. They are OPTIONAL
+    # here and required by the GATE, on the ratchet's terms: every one of the 312
+    # lessons predating that rule keeps its exact shape, and a lesson added after it
+    # declares. Putting the requirement in this signature instead would make every
+    # existing call red at import, which is the permanently-red check [R-ENF-02]
+    # forbids, and would do it inside the module every reader loads.
     # A walk-forward finding is PROVISIONAL by construction — it cannot be
     # written in as adopted, whatever the caller passes, until the method that
     # produced it has been validated on more than one name.
@@ -192,10 +199,19 @@ def L(id, scope, applies_to, headline, plain, source, origin, evidence,
     if origin == "walk_forward_fundamental" and status == "adopted":
         raise ValueError("%s: a fundamental walk-forward lesson may not be "
                          "adopted while the method rests on one name" % id)
-    return {"id": id, "scope": scope, "applies_to": applies_to,
-            "headline": headline, "plain": plain, "source": source,
-            "origin": origin, "evidence": evidence,
-            "overturned_by": overturned_by, "status": status}
+    out = {"id": id, "scope": scope, "applies_to": applies_to,
+           "headline": headline, "plain": plain, "source": source,
+           "origin": origin, "evidence": evidence,
+           "overturned_by": overturned_by, "status": status}
+    # Only written when declared, so a lesson that has not been ruled on is
+    # ABSENT rather than carrying a null that reads like a decision.
+    if promotion is not None:
+        out["promotion"] = promotion
+    if promoted_by is not None:
+        out["promoted_by"] = promoted_by
+    if promotion_note is not None:
+        out["promotion_note"] = promotion_note
+    return out
 
 
 DEV = "real-estate developer, off-plan, percentage-of-completion"
@@ -1463,7 +1479,9 @@ LESSONS = [
       "the other five corrections.",
       "A study that deliberately assumes real decline in perpetuity, "
       "says so, and shows the disclosure or industry evidence "
-      "supporting it — that is a stated assumption, not this defect."),
+      "supporting it — that is a stated assumption, not this defect.",
+      promotion="enforced", promoted_by="[R-MACRO-01]",
+      promotion_note="The house macro path derives terminal growth as terminal inflation plus a STATED real growth, and derives the terminal risk-free rate from the same terminal inflation, so the two cannot disagree about inflation by construction. assert_macro_coherence() reproduces both."),
 
     L("L-056", "ALL", None,
       "A claim about the record — 'best ever', 'never' — is "
@@ -1486,7 +1504,9 @@ LESSONS = [
       "June 2026, so the claim was false twice over.",
       "A delivered superlative that a reader can verify from the "
       "study's own committed numbers without recomputing it — at "
-      "which point it was computed, not typed."),
+      "which point it was computed, not typed.",
+      promotion="enforced", promoted_by="engine/prose_figures.py",
+      promotion_note="Every figure a reader sees is reconciled against the model by the shared instrument, so a claim about the record cannot be typed and reach a page unmatched. scripts/check_prose_figures.py runs it over the book."),
 
     L("L-057", "ALL", None,
       "Interest income is a balance times a rate, and holding it flat "
@@ -6814,7 +6834,10 @@ LESSONS = [
       "understates the concession by EGP 0.3744, 3.3% of the central. An "
       "outside auditor reached 12.0632 independently.",
       "A model where the conceded charge sits outside every rate struck "
-      "below it, so the two routes coincide."),
+      "below it, so the two routes coincide.",
+      promotion="outstanding",
+      promotion_note=
+      "A give-back table could be re-run both ways by an instrument — conceded at the line and conceded as a margin — and the two compared. Nothing does it."),
 
     L("L-379", "ALL", None,
       "A sensitivity row that moves the answer by exactly zero is re-running "
@@ -6830,7 +6853,10 @@ LESSONS = [
       "excluded from the assertion loop that would have caught it. The "
       "delivered table publishes it as a tested alternative.",
       "A sensitivity genuinely insensitive to its input over the range "
-      "tested, demonstrated by re-running it at a second value."),
+      "tested, demonstrated by re-running it at a second value.",
+      promotion="outstanding",
+      promotion_note=
+      "A row equal to the base case to the model's own printed precision is arithmetic about the table and needs no judgement. Nothing checks it."),
 
     L("L-380", "ALL", None,
       "A row labelled 'all of the above at once' that runs a subset is a "
@@ -6844,7 +6870,10 @@ LESSONS = [
       "concessions — published under a table listing six, in a document that "
       "passed 6,069 formula cells with zero disagreements.",
       "A label that enumerates the cases it runs, so the set and the claim "
-      "cannot drift apart."),
+      "cannot drift apart.",
+      promotion="outstanding",
+      promotion_note=
+      "Testable on the prose_figures architecture: the builder declares which cases a combined row runs, and the label is held to the declaration. Not built."),
 
     L("L-381", "ALL", None,
       "A registered, sourced, four-field input that no arithmetic reads is a "
@@ -6863,7 +6892,10 @@ LESSONS = [
       "move the answer by 1.00x and 0.0%.",
       "A check that reads consumption rather than presence, which "
       "[R-ASSET-02] now does for the operating asset base and nothing yet "
-      "does for an ordinary driver."),
+      "does for an ordinary driver.",
+      promotion="outstanding",
+      promotion_note=
+      "[R-ASSET-02] does exactly this for the operating asset base. Generalising it to any registered driver is the debt."),
 
     L("L-382", "ALL", None,
       "A declared absence is re-searched before it is published, because a "
@@ -6883,7 +6915,10 @@ LESSONS = [
       "statements states 28.6%. Both documents were fetched from the "
       "company's own archive on the first request.",
       "A study whose declared gap survives a fresh search of the company's "
-      "own channel, logged with its date."),
+      "own channel, logged with its date.",
+      promotion="prose",
+      promotion_note=
+      "Whether a fresh search was run is not a property of the repository. What IS mechanically enforced is the consequence — the sweep register's dated negative-search invariant — and that catches a gap nobody looked for, never a gap somebody looked for once and did not look for again."),
 
     L("L-383", "ALL", None,
       "A study's own diagnostic can be right while the page prints the sign "
@@ -6900,7 +6935,10 @@ LESSONS = [
       "proof on it.",
       "A page that reads its direction words from the committed sign rather "
       "than stating them, which is the prose-figure discipline applied to a "
-      "direction instead of to a figure."),
+      "direction instead of to a figure.",
+      promotion="outstanding",
+      promotion_note=
+      "A committed sign and the direction words on the page are both readable; comparing them is the prose-figure discipline applied to a direction rather than to a figure. Not built."),
 
     L("L-384", "ALL", None,
       "A panel median computed over a set containing a figure the study has "
@@ -6917,7 +6955,10 @@ LESSONS = [
       "(8.10, 9.34, 12.32) is 9.34 — the panel read moves from -8.8% against "
       "the price to -30.8%.",
       "A panel whose concessions are all immaterial to its own median, "
-      "demonstrated rather than assumed."),
+      "demonstrated rather than assumed.",
+      promotion="outstanding",
+      promotion_note=
+      "A panel median is arithmetic over a committed set, and a conceded restatement is a committed figure. Reconciling the two needs no judgement."),
 
     L("L-385", "ALL", None,
       "A cross-check lens struck on a different capital basis does not walk "
@@ -6937,7 +6978,10 @@ LESSONS = [
       "bridge gives EGP 11.9144, against a published 12.3183 — reproduced "
       "here and independently by an outside auditor.",
       "A study whose lenses genuinely share one capital basis, shown by the "
-      "walk rather than by the sentence."),
+      "walk rather than by the sentence.",
+      promotion="outstanding",
+      promotion_note=
+      "Walking a cross-check lens's enterprise value through the study's own committed bridge is arithmetic both sides already commit."),
 
     L("L-386", "ALL", None,
       "A spread quoted across 'N consecutive filed periods' must name which "
@@ -6954,7 +6998,10 @@ LESSONS = [
       "the record and the one the margin thesis turns on. The defect was "
       "already recorded in this house's own standing digest as a worked "
       "example and shipped anyway.",
-      "A quoted spread that reproduces from the full filed set."),
+      "A quoted spread that reproduces from the full filed set.",
+      promotion="outstanding",
+      promotion_note=
+      "A spread quoted in prose against the committed filed series is exactly what prose_figures reconciles; what is missing is that the SUBSET be declared."),
 
     L("L-387", "ALL", None,
       "A source claim in the delivered bibliography is read by no gate, "
@@ -6972,7 +7019,10 @@ LESSONS = [
       "register, where every AMOC source names a filing, and passes the "
       "study.",
       "A source gate whose population is the delivered documents as well as "
-      "the committed register."),
+      "the committed register.",
+      promotion="outstanding",
+      promotion_note=
+      "check_source_integrity.py reads the committed input register; extending its population to the delivered bibliography is the fix and it is not built."),
 
     L("L-388", "CLASS", "refiner, commodity pass-through on a thin spread",
       "Holding a dollar-linked price flat in nominal dollars while domestic "
@@ -6994,7 +7044,10 @@ LESSONS = [
       "convention.",
       "Evidence that the real dollar price of this slate has in fact "
       "declined at foreign inflation over a long enough record to measure, "
-      "which would make the nominal convention the right one."),
+      "which would make the nominal convention the right one.",
+      promotion="outstanding",
+      promotion_note=
+      "Whether a study holds a foreign-currency price flat in nominal terms while escalating domestic costs at the full ladder is arithmetic over what [R-MACRO-01] already makes studies declare. Not built."),
 
     L("L-389", "CLASS",
       "real-estate developer, off-plan, point-in-time on handover",
