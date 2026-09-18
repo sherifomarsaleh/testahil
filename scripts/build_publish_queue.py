@@ -35,6 +35,36 @@ def calibrated():
     return out
 
 
+def deliverable(sd, ticker, kind, ext):
+    """The current deliverable of one kind, found by TICKER or by whatever prefix it ships under.
+
+    THE TICKER PREFIX IS A CONVENTION, NOT A RULE, and this builder treated it as one.
+    PHAR's delivered report and workbook are filed as EIPICO_Valuation_Study_*.pdf and
+    EIPICO_Valuation_Model_*.xlsx — the COMPANY's name rather than the ticker — so a
+    matcher keyed on the ticker reported "no valuation report PDF" about a study that has
+    shipped one since August, and REFUSED THE WHOLE QUEUE ON IT. That is this repository's
+    most-repeated failure in another costume: a reader that guesses a naming convention
+    silently finds nothing and reports it as a result. The bibliography gate had already
+    been bitten by this exact file and names its variants in code.
+
+    RESOLUTION IS EXACT AND NEEDS NO ALIAS LIST: the ticker prefix wins where it exists;
+    otherwise the directory is asked what it actually holds, and a UNIQUE prefix is
+    accepted while several are REFUSED by name — because choosing among them would be the
+    guess this is here to stop. The prefix is returned so the caller can SAY which name it
+    found the file under.
+    """
+    hit = newest(os.path.join(sd, '%s_%s_*.%s' % (ticker, kind, ext)))
+    if hit:
+        return hit, ticker
+    pfxs = {}
+    for f in glob.glob(os.path.join(sd, '*_%s_*.%s' % (kind, ext))):
+        pfxs.setdefault(os.path.basename(f).split('_%s_' % kind)[0], []).append(f)
+    if len(pfxs) != 1:
+        return None, (sorted(pfxs) if pfxs else None)
+    pfx = next(iter(pfxs))
+    return newest(os.path.join(sd, '%s_%s_*.%s' % (pfx, kind, ext))), pfx
+
+
 def newest(pattern):
     """The most recent file matching a dated pattern, by the date IN THE NAME."""
     hits = []
@@ -99,8 +129,14 @@ def build(check_only=False):
             problems.append('%s: a walk-forward ran but there is no %s_study directory'
                             % (t, t.lower()))
             continue
-        report = newest(os.path.join(sd, '%s_Valuation_Study_*.pdf' % t))
-        book = newest(os.path.join(sd, '%s_Valuation_Model_*.xlsx' % t))
+        report, rpfx = deliverable(sd, t, 'Valuation_Study', 'pdf')
+        book, bpfx = deliverable(sd, t, 'Valuation_Model', 'xlsx')
+        for kind, pfx in (('report', rpfx), ('workbook', bpfx)):
+            if pfx and pfx != t:
+                # SAID, NEVER SILENT. A file found under a prefix that is not the ticker
+                # is still the right file, and a reader of this queue is entitled to know
+                # the queue went looking under another name to find it.
+                print('  %-6s %s is filed under %r rather than the ticker' % (t, kind, pfx))
         fair = recorded_fair(t, mv)
         if not report:
             problems.append('%s: no valuation report PDF. The deliverable is a PDF; the Word '
