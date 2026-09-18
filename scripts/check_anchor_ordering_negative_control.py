@@ -96,15 +96,41 @@ def behind(doc):
     return bool(b and a and a < b)
 
 
+def _behind(doc):
+    """A copy of a real record with its profit anchor forced BEHIND its own sheet.
+
+    THE BREACH IS PLANTED, NOT BORROWED [L-403]. Seven cases in this control used to take
+    ADNOCLS's dates exactly as they stood, and they were correct while that study's anchor
+    sat behind its bridge. The study was CORRECTED — which is the whole object of the gate
+    — and every one of those cases then went green while asserting it had injected a
+    breach, so the control refused. A fixture whose condition is supplied by a defect
+    somebody is fixing expires precisely when the work succeeds, and the better the work
+    the sooner it happens.
+
+    What is kept from the old shape is that the record is a REAL one: the same fields, the
+    same vocabulary, the same everything a study commits. Only the two dates are set, and
+    the setting is asserted.
+    """
+    d = copy.deepcopy(doc)
+    sheet = (d.get("bridge_record") or {}).get("balance_sheet_date")
+    assert sheet, "FIXTURE CANNOT BE BUILT: this record carries no balance-sheet date"
+    d.setdefault("forecast_anchor", {})["latest_reviewed_date"] = "2024-12-31"
+    assert behind(d), "FIXTURE DID NOT LAND: the planted anchor is not behind the sheet"
+    return d
+
+
 def main():
     results = []
     ADN, ARCC, EGCH, PHDC = (real(t) for t in ("adnocls", "arcc", "egch", "phdc"))
+    BEHIND = _behind(ADN)
 
     # ---------- RED ----------
     for i, (tk, doc) in enumerate((("ADNOCLS", ADN), ("ARCC", ARCC), ("EGCH", EGCH)), 1):
-        case("%d %s's own dates, exactly as they stand" % (i, tk),
-             {tk: doc}, {}, True,
-             lambda r, d=doc: (behind(d), "the anchor is not behind the sheet"), results)
+        planted = _behind(doc)
+        case("%d %s's own record, anchored behind its own sheet" % (i, tk),
+             {tk: planted}, {}, True,
+             lambda r, d=planted: (behind(d), "the anchor is not behind the sheet"),
+             results)
 
     case("4 ZERO study directories [R-ENF-04]",
          {}, {}, True,
@@ -130,8 +156,13 @@ def main():
                     == (PHDC.get("forecast_anchor") or {}).get("latest_reviewed_date"),
                     "PHDC's dates are not equal"), results)
 
+    # THE AHEAD DATE IS DERIVED FROM THE SHEET, not typed. It was pinned at 2026-06-30 and
+    # stopped being ahead of anything the day PHDC's bridge moved to that date or later.
     AHEAD = copy.deepcopy(PHDC)
-    AHEAD["forecast_anchor"]["latest_reviewed_date"] = "2026-06-30"
+    _sheet = (AHEAD.get("bridge_record") or {}).get("balance_sheet_date")
+    assert _sheet, "FIXTURE CANNOT BE BUILT: PHDC's record carries no balance-sheet date"
+    AHEAD["forecast_anchor"]["latest_reviewed_date"] = "%d%s" % (
+        int(_sheet[:4]) + 1, _sheet[4:])
     case("8 an anchor AHEAD of the sheet must not fire",
          {"EEE": AHEAD}, {}, False,
          lambda r: (AHEAD["forecast_anchor"]["latest_reviewed_date"]
@@ -143,7 +174,7 @@ def main():
     # which was correct evidence for the gate as first written and is exactly what the
     # strengthening removed: a reason with no measurement is an assertion, and this rule's
     # own parent says THE MEASUREMENT IS THE CLAUSE THAT DOES THE WORK.
-    DECL = copy.deepcopy(ADN)
+    DECL = copy.deepcopy(BEHIND)
     DECL["anchor_ordering_reason"] = ("the 31-March filing is a balance-sheet-only interim "
                                       "under the exchange's quarterly rule; no income "
                                       "statement for the quarter was published")
@@ -154,7 +185,7 @@ def main():
          results)
 
     def declared(later, anchor, **kw):
-        d = copy.deepcopy(ADN)
+        d = copy.deepcopy(BEHIND)
         d["anchor_ordering_reason"] = dict(
             {"reason": "a single reviewed quarter is a point on a seasonal path rather "
                        "than a rate the business runs at",
@@ -202,7 +233,7 @@ def main():
                              .strip()), "the mechanism case was not built"), results)
 
     # NO measurement at all, only a reason — the shape case 9 used to release on.
-    NOMEAS = copy.deepcopy(ADN)
+    NOMEAS = copy.deepcopy(BEHIND)
     NOMEAS["anchor_ordering_reason"] = {"reason": "a quarter is not a year"}
     case("9b a dict reason with no rates to read a direction from",
          {"NNN": NOMEAS}, {}, True,
@@ -216,9 +247,7 @@ def main():
     # releases nothing and the gate is right to stay quiet. The case is about an empty
     # reason on a record that DOES need one, so both halves are now built and both are
     # asserted.
-    EMPTY = copy.deepcopy(ADN)
-    EMPTY["forecast_anchor"]["latest_reviewed_date"] = "2024-12-31"
-    EMPTY["bridge_record"]["balance_sheet_date"] = "2026-06-30"
+    EMPTY = copy.deepcopy(BEHIND)
     EMPTY["anchor_ordering_reason"] = "  "
     case("10 an EMPTY reason has switched the check off, not declared it",
          {"HHH": EMPTY}, {}, True,
