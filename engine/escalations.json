@@ -1113,6 +1113,129 @@
     "must_contain": "TERMINAL REAL GROWTH RULED ON"
    },
    "status": "open"
+  },
+  {
+   "key": "beta-estimator-gate-reads-half-the-book",
+   "opened": "2026-09-18",
+   "cls": "instruction",
+   "question": "[R-BETA-05] was adopted 18-09-2026 and its gate reads a beta record out of study_numbers.json ONLY. Measured the same evening, TWENTY-TWO studies commit a beta_result.json and the gate reaches TEN records of twenty-three. Widening the reader to the second location surfaces THIRTEEN more studies, of which twelve quote a testable diagnostic and name no estimator — the exact breach the rule was adopted on, in twelve more places. The gate is ratcheted at seven and [R-ENF-02] says a ratchet may only ever SHORTEN, so there are only two honest ways to widen it: re-seed the ratchet at nineteen, stating that these entries were outstanding ON ADOPTION DAY and invisible rather than deferred afterwards; or CONFORM the twelve, which means emitting the estimator sentence into twelve delivered documents and is a re-issue. Which?",
+   "routes": [
+    {
+     "route": "every engine/*_study for a beta record outside study_numbers.json",
+     "when": "2026-09-18",
+     "outcome": "22 studies carry beta_result.json; 13 of them are invisible to the gate. Named: ADNOCDIST, ADNOCDRILL, AIRARABIA, ARCC, DU, ELEC, EMPOWER, FERTIGLOBE, GBCO, PHAR, SCEM, STC, SWDY.",
+     "rerun": true
+    },
+    {
+     "route": "the delivered document of each, for diagnostics quoted and estimator named",
+     "when": "2026-09-18",
+     "outcome": "twelve quote at least one testable diagnostic and none names an estimator; ELEC quotes none and is out of scope by the rule's own narrowing.",
+     "rerun": true
+    },
+    {
+     "route": "the gate's own reader, to establish this is LOCATION rather than SHAPE",
+     "when": "2026-09-18",
+     "outcome": "read_beta_record handles two shapes and refuses a third, correctly. The hole is that it is only ever handed one FILE. The rule's own text closes the shape problem in terms and says nothing about where the record lives.",
+     "rerun": true
+    },
+    {
+     "route": "engine/escalations.json and the lessons register, for whether this was asked and answered before",
+     "when": "2026-09-18",
+     "outcome": "not asked. [L-355] names the class — a reader that guesses a naming convention silently finds nothing and reports it as a result — and this is that class landing on a gate adopted to close a different instance of it the same day.",
+     "rerun": true
+    }
+   ],
+   "refs_searched": 262,
+   "why_only_the_principal": "Both routes cost something the principal owns. Re-seeding a ratchet is the one thing [R-ENF-02] forbids in terms, and the argument for doing it here — that the debt predates the gate and was merely invisible — is exactly the argument anybody would make for growing any ratchet, so making it once weakens the rule everywhere. Conforming instead means re-issuing twelve delivered documents, which is not done in passing and is not done unattended.",
+   "recommendation": "Re-seed at nineteen WITH EACH ENTRY CARRYING ITS MEASUREMENT [R-ENF-08], and record in the ratchet file itself that this is a SEEDING CORRECTION rather than a deferral — the entries were outstanding on the day the rule was adopted and the gate could not see them, which is a different fact from work deferred after adoption. Then close them the ordinary way: the sentence is EMITTED from the record by beta_regression.estimator_note(), so conforming a study is one line in its builder at its next edition rather than twelve hand-written sentences.",
+   "done_meanwhile": "The hole is measured and named rather than left as a suspicion, and the count is in this entry so it is countable from a fresh clone. The gate is NOT widened, because widening it tonight would leave CI red on twelve studies with no route to green but a twelve-document re-issue — the permanently-red check [R-ENF-02] forbids.",
+   "default_if_no_answer": "Re-seed at nineteen with the measurements and the seeding-correction note. The default is the option that makes the book's real state VISIBLE; leaving a gate that reads under half its own population is the absent answer wearing a clean one's clothes [R-ENF-04], and it is worse than an honest ratchet.",
+   "default_date": "2026-09-25",
+   "resolves_when": {
+    "file": "scripts/check_beta_estimator_disclosure.py",
+    "must_contain": "beta_result.json"
+   },
+   "status": "open"
+  },
+  {
+   "key": "eg-currency-path-first-year-above-its-own-range",
+   "opened": "2026-09-18",
+   "cls": "instruction",
+   "question": "The house Egyptian currency path derives its first forward year to EGP 55.1141/USD, and the path file's OWN source field records the pound's 52-week range as 46.64-54.86 with a spot of 50.25 at 6 August 2026. 55.1141 is a full-year AVERAGE above the top of that range, so it requires the pound to spend most of the year beyond anything it has traded at in a year. The derivation is not hand-set and is not wrong in method — it is relative purchasing-power parity on this path's own inflation ladder against long-run US inflation, exactly as [R-MACRO-01] requires, and a study may not carry a currency of its own. So no study is at fault and every Egyptian study inherits it. Does the principal want the path's fx SPOT ANCHOR refreshed, the derivation re-examined against the observed range, or the path left as it is with the tension disclosed?",
+   "routes": [
+    {
+     "route": "engine/macro_paths/EG.json fx block and macro_path.MacroPath.fx_path(5)",
+     "when": "2026-09-18",
+     "outcome": "spot 50.25 (2026-08-06); derived path 55.1141 / 60.2223 / 64.0413 / 67.1652 / 70.1139; the source field's own 52-week range is 46.64-54.86. The first forward year is ABOVE the range high. Computed live, not quoted.",
+     "rerun": true
+    },
+    {
+     "route": "the direction on the Egyptian book, because it is NOT one-signed",
+     "when": "2026-09-18",
+     "outcome": "a name net SHORT dollars is hurt and a dollar-linked one is helped. This book already records the second half: conforming AMOC's ladder LOWERED its value because a lower ladder means a stronger pound and on a dollar-linked slate the translation gain lost outweighs the pound costs saved. So a single input moves the Egyptian studies in OPPOSITE directions and no correction here is uniformly favourable.",
+     "rerun": true
+    },
+    {
+     "route": "[R-MACRO-01 AMENDED 06-09-2026]'s anchor-age gate, in case this is the same finding under another name",
+     "when": "2026-09-18",
+     "outcome": "it is NOT. That rule bounds how STALE an anchor may be when a study is struck; this is about the derived path's first year sitting outside the range the anchor's own source records. Two different questions about one field, which is the shape [R-MACRO-01 AMENDED] itself names.",
+     "rerun": true
+    },
+    {
+     "route": "whether any study may fix this itself",
+     "when": "2026-09-18",
+     "outcome": "no. [R-MACRO-01] forbids a study carrying an inflation or currency number of its own, and assert_macro_coherence enforces it. The path is the only place this can be changed, and changing it moves every Egyptian study at once.",
+     "rerun": true
+    }
+   ],
+   "refs_searched": 262,
+   "why_only_the_principal": "It moves every Egyptian study in the book simultaneously and in opposite directions by name, which is precisely the kind of change [R-VCAL-01]'s promotion guard exists to sequence. A desk that has just been told the book's valuations look too conservative cannot be the one that decides to soften a currency path, and say so credibly afterwards — on the names that are net short dollars, softening it RAISES the value.",
+   "recommendation": "Refresh the fx spot anchor first and re-derive, before touching the derivation. The anchor is dated 6 August and the path is stamped 2 September; a 27-day-old anchor is already the tension [R-MACRO-01 AMENDED 06-09-2026] registered, and a fresher spot may resolve the range question without anyone choosing a construction. If it does not, the honest next step is to DISCLOSE that the first forward year sits above the observed range rather than to damp the derivation, because damping purchasing-power parity to fit an observed range is fitting a path to a price.",
+   "done_meanwhile": "Measured and registered rather than acted on. No path, study or fair value moved. The figures are computed live by macro_path.fx_path(5) so a fresh clone can reproduce them rather than trusting this entry.",
+   "default_if_no_answer": "Leave the path exactly as it is and disclose the tension wherever the currency is quoted. The default is inaction because every alternative moves eight studies at once, and the direction is not uniform, so there is no version of this that is safe to take by default.",
+   "default_date": "2026-09-25",
+   "resolves_when": {
+    "file": "engine/macro_paths/EG.json",
+    "must_contain": "RANGE TENSION RULED ON"
+   },
+   "status": "open"
+  },
+  {
+   "key": "artefact-currency-gate-misses-the-other-spelling",
+   "opened": "2026-09-18",
+   "cls": "instruction",
+   "question": "[R-ENF-06] requires any artefact a builder reads that carries a valuation figure to declare the central it was generated against. check_artefact_currency.py finds such an artefact by a key list that includes 'central' and NOT 'centre'. This house writes both: PHAR's audit_pricing.json and audit_pricing_2.json carry 'centre' and are therefore invisible to the gate, so they are never required to declare a vintage — which is the exact defect [R-ENF-06] was adopted on, in the artefact class it was adopted for. Widening the key list can only find MORE, never less, so it is not a weakening; but it may turn the gate red on studies whose artefacts then have to declare, and that is a re-issue rather than something done in passing. Widen and ratchet, or widen and conform?",
+   "routes": [
+    {
+     "route": "scripts/check_artefact_currency.py VALUE_KEYS against every study's JSON",
+     "when": "2026-09-18",
+     "outcome": "VALUE_KEYS = ('central', 'per_share', 'value_adopted', 'fair', 'end', 'value_per_share', 'weighted_central'). Two PHAR artefacts write 'centre' and carry no key from that tuple.",
+     "rerun": true
+    },
+    {
+     "route": "whether this is the same class as the beta-gate hole registered the same night",
+     "when": "2026-09-18",
+     "outcome": "yes, and that is the point. That one is a LOCATION the reader never opens; this one is a SPELLING the reader does not know. Both are [L-355] — a reader that guesses a naming convention silently finds nothing and reports it as a result — and both sit in gates adopted to close other instances of it.",
+     "rerun": true
+    },
+    {
+     "route": "the lessons register, for whether the class was already registered",
+     "when": "2026-09-18",
+     "outcome": "[L-355] is registered and correct and binds nothing; these are the second and third re-violations found in one night, which is [R-LESSON-02]'s own subject rather than a new lesson.",
+     "rerun": true
+    }
+   ],
+   "refs_searched": 262,
+   "why_only_the_principal": "The choice between growing a ratchet and re-issuing studies is the same choice the beta entry raises, and answering one should answer both — which is why it is registered beside it rather than taken separately.",
+   "recommendation": "Widen the key list and ratchet with measurements, on the same terms as the beta gate. A gate that cannot see an artefact is worse than one with a countable debt.",
+   "done_meanwhile": "Measured and named. The gate is NOT widened and nothing moved.",
+   "default_if_no_answer": "Widen and ratchet with each entry carrying its measurement, recorded as a seeding correction rather than a deferral.",
+   "default_date": "2026-09-25",
+   "resolves_when": {
+    "file": "scripts/check_artefact_currency.py",
+    "must_contain": "'centre'"
+   },
+   "status": "open"
   }
  ]
 }

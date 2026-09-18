@@ -126,6 +126,17 @@ def no_records_anywhere(tmp):
     its rule field: nothing to check, nothing wrong, green — which is exactly the
     absent answer wearing a clean one's clothes.
     """
+    # THE COUNT IS DERIVED, NOT PINNED [L-403]. It read 37 and the book grew a
+    # thirty-eighth terminal record, at which point the control REFUSED — correctly by
+    # its own lights and about nothing: a fixture pinned to a live figure expires the
+    # moment the work moves, and the expiry looks exactly like a defect. What the case
+    # needs is that EVERY marker present was renamed and that there was at least one to
+    # rename, which is the condition itself rather than a number somebody wrote down.
+    want = 0
+    for p in glob.glob(os.path.join(tmp, "engine", "*_study", "*numbers*.json")):
+        want += sum(1 for _ in _each_record(json.load(open(p))))
+    assert want, ("FIXTURE CANNOT BE BUILT: the sandbox carries no terminal record at "
+                  "all, so renaming the marker would remove nothing [R-ENF-04]")
     hit = 0
     for p in glob.glob(os.path.join(tmp, "engine", "*_study", "*numbers*.json")):
         o = json.load(open(p))
@@ -133,7 +144,12 @@ def no_records_anywhere(tmp):
             rec["rule"] = "R-TERM-01-RENAMED"
             hit += 1
         json.dump(o, open(p, "w"))
-    assert hit == 37, f"MUTATION DID NOT LAND: renamed {hit} markers, expected 37"
+    assert hit == want, (f"MUTATION DID NOT LAND: renamed {hit} markers of {want} "
+                         f"present")
+    left = 0
+    for p in glob.glob(os.path.join(tmp, "engine", "*_study", "*numbers*.json")):
+        left += sum(1 for _ in _each_record(json.load(open(p))))
+    assert left == 0, f"MUTATION DID NOT LAND: {left} record(s) still carry the marker"
     return "ZERO terminal records"
 
 
