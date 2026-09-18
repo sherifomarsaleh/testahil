@@ -23,8 +23,13 @@ def git(d, *a):
     return subprocess.run(["git", "-C", d] + list(a), capture_output=True, text=True)
 
 
+PREG2 = "PRE_REGISTRATION_18-09-2026.md"
+BODY2 = "the second design, superseding the first and saying so\n"
+
+
 def build(tmp, order="preg_first", seal=True, seal_ok=True, commit_preg=True,
-          add_score=True, shallow=False):
+          add_score=True, shallow=False, supersede=False, seal2_ok=True,
+          edit_old_after=False):
     calib = os.path.join(tmp, "engine", "valuation_calibration")
     os.makedirs(calib)
     os.makedirs(os.path.join(tmp, "scripts"))
@@ -59,14 +64,42 @@ def build(tmp, order="preg_first", seal=True, seal_ok=True, commit_preg=True,
                                      "SCORES_2026.json"))
         git(tmp, "commit", "-qm", "scores")
 
+    def write_preg2():
+        """A SECOND dated pre-registration, committed AFTER the first score.
+
+        This is the shape the sealed document itself prescribes for a correction, and
+        the first version of this gate made it impossible — it held every score against
+        the LATEST document, so the moment a second existed, a score correctly produced
+        under the first became "a score that predates its design". The clean case below
+        is that exact history and it must PASS.
+        """
+        open(os.path.join(calib, PREG2), "w").write(BODY2)
+        rec = {"file": PREG2,
+               "sha256": ("0" * 64 if not seal2_ok
+                          else hashlib.sha256(BODY2.encode()).hexdigest()),
+               "superseded": [{"file": PREG,
+                               "sha256": hashlib.sha256(BODY.encode()).hexdigest()}]}
+        json.dump(rec, open(os.path.join(calib, "PRE_REGISTRATION_HASH.json"), "w"))
+        if edit_old_after:
+            # THE SUPERSEDED DOCUMENT IS WHERE A RATIONALISATION WOULD GO: it is the
+            # design the earlier scores claim to follow, and nobody looks at it again.
+            open(os.path.join(calib, PREG), "w").write(
+                BODY + "and a sentence added later\n")
+        git(tmp, "add", os.path.join("engine", "valuation_calibration"))
+        git(tmp, "commit", "-qm", "prereg2")
+
     if order == "preg_first":
         write_preg()
         if add_score:
             write_score()
+        if supersede:
+            write_preg2()
     else:
         if add_score:
             write_score()
         write_preg()
+        if supersede:
+            write_preg2()
     if shallow:
         open(os.path.join(tmp, ".git", "shallow"), "w").write("")
 
@@ -109,6 +142,16 @@ def main():
              {}, False, res)
     run_case("CLEAN — sealed and committed, no scores yet, must PASS",
              {"add_score": False}, False, res)
+
+    # ---- the supersession clauses, added 18-09-2026 with the gate change -------
+    run_case("CLEAN — score under design 1, design 2 committed LATER, must PASS",
+             {"supersede": True}, False, res)
+    run_case("a SUPERSEDED pre-registration edited after its seal",
+             {"supersede": True, "edit_old_after": True}, True, res)
+    run_case("the SUPERSEDING document's own seal does not match",
+             {"supersede": True, "seal2_ok": False}, True, res)
+    run_case("a score before BOTH designs, with a supersession present",
+             {"order": "score_first", "supersede": True}, True, res)
 
     tmp = tempfile.mkdtemp(prefix="vcal-")
     try:
