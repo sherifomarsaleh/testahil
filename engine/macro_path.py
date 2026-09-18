@@ -74,6 +74,28 @@ REGIMES = ("transition", "pegged", "mature")
 SOVEREIGN_STALE_DAYS = 14
 
 
+# [R-MACRO-01] every level is published by a named institution on a named date, or
+# DERIVED by an identity from numbers that are. The inflation ladder has carried a
+# per-step `basis` since adoption and nothing asked the same of erp_terminal --
+# measured 18-09-2026, five of seven paths cite Damodaran's country risk file with
+# its publication date, one (AE) states a held-flat convention with its reason, and
+# EGYPT'S CITES A RATIONALE. "normalised below the currently elevated crisis-era
+# level toward the rating-class norm" names no institution, no date and no identity,
+# and it reads on the page exactly like the five that do.
+#
+# CLOSED, for [R-COC-01 AMENDED]'s reason: an open list lets a path opt out by
+# inventing a basis, and "normalised toward the norm" is not a basis.
+#
+#   published       -- an institution and a date, quoted in the source field
+#   derived         -- an identity over numbers that are themselves published
+#   house_judgement -- neither, NAMED AS SUCH, with what would source it
+#
+# house_judgement is permitted and is not a loophole: a house view is a legitimate
+# thing for a path to carry and an ILLEGIBLE one is not. What it cannot do is read
+# as a publication.
+ERP_TERMINAL_BASES = ("published", "derived", "house_judgement")
+
+
 class MacroPathError(RuntimeError):
     """A macro path was asked for and cannot honestly be given."""
 
@@ -392,6 +414,19 @@ def _validate(d: dict, m: str) -> None:
               "real_rate_convention", "erp_terminal"):
         if k not in d:
             raise MacroPathError("%s: the path carries no %s" % (m, k))
+    et = d["erp_terminal"]
+    if et.get("basis") not in ERP_TERMINAL_BASES:
+        raise MacroPathError(
+            "%s: erp_terminal carries basis %r, which is not one of %s. Every level "
+            "in a path is published, derived by an identity, or a house judgement "
+            "NAMED as one -- and a rationale in the source field is none of the "
+            "three while reading like the first [R-MACRO-01]."
+            % (m, et.get("basis"), ", ".join(ERP_TERMINAL_BASES)))
+    if et["basis"] == "house_judgement" and not et.get("what_would_source_it"):
+        raise MacroPathError(
+            "%s: erp_terminal declares itself a house judgement and does not say "
+            "what would source it. A judgement with no route to evidence is the "
+            "habit [R-LESSON-01] refuses of a lesson, in a path." % m)
     for basis in ("rating", "market"):
         if "default_spread_%s" % basis not in d["sovereign"]:
             raise MacroPathError("%s: no %s-basis default spread. Both bases are "

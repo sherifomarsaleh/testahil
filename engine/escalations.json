@@ -969,6 +969,49 @@
    "resolved": "2026-09-07",
    "answer": "RULED BY THE PRINCIPAL: do not switch the declared maintenance basis. Changing the rule after seeing which answer it produces is selection, which is what the pre-registration exists to prevent. The disclosed-life reading stays a PUBLISHED SENSITIVITY beside the declared run, as designed. The separate filename question stands: when the scorer is next re-run, date its output by the run rather than by a literal.",
    "answer_written_to": "engine/valuation_calibration/score_cashflow.py — the declared reading is unchanged and this ruling is why."
+  },
+  {
+   "key": "eg-terminal-erp-normalisation",
+   "opened": "2026-09-18",
+   "cls": "instruction",
+   "question": "engine/macro_paths/EG.json carries erp_terminal = 7.00% sourced to a RATIONALE ('normalised below the currently elevated crisis-era level toward the rating-class norm'), which names no institution, no date and no identity. [R-MACRO-01] requires every level to be published by a named institution on a named date or DERIVED by an identity from numbers that are. Measured 18-09-2026, EGYPT IS THE ONLY PATH OF SEVEN THAT NORMALISES: IN, KR, QA, SA and US cite Damodaran's country risk file with its publication date and hold the published ERP flat, and AE holds the market-basis UAE ERP flat while saying in terms that no structural convergence is assumed. Egypt's published figures are 9.41% (market basis) and 13.94% (rating basis), so the path retires 2.41 to 6.94 points of Egyptian country risk on no stated authority. Does the principal want (a) the house convention applied — hold the published market-basis ERP flat at 9.41%, sourced to Damodaran with its date — or (b) the normalisation kept as a declared house judgement at 7.00%?",
+   "routes": [
+    {
+     "route": "all seven engine/macro_paths/*.json read in full, erp_terminal compared field by field",
+     "when": "2026-09-18",
+     "outcome": "five cite Damodaran ctryprem with LAST UPDATED 5 January 2026; AE cites the DU study's registration of 1 August 2026 and states the held-flat convention explicitly; EG cites a rationale. Egypt is the only one.",
+     "rerun": true
+    },
+    {
+     "route": "the identity the book's own Egyptian ERPs are built on, recovered from the committed study records",
+     "when": "2026-09-18",
+     "outcome": "ERP = mature_erp + default_spread x 1.52 reproduces both bases to the basis point (0.0423 + 0.0341 x 1.52 = 0.0941; 0.0423 + 0.0637 x 1.52 = 0.1394). Deriving a TERMINAL ERP by it needs a TERMINAL default spread, and no path in this repository carries one — so the derivation route is closed, not merely unrun.",
+     "rerun": true
+    },
+    {
+     "route": "every live ref searched for a sourced terminal or normalised Egyptian ERP",
+     "when": "2026-09-18",
+     "outcome": "none. The 7.00% appears only in EG.json and in what reads it.",
+     "rerun": true
+    },
+    {
+     "route": "engine/macro_path.py _validate read end to end",
+     "when": "2026-09-18",
+     "outcome": "it requires a per-step basis on every inflation rung and required NOTHING of erp_terminal. Closed in this pass: the field now declares a basis from a closed list and a house judgement must say what would source it. THAT CHANGE MOVES NO NUMBER.",
+     "rerun": true
+    }
+   ],
+   "refs_searched": 262,
+   "why_only_the_principal": "It is not a defect with one right repair. The normalisation may well be correct — Egypt is the one market of the seven genuinely in transition, and a crisis-era premium arguably should not be capitalised into perpetuity — and it is unsourced, which is what the rule forbids. Choosing between a defensible house view and the house's own six-of-seven convention is a methodological position, and it moves EVERY Egyptian fair value in the book at once. Applying the convention LOWERS them, at a moment when seven forensic audits have just found the book leaning low — which is a reason to decide it deliberately rather than a reason to decline it.",
+   "done_meanwhile": "The field is DECLARED for what it is rather than left reading as a publication: engine/macro_path.py now requires erp_terminal to carry a basis from a closed list (published / derived / house_judgement) and requires a house judgement to state what would source it; all seven paths declare; EG carries house_judgement with the measurement and the route. Negative-controlled on 12 conditions, 8 red and 4 clean. NO VALUE MOVED and every macro gate is green.",
+   "default_if_no_answer": "Apply the house convention: erp_terminal = the published market-basis Egyptian ERP held flat, sourced to Damodaran with its date, with the change carried through the rebuild ledger of every Egyptian study at its next edition. Chosen as the default because it is the only option that needs no unsourced number, and because six of seven paths already do it.",
+   "default_date": "2026-10-31",
+   "status": "open",
+   "resolves_when": "engine/macro_paths/EG.json carries erp_terminal with basis 'published' or 'derived', or its house_judgement note records the principal's ruling with its date.",
+   "recommendation": "Keep 7.00% and its declaration, and revisit when a terminal default spread can be sourced. The reasoning is that the alternative is not more sourced than the current figure in the sense that matters: holding TODAY'S crisis-era premium flat into perpetuity is itself a strong claim about Egypt, published only in the sense that today's number is published. What the declaration buys is that a reader can now see which kind of number it is, which was the whole of the breach.",
+   "resolved": null,
+   "answer": null,
+   "answer_written_to": null
   }
  ]
 }
