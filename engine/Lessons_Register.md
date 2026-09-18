@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**321 lessons**, of which 276 bind on every study, 34 on a class of company, and 11 on a single name.
+**323 lessons**, of which 278 bind on every study, 34 on a class of company, and 11 on a single name.
 
-By how they were learned: 62 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 29 from outside critiques, 34 from self-audits, 194 found while building.
+By how they were learned: 62 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 31 from outside critiques, 34 from self-audits, 194 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -2838,6 +2838,26 @@ A study's committed record carries claims about the standard it was built to and
 > **What it cost, or how we know.** Re-running amoc_study/compute.py to correct a COMMENT moved the committed standard claim from 2026.09.01 to 2026.09.07, silently asserting conformance to four standards nobody had checked the study against — one of which, [R-ASSET-01], it is ratcheted as not meeting. check_standard_claim went red the same evening, on the first rebuild after [R-STD-02] was written, having been green before it. The fix is the one that rule prescribes and the one another generator had already taken for its study DATE: freeze the claim to the version the edition was actually built to.
 
 > **What would overturn it.** A generator whose stamps are all frozen to facts, where a rebuild genuinely changes nothing but what was rebuilt.
+
+### L-401 · A convention adopted to AVOID making a forecast can be a forecast, and saying it is not is a false statement about the model.
+
+Holding a traded price flat in nominal terms is legitimate and often sensible. Describing it as 'no forecast of a traded commodity price is defensible' is not a wording problem: the model IS forecasting a price that falls in real terms every year for ever, and the reader is told the opposite. The genuinely view-free choice — the one with no forecast in it — is flat in REAL terms.
+
+**Applies to:** every study  ·  *Learned from:* outside critique, flat-nominal price convention, 18-09-2026
+
+> **What it cost, or how we know.** Measured across 898 study builders and committed records carrying 407 quantities held flat: TWO studies name the consequence ('flat in nominal terms, which is a REAL DECLINE across the window'; 'holding earnings flat in NOMINAL terms while discounting at a NOMINAL rate') and TWO deny it. In both deniers the costs escalate at full domestic inflation while revenue does not, so the convention manufactures a margin decline the forecast then reports as a finding; closing the wedge is worth +17.8% on one and +68.7% on the other, measured independently by two outside auditors.
+
+> **What would overturn it.** A market with no inflation in it, where flat nominal and flat real are the same path and the claim costs nothing.
+
+### L-402 · A judgement declared 'not contested' is removed from the instrument that counts which way judgements go.
+
+[R-ENF-05]'s sign test exists because any single contested choice is defensible and what is not is a study resolving every one of them the same way without noticing. A study that declares a material choice settled convention does not merely mislead a reader about that choice — it takes the choice out of the count, and the count is the only instrument that can see a lean.
+
+**Applies to:** every study  ·  *Learned from:* outside critique, flat-nominal price convention, 18-09-2026
+
+> **What it cost, or how we know.** One study records 'Holding a traded commodity price flat rather than forecasting it is settled house convention and IS NOT CONTESTED', of a choice worth +68.7% of its own central. The sign test then runs on the judgements that remain, correctly, and reports on a population the largest item is missing from.
+
+> **What would overturn it.** A declaration of settled convention on a choice worth less than the 5% materiality line the sign test already applies, where nothing is being removed from the count.
 
 
 ---

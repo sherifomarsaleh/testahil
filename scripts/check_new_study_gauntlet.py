@@ -108,6 +108,17 @@ DIRECTORY_GATES = [
 # ARTEFACT GATES: bite once the study produces the artefact they read, and are tested by
 # planting one that should trip them. `plant` returns the files to create.
 ARTEFACT_GATES = {
+    'check_flat_nominal_claim.py': (
+        # An empty study holds nothing flat and claims nothing about it, so refusing a bare
+        # directory would be a false claim about what this gate checks [R-ENF-07]. Planted
+        # with the defect exactly as two studies ship it: a price held flat in nominal terms
+        # and described as though holding it flat were not a forecast.
+        'a flat nominal price path described as the absence of a forecast',
+        lambda: {
+            'compute.py': ('text',
+                "# the slate is priced off the same barrel, with crude held FLAT in "
+                "dollars\n# -- no forecast of it is defensible -- and the pound "
+                "depreciates at the\n# inflation differential.\n")}),
     'check_bibliography_sources.py': (
         # An empty study delivers no document, so refusing a bare directory would be a
         # false claim about what this gate checks [R-ENF-07]. Planted with the defect

@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-09-18e — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-18f — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -5278,3 +5278,78 @@ delivered document's account of when the work was done.
 claim its stamps are taken from**, and a rebuild happens for reasons that have nothing to do
 with the claim. Where a record carries a stamp, ask what it is read *from* — a fact, or
 whatever the code believes at the moment somebody happens to run it.
+
+
+---
+
+# [R-MACRO-01 EXTENDED 18-09-2026] A flat nominal path is a real-decline forecast
+
+`[R-MACRO-01]` requires growth rates to be stored as *(real, inflation-path id)* and to
+recompute to their nominal, **because a typed nominal rate is unfalsifiable** — *"nobody can
+tell whether 12% meant inflation plus one point or inflation minus three"*. A quantity held
+flat is a typed nominal rate of **zero**, whose real component is minus whatever inflation
+applies, stated nowhere.
+
+## What is refused is the claim, never the construction
+
+Holding a traded commodity price flat in dollars is legitimate, common and often sensible.
+Describing it as *"no forecast of a traded commodity price is defensible"* is a **false
+statement about the model**: the model forecasts a price falling in real terms every year for
+ever, and the reader is told the opposite. At 2.5% US inflation that is −11.6% in real terms
+over five years and falling for ever in the terminal.
+
+**The genuinely view-free choice — the one with no forecast in it — is flat in REAL terms.**
+
+## The split is what makes it checkable
+
+Measured across every study builder and committed record, with hundreds of quantities held
+flat across the book:
+
+| | |
+|---|---|
+| **named** | *"EGP 3,664.2mn a year, flat in nominal terms, **which is a REAL DECLINE across the window**"* |
+| **named** | *"holding earnings flat in **NOMINAL** terms while discounting at a **NOMINAL** rate"* |
+| **denied** | *"crude held **FLAT in dollars** — no forecast of it is defensible"* |
+| **denied** | *"Held **FLAT in nominal dollars** at US$530 a tonne … no forecast of a traded commodity price is defensible"* |
+
+Two studies already get this right, in their own words, and they are the clean cases in the
+negative control. A check firing on every flat path would be firing on work that is right.
+
+## The denial has a second consequence, and it is the sharper one
+
+One of the two records that holding the price flat *"is settled house convention **and is not
+contested**"* — of a choice worth **+68.7%** of its own central.
+
+That keeps a material judgement **out of `[R-ENF-05]`'s sign test**, the instrument built to
+count which way a study's judgements go. The test then runs correctly on a population its
+largest item is missing from. **A declaration that removes its own subject from the
+measurement is not a wording problem.**
+
+## The cost is measured and asymmetric
+
+In both deniers the **costs escalate at full domestic inflation while the revenue does not** —
+a 2.5-point real squeeze applied to the spread, compounding for five years and then
+capitalised for ever. On a thin spread the leverage is enormous. The convention manufactures
+a margin decline that the forecast then reports as a finding.
+
+Closing the wedge is worth **+17.8%** on one name and **+68.7%** on the other, measured
+independently by two outside auditors on two different names.
+
+## Enforcement
+
+`engine/flat_nominal_claim.py` is the shared instrument;
+`scripts/check_flat_nominal_claim.py` is the gate. **An entry closes by naming the real
+decline** — never by removing the figure and never by changing the path.
+
+Ratcheted at two with their measurements, population-anchored both ways, artefact-conditional
+in the new-study gauntlet since an empty study holds nothing flat. Negative-controlled on 12
+conditions, 5 red and **seven clean** — and **the control re-pointed the matcher**, which
+carried a fixed list of objects between *holding* and *flat*, missed the book's own sentence,
+and matched in the real file only because another occurrence sat nearby. The gate was right by
+accident until a fixture carried the sentence alone.
+
+**The general lesson, which is not about commodity prices: a convention adopted to avoid
+making a forecast can be a forecast.** *"We hold it flat because no forecast is defensible"*
+sounds like restraint and reads like rigour, and in an economy with inflation in it **flat is
+a direction**. Where a model declines to forecast something, ask what the declining itself
+assumes.

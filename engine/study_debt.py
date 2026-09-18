@@ -39,7 +39,11 @@ DEBT = ("outstanding", "breaching", "unreadable", "failing", "no_check", "red",
         "breach_no_review",        # a gap past the trigger with no eight-heading review
         "review_central_unstated",  # a review that does not say what it audited
         "unscored",                # a terminal whose charge never resolved, so untested
-        "runs")                    # walk-forward runs owing a valuation-input block
+        "runs",                    # walk-forward runs owing a valuation-input block
+        # ADDED THE SAME EVENING, BY THE READER REFUSING IT. A new gate's ratchet used
+        # the key `denying` and the census went red rather than absorbing it -- which
+        # is the whole design working on the first new ratchet added after it.
+        "denying")                 # studies calling a flat nominal path no forecast
 NOT_DEBT = ("pruned", "pruned_on", "conforming_at_adoption", "conforming", "added",
             "members", "peers", "subjects", "candidate_sets", "documents", "figures",
             "measurements", "reasons", "exempt", "resolved", "why_each", "entries",

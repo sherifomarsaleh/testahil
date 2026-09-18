@@ -7376,6 +7376,63 @@ LESSONS = [
           "this instance in flight. The general claim — that any stamp read from a "
           "live value re-asserts on every rebuild — reaches further than that one "
           "field, and the rest of it is not yet mechanised.")),
+
+    L("L-401", "ALL", None,
+      "A convention adopted to AVOID making a forecast can be a forecast, and saying "
+      "it is not is a false statement about the model.",
+      "Holding a traded price flat in nominal terms is legitimate and often sensible. "
+      "Describing it as 'no forecast of a traded commodity price is defensible' is not "
+      "a wording problem: the model IS forecasting a price that falls in real terms "
+      "every year for ever, and the reader is told the opposite. The genuinely "
+      "view-free choice — the one with no forecast in it — is flat in REAL terms.",
+      "flat-nominal price convention, 18-09-2026", "critique",
+      "Measured across 898 study builders and committed records carrying 407 "
+      "quantities held flat: TWO studies name the consequence ('flat in nominal "
+      "terms, which is a REAL DECLINE across the window'; 'holding earnings flat in "
+      "NOMINAL terms while discounting at a NOMINAL rate') and TWO deny it. In both "
+      "deniers the costs escalate at full domestic inflation while revenue does not, "
+      "so the convention manufactures a margin decline the forecast then reports as a "
+      "finding; closing the wedge is worth +17.8% on one and +68.7% on the other, "
+      "measured independently by two outside auditors.",
+      "A market with no inflation in it, where flat nominal and flat real are the same "
+      "path and the claim costs nothing.",
+      promotion="enforced",
+      promoted_by="scripts/check_flat_nominal_claim.py",
+      promotion_note=(
+          "Built the same day and it refuses THE CLAIM, never the construction: a "
+          "study may hold a price flat, and may not say that doing so is not a "
+          "forecast. 10 passages in 407 mentions, zero false positives on "
+          "inspection, ratcheted at two with each entry's measurement. The clean "
+          "cases in its control are the two studies that already NAME the real "
+          "decline, in their own words.")),
+
+    L("L-402", "ALL", None,
+      "A judgement declared 'not contested' is removed from the instrument that counts "
+      "which way judgements go.",
+      "[R-ENF-05]'s sign test exists because any single contested choice is "
+      "defensible and what is not is a study resolving every one of them the same way "
+      "without noticing. A study that declares a material choice settled convention "
+      "does not merely mislead a reader about that choice — it takes the choice out of "
+      "the count, and the count is the only instrument that can see a lean.",
+      "flat-nominal price convention, 18-09-2026", "critique",
+      "One study records 'Holding a traded commodity price flat rather than "
+      "forecasting it is settled house convention and IS NOT CONTESTED', of a choice "
+      "worth +68.7% of its own central. The sign test then runs on the judgements that "
+      "remain, correctly, and reports on a population the largest item is missing "
+      "from.",
+      "A declaration of settled convention on a choice worth less than the 5% "
+      "materiality line the sign test already applies, where nothing is being removed "
+      "from the count.",
+      promotion="outstanding",
+      promotion_note=(
+          "TESTABLE AND NOT YET DONE. A check could hold each study's contested-"
+          "judgements record against the choices its own sensitivity grid prices "
+          "above the 5% materiality line, and refuse a choice priced above it that "
+          "the record declares settled — both sides are already committed. Not built "
+          "tonight because the instance that provoked it is closed by "
+          "check_flat_nominal_claim, and the general form needs a decision about "
+          "which grid rows count as a judgement rather than a sensitivity, which is "
+          "a rule question rather than a coding one.")),
 ]
 
 

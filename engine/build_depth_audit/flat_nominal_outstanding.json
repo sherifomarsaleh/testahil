@@ -1,0 +1,12 @@
+{
+ "rule": "R-ENF-01 / a flat nominal path is a real-decline forecast, not the absence of one",
+ "note": "Studies describing a quantity held flat in nominal terms as though holding it flat were NOT a forecast. Seeded 18-09-2026 on the gate's first run with each entry's MEASUREMENT [R-ENF-08]. May only ever SHORTEN. An entry closes by NAMING the real decline -- two studies in the book already do, and they are the clean cases in the negative control. It does NOT close by removing the figure or by changing the path: what is wrong is the claim, not the construction.",
+ "measurements": {
+  "AMOC": "3 passages. 'crude is held FLAT in dollars -- no forecast of it is defensible -- and the pound depreciates at the inflation differential'. Costs escalate at full domestic inflation while revenue grows only at the currency differential, a 2.5pp real squeeze on the spread compounding for five years and then capitalised. Closing the wedge is measured at +17.8%, EGP 11.4012 to 13.4350, re-run through the study's own compute.py.",
+  "EGCH": "7 passages. 'Held FLAT in nominal dollars at US$530 a tonne ... no forecast of a traded commodity price is defensible', and separately 'Holding a traded commodity price flat RATHER THAN FORECASTING IT is settled house convention AND IS NOT CONTESTED' -- which also keeps a material judgement out of [R-ENF-05]'s sign test, the instrument built to count which way a study's judgements go. Escalating the export price at US inflation is measured at +68.7%, 4.04 to 6.82 on the base branch."
+ },
+ "denying": [
+  "AMOC",
+  "EGCH"
+ ]
+}
