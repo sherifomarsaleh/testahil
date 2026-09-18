@@ -113,6 +113,18 @@ def main():
         run_case('CLEAN control — one complete run, must PASS',
                  runs=['PHDC'], entries={'PHDC': entry('PHDC')},
                  expect_fail=False),
+        # THE PAIR THAT KEEPS THE FABRICATED-ENTRY CLAUSE HONEST. Case 3 above plants a
+        # record WITH a delivered edition and no run, which asserts that a fair value
+        # moved in a run that does not exist — fabricated, and it must stay red. This
+        # one plants a BARE BASELINE with no editions and no run, which is snapshot()'s
+        # own documented workflow ("before the run starts") and must stay green: the
+        # first draft of the clause failed it, so freezing a baseline early — the one
+        # thing that cannot be recovered afterwards — turned the gate red until the run
+        # finished. One difference between the two fixtures, opposite verdicts.
+        run_case('CLEAN — a baseline frozen BEFORE its run starts, must PASS',
+                 runs=['PHDC'], entries={'PHDC': entry('PHDC'),
+                                         'ABUK': entry('ABUK', with_edition=False)},
+                 expect_fail=False),
     ]
     print()
     if all(results):

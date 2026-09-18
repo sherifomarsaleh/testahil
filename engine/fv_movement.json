@@ -729,6 +729,38 @@
       "bear": -29.6,
       "full": -22.6
      }
+    },
+    {
+     "delivered": "2026-09-17",
+     "edition": 3,
+     "fair": {
+      "base": null,
+      "bear": 7.910718601367549,
+      "branches": [
+       {
+        "label": "MNT-Halan at its reviewed carrying value",
+        "value": 17.83311239606159
+       },
+       {
+        "label": "MNT-Halan at the June-2026 round price",
+        "value": 30.31502119385063
+       }
+      ],
+      "full": 30.31502119385063
+     },
+     "lessons": [],
+     "origins": "FY2012-FY2025, h=1-5. EDITION 3, THE 17-09-2026 EDITION, registered 18-09-2026. Same two-sided shape and the same two branch labels as edition 2; both branches fall, 41.3484 -> 17.8331 and 52.3453 -> 30.3150, on the edition that closed the six QC blockers and rebuilt the capex path.",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": null,
+      "bear": -66.0,
+      "full": -40.6
+     },
+     "vs_previous_pct": {
+      "base": null,
+      "bear": -59.0,
+      "full": -42.1
+     }
     }
    ],
    "exchange": "EGX",
@@ -884,6 +916,24 @@
       "base": 4.1,
       "bear": 6.9,
       "full": 3.7
+     }
+    },
+    {
+     "delivered": "2026-09-17",
+     "edition": 5,
+     "fair": {
+      "base": 13.912894753552722,
+      "bear": 4.749040233013941,
+      "full": 38.89699689438268
+     },
+     "lessons": [],
+     "origins": "FY2015-FY2023, h=1-5. EDITION 5, THE 17-09-2026 RE-ISSUE, registered 18-09-2026 after check found the register behind the study: three levers on the reviewed half carried the central 17.8478 -> 13.9129, and a later pass closed eight of the nine defects that edition's own QC gate found. The movement was delivered and left unrecorded, which is the one thing this register exists to prevent.",
+     "scope": "full",
+     "vs_baseline_pct": null,
+     "vs_previous_pct": {
+      "base": -22.0,
+      "bear": 18.4,
+      "full": -16.3
      }
     }
    ],

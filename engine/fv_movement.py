@@ -321,10 +321,36 @@ def check():
         elif not e['editions']:
             fails.append('%s has a baseline and a run but no delivered fair '
                          'value recorded' % tk)
+    # A BARE BASELINE AHEAD OF A RUN IS THIS TOOL'S OWN DOCUMENTED WORKFLOW, NOT A
+    # FABRICATED ENTRY, and the first draft of this clause could not tell them apart.
+    # snapshot() says in its own help that it is taken BEFORE THE RUN STARTS, so a
+    # snapshot necessarily exists before the run directory does -- and the clause
+    # failed every such record, which made the documented order of operations
+    # impossible to follow: freeze the old fair value first, and the gate goes red
+    # until the run finishes.
+    #
+    # THE DISTINCTION IS EXACT AND CARRIES NO THRESHOLD. A record with DELIVERED
+    # EDITIONS and no run behind it asserts that a fair value moved in a run that
+    # does not exist, which is the fabricated entry this clause is for and is what
+    # the negative control plants. A record with a baseline and NO editions asserts
+    # only what data.js held on the day it was frozen, which is a fact about the
+    # past and is true whether a run ever follows.
+    #
+    # IT IS REPORTED RATHER THAN PASSED OVER IN SILENCE, because a snapshot taken
+    # for a run that never starts is a real loose end -- just not a defect, and a
+    # gate that failed on it would push the desk to stop freezing baselines early,
+    # which is the one thing that cannot be recovered afterwards.
+    pending = []
     for tk in sorted(d['entries']):
-        if tk not in runs:
+        if tk in runs:
+            continue
+        if d['entries'][tk].get('editions'):
             fails.append('%s carries a record with no walk-forward run '
                          'directory behind it' % tk)
+        else:
+            pending.append(tk)
+    if pending:
+        print('  baseline frozen, run not yet started: %s' % ', '.join(pending))
 
     # A RECORD THAT EXISTS IS NOT A RECORD THAT IS CURRENT. Until 03-Sep-2026 this
     # check asked only whether a ticker had SOME recorded fair value, and it
