@@ -32,9 +32,12 @@ A price of `0.00 / 0.00` means the finding **cannot move either branch** — it 
 |---|---:|---:|
 | `accept-and-implement` | 33 | 16 |
 | `accept-defect-reject-fix` | 8 | 0 |
+| `unproven-go-research` | 0 | 0 |
 | `reject-with-receipts` | 5 | 0 |
 | `user-decision` | 1 | 0 |
 | **total** | **47** | **16** |
+
+`unproven-go-research` is EMPTY BY INTENT, and that is the point of it: every row that would have been parked there was researched to a verdict before this document was written - three against the company's own audited filings read off the rendered pixels, two against the study's own register, one against the CAO auditor's report. A parked row is an unpriced row, and an unpriced finding is an unassessed finding.
 
 Of the 47 critique rows, **10** are duplicates of an earlier row, given their own row and pointing at the original rather than silently merged.
 
@@ -965,7 +968,7 @@ What DOES change is the size of the disagreement, and on one reading its shape: 
 
 ---
 
-### `user-decision` — 1 rows
+### `user-decision` — 1 row
 
 | Row | Finding | carried through | stopped |
 |---|---|---:|---:|
