@@ -7020,9 +7020,17 @@ LESSONS = [
       "study.",
       "A source gate whose population is the delivered documents as well as "
       "the committed register.",
-      promotion="outstanding",
-      promotion_note=
-      "check_source_integrity.py reads the committed input register; extending its population to the delivered bibliography is the fix and it is not built."),
+      promotion="enforced",
+      promoted_by="scripts/check_bibliography_sources.py",
+      promotion_note=(
+          "BUILT 18-09-2026, the same day the lesson was registered. The gate takes "
+          "its population from the DELIVERED documents -- 46 read, 12,654 table rows "
+          "-- and runs the shared instrument in engine/source_integrity.py rather "
+          "than re-implementing it [R-ENF-03]. The instrument was re-pointed twice "
+          "against work that is RIGHT and never widened [R-COC-01]: peer multiples "
+          "off an aggregator are SIGCM clause 5's own construction, and a forward "
+          "revenue target inside a budget announcement is not a reported historical. "
+          "15 rows remain, 0.119%, ratcheted at four with each entry's measurement.")),
 
     L("L-388", "CLASS", "refiner, commodity pass-through on a thin spread",
       "Holding a dollar-linked price flat in nominal dollars while domestic "

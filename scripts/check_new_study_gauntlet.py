@@ -108,6 +108,19 @@ DIRECTORY_GATES = [
 # ARTEFACT GATES: bite once the study produces the artefact they read, and are tested by
 # planting one that should trip them. `plant` returns the files to create.
 ARTEFACT_GATES = {
+    'check_bibliography_sources.py': (
+        # An empty study delivers no document, so refusing a bare directory would be a
+        # false claim about what this gate checks [R-ENF-07]. Planted with the defect
+        # exactly as AMOC ships it: a sources-table row citing three aggregators for the
+        # subject's own balance-sheet lines, naming no company document.
+        'a delivered sources table citing aggregators for the subject\'s own historicals',
+        lambda: {
+            '%s_Bibliography_18-09-2026.docx' % TICKER: ('docx', [
+                ['Source', 'Provider', 'Date', 'What it carries'],
+                ['Company financial summary pages',
+                 'stockanalysis.com; Investing.com; TradingView', 'Aug 2026',
+                 'Shares outstanding, market capitalisation, total assets, total '
+                 'liabilities, cash and equivalents, total debt for FY2025']])}),
     'check_beta_estimator_disclosure.py': (
         # An empty study commits no beta record and delivers no document, so refusing a bare
         # directory would be a false claim about what this gate checks [R-ENF-07]. Planted
