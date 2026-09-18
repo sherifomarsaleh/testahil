@@ -7435,25 +7435,32 @@ LESSONS = [
           "a rule question rather than a coding one.")),
 
     L("L-403", "ALL", None,
-      "A test fixture pinned to live repository state has an expiry date nobody sets.",
-      "A negative control that finds its condition in the repository rather than "
-      "building it is correct on the day it is written and is invalidated by ordinary, "
-      "legitimate work elsewhere — a ratchet paid down, a correction withdrawn, a count "
-      "moved. The gate it protects is then unevidenced, and the only thing standing "
-      "between that and a silent pass is whether the control checks that its own "
-      "mutation landed.",
+      "[L-278] WAS ALREADY REGISTERED, IS CORRECT, AND SIX CONTROLS BROKE ITS WAY "
+      "ANYWAY — a fixture pinned to live repository state has an expiry date "
+      "nobody sets.",
+      "[L-278] says it in its own words — 'plant the starting state; do not assume "
+      "it' — after THREE controls broke this way on one day in September. This is "
+      "the same lesson, registered, correct, cited nowhere that binds, and "
+      "re-violated by six more controls a fortnight later. THE LESSON IS NOT THE "
+      "FINDING; THE RE-VIOLATION IS. What survives of the original claim is "
+      "unchanged: a control that finds its condition in the repository is correct "
+      "the day it is written and is invalidated by ordinary legitimate work "
+      "elsewhere, and the gate it protects is then unevidenced. What is added is "
+      "that saying so once did not stop it.",
       "full negative-control sweep, 18-09-2026", "self_audit",
       "Running every check including the controls — which the ordinary sweep excludes "
-      "— found FOUR red, all in CI, none caused by that day's work and all four green "
-      "at a commit eleven days earlier. Three fail for one reason: the bibliography "
+      "— found SIX red, all in CI, none caused by that day's work and all green "
+      "at a commit eleven days earlier. THE FIRST COUNT WAS FOUR AND CAME FROM A "
+      "PARTIAL SWEEP, which is this lesson's own subject arriving in its own "
+      "evidence. Five fail for one reason: the bibliography "
       "ratchet had been PRUNED TO EMPTY so the 'a ratcheted breach stays green' case "
       "had no breach to use; the asp driver no longer carried an applied correction so "
       "the mutation removing one removed nothing; and PHDC's applied count moved off "
-      "the 6 a fixture was pinned to. Each REFUSED rather than reporting green, which "
+      "the 6 a fixture was pinned to; and a terminal-record control counts 38 markers in a tree its fixture pins at 37. Each REFUSED rather than reporting green, which "
       "is the opposite of the failure caught five times the same session.",
-      "A control whose condition genuinely cannot be synthesised — where borrowing the "
-      "live state is the only way to test the thing at all, and the expiry is a cost "
-      "rather than a defect.",
+      "A sweep finding no control pinned to live state, which would mean [L-278] "
+      "had reached the work after all and this entry is about a fortnight rather "
+      "than about a pattern.",
       promotion="prose",
       promotion_note=(
           "Whether a fixture builds its condition or borrows it is visible in the "
@@ -7462,8 +7469,8 @@ LESSONS = [
           "controls copy the repository on purpose. A checker could not tell the two "
           "apart without deciding what each control is FOR, which is judgement. What "
           "is already mechanical is the half that matters: every control in this book "
-          "asserts that its mutation LANDED, which is why these four went red instead "
-          "of quiet.")),
+          "asserts that its mutation LANDED, which is why these six went red instead "
+          "of quiet — and that assertion, unlike [L-278] itself, IS in the code.")),
 ]
 
 

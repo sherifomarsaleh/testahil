@@ -2859,15 +2859,15 @@ Holding a traded price flat in nominal terms is legitimate and often sensible. D
 
 > **What would overturn it.** A declaration of settled convention on a choice worth less than the 5% materiality line the sign test already applies, where nothing is being removed from the count.
 
-### L-403 · A test fixture pinned to live repository state has an expiry date nobody sets.
+### L-403 · [L-278] WAS ALREADY REGISTERED, IS CORRECT, AND SIX CONTROLS BROKE ITS WAY ANYWAY — a fixture pinned to live repository state has an expiry date nobody sets.
 
-A negative control that finds its condition in the repository rather than building it is correct on the day it is written and is invalidated by ordinary, legitimate work elsewhere — a ratchet paid down, a correction withdrawn, a count moved. The gate it protects is then unevidenced, and the only thing standing between that and a silent pass is whether the control checks that its own mutation landed.
+[L-278] says it in its own words — 'plant the starting state; do not assume it' — after THREE controls broke this way on one day in September. This is the same lesson, registered, correct, cited nowhere that binds, and re-violated by six more controls a fortnight later. THE LESSON IS NOT THE FINDING; THE RE-VIOLATION IS. What survives of the original claim is unchanged: a control that finds its condition in the repository is correct the day it is written and is invalidated by ordinary legitimate work elsewhere, and the gate it protects is then unevidenced. What is added is that saying so once did not stop it.
 
 **Applies to:** every study  ·  *Learned from:* self-audit, full negative-control sweep, 18-09-2026
 
-> **What it cost, or how we know.** Running every check including the controls — which the ordinary sweep excludes — found FOUR red, all in CI, none caused by that day's work and all four green at a commit eleven days earlier. Three fail for one reason: the bibliography ratchet had been PRUNED TO EMPTY so the 'a ratcheted breach stays green' case had no breach to use; the asp driver no longer carried an applied correction so the mutation removing one removed nothing; and PHDC's applied count moved off the 6 a fixture was pinned to. Each REFUSED rather than reporting green, which is the opposite of the failure caught five times the same session.
+> **What it cost, or how we know.** Running every check including the controls — which the ordinary sweep excludes — found SIX red, all in CI, none caused by that day's work and all green at a commit eleven days earlier. THE FIRST COUNT WAS FOUR AND CAME FROM A PARTIAL SWEEP, which is this lesson's own subject arriving in its own evidence. Five fail for one reason: the bibliography ratchet had been PRUNED TO EMPTY so the 'a ratcheted breach stays green' case had no breach to use; the asp driver no longer carried an applied correction so the mutation removing one removed nothing; and PHDC's applied count moved off the 6 a fixture was pinned to; and a terminal-record control counts 38 markers in a tree its fixture pins at 37. Each REFUSED rather than reporting green, which is the opposite of the failure caught five times the same session.
 
-> **What would overturn it.** A control whose condition genuinely cannot be synthesised — where borrowing the live state is the only way to test the thing at all, and the expiry is a cost rather than a defect.
+> **What would overturn it.** A sweep finding no control pinned to live state, which would mean [L-278] had reached the work after all and this entry is about a fortnight rather than about a pattern.
 
 
 ---
