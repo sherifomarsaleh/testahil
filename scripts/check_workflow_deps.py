@@ -42,12 +42,65 @@ def _norm(p):
     return p.lower().replace('_', '-').split('==')[0].split('[')[0]
 
 
-def _local_module(name):
+def declared_path(path):
+    """The directories a script puts on sys.path itself, in the order it inserts them.
+
+    ADDED 18-09-2026 ON A FALSE POSITIVE THIS GATE RAISED AGAINST A CORRECT SCRIPT, which
+    is the shape [R-COC-01] governs: a check firing on work that is right is RE-POINTED,
+    never widened. check_convergence_refusal_negative_control imports `panel`, and ELEVEN
+    files called panel.py sit under engine/ — one per walk-forward run plus the valuation
+    calibration's own — so the unique-hit fallback below rightly refused to guess and the
+    survey then concluded `panel` was a PyPI package the workflow forgets to install. It
+    is not on PyPI at all, and the gate's own message would have sent somebody to add it.
+
+    WHAT DECIDES WHICH panel.py IS IMPORTED IS THE SCRIPT'S OWN sys.path, stated in its
+    code two lines above the import. Reading that is EXACT — it is what Python itself
+    does — and it makes this checker stricter rather than looser, because a directory is
+    only searched when the script declares it. Only literal os.path.join(ROOT, ...) forms
+    are read; anything computed is left alone rather than guessed at.
+    """
+    out = []
+    try:
+        tree = ast.parse(open(path, encoding='utf-8').read())
+    except (SyntaxError, OSError):
+        return out
+    for node in ast.walk(tree):
+        if not isinstance(node, ast.Call):
+            continue
+        f = node.func
+        if not (isinstance(f, ast.Attribute) and f.attr in ('insert', 'append')
+                and isinstance(f.value, ast.Attribute) and f.value.attr == 'path'
+                and isinstance(f.value.value, ast.Name) and f.value.value.id == 'sys'):
+            continue
+        for arg in node.args:
+            if not (isinstance(arg, ast.Call) and isinstance(arg.func, ast.Attribute)
+                    and arg.func.attr == 'join'):
+                continue
+            parts, rooted = [], False
+            for a in arg.args:
+                if isinstance(a, ast.Name) and a.id == 'ROOT':
+                    rooted = True
+                elif isinstance(a, ast.Constant) and isinstance(a.value, str):
+                    parts.append(a.value)
+                else:
+                    parts = None
+                    break
+            if rooted and parts:
+                out.append(os.path.join(ROOT, *parts))
+    return out
+
+
+def _local_module(name, search=()):
     """Resolve a bare import to something in this repository, or None.
 
     A PACKAGE resolves to its __init__.py, which is why this returns a path rather than a
     boolean: `import engine` is local and its own top-level imports still count.
     """
+    for d in search:                              # what the script itself declared, in order
+        for cand in (os.path.join(d, name, '__init__.py'),
+                     os.path.join(d, name + '.py')):
+            if os.path.exists(cand):
+                return cand
     for cand in (os.path.join(ROOT, name, '__init__.py'),
                  os.path.join(ROOT, 'engine', name, '__init__.py'),
                  os.path.join(ROOT, 'engine', name + '.py'),
@@ -91,7 +144,15 @@ def top_level_imports(path, seen=None):
     for n in names:
         if n in sys.stdlib_module_names:
             continue
-        local = _local_module(n)
+        # THE FILE'S OWN DIRECTORY COUNTS TOO, and leaving it out was the other half of
+        # the same false positive. The entry script declares engine/valuation_calibration
+        # on sys.path and imports both cashflow_lens and panel from it; the walker then
+        # recurses INTO cashflow_lens, which imports its sibling `panel` and declares
+        # nothing, because it does not have to — a module resolves a sibling through the
+        # directory it already lives in. So `panel` resolved on the first lookup and not
+        # on the second, and one unresolved lookup is enough to report it as a package
+        # somebody forgot to pip install.
+        local = _local_module(n, list(declared_path(path)) + [os.path.dirname(path)])
         if local:
             out |= top_level_imports(local, seen)
         else:
