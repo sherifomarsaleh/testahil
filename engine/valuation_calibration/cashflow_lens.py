@@ -268,8 +268,79 @@ def project_tmgh(origin):
     return out
 
 
+def project_phar(origin):
+    """PHAR's own pre-registered projector, called at `origin`.
+
+    THE POPULATION WAS ALWAYS MEANT TO INCLUDE THIS NAME. The sealed
+    pre-registration says FULL on "AMOC, ARCC, EGCH, PHDC, TMGH, and each name the
+    campaign adds thereafter" — so wiring a projector for a name the campaign has
+    since run is CARRYING OUT the registered population, not widening it after the
+    fact. What the pre-registration also says is "with no judgement", and that is
+    what decides the shape below.
+
+    ITS SIGNATURE IS ORIGIN-ONLY and it returns every horizon keyed by FISCAL-YEAR
+    LABEL rather than by horizon number — a third convention in this file, and the
+    reason a reader expecting one finds nothing [L-355].
+
+    EBIT IS THE RUN'S OWN ARITHMETIC INVERTED, NOT A COMPOSITION OF THIS DESK'S.
+    bottom_up.py builds `pbt = (rev - cogs) - expenses + other` and, on a
+    non-condensed origin, `expenses = (mkt_r * rev) + admin + (prov_r * rev) + fin`
+    — finance is INSIDE the expense block. So operating profit is `pbt + finance`
+    exactly, and the identity `pbt == gross_profit - expenses_total + other_block`
+    reproduces to the pound on every row, which is asserted below rather than
+    trusted.
+
+    A CONDENSED ORIGIN IS DROPPED AND THE REASON IS NAMED. On a condensed origin the
+    same function takes the other branch, `expenses = exp_r * rev` — one ratio fitted
+    to a statement that publishes a single expense line — and whether that line
+    includes the finance charge is a fact about the filing this projector cannot
+    read. Adding finance back there might be right and might double-count, and a
+    fabricated cell corrupts the very error it is scored on [R-FCAL-01]. PHAR's
+    panel marks FY2019 and FY2020 condensed and FY2021 onward not, so FY2020 is the
+    one origin lost and it is lost NAMED rather than quietly included.
+    """
+    d = os.path.join(ENGINE, "phar_walkforward")
+    B = _in(d)
+    cond = None
+    try:
+        pe = json.load(open(os.path.join(d, "panel_export.json")))
+        cond = (pe.get("income_statement", {}).get("FY%d" % origin, {})
+                .get("condensed"))
+    except Exception:
+        cond = None
+    if cond is not False:
+        # None means the flag could not be read, which is not the same as False and
+        # is not treated as it — an absent answer is not a clean one [R-ENF-04].
+        return {}
+    proj = _run(d, B.project, "FY%d" % origin)
+    if not proj:
+        return {}
+    out = {}
+    for h in HORIZONS:
+        if h not in B.HORIZONS:
+            continue
+        r = proj.get("FY%d" % (origin + h))
+        if not r:
+            continue
+        rev, gp = r.get("revenue"), r.get("gross_profit")
+        exp, oth = r.get("expenses_total"), r.get("other_block")
+        pbt, fin, dna = r.get("pbt"), r.get("finance"), r.get("dna")
+        if None in (rev, gp, exp, oth, pbt):
+            continue
+        # the run's own identity, checked rather than assumed
+        if abs((gp - exp + oth) - pbt) > max(1.0, abs(pbt) * 1e-9):
+            continue
+        if fin is None:
+            continue
+        out[h] = {"revenue": rev, "ebit": pbt + fin,
+                  "dna": None if dna is None else abs(dna),
+                  "capex": r.get("capex")}
+    return out
+
+
 PROJECTORS = {"AMOC": project_amoc, "ARCC": project_arcc, "EGCH": project_egch,
-              "PHDC": project_phdc, "TMGH": project_tmgh, "GBCO": project_gbco}
+              "PHDC": project_phdc, "TMGH": project_tmgh, "GBCO": project_gbco,
+              "PHAR": project_phar}
 
 
 # --------------------------------------------------- the as-reported actuals
