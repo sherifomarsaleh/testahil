@@ -1,8 +1,9 @@
-PROTOCOL REVISION 2026-09-07n — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-18a — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
-Updated 7 September 2026 (rev. 12) — SIX STANDING RULES ADOPTED IN ONE COMMIT: the operating asset base is as at the latest disclosure the study read [R-ASSET-01] · the cost of equity reproduces from its own committed inputs [R-COC-02] · the gap a READER sees is audited, not only the gap the study was struck at [R-GAP-03] · a red gate is worked until it is green [R-REPAIR-01] · every error this house claims to catch is planted and caught [R-PROOF-01] · a ratchet excuses the failure it RECORDED, not every failure of its class [R-ENF-08]
+Updated 18 September 2026 (rev. 13) — THE GUARD RECORDS A ROUTE; IT DOES NOT DEFER A CORRECTION [R-REBUILD-01 CLAUSE TWO]: "the guard forbids it" is not a reason, and every correction deferred under that reading raised the value
+(rev. 12, 7 September 2026 — SIX STANDING RULES ADOPTED IN ONE COMMIT: the operating asset base is as at the latest disclosure the study read [R-ASSET-01] · the cost of equity reproduces from its own committed inputs [R-COC-02] · the gap a READER sees is audited, not only the gap the study was struck at [R-GAP-03] · a red gate is worked until it is green [R-REPAIR-01] · every error this house claims to catch is planted and caught [R-PROOF-01] · a ratchet excuses the failure it RECORDED, not every failure of its class [R-ENF-08]
 (rev. 11, 5 September 2026 — THE RECALCULATION EVERY STUDY ATTESTS TO IS RUN FROM OUTSIDE [R-ENF-01 EXTENDED]: a check somebody has to remember to run is run until the day it matters)
 (rev. 10, 1 September 2026 — CAMPAIGN WORK IS MERGED ON GREEN [R-MERGE-01]: an unmerged rule binds on nothing)
 (rev. 9, 1 September 2026 — VALUATION-GAP AUDIT [R-GAP-01]: a central fair value more than 10% below the traded price is audited before it ships)
@@ -3727,6 +3728,62 @@ describes this failure exactly and was not read as binding here, because the lev
 arrived by a different door — already-adopted rules rather than candidates for adoption.
 Where a guard names a FAILURE MODE rather than a procedure, ask which other procedures
 can produce it.
+
+
+[R-REBUILD-01 CLAUSE TWO] THE GUARD RECORDS A ROUTE; IT DOES NOT DEFER A CORRECTION, AND
+"THE GUARD FORBIDS IT" IS NOT A REASON
+[ADOPTED 18-09-2026, on seven forensic audits read the same day].
+
+The clause above says the promotion guard governs LEVERS PROMOTED FROM THE VALUATION
+CALIBRATION and that a rebuild is a different process. It stopped one step short of the
+sentence that was actually needed, and the gap was filled in the wrong direction: studies
+began citing the guard as authority to LEAVE A KNOWN DEFECT IN PLACE.
+
+MEASURED RATHER THAN ARGUED, AND THE EVIDENCE IS THIS HOUSE'S OWN WORDS. AMOC's committed
+forecast-anchor record reads:
+
+    "The reason it is not simply re-anchored is [R-VCAL-01]'s one-lever-at-a-time guard
+     -- the move is priced at +55% in the contested judgements and would carry this study
+     from 12.3% below the price to 35.9% above it in a single pass."
+
+And the condensed digest carried the same reading in its own [R-ANCHOR-01] paragraph, so
+the misreading was not one desk's: it was written down where the next study would inherit
+it. Four further corrections on that same name -- an undisclosed escalator wedge, a
+year-end discounting convention never named, a terminal capital basis mislabelled, and a
+minority rate contradicted by the study's own register -- were each individually accepted
+and none applied, and stacked through the study's own compute.py they carry the central
+from EGP 11.4012 to EGP 14.8165, from 15.5% BELOW the traded price to 9.8% ABOVE it.
+
+THE RULE, AND IT ADDS NOTHING NEW EXCEPT THE REFUSAL OF ONE SENTENCE: a correction
+required by a standing rule is applied when it is found. The rebuild ledger exists so that
+applying several at once is VISIBLE, not so that it is deferred -- which the clause above
+already says in terms ("a study wrong in six ways moves a long way when all six are fixed,
+and that is the process working"). A study may still defer, because sequencing real work
+is a real judgement and a rebuild is not always available in the hour; what it may not do
+is record the promotion guard as the reason, because the guard does not govern this and a
+FALSE REASON IS WORSE THAN A BARE ONE. A deferral is recorded as a DECISION -- what was
+found, what it is worth, why it waits, and the edition it waits for -- and it goes on the
+relevant ratchet with that measurement rather than with a rule identifier.
+
+THE DIRECTION IS WHY THIS MATTERED AND IT WAS NOT SYMMETRIC. Every correction deferred
+under this reading on the names where it was used raised the value, so the misreading
+behaved exactly like a house lean while every individual step in it was defensible -- the
+pattern [R-ENF-05]'s sign test exists to catch, arriving one level up, in the rule layer
+rather than in a study. It is recorded here rather than left as a matter of interpretation
+because an interpretation that always runs one way is not an interpretation.
+
+WHAT IS UNCHANGED, AND SAYING SO IS THE POINT: [R-VCAL-01]'s promotion guard stands in
+full, one lever at a time, in an order fixed in advance, halted where the pooled bias would
+cross zero, and SYMMETRIC -- a house that corrects its pessimism into optimism has fixed
+nothing. Nothing here licenses moving a value toward a price; [R-GAP-01]'s audit and
+[R-GAP-02]'s block are untouched; and a rebuild still carries its ledger, still names the
+rule each lever serves, and still declares its audit point in advance.
+
+THE GENERAL LESSON, WHICH IS NOT ABOUT REBUILDS: A RULE CITED AS A REASON IS NOT CHECKED
+THE WAY A NUMBER IS. Every figure in that record was computed, sourced and dated, and the
+one sentence carrying a rule identifier was simply believed -- by the study that wrote it,
+by the digest that repeated it, and by every reader since. WHERE A RECORD GIVES A STANDING
+RULE AS ITS REASON, READ THE RULE.
 
 
 ## [R-ENF-01 EXTENDED 07-09-2026] A committed record carries the shape the module that writes it emits today
