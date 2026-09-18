@@ -130,6 +130,13 @@ def drop_taxonomy(dropped):
         w = (why or "").lower()
         if "declared window" in w:
             return "the run projects a shorter window than the declared five years"
+        # NAMED RATHER THAN LEFT IN "other". Added 18-09-2026 with the refusal itself:
+        # this became the LARGEST single cause the moment it existed (21 of 60), and a
+        # table reporting it inside a bucket called "other" would have hidden the one
+        # finding the run actually produced.
+        if "explicit window ends growing" in w:
+            return ("the explicit window never converges to the terminal "
+                    "[R-MACRO-01]")
         if "capex intensity" in w or "working-capital intensity" in w \
                 or "intensity rule" in w:
             return "the block carries fewer than three years for a trailing intensity"
@@ -217,9 +224,16 @@ def report():
         print()
     # the drop taxonomy is the same for every reading's shared causes; print the
     # declared run's
-    print("  ---- WHY 28 OF 33 READY CELLS PRODUCED NO VALUE (declared run) ----")
-    for cause, cells in sorted(drop_taxonomy(out["DECLARED"]["dropped"]).items(),
-                               key=lambda kv: -len(kv[1])):
+    # COMPUTED, NOT TYPED. This line read "WHY 28 OF 33 READY CELLS" as a literal and
+    # went on reading it after the population had moved twice -- the defect the standing
+    # rule "a number stated in prose must be computed, not typed" names, sitting in the
+    # calibration's own reporter where nothing was checking it.
+    _tax = drop_taxonomy(out["DECLARED"]["dropped"])
+    _drops = sum(len(v) for v in _tax.values())
+    _scored = len(out["DECLARED"]["rows"])
+    print("  ---- WHY %d OF %d CELLS PRODUCED NO VALUE (declared run) ----"
+          % (_drops, _drops + _scored))
+    for cause, cells in sorted(_tax.items(), key=lambda kv: -len(kv[1])):
         print("    %2d  %s" % (len(cells), cause))
         print("        %s" % ", ".join(cells))
     return out

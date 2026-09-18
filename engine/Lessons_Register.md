@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**312 lessons**, of which 267 bind on every study, 34 on a class of company, and 11 on a single name.
+**315 lessons**, of which 270 bind on every study, 34 on a class of company, and 11 on a single name.
 
-By how they were learned: 62 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 28 from outside critiques, 26 from self-audits, 194 found while building.
+By how they were learned: 62 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 28 from outside critiques, 29 from self-audits, 194 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -2748,6 +2748,36 @@ The two artefacts make the same kind of claim about where numbers came from, and
 > **What it cost, or how we know.** AMOC's bibliography cites stockanalysis.com, Investing.com and TradingView for total assets, total liabilities, cash and equivalents and total debt — every one of which exists in the statements the study holds and takes them from. check_source_integrity.py reads the input register, where every AMOC source names a filing, and passes the study.
 
 > **What would overturn it.** A source gate whose population is the delivered documents as well as the committed register.
+
+### L-392 · A rule about how a model is BUILT binds every instrument that builds one, and the gates for it were all pointed at studies.
+
+The house requires a forecast's explicit window to run until growth has converged to the terminal, because a model whose last year still compounds far above its terminal capitalises a rate it never reached. That rule was enforced on studies by a gate reading each study's committed record. The valuation calibration's own mechanical lens builds a value at every past origin and is not a study, so nothing held it to the rule — and every cell it had ever produced broke it.
+
+**Applies to:** every study  ·  *Learned from:* self-audit, valuation calibration, 18-09-2026
+
+> **What it cost, or how we know.** Measured on all seven cells the mechanical cash-flow lens had scored: the gap between the last explicit year's growth and the terminal ran 3.8pp at best and 15.6pp at worst against a bound of 2pp, and six of the seven carried a terminal worth MORE than the whole enterprise value (102% to 1820%), meaning an explicit window contributing nothing or less. PHDC 2019 showed an explicit present value of -EGP 2.28bn against a terminal of +EGP 32.52bn. The rule had been adopted four days before the declaration that sealed the lens.
+
+> **What would overturn it.** An instrument found to build a forecast value while being genuinely outside the rule's subject — which would mean the rule is narrower than its own reasoning, not that the instrument escaped it.
+
+### L-393 · A larger pool of inadmissible cells is not closer to an answer than a small one.
+
+The plan for the valuation calibration was to wire more names until the pooled sample could answer its acceptance clause. The defect that was actually blocking it sat in the construction rather than in any name, so every name added would have added more cells of the same broken kind — while the count rose and the table looked healthier.
+
+**Applies to:** every study  ·  *Learned from:* self-audit, valuation calibration, 18-09-2026
+
+> **What it cost, or how we know.** The convergence refusal dropped 21 cells spanning six of the nine names (AMOC, ARCC, EGCH, PHAR, PHDC, TMGH) and became the largest single drop class in the run at a stroke. Before it, five cells scored and the work in front of the desk was wiring three more projectors; after it, the declared run scores none and the work is in the runs' own pre-registered windows.
+
+> **What would overturn it.** A pooled sample whose defect is genuinely name-specific, where adding names dilutes it rather than reproducing it.
+
+### L-394 · A verdict printed in two states hides the third, and the hidden one is always 'we did not measure this'.
+
+A clause that can be met, failed or unmeasured must print all three. Where the printer collapses unmeasured onto failed, a criterion reports a conclusion it has no evidence for; where it collapses onto met, worse. The collapse survives because it is invisible until the third state first occurs, which may be months after the line was written.
+
+**Applies to:** every study  ·  *Learned from:* self-audit, criterion 3 reporter, 18-09-2026
+
+> **What it cost, or how we know.** criterion3.py printed clause A as 'MET if a_met else NOT MET' while clauses B and C printed all three states correctly. The line was right for as long as the series could not be empty, and the moment the convergence refusal emptied it, an UNMEASURED clause printed as a FAILED one — in the clause that gates Phase 1 hardest. The same run found the reporter crashing on the empty series and a header count typed as a literal (28 of 33) that had gone on printing through two population changes.
+
+> **What would overturn it.** A clause genuinely binary by construction, where no third state can arise — which must then be argued rather than assumed from the printer.
 
 
 ---

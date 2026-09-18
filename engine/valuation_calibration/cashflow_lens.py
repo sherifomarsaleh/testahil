@@ -36,6 +36,7 @@ sys.path.insert(0, HERE)
 import macro_history as MH       # noqa: E402
 import panel as P                # noqa: E402
 import terminal_value as TV      # noqa: E402
+import research_protocol as RP   # noqa: E402  [R-MACRO-01]'s own bound, never a second one
 
 BETA = 1.00              # declaration 2, carried forward unchanged
 HORIZONS = (1, 2, 3, 4, 5)
@@ -345,12 +346,19 @@ PROJECTORS = {"AMOC": project_amoc, "ARCC": project_arcc, "EGCH": project_egch,
 
 # --------------------------------------------------- the as-reported actuals
 REVENUE = {"AMOC": ["is.net_sales"], "ARCC": ["is.revenue"], "EGCH": ["is.revenue"],
-           "PHDC": ["is.revenue"], "TMGH": ["total_revenue"]}
+           "PHDC": ["is.revenue"], "TMGH": ["total_revenue"],
+           # each run names its own top line and no two agree
+           "PHAR": ["revenue"], "SCEM": ["sales"]}
 FINANCE = {"AMOC": ["is.finance_expenses"], "ARCC": ["other.finance_costs"],
            "EGCH": ["is.debit_interest"], "PHDC": ["is.finance_cost"],
-           "TMGH": ["finance_cost"]}
+           "TMGH": ["finance_cost"],
+           "PHAR": ["finance"], "SCEM": ["finance"]}
 MINORITY = {"AMOC": ["is.nci"], "ARCC": ["is.nci"], "EGCH": [], "PHDC": ["is.nci"],
-            "TMGH": ["nci_equity"]}
+            "TMGH": ["nci_equity"],
+            # PHAR's panel carries an nci line; SCEM's carries none and the empty list
+            # is the declaration that it does not, on EGCH's own precedent — never a
+            # zero invented to fill the column.
+            "PHAR": ["nci"], "SCEM": []}
 
 
 # THE PANELS AND THE BLOCKS DO NOT SHARE A UNIT AND NOTHING SAID SO. Measured
@@ -398,6 +406,14 @@ SCALE_PAIR = {
              "identical"),
     "PHDC": (["bs.cash"], "cash", "identical"),
     "TMGH": (["cash"], "cash", "identical"),
+    # PHAR and SCEM: their panels carried the balance sheet the whole time and the
+    # reader was only taught the income statement, so no quantity was common to panel
+    # and block and every cell dropped on a unit that could not be measured. Property,
+    # plant and equipment is IDENTICAL on both sides to the pound at every shared year
+    # — asserted by panel_scale() rather than trusted here — because the block is
+    # copied off the face of the statement and so is the panel's balance sheet.
+    "PHAR": (["balance.ppe"], "ppe", "identical"),
+    "SCEM": (["balance.ppe"], "ppe", "identical"),
 }
 
 
@@ -771,6 +787,35 @@ def cell(tk, origin, market, cellinfo, horizons=HORIZONS, maintenance="amount"):
                      "dna": dna, "capex": capex, "wc": wc_h, "dwc": dwc,
                      "fcff": fcff, "df": df})
         last = rows[-1]
+
+    # ------------------------------------------------------------------ [R-MACRO-01]
+    # THE EXPLICIT WINDOW RUNS UNTIL GROWTH IS WITHIN 2pp OF TERMINAL, and this lens did
+    # not check it. The rule was adopted 02-Sep-2026, four days BEFORE the declaration
+    # that sealed this construction, and it names this exact failure in its own words:
+    # "a model whose last explicit year still grows far above its terminal capitalises a
+    # rate it never reached". Measured 18-09-2026 on every cell this lens had ever
+    # scored, ALL SEVEN breached it -- 3.8pp at best, 15.6pp at worst -- and six of the
+    # seven carried a terminal worth MORE THAN THE WHOLE ENTERPRISE VALUE (102% to
+    # 1820%), which is to say an explicit window contributing nothing or less.
+    #
+    # THE BOUND IS IMPORTED, NEVER TYPED: research_protocol.HORIZON_CONVERGENCE is the
+    # figure assert_macro_coherence() already holds every study to, and minting a second
+    # one for a scorer would be the free parameter the PROMOTION RULE forbids -- and
+    # would let two instruments disagree about what a converged window is.
+    #
+    # THE REFUSAL IS NOT A FADE. Growing the path down to the terminal inside this module
+    # would be this module CHOOSING a construction, which its own docstring forbids and
+    # which would need a fade rate nobody has tested. The window a cell is scored on is
+    # the run's own pre-registered projection, so a window that does not converge is work
+    # owed by THE RUN and is reported as that rather than repaired here.
+    g_last = (rows[-1]["revenue"] / rows[-2]["revenue"] - 1.0) if len(rows) > 1 else None
+    g_term = infl                      # real growth is 0.0 in this construction
+    if g_last is not None and abs(g_last - g_term) > RP.HORIZON_CONVERGENCE:
+        return None, ("the explicit window ends growing at %.1f%% against a terminal of "
+                      "%.1f%% -- %.1fpp apart, against a bound of %.0fpp [R-MACRO-01]. "
+                      "The terminal would capitalise a rate the projection never reached."
+                      % (100 * g_last, 100 * g_term, 100 * abs(g_last - g_term),
+                         100 * RP.HORIZON_CONVERGENCE))
 
     # THE TERMINAL, only through the sanctioned module.
     #

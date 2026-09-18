@@ -112,6 +112,17 @@ def _covers_zero(b):
 def clause_a(dec):
     """Series (a), the mechanical lens — the only series struck at EVERY origin."""
     sc = dec["score"]
+    # AN EMPTY SERIES IS UNMEASURED, NOT MET AND NOT FAILED [R-ENF-04]. Until 18-09-2026
+    # this crashed on a null score, which is the safe direction but says nothing; and the
+    # state is now reachable, because the convergence refusal [R-MACRO-01] added to the
+    # lens that day took the declared run to zero admissible cells. The distinction it
+    # protects is real: this clause read NOT MET on five cells built on a window the
+    # house forbids, and a verdict reached on inadmissible evidence is worse than none.
+    if not sc or sc.get("n") is None:
+        return None, ["no admissible cell: the declared run scored none, so there is no "
+                      "pooled bias to put an interval around",
+                      "SEE the drop taxonomy in score_cashflow.py --write for what the "
+                      "cells were refused FOR; an unmeasured clause is UNMEASURED"]
     n = sc["n"]
     boots = sc.get("bootstrap") or {}
     covering = {k: _covers_zero(v) for k, v in sorted(boots.items())}
@@ -132,6 +143,8 @@ def clause_a(dec):
 
 
 def clause_b(dec):
+    if not dec.get("score"):
+        return None, ["no admissible cell: nothing to leave out"]
     l = dec["score"].get("lono") or {}
     usable = {k: v for k, v in l.items() if v.get("mean") is not None}
     if not usable:
@@ -144,6 +157,8 @@ def clause_b(dec):
 
 
 def clause_c(dec):
+    if not dec.get("score"):
+        return None, ["no admissible cell: no era carries one"]
     eras = dec["score"].get("eras") or {}
     live = {k: v for k, v in eras.items() if v.get("mean") is not None}
     lines = ["%-16s cells %3d  mean %s"
@@ -183,6 +198,12 @@ def clause_f(a_met):
     if a_met:
         return None, ["conditional: no residual bias to attribute while the "
                       "interval covers zero."]
+    if a_met is None:
+        return None, ["conditional on clause A, and clause A is UNMEASURED: there "
+                      "is no measured residual bias for a lever to be named "
+                      "against. This is NOT the same as no bias -- it is no "
+                      "measurement, and attributing a bias nobody has measured "
+                      "would be the decomposition inventing its own subject."]
     return None, ["a residual bias EXISTS (clause A red), so this clause bites "
                   "— and no decomposition to a named lever is committed."]
 
@@ -216,7 +237,8 @@ def blocking(dec):
     c = collections.Counter()
     for r in dec.get("dropped", []):
         why = r["why"]
-        for head in ("capex intensity needs",
+        for head in ("the explicit window ends growing",
+                     "capex intensity needs",
                      "terminal refused: implied payout",
                      "terminal refused: terminal free cash flow",
                      "the projection runs to horizon"):
@@ -247,7 +269,12 @@ def main():
     print("   SERIES (a), the mechanical lens — struck at every origin")
     for l in lines:
         print("     " + l)
-    print("   -> %s\n" % ("MET" if a_met else "NOT MET"))
+    # THREE STATES, NOT TWO. This line collapsed None onto NOT MET, so an
+    # UNMEASURED clause A printed as a FAILED one -- the distinction [R-ENF-04]
+    # exists for, in the one clause that gates Phase 1 hardest. B and C already
+    # printed all three; A did not, because until 18-09-2026 it could not be None.
+    print("   -> %s\n" % ("MET" if a_met else
+                          "NOT MET" if a_met is False else "UNMEASURED"))
 
     for tag, fn in (("B", lambda: clause_b(dec)), ("C", lambda: clause_c(dec))):
         met, lines = fn()
@@ -276,14 +303,38 @@ def main():
     print("\n" + "=" * 74)
     print("WHAT ACTUALLY BLOCKS A, B AND C — and none of it is a clock")
     tot = len(dec.get("dropped", []))
-    print("  %d cells scored, %d dropped" % (dec["score"]["n"]["cells"], tot))
+    _sc = dec.get("score") or {}
+    _cells = (_sc.get("n") or {}).get("cells", 0)
+    print("  %d cells scored, %d dropped" % (_cells, tot))
     for why, n in blocking(dec).most_common():
         print("    %3d  %s" % (n, why))
-    print("  The largest class is a DATA-CARRY job: [R-FCAL-01 AMENDED "
-          "03-Sep-2026]")
-    print("  already requires the valuation-input block at every origin, and "
-          "carrying")
-    print("  it further back is a copy out of filings each run has parsed.")
+    # THE SENTENCE NAMING THE LARGEST CLASS IS SELECTED BY THE TABLE, NEVER TYPED
+    # BESIDE IT. It read "the largest class is a DATA-CARRY job" for as long as the
+    # intensity drops led, went on reading it after they stopped, and the reading it
+    # carried was the comfortable one -- work with a rate, owed by nobody's method.
+    _top = blocking(dec).most_common(1)
+    _head = _top[0][0] if _top else ""
+    if _head.startswith("the explicit window ends growing"):
+        print("  The largest class is NOT a data-carry job. It is a CONSTRUCTION "
+              "refusal:")
+        print("  [R-MACRO-01] requires the explicit window to run until growth is "
+              "within")
+        print("  2pp of terminal, this lens never checked it, and every cell it had "
+              "ever")
+        print("  scored breached it -- 3.8pp at best. Those cells are not owed by a "
+              "filing;")
+        print("  they are owed by the RUNS, whose pre-registered projections end while "
+              "still")
+        print("  compounding far above the terminal they are capitalised at.")
+    elif _head.startswith("capex intensity needs"):
+        print("  The largest class is a DATA-CARRY job: [R-FCAL-01 AMENDED "
+              "03-Sep-2026]")
+        print("  already requires the valuation-input block at every origin, and "
+              "carrying")
+        print("  it further back is a copy out of filings each run has parsed.")
+    else:
+        print("  The largest class is %r -- neither of the two this note has words "
+              "for." % _head)
 
     print("\n" + "=" * 74)
     print("PHASE — WHICH CLAUSES GATE PHASE 1 AND WHICH BELONG TO 2b")

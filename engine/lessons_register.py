@@ -7106,6 +7106,90 @@ LESSONS = [
       "nor either outside audit found it.",
       "A year in which the note stops disclosing the rate, or discloses one "
       "built on a basis the study's own rate cannot be compared with."),
+
+    L("L-392", "ALL", None,
+      "A rule about how a model is BUILT binds every instrument that builds one, "
+      "and the gates for it were all pointed at studies.",
+      "The house requires a forecast's explicit window to run until growth has "
+      "converged to the terminal, because a model whose last year still compounds "
+      "far above its terminal capitalises a rate it never reached. That rule was "
+      "enforced on studies by a gate reading each study's committed record. The "
+      "valuation calibration's own mechanical lens builds a value at every past "
+      "origin and is not a study, so nothing held it to the rule — and every cell "
+      "it had ever produced broke it.",
+      "valuation calibration, 18-09-2026", "self_audit",
+      "Measured on all seven cells the mechanical cash-flow lens had scored: the "
+      "gap between the last explicit year's growth and the terminal ran 3.8pp at "
+      "best and 15.6pp at worst against a bound of 2pp, and six of the seven "
+      "carried a terminal worth MORE than the whole enterprise value (102% to "
+      "1820%), meaning an explicit window contributing nothing or less. PHDC 2019 "
+      "showed an explicit present value of -EGP 2.28bn against a terminal of "
+      "+EGP 32.52bn. The rule had been adopted four days before the declaration "
+      "that sealed the lens.",
+      "An instrument found to build a forecast value while being genuinely outside "
+      "the rule's subject — which would mean the rule is narrower than its own "
+      "reasoning, not that the instrument escaped it.",
+      promotion="prose",
+      promotion_note=(
+          "The INSTANCE is closed in code — cashflow_lens.cell() now refuses a "
+          "non-converged window on research_protocol.HORIZON_CONVERGENCE, and "
+          "check_convergence_refusal_negative_control.py holds it there. The "
+          "LESSON is the general claim, and 'ask what else in the repository "
+          "performs this construction' is a question for a person: a checker "
+          "cannot tell an instrument that builds a forecast value from one that "
+          "merely reads figures, and a keyword classifier for it would be the "
+          "free parameter the promotion rule forbids.")),
+
+    L("L-393", "ALL", None,
+      "A larger pool of inadmissible cells is not closer to an answer than a "
+      "small one.",
+      "The plan for the valuation calibration was to wire more names until the "
+      "pooled sample could answer its acceptance clause. The defect that was "
+      "actually blocking it sat in the construction rather than in any name, so "
+      "every name added would have added more cells of the same broken kind — "
+      "while the count rose and the table looked healthier.",
+      "valuation calibration, 18-09-2026", "self_audit",
+      "The convergence refusal dropped 21 cells spanning six of the nine names "
+      "(AMOC, ARCC, EGCH, PHAR, PHDC, TMGH) and became the largest single drop "
+      "class in the run at a stroke. Before it, five cells scored and the work in "
+      "front of the desk was wiring three more projectors; after it, the declared "
+      "run scores none and the work is in the runs' own pre-registered windows.",
+      "A pooled sample whose defect is genuinely name-specific, where adding names "
+      "dilutes it rather than reproducing it.",
+      promotion="prose",
+      promotion_note=(
+          "A judgement about where to spend effort when a pool is thin, which no "
+          "checker can make: whether a defect is in the construction or in the "
+          "name is exactly the question being asked, and a gate that could answer "
+          "it would not need the lesson.")),
+
+    L("L-394", "ALL", None,
+      "A verdict printed in two states hides the third, and the hidden one is "
+      "always 'we did not measure this'.",
+      "A clause that can be met, failed or unmeasured must print all three. Where "
+      "the printer collapses unmeasured onto failed, a criterion reports a "
+      "conclusion it has no evidence for; where it collapses onto met, worse. The "
+      "collapse survives because it is invisible until the third state first "
+      "occurs, which may be months after the line was written.",
+      "criterion 3 reporter, 18-09-2026", "self_audit",
+      "criterion3.py printed clause A as 'MET if a_met else NOT MET' while clauses "
+      "B and C printed all three states correctly. The line was right for as long "
+      "as the series could not be empty, and the moment the convergence refusal "
+      "emptied it, an UNMEASURED clause printed as a FAILED one — in the clause "
+      "that gates Phase 1 hardest. The same run found the reporter crashing on the "
+      "empty series and a header count typed as a literal (28 of 33) that had gone "
+      "on printing through two population changes.",
+      "A clause genuinely binary by construction, where no third state can arise — "
+      "which must then be argued rather than assumed from the printer.",
+      promotion="outstanding",
+      promotion_note=(
+          "TESTABLE AND NOT YET DONE, which is why it is filed here rather than as "
+          "prose. A reporter that prints a verdict can be read for the shape "
+          "'MET if x else NOT MET' where x is a tri-state, and criterion3.py "
+          "carried exactly that for months. What makes it real work rather than a "
+          "one-line grep is telling a tri-state from a genuine boolean, which "
+          "needs the callee's own contract; filed with its measurement so the debt "
+          "is countable rather than remembered.")),
 ]
 
 

@@ -163,13 +163,52 @@ def _years_fy(key):
     return read
 
 
+def _years_fy_sections(primary, *extra):
+    """{year: cell} from FY-prefixed keys, MERGING further sections under a prefix.
+
+    THE INCOME STATEMENT WAS THE WHOLE PANEL AND THE BALANCE SHEET WAS SITTING BESIDE
+    IT. `_years_fy` reads one named section, which was right for every question asked
+    of these panels until the cash-flow lens needed to measure the unit a run's
+    valuation-input BLOCK is written in — and that measurement works by finding a
+    quantity present in BOTH the panel and the block. Every block item is a
+    balance-sheet or cash-flow line (cash, debt, ppe, dep, wc, shares), and an
+    income-statement-only panel shares none of them, so the scale could not be
+    measured and every cell on those names dropped. The file carried the balance sheet
+    the whole time.
+
+    EXTRA SECTIONS ARE PREFIXED, never merged flat: `bs.cash` rather than `cash`. Two
+    sections of one statement set can legitimately carry the same word — "dep" as a
+    charge and as accumulated depreciation are different quantities — and silently
+    letting one overwrite the other is the unit error this book keeps paying for. The
+    prefix convention is not invented here either: PHDC's panel already writes
+    `bs.cash` and the lens already reads it under that name.
+    """
+    def read(d):
+        out = {}
+        for section, prefix in [(primary, "")] + [(x, "%s." % x.split("_")[0])
+                                                  for x in extra]:
+            inner = d.get(section) or {}
+            for k, v in inner.items():
+                digits = "".join(ch for ch in str(k) if ch.isdigit())
+                if len(digits) != 4 or not isinstance(v, dict):
+                    continue
+                y = int(digits)
+                cell = out.setdefault(y, {})
+                for kk, vv in v.items():
+                    cell["%s%s" % (prefix, kk)] = vv
+        return out
+    return read
+
+
 PANEL_ADAPTER = {
     "PHDC": ("panel.json", _years_top),
     "TMGH": ("panel_annual.json", _years_top),
     "GBCO": ("panel.json", _years_nested("years")),
     "SWDY": ("panel.json", _years_nested("years")),
-    "SCEM": ("panel_export.json", _years_fy("income_statement")),
-    "PHAR": ("panel_export.json", _years_fy("income_statement")),
+    "SCEM": ("panel_export.json",
+             _years_fy_sections("income_statement", "balance_sheet")),
+    "PHAR": ("panel_export.json",
+             _years_fy_sections("income_statement", "balance_sheet")),
 }
 
 
