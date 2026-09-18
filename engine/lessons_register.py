@@ -7349,6 +7349,33 @@ LESSONS = [
           "into a red build and prints the keys that need a decision. The general "
           "claim — prefer refusing to classifying by pattern — is not itself "
           "mechanisable and travels as prose; what is mechanised is this instance.")),
+
+    L("L-400", "ALL", None,
+      "Re-running a generator re-asserts every claim its stamps are taken from, and "
+      "a comment change is enough to do it.",
+      "A study's committed record carries claims about the standard it was built to "
+      "and the day the work was done. Where those are read from a live constant or a "
+      "clock rather than frozen to a fact, ANY rebuild moves them — and a rebuild "
+      "happens for reasons that have nothing to do with the claim, such as correcting "
+      "a comment.",
+      "AMOC rebuild, 18-09-2026", "self_audit",
+      "Re-running amoc_study/compute.py to correct a COMMENT moved the committed "
+      "standard claim from 2026.09.01 to 2026.09.07, silently asserting conformance "
+      "to four standards nobody had checked the study against — one of which, "
+      "[R-ASSET-01], it is ratcheted as not meeting. check_standard_claim went red "
+      "the same evening, on the first rebuild after [R-STD-02] was written, having "
+      "been green before it. The fix is the one that rule prescribes and the one "
+      "another generator had already taken for its study DATE: freeze the claim to "
+      "the version the edition was actually built to.",
+      "A generator whose stamps are all frozen to facts, where a rebuild genuinely "
+      "changes nothing but what was rebuilt.",
+      promotion="enforced",
+      promoted_by="scripts/check_standard_claim.py",
+      promotion_note=(
+          "[R-STD-02]'s gate already enforces the standard-version half and caught "
+          "this instance in flight. The general claim — that any stamp read from a "
+          "live value re-asserts on every rebuild — reaches further than that one "
+          "field, and the rest of it is not yet mechanised.")),
 ]
 
 

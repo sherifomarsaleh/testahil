@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**320 lessons**, of which 275 bind on every study, 34 on a class of company, and 11 on a single name.
+**321 lessons**, of which 276 bind on every study, 34 on a class of company, and 11 on a single name.
 
-By how they were learned: 62 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 29 from outside critiques, 33 from self-audits, 194 found while building.
+By how they were learned: 62 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 29 from outside critiques, 34 from self-audits, 194 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -2828,6 +2828,16 @@ The difference is not strictness, it is what happens to the residue. A pattern-b
 > **What it cost, or how we know.** The first run of the ratchet census refused eleven keys across 67 files and every one needed a decision a pattern could not make — an unrunnable figure script is a debt, a resolved-and-kept entry is not, an [R-ENF-08] failure signature sitting beside its entry is not, a walk-forward run owing a valuation-input block is. It also refused two NAMES that turned out to be index series rather than studies, which resolve against a different population entirely. And it found 2POINTZERO — a ticker starting with a digit, which the first draft's ticker pattern silently dropped, and which this protocol already records as having been dropped from three separate tools by a regex written the same way.
 
 > **What would overturn it.** A residue that turns out to be uniform, where one rule really does cover every case the reader could not place.
+
+### L-400 · Re-running a generator re-asserts every claim its stamps are taken from, and a comment change is enough to do it.
+
+A study's committed record carries claims about the standard it was built to and the day the work was done. Where those are read from a live constant or a clock rather than frozen to a fact, ANY rebuild moves them — and a rebuild happens for reasons that have nothing to do with the claim, such as correcting a comment.
+
+**Applies to:** every study  ·  *Learned from:* self-audit, AMOC rebuild, 18-09-2026
+
+> **What it cost, or how we know.** Re-running amoc_study/compute.py to correct a COMMENT moved the committed standard claim from 2026.09.01 to 2026.09.07, silently asserting conformance to four standards nobody had checked the study against — one of which, [R-ASSET-01], it is ratcheted as not meeting. check_standard_claim went red the same evening, on the first rebuild after [R-STD-02] was written, having been green before it. The fix is the one that rule prescribes and the one another generator had already taken for its study DATE: freeze the claim to the version the edition was actually built to.
+
+> **What would overturn it.** A generator whose stamps are all frozen to facts, where a rebuild genuinely changes nothing but what was rebuilt.
 
 
 ---

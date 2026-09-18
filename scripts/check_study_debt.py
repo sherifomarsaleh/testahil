@@ -28,7 +28,6 @@ from __future__ import annotations
 import glob
 import json
 import os
-import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -39,12 +38,21 @@ SNAPSHOT = os.path.join(ROOT, 'engine', 'build_depth_audit', 'debt_snapshot.json
 
 
 def published_names():
-    """Every name the site carries, through a real JavaScript parse [R-ENF-03]."""
-    p = os.path.join(ROOT, 'assets', 'data.js')
-    if not os.path.exists(p):
+    """Every name the site carries, through THE SHARED READER [R-ENF-03].
+
+    The first draft of this function read data.js with a regular expression and said in
+    its own docstring that it was "a real JavaScript parse". It was not, and
+    check_site_data_reader caught it on the first full sweep after it was written --
+    which is the gate working, and is exactly the defect that gate exists for: a regex
+    over an object literal returns the FIRST match where the parser takes the LAST, and
+    a ticker that cannot be an unquoted identifier is dropped silently. That second
+    failure is the one this very module found in the ratchets an hour earlier.
+    """
+    try:
+        import site_data as SITE
+        return set(SITE.read_object('TICKERS'))
+    except Exception:                                              # noqa: BLE001
         return set()
-    t = open(p, encoding='utf-8', errors='ignore').read()
-    return set(re.findall(r'^\s*"?([A-Z0-9][A-Z0-9_]{1,13})"?\s*:\s*\{', t, re.M))
 
 
 def main() -> int:

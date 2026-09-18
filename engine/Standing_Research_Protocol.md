@@ -1,4 +1,4 @@
-PROTOCOL REVISION 2026-09-18c — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
+PROTOCOL REVISION 2026-09-18e — [R-DOC-01] if your copy does not carry this line, or carries an earlier revision, it is STALE. The current text lives at engine/Standing_Research_Protocol.md
 on the repository's default branch; nothing else is authoritative. Bump on every edit.
 
 TESTAHIL — Standing Research Protocol
@@ -4982,3 +4982,299 @@ construction — correctly, since a new study owes no debt.
 not a record, it is a re-assertion.** It says what the code believes today rather than what the
 work was held to, and the difference is invisible until somebody asks which of the two the reader
 is entitled to rely on.
+
+
+---
+
+# [R-ENF-01 EXTENDED 18-09-2026] A rule about how a model is built binds every instrument that builds one
+
+`[R-MACRO-01]` has required since 2 September 2026 that an explicit window run until growth
+is within 2pp of the terminal, *"or the terminal capitalises a growth rate the model never
+reached and takes most of the value with it"*. `assert_macro_coherence()` holds every
+**study** to it, and `scripts/check_macro_coherence.py` runs that over every study directory
+in CI.
+
+`[R-VCAL-01]`'s mechanical valuation lens builds a value at every past origin. It is not a
+study. **Nothing held it to the rule**, and its sealed declaration is dated four days *after*
+the rule was adopted.
+
+Measured 18 September 2026 on every cell the lens had ever scored:
+
+| cell | growth at the last explicit year | terminal | gap | terminal share of enterprise value |
+|---|---|---|---|---|
+| PHAR 2023 | 22.1% | 9.5% | 12.6pp | **1820%** |
+| PHDC 2017 | 21.4% | 7.0% | 14.5pp | 102% |
+| PHDC 2018 | 22.6% | 7.0% | 15.6pp | 125% |
+| PHDC 2019 | 20.7% | 7.1% | 13.6pp | 108% |
+| PHDC 2020 | 12.1% | 8.2% | **3.8pp** | 102% |
+| PHDC 2021 | 11.6% | 7.1% | 4.5pp | 109% |
+| PHDC 2022 | 13.9% | 7.0% | 6.9pp | 62% |
+
+**All seven breached it.** The best is 3.8pp against a bound of 2pp. Six of seven carry a
+terminal worth **more than the whole enterprise value** — an explicit window contributing
+nothing or less. PHDC 2019's five explicit years have a present value of **−EGP 2.28bn**
+against a terminal of **+EGP 32.52bn**.
+
+## The refusal
+
+`cashflow_lens.cell()` now refuses such a cell. Three things about it:
+
+- **The bound is imported, never typed.** `research_protocol.HORIZON_CONVERGENCE` is the
+  figure the study gate already uses. A scorer minting its own cutoff would be the free
+  parameter the promotion rule forbids, and would let two instruments disagree about what a
+  converged window is.
+- **The reading is two-sided**, exactly as the study gate reads it. One cell ends at 0.0%
+  nominal against a 9.5% terminal — converged to something *below* terminal, which is the
+  perpetual-real-decline half of the same rule.
+- **It is a refusal and not a fade.** Growing the path down to the terminal inside the lens
+  would be the lens *choosing* a construction its own docstring forbids, and would need a
+  fade rate nobody has tested. A window that does not converge is work owed by **the run**.
+
+## The deeper finding, which is structural
+
+Every delivered study that commits the record converges **exactly** to its terminal —
+**PHDC on fifteen explicit years, TMGH on ten**, the rest on five. The lens runs **five for
+every name**, because its sealed declaration fixes the window at the walk-forward's own
+horizons 1–5 and says in terms that it *"is not re-derived here"*.
+
+So on PHDC the instrument rebuilds a fifteen-year construction on five years. Same drivers,
+same audited statements, same point-in-time archive, same sanctioned terminal module — and a
+third of the answer.
+
+`[R-VCAL-01]` states its own falsifier: *if the mechanically rebuilt series turns out not to
+resemble the as-delivered one, this calibration is grading a method the house does not use
+and every promotion must be withdrawn.* That anticipated a statistical comparison over a
+long record. **What arrived is structural and stronger.** No promotion has to be withdrawn,
+because none was ever made.
+
+## Why the mechanical paths do not converge, and the route that does
+
+The walk-forward projectors escalate on `(1 + cpi(origin)) ** h` — the **last published**
+inflation print, compounded flat at every horizon. At a 31 December 2019 Egyptian origin
+that is 13.87% for five straight years, arriving at a 7% terminal still growing at four
+times it. The house's studies converge because their escalators sit on a **declining ladder**.
+
+**Point-in-time discipline forbids foresight, not a declining forecast.** A forecast
+published at the origin was known at the origin. `engine/macro_history/` already holds
+eleven IMF World Economic Outlook vintages for Egypt, each with its file name and its
+sha256. The October 2019 edition projects **13.866 → 9.965 → 7.217 → 7.011 → 7.002 →
+7.078** — converging to the house terminal by year three, with no fade and no free parameter.
+
+## What was not done, and why that is the discipline
+
+The lens was **not** rebuilt on that ladder. The pre-registration's whole claim on
+credibility is an ordering of commits, and `check_valuation_calibration.py` reads that
+topology precisely to catch a design that followed its results. A declaration written now is
+written with the gap in full view.
+
+It is registered instead — `mechanical-lens-window-reseal` in `engine/escalations.json`,
+with five climbed routes, the measurement, a recommendation, a default and a date. **The
+recommendation is to re-seal, and to say in the new declaration that it was written after
+the old one was measured**, which is the only honest way to do it.
+
+**The cost is stated rather than discovered later:** criterion 3's clause A moves from NOT
+MET to **UNMEASURED**, with B, C and F. That is not a softening — a verdict reached on cells
+built on a forbidden construction is a false verdict. Phase 1 does not close either way, so
+no publish decision changed and no fair value moved.
+
+## Four reporters had to be corrected to say so at all
+
+Each a small instance of one species — a reporter that cannot express the answer it now has:
+
+1. `criterion3.clause_a` **crashed** on an empty series.
+2. Its verdict line collapsed `None` onto NOT MET — three states printed as two, in the
+   clause that gates Phase 1 hardest, while B and C already printed all three.
+3. `score_cashflow` printed its header count as a **typed literal** through two population
+   changes, in the calibration's own reporter.
+4. Its drop taxonomy filed the new refusal under `other`, where the largest cause in the
+   table would have been invisible, beneath a narrative asserting the largest class **in
+   prose beside a computed table**. It is now selected *by* the table.
+
+Negative-controlled on eight conditions, four red and four clean, writing nothing — **and
+the control caught its own first draft**, which picked a fixture cell that dies several
+checks earlier, so all four red cases came back quiet and **all three clean cases passed for
+the same reason**.
+
+**The general lesson, which is not about convergence: an instrument built to grade a method
+must reproduce the method, and sharing its inputs is not reproducing it.** Where a rule
+governs a *construction*, ask what else in the repository performs that construction.
+
+---
+
+# [R-MACRO-01 AMENDED 18-09-2026] Every level declares what kind of number it is
+
+The rule has always said every level is published by a named institution on a named date, or
+**derived** by an identity from numbers that are. The inflation ladder has carried a per-step
+`basis` since adoption. **Nothing asked the same of the terminal equity risk premium.**
+
+Measured across all seven paths: five cite Damodaran's country-risk file with its publication
+date and hold the published premium flat; the UAE path holds its market-basis premium flat
+and says in terms that no structural convergence is assumed. **Egypt's cites a rationale** —
+*"normalised below the currently elevated crisis-era level toward the rating-class norm"* —
+which names no institution, no date and no identity, and reads on the page exactly like the
+five that do. Against published Egyptian figures of 9.41% (market) and 13.94% (rating), 7.00%
+retires 2.41 to 6.94 points of country risk on no stated authority.
+
+**The direction is the part worth keeping.** A lower terminal premium lowers the terminal
+cost of equity, raises the terminal value and **raises** the fair value — so this is the one
+convention in the book running the opposite way to every defect the forensic audits found,
+and a house that only ever audits its own pessimism would never have looked at it.
+
+`erp_terminal` now carries a **basis** from a closed list — `published`, `derived`,
+`house_judgement` — closed for `[R-COC-01 AMENDED]`'s reason that an open one lets a path opt
+out by inventing a basis, and *"normalised toward the norm"* is not a basis.
+`house_judgement` **is permitted and is not a loophole**: a house view is a legitimate thing
+for a path to carry and an *illegible* one is not, so what it may not do is read as a
+publication — and it must state **what would source it**, because a judgement with no route
+to evidence is the habit `[R-LESSON-01]` refuses of a lesson, arriving in a path.
+
+**No value moved**, and the derivation route was searched and found **closed** rather than
+merely unrun: the identity this book's own premiums are built on (`mature + spread × 1.52`)
+reproduces both published bases to the basis point and needs a *terminal* default spread,
+which no path carries. Whether to keep the normalisation or apply the six-of-seven convention
+moves every Egyptian study at once and is registered as a decision with a recommendation and
+a default. Negative-controlled on 12 conditions, 8 red and 4 clean.
+
+---
+
+# [R-ENF-01 EXTENDED 18-09-2026] SIGCM clause 1 on the page a reader receives
+
+`check_source_integrity.py` reads each study's committed **input register**, where the
+sources name filings, and it passes the book. The claim a reader actually receives is in the
+**delivered bibliography's own sources table**, and that population was reached by nothing.
+
+Measured across 46 delivered documents and 12,654 table rows:
+
+- **AMOC** — *"Company financial summary pages | stockanalysis.com; Investing.com;
+  TradingView | Aug 2026"* cited for shares outstanding, market capitalisation, **total
+  assets, total liabilities, cash and equivalents and total debt**, while the committed
+  register sources all of them to filings.
+- **ELEC** — **twelve rows**: its own FY2024 and FY2025 revenue, net profit, EPS and total
+  assets from Mubasher, MarketScreener, Arab Finance, Zawya, Decypha and a Reuters flash;
+  its FY2024 EBIT, EBITDA, total liabilities and interest coverage from a Simply Wall St
+  health page and an Investing.com summary.
+- **SCEM** — FY2024 net profit and sales from trade press, while its audited statements sit
+  on the company's own website.
+
+AMOC and SCEM passed the register-side gate the same day.
+
+The gate **supplies the population and runs the shared instrument**: `source_integrity.py`
+gains `audit_document()` and owns the vendor list, the relay phrases and what clears a row.
+**The false-positive rate was measured and the instrument re-pointed twice, never widened.**
+A first draft flagged 34 rows and its largest class was **peer multiples** — nine in one
+study, five in another, every one the construction SIGCM clause 5 *requires*, since clause 1
+governs the **subject's own** historicals. A second matched a forward **revenue target**
+inside a budget announcement, which clause 1 does not reach at all. With peers, non-Company
+sweep rings and forward claims out of scope: **15 rows in 12,654, 0.119%.**
+
+Ratcheted at four **with each entry's measurement**, population-anchored both ways,
+artefact-conditional in the new-study gauntlet. Negative-controlled on 14 conditions, 6 red
+and **eight clean**, the shipped rows pulled out of the delivered documents at run time
+rather than transcribed.
+
+---
+
+# [R-REBUILD-01 CLAUSE TWO EXTENDED 18-09-2026] The worse form has the rule's name removed
+
+The clause was adopted on the morning of 18 September on AMOC's forecast-anchor record.
+Measured across the tree the same evening, the misreading had reached **seven passages** — two
+study builders, a ratchet, two committed records and a method document — and **every one
+deferred a correction that raises the value**. An interpretation that always runs one way is
+not an interpretation; it is a lean with a citation.
+
+**The seventh names no rule at all, and is the worse form.** AMOC's own model declines a
+correction its own text says the standing rule *prefers* and the like-for-like test
+*supports*, on this reason:
+
+> *"a second would land +30.5%, **crossing from one side of the price to the other** in a
+> single pass. Levers are taken one at a time and stop at the crossing."*
+
+`[R-VCAL-01]`'s stop rule is about the **pooled bias** of the valuation calibration crossing
+zero **across the book**. It is not about one study's distance from one quote. Applying it
+there makes **the price** the thing a correction may not pass — the reverse-engineering this
+house prohibits outright, arriving as a reason for **inaction** and therefore **invisible to
+every check that watches for a value being moved toward a quote**. A value withheld from
+crossing a price is the same offence facing the other way.
+
+**All seven corrected, none ratcheted, no value moved** — every one already carried its
+measurement (+55%, 105bp), so the repair was rewriting the *reason* and keeping the number.
+Each now records a **decision**: what was found, what it is worth, why it waits, the edition
+it waits for — with the false reason **quoted** rather than replaced silently.
+
+`engine/deferral_reason.py` is the shared instrument and the gate runs in **two strengths on
+purpose**: a committed **record** is a hard refusal; a builder **comment** is measured,
+printed and never a bar, because a comment that merely *explains* the guard is ordinary and a
+gate unable to tell those apart would push builders to stop explaining things. Re-pointed
+rather than widened after firing on a rebuild ledger whose docstring explains
+`[R-REBUILD-01]` *by* the guard, and it caught **itself** matching its own regex source —
+excluded by name rather than by substring. Ratchet **empty** at adoption. Negative-controlled
+on 13 conditions, 6 red and **seven clean**, the red half quoting the shipped passages
+verbatim.
+
+---
+
+# [R-ENF-01 EXTENDED 18-09-2026] The recorded debt is counted, and an unrecognised key is red
+
+`[R-ENF-02]` is right that a ratchet is how a known debt is carried. `[R-REPAIR-01]` is right
+that a system which only detects accumulates debt at the rate it detects, and that **every
+individual entry is legitimate**, which is what makes the total invisible.
+
+**Nobody had counted the total.** `[R-REPAIR-01]` was adopted on *"47 ratchet entries
+accumulated on five studies"*, read off the lists somebody happened to open. Counted across
+all 67 ratchets: **386 entries across 94 names** — 274 on the 24 studies that exist on disk,
+112 on 70 names the site publishes with no study directory at all. **The gap between 47 and
+386 is not an error in either number; it is what a total looks like when nothing computes
+it.**
+
+`engine/study_debt.py` classifies every key against **two closed named lists** and raises on
+anything else. Its first run returned **eleven questions** no pattern could answer — an
+unrunnable figure script *is* a debt, a resolved-and-kept entry is not, an `[R-ENF-08]`
+failure signature beside its entry is not, a walk-forward run owing a valuation-input block
+is. It then refused **two names** that turned out to be **index series** under `[R-IDX-01]`,
+resolving against `engine/raw_indices/` rather than the study directories. And it found
+**`2POINTZERO`** — a ticker starting with a digit that the first draft's pattern silently
+dropped, **the same name this protocol already records as having been dropped from three
+separate tools by a regex written the same way.**
+
+It sets **no ceiling**, deliberately: a new standard legitimately adds entries on the day it
+is adopted, so a bar on the total would fire on a rule being *written*, which is the
+permanently-red check `[R-ENF-02]` forbids. What it refuses is the three ways a count stops
+being a count — an unrecognised key, a name resolving to no study, no published name and no
+index, and a run that read nothing. The count is dated and committed so **movement** is
+visible, which no individual list can show.
+
+**The general lesson, which is not about ratchets: a pile of individually-correct lists has a
+total, and nobody who maintains one of them can see it.** Each list is owned by whoever wrote
+the rule it belongs to, each may only shorten, and each is read by somebody checking one
+thing. The total belongs to nobody — which is exactly why it grew eight-fold without anyone
+being wrong.
+
+
+---
+
+# [R-STD-02 EXTENDED 18-09-2026] The first rebuild after the rule proved it, and the trigger was a comment
+
+`[R-STD-02]` says a stamp taken from a live constant is a **re-assertion** rather than a
+record — *"it says what the code believes today rather than what the work was held to"* —
+and `scripts/check_standard_claim.py` had been green since the rule was adopted.
+
+On the evening of 18 September, re-running `amoc_study/compute.py` **to correct a comment**
+moved that study's committed standard claim from `2026.09.01` to `2026.09.07`, silently
+asserting conformance to four standards nobody had checked it against. One of them is
+`[R-ASSET-01]`, which that study is **ratcheted as not meeting**. The gate went red
+immediately, on the first rebuild after the rule was written.
+
+**Nothing valued moved, and that is the point.** The rebuild was of prose; the claim was of
+conformance; the two have nothing to do with each other except that one generator emits both.
+
+Frozen to the version the edition was actually built to — read as a constant in the
+generator with its reason, so the generator reproduces its own output and no delivered
+document changes. It moves when the study is **re-issued** and meets the newer standard,
+which is a decision somebody makes rather than a constant's value. This is the same fix
+another generator had already taken for its study **date**, after rebuilding restamped a
+delivered document's account of when the work was done.
+
+**The general lesson, which is not about versions: re-running a generator re-asserts every
+claim its stamps are taken from**, and a rebuild happens for reasons that have nothing to do
+with the claim. Where a record carries a stamp, ask what it is read *from* — a fact, or
+whatever the code believes at the moment somebody happens to run it.

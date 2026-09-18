@@ -3164,16 +3164,31 @@ MODEL_STUDY = _rp.ModelStudyChecklist(
     na_reasons={})
 _rp.assert_model_study(MODEL_STUDY)
 
-OUT['gates'] = dict(standard_version=_rp.STANDARD_VERSION, beta=BETA_REC, ground_up=GROUND_UP,
+# [R-STD-02] A STAMP TAKEN FROM A LIVE CONSTANT IS NOT A RECORD, IT IS A RE-ASSERTION.
+# This study took _rp.STANDARD_VERSION at every run, so re-running compute.py on
+# 18-09-2026 -- for a change to a COMMENT -- silently moved the committed claim from
+# 2026.09.01 to 2026.09.07 and asserted conformance to four standards nobody had
+# checked it against. check_standard_claim caught it the same evening, on the first
+# rebuild after that rule was written, and it was right: this study is ratcheted
+# against [R-ASSET-01] and does not meet the 2026.09.07 requirements.
+#
+# FROZEN TO THE VERSION THIS EDITION WAS ACTUALLY BUILT TO, which is the fix that rule
+# already prescribes and the same one another generator took for its study DATE. It is
+# read out of the delivered record rather than chosen, so the generator reproduces its
+# own output and no document changes. It moves when the study is RE-ISSUED and meets
+# the newer standard -- which is a decision somebody makes, not a constant's value.
+STANDARD_CLAIMED = '2026.09.01'
+
+OUT['gates'] = dict(standard_version=STANDARD_CLAIMED, beta=BETA_REC, ground_up=GROUND_UP,
                     sigcm=[f.name for f in __import__('dataclasses').fields(SIGCM)
                            if f.name != 'na_reasons'],
                     model_study_ok=True)
-OUT['standard_version'] = _rp.STANDARD_VERSION
+OUT['standard_version'] = STANDARD_CLAIMED
 say(f"[Gates] beta {BETA_REC['beta']:.4f} vs {BETA_REC['index_file']} (conforming="
     f"{BETA_REC['conforming']}); ground-up record covers "
     f"{sum(GROUND_UP['share_by_level'].values()):.0%} of revenue across {GROUND_UP['lines']} "
     f"lines, all at 'derived' with the cost-disclosure gap stated; SIGCM and the model-report "
-    f"bar both pass. Study stamped to STANDARD_VERSION {_rp.STANDARD_VERSION}.")
+    f"bar both pass. Study stamped to STANDARD_VERSION {STANDARD_CLAIMED} — the version this edition was built to, frozen rather than taken from the live constant [R-STD-02].")
 
 with open(os.path.join(HERE, 'study_numbers.json'), 'w') as f:
     json.dump(OUT, f, indent=1)
