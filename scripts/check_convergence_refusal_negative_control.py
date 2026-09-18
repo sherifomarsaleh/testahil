@@ -74,7 +74,12 @@ def _live_cell():
 def _with(tk, proj):
     """Install a fixed projection for one name, restoring afterwards."""
     orig = C.PROJECTORS[tk]
-    C.PROJECTORS[tk] = lambda origin, _p=proj: _p
+    # **kw, NOT a fixed signature. The lens gained an `esc` argument the evening
+    # after this control was written and every case here raised a TypeError rather
+    # than testing anything — the control REFUSED, which is the behaviour it exists
+    # to have, and a fixture pinned to a signature is the same shape as one pinned
+    # to live state [L-403].
+    C.PROJECTORS[tk] = lambda origin, _p=proj, **_kw: _p
     return orig
 
 
@@ -85,7 +90,11 @@ def main() -> int:
               "[R-ENF-04]: an empty population is not a clean one")
         return 1
 
-    infl = C.terminal_inflation("EG", y)
+    # THE TERMINAL IS READ THE WAY THE LENS READS IT — at the window's own last
+    # explicit year — rather than at a horizon this control names. It was pinned at a
+    # fixed horizon until the lens stopped reading it that way, and the fixture then
+    # measured the bound against a rate no cell was built on.
+    infl = C.terminal_inflation("EG", y, max(hs) if hs else None)
     if infl is None:
         print("FAILED — the archive carries no terminal inflation at %s %d, so "
               "the bound has nothing to be measured against" % (tk, y))
