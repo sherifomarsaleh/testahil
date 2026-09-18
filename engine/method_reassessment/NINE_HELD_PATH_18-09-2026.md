@@ -121,3 +121,46 @@ every name added to it.
 held — [R-GAP-02] clause three, the method hold — and no fair value moves. The
 difference is that the hold now has a measured cause with a named route out, rather
 than a queue of wiring.
+
+
+---
+
+# End of the run: exactly what stands between the nine and publishing
+
+`scripts/check_publish_block.py` names two open acceptance criteria and nothing else.
+Both are now fully characterised, and neither is a queue of wiring.
+
+## Criterion 3 — the backtest, and it cannot currently be run
+
+`[R-VCAL-02 CLAUSE TWO]` makes Phase 1 the backtest: criterion 3's clauses A, B, C and F
+**on the mechanical series**. That series now has **zero admissible cells**, because the
+lens it is computed by does not rebuild the construction it is meant to grade — five
+explicit years against PHDC's fifteen — and every cell it ever produced breached
+`[R-MACRO-01]`'s convergence bound.
+
+Closing it means **re-sealing the lens declaration**, which is the principal's call and
+is registered as `mechanical-lens-window-reseal` in `engine/escalations.json` with its
+routes, its measurement, a recommendation, a default and a date. The route out is real
+and already in the repository: the IMF World Economic Outlook vintages in
+`engine/macro_history/`, each dated before the origin it would serve, carry a forward
+inflation ladder that converges to the house terminal on its own.
+
+**Nothing about this was a clock**, which is worth saying because the previous reading of
+criterion 3 was a 2027 date.
+
+## Criterion 6 — the reading, and everything except the reading is done
+
+Four files per name, each **opened and read**. The reading is a human act and the plan
+says in terms that no script may attest it.
+
+`python3 scripts/publish_queue.py` prints the queue in reading order with paths.
+Measured today: **23 names deliver documents, all 23 hold all four — 92 files, nothing
+short.** An earlier pass reported five studies missing two of four while every file was
+on disk. They were always there.
+
+## What each of the nine owes on its own account, separately
+
+`python3 scripts/check_study_debt.py` prints it live: 274 ratchet entries across the 24
+studies on disk. That debt does not block publication — the two criteria above do — but
+it is what "finished" means for each name, and it is now countable rather than
+remembered.

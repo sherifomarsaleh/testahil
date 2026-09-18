@@ -1012,6 +1012,55 @@
    "resolved": null,
    "answer": null,
    "answer_written_to": null
+  },
+  {
+   "key": "mechanical-lens-window-reseal",
+   "opened": "2026-09-18",
+   "cls": "instruction",
+   "question": "[R-VCAL-02 CLAUSE TWO] makes Phase 1 the backtest, and the backtest is criterion 3's clauses A, B, C and F ON THE MECHANICAL SERIES. Measured 18-09-2026 that series has ZERO admissible cells, and the cause is not a thin archive: the sealed declaration (MECHANICAL_LENS_3_06-09-2026.md section 1) fixes the explicit window at the walk-forward's own horizons 1-5 and says it 'is not re-derived here', while EVERY DELIVERED STUDY THAT COMMITS THE RECORD CONVERGES to its terminal -- PHDC on FIFTEEN explicit years, TMGH on ten. So the lens rebuilds a fifteen-year construction on five years, and every cell it ever scored breached [R-MACRO-01]'s 2pp convergence bound (3.8pp at best, 15.6pp at worst), six of seven carrying a terminal worth MORE than the whole enterprise value. Does the principal want the lens declaration RE-SEALED on a converging point-in-time inflation ladder, so that Phase 1 has a backtest it can actually run?",
+   "routes": [
+    {
+     "route": "every cell the lens had ever scored, measured against research_protocol.HORIZON_CONVERGENCE",
+     "when": "2026-09-18",
+     "outcome": "all seven breached; the refusal is now in the lens and the declared run scores none. Recorded in engine/valuation_calibration/CONVERGENCE_REFUSAL_18-09-2026.md",
+     "rerun": true
+    },
+    {
+     "route": "every delivered study's committed explicit_years and growth_at_horizon_end",
+     "when": "2026-09-18",
+     "outcome": "nine studies commit the record and every one converges exactly; PHDC uses 15 explicit years, TMGH 10, the rest 5. The lens uses 5 for all of them.",
+     "rerun": true
+    },
+    {
+     "route": "the walk-forward projectors' own escalator rules, read in source",
+     "when": "2026-09-18",
+     "outcome": "they compound the LAST PUBLISHED inflation print flat at every horizon -- (1 + cpi(origin)) ** h -- so a 31-Dec-2019 Egyptian origin compounds at 13.87% for five straight years. That is a pre-registered DRIVER rule and may not move on the strength of a valuation result [R-FCAL-01].",
+     "rerun": true
+    },
+    {
+     "route": "engine/macro_history/ searched for a point-in-time FORWARD ladder",
+     "when": "2026-09-18",
+     "outcome": "FOUND. _extract_weo_egypt.json holds eleven IMF World Economic Outlook vintages with file names and sha256, each carrying a forward projection made at its own publication date. October 2019 projects 13.866 / 9.965 / 7.217 / 7.011 / 7.002 / 7.078 -- converging to the house terminal by year three, no fade, no free parameter. POINT-IN-TIME DISCIPLINE FORBIDS FORESIGHT, NOT A DECLINING FORECAST.",
+     "rerun": true
+    },
+    {
+     "route": "scripts/check_valuation_calibration.py, to see what a new declaration would have to satisfy",
+     "when": "2026-09-18",
+     "outcome": "it reads COMMIT TOPOLOGY -- the pre-registration's introducing commit must be an ANCESTOR of every score file's, and the document must still hash to its seal. A declaration written now is written with the gap in full view, so the evidence that no lever was fitted to it would be gone. That is why this is registered rather than done.",
+     "rerun": true
+    }
+   ],
+   "refs_searched": 262,
+   "why_only_the_principal": "It changes what the backtest IS, and the pre-registration exists precisely so that nobody changes it after seeing the results. Re-sealing is defensible -- the current seal does not reproduce the construction it grades, which is [R-VCAL-01]'s own stated falsifier arriving structurally rather than statistically -- but a desk that has just measured a series at a third of the delivered values cannot be the one that decides to rebuild the instrument, and say so credibly afterwards. The principal can.",
+   "done_meanwhile": "The refusal is IN the lens, imported from research_protocol.HORIZON_CONVERGENCE rather than typed, two-sided exactly as the study gate reads it, negative-controlled on eight conditions. criterion3.py now reports clause A as UNMEASURED rather than crashing or printing NOT MET on inadmissible cells, and names the convergence refusal as the largest drop class rather than burying it in 'other'. score_cashflow's typed header count is computed. No fair value moved and no publish decision changed -- the book was held before and is held now.",
+   "default_if_no_answer": "Leave the seal alone and leave Phase 1 blocked, with the state reported at every run. The honest default is inaction: a backtest that cannot produce a cell blocks the book, which is uncomfortable and true, whereas a re-sealed instrument that closes Phase 1 would be an instrument built after seeing what the old one said.",
+   "default_date": "2026-10-31",
+   "status": "open",
+   "resolves_when": "engine/valuation_calibration/ carries a declaration for the explicit window that is either the existing seal reaffirmed, or a new one whose introducing commit is an ancestor of every score file built under it.",
+   "recommendation": "RE-SEAL, and state in the new declaration that it was written after the old one was measured and why -- which is the only honest way to do it. The argument is that the current seal fails [R-VCAL-01]'s own falsifier on its face: it does not rebuild the construction it grades, and a calibration of a method the house does not use tells nobody anything. The converging ladder is available from a source dated BEFORE each origin, so the new construction needs no free parameter and no foresight. What it cannot claim is that it was designed blind, and the record should say so plainly rather than imply otherwise.",
+   "resolved": null,
+   "answer": null,
+   "answer_written_to": null
   }
  ]
 }
