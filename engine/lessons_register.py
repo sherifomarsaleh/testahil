@@ -7471,6 +7471,129 @@ LESSONS = [
           "is already mechanical is the half that matters: every control in this book "
           "asserts that its mutation LANDED, which is why these six went red instead "
           "of quiet — and that assertion, unlike [L-278] itself, IS in the code.")),
+
+    L("L-404", "ALL", None,
+      "POINT-IN-TIME DISCIPLINE FORBIDS FORESIGHT, NOT A DECLINING FORECAST — and "
+      "every run in this book had quietly read it as forbidding both.",
+      "Nine walk-forward runs escalate their drivers on the last published inflation "
+      "print at the origin, held FLAT at every horizon. That reads like the cautious "
+      "choice and it is not a neutral one: holding a rate flat is itself a forecast — "
+      "the forecast that inflation never changes — and it is the only forecast on the "
+      "table that NO institution published. The archive held the alternative the whole "
+      "time. A cautious-sounding convention is still a claim about the world and is "
+      "audited like one, which is [R-CAL-02]'s lesson arriving in a macro path.",
+      "the mechanical lens rebuild, 18-09-2026", "build",
+      "The point-in-time archive carries, at every origin, the IMF World Economic "
+      "Outlook vintage's own forward projection for that year and the four after it, "
+      "published at the origin and declining on its own with no fade: origin 2017 runs "
+      "16.92 / 10.91 / 8.09 / 7.18 / 6.96 and origin 2023 runs 32.18 / 19.88 / 13.77 / "
+      "11.47 / 9.50. A forecaster standing there could have used exactly that. Under "
+      "the flat convention NO window of ANY length can satisfy [R-MACRO-01]'s 2pp "
+      "convergence bound, because a constant rate converges to nothing; under the "
+      "published ladder a window ending at horizon h carries the ladder's own rate for "
+      "that year and the bound measures what is actually left, which is real growth.",
+      "An archive origin whose vintage published no forward path, where the flat print "
+      "genuinely is the only knowable figure — which is why pit_inflation refuses such "
+      "an origin rather than extending a ladder this desk would have invented.",
+      promotion="enforced",
+      promoted_by="engine/valuation_calibration/pit_inflation.py",
+      promotion_note=(
+          "The module reads the ladder and REFUSES a horizon the archive does not "
+          "reach, so the alternative to a published path is a dropped cell rather than "
+          "an extrapolation. It does not bind the nine runs' own projections, which "
+          "keep their pre-registered flat legs for driver scoring — correctly, since "
+          "that is a different question — so what is enforced is the VALUE path only.")),
+
+    L("L-405", "ALL", None,
+      "AN INSTRUMENT ASSEMBLED FROM ANOTHER PROCESS'S PARTS INHERITS THAT PROCESS'S "
+      "PURPOSE, AND NOBODY CHECKS THE FIT BECAUSE THE PARTS ARE KNOWN TO BE GOOD.",
+      "The mechanical valuation lens builds a fair value at every past origin out of "
+      "the walk-forward runs' projections. Those projections are careful, "
+      "pre-registered, point-in-time clean and correct — for the question they were "
+      "built for, which is whether a forecaster could have got three to five years of "
+      "DRIVERS right. Nothing in them was ever required to reach a steady state, "
+      "because a driver score does not need one. A VALUE does. The parts were sound "
+      "and the assembly was never tested against the new question.",
+      "the mechanical lens rebuild, 18-09-2026", "build",
+      "Asked for fifteen horizons instead of the pre-registered five, PHDC's projection "
+      "ends GROWING AT 20.66% and TMGH's at 39.37% — they accelerate, because each "
+      "compounds a population or intensity term that never decays. So the obvious "
+      "repair, running the explicit window longer, makes it worse rather than better, "
+      "and was tested rather than assumed. Meanwhile every delivered study that commits "
+      "the record converges exactly, PHDC on fifteen explicit years and TMGH on ten, on "
+      "drivers that genuinely mature. 22 of 60 cells are refused on this and the lens "
+      "scores none.",
+      "A run whose pre-registered driver rules reach a steady state on their own, which "
+      "would make this a property of these particular models rather than of borrowing a "
+      "driver-scoring instrument to build values.",
+      promotion="outstanding",
+      promotion_note=(
+          "The testable claim is that a projection used to build a value must converge, "
+          "and it IS enforced — cashflow_lens refuses on [R-MACRO-01]'s imported bound. "
+          "What is NOT built is anything holding the general claim, that an instrument "
+          "reused across questions is checked against the new one. It is registered as "
+          "a debt rather than declared prose because it is expressible: a checker could "
+          "require any module consuming another process's committed output to name the "
+          "question that output was produced for.")),
+
+    L("L-406", "ALL", None,
+      "A POWER OF TEN IS A UNIT, NOT A VIEW — and the instrument built to measure gaps "
+      "was not looking at its own answer.",
+      "Every gate in the valuation lens examined how a number was BUILT. The first run "
+      "of the rebuilt lens scored exactly one cell and it read plus seventy-five "
+      "thousand per cent. No method disagrees with a market by a factor of ten; a share "
+      "count or a price series was in the wrong unit. This is [R-GAP-01]'s own lesson — "
+      "when a result is surprising, that is evidence, and evidence gets a gate — "
+      "arriving INSIDE the instrument written to apply it elsewhere.",
+      "the mechanical lens rebuild, 18-09-2026", "build",
+      "SWDY 2015: a fair value of 2,782.87 against a price of 3.67, +75,727.6%. The "
+      "unit ratio measured, the terminal built, the bridge footed, the convergence "
+      "bound held, and the cell would have been pooled into a bias it would have "
+      "dominated on its own. The refusal's bound is not chosen: one order of magnitude, "
+      "because the failure it catches IS an order of magnitude — the same argument "
+      "panel_scale already makes when it pins a unit to a power of ten, reused rather "
+      "than minted.",
+      "A cell genuinely reading a tenfold disagreement that survives an audit of its "
+      "share count and price series, which would make the bound a bound on views "
+      "rather than on units and would have to be withdrawn.",
+      promotion="enforced",
+      promoted_by="engine/valuation_calibration/cashflow_lens.py",
+      promotion_note=(
+          "The refusal is in cell() and prints the factor it refused on, so a suspect "
+          "cell is named rather than silently absent. It binds this lens only; whether "
+          "every instrument that produces a number should look at its own answer is the "
+          "wider claim and is not built.")),
+
+    L("L-407", "ALL", None,
+      "A GATE THAT CANNOT EXPRESS A CORRECTION FORBIDS THE CORRECTION ITS OWN DOCUMENT "
+      "REQUIRES.",
+      "The valuation pre-registration says in terms that it may never be edited and "
+      "that a correction is a NEW dated document superseding it. The gate enforcing it "
+      "held every score against the LATEST pre-registration — so the moment a second "
+      "one was committed, every score correctly produced under the first became 'a "
+      "score that predates the design it claims to follow'. The rule and the gate "
+      "disagreed, and the gate was what bound. Nobody could have discovered it without "
+      "actually superseding, which is why it survived from the day both were written.",
+      "the mechanical lens rebuild, 18-09-2026", "self_audit",
+      "check_valuation_calibration.py now pairs each score with the pre-registration in "
+      "force AT THAT SCORE'S OWN COMMIT, read off topology, and verifies EVERY sealed "
+      "document rather than only the current one — the superseded one being exactly "
+      "where a rationalisation would go, since it is the design the earlier scores "
+      "claim to follow and nobody opens it again. Negative-controlled on twelve "
+      "conditions, the decisive pair being a score under design 1 with design 2 "
+      "committed later, which must PASS and which the old gate condemned, and a "
+      "superseded document edited after its seal, which must FAIL and which the old "
+      "gate could not see.",
+      "A supersession the changed gate lets through that the old one would have caught, "
+      "which would mean the pairing weakened the order test rather than sharpening it.",
+      promotion="enforced",
+      promoted_by="scripts/check_valuation_calibration.py",
+      promotion_note=(
+          "The specific claim — each score after the design in force at its own commit, "
+          "every seal verified — is arithmetic and is enforced. The general claim, that "
+          "a gate should be tested against the corrections its own rule prescribes, is "
+          "prose: it is a question about what a rule permits, which no checker can read "
+          "off a repository.")),
 ]
 
 

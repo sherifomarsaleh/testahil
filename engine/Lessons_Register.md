@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**324 lessons**, of which 279 bind on every study, 34 on a class of company, and 11 on a single name.
+**328 lessons**, of which 283 bind on every study, 34 on a class of company, and 11 on a single name.
 
-By how they were learned: 62 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 31 from outside critiques, 35 from self-audits, 194 found while building.
+By how they were learned: 62 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 31 from outside critiques, 36 from self-audits, 197 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -2868,6 +2868,46 @@ Holding a traded price flat in nominal terms is legitimate and often sensible. D
 > **What it cost, or how we know.** Running every check including the controls — which the ordinary sweep excludes — found SIX red, all in CI, none caused by that day's work and all green at a commit eleven days earlier. THE FIRST COUNT WAS FOUR AND CAME FROM A PARTIAL SWEEP, which is this lesson's own subject arriving in its own evidence. Five fail for one reason: the bibliography ratchet had been PRUNED TO EMPTY so the 'a ratcheted breach stays green' case had no breach to use; the asp driver no longer carried an applied correction so the mutation removing one removed nothing; and PHDC's applied count moved off the 6 a fixture was pinned to; and a terminal-record control counts 38 markers in a tree its fixture pins at 37. Each REFUSED rather than reporting green, which is the opposite of the failure caught five times the same session.
 
 > **What would overturn it.** A sweep finding no control pinned to live state, which would mean [L-278] had reached the work after all and this entry is about a fortnight rather than about a pattern.
+
+### L-404 · POINT-IN-TIME DISCIPLINE FORBIDS FORESIGHT, NOT A DECLINING FORECAST — and every run in this book had quietly read it as forbidding both.
+
+Nine walk-forward runs escalate their drivers on the last published inflation print at the origin, held FLAT at every horizon. That reads like the cautious choice and it is not a neutral one: holding a rate flat is itself a forecast — the forecast that inflation never changes — and it is the only forecast on the table that NO institution published. The archive held the alternative the whole time. A cautious-sounding convention is still a claim about the world and is audited like one, which is [R-CAL-02]'s lesson arriving in a macro path.
+
+**Applies to:** every study  ·  *Learned from:* found while building, the mechanical lens rebuild, 18-09-2026
+
+> **What it cost, or how we know.** The point-in-time archive carries, at every origin, the IMF World Economic Outlook vintage's own forward projection for that year and the four after it, published at the origin and declining on its own with no fade: origin 2017 runs 16.92 / 10.91 / 8.09 / 7.18 / 6.96 and origin 2023 runs 32.18 / 19.88 / 13.77 / 11.47 / 9.50. A forecaster standing there could have used exactly that. Under the flat convention NO window of ANY length can satisfy [R-MACRO-01]'s 2pp convergence bound, because a constant rate converges to nothing; under the published ladder a window ending at horizon h carries the ladder's own rate for that year and the bound measures what is actually left, which is real growth.
+
+> **What would overturn it.** An archive origin whose vintage published no forward path, where the flat print genuinely is the only knowable figure — which is why pit_inflation refuses such an origin rather than extending a ladder this desk would have invented.
+
+### L-405 · AN INSTRUMENT ASSEMBLED FROM ANOTHER PROCESS'S PARTS INHERITS THAT PROCESS'S PURPOSE, AND NOBODY CHECKS THE FIT BECAUSE THE PARTS ARE KNOWN TO BE GOOD.
+
+The mechanical valuation lens builds a fair value at every past origin out of the walk-forward runs' projections. Those projections are careful, pre-registered, point-in-time clean and correct — for the question they were built for, which is whether a forecaster could have got three to five years of DRIVERS right. Nothing in them was ever required to reach a steady state, because a driver score does not need one. A VALUE does. The parts were sound and the assembly was never tested against the new question.
+
+**Applies to:** every study  ·  *Learned from:* found while building, the mechanical lens rebuild, 18-09-2026
+
+> **What it cost, or how we know.** Asked for fifteen horizons instead of the pre-registered five, PHDC's projection ends GROWING AT 20.66% and TMGH's at 39.37% — they accelerate, because each compounds a population or intensity term that never decays. So the obvious repair, running the explicit window longer, makes it worse rather than better, and was tested rather than assumed. Meanwhile every delivered study that commits the record converges exactly, PHDC on fifteen explicit years and TMGH on ten, on drivers that genuinely mature. 22 of 60 cells are refused on this and the lens scores none.
+
+> **What would overturn it.** A run whose pre-registered driver rules reach a steady state on their own, which would make this a property of these particular models rather than of borrowing a driver-scoring instrument to build values.
+
+### L-406 · A POWER OF TEN IS A UNIT, NOT A VIEW — and the instrument built to measure gaps was not looking at its own answer.
+
+Every gate in the valuation lens examined how a number was BUILT. The first run of the rebuilt lens scored exactly one cell and it read plus seventy-five thousand per cent. No method disagrees with a market by a factor of ten; a share count or a price series was in the wrong unit. This is [R-GAP-01]'s own lesson — when a result is surprising, that is evidence, and evidence gets a gate — arriving INSIDE the instrument written to apply it elsewhere.
+
+**Applies to:** every study  ·  *Learned from:* found while building, the mechanical lens rebuild, 18-09-2026
+
+> **What it cost, or how we know.** SWDY 2015: a fair value of 2,782.87 against a price of 3.67, +75,727.6%. The unit ratio measured, the terminal built, the bridge footed, the convergence bound held, and the cell would have been pooled into a bias it would have dominated on its own. The refusal's bound is not chosen: one order of magnitude, because the failure it catches IS an order of magnitude — the same argument panel_scale already makes when it pins a unit to a power of ten, reused rather than minted.
+
+> **What would overturn it.** A cell genuinely reading a tenfold disagreement that survives an audit of its share count and price series, which would make the bound a bound on views rather than on units and would have to be withdrawn.
+
+### L-407 · A GATE THAT CANNOT EXPRESS A CORRECTION FORBIDS THE CORRECTION ITS OWN DOCUMENT REQUIRES.
+
+The valuation pre-registration says in terms that it may never be edited and that a correction is a NEW dated document superseding it. The gate enforcing it held every score against the LATEST pre-registration — so the moment a second one was committed, every score correctly produced under the first became 'a score that predates the design it claims to follow'. The rule and the gate disagreed, and the gate was what bound. Nobody could have discovered it without actually superseding, which is why it survived from the day both were written.
+
+**Applies to:** every study  ·  *Learned from:* self-audit, the mechanical lens rebuild, 18-09-2026
+
+> **What it cost, or how we know.** check_valuation_calibration.py now pairs each score with the pre-registration in force AT THAT SCORE'S OWN COMMIT, read off topology, and verifies EVERY sealed document rather than only the current one — the superseded one being exactly where a rationalisation would go, since it is the design the earlier scores claim to follow and nobody opens it again. Negative-controlled on twelve conditions, the decisive pair being a score under design 1 with design 2 committed later, which must PASS and which the old gate condemned, and a superseded document edited after its seal, which must FAIL and which the old gate could not see.
+
+> **What would overturn it.** A supersession the changed gate lets through that the old one would have caught, which would mean the pairing weakened the order test rather than sharpening it.
 
 
 ---
