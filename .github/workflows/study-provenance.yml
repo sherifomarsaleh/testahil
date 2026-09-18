@@ -1485,6 +1485,103 @@ jobs:
       - name: Every named error is planted and caught
         run: python3 scripts/check_error_injection.py
 
+      # ---- the six gates adopted on 18-09-2026, ADDED IN THE SAME PASS THAT FOUND THEM
+      # MISSING. Every one was written, negative-controlled and committed that day and
+      # NONE was in this file: scripts/repair_loop.py discovers gates by glob and picked
+      # them up, CI is a typed list and did not. A gate outside this file is enforcement
+      # that runs when somebody remembers, which is what the whole enforcement layer
+      # exists to replace — and [R-MERGE-01] says green means EVERY gate, not a subset.
+      # check_workflows_complete.py below now makes the omission impossible to repeat.
+
+      # [R-REAL-01]. A revenue line that does not move with inflation while the cost
+      # lines do manufactures a margin collapse, and the model reports the collapse as a
+      # finding. PHAR's drug price falls 15.9% in REAL terms under a note saying it
+      # "tracks domestic inflation". The gate catches SILENCE, never the decline itself.
+      - name: Price paths declare what they do in real terms
+        run: python3 scripts/check_real_terms_paths.py
+
+      - name: Real-terms gate — negative control
+        run: python3 scripts/check_real_terms_paths_negative_control.py
+
+      # A quantity held FLAT in nominal terms is a real-decline forecast, and two studies
+      # describe it as the absence of one.
+      - name: A flat nominal path is not the absence of a forecast
+        run: python3 scripts/check_flat_nominal_claim.py
+
+      - name: Flat-nominal gate — negative control
+        run: python3 scripts/check_flat_nominal_claim_negative_control.py
+
+      # [R-LESSON-02]. 19 of 312 lessons reach the layer that binds. The debt is counted
+      # rather than felt, and a lesson added with no declaration is a NEW breach.
+      - name: Lessons declare whether they reach the binding layer
+        run: python3 scripts/check_lesson_promotion.py
+
+      - name: Lesson-promotion gate — negative control
+        run: python3 scripts/check_lesson_promotion_negative_control.py
+
+      # [R-BETA-05]. A document quoting beta diagnostics names the estimator, because a
+      # careful outside reader applying the textbook identity to a Dimson beta concludes
+      # the figures were fabricated — and is right to, on what the page tells them.
+      - name: Beta diagnostics name their estimator
+        run: python3 scripts/check_beta_estimator_disclosure.py
+
+      - name: Beta-estimator gate — negative control
+        run: python3 scripts/check_beta_estimator_disclosure_negative_control.py
+
+      # [R-REBUILD-01 CLAUSE TWO]. "The promotion guard forbids it" is not a reason to
+      # defer a correction, and seven passages gave it as one — every single one
+      # deferring a correction that RAISES the value.
+      - name: No deferral cites a rule that does not govern it
+        run: python3 scripts/check_deferral_reason.py
+
+      - name: Deferral-reason gate — negative control
+        run: python3 scripts/check_deferral_reason_negative_control.py
+
+      # The total recorded debt across every ratchet, which no single list can show and
+      # which nobody who maintains one of them can see.
+      - name: The recorded debt is counted
+        run: python3 scripts/check_study_debt.py
+
+      - name: Study-debt gate — negative control
+        run: python3 scripts/check_study_debt_negative_control.py
+
+      # CLOSES THE CLASS RATHER THAN THE INSTANCE [R-ENF-01]: every gate on disk runs in
+      # some workflow. Six adopted in one day ran in none, and nothing could have said
+      # so, because a typed list is silent about what is not in it.
+      - name: Every gate on disk runs somewhere
+        run: python3 scripts/check_workflows_complete.py
+
+      - name: Workflows-complete gate — negative control
+        run: python3 scripts/check_workflows_complete_negative_control.py
+
+      # ---- EIGHT MORE THE COMPLETENESS GATE FOUND ON ITS FIRST RUN, and none of these
+      # is from today. They were written, negative-controlled, committed — and run by
+      # nobody. That is the finding rather than an untidiness: [R-MACRO-01 AMENDED]'s
+      # anchor-age gate has been enforcing nothing since 6 September.
+      - name: A study is not struck long after its currency anchor
+        run: python3 scripts/check_macro_anchor_age.py
+
+      - name: Macro anchor-age gate — negative control
+        run: python3 scripts/check_macro_anchor_age_negative_control.py
+
+      - name: Delivered bibliographies source the company's own historicals
+        run: python3 scripts/check_bibliography_sources.py
+
+      - name: Bibliography-sources gate — negative control
+        run: python3 scripts/check_bibliography_sources_negative_control.py
+
+      - name: The terminal declares its basis
+        run: python3 scripts/check_terminal_basis.py
+
+      - name: Terminal-basis gate — negative control
+        run: python3 scripts/check_terminal_basis_negative_control.py
+
+      - name: Convergence-refusal — negative control
+        run: python3 scripts/check_convergence_refusal_negative_control.py
+
+      - name: Terminal ERP basis — negative control
+        run: python3 scripts/check_erp_terminal_basis_negative_control.py
+
       - name: Tree-unmodified gate — negative control
         run: python3 scripts/check_tree_unmodified_negative_control.py
 
