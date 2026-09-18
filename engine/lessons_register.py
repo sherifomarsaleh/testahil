@@ -7433,6 +7433,37 @@ LESSONS = [
           "check_flat_nominal_claim, and the general form needs a decision about "
           "which grid rows count as a judgement rather than a sensitivity, which is "
           "a rule question rather than a coding one.")),
+
+    L("L-403", "ALL", None,
+      "A test fixture pinned to live repository state has an expiry date nobody sets.",
+      "A negative control that finds its condition in the repository rather than "
+      "building it is correct on the day it is written and is invalidated by ordinary, "
+      "legitimate work elsewhere — a ratchet paid down, a correction withdrawn, a count "
+      "moved. The gate it protects is then unevidenced, and the only thing standing "
+      "between that and a silent pass is whether the control checks that its own "
+      "mutation landed.",
+      "full negative-control sweep, 18-09-2026", "self_audit",
+      "Running every check including the controls — which the ordinary sweep excludes "
+      "— found FOUR red, all in CI, none caused by that day's work and all four green "
+      "at a commit eleven days earlier. Three fail for one reason: the bibliography "
+      "ratchet had been PRUNED TO EMPTY so the 'a ratcheted breach stays green' case "
+      "had no breach to use; the asp driver no longer carried an applied correction so "
+      "the mutation removing one removed nothing; and PHDC's applied count moved off "
+      "the 6 a fixture was pinned to. Each REFUSED rather than reporting green, which "
+      "is the opposite of the failure caught five times the same session.",
+      "A control whose condition genuinely cannot be synthesised — where borrowing the "
+      "live state is the only way to test the thing at all, and the expiry is a cost "
+      "rather than a defect.",
+      promotion="prose",
+      promotion_note=(
+          "Whether a fixture builds its condition or borrows it is visible in the "
+          "control's source and is not mechanically separable from a control that "
+          "legitimately reads the tree to set up a sandbox — the gauntlet and several "
+          "controls copy the repository on purpose. A checker could not tell the two "
+          "apart without deciding what each control is FOR, which is judgement. What "
+          "is already mechanical is the half that matters: every control in this book "
+          "asserts that its mutation LANDED, which is why these four went red instead "
+          "of quiet.")),
 ]
 
 

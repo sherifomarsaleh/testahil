@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**323 lessons**, of which 278 bind on every study, 34 on a class of company, and 11 on a single name.
+**324 lessons**, of which 279 bind on every study, 34 on a class of company, and 11 on a single name.
 
-By how they were learned: 62 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 31 from outside critiques, 34 from self-audits, 194 found while building.
+By how they were learned: 62 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 31 from outside critiques, 35 from self-audits, 194 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -2858,6 +2858,16 @@ Holding a traded price flat in nominal terms is legitimate and often sensible. D
 > **What it cost, or how we know.** One study records 'Holding a traded commodity price flat rather than forecasting it is settled house convention and IS NOT CONTESTED', of a choice worth +68.7% of its own central. The sign test then runs on the judgements that remain, correctly, and reports on a population the largest item is missing from.
 
 > **What would overturn it.** A declaration of settled convention on a choice worth less than the 5% materiality line the sign test already applies, where nothing is being removed from the count.
+
+### L-403 · A test fixture pinned to live repository state has an expiry date nobody sets.
+
+A negative control that finds its condition in the repository rather than building it is correct on the day it is written and is invalidated by ordinary, legitimate work elsewhere — a ratchet paid down, a correction withdrawn, a count moved. The gate it protects is then unevidenced, and the only thing standing between that and a silent pass is whether the control checks that its own mutation landed.
+
+**Applies to:** every study  ·  *Learned from:* self-audit, full negative-control sweep, 18-09-2026
+
+> **What it cost, or how we know.** Running every check including the controls — which the ordinary sweep excludes — found FOUR red, all in CI, none caused by that day's work and all four green at a commit eleven days earlier. Three fail for one reason: the bibliography ratchet had been PRUNED TO EMPTY so the 'a ratcheted breach stays green' case had no breach to use; the asp driver no longer carried an applied correction so the mutation removing one removed nothing; and PHDC's applied count moved off the 6 a fixture was pinned to. Each REFUSED rather than reporting green, which is the opposite of the failure caught five times the same session.
+
+> **What would overturn it.** A control whose condition genuinely cannot be synthesised — where borrowing the live state is the only way to test the thing at all, and the expiry is a cost rather than a defect.
 
 
 ---
