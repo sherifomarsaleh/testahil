@@ -499,8 +499,8 @@
   {
    "check": "minority deducted at its share of value (adopted basis)",
    "status": "ok",
-   "got": -75610.96021155221,
-   "want": -75610.96021155221,
+   "got": -80135.59456566832,
+   "want": -80135.59456566832,
    "difference": 0.0
   },
   {
@@ -513,85 +513,85 @@
   {
    "check": "enterprise value",
    "status": "ok",
-   "got": 273165.6735498477,
-   "want": 273165.6735498477,
+   "got": 294735.9295708061,
+   "want": 294735.9295708061,
    "difference": 0.0
   },
   {
    "check": "published case rating|capacity reproduces",
    "status": "ok",
-   "got": 138.21184982642288,
-   "want": 138.21184982642288,
+   "got": 148.6795256781154,
+   "want": 148.6795256781154,
    "difference": 0.0
   },
   {
    "check": "published case rating|recovery reproduces",
    "status": "ok",
-   "got": 60.889411892994154,
-   "want": 60.889411892994154,
+   "got": 70.26365504967801,
+   "want": 70.26365504967801,
    "difference": 0.0
   },
   {
    "check": "published case cds|capacity reproduces",
    "status": "ok",
-   "got": 141.38884854261062,
-   "want": 141.38884854261062,
+   "got": 152.14491269088882,
+   "want": 152.14491269088882,
    "difference": 0.0
   },
   {
    "check": "published case cds|recovery reproduces",
    "status": "ok",
-   "got": 62.1894115733003,
-   "want": 62.1894115733003,
+   "got": 71.82207479367689,
+   "want": 71.82207479367689,
    "difference": 0.0
   },
   {
    "check": "sensitivity at a -800bp shift",
    "status": "ok",
-   "got": 310.41478808785246,
-   "want": 310.41478808785246,
+   "got": 409.5697284993098,
+   "want": 409.5697284993098,
    "difference": 0.0
   },
   {
    "check": "sensitivity at a -400bp shift",
    "status": "ok",
-   "got": 191.60073820716775,
-   "want": 191.60073820716775,
+   "got": 214.26198622539147,
+   "want": 214.26198622539147,
    "difference": 0.0
   },
   {
    "check": "sensitivity at a -200bp shift",
    "status": "ok",
-   "got": 162.63889679192567,
-   "want": 162.63889679192567,
+   "got": 177.61380886761643,
+   "want": 177.61380886761643,
    "difference": 0.0
   },
   {
    "check": "sensitivity at a +0bp shift",
    "status": "ok",
-   "got": 141.38884854261062,
-   "want": 141.38884854261062,
+   "got": 152.14491269088882,
+   "want": 152.14491269088882,
    "difference": 0.0
   },
   {
    "check": "sensitivity at a +200bp shift",
    "status": "ok",
-   "got": 124.96896961143793,
-   "want": 124.96896961143793,
+   "got": 133.10289278697135,
+   "want": 133.10289278697135,
    "difference": 0.0
   },
   {
    "check": "sensitivity at a +400bp shift",
    "status": "ok",
-   "got": 111.84049365027136,
-   "want": 111.84049365027136,
+   "got": 118.20885220273215,
+   "want": 118.20885220273215,
    "difference": 0.0
   },
   {
    "check": "sensitivity at a +800bp shift",
    "status": "ok",
-   "got": 92.11140273854508,
-   "want": 92.11140273854508,
+   "got": 96.29445843332968,
+   "want": 96.29445843332968,
    "difference": 0.0
   }
  ],

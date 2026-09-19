@@ -57,7 +57,7 @@ NET_DEBT = GROSS_DEBT - REG["cash"]
 # 31 March 2026 (reviewed), per GAP_REVIEW_01-09-2026 heading 6. FY2025 stays
 # the base year of the PROJECTED statements above; only the enterprise-to-equity
 # bridge, the book lens and the debt stack move to the newer sheet.
-BS_BRIDGE = {k: r["value"] for k, r in IN.BALANCE_SHEET_BRIDGE.items()}
+BS_BRIDGE = {k: r["value"] for k, r in IN.BALANCE_SHEET_1Q26.items()}
 BRIDGE_BS_DATE = IN.BRIDGE_BS_DATE
 GROSS_DEBT_BRIDGE = sum(BS_BRIDGE[k] for k in IN.DEBT_LINES)
 NET_DEBT_BRIDGE = GROSS_DEBT_BRIDGE - BS_BRIDGE["cash"]
@@ -74,8 +74,8 @@ NET_DEBT_BRIDGE = GROSS_DEBT_BRIDGE - BS_BRIDGE["cash"]
 _HIS = {y: {k: r["value"] for k, r in d.items()} for y, d in IN.HISTORICAL_IS.items()}
 NCI_VALUE_SHARE = _HIS["2025"]["nci"] / _HIS["2025"]["npat_pre_nci"]          # adopted proxy
 NCI_PROFIT_SHARE_3Y = sum(_HIS[y]["nci"] / _HIS[y]["npat_pre_nci"] for y in ("2023", "2024", "2025")) / 3.0
-NCI_BOOK_BRIDGE = BS_BRIDGE["nci_equity"]                                        # reference: at book
-NCI_BOOK_SHARE_BRIDGE = BS_BRIDGE["nci_equity"] / BS_BRIDGE["total_equity"]       # reference: book share
+NCI_BOOK_1Q26 = BS_BRIDGE["nci_equity"]                                        # reference: at book
+NCI_BOOK_SHARE_1Q26 = BS_BRIDGE["nci_equity"] / BS_BRIDGE["total_equity"]       # reference: book share
 NCI_BASIS = "share of equity value, proxied by the minority's filed share of FY2025 profit after tax"
 
 # --- the disclosed regional history ----------------------------------------
@@ -163,17 +163,9 @@ GM_1Q26 = REG["gross_profit_1q26"] / REG["revenue_1q26"]
 # here. But declining to carry the drift is not a reason to anchor above the latest
 # reviewed level: the level and the trend are two different decisions, and the average
 # conflated them.
-# [R-ANCHOR-01], RE-ANCHORED 17-09-2026 ONTO THE REVIEWED HALF. The anchor was the
-# 1Q2026 earnings release; the company has since reported a REVIEWED half to 30 June
-# 2026, and a near-term reviewed actual outranks anything earlier. The level barely
-# moves -- 35.4670 against 35.4839 per cent -- and the anchor is now a half rather than
-# a quarter and a reviewed statement rather than a release rounding to the nearest
-# hundred million. THE LEVER IS ABOUT THE QUALITY OF THE ANCHOR RATHER THAN ITS LEVEL,
-# and presenting a rounding difference as a finding would be the opposite of the point.
-GM_1H26 = IN.OPERATING["gross_profit_1h26"]["value"] / IN.OPERATING["revenue_1h26"]["value"]
-GM_FORWARD = GM_1H26
+GM_FORWARD = GM_1Q26
 COST_DRIFT = 0.0
-COST_DRIFT_MEASURED = ((1 - GM_1H26) / (1 - GM_FY25)) - 1.0
+COST_DRIFT_MEASURED = ((1 - GM_1Q26) / (1 - GM_FY25)) - 1.0
 
 
 def region_forecast():

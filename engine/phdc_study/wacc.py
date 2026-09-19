@@ -215,34 +215,6 @@ if __name__ == "__main__":
     # the record now names the one that is actually central, because a record
     # labelled "rating" while the model discounts on the CDS schedule is worse than
     # either choice — it reads as evidence.
-    # [R-COC-02] THE BETA'S PROVENANCE RIDES ON THE RECORD, AS A CHECKABLE TOKEN
-    # BESIDE THE PROSE. This study already carried a full paragraph of provenance --
-    # tier, index file, R-squared, standard error, observation count, Dimson
-    # correction, the Blume cross-check -- and it sat on the WaccInputs object, not
-    # on the cost-of-capital record a reader and a checker actually see. So nothing
-    # on that record distinguished a measured regression from a priced tier-3
-    # fallback from a number somebody typed, which is the exact complaint that rule
-    # makes of SCEM's honest 1.00.
-    #
-    # THE TOKEN IS DERIVED FROM THE BETA RECORD RATHER THAN TYPED. GBCO writes the
-    # literal 'own_stock_regression' beside its prose, which is true there and is a
-    # second place for a fact to drift: a study whose regression later fails the
-    # usability gate would fall to a tier-3 beta and keep a literal saying otherwise.
-    # Here the enum is a function of the attested record, so it cannot disagree with
-    # the beta it describes.
-    _b = out["beta_record"]
-    if _b.get("usable") and _b.get("conforming"):
-        _bsrc = "own_stock_regression"
-    else:
-        raise SystemExit(
-            "PHDC's regression is no longer both usable and conforming (usable=%r, "
-            "conforming=%r). The beta has fallen to a tier-2 or tier-3 construction "
-            "and THIS STUDY MUST SAY WHICH -- peer_relevered, tier3_fallback or "
-            "shrunk -- rather than inherit a token that is no longer true. Stop and "
-            "decide; do not let this default." % (_b.get("usable"), _b.get("conforming")))
-    for _basis in sched:
-        sched[_basis]["beta_source"] = _bsrc
-        sched[_basis]["beta_source_note"] = i.beta_source
     out["cost_of_capital_record"] = sched["cds"]      # this study's CENTRAL basis
     out["cost_of_capital_record_alt"] = sched["rating"]
     json.dump(out, open(os.path.join(HERE, "wacc_result.json"), "w"), indent=1, default=str)

@@ -95,26 +95,7 @@ CONV = {"FY2023": REG["cfo_fy23"] / REG["revenue_fy23"],
         "FY2025": CFO25 / R25}
 CONV_LO = min(CONV.values())
 CONV_HI = max(CONV.values())
-# RE-ANCHORED 17-09-2026 [R-ANCHOR-01], AND THE DEFECT UNDERNEATH IT IS WORTH NAMING.
-# This line read `sum(CONV.values()) / len(CONV)` -- a SECOND implementation of the
-# conversion rate valuation_v2.lenses() also computed, from the same three years by the
-# same arithmetic. Two implementations of one quantity agree until somebody moves one,
-# and when the base case was re-anchored on the reviewed half the projection kept the
-# three-year mean: the workbook's own recalculation caught it as 32 mismatches down the
-# DCF column, which is what that gate is for.
-# The rate is now the REVIEWED HALF to 30 June 2026 -- operating cash flow 1,499.068 over
-# revenue 19,528.118 -- and it is DERIVED HERE FROM THE SAME REGISTER ENTRIES rather than
-# copied as a literal, so the two sites cannot drift to different numbers again.
-CONV_1H26 = REG["cfo_1h26"] / REG["revenue_1h26"]
-CONV_MID = CONV_1H26
-# THE THREE-YEAR MEAN IS KEPT UNDER ITS OWN NAME, because it is what the rate USED to
-# be and the document prints the three years beside whatever is carried. Once CONV_MID
-# stopped being a mean, every site still calling it one made a claim a reader can check
-# on the page and find false -- and one of them was the delivered document, which told
-# a reader that 4.3, 17.9 and 3.9 per cent average to 7.7 when they average to 8.7.
-# A NAME THAT OUTLIVES THE CONSTRUCTION IT DESCRIBES IS A FALSE STATEMENT WITH A
-# PLAUSIBLE NUMBER ATTACHED. Both are now exposed, each under the name it deserves.
-CONV_MEAN3 = sum(CONV.values()) / len(CONV)
+CONV_MID = sum(CONV.values()) / len(CONV)
 
 CAPEX_RATIO = 0.01               # maintenance only; the build itself is inventory
 DIVIDEND = 0.0                   # the company has not paid a cash dividend
@@ -345,8 +326,7 @@ def report():
     print("CASH CONVERSION, THE COMPANY'S OWN THREE DISCLOSED YEARS")
     for k in ("FY2023", "FY2024", "FY2025"):
         print("  %-42s %10.2f%%" % (k, 100 * CONV[k]))
-    print("  %-42s %10.2f%%" % ("reviewed 1H2026, carried in Framing B", 100 * CONV_MID))
-    print("  %-42s %10.2f%%" % ("three-year mean, superseded", 100 * CONV_MEAN3))
+    print("  %-42s %10.2f%%" % ("mean, carried in Framing B", 100 * CONV_MID))
     print()
 
     print("PROJECTED INCOME STATEMENT — shared by both framings")
@@ -535,9 +515,7 @@ if __name__ == "__main__":
         "wedge": {"d_wc_book_fy25": DWC_BOOK_25,
                   "d_wc_cash_fy25": DWC_CASH_25, "wedge_fy25": WEDGE_25,
                   "wedge_over_revenue": WEDGE_RATIO},
-        "cash_conversion": {**CONV, "carried": CONV_MID, "mean_3y": CONV_MEAN3,
-                            "carried_basis": "the reviewed six months to 30 June 2026",
-                            "mean": CONV_MID,
+        "cash_conversion": {**CONV, "mean": CONV_MID,
                             "low": CONV_LO, "high": CONV_HI},
         "statements": st,
         "dcf": {"cycle": bridge(st["cycle"], wr, 0.12, "cycle"),

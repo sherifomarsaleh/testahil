@@ -159,7 +159,7 @@ p("  total assets %.1f = liabilities %.1f + equity %.1f -> %.1f"
 
 # --- 8. the latest disclosed balance sheet ---------------------------------
 p("\n[8] BALANCE SHEET — the bridge against the LATEST disclosed one")
-B = json.load(open(os.path.join(HERE, "bs_2q2026.json")))
+B = json.load(open(os.path.join(HERE, "bs_1q2026.json")))
 Q = {k: v["value"] for k, v in B["lines"].items()}
 DEBT = ["loans_long_term", "notes_payable_long_term", "credit_facilities",
         "banks_credit_balances", "current_portion_st_loans",

@@ -16,33 +16,33 @@
   "fy_note": "financial year ends 31 December",
   "standard": "2026.09.07"
  },
- "central": 44.460978528259474,
+ "central": 51.127561364140576,
  "spot": 52.05,
  "fair": {
-  "bear": 43.17228883751404,
-  "base": 44.460978528259474,
-  "full": 46.01051880646089
+  "bear": 49.891024358395484,
+  "base": 51.127561364140576,
+  "full": 52.81008737740287
  },
- "gap_to_spot": -0.14580252587397735,
+ "gap_to_spot": -0.01772216399345672,
  "primary": "ddm",
  "lens_architecture": "One class primary IS the central; the others are cross-checks. bank -> ddm primary, with residual income, a relative multiple and book value beside it. No typed weights.",
  "lenses": {
-  "dividend_discount": 44.460978528259474,
-  "free_cash_flow_to_equity": 43.17228883751404,
-  "residual_income": 46.01051880646089,
+  "dividend_discount": 51.127561364140576,
+  "free_cash_flow_to_equity": 49.891024358395484,
+  "residual_income": 52.81008737740287,
   "relative_multiples": 60.820178311647034,
-  "book_value_and_sustainable_return": 47.47455335739948,
+  "book_value_and_sustainable_return": 55.113237785615205,
   "book_value_floor": 29.038621333333335,
   "normalised_earnings_power": 34.589141986735704
  },
  "present_value_reads": {
-  "ddm": 44.460978528259474,
-  "fcfe": 43.17228883751404,
-  "residual_income": 46.01051880646089
+  "ddm": 51.127561364140576,
+  "fcfe": 49.891024358395484,
+  "residual_income": 52.81008737740287
  },
  "envelope": {
-  "bear": 43.17228883751404,
-  "full": 46.01051880646089,
+  "bear": 49.891024358395484,
+  "full": 52.81008737740287,
   "construction": "the range of the present-value reads on one clock"
  },
  "cost_of_capital": {
@@ -66,17 +66,17 @@
   "crp_foreign": 0.0,
   "ke_construction": "split_premium",
   "ke_double_counted_retired": 0.33227210850879313,
-  "ke_terminal": 0.1782252545648532,
+  "ke_terminal": 0.1632252545648532,
   "ke_terminal_construction": "split_premium",
   "ke_path": [
-   0.27486192123151987,
-   0.2555345878981865,
-   0.23620725456485317,
-   0.21687992123151983,
-   0.19755258789818653
+   0.27236192123151987,
+   0.2505345878981865,
+   0.2287072545648532,
+   0.20687992123151988,
+   0.18505258789818652
   ],
   "terminal_growth": 0.07,
-  "terminal_rf": 0.10500000000000001,
+  "terminal_rf": 0.09000000000000001,
   "terminal_inflation": 0.07,
   "terminal_erp": 0.07
  },
@@ -391,63 +391,63 @@
  "sensitivity": [
   {
    "driver": "cost of risk +50bp",
-   "value": 39.464665107546324,
-   "change": -0.1123752464768063
+   "value": 45.4654928259484,
+   "change": -0.11074395858362585
   },
   {
    "driver": "cost of risk -50bp",
-   "value": 49.45729194897263,
-   "change": 0.11237524647680641
+   "value": 56.78962990233275,
+   "change": 0.11074395858362585
   },
   {
    "driver": "asset yield -50bp",
-   "value": 34.56903845058253,
-   "change": -0.22248588324230445
+   "value": 39.94231222850978,
+   "change": -0.21877141872594408
   },
   {
    "driver": "asset yield +50bp",
-   "value": 54.35291860593646,
-   "change": 0.22248588324230534
+   "value": 62.3128104997714,
+   "change": 0.21877141872594463
   },
   {
    "driver": "cost of funds +50bp",
-   "value": 36.00336976184571,
-   "change": -0.19022543017216975
+   "value": 41.56417335317626,
+   "change": -0.18704956301068187
   },
   {
    "driver": "cost of funds -50bp",
-   "value": 52.91858729467327,
-   "change": 0.19022543017217064
+   "value": 60.690949375104914,
+   "change": 0.18704956301068232
   },
   {
    "driver": "financing growth -5pp/yr",
-   "value": 38.700419073254764,
-   "change": -0.12956438759761635
+   "value": 43.84767549050849,
+   "change": -0.14238672213961667
   },
   {
    "driver": "financing growth +5pp/yr",
-   "value": 50.96906967796296,
-   "change": 0.1463775959309337
+   "value": 59.383817184965096,
+   "change": 0.16148346607071362
   },
   {
    "driver": "risk-free +200bp",
-   "value": 36.60439527886176,
-   "change": -0.17670738498038363
+   "value": 41.06038566055332,
+   "change": -0.19690310734530914
   },
   {
    "driver": "risk-free -200bp",
-   "value": 55.973546839813565,
-   "change": 0.25893645827512946
+   "value": 66.80739384534522,
+   "change": 0.30668062514325256
   },
   {
    "driver": "terminal growth +100bp",
-   "value": 46.07761368048308,
-   "change": 0.03636076410680156
+   "value": 53.74966496435031,
+   "change": 0.05128552057342595
   },
   {
    "driver": "terminal growth -100bp",
-   "value": 43.08608376097667,
-   "change": -0.0309236281520191
+   "value": 48.97600022509795,
+   "change": -0.042082217137617506
   }
  ],
  "walkforward": {
@@ -699,7 +699,7 @@
    "ring": "Market"
   },
   "rf_terminal": {
-   "value": 0.10500000000000001,
+   "value": 0.09000000000000001,
    "source": "Terminal risk-free rate, DERIVED and never quoted: terminal inflation of 7.00% (the CBE target-band midpoint in force) plus the 5.50% emerging-market terminal real convention. It cannot disagree with the inflation the rest of the model runs on because it is computed from it.",
    "date": "2026-09-02",
    "ring": "House"
@@ -1145,7 +1145,7 @@
    "ring": "Market"
   },
   "rf_terminal": {
-   "value": 0.10500000000000001,
+   "value": 0.09000000000000001,
    "source": "Terminal risk-free rate, DERIVED and never quoted: terminal inflation of 7.00% (the CBE target-band midpoint in force) plus the 5.50% emerging-market terminal real convention. It cannot disagree with the inflation the rest of the model runs on because it is computed from it.",
    "date": "2026-09-02",
    "ring": "House"
@@ -1370,17 +1370,17 @@
   "crp_foreign": 0.0,
   "ke_construction": "split_premium",
   "ke_double_counted_retired": 0.33227210850879313,
-  "ke_terminal": 0.1782252545648532,
+  "ke_terminal": 0.1632252545648532,
   "ke_terminal_construction": "split_premium",
   "ke_path": [
-   0.27486192123151987,
-   0.2555345878981865,
-   0.23620725456485317,
-   0.21687992123151983,
-   0.19755258789818653
+   0.27236192123151987,
+   0.2505345878981865,
+   0.2287072545648532,
+   0.20687992123151988,
+   0.18505258789818652
   ],
   "terminal_growth": 0.07,
-  "terminal_rf": 0.10500000000000001,
+  "terminal_rf": 0.09000000000000001,
   "terminal_inflation": 0.07,
   "terminal_erp": 0.07,
   "market": "EG",
@@ -1392,7 +1392,7 @@
   "beta_source_note": "engine/beta_regression.own_stock_beta(\"ADIB\", \"EG\", \"EGX\") \u2014 a weekly Dimson regression against the published EGX30 over 256 observations to 20-Aug-2026, attested by assert_beta_provenance(). Named from the closed list so that a measured regression cannot be mistaken for a priced fallback or a typed number.",
   "ke_construction_note": "rf* + beta x the MATURE premium + the country premium charged FLAT and once. Every branch, deposit and financing of this bank is in Egypt, so lambda is 1.00 and the whole country premium is the Egyptian one. The terminal splits the same way and against the SAME mature leg: what normalises over a perpetuity is the country premium, not the mature one.",
   "ke_exp": 0.2941892545648532,
-  "rf_terminal": 0.10500000000000001,
+  "rf_terminal": 0.09000000000000001,
   "erp_terminal": 0.07,
   "sensitivity": {
    "other_basis": "rating",
@@ -1434,24 +1434,24 @@
  "adopted_corrections_note": "the walk-forward on this name tested 14 correction candidates under the two-clause test and adopted NONE. Four drivers (fin_customers, cust_deposits, total_assets, other_op) carry a watch flag rather than a correction, and the aggregates (fin_income, cost_funds, net_funds, pbt, np, np_parent) were refused as aggregates, which corrections may not be applied to. Recorded in engine/adib_walkforward/corrections_log.json; EMPTY RATHER THAN ABSENT.",
  "lens_record": {
   "class": "bank",
-  "central": 44.460978528259474,
+  "central": 51.127561364140576,
   "primary": {
    "kind": "ddm",
-   "value": 44.460978528259474,
+   "value": 51.127561364140576,
    "range": {
-    "low": 43.17228883751404,
-    "high": 46.01051880646089
+    "low": 49.891024358395484,
+    "high": 52.81008737740287
    },
    "range_note": "the span of the three PRESENT-VALUE reads on one clock \u2014 free cash flow to equity below, residual income above \u2014 rather than a driver flexed across a range. On a bank the three are one model entered through three doors, so their spread measures the construction and not the business.",
    "range_basis": {
     "driver": "the present-value construction itself, across its three entries",
-    "low": 43.17228883751404,
-    "high": 46.01051880646089,
+    "low": 49.891024358395484,
+    "high": 52.81008737740287,
     "macro_held": true,
-    "evidence": "dividend discount 44.4610, free cash flow to equity 43.1723, residual income 46.0105, all on the same five-year window, the same cost of equity schedule and the same house macro path. The cost of capital and terminal growth do not move between them."
+    "evidence": "dividend discount 51.1276, free cash flow to equity 49.8910, residual income 52.8101, all on the same five-year window, the same cost of equity schedule and the same house macro path. The cost of capital and terminal growth do not move between them."
    }
   },
-  "note": "one class primary IS the central and the others are cross-checks, with no typed weights [R-LENS-03]. The cross-checks are a relative multiple at 60.82, book value and a sustainable return at 47.47, a book floor at 29.04 and normalised earning power at 34.59. THE RELATIVE READ IS THE HIGHEST OF ALL SEVEN and is not blended in."
+  "note": "one class primary IS the central and the others are cross-checks, with no typed weights [R-LENS-03]. The cross-checks are a relative multiple at 60.82, book value and a sustainable return at 55.11, a book floor at 29.04 and normalised earning power at 34.59. THE RELATIVE READ IS THE HIGHEST OF ALL SEVEN and is not blended in."
  },
  "forecast_anchor": {
   "rate_name": "net interest margin",
@@ -1499,10 +1499,10 @@
   "balance_sheet_date": "2026-06-30",
   "latest_disclosed_date": "2026-06-30",
   "latest_disclosed_source": "ADIB-Egypt condensed consolidated interim financial statements, H1-2026 (F16, COMPANY_OFFICIAL, 2026-07-30) \u2014 the latest disclosure in existence at the sweep date, established by this study's own Step 2A register rather than asserted. The condensed consolidated interim statements for the six months ended 30 June 2026, limited review, signed 30 July 2026. Attributable profit EGP 7,536.8 million, total assets EGP 414,302.1 million, financing to customers EGP 190,427.1 million, attributable equity EGP 43,557.9 million.",
-  "equity_value": 66691.46779238922,
+  "equity_value": 76691.34204621086,
   "shares_mn": 1500.0,
-  "per_share": 44.460978528259474,
-  "arithmetic": "EGP 66691.468 million of equity value over 1500 million shares = EGP 44.4610 a share, which is the figure this study publishes. The sheet, the register and this division are the three parts of [R-BRIDGE-01] that do NOT fall away with the enterprise value."
+  "per_share": 51.127561364140576,
+  "arithmetic": "EGP 76691.342 million of equity value over 1500 million shares = EGP 51.1276 a share, which is the figure this study publishes. The sheet, the register and this division are the three parts of [R-BRIDGE-01] that do NOT fall away with the enterprise value."
  },
  "driver_lines": [
   {
@@ -1609,7 +1609,7 @@
   "terminal": {
    "g_nominal": 0.07,
    "real": 0.0,
-   "rf": 0.10500000000000001,
+   "rf": 0.09000000000000001,
    "inflation_in_rf": 0.07
   },
   "note": "THIS RECORD DECLARES A BREACH RATHER THAN CLEARING ONE. Growth at the horizon end is 12.00% against a terminal of 7.00% -- 5.00 points, where the rule allows two. It is open BY THE PRINCIPAL'S RULING of 10-09-2026 (\"do not extend horizon beyond 5 years\"), given after being shown that closing it moves the central from EGP 44.4610 to EGP 41.8291. WHAT WOULD SETTLE IT PROPERLY is the terminal itself: 7.00% is terminal inflation at ZERO real growth, i.e. the bank stops taking share AND stops participating in credit deepening the moment the window closes, in an economy growing about 4.5% real. A terminal real growth near 3% would put nominal growth at about 10.2% and clear the window with no extension at all -- and would RAISE the answer rather than lower it, which is exactly why it must be argued from evidence about this bank and this credit market or not at all. It is NOT a route back to 44.46."

@@ -268,136 +268,136 @@
     "wacc": 0.22097934691451132,
     "shift": -0.08,
     "mode": "capacity",
-    "per_share_nci_value_share": 274.3133452381433,
-    "per_share_nci_book": 310.41478808785246,
-    "per_share_nci_proportional": 190.17928609184017,
-    "enterprise_value": 628016.3126494279
+    "per_share_nci_value_share": 352.6692812553042,
+    "per_share_nci_book": 409.5697284993098,
+    "per_share_nci_proportional": 244.5028406380645,
+    "enterprise_value": 832340.317397071
    },
    "0.2210|recovery": {
     "wacc": 0.22097934691451132,
     "shift": -0.08,
     "mode": "recovery",
-    "per_share_nci_value_share": 202.31117091383314,
-    "per_share_nci_book": 219.30016847487582,
-    "per_share_nci_proportional": 140.26074458533864,
-    "enterprise_value": 440260.62550839304
+    "per_share_nci_value_share": 282.86960569558215,
+    "per_share_nci_book": 321.24224467794977,
+    "per_share_nci_proportional": 196.11127421293898,
+    "enterprise_value": 650327.952216147
    },
    "0.2610|capacity": {
     "wacc": 0.26097934691451136,
     "shift": -0.04,
     "mode": "capacity",
-    "per_share_nci_value_share": 180.42204691494916,
-    "per_share_nci_book": 191.60073820716775,
-    "per_share_nci_proportional": 125.08518697012468,
-    "enterprise_value": 383181.68926940544
+    "per_share_nci_value_share": 198.32981119191476,
+    "per_share_nci_book": 214.26198622539147,
+    "per_share_nci_proportional": 137.5004991844745,
+    "enterprise_value": 429878.67611090065
    },
    "0.2610|recovery": {
     "wacc": 0.26097934691451136,
     "shift": -0.04,
     "mode": "recovery",
-    "per_share_nci_value_share": 111.5280800180366,
-    "per_share_nci_book": 104.41937672261889,
-    "per_share_nci_proportional": 77.32154124186052,
-    "enterprise_value": 203531.0854370962
+    "per_share_nci_value_share": 129.4588867429611,
+    "per_share_nci_book": 127.10978363639582,
+    "per_share_nci_proportional": 89.75282860426165,
+    "enterprise_value": 250288.15866751695
    },
    "0.2810|capacity": {
     "wacc": 0.2809793469145113,
     "shift": -0.02,
     "mode": "capacity",
-    "per_share_nci_value_share": 157.5353184931988,
-    "per_share_nci_book": 162.63889679192567,
-    "per_share_nci_proportional": 109.21799804992233,
-    "enterprise_value": 323501.36070208956
+    "per_share_nci_value_share": 169.36905312705923,
+    "per_share_nci_book": 177.61380886761643,
+    "per_share_nci_proportional": 117.42223325588388,
+    "enterprise_value": 354359.4701755275
    },
    "0.2810|recovery": {
     "wacc": 0.2809793469145113,
     "shift": -0.02,
     "mode": "recovery",
-    "per_share_nci_value_share": 91.58878529132585,
-    "per_share_nci_book": 79.1873435038403,
-    "per_share_nci_proportional": 63.497784934967726,
-    "enterprise_value": 151536.60030309384
+    "per_share_nci_value_share": 102.88406933292913,
+    "per_share_nci_book": 93.48087725513606,
+    "per_share_nci_proportional": 71.3287165776546,
+    "enterprise_value": 180990.62494312972
    },
    "0.3010|capacity": {
     "wacc": 0.30097934691451134,
     "shift": 0.0,
     "mode": "capacity",
-    "per_share_nci_value_share": 140.74273696296459,
-    "per_share_nci_book": 141.38884854261062,
-    "per_share_nci_proportional": 97.57583326830567,
-    "enterprise_value": 279712.36802695505
+    "per_share_nci_value_share": 149.24258044732997,
+    "per_share_nci_book": 152.14491269088882,
+    "per_share_nci_proportional": 103.46870794542222,
+    "enterprise_value": 301876.8924871483
    },
    "0.3010|recovery": {
     "wacc": 0.30097934691451134,
     "shift": 0.0,
     "mode": "recovery",
-    "per_share_nci_value_share": 78.15638483556853,
-    "per_share_nci_book": 62.1894115733003,
-    "per_share_nci_proportional": 54.185207280541526,
-    "enterprise_value": 116509.74727828523
+    "per_share_nci_value_share": 85.76847496278396,
+    "per_share_nci_book": 71.82207479367689,
+    "per_share_nci_proportional": 59.462609533077924,
+    "enterprise_value": 136359.33134747454
    },
    "0.3210|capacity": {
     "wacc": 0.32097934691451135,
     "shift": 0.02,
     "mode": "capacity",
-    "per_share_nci_value_share": 127.76713556981576,
-    "per_share_nci_book": 124.96896961143793,
-    "per_share_nci_proportional": 88.57995081344727,
-    "enterprise_value": 245876.6821118942
+    "per_share_nci_value_share": 134.19486535580384,
+    "per_share_nci_book": 133.10289278697135,
+    "per_share_nci_proportional": 93.03624535073722,
+    "enterprise_value": 262637.88181246514
    },
    "0.3210|recovery": {
     "wacc": 0.32097934691451135,
     "shift": 0.02,
     "mode": "recovery",
-    "per_share_nci_value_share": 68.72099226941695,
-    "per_share_nci_book": 50.24946375045037,
-    "per_share_nci_proportional": 47.643723778639156,
-    "enterprise_value": 91905.64842532782
+    "per_share_nci_value_share": 74.0575080666354,
+    "per_share_nci_book": 57.002518244778756,
+    "per_share_nci_proportional": 51.34348823469126,
+    "enterprise_value": 105821.35583067268
    },
    "0.3410|capacity": {
     "wacc": 0.3409793469145113,
     "shift": 0.04,
     "mode": "capacity",
-    "per_share_nci_value_share": 117.39252369321845,
-    "per_share_nci_book": 111.84049365027136,
-    "per_share_nci_proportional": 81.38731394607824,
-    "enterprise_value": 218823.43823430763
+    "per_share_nci_value_share": 122.42503839395138,
+    "per_share_nci_book": 118.20885220273215,
+    "per_share_nci_proportional": 84.87631683145078,
+    "enterprise_value": 231946.42048519838
    },
    "0.3410|recovery": {
     "wacc": 0.3409793469145113,
     "shift": 0.04,
     "mode": "recovery",
-    "per_share_nci_value_share": 61.91266790077783,
-    "per_share_nci_book": 41.63391997178329,
-    "per_share_nci_proportional": 42.923566008752346,
-    "enterprise_value": 74151.99539875113
+    "per_share_nci_value_share": 65.7499076078301,
+    "per_share_nci_book": 46.48972661308122,
+    "per_share_nci_proportional": 45.58389413612406,
+    "enterprise_value": 84158.13180620695
    },
    "0.3810|capacity": {
     "wacc": 0.38097934691451135,
     "shift": 0.08,
     "mode": "capacity",
-    "per_share_nci_value_share": 101.80185943845638,
-    "per_share_nci_book": 92.11140273854508,
-    "per_share_nci_proportional": 70.57842896421867,
-    "enterprise_value": 178168.61207651332
+    "per_share_nci_value_share": 105.10746622937013,
+    "per_share_nci_book": 96.29445843332968,
+    "per_share_nci_proportional": 72.87018016958038,
+    "enterprise_value": 186788.4416895829
    },
    "0.3810|recovery": {
     "wacc": 0.38097934691451135,
     "shift": 0.08,
     "mode": "recovery",
-    "per_share_nci_value_share": 53.17272021775515,
-    "per_share_nci_book": 30.574017738982803,
-    "per_share_nci_proportional": 36.864228977977206,
-    "enterprise_value": 51361.36583510235
+    "per_share_nci_value_share": 55.25296255944607,
+    "per_share_nci_book": 33.206445043361875,
+    "per_share_nci_proportional": 38.30644464232027,
+    "enterprise_value": 56785.88716309483
    }
   },
   "conversion_years_grid": {
-   "8": 71.89462109656567,
-   "10": 100.34769841050746,
-   "12": 121.60248599718845,
-   "14": 138.2321539592412,
-   "16": 151.66181793081572,
-   "20": 172.09731106942732
+   "8": 79.50601029726216,
+   "10": 108.10588482110288,
+   "12": 129.596545496059,
+   "14": 146.50410224421867,
+   "16": 160.2278760989781,
+   "20": 181.24715766294383
   }
  },
  "implied_discount_rate": {

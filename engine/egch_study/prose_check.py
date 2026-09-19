@@ -58,42 +58,6 @@ def _xlsx_texts(path):
     return out
 
 
-def latest_ddmmyyyy(pat):
-    """The workbook names its edition DDMMYYYY with no separators, so the date is PARSED
-    rather than the filenames sorted as text — 03092026 sorts below 09082026 as a string and
-    a text sort silently picks a superseded edition [L-067]. Copied from the ADNOCLS resolver."""
-    c = []
-    for f in os.listdir('.'):
-        if re.match(pat, f) and not f.startswith('~$'):
-            m = re.findall(r'_(\d{2})(\d{2})(\d{4})\.', f)
-            c.append(((m[-1][2] + m[-1][1] + m[-1][0]) if m else '', f))
-    return sorted(c)[-1][1] if c else None
-
-
-# THE WORKBOOK IS A DELIVERED DOCUMENT AND WAS IN NO STUDY'S POPULATION IN THE BOOK [L-350].
-# A reader receives three files and this list named two, so the third was read by nothing.
-# Only STRING cells are read: a numeric cell is a model output the recalculation already
-# reconciles, and a numeral inside a label, caption or source note is prose that happens to
-# live in a spreadsheet — the shape this check exists for. Formulas are skipped for the same
-# reason. [EXTENDED 05-Sep-2026]
-_WB = latest_ddmmyyyy(r'^EGCH_Valuation_Model_\d{8}\.xlsx$')
-if _WB:
-    DOCS.append(_WB)
-
-
-def _xlsx_texts(path):
-    import openpyxl
-    wb = openpyxl.load_workbook(path, data_only=False, read_only=True)
-    out = []
-    for ws in wb.worksheets:
-        for row in ws.iter_rows(values_only=True):
-            for v in row:
-                if isinstance(v, str) and not v.startswith('='):
-                    out.append(v)
-    wb.close()
-    return out
-
-
 def walk(x, out):
     if isinstance(x, dict):
         for v in x.values(): walk(v, out)

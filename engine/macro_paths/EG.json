@@ -115,7 +115,10 @@
   "erp_terminal": {
     "value": 0.07,
     "source": "Terminal equity risk premium, normalised below the currently elevated crisis-era level toward the rating-class norm; never held flat into perpetuity.",
-    "date": "2026-08-06"
+    "date": "2026-08-06",
+    "basis": "house_judgement",
+    "what_would_source_it": "Either (a) a published normalised or terminal equity risk premium for Egypt from a named institution on a named date, or (b) an identity over published numbers -- the house already uses ERP = mature-market ERP + default spread x 1.52, which reproduces this book's own Egyptian figures to the basis point (0.0423 + 0.0341 x 1.52 = 0.0941 market basis; 0.0423 + 0.0637 x 1.52 = 0.1394 rating basis) and would need a TERMINAL default spread, which no path here carries. Failing both, the house convention six of the seven paths already use: HOLD THE PUBLISHED ERP FLAT, sourced to Damodaran with its date. Registered in engine/escalations.json.",
+    "house_judgement_note": "THIS IS THE ONLY LEVEL IN ANY PATH THAT NORMALISES, and it is the only one whose effect is to RAISE values. Measured 18-09-2026: IN, KR, QA, SA and US cite Damodaran's country risk file with its publication date and hold the published ERP flat; AE holds the market-basis UAE ERP flat and says in terms that no structural convergence is assumed. Egypt carries 7.00% against a published market-basis 9.41% and a rating-basis 13.94% -- retiring 2.41 to 6.94 points of country risk on no stated authority. The direction matters: a lower terminal ERP lowers the terminal cost of equity, raises the terminal value and raises the fair value, so this is the one convention in the book running the OPPOSITE way to every defect the forensic audits found. It is left at its value and declared for what it is; changing it moves every Egyptian study and is registered as a decision rather than taken in passing."
   },
   "real_gdp_lt": {
     "value": 0.045,
