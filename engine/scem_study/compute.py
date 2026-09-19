@@ -370,11 +370,18 @@ INP = dict(
               "inherits its SHAPE from this", "2026-08-06", "House"),
     kd_term=I(0.150, "Terminal cost of debt, the Egyptian long-run corporate norm",
               "2026-08-06", "House"),
-    rf_term=I(0.125, "Terminal risk-free rate, norm-built from the CBE's OPERATIVE Q4-2026 "
-              "inflation target of 7% plus a ~5.5pp emerging-market real-rate convention. "
-              "Revision 1 used the later 5% target while its own text cited 'the 7% and "
-              "then 5% targets'. REVIEWABLE CHOICE: reverting to 10.5% adds ~1.8%",
-              "2026-08-06", "House"),
+    # DERIVED, NOT TYPED [R-MACRO-01]: "TERMINAL RISK-FREE = terminal inflation + the
+    # real-rate convention, DERIVED AND NEVER QUOTED". This was the literal 0.125, so a
+    # revision to the house real-rate convention reached every other Egyptian study and
+    # stopped dead here — the study went on discounting its terminal at a rate the house
+    # path no longer holds, and nothing could see it because the number looked committed.
+    # Found 19-09-2026 when the convention moved to 2.0% and this study alone did not move.
+    rf_term=I(MP.load("EG").terminal_rf,
+              "Terminal risk-free rate, DERIVED from the house path as the inflation "
+              "target in force plus the real-rate convention, never typed here "
+              "[R-MACRO-01]. Read engine/macro_paths/EG.json for both components and the "
+              "dated reason each carries.",
+              "2026-09-19", "House"),
     erp_term=I(0.070, "Terminal equity risk premium, normalised below the crisis level",
                "2026-08-06", "House"),
     wd_term=I(0.20, "Terminal debt weight, normalised", "2026-08-06", "House"),
