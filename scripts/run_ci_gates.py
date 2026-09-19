@@ -20,6 +20,9 @@ from __future__ import annotations
 
 import argparse
 import json
+import glob
+import shutil
+import tempfile
 import os
 import subprocess
 import sys
@@ -311,9 +314,78 @@ def main():
             pass
 
 
+SANDBOX_PREFIXES = ("gauntlet_", "rsr_", "sc-nc-", "xd-nc-", "ei-", "inj-")
+
+
+def _reclaim_dead_sandboxes():
+    """Delete repository copies left by harnesses that did not finish.
+
+    ADOPTED 19-09-2026 ON THE THIRD OCCURRENCE IN ONE DAY. Twenty-seven scripts copy
+    the whole repository with shutil.copytree and remove the copy in a `finally`,
+    which is correct exactly as often as the process completes. A kill, a timeout or
+    an out-of-space error skips it — and the copies are 0.3 to 1.7 GB each, so a
+    handful of abandoned ones exhaust the session's whole disk allowance.
+
+    WHAT IT COSTS WHEN IT HAPPENS IS NOT A SLOW RUN, IT IS A FALSE REPORT. With the
+    disk full every gate goes red with an EMPTY MESSAGE, because none of them can
+    write its own output — so a sweep of 170 checks reports a catastrophe that does
+    not exist. An infrastructure failure wearing a repository failure's clothes is
+    worse than either, because the first thing it costs is any belief that the
+    layer works. It happened twice today and killed this sweep both times.
+
+    THE TEST IS EXACT AND CARRIES NO THRESHOLD, which is engine/sandbox_reclaim's own
+    reasoning: a sandbox is finished with when NO LIVE PROCESS HOLDS IT, whatever its
+    age. An age cutoff would be the free parameter the promotion rule forbids and
+    would be wrong in both directions — it would delete a long run's live sandbox and
+    keep a short run's dead one. Liveness is read from /proc rather than guessed: a
+    directory named in some running process's command line, or standing as its
+    working directory, is left alone.
+
+    IT RUNS HERE RATHER THAN IN THE TWENTY-SEVEN, deliberately. Editing each harness
+    would be twenty-seven chances to get it wrong and twenty-seven places for the next
+    one to be forgotten; the runner is the one place every harness passes through.
+    """
+    live = set()
+    for pid in os.listdir("/proc"):
+        if not pid.isdigit():
+            continue
+        for probe in ("cmdline", "cwd"):
+            try:
+                if probe == "cmdline":
+                    with open("/proc/%s/cmdline" % pid, "rb") as fh:
+                        live.add(fh.read().decode("utf-8", "replace"))
+                else:
+                    live.add(os.readlink("/proc/%s/cwd" % pid))
+            except OSError:
+                pass
+    blob = "\n".join(live)
+    freed, n = 0, 0
+    for d in glob.glob(os.path.join(tempfile.gettempdir(), "*")):
+        if not os.path.isdir(d):
+            continue
+        if not os.path.basename(d).startswith(SANDBOX_PREFIXES):
+            continue
+        if d in blob:
+            continue                       # a live process holds it; never touch it
+        try:
+            sz = sum(os.path.getsize(os.path.join(r, f))
+                     for r, _, fs in os.walk(d) for f in fs
+                     if os.path.exists(os.path.join(r, f)))
+            shutil.rmtree(d, ignore_errors=True)
+            freed += sz
+            n += 1
+        except OSError:
+            pass
+    if n:
+        print("reclaimed %d abandoned sandbox copy/copies, %.1f GB"
+              % (n, freed / 1e9))
+    return n
+
+
 def _run(a):
     files = [os.path.join(WORKFLOWS, a.workflow)]
     started = _now()
+    _reclaim_dead_sandboxes()
 
     red, green, skipped, mutating = [], 0, [], []
     for f in files:
