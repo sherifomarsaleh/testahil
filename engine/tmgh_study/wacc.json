@@ -80,14 +80,14 @@
    "weight_equity": 0.9221790512278109,
    "weight_debt": 0.07782094877218917,
    "wacc_exp": 0.3237485685188716,
-   "rf_terminal": 0.10500000000000001,
+   "rf_terminal": 0.09000000000000001,
    "erp_terminal": 0.07,
-   "ke_terminal": 0.20802266611472114,
+   "ke_terminal": 0.19302266611472113,
    "ke_terminal_construction": "same_beta",
    "kd_terminal_pretax": 0.15,
    "kd_terminal_aftertax": 0.11624999999999999,
    "weight_debt_terminal": 0.07782094877218917,
-   "wacc_terminal": 0.20088083016632022,
+   "wacc_terminal": 0.18704814439790304,
    "glide_fractions": [
     0.0,
     0.35714285714285704,
@@ -102,29 +102,29 @@
    ],
    "forward_wacc": [
     0.3237485685188716,
-    0.27986723339296044,
-    0.2447621652922314,
-    0.21843336421668474,
-    0.20088083016632022,
-    0.20088083016632022,
-    0.20088083016632022,
-    0.20088083016632022,
-    0.20088083016632022,
-    0.20088083016632022
+    0.2749269884756686,
+    0.2358697244411061,
+    0.2065767764151843,
+    0.18704814439790304,
+    0.18704814439790304,
+    0.18704814439790304,
+    0.18704814439790304,
+    0.18704814439790304,
+    0.18704814439790304
    ],
    "discount_factors": [
     0.7554304675236699,
-    0.5902412748867745,
-    0.47417996091502684,
-    0.38917184545407707,
-    0.32407199422125615,
-    0.2698619097586666,
-    0.22471997468832197,
-    0.1871292879720618,
-    0.15582669260041787,
-    0.1297603298229318
+    0.5925284148442724,
+    0.4794424550793409,
+    0.3973576024758198,
+    0.3347443019485687,
+    0.2819972412478336,
+    0.2375617556698754,
+    0.2001281555352348,
+    0.1685931244488354,
+    0.14202720019780624
    ],
-   "terminal_discount_factor": 0.1297603298229318,
+   "terminal_discount_factor": 0.14202720019780624,
    "kd_integrity": {
     "adopted_kd": 0.255,
     "effective_rates": [
@@ -150,7 +150,7 @@
    "disclosures": [
     "The glide fractions are the policy-rate path's own cumulative progress, so the front-loaded shape is inherited from the assumed easing calendar rather than being a second free parameter.",
     "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (3.41%) on the market basis, and the premium added back is on the same basis.",
-    "The terminal is norm-built and no line in it is an observable quote: risk-free 10.50% = the inflation target in force (7.00%) plus the real-rate convention (3.50%); cost of debt 15.00% is the long-run corporate norm; the premium is normalised to 7.00%.",
+    "The terminal is norm-built and no line in it is an observable quote: risk-free 9.00% = the inflation target in force (7.00%) plus the real-rate convention (2.00%); cost of debt 15.00% is the long-run corporate norm; the premium is normalised to 7.00%.",
     "DISCLOSED STALENESS: the sovereign quote is 44 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
    ]
   },
@@ -170,14 +170,14 @@
    "weight_equity": 0.9221790512278109,
    "weight_debt": 0.07782094877218917,
    "wacc_exp": 0.35793409868133236,
-   "rf_terminal": 0.10500000000000001,
+   "rf_terminal": 0.09000000000000001,
    "erp_terminal": 0.07,
-   "ke_terminal": 0.20802266611472114,
+   "ke_terminal": 0.19302266611472113,
    "ke_terminal_construction": "same_beta",
    "kd_terminal_pretax": 0.15,
    "kd_terminal_aftertax": 0.11624999999999999,
    "weight_debt_terminal": 0.07782094877218917,
-   "wacc_terminal": 0.20088083016632022,
+   "wacc_terminal": 0.18704814439790304,
    "glide_fractions": [
     0.0,
     0.35714285714285704,
@@ -192,29 +192,29 @@
    ],
    "forward_wacc": [
     0.35793409868133236,
-    0.3018436456402566,
-    0.25697128320739593,
-    0.22331701138275054,
-    0.20088083016632022,
-    0.20088083016632022,
-    0.20088083016632022,
-    0.20088083016632022,
-    0.20088083016632022,
-    0.20088083016632022
+    0.2969034007229648,
+    0.24807884235627065,
+    0.2114604235812501,
+    0.18704814439790304,
+    0.18704814439790304,
+    0.18704814439790304,
+    0.18704814439790304,
+    0.18704814439790304,
+    0.18704814439790304
    ],
    "discount_factors": [
     0.7364127618351167,
-    0.5656691295466156,
-    0.4500254994714006,
-    0.36787316393378994,
-    0.3063361115380949,
-    0.25509284838502067,
-    0.21242145096919457,
-    0.17688803554285606,
-    0.1472985754284689,
-    0.12265877823036632
+    0.5678239114991911,
+    0.45495836659420175,
+    0.3755453812096311,
+    0.3163691236804182,
+    0.2665175167270807,
+    0.22452123613087677,
+    0.1891424852399385,
+    0.15933851220152132,
+    0.1342308759366633
    ],
-   "terminal_discount_factor": 0.12265877823036632,
+   "terminal_discount_factor": 0.1342308759366633,
    "kd_integrity": {
     "adopted_kd": 0.255,
     "effective_rates": [
@@ -240,7 +240,7 @@
    "disclosures": [
     "The glide fractions are the policy-rate path's own cumulative progress, so the front-loaded shape is inherited from the assumed easing calendar rather than being a second free parameter.",
     "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (6.37%) on the rating basis, and the premium added back is on the same basis.",
-    "The terminal is norm-built and no line in it is an observable quote: risk-free 10.50% = the inflation target in force (7.00%) plus the real-rate convention (3.50%); cost of debt 15.00% is the long-run corporate norm; the premium is normalised to 7.00%.",
+    "The terminal is norm-built and no line in it is an observable quote: risk-free 9.00% = the inflation target in force (7.00%) plus the real-rate convention (2.00%); cost of debt 15.00% is the long-run corporate norm; the premium is normalised to 7.00%.",
     "DISCLOSED STALENESS: the sovereign quote is 44 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
    ]
   }
@@ -261,14 +261,14 @@
   "weight_equity": 0.9221790512278109,
   "weight_debt": 0.07782094877218917,
   "wacc_exp": 0.3237485685188716,
-  "rf_terminal": 0.10500000000000001,
+  "rf_terminal": 0.09000000000000001,
   "erp_terminal": 0.07,
-  "ke_terminal": 0.20802266611472114,
+  "ke_terminal": 0.19302266611472113,
   "ke_terminal_construction": "same_beta",
   "kd_terminal_pretax": 0.15,
   "kd_terminal_aftertax": 0.11624999999999999,
   "weight_debt_terminal": 0.07782094877218917,
-  "wacc_terminal": 0.20088083016632022,
+  "wacc_terminal": 0.18704814439790304,
   "glide_fractions": [
    0.0,
    0.35714285714285704,
@@ -283,29 +283,29 @@
   ],
   "forward_wacc": [
    0.3237485685188716,
-   0.27986723339296044,
-   0.2447621652922314,
-   0.21843336421668474,
-   0.20088083016632022,
-   0.20088083016632022,
-   0.20088083016632022,
-   0.20088083016632022,
-   0.20088083016632022,
-   0.20088083016632022
+   0.2749269884756686,
+   0.2358697244411061,
+   0.2065767764151843,
+   0.18704814439790304,
+   0.18704814439790304,
+   0.18704814439790304,
+   0.18704814439790304,
+   0.18704814439790304,
+   0.18704814439790304
   ],
   "discount_factors": [
    0.7554304675236699,
-   0.5902412748867745,
-   0.47417996091502684,
-   0.38917184545407707,
-   0.32407199422125615,
-   0.2698619097586666,
-   0.22471997468832197,
-   0.1871292879720618,
-   0.15582669260041787,
-   0.1297603298229318
+   0.5925284148442724,
+   0.4794424550793409,
+   0.3973576024758198,
+   0.3347443019485687,
+   0.2819972412478336,
+   0.2375617556698754,
+   0.2001281555352348,
+   0.1685931244488354,
+   0.14202720019780624
   ],
-  "terminal_discount_factor": 0.1297603298229318,
+  "terminal_discount_factor": 0.14202720019780624,
   "kd_integrity": {
    "adopted_kd": 0.255,
    "effective_rates": [
@@ -331,7 +331,7 @@
   "disclosures": [
    "The glide fractions are the policy-rate path's own cumulative progress, so the front-loaded shape is inherited from the assumed easing calendar rather than being a second free parameter.",
    "Country risk enters once: the risk-free rate is normalised by this sovereign's own default spread (3.41%) on the market basis, and the premium added back is on the same basis.",
-   "The terminal is norm-built and no line in it is an observable quote: risk-free 10.50% = the inflation target in force (7.00%) plus the real-rate convention (3.50%); cost of debt 15.00% is the long-run corporate norm; the premium is normalised to 7.00%.",
+   "The terminal is norm-built and no line in it is an observable quote: risk-free 9.00% = the inflation target in force (7.00%) plus the real-rate convention (2.00%); cost of debt 15.00% is the long-run corporate norm; the premium is normalised to 7.00%.",
    "DISCLOSED STALENESS: the sovereign quote is 44 days old (as of 2026-08-06), beyond the 14-day bound, and was accepted deliberately."
   ]
  }
