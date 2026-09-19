@@ -128,3 +128,52 @@ def own_stock_beta(ticker: str, market: str, exchange: str,
         index_dq=i_dq, stock_dq=s_dq, week_rule=rule, interim_note=interim,
         conforming=bool(interim is None), asof=asof,
     )
+
+
+# ---------------------------------------------------------------------------
+# [R-BETA-05] THE ESTIMATOR IS NAMED WHEREVER THE DIAGNOSTICS ARE QUOTED
+#
+# Adopted 18-09-2026 on an outside forensic audit of a delivered study, which applied the
+# textbook one-regressor identity t^2 = R^2 (n-2) / (1 - R^2) to the four diagnostics that
+# study prints and concluded, correctly, that they cannot come from one regression. They
+# cannot. own_stock_beta() runs a DIMSON estimator -- lead, contemporaneous and lag market
+# returns -- so beta is the SUM of three coefficients, the standard error is the square root
+# of the summed 3x3 covariance block, and R^2 belongs to the whole model. The identity does
+# not apply, and nothing on the page said so.
+#
+# Measured that day: ten of ten committed beta records in this book are Dimson; five
+# delivered documents disclose it. THE ESTIMATOR IS SOUND AND THE DISCLOSURE IS NOT, which
+# is [R-COC-02]'s general lesson on a different quantity -- a check that fires on correct
+# work has usually found a construction nobody wrote down.
+#
+# The sentence is EMITTED FROM THE RECORD rather than typed, for the reason every shared
+# instrument in this repository exists: a sentence hand-written into ten studies is ten
+# sentences that drift, and this one has to stay true of whatever estimator the module runs.
+# It is deliberately NOT a gate. Whether a study quotes its beta at all, and where, is a
+# drafting judgement a checker cannot make; what a checker CAN do is refuse a document that
+# quotes the diagnostics and names no estimator, and that belongs with the prose-figure
+# instruments rather than here.
+
+def estimator_note(rec: dict) -> str:
+    """One sentence naming the estimator behind a beta record's own diagnostics.
+
+    Pass the dict own_stock_beta() returned. The sentence is written for an outside
+    reader: it says what was regressed on what, and why the printed standard error and
+    R-squared do not satisfy the single-regressor identity a reader would otherwise apply.
+    """
+    if not isinstance(rec, dict) or 'beta' not in rec:
+        raise ValueError('estimator_note needs a beta record from own_stock_beta()')
+    if not rec.get('dimson'):
+        return ("The beta is an ordinary least-squares regression of the stock's weekly "
+                "returns on the index's, so the standard error and the explained variation "
+                "below are those of that single regression.")
+    return ("The beta is estimated on the Dimson construction: the stock's weekly return is "
+            "regressed on the index's return in the same week AND in the week either side, "
+            "and the beta is the SUM of those three coefficients. This is the standard "
+            "correction for a share that does not trade in every session of every week, "
+            "which would otherwise understate how far it moves with the market. TWO "
+            "CONSEQUENCES FOR THE FIGURES BESIDE IT, because a reader is entitled to test "
+            "them: the standard error is that of the SUM of three coefficients rather than "
+            "of one, and the explained variation belongs to the three-term regression. They "
+            "therefore do not satisfy the textbook identity linking a t-statistic to an "
+            "R-squared on a single regressor, and should not be read as though they did.")

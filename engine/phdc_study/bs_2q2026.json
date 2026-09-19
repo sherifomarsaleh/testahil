@@ -1,0 +1,375 @@
+{
+ "as_of": "2026-06-30",
+ "why_this_file": "THE BRIDGE STANDS ON THE LATEST DISCLOSED BALANCE SHEET [R-BRIDGE-01]. This replaces bs_1q2026.json as the bridge sheet: the reviewed 30-June-2026 statements supersede the 31-March-2026 ones, and a bridge left on the older sheet is the stale-sheet defect that rule was adopted on. The projected statements keep FY2025 as their audited base year — a working-capital cycle measured on full years is not restarted from a half. TWO LINES ARE NOT RECORDED BECAUSE THEY WERE NOT READ: advance payments for investments acquisition, and the deferred tax asset. Their sum is recoverable by difference as 127.301240 against the printed non-current subtotal, and a figure recovered by difference is not a figure read, so neither is committed and neither is used. SIGCM clause 8: a missing item is recorded as missing, never omitted.",
+ "lines": {
+  "investments_assoc": {
+   "value": 3898.477847,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "subordinated_loan_assoc": {
+   "value": 34.333473,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn",
+   "note": "unchanged from 31-Mar-2026 at 34.333473, which is itself evidence the OCR read it rather than guessed it."
+  },
+  "investment_property": {
+   "value": 1008.419552,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "fixed_assets": {
+   "value": 5637.373917,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "projects_under_construction": {
+   "value": 203.21536,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "right_of_use_assets": {
+   "value": 148.860652,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "notes_recv_lt": {
+   "value": 55707.502096,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "notes_recv_lt_undel": {
+   "value": 1033.560158,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "other_lt_assets": {
+   "value": 1.75,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "total_noncurrent_assets": {
+   "value": 67800.794295,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "work_in_progress": {
+   "value": 23915.93058,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "accounts_receivable": {
+   "value": 35055.008362,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "debtors_other": {
+   "value": 14932.335834,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "suppliers_advances": {
+   "value": 10490.853035,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "due_from_related": {
+   "value": 346.267799,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "fin_inv_amortised": {
+   "value": 13016.407445,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "inv_fair_value": {
+   "value": 179.503696,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "notes_recv_st": {
+   "value": 20530.518157,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "notes_recv_st_undel": {
+   "value": 695.420618,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "cash": {
+   "value": 7804.246906,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "total_current_assets": {
+   "value": 126966.492432,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "total_assets": {
+   "value": 194767.286727,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "equity_parent": {
+   "value": 18910.859404,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "nci_equity": {
+   "value": 1723.04881,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "total_equity": {
+   "value": 20633.908214,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "loans_long_term": {
+   "value": 10236.280237,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "notes_payable_long_term": {
+   "value": 4016.714644,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "land_purchase_liab_lt": {
+   "value": 47.134741,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn",
+   "note": "47.134741 against the 1Q26 committed 47.134742 — the same balance, one pound apart on the scan."
+  },
+  "residents_association_lt": {
+   "value": 34337.384836,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "deferred_tax_liab": {
+   "value": 42.575123,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "lease_liabilities_lt": {
+   "value": 78.329645,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "joint_shares_lt": {
+   "value": 3530.990688,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn",
+   "note": "printed clearly at this resolution; the 1Q26 equivalent had to be recovered from a subtotal."
+  },
+  "total_noncurrent_liabs": {
+   "value": 52289.409914,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "banks_credit_balances": {
+   "value": 1529.842495,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "credit_facilities": {
+   "value": 13922.422891,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "current_portion_st_loans": {
+   "value": 650.15165,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "notes_payable_short_term": {
+   "value": 4778.461505,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "lease_liabilities_st": {
+   "value": 63.263828,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "joint_shares_st": {
+   "value": 1831.705748,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "total_current_liabs": {
+   "value": 121843.968599,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "total_liabilities": {
+   "value": 174133.378513,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "net_profit_6m": {
+   "value": 2264.822717,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "advances_customers": {
+   "value": 83483.291217,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "deferred_revenue": {
+   "value": 250.565351,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "checks_undelivered": {
+   "value": 1728.980776,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "land_purchase_liab_st": {
+   "value": 29.612533,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn",
+   "note": "29,612,533 against the 1Q26 committed 29.612533 — the same balance, unmoved."
+  },
+  "due_to_related": {
+   "value": 40.361652,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "creditors_other": {
+   "value": 6608.427292,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "suppliers": {
+   "value": 5740.130394,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn",
+   "note": "RECOVERED FROM THE STATEMENT'S OWN SUBTOTAL, NOT READ, AND MARKED AS SUCH. Two OCR passes read this line as 5,748,130,394 and 5,746,130,394; neither foots. Solving the printed total current liabilities of 121,843,968,599 against the fifteen lines that were read gives 5,740,130,394, which differs from both readings only in the digit they disagree on. Arithmetic is the arbiter; a figure recovered by difference is not a figure read, and the label is what keeps the two apart."
+  },
+  "investments_purchase_liab": {
+   "value": 20.717553,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "provisions": {
+   "value": 179.563918,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  },
+  "income_tax_payable": {
+   "value": 986.469796,
+   "source": "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), page 4 'CONSOLIDATED FINANCIAL POSITION'. Supplied by the principal 17-09-2026 after the container's own routes were exhausted and logged. The document is a scan with NO text layer (70 bytes across 70 pages); figures were read by OCR off the rendered pixels at 190dpi, with the two disputed liability rows re-read at 400dpi, and every one is held to the statement's own arithmetic — ARITHMETIC IS THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE.",
+   "date": "2026-06-30",
+   "tier": "A",
+   "unit": "EGP mn"
+  }
+ }
+}

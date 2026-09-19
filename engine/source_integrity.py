@@ -138,3 +138,112 @@ def audit(inputs):
         if why:
             out.append((k, why, str(v.get('source', ''))[:90]))
     return sorted(out)
+
+
+# ---------------------------------------------------------------------------
+# THE DELIVERED BIBLIOGRAPHY, WHICH NOTHING READ [A7, 18-09-2026]
+#
+# audit() above reads a study's COMMITTED INPUT REGISTER, where the sources all name
+# filings — and every study passes. The claim a READER receives is in the delivered
+# bibliography's own sources table, which that population never reached. Measured on
+# AMOC's delivered bibliography of 03-09-2026, row 2 of 228:
+#
+#     "Company financial summary pages | stockanalysis.com; Investing.com;
+#      TradingView | Aug 2026 | Shares outstanding, market capitalisation, TOTAL
+#      ASSETS, TOTAL LIABILITIES, CASH AND EQUIVALENTS, TOTAL DEBT, dividend per
+#      share and payout ratio"
+#
+# Four balance-sheet lines of the subject, sourced to three aggregators and to no
+# company document, in a document delivered to a reader, while the gate reported the
+# study clean. This is [R-ENF-01]'s own species — the rule was enforced on the
+# artefact somebody had built a reader for.
+#
+# THE SUBJECT VOCABULARY IS IN PROSE, WHICH IS WHY THIS IS NARROWER THAN audit().
+# A register key is an identifier and a bibliography row is a sentence, so the
+# in-scope test cannot be the PERIOD/STEM machinery above. What makes a word list
+# safe HERE is the direction it runs: it decides what is IN SCOPE, so a name it
+# misses is a gap and never a false accusation — the same argument VENDOR already
+# makes about itself, one level up. The list is built from FACE-STATEMENT LINES
+# only, because an operating or market quantity (a volume, a day rate, a share
+# price, a market capitalisation) is legitimately sourced outside the filings and
+# condemning one would be a claim this gate cannot support.
+FACE_LINE = re.compile(
+    r'\b(total assets|total liabilities|total equity|shareholders.? equity|'
+    r'total debt|net debt|gross debt|borrowings|cash and (?:cash )?equivalents|'
+    r'cash and bank|total revenue|revenues?\b|net sales|turnover|'
+    r'gross profit|operating profit|net profit|profit for the (?:year|period)|'
+    r'net income|ebitda|ebit\b|depreciation|amortisation|capital expenditure|capex|'
+    r'working capital|inventor(?:y|ies)|receivables|payables|'
+    r'earnings per share|dividend per share|shares outstanding|share capital)\b', re.I)
+
+# A PAST PERIOD NAMED IN PROSE. A bibliography row about the future is not a
+# historical, and the rule is about reported history.
+PROSE_PERIOD = re.compile(
+    r'\b(fy\s?20\d\d(?:/\d\d)?|20\d\d/\d\d|[1-4]q\s?20\d\d|q[1-4]\s?20\d\d|'
+    r'h[12]\s?20\d\d|(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\s?20\d\d|'
+    r'\b20(?:1\d|2[0-6])\b)', re.I)
+
+
+# TWO KINDS OF ROW ARE OUT OF SCOPE BY THE RULE ITSELF, AND BOTH WERE FOUND BY
+# MEASURING RATHER THAN ANTICIPATED. A first draft flagged 34 rows across six studies
+# and the largest class was PEER MULTIPLES — nine in one study, five in another — every
+# one of them work that is RIGHT: SIGCM clause 5 says in terms to study competitors for
+# operating KPIs and valuation multiples, and clause 1 forbids a vendor only for THE
+# SUBJECT'S OWN reported historicals. A peer's market capitalisation read off an
+# aggregator is the sanctioned construction, not a breach of it. The second class was
+# rows declaring a NON-COMPANY sweep ring — Global, Country or Industry — which are
+# external context by definition.
+#
+# Per [R-COC-01]: WHEN A CHECK FIRES ON WORK THAT IS RIGHT, RE-POINT IT. Both exclusions
+# rest on the study's OWN declaration in its own row, which is the same footing OWN_DOC
+# already stands on: a study labelling its own revenue row a peer multiple is lying, and
+# no checker catches that.
+# A THIRD EXCLUSION, ALSO MEASURED: a row about a TARGET, BUDGET, GUIDANCE or PLAN is
+# forward-looking, and SIGCM clause 1 governs REPORTED HISTORICALS. AMOC's row "AMOC
+# approves FY2025/26 planning budget ... the approved capital budget and the FY2025/26
+# REVENUE TARGET" matched on the word revenue inside a forward target, which is not a
+# figure this clause reaches at all — and [R-FCAL-01] is separately explicit that
+# guidance is SCORED and never consumed. A study could in principle hide a historical
+# behind the word "target"; that is the same exposure OWN_DOC and PEER_ROW already
+# carry, and it is stated rather than papered over.
+FORWARD_ROW = re.compile(r'\b(target|targets|budget|budgeted|guidance|plan(?:ned|ning)?|'
+                         r'forecast|projection|outlook)\b', re.I)
+
+PEER_ROW = re.compile(r'\b(peer|peers|comparable|comparables|comp set|cross[- ]check|'
+                      r'benchmark compan|multiples? —|competitor)\b', re.I)
+CONTEXT_RING = re.compile(r'(^|\|\s*)(global|country|industry)\s*\|', re.I)
+
+
+def document_row_violation(cells):
+    """The reason one delivered bibliography row breaches SIGCM clause 1, or ''.
+
+    `cells` is that row's cells in printed order. The whole row is judged together,
+    because a sources table splits the subject, the source and the period across
+    columns and no one cell carries the claim.
+    """
+    joined = ' | '.join(str(c) for c in cells)
+    if (PEER_ROW.search(joined) or CONTEXT_RING.search(joined)
+            or FORWARD_ROW.search(joined)):
+        return ''      # another company, a non-Company ring, or a forward claim
+    if not FACE_LINE.search(joined):
+        return ''                       # not a claim about a reported statement line
+    if not PROSE_PERIOD.search(joined):
+        return ''                       # not dated, so not a dated historical
+    m = VENDOR.search(joined)
+    if not m:
+        return ''
+    if OWN_DOC.search(joined):
+        return ''                       # a company document named anywhere clears it
+    if RELAY.search(joined):
+        return ('relayed through %s and naming no company document' % m.group(0))
+    return 'sourced to %s and to no company document' % m.group(0)
+
+
+def audit_document(rows):
+    """[(row_text, reason), ...] for one delivered document's extracted table rows."""
+    out = []
+    for cells in rows or []:
+        why = document_row_violation(cells)
+        if why:
+            out.append((' | '.join(str(c) for c in cells)[:160], why))
+    return out

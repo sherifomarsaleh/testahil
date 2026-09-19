@@ -273,7 +273,7 @@
   "rows": [
    [
     "Enterprise value including non-operating assets (EGP m)",
-    26073.682144808718,
+    28379.29358120969,
     "the underlying"
    ],
    [
@@ -298,17 +298,17 @@
    ],
    [
     "Call value on those parameters (EGP m)",
-    20960.965991793833,
+    23226.65597661097,
     ""
    ],
    [
     "At 35% volatility (EGP m)",
-    20759.442460694925,
+    23049.051812886668,
     ""
    ],
    [
     "At 55% volatility (EGP m)",
-    21293.31716128724,
+    23537.408065580406,
     ""
    ],
    [
@@ -318,18 +318,18 @@
    ],
    [
     "Adjusted call value (EGP m)",
-    15720.724493845375,
+    17419.99198245823,
     ""
    ],
    [
     "PER SHARE (EGP)",
-    7.913465561530068,
+    8.768839291680354,
     ""
    ]
   ],
   "low": 0.0,
-  "high": 8.038939241280799,
-  "sensitivity": "Volatility is the swing factor: at 35% the claim is worth EGP 7.84 a share, at 55% EGP 8.04. Time to maturity matters almost as much, because it is time for the enterprise to recover above the debt.",
+  "high": 8.886158596296177,
+  "sensitivity": "Volatility is the swing factor: at 35% the claim is worth EGP 8.70 a share, at 55% EGP 8.89. Time to maturity matters almost as much, because it is time for the enterprise to recover above the debt.",
   "falsifier": "Enterprise value rising above the face value of the debt \u2014 which needs roughly a US$120 a tonne sustained improvement in the export price, or the capital programme being stopped. Either would retire the option framing and hand the question back to the cash-flow lens.",
   "grid": {
    "vols": [
@@ -346,37 +346,37 @@
    ],
    "values": [
     [
-     6.8217440092025035,
-     6.842222133028007,
-     6.925934120032874,
-     7.061729069046933,
-     7.144577756129524
+     7.688193210700088,
+     7.7036733663386165,
+     7.774327052578945,
+     7.897799071748682,
+     7.97567858858532
     ],
     [
-     7.819544653081231,
-     7.837383689930568,
-     7.913465561530068,
-     8.038939241280799,
-     8.115323861789179
+     8.68738713143866,
+     8.701787781088388,
+     8.768839291680354,
+     8.886158596296177,
+     8.95949808442791
     ],
     [
-     8.48642619384108,
-     8.499078585893797,
-     8.557704556975532,
-     8.658711303302375,
-     8.72082456443326
+     9.355446292950548,
+     9.365954913303916,
+     9.41860660258005,
+     9.514193593341659,
+     9.57437454518597
     ]
    ]
   },
-  "reading": "The lowest and the widest of the three, and the only one that takes the debt seriously as a structural fact rather than as a subtraction. Enterprise value including the non-operating assets is EGP 26,074m against gross debt of EGP 14,639m, so the equity is out of the money on the model's own central case and its value is entirely time value. That is why the answer rises with volatility and with time, and why the grid below matters more than the point: at 30% volatility over three years the claim is worth EGP 6.82 a share, and at 60% over seven years EGP 8.72. A reader who finds it perverse that a worse business is worth more here has understood the method correctly: limited liability truncates the downside, so dispersion accrues to the holder. What the method cannot do is tell that holder when the option expires.",
+  "reading": "The lowest and the widest of the three, and the only one that takes the debt seriously as a structural fact rather than as a subtraction. Enterprise value including the non-operating assets is EGP 28,379m against gross debt of EGP 14,639m, so the equity is out of the money on the model's own central case and its value is entirely time value. That is why the answer rises with volatility and with time, and why the grid below matters more than the point: at 30% volatility over three years the claim is worth EGP 7.69 a share, and at 60% over seven years EGP 9.57. A reader who finds it perverse that a worse business is worth more here has understood the method correctly: limited liability truncates the downside, so dispersion accrues to the holder. What the method cannot do is tell that holder when the option expires.",
   "contested": {
-   "carried_through": 7.913465561530068,
+   "carried_through": 8.768839291680354,
    "carried_low": 0.0,
-   "carried_high": 8.038939241280799,
-   "stopped": 10.524369606850382,
-   "stopped_low": 10.472140297024891,
-   "stopped_high": 10.626777876474709,
-   "ev_incl_halt": 33089.79572797409
+   "carried_high": 8.886158596296177,
+   "stopped": 11.39031216913562,
+   "stopped_low": 11.343917558260543,
+   "stopped_high": 11.486214709450218,
+   "ev_incl_halt": 35405.752825926946
   }
  },
  "ranges": {
@@ -390,7 +390,7 @@
   ],
   "e3": [
    0.0,
-   8.038939241280799
+   8.886158596296177
   ]
  },
  "spot": 14.41

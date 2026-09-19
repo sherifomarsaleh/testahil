@@ -20,17 +20,17 @@ Internal record. No rating, no price target, no recommendation — a range and w
 
 | # | name | ccy | scope | old base | new base | base | bear | full | built to → | lessons |
 |---|---|---|---|---|---|---|---|---|---|---|
-| 1 | AMOC | EGP | full | 5.9500 | 20.0503 | +237.0% | -59.3% | +223.0% | (study carries no stamp) → 2026.09.10 | — |
+| 1 | AMOC | EGP | full | 5.9500 | 22.5705 | +279.3% | -59.5% | +267.0% | (study carries no stamp) → 2026.09.10 | — |
 | 2 | ARCC | EGP | full | 54.6500 | 77.1781 | +41.2% | -39.8% | +26.1% | (study carries no stamp) → 2026.09.10 | — |
 | 3 | ELEC | EGP | full | 0.3400 | 0.3229 | -5.0% | -12.3% | +0.6% | (study carries no stamp) → 2026.09.10 | L-386 |
-| 4 | PHDC | EGP | full | unrecoverable | 21.0897 | n/a | n/a | n/a | 2026.08.23 → 2026.09.10 | — |
-| 5 | SCEM | EGP | full | 53.1200 | 122.6685 | +130.9% | -52.4% | +107.6% | (study carries no stamp) → 2026.09.10 | — |
-| 32 | ADIB | EGP | full | 54.3000 | 44.4610 | -18.1% | +36.6% | -51.7% | delivered 03-07-2026; no engine directory → 2026.09.10 | — |
-| 33 | EGCH | EGP | full | 3.6400 | 8.0748 / 11.6065 (two-sided) | n/a | n/a | -25.0% | (study carries no stamp) → 2026.09.10 | — |
+| 4 | PHDC | EGP | full | unrecoverable | 23.9449 | n/a | n/a | n/a | 2026.08.23 → 2026.09.10 | — |
+| 5 | SCEM | EGP | full | 53.1200 | 133.4717 | +151.3% | -52.5% | +125.8% | (study carries no stamp) → 2026.09.10 | — |
+| 32 | ADIB | EGP | full | 54.3000 | 51.1276 | -5.8% | +57.9% | -44.6% | delivered 03-07-2026; no engine directory → 2026.09.10 | — |
+| 33 | EGCH | EGP | full | 3.6400 | 9.2354 / 12.7723 (two-sided) | n/a | n/a | -17.4% | (study carries no stamp) → 2026.09.10 | — |
 | 34 | GBCO | EGP | full | 35.7000 | 45.7826 / 56.7795 (two-sided) | n/a | -17.2% | +11.3% | (study carries no stamp) → 2026.09.10 | — |
-| 35 | PHAR | EGP | full | 61.2100 | 85.2465 / 102.8915 (two-sided) | n/a | +46.9% | +40.9% | (study carries no stamp) → 2026.09.10 | L-386 |
+| 35 | PHAR | EGP | full | 61.2100 | 101.4162 / 121.6109 (two-sided) | n/a | +74.7% | +66.5% | (study carries no stamp) → 2026.09.10 | — |
 | 36 | SWDY | EGP | full | 69.7300 | 87.9425 | +26.1% | +43.2% | -0.4% | (study carries no stamp) → 2026.09.10 | — |
-| 37 | TMGH | EGP | full | 147.1200 | 108.1943 | -26.5% | -7.7% | -25.8% | (study carries no stamp) → 2026.09.10 | — |
+| 37 | TMGH | EGP | full | 147.1200 | 116.1363 | -21.1% | +1.1% | -21.3% | (study carries no stamp) → 2026.09.10 | — |
 
 Percentages are the delivered edition against the **frozen pre-campaign baseline**, captured before the run touched `assets/data.js`. Where a name carries more than one edition, `vs_previous_pct` in the JSON holds the edition-on-edition move.
 

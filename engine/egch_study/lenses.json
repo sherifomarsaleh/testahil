@@ -1,10 +1,10 @@
 {
  "cashflow": {
   "label": "Cash flow",
-  "carry_through": 8.074785424029702,
-  "stopped": 11.606542070353424,
-  "upside": 8.387852773539452,
-  "downside": 3.9880723803159515
+  "carry_through": 9.235379308069334,
+  "stopped": 12.772343731962982,
+  "upside": 9.565581138264436,
+  "downside": 4.750760242759711
  },
  "book": {
   "label": "Book value and sustainable return",
@@ -36,7 +36,7 @@
   "value_high": 25.603957803978577,
   "implied_at_market": 6.687185159727342,
   "implied_at_market_ex_nonop": 6.053362441219282,
-  "implied_at_model": 3.876359922753379
+  "implied_at_model": 4.275180795854339
  },
  "normalised": {
   "label": "Normalised earnings power",
@@ -71,29 +71,29 @@
  },
  "synthesis": {
   "field": {
-   "Cash flow \u2014 programme carried through": 8.074785424029702,
-   "Cash flow \u2014 programme stopped": 11.606542070353424,
+   "Cash flow \u2014 programme carried through": 9.235379308069334,
+   "Cash flow \u2014 programme stopped": 12.772343731962982,
    "Book value, disclosed (a floor, never weighted)": 8.15778582586335,
    "Relative multiples": 19.929334867920833,
    "Normalised earnings power": 7.366806375302057
   },
   "low": 7.366806375302057,
   "high": 19.929334867920833,
-  "central_carry_through": 8.074785424029702,
-  "central_stopped": 11.606542070353424,
+  "central_carry_through": 9.235379308069334,
+  "central_stopped": 12.772343731962982,
   "spot": 14.41,
   "note": "The two cash-flow readings are the contested judgement and are never averaged. The other three lenses are shown against both."
  },
  "central": {
   "name": "Cash-flow lens, programme carried through",
   "primary": "dcf",
-  "base": 8.074785424029702,
+  "base": 9.235379308069334,
   "alternative_framing": {
    "label": "Cash-flow lens, programme stopped",
-   "value": 11.606542070353424
+   "value": 12.772343731962982
   },
-  "bear": 3.9880723803159515,
-  "bull": 8.387852773539452,
+  "bear": 4.750760242759711,
+  "bull": 9.565581138264436,
   "retired_blend": {
    "weights": {
     "cashflow": 0.45,
@@ -101,18 +101,18 @@
     "normalised": 0.2,
     "book": 0.15
    },
-   "value": 9.092881689457943
+   "value": 9.61514893727578
   },
-  "note": "The central is the cash-flow lens on the company's own tonnes, prices and disclosed capital programme, carried through. It is not a blend. The relative multiple is published beside it as a cross-check, the disclosed book value as a floor, and normalised earnings as a diagnostic this class does not weight. The retired blend of all four read EGP 9.09."
+  "note": "The central is the cash-flow lens on the company's own tonnes, prices and disclosed capital programme, carried through. It is not a blend. The relative multiple is published beside it as a cross-check, the disclosed book value as a floor, and normalised earnings as a diagnostic this class does not weight. The retired blend of all four read EGP 9.62."
  },
  "contested": {
   "question": "Is the ANNA capital programme carried through, or stopped?",
   "side_a_label": "Carried through",
-  "side_a": 8.074785424029702,
+  "side_a": 9.235379308069334,
   "side_b_label": "Stopped",
-  "side_b": 11.606542070353424,
-  "gap": 3.5317566463237213,
-  "gap_equity": 7016.1135831653755,
+  "side_b": 12.772343731962982,
+  "gap": 3.5369644238936484,
+  "gap_equity": 7026.4592447172545,
   "decides": "Whether the plant, once built, earns a return above the cost of the capital sunk into it. On the disclosed bank-approved cost and the derived nameplate it does not, which is why stopping is worth more than finishing."
  }
 }

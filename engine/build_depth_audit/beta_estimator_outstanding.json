@@ -1,0 +1,13 @@
+{
+ "rule": "[R-BETA-05]",
+ "why": "Seeded 18-09-2026 in the commit that adopts the rule. Every entry carries its MEASUREMENT rather than a bare name [R-ENF-08], so the debt is countable and an entry names its own fix: one sentence from beta_regression.estimator_note(), emitted beside the diagnostics the document already prints. The list may only SHORTEN. THE EXEMPLAR IS NOT ON IT \u2014 ADNOCLS names the construction in its own cost-of-capital table ('The estimate is a lead-lag sum beta: the routine regresses on one lag, the contemporaneous return and one lead and sums the three slopes'), so per [R-ENF-01 EXTENDED 04-Sep-2026] this standard is MET by the exemplar rather than added to its debt.",
+ "outstanding": {
+  "AMOC": "quotes 2 of 3 testable diagnostics and names no estimator; comes off at the rebuild now under way",
+  "EGCH": "quotes 3 of 3 \u2014 the most testable set in the book, and the one a reader is most likely to check; comes off at the rebuild now under way",
+  "TMGH": "quotes 2 of 3; THIS IS THE STUDY THE RULE WAS FOUND ON \u2014 an outside audit applied the single-regressor identity to beta 1.4718 / SE 0.185 / R2 32.6% / n 251 and concluded, correctly, that they cannot come from one regression; comes off at the rebuild now under way",
+  "AMR": "quotes 2 of 3; outside the seven audited names, so it waits for that study's next edition",
+  "BOROUGE": "quotes 1 of 3; its record is the NESTED shape, whose sub-record already carries the Dimson note internally \u2014 the note reaches no reader",
+  "PHDC": "quotes 2 of 3; outside the seven audited names",
+  "RIYADHCABLE": "quotes 2 of 3; outside the seven audited names"
+ }
+}

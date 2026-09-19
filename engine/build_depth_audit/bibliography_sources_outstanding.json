@@ -1,0 +1,16 @@
+{
+ "rule": "R-ENF-01 / SIGCM clause 1 checked on the DELIVERED document",
+ "note": "Studies whose delivered bibliography or sources table cites a vendor or an outlet for the SUBJECT'S OWN dated historicals, naming no company document. Seeded 18-09-2026 on the gate's first run, with each entry's MEASUREMENT so the debt is countable rather than remembered [R-ENF-08]. May only ever SHORTEN. A breach closes by re-issuing the study's bibliography on its own filings -- the figures are in most cases already in the study's committed register, correctly sourced, which is why the register-side gate passes.",
+ "measurements": {
+  "AMOC": "1 row. 'Company financial summary pages | stockanalysis.com; Investing.com; TradingView | Aug 2026' cited for shares outstanding, market capitalisation, total assets, total liabilities, cash and equivalents and total debt. The committed register sources all six to filings; only the delivered bibliography says otherwise.",
+  "EGCH": "1 row. abuqir_revenue_FY2025 sourced to a stockanalysis.com company-financials page. ABU QIR IS A PEER OF THE SUBJECT, not the subject, so SIGCM clause 5 permits it -- and the row does not SAY it is a peer, which is why the gate cannot tell. Closes by labelling the row for what it is, not by removing the figure.",
+  "ELEC": "12 rows, and the most serious in the book. The company's own FY2024 and FY2025 revenue, net profit, EPS and total assets sourced to Mubasher, MarketScreener, Arab Finance, Zawya, Decypha and a Reuters flash; its FY2024 EBIT, EBITDA, total liabilities and interest coverage to a Simply Wall St health page and an Investing.com summary; Q1-2026 net sales to Zawya. ELEC is already on the register-side breaching list for the same defect.",
+  "SCEM": "1 row. 'Global Cement | Trade press' cited for the FY2024 net profit of EGP 3.07bn against a FY2023 loss of EGP 121.42mn and sales of EGP 6.42bn. SCEM's audited statements are on the company's own website -- six PDFs, no authentication -- which is the measurement that adopted the register-side gate."
+ },
+ "breaching": [
+  "AMOC",
+  "EGCH",
+  "ELEC",
+  "SCEM"
+ ]
+}

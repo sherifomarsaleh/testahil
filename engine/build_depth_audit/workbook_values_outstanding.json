@@ -1,20 +1,26 @@
 {
- "failing": {},
- "no_check": {
-  "XPT": "no recalculation script in the study directory."
- },
- "note": "Studies whose delivered workbook was not reconciled against the study when this gate was adopted (05-Sep-2026). Two groups, NOT interchangeable: no_check excuses an absent instrument, failing excuses a red one, and a study moving between them goes red until the move is recorded. Allowed to fail; the lists may only ever get shorter. --prune rewrites them.",
  "cleared": {
   "AMOC": {
    "cleared": "2026-09-13",
+   "entry_retired": "The DELIVERED workbook publishes a fair value of EGP 11.41 a share where the study publishes 17.63 \u2014 35% below its own answer \u2014 across 1,867 disagreeing formula cells. THE ROOT IS ONE FORMULA AND IT IS NOT STALENESS: DCF!C33 builds gross profit as revenue less cost plus a flat margin shift, and reproduces a gross margin of 9.68% in year one where the model applies 12.43%. Everything upstream agree",
+   "how": "the defect this entry named is fixed in the GENERATORS. The entry said \"DCF!C33 builds gross profit as revenue less cost plus a flat margin shift, and reproduces a gross margin of 9.68% in year one where the model applies 12.43%\", and that was exactly right. The margin shift is the study's adopted base-period correction (ADOPTED_GM_SHIFT, 2.744 points), carried in compute.py and read by the workbook from ONE cell; build_xlsx_v5.py typed 0.0 into it, so the delivered file rebuilt the base the study had SUPERSEDED and published EGP 12.85 against the study's EGP 20.05. compute.py now exports dcf.adopted_gm_shift, the builder puts it in DCF!B7, and the sensitivity grid writes the lever the model ran rather than the increment. recalc_v5.py: 0 disagreements across 6,069 formula cells. NO FAIR VALUE MOVED -- EGP 20.0503 before and after.",
    "was": {
     "disagreeing_cells": 1867,
     "model_fv_ps": 17.632867,
     "workbook_fv_ps": 11.410241,
     "worst_sheet": "DCF"
-   },
-   "how": "the defect this entry named is fixed in the GENERATORS. The entry said \"DCF!C33 builds gross profit as revenue less cost plus a flat margin shift, and reproduces a gross margin of 9.68% in year one where the model applies 12.43%\", and that was exactly right. The margin shift is the study's adopted base-period correction (ADOPTED_GM_SHIFT, 2.744 points), carried in compute.py and read by the workbook from ONE cell; build_xlsx_v5.py typed 0.0 into it, so the delivered file rebuilt the base the study had SUPERSEDED and published EGP 12.85 against the study's EGP 20.05. compute.py now exports dcf.adopted_gm_shift, the builder puts it in DCF!B7, and the sensitivity grid writes the lever the model ran rather than the increment. recalc_v5.py: 0 disagreements across 6,069 formula cells. NO FAIR VALUE MOVED -- EGP 20.0503 before and after.",
-   "entry_retired": "The DELIVERED workbook publishes a fair value of EGP 11.41 a share where the study publishes 17.63 — 35% below its own answer — across 1,867 disagreeing formula cells. THE ROOT IS ONE FORMULA AND IT IS NOT STALENESS: DCF!C33 builds gross profit as revenue less cost plus a flat margin shift, and reproduces a gross margin of 9.68% in year one where the model applies 12.43%. Everything upstream agree"
+   }
   }
- }
+ },
+ "failing": {
+  "GBCO": {
+   "disagreeing_cells": 571,
+   "measured_on": "2026-09-19",
+   "reason": "recalc.py refuses with '571 formula cells disagree with the model'. MEASURED AGAINST origin/main RESTORED UNTOUCHED ON 19-09-2026 AND IT REFUSES IDENTICALLY \u2014 the same 571 \u2014 so this is not the 2% real-rate change's and not this branch's; it is the trunk's own outstanding work, consistent with main's 'Study provenance gate' having been red since 14-09-2026. The disagreements are not small divergences: the workbook returns 0.497704 where the model has 150.532004 and 1.000000 where the model has 5384.457781, which reads like formula cells not evaluating rather than a model-versus-workbook difference of opinion. build_all.py stops at recalc because later steps read what it writes, so GBCO cannot be rebuilt at ANY discount rate until this is fixed \u2014 which is why it is also on the cost-of-capital and macro ratchets."
+  }
+ },
+ "no_check": {
+  "XPT": "no recalculation script in the study directory."
+ },
+ "note": "Studies whose delivered workbook was not reconciled against the study when this gate was adopted (05-Sep-2026). Two groups, NOT interchangeable: no_check excuses an absent instrument, failing excuses a red one, and a study moving between them goes red until the move is recorded. Allowed to fail; the lists may only ever get shorter. --prune rewrites them."
 }

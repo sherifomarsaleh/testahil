@@ -1,0 +1,1386 @@
+  CLEOPATRA HOSPITAL COMPANY “S.A.E.”
+         AND ITS SUBSIDIARIES
+
+         LIMITED REVIEW REPORT
+AND THE INTERIM CONDENSED CONSOLIDATED
+          FINANCIAL STATEMENTS
+    FOR THE SIX MONTHS PERIOD ENDED
+               30 JUNE 2026
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Interim condensed consolidated financial statements
+For the six months period ended 30 June 2026
+
+
+
+
+Index                                                              Page
+
+Limited review report                                                1
+
+Interim condensed consolidated statement of financial position       2
+
+Interim condensed consolidated statement of profit or loss           3
+
+Interim condensed consolidated statement of comprehensive income     4
+
+Interim condensed consolidated statement of changes in equity        5
+
+Interim condensed consolidated statement of cash flows               6
+
+Notes to the interim condensed consolidated financial statements   7 – 28
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Interim condensed consolidated statement of profit or loss
+For the six months period ended 30 June 2026
+
+(All amounts are shown in Egyptian Pounds)
+                                             Six months ended 30 June            Three months ended 30 June
+                                 Note          2026            2025                2026             2025
+
+Revenue                           15       4,309,172,850     3,382,144,981      2,336,654,849      1,763,487,426
+Deduct:
+Cost of revenue                   16     )2,842,493,175( (2,072,754,200)      )1,514,563,441(     (1,068,361,115)
+Gross profit                               1,466,679,675   1,309,390,781          822,091,408         695,126,311
+
+Add:
+General and administrative
+expenses                          17       )785,072,835(     (477,428,758)       )458,023,494(     (249,107,637)
+Net impairment losses on
+financial assets                  18        )43,037,092(      (42,434,540)        )11,626,427(         (8,052,917)
+Other expenses                              )16,852,993(        (8,456,861)         )9,511,194(        (5,618,235)
+Operating profit                             621,716,755       781,070,622         342,930,293        432,347,522
+Finance income                                16,315,160         28,009,538           4,882,919         12,046,814
+Finance expenses                           )148,516,638(     (104,465,126)        )77,515,674(       (61,306,573)
+Consulting expenses for
+acquisition activities                                  -         (330,000)                   -                  -
+Profit for the period before
+income tax                                   489,515,277       704,285,034         270,297,538        383,087,763
+Current tax                                )160,012,466(     (174,280,283)        )78,390,910(       (96,002,832)
+Deferred tax                                  12,535,900        (8,457,501)         )2,776,507(         2,173,049
+Net profit for the period                    342,038,711       521,547,250         189,130,121        289,257,980
+
+Profit is attributable to
+Owners of the Parent Company                 270,723,576       450,986,476        152,628,776        250,406,002
+Non-controlling interest                      71,315,135        70,560,774         36,501,345         38,851,978
+                                             342,038,711       521,547,250        189,130,121        289,257,980
+
+Earnings per share
+(basic/ diluted)                  19                 0.19              0.31               0.11               0.17
+
+The accompanying notes from 1 to 21 are integral part of these interim condensed consolidated financial statements.
+
+
+
+
+                                                      -3-
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Interim condensed consolidated statement of comprehensive income
+For the six months period ended 30 June 2026
+
+(All amounts are shown in Egyptian Pounds)
+                                       Six months ended 30 June               Three months ended 30 June
+                                         2026            2025                   2026             2025
+
+Profit for the period                    342,038,711         521,547,250        189,130,121        289,257,980
+Other comprehensive income items                   -                   -                  -                  -
+Comprehensive income for the
+ period                                  342,038,711         521,547,250        189,130,121        289,257,980
+
+Profit is attributable to:
+Owners of the Parent Company             270,723,576         450,986,476        152,628,776        250,406,002
+Non-controlling interest                  71,315,135          70,560,774         36,501,345         38,851,978
+                                         342,038,711         521,547,250        189,130,121        289,257,980
+
+The accompanying notes from 1 to 21 are integral part of these interim condensed consolidated financial statements.
+
+
+
+
+                                                       -4-
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Interim condensed consolidated statement of changes in equity
+For the six months period ended 30 June 2026
+
+(All amounts are shown in Egyptian Pounds)
+
+                                                                                                                                  Total
+                                                                                                               Employees      Shareholders’
+                                                                                                                 stock         equity of the      Non-
+                                              Share          Treasury                           Retained       ownership         parent        controlling      Total
+                                              capital         shares           Reserve          earnings         plan           company          interest       equity
+
+Balance at 1 January 2025                   722,717,101       (5,589,873)      97,276,022    2,048,718,617       36,466,935   2,899,588,802    278,208,598    3,177,797,400
+Dividends                                             -                 -               -    (142,178,314)                -   (142,178,314)     (4,166,834)   (146,345,148)
+Employees Stock Ownership Plan value                  -                 -               -                -       60,000,000      60,000,000               -      60,000,000
+Reserves formed                                       -                 -      20,602,259     (20,604,077)                -          (1,818)          1,818               -
+Total comprehensive income for the period             -                 -               -      450,986,476                -     450,986,476      70,560,774     521,547,250
+Balance at 30 June 2025                     722,717,101       (5,589,873)     117,878,281    2,336,922,702       96,466,935   3,268,395,146    344,604,356    3,612,999,502
+
+Balance at 1 January 2026                   724,725,042                 -     159,910,009    2,705,002,786       32,699,496   3,622,337,333    418,028,210    4,040,365,543
+Dividends                                             -                 -               -    )144,107,006(                -   )144,107,006(     )9,269,573(   )153,376,579(
+Employees Stock Ownership Plan value                  -                 -               -                -       33,961,551      33,961,551               -      33,961,551
+Reserves formed                                       -                 -      27,687,105     )27,689,480(                -          )2,375(          2,375               -
+Total comprehensive income for the period             -                 -               -      270,723,576                -     270,723,576      71,315,135     342,038,711
+Balance at 30 June 2026                     724,725,042                 -     187,597,114    2,803,929,876       66,661,047   3,782,913,079    480,076,147    4,262,989,226
+
+The accompanying notes from 1 to 21 are integral part of these interim condensed consolidated financial statements.
+
+
+
+
+                                                                                   -5-
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Interim condensed consolidated statement of cash flows
+For the six months period ended 30 June 2026
+
+(All amounts are shown in Egyptian Pounds)                      Note       30 June 2026         30 June 2025
+
+Cash flows from operating activities
+Profit before tax                                                            489,515,277           704,285,034
+Adjustments to settle net profit with cash flow from
+ operating activities:
+Fixed assets depreciation                                         4           246,982,354          108,839,973
+Right of use depreciation                                         5            16,399,846            18,059,400
+Advance payments / Revenue share amortization                     6            10,946,432                      -
+Gain on disposal of fixed assets                                                 )84,674(            (2,081,848)
+Financial assets impairment                                      18            43,037,092            42,434,540
+Inventory impairment                                              7             3,413,216             1,981,088
+Provisions                                                                     20,998,501            17,880,129
+Interest and commission – Credit facilities                                   130,573,028            88,387,474
+Interest and commission - Lease contracts                        14            17,943,610            16,077,653
+Interest income                                                              )22,592,096(          (27,016,857)
+Intangible assets amortization                                                  1,034,642              1,034,642
+Employees stock ownership plan                                                201,854,673            60,000,000
+Operating cash flows before changing in assets and
+ liabilities                                                                1,160,021,907         1,029,881,228
+
+Changes in assets and liabilities
+Changes in inventories                                                      )198,815,200(            30,336,449
+Changes in trade receivables                                                )356,495,597(         (320,814,269)
+Changes in debtors and other debit balances                                    )4,282,287(          107,282,839
+Change in creditors and other credit balances                                 537,976,836           351,392,642
+Change in working capital                                                   1,138,405,659         1,198,078,889
+Income taxes paid                                                           )327,633,872(         (240,568,733)
+Provisions – used                                                            )27,892,633(           (25,523,445)
+Net cash flow generated from operating activities                             782,879,154           931,986,711
+
+Cash flows from investing activities
+Payments and down payments for the purchase of fixed assets       4          )91,514,001(          (49,768,004)
+Payments for Projects under construction                          4         )721,622,351(       (1,212,753,302)
+Proceeds from the sale of fixed assets                                          1,738,644             2,563,562
+Interest received                                                              22,592,096            26,418,588
+Advance Payments / Revenue Share                                                        -         (250,000,000)
+Net cash flows used in investing activities                                 )788,805,612(       (1,483,539,156)
+
+Cash flows from financing activities
+Proceeds from bank's overdraft                                                865,454,533           730,980,735
+Payment of bank overdraft                                                   )647,787,151(         (705,131,945)
+Proceeds from loans                                                           139,325,933           827,627,798
+Payment of loans                                                             )72,260,548(           (28,484,446)
+Payments of lease liabilities                                                )30,435,710(           (24,981,241)
+Interest and commission paid                                                (204,242,717)           (88,387,474)
+Dividends paid                                                              (143,376,579)         (146,345,148)
+Net cash flows generated from financing activities                           )93,322,239(           565,278,279
+
+Changed in cash and cash equivalents during the period                       )99,248,697(           13,725,834
+Cash and cash equivalents at the beginning of the period                      554,583,219          477,812,191
+Cash and cash equivalents at the end of the period               10           455,334,522          491,538,025
+
+The accompanying notes from 1 to 21 are integral part of these interim condensed consolidated financial statements.
+
+
+
+
+                                                       -6-
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the interim condensed consolidated financial statements
+For the six months period ended 30 June 2026
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+1.      Introduction
+
+Cleopatra Hospital Company the “parent company” previously (Lasheen and Partners) was established
+as a limited partnership on 19 July 1979. The decision of the Chairman of Investment Authority No.
+4092 of 2005 was issued on 27 June 2005 authorising the conversion of the legal type of Cleopatra
+Hospital (Lasheen and Partners) from a "limited partnership" into Cleopatra Hospital Company
+"S.A.E.". The Company was incorporated and is domiciled in the Arab Republic of Egypt. The
+Company is a public joint stock company and was incorporated in accordance with law No. 95 of 1992.
+
+The company is listed in the Egyptian Stock Exchange.
+
+1.1     Principal activity
+
+The Company's purpose is to establish a private hospital to provide advanced modern health and
+medical services. as well as the medical care of in-patients. The Company may have interest or
+participate in any manner in companies or other firms which carry on similar activities in Egypt or
+abroad. The Company may acquire merge or affiliate such entities under the General Authority for
+Investment.
+
+1.2     Registered address and place of business.
+
+The Company is located at 39, 41 Cleopatra Street. Heliopolis. Cairo.
+
+1.3     Presentation currency.
+
+Presentation currency is Egyptian pound.
+
+These interim condensed consolidated financial statements were approved for issue by the Parent
+Company's Board of Directors on 3 September 2026.
+
+
+2.      Basis of preparation
+
+2.1     Basis of financial statements preparation
+
+The accompanying condensed interim consolidated financial statements have been prepared for the six-
+month period ended 30 June 2026 in accordance with Egyptian Accounting Standard No. 30 “Interim
+Financial Reporting.”
+
+These condensed interim consolidated financial statements do not include all the disclosures normally
+provided in the annual consolidated financial statements and should be read in conjunction with the
+Group’s annual consolidated financial statements for the year ended 31 December 2025.
+
+The results for the six-month period ended 30 June 2026 are not necessarily indicative of the results
+that may be expected for the financial year ending 31 December 2026.
+
+The accounting policies applied in the preparation of these condensed interim consolidated financial
+statements are consistent with those used in the preparation of the annual consolidated financial
+statements for the year ended 31 December 2025 and the comparative financial periods.
+
+
+
+                                                 -7-
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the interim condensed consolidated financial statements
+For the six months period ended 30 June 2026
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+2.      Basis of preparation (continued)
+
+2.1     Basis of financial statements preparation (continued)
+
+The interim condensed consolidated financial statements include the financial statements of the
+following subsidiaries:
+
+                                            Relationship                   Percentage of    Percentage of
+                                                with                        ownership        ownership
+                                             Cleopatra       Country of      30 June        31 December
+                                             Hospital      incorporation       2026             2025
+
+Al-Shorouk Hospital Company S.A.E.           Subsidiary       Egypt           99.99%           99.99%
+Nile Badrawi Hospital Company S.A.E.         Subsidiary       Egypt           99.99%           99.99%
+Cairo Specialised Hospital Company S.A.E.    Subsidiary       Egypt           57.01%           57.01%
+CHG for Medical Services Company S.A.E.                                    20% (Preferred   20% (Preferred
+                                             Subsidiary       Egypt           shares)          shares)
+CHG Pharma for Pharmacies Management
+Company S.A.E.                               Subsidiary       Egypt            98%              98%
+CHG for hospitals S.A.E.                     Subsidiary       Egypt           99.99%           99.99%
+Bedaya El Gedida Company for Medical
+Centers and Hospitals S.A.E.                 Subsidiary       Egypt            60%              60%
+CHG Sky Hospital S.A.E.                      Subsidiary       Egypt           99.99%           99.99%
+Cleopatra Heaven Hospital S.A.E.             Subsidiary       Egypt           99.99%           99.99%
+
+2.2     Functional and presentation currency
+
+The functional currency of each of the Group’s companies is the currency of the primary economic
+environment in which the Company operates. The functional and presentation currency of the Company
+and all of its subsidiaries is the national currency of the Arab Republic of Egypt, the Egyptian pound.
+The consolidated financial statements are presented in Egyptian pound, which is the Group’s
+presentation currency.
+
+2.3     Use of estimates and judgments
+
+The preparation of interim financial statements requires management to make judgements, estimates
+and assumptions that affect the application of accounting policies and the reported amounts of assets
+and liabilities, income, and expense. Actual results may differ from these estimates.
+
+Significant judgments used by management in applying the group's accounting policies and the main
+sources of estimation uncertainty are the same as those disclosed in the latest consolidated financial
+statements and for the financial year ended 31 December 2025.
+
+
+
+
+                                                     -8-
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the interim condensed consolidated financial statements
+For the six months period ended 30 June 2026
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+2.      Basis of preparation (continued)
+
+2.4     Financial assets and financial liabilities
+
+The Company holds the following financial instruments:
+                                                                      Amortized cost
+                                                                30 June         31 December
+Financial assets                                                 2026                2025
+
+Trade receivables (gross)                                      1,889,418,952      1,532,923,355
+Debtors and other debit balances *                                24,699,950         22,362,917
+Cash on hand and at banks                                        450,033,193        550,800,902
+                                                               2,364,152,095      2,106,087,174
+
+*       Excluding prepayments, advances to suppliers, and withholding taxes.
+
+                                                                      Amortized cost
+                                                                30 June         31 December
+Financial Liabilities                                            2026                2025
+
+Loan                                                           3,202,878,438      3,135,813,053
+Creditors and other credit balances **                         2,356,193,863      1,875,868,041
+Lease liabilities                                                165,157,049        175,620,181
+Bank’s overdraft                                                 608,992,576        391,325,194
+                                                               6,333,221,926      5,578,626,469
+
+**      Excluding social insurance
+
+
+
+
+                                                 -9-
+         CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+         Notes to the interim condensed consolidated financial statements
+         For the six months period ended 30 June 2026
+
+         (All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+         3.         Segment reporting
+
+         Business segments are reported in line with the reports provided internally to the senior management. which makes decisions related to resources allocation and
+         evaluation of segments' performance in the Group. The senior management is represented in Group's executive management committee. The segment reports
+         are provided to the Group based on each company as each subsidiary is considered a separate business segment.
+
+         Below is a summary of each segment, which is presented for the period ended 30 June 2026 for each segment:
+
+                                                                                                                                                Bedaya El
+                                                                                                                                                 Gedida
+                                                                                                                                               Company for
+                         Cleopatra        Cairo                                                 CHG Pharma         CHG for                       Medical
+                         Hospital       Specialised   Nile Badrawi   Al Shorouk     CHG Medical for Pharmacy       Hospitals     Al Kateb      Centers and     CHG SKY        Cleopatra      Consolidation
+                         Company         Hospital       Hospital      Hospital        Services   Management        Company       Hospitals      Hospitals       Hospital       Heaven           entries          Total
+Statement of financial
+position
+Non-current assets        3,292,928,528   609,729,931   874,235,331   324,804,095     12,521,058      1,334,875             -   183,597,272      93,137,396   4,293,297,506   542,688,221 )1,812,192,781(     8,416,081,432
+Current assets            2,047,855,861   945,150,158   334,897,301   736,491,577     70,035,738     42,474,215    46,622,165    98,579,499     118,613,947     320,989,331   149,382,884 )2,133,872,674(     2,777,220,002
+Total assets              5,340,784,389 1,554,880,089 1,209,132,632 1,061,295,672     82,556,796     43,809,090    46,622,165   282,176,771     211,751,343   4,614,286,837   692,071,105 )3,946,065,455(    11,193,301,434
+Current liabilities       2,426,385,766   422,254,147   349,806,798   242,728,523     75,359,096     53,431,135     1,281,860   102,443,238      84,021,233   2,166,751,690   394,371,021 )2,134,496,953(     4,184,337,554
+Non-current liabilities     255,179,980    70,457,307   312,870,283    28,929,055      1,605,947      1,605,960             -     3,854,007       2,083,624   1,678,832,457   359,257,159      31,298,875     2,745,974,654
+Total Liabilities         2,681,565,746   492,711,454   662,677,081   271,657,578     76,965,043     55,037,095     1,281,860   106,297,245      86,104,857   3,845,584,147   753,628,180 )2,103,198,078(     6,930,312,208
+Statement of profit or
+loss:
+Revenue                   1,296,658,414   863,156,414   541,215,364   575,977,191     107,679,219     66,106,981      17,223 163,903,349         91,144,976   444,959,385   241,605,944       )83,251,610(   4,309,172,850
+Cost of revenue           )694,390,684( )529,825,649( )372,569,475( )361,205,746(    )71,674,312(   )64,289,451(           - )125,109,104(     )63,180,596( )453,230,222( )189,817,110(         82,799,174 )2,842,493,175(
+Gross profit                602,267,730   333,330,765   168,645,889   214,771,445      36,004,907      1,817,530      17,223    38,794,245       27,964,380    )8,270,837(   51,788,834          )452,436(   1,466,679,675
+Other expenses and
+revenues                  )361,294,576( )185,414,710( )136,084,619( )132,279,442(    )21,374,183(    )2,801,351(    )819,621(   )39,327,668(   )23,224,432( )129,820,332(     )86,489,972(     )5,710,058( )1,124,640,964(
+Profit for the year         240,973,154   147,916,055    32,561,270    82,492,003      14,630,724      )983,821(    )802,398(      )533,423(      4,739,948 )138,091,169(     )34,701,138(     )6,162,494(     342,038,711
+Other Items
+Capital expenditure          83,947,206    25,907,938    59,827,020    12,781,715      1,093,486        122,708             -     3,628,705       1,656,364    576,090,942     48,080,268                -     813,136,352
+Fixed assets depreciation    35,890,575    24,790,126    25,539,671    18,327,143      1,090,546         47,883             -     6,510,380       3,662,657    118,342,918      9,609,154        3,171,301     246,982,354
+
+
+         *          Consolidated adjustment is mainly represented by the elimination of intercompany balances. transactions and consolidation adjustments for investment
+                    in subsidiaries.
+
+
+                                                                                                          - 10 -
+          CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+          Notes to the interim condensed consolidated financial statements
+          For the six months period ended 30 June 2026
+
+          (All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+          3.         Segment reporting (continued)
+
+          Business segments are reported in line with the reports provided internally to senior management, which makes decisions about allocation of resources and
+          assessment of segment performance in the Group. Senior management is represented on the Group’s Executive Management Committee. Segment reporting is
+          provided to the Group based on each company, whereas each subsidiary is considered a separate business segment.
+
+          Below is a summary of each segment, which is presented for the year ended 31 December 2025 for each segment:
+
+                                                                                                                                                     Bedaya El
+                                                                                                                                                      Gedida
+                                                                                                                                                    Company for
+                            Cleopatra          Cairo                                                CHG Pharma       CHG for                          Medical
+                            Hospital         Specialised   Nile Badrawi   Al Shorouk    CHG Medical for Pharmacy     Hospitals        Al Kateb      Centers and     CHG SKY         Cleopatra     Consolidation
+                            Company           Hospital       Hospital      Hospital       Services   Management      Company          Hospitals      Hospitals       Hospital        Heaven          entries          Total
+Statement of financial
+position
+Non-current assets          3,253,157,921     608,969,751   844,331,371   331,718,222     16,012,350     1,519,064            -      184,265,267      96,178,340   3,835,639,044    496,359,524 (1,790,217,495)    7,877,933,359
+Current assets              1,356,551,148     808,183,514   290,671,928   622,985,715     54,165,435    35,968,622   48,376,245       95,842,745     109,810,819     122,123,615    133,372,986 (1,314,726,846)    2,363,325,926
+Total assets                4,609,709,069   1,417,153,265 1,135,003,299   954,703,937     70,177,785    37,487,686   48,376,245      280,108,012     205,989,159   3,957,762,659    629,732,510 (3,104,944,341)   10,241,259,285
+Current liabilities         1,817,042,206     403,380,576   357,150,981   207,287,925     65,774,140    44,884,429    2,233,543      100,056,859      82,980,883   1,240,508,340    308,073,184 (1,319,055,904)    3,310,317,162
+Non-current liabilities       294,893,610      77,962,435   254,416,527    31,481,838     13,442,616     2,847,451            -        3,638,207       2,101,739   1,810,460,460    367,319,277      32,012,420    2,890,576,580
+Total Liabilities           2,111,935,816     481,343,011   611,567,508   238,769,763     79,216,756    47,731,880    2,233,543      103,695,066      85,082,622   3,050,968,800    675,392,461 (1,287,043,484)    6,200,893,742
+Statement of profit or
+loss:
+Revenue                     2,461,037,749   1,579,063,693 1,056,561,565 1,074,090,828   205,154,327   117,727,831     3,789,997 350,388,230     166,098,826                     -   404,518,175   (191,166,761)     7,227,264,460
+Cost of revenue           (1,280,600,614)   (988,677,445) (714,228,174) (666,628,996) (137,262,594) (114,287,800)             - (238,794,303) (106,481,164)                     - (312,095,386)     190,261,883   (4,368,794,593)
+Gross profit                1,180,437,135     590,386,248   342,333,391   407,461,832    67,891,733     3,440,031     3,789,997 111,593,927      59,617,662                     -    92,422,789       (904,878)     2,858,469,867
+Other expenses and
+revenues                    (660,423,354)   (305,568,346) (260,196,937) (222,568,626)    (31,152,348)   (4,912,129) (1,834,670)      (75,720,022)    (42,498,303) (133,926,040) (153,020,136)         1,217,358   (1,890,603,553)
+Profit for the year           520,013,781     284,817,902    82,136,454   184,893,206      36,739,385   (1,472,098)   1,955,327        35,873,905      17,119,359 (133,926,040) (60,597,347)            312,480       967,866,317
+Other Items
+Capital expenditure           294,886,907     97,704,776    254,939,127    58,010,758      1,396,361       403,308               -    19,699,678       3,782,728 1,745,207,327      175,562,255               -    2,651,593,225
+Fixed assets depreciation      58,841,355     42,220,031     42,853,081    34,151,534      1,980,826        55,097               -    10,681,534       6,865,943             -       13,635,001       6,342,600      217,627,002
+
+
+          *          Consolidated adjustment is mainly represented by the elimination of intercompany balances, transactions and consolidation adjustments for investment
+                     in subsidiaries.
+
+
+                                                                                                           - 11 -
+            CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+            Notes to the interim condensed consolidated financial statements
+            For the six months period ended 30 June 2026
+
+            (All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+            3.         Segment reporting (continued)
+
+            Below is a summary of each segment, which is presented for the period ended 30 June 2025 for each segment:
+
+                                                                                                                                                  Bedaya El
+                                                                                                                                                   Gedida
+                                                                                                                                                 Company for
+                             Cleopatra       Cairo                                                CHG Pharma         CHG for                       Medical
+                             Hospital      Specialised   Nile Badrawi   Al Shorouk    CHG Medical for Pharmacy       Hospitals     Al Kateb      Centers and     CHG SKY         Cleopatra     Consolidation
+                             Company        Hospital       Hospital      Hospital       Services   Management        Company       Hospitals      Hospitals       Hospital        Heaven          entries          Total
+Statement of financial
+ position
+Non-current assets          2,918,721,335   598,878,936   687,834,525   315,204,950     15,790,701      1,660,501             -   185,808,972     100,038,732   2,914,482,435    447,061,449 (1,546,631,496)    6,638,851,040
+Current assets              1,047,630,997   636,461,896   343,707,871   526,499,352     49,628,012     37,264,191    47,315,451   107,996,401      92,940,956     249,352,891    146,073,596 (709,612,848)      2,575,258,766
+Total assets                3,966,352,332 1,235,340,832 1,031,542,396   841,704,302     65,418,713     38,924,692    47,315,451   293,805,373     192,979,688   3,163,835,326    593,135,045 (2,256,244,344)    9,214,109,806
+Current liabilities         1,403,792,690   349,557,032   313,090,246   183,666,840     89,448,463     46,686,651     1,757,238   126,741,667      83,236,169     507,244,063    264,181,980 (724,985,282)      2,644,417,757
+Non-current liabilities       338,224,375    88,810,330   219,506,293    31,284,917      4,540,143      1,768,694             -     4,290,017       3,662,143   1,894,190,368    327,717,724      42,697,543    2,956,692,547
+Total Liabilities           1,742,017,065   438,367,362   532,596,539   214,951,757     93,988,606     48,455,345     1,757,238   131,031,684      86,898,312   2,401,434,431    591,899,704 (682,287,739)      5,601,110,304
+Statement of profit or
+ loss:
+Revenue                     1,109,112,121   760,806,814   514,073,822   516,757,533      96,043,266     55,460,385    2,157,669 165,945,059        68,414,636                -   184,078,731    (90,705,055)     3,382,144,981
+Cost of revenue             (606,080,844) (476,003,153) (343,911,400) (319,092,877)    (64,754,826)   (54,169,562)            - (109,069,070)    (46,260,090)                - (143,664,996)      90,252,618   (2,072,754,200)
+Gross profit                  503,031,277   284,803,661   170,162,422   197,664,656      31,288,440      1,290,823    2,157,669    56,875,989      22,154,546                -    40,413,735       (452,437)     1,309,390,781
+Other expenses and
+ revenues                   (275,407,557) (138,822,543) (112,515,902) (101,953,079)    (14,079,977)    (2,049,381)    (786,831)   (34,641,339)   (19,860,348)    (28,319,004)   (54,115,790)     (5,291,780)    (787,843,532)
+Profit for the period         227,623,720   145,981,118    57,646,520    95,711,577      17,208,463      (758,558)    1,370,838     22,234,650      2,294,198    (28,319,004)   (13,702,055)     (5,744,217)      521,547,250
+Other Items
+Capital expenditure          178,675,718    63,940,917     70,963,813    22,980,391        339,261        210,494             -    15,746,289       2,885,654    823,513,361      83,265,408               -    1,262,521,306
+Fixed assets depreciation     30,212,164    20,649,084     21,473,334    16,782,744        959,259         17,189             -     6,249,636       3,347,182              -       5,978,079       3,171,302      108,839,973
+
+
+            *          Consolidated adjustment is mainly represented by elimination of intercompany balances, transactions and consolidation adjustments for investment in
+                       subsidiaries.
+
+
+
+
+                                                                                                           - 12 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the interim condensed consolidated financial statements
+For the six months period ended 30 June 2026
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+4.        Fixed assets
+
+                                                             Machinery.
+                                                           equipment and                                                                      Projects under
+                                              Lands           devices        Furniture         Buildings        Vehicles      Computers        construction         Total
+At 1 January 2025
+Cost                                         173,240,262   1,204,328,371      213,910,044     1,035,227,517      58,744,148     188,021,707    2,768,442,562     5,641,914,611
+Accumulated depreciation                               -   (504,020,285)    (105,340,596)     (222,563,085)    (19,605,611)   (148,152,808)                -     (999,682,385)
+Net book value                               173,240,262     700,308,086      108,569,448       812,664,432      39,138,537      39,868,899    2,768,442,562     4,642,232,226
+Year ended 31 December 2025
+Opening net book value                       173,240,262     700,308,086     108,569,448        812,664,432     39,138,537       39,868,899    2,768,442,562     4,642,232,226
+Additions                                              -      64,385,244       20,037,003        61,031,702       5,755,000       9,354,023    2,489,923,928     2,650,486,900
+Disposals                                              -      (3,988,703)     (3,923,955)         (182,182)     (3,985,000)     (1,690,049)                -      (13,769,889)
+Cost adjustments                                       -        (192,495)         358,658                 -               -       (166,163)                -                 -
+Transfers from projects under construction             -      70,448,084       12,826,933       432,301,480               -       4,522,151    (520,098,648)                 -
+Depreciation for the year                              -   (115,155,714)     (27,927,009)      (46,034,559)     (8,749,837)    (19,759,883)                -     (217,627,002)
+Accumulated depreciation of disposal                   -        3,322,276       3,373,932           177,126       3,092,956       1,634,567                -        11,600,857
+Adjustments on accumulated depreciation                -         (53,520)         129,171                 -               -        (75,651)                -                 -
+Closing net book value                       173,240,262     719,073,258     113,444,181      1,259,957,999     35,251,656       33,687,894    4,738,267,842     7,072,923,092
+At 31 December 2025
+Cost                                         173,240,262   1,334,980,501      243,208,683     1,528,378,517      60,514,148     200,041,669    4,738,267,842      8,278,631,622
+Accumulated depreciation                               -   (615,907,243)    (129,764,502)     (268,420,518)    (25,262,492)   (166,353,775)                -    (1,205,708,530)
+Net book value                               173,240,262     719,073,258      113,444,181     1,259,957,999      35,251,656      33,687,894    4,738,267,842      7,072,923,092
+At 30 June 2026
+Opening net book value                       173,240,262     719,073,258      113,444,181     1,259,957,999      35,251,656      33,687,894     4,738,267,842    7,072,923,092
+Additions                                              -       57,669,831      13,596,620           487,505               -      19,760,045       721,622,351      813,136,352
+Disposals                                              -      )5,582,859(       )148,428(            )1,355(              -               -                 -       )5,732,642(
+Transfers from projects under construction             -     639,034,276      174,525,748     3,111,026,697       5,669,000     191,086,169   )4,121,341,890(                 -
+Depreciation for the period                            -    )92,809,487(     )25,448,948(      )90,822,862(     )4,661,079(    )33,239,978(                 -    )246,982,354(
+Accumulated depreciation of disposal                   -        3,944,224         133,930                517              -               -                 -         4,078,671
+Balance at 30 June 2025                      173,240,262   1,321,329,243      276,103,103     4,280,648,501      36,259,577     211,294,130     1,338,548,303    7,637,423,119
+At 30 June 2026
+Cost                                         173,240,262   2,026,101,749      431,182,623     4,639,891,364      66,183,148     410,887,883    1,338,548,303      9,086,035,332
+Accumulated depreciation                               -   )704,772,506(    )155,079,520(     )359,242,863(    )29,923,571(   )199,593,753(                -    )1,448,612,213(
+Net book value                               173,240,262   1,321,329,243      276,103,103     4,280,648,501      36,259,577     211,294,130    1,338,548,303      7,637,423,119
+
+                                                                                     - 13 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the interim condensed consolidated financial statements
+For the six months period ended 30 June 2026
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+5.      Right-of-use assets
+The Egyptian Standard No. (49) “Leasing Contracts” has been applied in two phases as follows:
+The first stage relates to lease contracts that were subject to Law (95) for the year 1995 starting on or
+after 1 January 2019, which are lease contracts related to medical equipment and measured at the
+beginning of the contract at a value equal to the value of the lease obligations in addition to rental
+expenses and subsequently depreciated over the life of the lease contracts using the straight-line method.
+The second phase represents lease contracts related to buildings that were subject to Law (95) for the
+year 1995 starting on or after 1 January 2021 and measured at a carrying amount as if the standard had
+been applied since inception of the lease but discounted using the lending rate to the lessee at the date
+of application and it is subsequently depreciated over the life of the lease using the straight-line method.
+                                                                     30 June              31 December
+                                                                      2026                    2025
+Machinery and equipment
+Beginning balance for the period/year                                    8,354,866             10,470,794
+Depreciation during the period/year                                    )1,057,964(             (2,115,928)
+Total – machinery and equipment                                          7,296,902              8,354,866
+Buildings
+Beginning balance for the period/year                                  124,566,053            65,137,373
+Adjustments                                                                      -             1,580,406
+Additions for the period /year                                           2,028,966            88,951,146
+Disposals for the period /year                                                   -              (172,866)
+Depreciation for the period /year                                     )15,341,882(           (30,930,006)
+Total                                                                  111,253,137           124,566,053
+                                                                       118,550,039           132,920,919
+
+Lease payments are discounted using the interest rate implicit in the lease. If this rate cannot be
+determined, the lessee’s borrowing rate is used, which is the rate that the lessee shall pay to borrow the
+funds needed for the acquisition of an equivalent value asset in a similar economic environment with
+similar terms and conditions. An average interest rate of 11,5%. For finance lease contracts relating to
+buildings, with an interest rate of 12.15% are applied, and 16.15% for finance lease contracts relating
+to machinery and medical equipment, for contracts existing at the date of initial recognition upon
+applying the change in the standard. For new contracts, the lessee’s incremental borrowing rate is used,
+which represents the rate that the lessee would have to pay to borrow the funds necessary to obtain an
+asset of similar value in a similar economic environment, under similar terms and conditions, at the
+contract inception date.
+
+
+6.      Advance payments / Revenue share
+                                                                     30 June              31 December
+                                                                      2026                    2025
+Beginning balance                                                      250,336,106                       -
+Additions for the period /year                                                   -            286,000,000
+Used for the period / year                                               )720,000(             (1,440,000)
+Decrease in Company’s revenue share                                   )10,226,432(           (34,223,894)
+Total                                                                  239,389,674            250,336,106
+
+
+
+                                                   - 14 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the interim condensed consolidated financial statements
+For the six months period ended 30 June 2026
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+6.      Advance payments / Revenue share (continued)
+
+Partnership agreement for the management and operation of Haven Medical Complex
+On 6 February 2025, a partnership agreement was entered f for the management and operation of Haven
+Medical Complex in 6th of October City for a period of 25 years commencing from the date of obtaining
+the operating license between the Fund for Improving Social and Healthcare Services for Police Officers
+and Their Families (the “First Party”) and Cleopatra Haven Hospital S.A.E. (the “Second Party”) The
+key terms of the agreement are as follows:
+
+1.      The usufruct agreement for Haven Hospital dated 31 October 2022 has been mutually
+        terminated and replaced by this agreement, which now governs the relationship between the
+        parties in respect of the project land and the Haven Medical Complex (including Haven
+        hospital).
+2.      The agreement is effective from the signing date and remains valid for 25 years from the date
+        of obtaining the operating license, renewable for additional periods upon mutual written
+        consent.
+3.      The First Party is responsible for the construction and completion of the Haven Medical
+        Complex, including civil, structural, electrical, and mechanical works, as well as construction
+        supervision and rectification of defects.
+4.      The Second Party shall continue to manage and operate Haven Hospital and shall take over the
+        medical complex upon completion. The Second Party is responsible, at its own cost, for
+        equipping the complex with medical and non-medical equipment, furniture, and fittings, and
+        for operating the complex throughout the contract term, in addition to paying the agreed
+        consideration to the First Party.
+5.      Upon expiry of the agreement, the Second Party shall return the medical complex, including all
+        improvements, in good condition (subject to normal wear and tear), along with all equipment
+        and furniture used in the operation.
+6.      The Second Party shall not recover the previously paid advance amount of EGP 36 million,
+        which was paid under the prior usufruct agreement, and such amount shall neither be refunded
+        nor offset against the annual participation fees.
+7.      The Second Party shall pay an amount of EGP 250 million to the First Party within 30 days
+        from the signing date. This amount is treated as an advance payment, which is amortized against
+        the annual participation percentages. Any unutilized balance is carried forward to subsequent
+        financial years until fully consumed. Once the advance is fully utilized, the Second Party shall
+        pay the full amounts due without deductions.
+8.      The First Party is entitled to an annual return in consideration for granting the management and
+        operation rights, calculated as a percentage of total revenues of Haven Medical Complex, based
+        on the approved financial statements, as follows (payable only after full utilization of the
+        advance payment):
+
+Year                                     Amount due
+
+From year 1 to year 5                    8% of the total revenues of Haven Medical Complex in
+                                         accordance with the approved financial statements
+
+From year 5 to year 6                    9% of the total revenues of Haven Medical Complex in
+                                         accordance with the approved financial statements
+
+For the remaining term of the contract   10% of the total revenues of Haven Medical Complex in
+                                         accordance with the approved financial statements
+
+                                                 - 15 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the interim condensed consolidated financial statements
+For the six months period ended 30 June 2026
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+7.      Inventory
+                                                                          30 June           31 December
+                                                                           2026                 2025
+
+Medical supply inventory                                                   267,218,309        150,551,431
+Medicine inventory                                                         202,085,777        123,496,938
+Hospitality inventory                                                        7,647,618           7,120,766
+Stationary inventory                                                         4,793,707           3,570,847
+Maintenance and spare parts inventory                                        4,396,987           2,949,398
+Food and beverage inventory                                                  1,305,387             943,204
+                                                                           487,447,785        288,632,584
+Less: Impairment of inventory                                             )10,710,797(         (7,297,580)
+                                                                           476,736,988        281,335,004
+
+Movement in the provision for inventory is as follows:
+                                                    30 June                 31 December        30 June
+                                                       2026                     2025            2025
+
+Balance at the beginning of the period/ year                 7,297,580          1,879,769       1,879,769
+Provisions formed during the period/ year                    3,695,419          5,436,462       2,019,775
+Provisions no longer required during the period/
+year                                                     )282,202(               (18,651)        (38,687)
+Balance at the end of the period/ year                  10,710,797              7,297,580       3,860,857
+
+
+8.      Trade receivables
+                                                                          30 June           31 December
+                                                                           2026                 2025
+
+Trade receivables                                                        1,789,420,461       1,491,005,143
+Inpatients                                                                  99,998,491          41,918,214
+                                                                         1,889,418,952       1,532,923,357
+Less: Expected credit losses in trade receivables                        )334,829,003(       (291,467,341)
+                                                                         1,554,589,949       1,241,456,016
+
+Revenue from inpatients includes revenue that has not been billed at the financial position date for their
+residency while the medical services’ procedures have not been completed. This revenue is calculated
+after deducting the amounts collected in advance during their residency.
+The Group applies the EAS (47) simplified approach for measuring expected credit losses which uses
+a lifetime expected loss allowance for all trade receivables.
+The expected loss rates are based on the profiles of customers’ payments over a period of 36 months
+before the date of the statement of financial position and corresponding historical credit losses
+experienced within this period. The historical loss rates are adjusted to reflect current and forward-
+looking information on macroeconomic factors affecting the ability of the customers to settle the debit
+balances. The Group has identified the GDP and the unemployment rate in countries in which it sells
+its goods and services to be the most relevant factor, and accordingly adjusts the historical loss rates
+based on expected changes in these factors.
+
+
+                                                    - 16 -
+ CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+ Notes to the interim condensed consolidated financial statements
+ For the six months period ended 30 June 2026
+
+ (All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+ 8.      Trade receivables (continued)
+
+ Credit loss provision for trade receivables is determined according to the provision matrix presented in
+ the table below. The provision matrix is based on the number of days an asset is past due.
+
+                                                                      30 June 2026
+                                                                Gross
+                                             Loss              carrying      Lifetime        Net carrying
+Trade receivables                            Rate              amount          ECL              value
+
+- Current until less than 30 days overdue   %0.4             1,098,023,028       4,313,796   1,093,709,232
+- 31 to 60 days overdue                      %2                156,557,999       3,762,139     152,795,860
+- 61 to 90 days overdue                      %5                121,519,348       6,397,891     115,121,457
+- 91 to 120 days overdue                    %10                 73,491,175       7,553,214      65,937,961
+- 121 to 360 days overdue                   %37                179,757,091      67,219,518     112,537,573
+- 361 to 720 days overdue                   %72                 49,888,061      35,400,195      14,487,866
+- More than 720 days                        %100               210,182,250     210,182,250               -
+                                                             1,889,418,952     334,829,003   1,554,589,949
+
+                                                                   31 December 2025
+                                                                Gross
+                                             Loss              carrying     Lifetime         Net carrying
+Trade receivables                            Rate              amount         ECL               value
+
+- Current until less than 30 days overdue    0.4%              863,374,459       2,901,407     860,473,052
+- 31 to 60 days overdue                        2%              132,802,206       3,247,257     129,554,949
+- 61 to 90 days overdue                        5%               87,529,441       4,673,154      82,856,287
+- 91 to 120 days overdue                      10%               65,636,856       6,849,592      58,787,264
+- 121 to 360 days overdue                     29%              139,273,913      40,757,118      98,516,795
+- 361 to 720 days overdue                     59%               27,510,946      16,243,277      11,267,669
+- More than 720 days                         100%              216,795,536     216,795,536               -
+                                                             1,532,923,357     291,467,341   1,241,456,016
+
+ The movement in the impairment consists of the following:
+                                                     30 June             31 December          30 June
+                                                      2026                   2025              2025
+
+ Balance at the beginning of the period / year          291,467,341           182,171,926    182,171,926
+ Formed during the period / year                         69,363,470           122,071,591     45,189,396
+ No longer required during the period / year           )26,001,808(          (12,776,176)     (3,225,234)
+ Balance at the ending of the period / year             334,829,003           291,467,341    224,136,088
+
+
+
+
+                                                    - 17 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the interim condensed consolidated financial statements
+For the six months period ended 30 June 2026
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+9.      Debtors and other debit balances
+
+                                                                    30 June           31 December
+                                                                     2026                 2025
+
+Advances to suppliers                                               157,139,092         193,659,419
+Prepaid expenses                                                     59,722,103          38,691,787
+Withholding taxes                                                    20,259,908          17,824,643
+Deposits with others                                                 11,041,990          10,842,280
+Employee’s custodies                                                  1,464,403             411,001
+Accrued income                                                            40,437            465,131
+Other debtors                                                        47,607,893          31,099,278
+                                                                    297,275,826         292,993,539
+Less: ECL of other debit balances during the period /year                )1,474(             (1,474)
+                                                                    297,274,352         292,992,065
+
+The movement of the provision for ECL during the period / year is as follows:
+
+                                                    30 June           31 December        30 June
+                                                     2026                 2025            2025
+
+Balance at 1 January                                        1,474             1,474           1,474
+                                                            1,474             1,474           1,474
+
+
+10.     Cash on hand and at banks
+
+                                                                    30 June           31 December
+                                                                     2026                 2025
+
+Current accounts                                                    449,661,964         461,316,153
+Time deposit                                                             371,229         89,484,749
+Cash on hand                                                           5,301,329           3,782,317
+Deduct: Cash and cash equivalents impairment                         )6,715,809(         (7,040,378)
+                                                                    448,618,713         547,542,841
+
+-       Current accounts deposited in Egyptian Pounds are subject to a fixed annual rate from 15% to
+        16% (2025: From 15% to 16% )
+
+Movement in the impairment is as follows:
+                                                    30 June           31 December        30 June
+                                                     2026                 2025            2025
+
+Balance at the beginning of the period / year         7,040,378           4,597,154        4,597,154
+Formed during the period / year                       1,572,930           4,395,459        1,810,500
+No longer required                                  (1,897,499)         (1,952,235)      (1,340,122)
+Balance at the ending of the period / year            6,715,809           7,040,378        5,067,532
+
+
+
+
+                                                - 18 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the interim condensed consolidated financial statements
+For the six months period ended 30 June 2026
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+10.     Cash on hand and at banks (continued)
+
+For the purpose of preparation of the cash flow statements, cash and cash equivalents consist of:
+                                                                   30 June              30 June
+                                                                    2026                  2025
+
+Cash and bank balances                                             455,334,522               491,538,025
+Total                                                              455,334,522               491,538,025
+
+Time deposits are held with banks and displayed as cash and cash equivalents if they mature for three
+months or less from the date of deposit and are payable with 24 hours' notice without loss of interest.
+Treasury bills classified under cash and cash equivalents have original maturities of no more than three
+months from the date of acquisition. These instruments are readily convertible into known amounts of
+cash and are subject to an insignificant risk of changes in value.
+
+The Company's cash and bank balances are held at reputable financial institutions with credit ratings
+from Moody's and Standard & Poor's from B3 up to CAA1.
+
+
+11.     Non-controlling interests
+
+                                                                              NCI share in
+                                                                Retained       acquisition
+                                    Capital      Reserves       earnings      adjustments         Total
+
+Balance at 1 January 2025           33,654,441   11,590,275    232,843,698        120,184      278,208,598
+Employee profit share                        -            -     (4,166,834)             -       (4,166,834)
+Legal reserve                                -        1,818               -             -             1,818
+Comprehensive income for the year            -            -    143,984,628              -      143,984,628
+Balance at 31 December 2025         33,654,441   11,592,093    372,661,492        120,184      418,028,210
+
+Balance at 1 January 2026           33,654,441   11,592,093    372,661,492        120,184      418,028,210
+Employee profit share                        -            -     )9,269,573(             -        )9,269,573(
+Legal reserve                                -        2,375               -             -              2,375
+Comprehensive income for the year            -            -      71,315,135             -         71,315,135
+Balance at 30 June 2026             33,654,441   11,594,468    434,707,054        120,184       480,076,147
+
+
+12.     Loans
+
+30 June 2026                                         Current          Non-current               Total
+
+Loans                                               635,128,020       2,567,750,418          3,202,878,438
+Total                                               635,128,020       2,567,750,418          3,202,878,438
+
+31 December 2025                                     Current         Non-current               Total
+
+Loans                                               451,063,593      2,684,749,460       3,135,813,053
+Total                                               451,063,593      2,684,749,460       3,135,813,053
+
+
+
+                                                 - 19 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the interim condensed consolidated financial statements
+For the six months period ended 30 June 2026
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+12.    Loans (continued)
+
+KFH Loan
+
+-      On 27 October 2021, Cleopatra Hospital Company signed a contract for a medium term loan
+       with Kuwait Finance House, with a total amount of EGP 145 million, with a return of 0,65%,
+       in addition to the lending rate announced by the Central Bank of Egypt.
+-      On 10 August 2022, Cleopatra Hospital Company, Nile Badrawy Hospital Company, and Cairo
+       Specialised Hospital Company signed an appendix to the loan contract from Kuwait Finance
+       House. Following are the most significant contracting terms.
+-      Increasing the financing amount to EGP 285 million, and it will be divided among the
+       companies as follows:
+
+Cleopatra Hospital Company                                                         EGP 45 million
+Cairo Specialised Hospital                                                         EGP 90 million
+Nile Badrawi Hospital Company                                                      EGP 150 million
+
+-      On 10 May 2023, the financing amount was redistributed among the companies as follows,
+       provided that the maximum available financing limit is EGP 340 million, and the mentioned
+       amount is not exceeded at any time throughout the contract term.
+
+Cleopatra Hospital Company                                                         EGP 100 million
+Cairo Specialised Hospital                                                         EGP 90 million
+Nile Badrawi Hospital Company                                                      EGP 150 million
+
+On 18 January 2024, the financing amount was redivided among the companies as follows, provided
+that the maximum amount of financing available amounts to EGP 740 million, and the aforementioned
+amount shall not be exceeded at any time throughout the contract period.
+
+Cleopatra Hospital Company                                                           EGP 500 million
+Cairo Specialized Hospital Company                                                    EGP 90 million
+Nile Badrawi Hospital Company                                                        EGP 150 million
+
+On 17 April 2024, the financing amount was redivided among the companies as follows, provided that
+the maximum amount of financing available amounts to EGP 740 million, and the aforementioned
+amount shall not be exceeded at any time throughout the contract period.
+
+Cleopatra Hospital Company                                                           EGP 400 million
+Cairo Specialized Hospital Company                                                    EGP 90 million
+Nile Badrawi Hospital Company                                                        EGP 250 million
+
+-      The purpose of the loan is to finance and/or refinance the capital needs and renovate the Group’s
+       specialized hospitals starting from 2021, including medical equipment, medical beds, medical
+       and non-medical furniture, as well as internal development of movables (final finishes,
+       electromechanical equipment and power station).
+-      This contract shall take effect for a period of six years and six months from the date of signing
+       the finance contract on 27 October 2021, with the Group being granted availability period of a
+       maximum of one year and six months ending on 31 December 2023, and a grace period (applied
+       to payment of the asset) of one year and six months ending on 31 January 2024. In the event
+       that the entire financing amount is not withdrawn during the aforementioned availability period,
+       the unwithdrawn portion shall be automatically cancelled and the bank is not obligated to lend
+       the Group any other amounts other than what has been withdrawn from the financing amount.
+
+                                                - 20 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the interim condensed consolidated financial statements
+For the six months period ended 30 June 2026
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+12.     Loans (continued)
+
+KFH Loan (continued)
+
+-       Cleopatra Hospital company is committed to pay total amount of 397,500,000 EGP on 20
+        Quarterly installments where first trench with amount of 97,500,000 to be paid starting from
+        January 2024 and the second trench amounted to 300,000,000 EGP to be paid starting from
+        October 2025 and it ends in july 2030.:
+-       Cairo specialized hospital company is committed to pay total amount of 89.543.425 EGP on 20
+        Quarterly installments starting from January 2024 and it ends in October 2028.
+-       Nile Badrawi Hospital company is committed to pay total amount of 235,562,038 EGP on 20
+        Quarterly installments where first trench with amount of 142,572,737 to be paid starting from
+        January 2024 and the second trench amounted to 92,989,301 EGP to be paid starting from
+        October 2025 and it ends in July 2030.
+
+
+KFH Loan (Nile Badrwai Hospital)
+
+-       On October 7, 2025, Nile Badrawi Hospital Company entered into a medium-term loan
+        agreement with Kuwait Finance House (KFH) for a total facility amount of EGP 140 million.
+        The primary objective of this facility is to finance the investment costs associated with the
+        construction of the Nile Badrawi Hospital clinics. The loan carries a floating interest rate
+        consisting of the Central Bank of Egypt (CBE) lending rate plus a margin of 0.8% in addition
+        to the lending rate announced by the Central Bank.
+-       The loan facility has a total tenor of six years and six months commencing from the signing
+        date. This includes an availability and drawdown period of a maximum of eighteen months (one
+        year and six months). Following the lapse of the availability period, any undrawn portion of the
+        facility shall be automatically cancelled, and the Bank shall have no further obligation to extend
+        any additional credit beyond the amounts already disbursed
+-       On December 17, 2025, an amendment to the original loan agreement was executed. Under this
+        amendment, an amount of EGP 60 million from the total facility was reallocated for the
+        acquisition of the basement, ground floor, and mezzanine of Building No. 33, located adjacent
+        to Nile Badrawi Hospital
+
+
+Financial ratios
+
+According to the contract terms, the companies shall achieve the following financial ratios:
+
+-       The financial leverage of the company shall not exceed 1,6
+-       Debt service rate shall not fall below 1.
+-       Liquidity rate shall not fall below 1.
+
+Loans include specific covenants. A future breach of these covenants may lead to renegotiation. The
+covenants are monitored by management, in case of potential breach, actions are taken by management
+to ensure compliance. Financial ratios are calculated starting from 31 December 2026, and there are no
+outstanding overdue balances.
+
+
+
+
+                                                  - 21 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the interim condensed consolidated financial statements
+For the six months period ended 30 June 2026
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+12.      Loans (continued)
+
+CIB Loan (CHG Sky Company)
+
+-        On 5 June 2023, CHG Sky Hospital Company signed a contract for a medium term loan with
+         Commercial International Bank, with a total amount of EGP 1,339,573,000, with a return of
+         0,05% in addition to the lending rate announced by the Central Bank of Egypt for the first 9
+         months and then 0,09% in addition to the lending rate announced by the Central Bank of Egypt
+         from the tenth month till the end of loan term.
+-        The purpose of the loan is to finance the capital needs to finalize the company’s hospitals
+         starting, including medical equipment, medical beds, medical and non-medical furniture, as
+         well as internal development of movables (final finishes, electromechanical equipment and
+         power station).
+-        This contract shall take effect for a period of nine years and six months from the date of signing
+         the finance contract on 5 June 2023, with the Group being granted availability period of a
+         maximum of two years and six months ended in 31 December 2025, and a grace period (applied
+         to payment of the asset) ending on 30 June 2026. In the event that the entire financing amount
+         is not withdrawn during the aforementioned availability period, the unwithdrawn portion shall
+         be automatically cancelled and the bank is not obligated to lend the Group any other amounts
+         other than what has been withdrawn from the financing amount.
+-        On October 10, 2024, the credit limit was increased to EGP 1,897,000,000 with all other
+         contract terms remaining unchanged.
+-        On July 31, 2025, an addendum to the loan agreement was signed, increasing the credit limit to
+         EGP 2,194,600,000 (only two billion, one hundred and ninety-four million, six hundred
+         thousand Egyptian pounds). The repayment schedule was changed to 27 quarterly installments,
+         starting on September 30, 2026, and ending on December 31, 2032.
+
+Financial ratios
+
+According to the contract terms, the Company shall achieve the following financial ratios:
+
+-        The financial leverage of the Group shall be as follows:
+
+      2026          2027           2028            2029           2030            2031           2032
+         5.18          2.85           1.98            1.34           0.94            0.65           0.46
+
+-        Debt service rate shall not fall below 1.
+-        CAPEX should not exceed the following:
+
+      2026           2027          2028            2029           2030            2031           2032
+    6,838,000      8,117,000     9,404,000      10,663,000     12,252,000      13,960,000     17,291,000
+         EGP            EGP           EGP             EGP            EGP             EGP            EGP
+
+As a guarantee and security for the repayment of the financing granted by the bank to the company
+under this contract, in addition to interest, commissions, expenses, fees, and related charges, the
+company undertakes to provide the bank with a joint guarantee issued by Cleopatra Hospital Company
+S.A.E, Commercial Registration No. 199393, issued by the Cairo Investment Commercial Registry
+Office, guaranteeing the company's repayment of the financing amount, including principal, interest,
+commissions, expenses, and any other amounts due under the contract.
+
+
+
+                                                   - 22 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the interim condensed consolidated financial statements
+For the six months period ended 30 June 2026
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+12.     Loans (continued)
+
+CIB Loan (CHG Sky Company) (continued)
+
+Compliance with Financial Covenants
+Loans include certain commitments. Failure to meet these commitments in the future may lead to
+renegotiation. Management monitors these commitments, and in the event of a potential breach, it takes
+the necessary measures to ensure compliance. Financial ratios are tested as of December 31, 2026, and
+there are no overdue instalments.
+
+Banque Misr - Cleopatra Haven Company S.A.E
+
+-       On 13 November 2024, Cleopatra Heavens Company (a subsidiary) entered into a medium-
+        term loan agreement for a total amount of EGP 190,500,000. The maximum amount allocated
+        for capital expansion financing is divided into two tranches: a first tranche of EGP 163,000,000
+        for capital expansion financing and a second tranche of EGP 27,500,000 for financing the
+        reimbursement of amounts disbursed as part of the total investment cost before the first
+        withdrawal.
+-       The purpose of the loan is to finance the Company’s capital expansion projects, with an interest
+        rate of 0.65% plus the lending corridor rate announced by the Central Bank of Egypt. The loan
+        shall be repaid over 20 equal quarterly instalments, The loan term is 7 years, including the grace
+        period.
+-       On 27 February 2025, Cleopatra Heavens Company (a subsidiary) entered into a medium-term
+        loan agreement for a total amount of EGP 238,000,000 (only two hundred and thirty-eight
+        million Egyptian pounds).
+-       The loan carries an interest rate of 0.65% plus the lending corridor rate announced by the
+        Central Bank of Egypt, and it shall be repaid over 20 equal quarterly instalments, The loan term
+        is 7 years, including the grace period.
+-       As a guarantee and security for the repayment of the financing granted by the bank to the
+        company under this contract, in addition to interest, commissions, expenses, fees, and related
+        charges, the company undertakes to provide the bank with a joint guarantee issued by Cleopatra
+        Hospital Company S.A.E, Commercial Registration No. 199393, issued by the Cairo
+        Investment Commercial Registry Office, guaranteeing the company's repayment of the
+        financing amount, including principal, interest, commissions, expenses, and any other amounts
+        due under the contract.
+
+Financial ratios
+
+According to the contract terms, the companies shall achieve the following financial ratios:
+
+-       The financial leverage of the company shall not exceed 2
+-       Debt service rate shall not fall below 1.
+-       Liquidity rate shall not fall below 1.
+
+Compliance with Financial Covenants
+Loans include certain commitments. Failure to meet these commitments in the future may lead to
+renegotiation. Management monitors these commitments, and in the event of a potential breach, it takes
+the necessary measures to ensure compliance. Financial ratios are tested as of December 31, 2026, and
+there are no overdue instalments.
+
+
+
+                                                  - 23 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the interim condensed consolidated financial statements
+For the six months period ended 30 June 2026
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+13.     Trade and other payables
+
+                                                                  30 June             31 December
+                                                                   2026                   2025
+
+Trade and other payables                                         1,202,815,393           830,322,991
+Accrued expenses                                                   860,862,681           799,793,657
+Social insurance                                                    25,272,820            28,282,157
+Other creditors                                                    317,788,609           274,033,547
+                                                                 2,406,739,503         1,932,432,352
+
+
+14.     Lease liabilities
+
+The lease liabilities represent the present value of the lease obligations related to medical equipment
+(first stage - Note 9) entered by one of the group companies and lease contracts for buildings (second
+stage). It was measured at the present value of the contractual lease payments discounted at an implied
+rate of return in the range between 11.15% and 16.65%.
+
+                                                                  30 June             31 December
+                                                                   2026                   2025
+Undiscounted
+During the year                                                     58,022,633            53,418,784
+More than a year                                                   314,684,102           326,843,506
+                                                                   372,706,735           380,262,290
+The present value of the lease obligations is as follows:
+During the year                                                     58,022,633            53,418,784
+More than a year                                                   107,134,416           122,201,397
+Balance                                                            165,157,049           175,620,181
+
+                                                                  30 June             31 December
+                                                                   2026                   2025
+
+Lease Liabilities were presented as follows:
+Lease liabilities shown as at 31 December 2025                     175,620,181            109,216,063
+Adjustments during the period /year                                          -              1,606,094
+Add: Additions during the period /year                               2,028,968             88,951,147
+Add: Interest formed during the period /year                        17,943,610             32,971,514
+Deduct: Disposals during the period / year                                   -              (715,228)
+Deduct: Payments during the period / year                         )30,435,710(           (56,409,409)
+Lease liabilities at 30 June 2026                                  165,157,049            175,620,181
+
+
+
+
+                                                 - 24 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the interim condensed consolidated financial statements
+For the six months period ended 30 June 2026
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+15.     Revenue
+
+                                    Six months ended 30 June          Three months ended 30 June
+                                      2026            2025               2026           2025
+
+Accommodation and medical
+supervision revenue                1,005,117,268      775,002,840      541,240,077       395,165,527
+Surgeries revenue                    756,051,123      620,148,240      424,359,262       327,678,209
+Laboratories revenue                 491,773,103      356,095,129      267,175,126       191,249,114
+Outpatient clinics revenue           357,270,559      299,633,088      195,279,024       154,886,120
+Service charge revenue               331,302,873      260,882,021      179,182,930       133,971,386
+Radiology revenue                    330,842,894      239,329,711      179,236,104       126,431,118
+Cardiac catheterization revenue      278,118,483      234,937,171      134,815,126       122,247,200
+Pharmacy revenue                     281,554,374      238,528,406      154,246,690       121,798,375
+Emergency revenue                    150,453,982      121,058,817       77,990,912        62,296,308
+Physiotherapy revenue                128,088,990       84,697,448       72,592,661        45,345,119
+Cardiac tests revenue                 52,675,572       36,150,840       28,980,895        19,252,111
+Oncology centre                       39,638,908       23,866,475       21,610,787        13,256,011
+Endoscopy revenues                    43,390,654       32,894,420       25,576,137        17,989,376
+Dentistry revenue                     15,027,148       10,880,546        8,187,483         6,070,613
+Other departments revenues            47,866,919       48,039,829       26,181,635        25,850,839
+                                   4,309,172,850    3,382,144,981    2,336,654,849     1,763,487,426
+
+*       “Service charge” does not represent a separate performance obligation but is a surcharge at a
+        fixed percentage rate applied to all revenue streams except for sale of medicines.
+
+All types of revenue are recognized at a point in time except accommodation and medical supervision
+are recognized over time, as shown:
+
+                                    Six months ended 30 June         Three months ended 30 June
+                                      2026           2025               2026           2025
+
+At a point in time            3,304,055,582        2,607,142,141     1,795,414,772     1,368,321,899
+Over time - Accommodation and
+medical supervision revenue   1,005,117,268          775,002,840       541,240,077       395,165,527
+                              4,309,172,850        3,382,144,981     2,336,654,849     1,763,487,426
+
+
+
+
+                                                - 25 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the interim condensed consolidated financial statements
+For the six months period ended 30 June 2026
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+16.     Cost of revenue
+
+                                    Six months ended 30 June         Three months ended 30 June
+                                      2026           2025               2026           2025
+
+Medical and pharmaceutical
+supplies                            919,659,296      780,677,146       496,462,067    400,683,041
+Salaries, wages and benefits        734,842,509      502,679,104       383,744,909    254,472,256
+Doctors' fees                       544,123,630      421,926,186       296,953,814    226,004,821
+Fixed assets depreciation           202,846,638       94,265,794       105,937,051     51,372,890
+Maintenance, spare parts and
+energy expenses                     143,591,572      103,352,522        76,378,379     48,712,355
+Services from others                102,129,879       56,517,032        51,620,654     28,522,381
+Consumables costs                    74,058,972       55,183,483        37,483,359     28,604,986
+Rents                                         -                -                 -              -
+Right of use depreciation            11,581,645       13,374,293         5,713,164      7,101,918
+Advance Payments / Revenue
+Share amortization                       720,000                -          360,000               -
+Other expenses                       108,939,034       44,778,640       59,910,044      22,886,467
+                                   2,842,493,175    2,072,754,200    1,514,563,441   1,068,361,115
+
+
+17.     General and administrative expenses
+
+                                    Six months ended 30 June         Three months ended 30 June
+                                      2026           2025               2026           2025
+
+Salaries, wages and benefits        452,244,876      266,349,842      292,610,239    136,000,483
+Services from others                 60,203,079       41,295,369       30,692,778     21,340,252
+Fixed assets depreciation            44,135,716       14,574,179       22,652,600      7,290,705
+Professional and consulting fees     26,255,980       22,449,129       12,798,677     11,669,155
+Maintenance, spare parts and
+energy expenses                      13,600,513        8,691,725        7,247,492      4,628,851
+Right of use assets depreciation      4,818,201        4,685,107        2,351,471      2,292,251
+Consumables costs                     4,819,674        2,615,691        2,760,075      1,013,477
+Intangible assets amortization        1,034,642        1,034,642          517,321        517,321
+Other expenses                      177,960,154      115,733,074       86,392,841     64,355,142
+                                    785,072,835      477,428,758      458,023,494    249,107,637
+
+
+18.     Net impairment losses on financial assets
+
+                                    Six months ended 30 June         Three months ended 30 June
+                                      2026           2025               2026           2025
+
+ECL in trade receivables             43,361,662         41,964,162     14,834,100      9,092,747
+ECL in cash no longer required        )324,570(            470,378    )3,207,673(     (1,039,830)
+                                     43,037,092         42,434,540     11,626,427      8,052,917
+
+
+
+                                               - 26 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the interim condensed consolidated financial statements
+For the six months period ended 30 June 2026
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+19.     Earnings per share
+The basic share of the profit for the period /year is calculated by dividing the net profit for the period
+attributable to the parent company’s shareholders by the weighted average number of shares outstanding
+during the period after excluding the distribution of employee dividends.
+                                     Six months ended 30 June           Three months ended 30 June
+                                       2026           2025                 2026           2025
+Profit for the period                 342,038,711      521,547,250        189,130,121       289,257,980
+(Less) Dividends for employees
+and the board of directors           )71,315,135(      (70,560,774)      )36,501,345(      (38,851,978)
+                                      270,723,576       450,986,476       152,628,776       250,406,002
+Weighted average number of
+ordinary shares for diluted
+earnings per share purposes         1,449,450,084     1,441,509,083     1,449,450,084     1,441,509,083
+
+Earnings per share - Basic                    0.19              0.31              0.11              0.17
+Earnings per share - Diluted                  0.19              0.31              0.11              0.17
+
+The weighted average number of shares is adjusted to take into account the shares held under the bonus
+and incentive scheme for employees, directors and executive board members.
+
+
+20.     Commitments
+Capital commitments:
+Capital commitments at the end of the financial period. which are not yet due, amounted to EGP
+13.340.800 (31 December 2025: EGP 151,017,672), which represent the capital commitments to
+purchase of fixed assets and projects under constructions.
+
+
+21.     Significant and Subsequent events
+21.1    A settlement agreement regarding the land of the Nile Badrawi Hospital
+
+On February 13, 2020, Cleopatra Hospital Company, the General Authority for River Transport, Nile
+Badrawi Hospital Company, and the heirs of Engineer Hassan Badrawi signed a comprehensive and
+final settlement agreement. This agreement resolved and settled all disputes and claims related to the
+land on which Nile Badrawi Hospital was built. The total settlement amounted to EGP 36 million, a
+portion of which was allocated to Cleopatra Hospital. The agreement also stipulated that both the
+General Authority for River Transport and Nile Badrawi Hospital Company would waive their
+respective claims concerning the land in question. On March 31, 2021, the Administrative Court issued
+a ruling accepting the case in form but rejecting it on its merits. Both the Cairo Governorate and Nile
+Badrawi Hospital Company appealed this ruling before the Supreme Administrative Court, and a
+hearing was scheduled for September 21, 2022, to allow both parties to submit their respective
+settlement agreements. The appeal hearing was adjourned to February 7, 2024, to allow for the
+intervention of the heirs of the late Hassan Badrawi and for review of the case file and submission of
+memoranda. The hearing was then adjourned again to March 26, 2024, pending a response to the
+defence memorandum. It was further adjourned to May 20, 2025, for a rehearing of arguments, then to
+November 25, 2025, for the verdict, and postponed to August 31, 2026, for the resubmission of the
+settlement agreement, which is subsequently postponed to December 1, 2026.
+
+                                                  - 27 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the interim condensed consolidated financial statements
+For the six months period ended 30 June 2026
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+21.      Significant and Subsequent events (continued)
+
+21.2     Right of use, management and operation contract for CHG Sky Hospital SAE
+
+On December 29, 2021, an agreement was signed between the Housing and Social Services Fund for
+Petroleum Sector Workers, the Egyptian Natural Gas Company (GASCO) “S.A.E.” and the Egyptian
+Natural Gas Distribution Company for Cities (Town Gas) “S.A.E.” as the first party, and CHG Hospitals
+Company “S.A.E.” as the second party, to grant the right to use, manage, and operate Sky Hospital for
+a period of twenty-seven calendar years starting from the date of signing the agreement, provided that
+the second party completes all construction, electromechanical, and interior finishing works, and equips
+the hospital with the medical and non-medical equipment necessary to operate the hospital at its own
+expense. The hospital will be fully delivered, including all equipment and supplies, to the first party
+immediately upon the expiration of the agreement.
+
+The first party shall receive, in return for granting the second party the right to benefit from, manage
+and operate Sky Hospital, a return for each fiscal year as follows:
+
+Year                                                              Amount due
+
+First and second year of operation                                2% of total annual revenue as shown in the approved
+                                                                  financial statements
+
+Starting from the third year till the sixth year of operation     3% of total annual revenue as shown in the approved
+                                                                  financial statements
+
+Starting from the seventh year till the end of the agreement      4% of total annual revenue as shown in the approved
+                                                                  financial statements
+
+During the year 2022, a transfer agreement was signed between CHG Hospitals SAE and CHG Sky
+Hospital SAE, and with the approval of all other parties, all terms, conditions, obligations and rights
+required by the agreement are transferred from CHG Hospitals SAE to CHG Sky Hospital SAE.
+
+21.3     Impact of Military Conflict
+
+On 28 February 2026, the United States and Israel entered into a direct military confrontation with Iran.
+This conflict has also resulted in military engagements involving certain Gulf countries. These events
+are expected to have a significant economic impact on the global economy, particularly in the Middle
+East region. Management is closely monitoring ongoing developments to assess the potential impact of
+these events on the Company.
+
+
+
+
+                                                         - 28 -
+

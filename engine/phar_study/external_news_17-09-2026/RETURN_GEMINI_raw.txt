@@ -1,0 +1,152 @@
+Operational and Regulatory Intelligence: Egyptian International Pharmaceutical Industries (EIPICO)
+The registered corporate identity of EGX:PHAR is resolved as الشركة المصرية الدولية للصناعات الدوائية - إيبيكو (commercial abbreviation: إيبيكو / EIPICO; ISIN: EGS38081C013; Reuters: PHAR.CA)1. The company’s legal share capital stands at EGP 1,687,557,500, divided into 168,755,750 ordinary shares with a par value of EGP 10.00 per share3. Control rests with the quasi-sovereign Arab Company for Drug Industries and Medical Appliances (ACDIMA), which holds a 50.00% direct stake (extending to 51.3% through group affiliates), establishing the company as the primary domestic supplier for national health procurement programs and state hospital tenders1.
+The material development emerging after the 9 August 2026 cutoff is the transmission and release of EIPICO’s reviewed financial statements for the first half ended 30 June 2026 (H1-2026), published across the Egyptian Exchange (EGX) between 13 and 16 August 20266. Following a temporary suspension of trading on the morning of 13 August 2026 while the exchange awaited board resolutions, the company posted reviewed consolidated net profit after tax of EGP 626,674,081—a contraction of 24.3% YoY against EGP 828,064,852 in H1-20256. Standalone net profit declined 28.5% YoY to EGP 433,403,5007. Conversely, consolidated top-line revenue expanded 9.6% YoY to EGP 5.05 billion7. This divergence signals sharp gross margin compression resulting from the absorption of imported active pharmaceutical ingredients (APIs) booked at depreciated exchange rates, coupled with double-digit debt-service burdens on working capital lines7.
+Operationally, the $100 million EIPICO 3 biologicals and biosimilars facility was formally commissioned in late July 2026 and began initial institutional shipments to the Egyptian Unified Procurement Authority (UPA) during Q3-202613. Regulators also instituted structural pricing reforms: on 1 August 2026, the Egyptian Drug Authority (EDA) initiated the phased removal of static printed retail prices from packaging, transitioning to serialized QR codes that allow dynamic cost-indexed adjustments16. Meanwhile, the three critical information gaps audited on 9 August 2026—unit-level commercial guidance for EIPICO 3, counterparty-level aging breakdowns of expected credit loss (ECL) provisions, and standalone statements for equity-accounted associates—remain entirely absent from the issuer's statutory filings.
+Corporate Identity, Capital Structure, and Ownership Architecture
+Tracing regulatory decrees, commercial litigation, and state procurement contracts requires querying the issuer’s full legal title in Arabic alongside its English acronym. A substantial portion of regulatory circulars issued by the Egyptian Drug Authority, as well as filings with the General Authority for Investment and Free Zones (GAFI), are recorded exclusively in Arabic.
+The controlling interest held by ACDIMA aligns EIPICO's commercial priorities with state healthcare initiatives, including the Universal Health Insurance System and national chronic disease protocols1. While this ownership structure secures baseline volume demand across public institutions, it subjects real operating margins to sovereign price negotiations administered through public procurement authorities14.
+Post-August 9 Disclosures and Earnings Decomposition
+Financial performance in the post-cutoff window was defined by the Board of Directors meeting on 12 August 2026, which finalized the interim reviewed financial results for the six-month period ended 30 June 20266.
+Top-line revenue expanded 9.6% YoY to EGP 5.05 billion in H1-2026, compared to EGP 4.61 billion in H1-20257. This builds upon the EGP 2.50 billion generated in Q1-20263. However, operating leverage turned acutely negative: consolidated net profit fell 24.3% to EGP 626.67 million, and standalone net profit contracted 28.5% to EGP 433.40 million6.
+The mechanical driver behind this margin decay lies in the timing gap between input costs and regulatory price relief. EIPICO relies on imported active raw materials for roughly 40% of its formulation inputs15. The cost of these imported APIs surged following the currency depreciation in early 2024, flowing through cost of goods sold across late 2025 and 2026 as inventory buffers turned over12.
+Simultaneously, the cost of carrying inventory buffers (EGP 3.77 billion at year-end 2025) and extended trade receivables (EGP 3.27 billion) was compounded by elevated bank borrowings12. Short-term bank credit facilities totaled EGP 8.74 billion at the start of the year, subjecting operating profits to sustained finance charges under the Central Bank of Egypt's restrictive monetary stance11.
+Commercial Status and Ramp-Up of the Biologicals Facility
+EIPICO 3 entered commercial ramp-up during Q3-2026, following its late-July 2026 inauguration attended by the Minister of Health and Population, the Minister of Industry, and the Chairman of the Egyptian Drug Authority5.
+The facility represents an aggregate capital expenditure exceeding $100 million (approaching EGP 5.0 billion), designed to establish domestic production of complex biopharmaceuticals5. Constructed on a 10,500-square-meter plot in 10th of Ramadan City using modular cleanrooms engineered by Sweden’s Pharmadule and civil infrastructure executed by Rowad Modern Engineering, the complex covers end-to-end biological synthesis5. Upstream manufacturing uses genetically engineered cell lines and advanced tissue fermentation, while downstream lines house sterile purification, vial lyophilization, and automated syringe filling5.
+EIPICO 3 Manufacturing Architecture
+---------------------------------------------------------------------------------------------------------
+UPSTREAM BIOPROCESSING   -->   DOWNSTREAM PURIFICATION   -->   STERILE FORMULATION & PACKAGING
+Genetically engineered         Chromatographic active          Pre-filled syringes, cartridges,
+cell lines & tissue            protein isolation, viral        lyophilized vials & oral thin films
+fermentation                   filtration, and API synthesis   (Phase 2: Solid dosage capsules / tablets)
+---------------------------------------------------------------------------------------------------------
+The facility's portfolio encompasses 14 registered biopharmaceutical products focused on high-cost therapeutic classes:
+Oncology and immunotherapy formulations (monoclonal antibodies)14
+Biological treatments for end-stage renal disease and nephrology15
+Recombinant treatments for chronic anemia15
+Hematology and coagulation therapies15
+Specialized endocrinological and fertility therapies15
+While Phase 1 sterile liquid lines (pre-filled syringes, cartridges, and ampoules) are fully operational, Phase 2 solid oral dosage manufacturing (capsules and tablets) remains in qualification and is scheduled for commercial commissioning in 202713.
+Commercial output from EIPICO 3 is currently absorbed through institutional tender allocations with the Egyptian Unified Procurement Authority (UPA), substituting for imported cancer and nephrology therapies14. However, supplying the domestic public health sector via sovereign procurement contracts carries lower gross margin realizations than open retail pharmacy sales or direct foreign exports14. Export qualification across African and Middle Eastern markets represents the operational hurdle that will determine when EIPICO 3 begins generating meaningful hard-currency returns on its capital expenditure15.
+Regulatory Pricing Decisions and Pharmacopeial Enforcement
+Domestic pricing flexibility is governed by the Egyptian Drug Authority, which controls medicine retail prices across the country27. Two major regulatory shifts unfolded across mid-2026: systemic digital price administration and targeted batch recalls.
+Phased Migration to Digital Price Indexing
+Effective 1 August 2026, the EDA commenced enforcement of a structural transition removing fixed, static factory-printed retail prices from pharmaceutical cartons, replacing them with dynamic serialized QR codes16. The reform alters retail distribution mechanics in two distinct ways:
+It eliminates the retail pharmacy distortion of identical therapeutic batches circulating simultaneously at conflicting prices based on production lot dates16.
+It establishes a flexible regulatory mechanism allowing the EDA to introduce indexed, incremental price adjustments tied to raw-material import baskets and currency adjustments, replacing disruptive 40%–70% lump-sum price revisions with gradual adjustments16.
+During FY2025, EIPICO secured regulatory price increases on 149 registered products and completed registration for 17 new formulations12. The ongoing digital rollout across the second half of 2026 provides EIPICO with a faster regulatory transmission mechanism to gradually pass active ingredient import costs into realized domestic prices12.
+Batch-Level Quality Audits and Safety Recalls
+During 2026, the EDA's quality control laboratories issued several product-specific administrative inspection circulars (منشورات سحب وتفتيش) regarding select EIPICO products. These notifications represent standard regulatory oversight and require assessment for commercial or legal liability:
+None of the inspection circulars indicate systematic Good Manufacturing Practice (GMP) non-compliance across EIPICO’s primary plants30. The Silgon deregistration permanently eliminates a legacy pediatric cough drop, but this product represents an immaterial fraction of EIPICO’s catalog of 425 commercial medicines15.
+Verification Audit of Historically Unresolved Information Gaps
+A priority of the post-9 August 2026 research sweep was testing whether newly issued exchange disclosures, AGM minutes, or interim financial notes resolved three structural disclosure gaps. An exhaustive audit confirmed that all three items remain unquantified in the official record.
+Status of Historically Unresolved Financial Disclosure Gaps
+===================================================================================================
+1. BIOLOGICALS (EIPICO 3) REVENUE & PRICE GUIDANCE
+   Audit: Evaluated H1-2026 board filings, ministerial inauguration transcripts, and media reports.
+   Result: SEARCHED, NOT FOUND.
+   Parameters: Facility targets 14 biopharmaceutical treatments; capital outlay exceeds $100M. 
+   Primary filings disclose zero volume, capacity utilization, unit ASP, or top-line projections.
+
+2. EXPECTED-CREDIT-LOSS (ECL) COUNTERPARTY & AGING BREAKDOWN
+   Audit: Audited Note 10 (receivables), Note 20, Note 31, Note 36 in audited statements & H1-2026 prints.
+   Result: SEARCHED, NOT FOUND.
+   Parameters: Provisions disclosed only as single consolidated aggregates (EGP 494.0M in FY2025).
+   Carrying receivables totaled EGP 3.266B, but zero aging bands or counterparty splits are given.
+
+3. STANDALONE ACCOUNTS FOR EQUITY ASSOCIATES (ARAB API & BATTERJEE)
+   Audit: Audited Note 8/2 and Note 8/3 across consolidated statements, GAFI, and SCZone filings.
+   Result: SEARCHED, NOT FOUND.
+   Parameters: Disclosures limited to carrying value, ownership stake (30.0% each), and net equity earnings.
+   Arab API is capitalizing a 96,000 sqm plant with Petrojet, but produces no standalone financial accounts.
+===================================================================================================
+Gap 1: Volume, Price, or Utilization Guidance for EIPICO 3
+Audit Methodology: Comprehensive screening of EIPICO’s H1-2026 board release (13 August 2026)9, ministerial dedication releases (26–27 July 2026)5, and investor updates published through 15 September 2026.
+Search Queries: EIPICO 3 plant revenue guidance, توقعات مبيعات مصنع إيبيكو 3 للمستحضرات الحيوية, طاقة إنتاج إيبيكو 3 عبوة سنويا, EIPICO biosimilars capacity utilization price.
+Finding: SEARCHED, NOT FOUND. While technical characteristics (14 products across oncology and autoimmune segments, 10,500 sqm floor plan, modular Pharmadule synthesis) are detailed, management provides zero forward-looking revenue guidance, product-specific unit ASP schedules, or plant-level capacity utilization metrics5.
+Gap 2: Counterparty-Level and Aging-Bucket Breakdown of ECL Allowances
+Audit Methodology: Examination of Note 10 (Trade Receivables), Note 20 (Provisions), Note 31 (Financial Instruments Risk), and Note 36 (Credit Risk) of the audited FY2025 consolidated statements12, along with the reviewed H1-2026 balance sheet disclosures6.
+Search Queries: إيبيكو أعمار ديون العملاء, EIPICO expected credit loss counterparty breakdown aging, مخصص خسائر ائتمانية متوقعة إيبيكو توزيع المقاصة.
+Finding: SEARCHED, NOT FOUND. Allowances for expected credit losses continue to be reported exclusively as aggregate totals (EGP 494.0 million in FY2025 versus EGP 700.0 million in FY2024)12. Gross trade receivables stood at EGP 3.266 billion at year-end 202512. The issuer provides no aging schedule (e.g., current, 30–90 days, 90–180 days, >360 days) or customer-class exposure (private wholesale distributors versus public tenders via UPA/Health Insurance)12. Consequently, the balance sheet impact of distributor insolvency proceedings—such as the court-supervised debt restructuring of United Company for Pharmacists (المتحدة للصيادلة), where aggregate pharmaceutical creditor claims exceeded EGP 2.5 billion—remains opaque34.
+Gap 3: Separate Financial Statements for Equity-Accounted Associates
+Audit Methodology: Systematic audit of Note 8/2 and Note 8/3 in EIPICO’s consolidated reports, alongside corporate registry updates for Arab API and Batterjee Pharma through September 20261.
+Search Queries: القوائم المالية الشركة العربية للخامات الصيدلية, Arab API financial statements balance sheet EIPICO, Batterjee Pharmaceuticals for Medical Appliances EIPICO associate financials.
+Finding: SEARCHED, NOT FOUND. Information regarding EIPICO’s two core 30.0%-owned associates remains limited to carrying values, ownership percentages, and net equity-accounted earnings lines1. While the Arab Company for Active Pharmaceutical Ingredients (العربية للخامات الصيدلية) was capitalized at an initial EGP 10 million and entered negotiations with Petrojet in April 2026 to execute a 96,000-square-meter API complex (targeting 750 metric tons of active ingredients and 500 tons of intermediates), no standalone balance sheet or income statement is publicly filed35.
+Institutional Contracts, Export Footprint, and Capital Strategy
+EIPICO’s operational performance reflects its dual exposure: domestic public sector procurement and hard-currency export expansion.
+Through its parent ACDIMA, EIPICO remains the domestic anchor for public tender supply, covering extensive nationwide needs in broad-spectrum injectables, lyophilized antibiotics, and essential ampoules15. The commercial integration of EIPICO 3 into UPA supply frameworks adds oncology therapies to this base14.
+Foreign currency exports—totaling approximately $60 million annually and representing between 22% and 29% of company revenues—fund imported raw material needs4. EIPICO accounts for roughly 25% of total Egyptian pharmaceutical exports and 30% of domestic pharmaceutical shipments into Sub-Saharan Africa15. The strategic value of EIPICO 3 rests on extending this export presence by securing biosimilar marketing authorizations across regional target markets, where profit realizations outpace domestic institutional procurement15.
+Balancing this commercial profile is EIPICO's debt structure. Operating with net working capital of EGP 609 million at the start of the year, the balance sheet supported heavy working capital buffers: EGP 3.77 billion in inventory and EGP 3.27 billion in gross receivables12. With short-term bank debt standing at EGP 8.74 billion, high carrying costs persist12.
+Shareholders voted at the Extraordinary General Meeting to postpone a proposed 50% paid-in capital expansion via a tradable rights issue40. This leaves the share count unchanged at 168.76 million shares, avoiding immediate share dilution, but requires the company to fund working capital needs and Phase 2 capital spending through operational cash flows and existing bank lines3.
+The investment thesis for EIPICO entering the second half of 2026 centers on the spread between realized price revisions and debt servicing costs. The commissioning of EIPICO 3 and the introduction of digital QR-code price indexing provide structural catalysts for top-line revenue expansion. However, the 24.3% year-over-year contraction in H1-2026 consolidated earnings demonstrates that elevated raw material import costs and debt carrying expenses continue to constrain bottom-line conversion. Until the EDA's dynamic pricing mechanisms catch up to historical cost inflation, or high-margin biosimilar exports from EIPICO 3 begin shipping at commercial scale, earnings recovery will remain constrained by working capital debt costs and input-cost inflation throughout the remainder of FY2026.
+Works cited
+المصرية الدولية للصناعات الدوائية (PHAR) - Mubasher.Info, https://www.mubasher.info/markets/EGX/stocks/PHAR/profile/
+البيانات التاريخية - بيانات الأسهم - البورصة المصرية, https://www.egx.com.eg/ar/StocksData.aspx?ISIN=EGS38081C013
+المصرية الدولية للصناعات الدوائية (ايبيكو) - معلومات مباشر, https://www.mubasher.info/markets/EGX/stocks/PHAR/
+الشركة المصرية الدولية للصناعات الدوائية (ايبيكو) - Forbes Lists, https://www.forbesmiddleeast.com/ar/lists/egypts-50-most-valuable-companies-2026/egyptian-international-pharmaceutical-industries-company-eipico/
+Health Minister inaugurates Egypt's 1st fully integrated, https://sis.gov.eg/en/media-center/news/health-minister-inaugurates-egypts-1st-fully-integrated-biopharmaceutical-plant/
+The Egyptian Exchange, https://www.egx.com.eg/en/NewsDetails.aspx?NewsID=293149
+https://www.mubasher.info/news/4658429/%D8%A3%D8%B1%D8%A8%D8%A7%D8%AD-%D8%A5%D9%8A%D8%A8%D9%8A%D9%83%D9%88-%D8%AA%D8%AA%D8%B1%D8%A7%D8%AC%D8%B9-24-%D8%AE%D9%84%D8%A7%D9%84-%D8%A7%D9%84%D9%86%D8%B5%D9%81-%D8%A7%D9%84%D8%A3%D9%88%D9%84-%D9%85%D9%86-2026/
+The Egyptian Exchange, https://egx.com.eg/en/NewsDetails.aspx?NewsID=293019
+The Egyptian Exchange, https://egx.com.eg/en/NewsDetails.aspx?NewsID=293130
+The Egyptian Exchange, https://www.egx.com.eg/en/NewsDetails.aspx?NewsID=293147
+Ideas and Forecasts on Stocks — Egypt - TradingView, https://www.tradingview.com/markets/stocks-egypt/ideas/
+صدق هللا العظيم - Eipico, http://www.eipico.com.eg/DataImages/HTML/File1699.pdf
+تجري محادثات للاستحواذ على «يو بي فارما» المملوكة لشركة أكديما, https://souqaldawaa.com/%D8%A5%D9%8A%D8%A8%D9%8A%D9%83%D9%88-%D8%AA%D8%AC%D8%B1%D9%8A-%D9%85%D8%AD%D8%A7%D8%AF%D8%AB%D8%A7%D8%AA-%D9%84%D9%84%D8%A7%D8%B3%D8%AA%D8%AD%D9%88%D8%A7%D8%B0-%D8%B9%D9%84%D9%89/
+«إيبيكو» يحصل على ترخيص هيئة الدواء وإطلاق أول مستحضراته لعلاج, https://almalnews.com/2089007/%C2%AB%D8%A5%D9%8A%D8%A8%D9%8A%D9%83%D9%88%C2%BB-%D9%8A%D8%AD%D8%B5%D9%84-%D8%B9%D9%84%D9%89-%D8%AA%D8%B1%D8%AE%D9%8A%D8%B5-%D9%87%D9%8A%D8%A6%D8%A9-%D8%A7%D9%84%D8%AF%D9%88%D8%A7%D8%A1-%D9%88%D8%A5%D8%B7%D9%84%D8%A7%D9%82/
+EIPICO opens $100M biopharmaceutical factory in 10th of Ramadan, https://www.arabfinance.com/en/news/newdetails/eipico-opens-biopharmaceutical-factory-in-10th-of-ramadan-city
+تفعيل قرار الحكومة بشطب أسعار الأدوية و«الحق فى الدواء - الصفحة الأولى, https://www.safha1.com/14991
+هيئة الدواء - موقع بصراحة الإخباري, https://besraha.com/keyword/3446/1
+سعر سهم ايبيكو (سهم PHAR) مباشر - Investing.com, https://sa.investing.com/equities/egypt-intl-phr
+تفاصيل الشركة - البورصة المصرية, https://egx.com.eg/ar/CompanyDetails.aspx?ISIN=EGS38081C013
+News Details - Eipico, https://www.eipico.com.eg/NWSDetails.aspx?id=181
+أسعار الأسهم بالبورصة المصرية اليوم الأحد 16-8-2026, https://www.youm7.com/story/2026/8/16/%D8%A3%D8%B3%D8%B9%D8%A7%D8%B1-%D8%A7%D9%84%D8%A3%D8%B3%D9%87%D9%85-%D8%A8%D8%A7%D9%84%D8%A8%D9%88%D8%B1%D8%B5%D8%A9-%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9-%D8%A7%D9%84%D9%8A%D9%88%D9%85-%D8%A7%D9%84%D8%A3%D8%AD%D8%AF-16-8-2026/7515242
+The Egyptian Exchange, https://www.egx.com.eg/en/NewsDetails.aspx?NewsID=286138
+رئيس هيئة الدواء المصرية يشارك في زيارة تفقدية الي مصنع «إيبيكو 3, https://edaegypt.gov.eg/ar/%D8%A7%D9%84%D9%85%D8%B1%D9%83%D8%B2-%D8%A7%D9%84%D8%A5%D8%B9%D9%84%D8%A7%D9%85%D9%8A/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D8%B1%D8%A6%D9%8A%D8%B3-%D9%87%D9%8A%D8%A6%D8%A9-%D8%A7%D9%84%D8%AF%D9%88%D8%A7%D8%A1-%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9-%D9%8A%D8%B4%D8%A7%D8%B1%D9%83-%D9%81%D9%8A-%D8%B2%D9%8A%D8%A7%D8%B1%D8%A9-%D8%AA%D9%81%D9%82%D8%AF%D9%8A%D8%A9-%D8%A7%D9%84%D9%8A-%D9%85%D8%B5%D9%86%D8%B9-%D8%A5%D9%8A%D8%A8%D9%8A%D9%83%D9%88-3-%D9%84%D9%84%D9%85%D8%B3%D8%AA%D8%AD%D8%B6%D8%B1%D8%A7%D8%AA-%D8%A7%D9%84%D8%AD%D9%8A%D9%88%D9%8A%D8%A9-%D8%A8%D9%85%D8%AF%D9%8A%D9%86%D8%A9-%D8%A7%D9%84%D8%B9%D8%A7%D8%B4%D8%B1-%D9%85%D9%86-%D8%B1%D9%85%D8%B6%D8%A7%D9%86/
+Egyptian tycoon Ahmed El Sewedy's electric company signs $21.5, https://www.billionaires.africa/2022/09/21/egyptian-tycoon-ahmed-el-sewedys-electric-company-signs-21-5-million-contract-with-eipico/
+EIPICO's new factory is a leap for Egypt's pharmaceutical industry, https://www.egypt-business.com/news/details/2631-eipicos-new-factory-is-a-leap-for-egypts-pharmaceutical-industry/440383
+مصنع «إيبيكو 3».. مصر تخطو نحو توطين صناعة المستحضرات الحيوية, https://www.banker.news/152035
+مبيعات الأدوية في مصر تتجاوز 180 مليار جنيه في أول 7 أشهر من 2026, https://www.alarabiya.net/aswaq/exclusive/2026/08/10/%D9%85%D8%A8%D9%8A%D8%B9%D8%A7%D8%AA-%D8%A7%D9%84%D8%A7%D8%AF%D9%88%D9%8A%D8%A9-%D9%81%D9%8A-%D9%85%D8%B5%D8%B1-%D8%AA%D8%AA%D8%AC%D8%A7%D9%88%D8%B2-180-%D9%85%D9%84%D9%8A%D8%A7%D8%B1-%D8%AC%D9%86%D9%8A%D9%87-%D9%81%D9%8A-%D8%A7%D9%88%D9%84-7-%D8%A7%D8%B4%D9%87%D8%B1-%D9%85%D9%86-2026
+هيئة الدواء تحذر من تشغيلة غير مطابقة من فلوموكس 1000 مجم - Masrawy, https://www.masrawy.com/news/news_egypt/details/2026/5/7/2984420?utm_campaign=nabdapp.com&utm_medium=referral&utm_source=nabdapp.com&ocid=Nabd_App?utm_source=article-share&utm_medium=social
+تحذيرات عاجلة من هيئة الدواء.. أدوية مجهولة المصدر وغير مطابقة (قائمة), https://www.masrawy.com/news/news_egypt/details/2026/5/14/2987923/6-%D8%AA%D8%AD%D8%B0%D9%8A%D8%B1%D8%A7%D8%AA-%D9%85%D9%86-%D8%A3%D8%AF%D9%88%D9%8A%D8%A9-%D9%85%D8%BA%D8%B4%D9%88%D8%B4%D8%A9-%D9%88%D8%BA%D9%8A%D8%B1-%D9%85%D8%B7%D8%A7%D8%A8%D9%82%D8%A9-%D8%A7%D9%84%D8%AA%D9%81%D8%A7%D8%B5%D9%8A%D9%84-%D9%88%D8%A7%D9%84%D8%A3%D8%B3%D8%A8%D8%A7%D8%A8
+هيئة الدواء المصرية تحذر من أدوية شائعة بالأسواق مغشوشة ومجهولة المصدر, https://www.alkhaleej.ae/2026-05-29/%D9%85%D9%86%D9%88%D8%B9%D8%A7%D8%AA/%D9%85%D8%AD%D8%B7%D8%A7%D8%AA/%D9%87%D9%8A%D8%A6%D8%A9-%D8%A7%D9%84%D8%AF%D9%88%D8%A7%D8%A1-%D8%AA%D8%AD%D8%B0%D8%B1-%D8%A3%D8%AF%D9%88%D9%8A%D8%A9-%D8%B4%D8%A7%D8%A6%D8%B9%D8%A9-%D8%A8%D8%A7%D9%84%D8%A3%D8%B3%D9%88%D8%A7%D9%82-%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9-%D9%85%D8%BA%D8%B4%D9%88%D8%B4%D8%A9-%D9%88%D9%85%D8%AC%D9%87%D9%88%D9%84%D8%A9-%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%B1-%D9%82%D8%A7%D8%A6%D9%85%D8%A9-%D8%B1%D8%B3%D9%85%D9%8A%D8%A9
+هيئة الدواء تسحب تشغيلة من علاج E-moxclav لعدم مطابقتها للمواصفات, https://www.elconsolto.com/news/health-news/details/2026/3/14/2957438/%D8%BA%D9%8A%D8%B1-%D9%85%D8%B7%D8%A7%D8%A8%D9%82-%D9%84%D9%84%D9%85%D9%88%D8%A7%D8%B5%D9%81%D8%A7%D8%AA-%D9%87%D9%8A%D8%A6%D8%A9-%D8%A7%D9%84%D8%AF%D9%88%D8%A7%D8%A1-%D8%AA%D8%B3%D8%AD%D8%A8-%D8%B9%D9%84%D8%A7%D8%AC-%D8%B4%D9%87%D9%8A%D8%B1-%D9%84%D9%84%D8%A7%D9%84%D8%AA%D9%87%D8%A7%D8%A8%D8%A7%D8%AA-
+إنتاج شركة إيبيكو.. هيئة الدواء تقرر سحب ووقف تصنيع دواء سيلجون, https://www.cairo24.com/2339469
+مصر.. «الدواء» تسحب تشغيلة «قطرة عيون» شهيرة وتحذر من تداولها, https://www.alkhaleej.ae/2026-06-09/%D9%85%D9%86%D9%88%D8%B9%D8%A7%D8%AA/%D8%A7%D9%84%D8%B5%D8%AD%D8%A9/%D9%85%D8%B5%D8%B1-%D8%A7%D9%84%D8%AF%D9%88%D8%A7%D8%A1-%D8%AA%D8%B3%D8%AD%D8%A8-%D8%AA%D8%B4%D8%BA%D9%8A%D9%84%D8%A9-%D9%82%D8%B7%D8%B1%D8%A9-%D8%B9%D9%8A%D9%88%D9%86-%D8%B4%D9%87%D9%8A%D8%B1%D8%A9-%D9%88%D8%AA%D8%AD%D8%B0%D8%B1-%D9%85%D9%86-%D8%AA%D8%AF%D8%A7%D9%88%D9%84%D9%87%D8%A7
+خطة لإعادة هيكلة «المتحدة للصيادلة».. موافقة دائنين بـ2.5 مليار جنيه, https://www.safha1.com/12051
+أحمد كيلاني - Forbes Lists, https://www.forbesmiddleeast.com/ar/lists/?page_id=66638
+مصر.. اهتمام خليجي بالمساهمة في أول مصنع خامات دوائية بالمنطقة - العربية, https://www.alarabiya.net/aswaq/exclusive/2026/07/01/%D9%85%D8%B5%D8%B1-%D8%A7%D9%87%D8%AA%D9%85%D8%A7%D9%85-%D8%AE%D9%84%D9%8A%D8%AC%D9%8A-%D8%A8%D8%A7%D9%84%D9%85%D8%B3%D8%A7%D9%87%D9%85%D8%A9-%D9%81%D9%8A-%D8%A7%D9%88%D9%84-%D9%85%D8%B5%D9%86%D8%B9-%D8%AE%D8%A7%D9%85%D8%A7%D8%AA-%D8%AF%D9%88%D8%A7%D8%A6%D9%8A%D8%A9-%D9%81%D9%8A-%D8%A7%D9%84%D9%85%D9%86%D8%B7%D9%82%D8%A9
+أخبار متعلقة - آراب فاينانس, https://www.arabfinance.com/ar/home/tagresult/2786
+الإنتهاء من تأسيس العربية للخامات الصيدلية برأس مال 10 ملايين جنيه, https://test.arabfinance.com/ar/news/newdetails/11125
+الشركة المصرية الدولية للصناعات الدوائية (ايبيكو), https://www.expoegypt.gov.eg/co/%D8%A7%D9%84%D8%B4%D8%B1%D9%83%D8%A9-%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9-%D8%A7%D9%84%D8%AF%D9%88%D9%84%D9%8A%D8%A9-%D9%84%D9%84%D8%B5%D9%86%D8%A7%D8%B9%D8%A7%D8%AA-%D8%A7%D9%84%D8%AF%D9%88%D8%A7%D8%A6%D9%8A%D8%A9-%D8%A7%D9%8A%D8%A8%D9%8A%D9%83%D9%88
+Featured - HC Research, https://www.hcresearch.com/featured/
+=== TABLE 0 ===
+Corporate Profile Dimension | Official Registration Parameter | Practical Governance Relevance
+Registered Arabic Name | الشركة المصرية الدولية للصناعات الدوائية - إيبيكو1 | Primary key for domestic court filings, gazette decrees, and EDA circulars1
+Common Commercial Monikers | إيبيكو / ايبيكو / EIPICO1 | Commercial brand identity across domestic retail distribution and tender markets4
+Exchange Identifiers | EGX: PHAR / Reuters: PHAR.CA / ISIN: EGS38081C0132 | Active since listing on 27 September 1995; industrial sector classification1
+Domicile & Facilities | First Industrial Zone B1, 10th of Ramadan City, Sharqia Governorate1 | Three operating complexes covering 130,500 sqm, including EIPICO 1, 2, and 315
+Issued Share Capital | EGP 1,687,557,5003 | 168,755,750 fully paid common shares at par value EGP 10.003
+Controlling Shareholder | Arab Company for Drug Industries and Medical Appliances (ACDIMA)1 | 50.00% direct equity; controls board appointments and state tender coordination1
+Core Minority Shareholders | Medical Professions for Investment (4.50%), El Garhy Group entities (~3.38%)1 | Institutional and domestic industrial minority representation1
+=== TABLE 1 ===
+Date | Sourced Filing / Regulatory Event | Reported Operational Content | Primary Valuation Driver Affected
+12 Aug 2026 | Board of Directors Resolution9 | Convened to ratify standalone and consolidated statements for H1-20269. | Governance baseline; authorization of capital plans.
+13 Aug 2026 | EGX Market Surveillance Notice8 | Trading suspended from 10:00 AM; resumed at 12:00 PM upon receipt of H1-2026 board extracts8. | Market clearing; technical price discovery.
+13–16 Aug 2026 | Reviewed Consolidated Statements6 | Consolidated net profit: EGP 626.67M (-24.3% YoY); revenue: EGP 5.05B (+9.6% YoY)6. | Gross margin compression; cost-of-goods escalation.
+16 Aug 2026 | Reviewed Standalone Statements7 | Standalone net profit: EGP 433.40M (-28.5% YoY from EGP 606.54M in H1-2025)7. | Operating cash-flow generation; parent earnings power.
+16 Aug 2026 | EGX Trading Session Print21 | Stock fell 4.19% to close at EGP 137.01 on elevated turnover exceeding EGP 50M19. | Multiples re-rating; equity risk premium expansion.
+30 Sep 2026 | Dividend Distribution Tranche22 | Disbursement of second tranche of Coupon No. 40 at EGP 2.00 per share22. | Liquidity drainage; total cash outflow of EGP 337.5M.
+=== TABLE 2 ===
+Commercial Formulation | Regulatory Mandate & Circular Reference | Stated Regulatory Cause | Operational and Balance Sheet Exposure
+Flumox 1000mg (Oral tablets)28 | Batch Recall Circular No. 38 of 2026 (May 2026)30 | Physical-chemical non-compliance of batch No. 2410995 in official laboratory analysis28. | Restricted strictly to the single cited batch; general market distribution and brand production continue normally30. Negligible financial consequence.
+E-moxclav 1g (Oral tablets)31 | Batch Recall Notification (March 2026)31 | Analytical variation identified in batch No. 2503745 (expiry April 2027)31. | Isolated batch quarantine; standard generic amoxicillin/clavulanic acid lines continue production31.
+Silgon (سيلجون) (Drops & suppositories)32 | High Technical Committee Deregistration (Late Dec 2025 / 2026)32 | Cancellation of product registration for pediatric drops and suppositories due to toxicity/seizure risks from minor dosing errors32. | Permanent market withdrawal of drops/suppository forms; replaced by modern pediatric antitussives32. Minor volume impact.
+Ophthalmic Solution (Sterile eye drops)33 | Routine Quality Control Circular (June 2026)33 | Specific batch failure to satisfy physical clarity criteria during shelf-life stability tests33. | Contained batch isolation; no structural remediation required for sterile ophthalmic lines33.
+=== TABLE 3 ===
+Commercial & Capital Driver | Current Operational Status | Baseline Trajectory & Valuation Impact
+Institutional Tender Awards (UPA) | Preferred supplier status for UPA institutional medicine orders14. | High unit volume absorption; operating margins bounded by state procurement pricing caps14.
+Export Value & Currency Hedge | Exports exceed $60M annually across 60+ countries15. | Generates foreign currency to service import obligations; accounts for ~25%–29% of Egypt's pharma exports15.
+Working Capital Requirements | Inventories of EGP 3.77B; trade receivables of EGP 3.27B12. | Requires elevated bank lines; working capital cycle compresses operating cash flow12.
+Capital Increase Postponement | EGM approved postponing a 50% capital increase via rights issue40. | Eliminates immediate dilution (share count steady at 168.76M); maintains reliance on bank debt3.
+Short-Term Borrowings Load | Bank facilities totaled EGP 8.74B entering FY202612. | High interest charges; interest coverage ratio remains compressed under CBE tight policy11.

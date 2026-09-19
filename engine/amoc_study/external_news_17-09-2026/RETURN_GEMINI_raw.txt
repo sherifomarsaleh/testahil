@@ -1,0 +1,130 @@
+Alexandria Mineral Oils Company (EGX: AMOC): External Intelligence Dossier Post-30 June 2026
+Alexandria Mineral Oils Company (EGX: AMOC; ISIN: EGS380P1C010)—registered on the Egyptian Exchange under its official Arabic corporate title, شركة الإسكندرية للزيوت المعدنية—entered the second half of calendar year 2026 with an expanding industrial integration profile and an energy transformation initiative1. Following the close of its reviewed six-month financial period on 30 June 2026, the company’s operating environment has been shaped by three external developments: the execution of a 50 million USD off-balance-sheet utility partnership to eliminate power purchase volatility, state-directed inter-refinery feedstock optimization across the Alexandria petrochemical cluster, and escalating margin pressures driven by foreign exchange depreciation alongside impending fuel pricing adjustments4.
+The most significant operational event not captured in historical filings is the 30 July 2026 Heads of Terms agreement executed between AMOC and Intro Utilities4. Structured as a Build-Own-Operate-Transfer (BOOT) concession, the project establishes a Combined Heat and Power (CHP) generation plant intended to insulate AMOC's energy-intensive base oil and wax extraction units from national grid tariff escalations while cutting site fuel consumption by 15%4. Concurrently, inter-refinery coordination disclosures from the Ministry of Petroleum and Mineral Resources in August 2026 confirm that AMOC expanded its intermediate feedstock processing arrangements with El Nasr Petroleum Company and the Middle East Oil Refinery (MIDOR), lifting secondary conversion utilization within the Alexandria refining corridor6.
+On governance and capital allocation, the regulatory record on the Egyptian Exchange between 1 July 2026 and 16 September 2026 reflects formal board approvals of reviewed interim accounts under joint audit by Crowe Global (Dr. A. M. Hegazy & Co.) and the Central Auditing Organization (CAO), the issuance of assembly convocations for late September 2026, and preparations for disbursing the second installment of its transitional dividend in mid-October 20269. Every external lead collected across regulatory portals, official state petroleum gazettes, and domestic industrial records has been verified against primary documentation.
+Corporate Identity and Listing Credentials
+Trading on the Egyptian Exchange under the ticker AMOC (Reuters: AMOC.CA), the company is legally registered as شركة الإسكندرية للزيوت المعدنية2. The entity was incorporated on 6 May 1997 pursuant to Investment Law No. 230 of 1989 (succeeded by Investment Law No. 72 of 2017) and Minister of Economy and International Cooperation Decree No. 206 of 19973. Headquartered in the Max industrial district of Alexandria (Wadi Al-Qamar, High Dam Street), the company's equity was admitted to trading on the EGX on 22 December 20043.
+Infrastructure and Plant Operations
+The Intro Utilities Combined Heat and Power Concession
+On 30 July 2026, AMOC entered into a definitive commercial agreement that fundamentally alters the utility and cost architecture of its Alexandria refining complex5. At the company’s administrative headquarters, AMOC Chairman and Managing Director Chemist Maged Mostafa El-Kordy and Intro Utilities Chief Executive Officer Eng. Hany Helaly signed a Heads of Terms / Memorandum of Understanding (مذكرة الشروط الأساسية) to initiate detailed technical and engineering execution for a dedicated Combined Heat and Power (CHP) industrial plant4.
+The signing ceremony was officially conducted under the auspices of the Egyptian General Petroleum Corporation (EGPC), represented by Eng. Mohamed Talaat, Director General of Energy Efficiency, and Eng. Yasser Negaty, Assistant Director General4. Senior operational leads in attendance from AMOC included Chemist Naji Abdel-Dayem (General Manager of Energy Efficiency), Eng. Moataz Mohamed Salem (Project Director), and Eng. Neema Hamdallah (General Project Coordinator)5.
+The commercial mechanism relies on an off-balance-sheet utility-as-a-service framework5. AMOC avoids direct upfront capital outlays while Intro Utilities designs, constructs, finances, and operates the plant across a multi-year concession before transferring the asset to AMOC4. By securing dedicated on-site power and high-pressure steam, the complex circumvents production interruptions stemming from external grid fluctuations while moderating the financial impact of domestic electricity and industrial gas tariff increases4.
+Inter-Refinery Feedstock Integration Across Alexandria and Suez
+Beyond utility infrastructure, external announcements from the Ministry of Petroleum and Mineral Resources indicate an acceleration of state-coordinated operational integration involving AMOC6. On 23 August 2026, during the operational review of El Nasr Petroleum Company (NPC) presided over by Minister of Petroleum and Mineral Resources Eng. Karim Badawi, NPC leadership confirmed ongoing direct feedstock exchanges between its Suez installations and the Alexandria refining cluster, explicitly citing bilateral integration with AMOC and Alexandria Special Petroleum Products Company (ASPC)6.
+This integration focuses on optimizing the throughput of atmospheric residue and vacuum gas oil (VGO)6. Unfinished distillates and heavy fuel oil components from state-owned atmospheric distillation columns are channeled into AMOC's specialized lube oil, wax processing, and vacuum distillation units6. This integration complements AMOC's multi-year operational arrangement with the neighboring Middle East Oil Refinery (MIDOR)8. Under this bilateral agreement, AMOC supplies intermediate vacuum distillates to MIDOR’s hydrocracker in exchange for finished Euro-V compliant gas oil/diesel (approximately 350,000 tonnes annually at international parity formulas), ensuring steady capacity utilization while maximizing value-added light and middle distillates8.
+Regulatory Decisions, Input Costs, and Foreign Exchange Exposure
+Automatic Pricing Committee Domestic Fuel Tariff Freeze
+Throughout July, August, and early September 2026, domestic pricing for refined petroleum products in Egypt operated under the pricing decree established at the March 2026 review by the Automatic Fuel Pricing Committee (لجنة التسعير التلقائي للمنتجات البترولية)18. The Ministry of Petroleum confirmed that domestic regulated prices remained stable during this window19:
+Macroeconomic Adjustments and Q3 2026 Margin Volatility
+Between 14 and 16 September 2026, Egyptian government statements and energy sector dispatches highlighted mounting structural pressure on the petroleum subsidy framework7. International crude oil benchmarks escalated sharply, with Brent spot prices advancing into the 100 to 107 USD per barrel range7. This created a wide divergence from the Egyptian government's fiscal year budget assumption of 75 USD per barrel7.
+Simultaneously, the Egyptian pound experienced renewed depreciation in local commercial banking channels, crossing 52.00 EGP per USD on 15 September 20267. Because AMOC purchases intermediate crude inputs, vacuum bottoms, and chemical additives indexed to USD-denominated Mediterranean international cargo benchmarks, currency depreciation expands nominal cost of goods sold, even as it inflates nominal revenues from export sales of paraffin wax and specialty products8. Official communications from the Cabinet in mid-September indicated that the Automatic Pricing Committee convened evaluations to determine the scale of domestic price increases required to offset the rising cost of imported crude and refined products7.
+Corporate Disclosures, Governance Actions, and Audit Oversight
+Egyptian Exchange Filing Record Post-30 June 2026
+The corporate disclosure record filed by AMOC on the Egyptian Exchange between 1 July 2026 and 16 September 2026 encompasses periodic shareholder structural statements, board resolutions, and statutory auditor clearances26:
+Statutory Auditor Mandate and Governance Approvals
+The board meeting convened on 13 August 2026 confirmed that the limited accounting review for the six-month period ended 30 June 2026 was conducted under joint institutional oversight9. Audit clearance was executed by accounting firm Dr. Abdel Aziz Hegazy & Partners (the Egyptian member firm of Crowe Global) alongside designated state auditors from the Egyptian Central Auditing Organization (الجهاز المركزي للمحاسبات)9. The board ratified the auditor statements without adverse qualification or modification9.
+Cash Dividend Disbursement Schedule
+Corporate filings concerning cash distributions confirm the execution timetable for AMOC's transitional fiscal period dividend (covering H2 2025, from 1 July 2025 through 31 December 2025)8. The payout was structured in two equal tranches of EGP 0.20 per share, representing an aggregate distribution of EGP 0.40 per share (total value: EGP 516.60 million across 1,291,500,000 shares)11:
+Tranche 1 (EGP 0.20 per share; EGP 258.30 million): Disbursed on 22 April 2026 following an ex-dividend date of 19 April 202611.
+Tranche 2 (EGP 0.20 per share; EGP 258.30 million): Scheduled for formal disbursement on 15 October 2026, administered through Misr for Central Clearing, Depository, and Registry (MCDR)11.
+Shareholder Structure and Institutional Holdings
+Disclosures submitted in accordance with Article 30 of the EGX Listing Rules during the third quarter of 2026 demonstrate that state-owned entities and domestic institutional funds maintain a controlling block over AMOC’s equity base3:
+Explicit Negative Findings and Unsubstantiated Market Leads
+In accordance with institutional research standards, prospective operational leads, potential legal liabilities, management reshuffles, and capital actions that were checked against public and regulatory records but yielded no corroborating primary documentation are cataloged below:
+The operational intelligence accumulated between 1 July 2026 and 16 September 2026 demonstrates that AMOC’s underlying industrial posture remains closely aligned with Egypt's broader petroleum sector modernization program6. The Intro Utilities CHP partnership represents a material development that mitigates future energy inflation risk and enhances long-term operational efficiency4. Concurrently, close operational ties with state-owned refiners (Alexandria Petroleum, El Nasr, and MIDOR) insulate core throughput volumes from crude intake shortfalls6. However, exposure to escalating USD-denominated feedstock costs and currency shifts against fixed domestic product price caps leaves near-term refining margins reliant on the timing and magnitude of future Automatic Fuel Pricing Committee revisions7. Analysts tracking the name must treat these plant and regulatory leads as operational indicators rather than valuation adjustments until the General Assembly convenes on 27 September 2026 and the second-half operational results are published10.
+Works cited
+الاسكندرية للزيوت المعدنية (AMOC) - القوائم المالية - Mubasher.Info, https://www.mubasher.info/markets/EGX/stocks/AMOC/financial-statements/
+سعر سهم أموك (سهم AMOC) مباشر - Investing.com, https://sa.investing.com/equities/alx-mineral-oi
+بيانات شركة الاسكندرية للزيوت المعدنية (أموك) - معلومات مباشر, https://www.mubasher.info/markets/egx/stocks/AMOC/profile
+“أموك "تبدأ أولى خطوات إنشاء محطة توليد مشترك للطاقة باستثمارات 50, https://www.alamaltaqa.com/51437
+"أموك" و "Intro Utilities" توقعان مذكرة لإنشاء محطة توليد مشترك للطاقة, https://petro-news.com/170955
+المهندس كريم بدوي وزير البترول والثروة المعدنية خلال الجمعيات العامة, https://www.petroleum.gov.eg/ar-eg/media-center/news/news-pages/Pages/mop_23082026-_02.aspx
+الحكومة المصرية تحسم جدل الارتفاع المحتمل لأسعار الوقود, https://www.alkhaleej.ae/2026-09-15/%D9%85%D9%86%D9%88%D8%B9%D8%A7%D8%AA/%D9%85%D8%AD%D8%B7%D8%A7%D8%AA/%D8%A7%D9%84%D8%AD%D9%83%D9%88%D9%85%D8%A9-%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9-%D8%AA%D8%AD%D8%B3%D9%85-%D8%AC%D8%AF%D9%84-%D8%A7%D9%84%D8%A7%D8%B1%D8%AA%D9%81%D8%A7%D8%B9-%D8%A7%D9%84%D9%85%D8%AD%D8%AA%D9%85%D9%84-%D9%84%D8%A3%D8%B3%D8%B9%D8%A7%D8%B1-%D8%A7%D9%84%D9%88%D9%82%D9%88%D8%AF
+"أموك" تضاعف أرباحها إلى 1.9 مليار جنيه في النصف الأول - جريدة البورصة, https://www.alborsaanews.com/2026/07/30/1983110
+Cash or Trash — The Barbarian Project, https://thebarbarianproject.com/cash-or-trash
+"أموك" تدعو مساهميها لحضور عموميتها العادية وغير العادية في 27 سبتمبر, https://almalnews.com/2071897/%D8%A3%D9%85%D9%88%D9%83-%D8%AA%D8%AF%D8%B9%D9%88-%D9%85%D8%B3%D8%A7%D9%87%D9%85%D9%8A%D9%87%D8%A7-%D9%84%D8%AD%D8%B6%D9%88%D8%B1-%D8%B9%D9%85%D9%88%D9%85%D9%8A%D8%AA%D9%87%D8%A7-%D8%A7%D9%84%D8%B9%D8%A7%D8%AF%D9%8A%D8%A9-%D9%88%D8%BA%D9%8A%D8%B1/
+AMOC to pay out EGP 0.4/shr dividends for H2-25 | Decypha, http://34.240.189.1/EN/news/details/AMOC-to-pay-out-EGP-0-4-shr-dividends-for-H2-25/21541881?TSID=,10530,&EDT=,15,62,66,
+سعر وتحليل سهم الاسكندرية للزيوت المعدنية (AMOC) - EGXBot, https://egxbot.com/stock/AMOC
+تفاصيل الشركة - البورصة المصرية, https://www.egx.com.eg/ar/CompanyDetails.aspx?ISIN=EGS380P1C010
+شركة الإسكندرية للزيوت المعدنية - Alexandria Mineral Oils Company, https://www.amoceg.com/ar
+The Egyptian Exchange - Company Details, https://www.egx.com.eg/en/CompanyDetails.aspx?ISIN=EGS380P1C010
+الاسكندرية للزيوت المعدنية (أموك) - معلومات مباشر - Mubasher.Info, https://www.mubasher.info/markets/EGX/stocks/AMOC/
+طاقة - المستقبل اليوم, https://www.elmostqpalelyuom.com/category/29
+مصر تكشف عن حقيقة تحريك أسعار الوقود في 2 أبريل 2026, https://al-ain.com/article/egypt-reveals-truth-about-fuel-price
+سعر البنزين اليوم الأربعاء 16 سبتمبر 2026 - طاقة نيوز, https://taqanews.com/1802088/
+أسعار البنزين والسولار وأسطوانة البوتاجاز في مصر اليوم 30 يوليو 2026, https://www.mobtada.com/economy/1636138/%D8%A3%D8%B3%D8%B9%D8%A7%D8%B1-%D8%A7%D9%84%D8%A8%D9%86%D8%B2%D9%8A%D9%86-%D9%88%D8%A7%D9%84%D8%B3%D9%88%D9%84%D8%A7%D8%B1-%D9%88%D8%A3%D8%B3%D8%B7%D9%88%D8%A7%D9%86%D8%A9-%D8%A7%D9%84%D8%A8%D9%88%D8%AA%D8%A7%D8%AC%D8%A7%D8%B2-%D9%81%D9%8A-%D9%85%D8%B5%D8%B1-%D8%A7%D9%84%D9%8A%D9%88%D9%85-30-%D9%8A%D9%88%D9%84%D9%8A%D9%88-2026
+أسعار البنزين والسولار اليوم 16 سبتمبر 2026 في مصر, https://www.elbalad.news/7109219
+ما هو الموعد المتوقع لرفع أسعار البنزين وقيمة الزيادة؟ | مصراوي - Masrawy, https://www.masrawy.com/news/news_economy/details/2025/9/6/2849297/%D9%85%D8%A7-%D9%87%D9%88-%D8%A7%D9%84%D9%85%D9%88%D8%B9%D8%AF-%D8%A7%D9%84%D9%85%D8%AA%D9%88%D9%82%D8%B9-%D9%84%D8%B1%D9%81%D8%B9-%D8%A3%D8%B3%D8%B9%D8%A7%D8%B1-%D8%A7%D9%84%D8%A8%D9%86%D8%B2%D9%8A%D9%86-%D9%88%D9%82%D9%8A%D9%85%D8%A9-%D8%A7%D9%84%D8%B2%D9%8A%D8%A7%D8%AF%D8%A9-
+سيناريوهات معقدة.. كيف تحسم مصر قرار أسعار الوقود في سبتمبر؟, https://www.alarabiya.net/aswaq/exclusive/2026/09/14/%D9%85%D8%B5%D8%B1-%D8%AA%D8%B1%D8%A7%D8%AC%D8%B9-%D8%A7%D8%B3%D8%B9%D8%A7%D8%B1-%D8%A7%D9%84%D9%88%D9%82%D9%88%D8%AF-%D9%81%D9%8A-%D8%B3%D8%A8%D8%AA%D9%85%D8%A8%D8%B1-%D8%B3%D9%8A%D9%86%D8%A7%D8%B1%D9%8A%D9%88%D9%87%D8%A7%D9%86-%D8%B9%D9%84%D9%89-%D8%A7%D9%84%D8%B7%D8%A7%D9%88%D9%84%D8%A9-%D9%85%D8%B9-%D8%AA%D8%B6%D8%AE%D9%85-%D9%81%D8%A7%D8%AA%D9%88%D8%B1%D8%A9-%D8%A7%D9%84%D8%AF%D8%B9%D9%85
+أرباح الاسكندرية للزيوت المعدنية (AMOC) - Investing.com, https://sa.investing.com/equities/alx-mineral-oi-earnings
+مصر تتحوط اقتصادياً لحرب طويلة في المنطقة: هكذا تخطط لمواجهة أزمات, https://arabicpost.live/%D8%AA%D9%82%D8%A7%D8%B1%D9%8A%D8%B1-%D8%AE%D8%A7%D8%B5%D8%A9/2026/09/14/%D8%A7%D9%84%D8%AD%D8%B1%D8%A8-%D9%81%D9%8A-%D8%A7%D9%84%D8%B4%D8%B1%D9%82-%D8%A7%D9%84%D8%A3%D9%88%D8%B3%D8%B7-%D9%85%D8%B5%D8%B1/
+The Egyptian Exchange, https://www.egx.com.eg/en/NewsDetails.aspx?NewsID=291915
+الاسكندرية للزيوت المعدنية (AMOC.CA) - البورصة المصرية, https://www.egx.com.eg/ar/NewsDetails.aspx?NewsID=293296
+الاسكندرية للزيوت المعدنية (AMOC.CA) - قرارات مجلس إدارة الشركة, https://www.egx.com.eg/ar/NewsDetails.aspx?NewsID=292184
+The Egyptian Exchange, https://www.egx.com.eg/en/NewsDetails.aspx?NewsID=293300
+The Egyptian Exchange, https://www.egx.com.eg/en/NewsDetails.aspx?NewsID=293305
+أموك 13.8 2.6 - آراب فاينانس - بيانات الشركة, https://www.arabfinance.com/ar/home/companyprofile/amoc
+HPM, Inc. v. M.C. Dean, Inc., 1:2024cv01078 - Document 69 (E.D., https://law.justia.com/cases/federal/district-courts/virginia/vaedce/1:2024cv01078/555832/69/
+اجتماع لمجلس إدارة "أموك" لمناقشة التنازل عن دعوى ضريبة المبيعات على, https://www.youm7.com/story/2017/7/13/%D8%A7%D8%AC%D8%AA%D9%85%D8%A7%D8%B9-%D9%84%D9%85%D8%AC%D9%84%D8%B3-%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A3%D9%85%D9%88%D9%83-%D9%84%D9%85%D9%86%D8%A7%D9%82%D8%B4%D8%A9-%D8%A7%D9%84%D8%AA%D9%86%D8%A7%D8%B2%D9%84-%D8%B9%D9%86-%D8%AF%D8%B9%D9%88%D9%89-%D8%B6%D8%B1%D9%8A%D8%A8%D8%A9-%D8%A7%D9%84%D9%85%D8%A8%D9%8A%D8%B9%D8%A7%D8%AA/3322793
+أخبار سهم الاسكندرية للزيوت المعدنية (أموك) - معلومات مباشر, https://www.mubasher.info/markets/EGX/stocks/AMOC/news/
+
+=== TABLE 0 ===
+Parameter | Regulatory & Listing Registry Detail | Primary Sourced Reference
+Registered Corporate Name (Arabic) | شركة الإسكندرية للزيوت المعدنية | EGX Listing Profile / Commercial Registry1
+Registered Corporate Name (English) | Alexandria Mineral Oils Company (AMOC) | EGX Master Directory15
+Listing Exchange & Ticker | Egyptian Exchange (EGX) / AMOC (AMOC.CA) | EGX Market Registry12
+ISIN Code | EGS380P1C010 | EGX Master Directory2
+Authorized Capital | EGP 2,000,000,000 | AMOC Corporate Charter Disclosures14
+Issued & Paid-in Capital | EGP 1,291,500,000 | EGX Securities Listing Registry15
+Total Listed Shares | 1,291,500,000 ordinary shares | EGX Securities Listing Registry15
+Par Value per Share | EGP 1.00 | EGX Listing Data15
+Sector Classification | Energy & Support Services | EGX Industrial Indices Division12
+Corporate Headquarters | Wadi Al-Qamar, El-Max, Alexandria, Egypt | Corporate Registry Disclosures3
+=== TABLE 1 ===
+Operational Metric | Project Parameter | Strategic & Financial Implication
+Initial Installed Power Capacity | 16 MW (expandable up to 30 MW) | Covers 100% of AMOC’s internal complex electrical demand4.
+Steam Generation Scope | High-pressure industrial steam | Meets ~70% of AMOC’s base oil processing steam requirements4.
+Investment Value | Estimated 50 million USD | Financed externally under a private infrastructure framework4.
+Commercial Contract Model | BOOT (Build-Own-Operate-Transfer) | Off-balance-sheet capital expenditure; utility-as-a-service billing4.
+Operational Fuel Reduction | ~15% annual reduction | Lowers unit fuel gas consumption in boilers and thermal heaters4.
+Environmental Decarbonization | 15% reduction in corporate carbon footprint | Aligns refining complex with national environmental mandates5.
+AMOC Internal Cost Savings | Projected minimum EGP 49 million annually | Direct operational expenditure reduction across utility accounts5.
+State Gas Conservation Value | Projected EGP 125 million annually | Saves ~363,000 MMBtu of natural gas annually for the Egyptian state5.
+Aggregate Annual Economic Benefit | Projected EGP 174 million minimum | Combined public-private financial and operational dividend5.
+=== TABLE 2 ===
+Refined Product Category | Administered Domestic Price | Effective Implementation Timeline | Impact on AMOC Operating Model
+Industrial Fuel Oil (Mazut) | EGP 10,500 per metric ton | Unchanged July–September 202620 | Caps domestic heavy fuel oil revenue realization22.
+Transport Diesel (Solar) | EGP 20.50 per liter | Unchanged July–September 202619 | Benchmarks domestic transfer prices to EGPC19.
+Automotive Octane 80 | EGP 20.75 per liter | Unchanged July–September 202619 | Regulates light distillate pricing structure19.
+Automotive Octane 92 | EGP 22.25 per liter | Unchanged July–September 202619 | Governs domestic gasoline market realization19.
+Automotive Octane 95 | EGP 24.00 per liter | Unchanged July–September 202619 | Regulates premium motor fuel distribution19.
+Liquefied Petroleum Gas (LPG) | EGP 275 per 12.5 kg cylinder | Unchanged July–September 202619 | Sets byproduct transfer terms with EGPC19.
+=== TABLE 3 ===
+Filing Date | Disclosure Reference & Identification | Subject Matter & Regulatory Summary | Primary Source Authority
+26 July 2026 | EGX NewsID: 291915 | Periodic disclosure release to shareholders executed under Article 29 of the EGX Listing and Delisting Rules26. | Alexandria Mineral Oils Company / EGX26
+30 July 2026 | EGX NewsID: 292184 | Formal notification of Board of Directors resolutions from the meeting held on 29 July 2026; approved unreviewed preliminary operational indicators for the six-month period ended 30 June 202628. | AMOC Board Disclosure / EGX28
+16 August 2026 | EGX NewsID: 293296 | Formal notification of Board of Directors resolutions from the meeting held on 13 August 2026; endorsed reviewed standalone and consolidated financial statements for the period ended 30 June 20269. | AMOC Board Disclosure / EGX9
+16 August 2026 | EGX NewsID: 293300 | Release of Reviewed Standalone Financial Statements for the period 01/01/2026 to 30/06/202629. | Statutory Filings / EGX29
+16 August 2026 | EGX NewsID: 293305 | Release of Reviewed Consolidated Financial Statements for the period 01/01/2026 to 30/06/202630. | Statutory Filings / EGX30
+Early September 2026 | EGX Disclosure / Press Notices | Formal convocation published calling for an Ordinary and Extraordinary General Meeting of shareholders to convene on 27 September 202610. | AMOC Investor Relations10
+=== TABLE 4 ===
+Shareholder Entity | Shares Held | Equity Percentage | Strategic Role & Classification
+Alexandria Petroleum Company | 268,300,000 | 20.774% | State-owned operating parent / primary refining partner3.
+Al Ahly Capital Holding Company | 194,158,080 | 15.033% | Investment banking arm of the National Bank of Egypt3.
+Misr Capital Holding Company | 103,927,685 | 8.047% | Domestic institutional investment vehicle31.
+Misr Insurance Company | 70,761,020 | 5.479% | State-owned insurance conglomerate3.
+Libya Investment Company (Libyan Foreign Bank) | 68,000,000 | 5.265% | Regional foreign institutional investor31.
+Social Insurance Fund (Govt. Workers) | 66,593,250 | 5.156% | Sovereign domestic pension fund3.
+Social Insurance Fund (Public & Private) | 64,575,000 | 5.000% | Sovereign domestic pension fund3.
+Misr Petroleum Company | 46,106,550 | 3.570% | State-owned downstream fuel distribution company3.
+Cooperative Petroleum Company (Copetrole) | 46,106,550 | 3.570% | State-owned downstream fuel marketing company3.
+Free Float, Retail & Other Shareholders | 362,971,865 | 28.106% | Actively traded free float on the Egyptian Exchange2.
+Total Issued Share Capital | 1,291,500,000 | 100.000% | Registered EGX listed share volume15.
+=== TABLE 5 ===
+Investigated Operating Dimension | Primary Registry / Database Searched | Specific Search Strings Employed | Search Date | Evidentiary Status & Definitive Finding
+Executive Leadership Turnover | EGX Disclosures, MoP Gazette, AMOC IR | "أموك" AND ("رئيس مجلس إدارة" OR "عضو منتدب" OR "استقالة" OR "تعيين"); "AMOC" AND ("CEO" OR "Chairman" OR "resignation") | 16 Sept 2026 | Searched, not found27. Chemist Maged Mostafa El-Kordy remains fully verified as Chairman and Managing Director throughout the period4.
+Judicial Litigation & Court Judgments | Egyptian Court of Cassation, Council of State, EGX Disclosure Portal | "شركة الإسكندرية للزيوت المعدنية" AND ("دعوى" OR "قضية" OR "محكمة" OR "نزاع"); "AMOC" AND ("lawsuit" OR "court" OR "litigation") | 16 Sept 2026 | Searched, not found27. No material litigation filed. International legal database hits for "AMOC" correspond entirely to an unrelated U.S. federal contract dispute concerning the "Alaska Mission Operations Center" (HPM, Inc. v. M.C. Dean, Inc., E.D. Va. 2026)32.
+Tax Appeals & Assessment Disputes | Egyptian Tax Authority, Ministry of Finance, EGX Filings | "أموك" AND ("ضرائب" OR "نزاع ضريبي" OR "فحص ضريبي" OR "طعن"); "Alexandria Mineral Oils" AND "tax dispute" | 16 Sept 2026 | Searched, not found27. Historic sales tax litigations date back to 2017; no fresh tax assessments or court disputes arose post-30 June 202633.
+New Equity Issuance, Rights, or Splits | EGX Listing Committee Bulletins, FRA Register | "الاسكندرية للزيوت المعدنية" AND ("زيادة رأس المال" OR "تجزئة" OR "أسهم مجانية" OR "اكتتاب"); "AMOC" AND ("capital increase" OR "stock split") | 16 Sept 2026 | Searched, not found15. Share capital remains fixed at 1,291,500,000 ordinary shares at EGP 1.00 par value15.
+Debt Facilities & Loan Rescheduling | CBE Disclosures, Bank Consortium Releases | "أموك" AND ("قرض" OR "تمويل" OR "ائتمان" OR "إعادة جدولة"); "AMOC" AND ("syndicated loan" OR "credit facility") | 16 Sept 2026 | Searched, not found4. No commercial bank borrowing agreements were initiated; major project financing (Intro Utilities CHP) was kept off-balance-sheet via BOOT4.
+Institutional Divestments Post-30 June | EGX Block Trading Logs, FRA Article 29 Notices | "ليبيا للاستثمار" AND "أموك" AND "2026"; "Libya Investment" AND "AMOC" stake sale | 16 Sept 2026 | Searched, not found27. Previous block sales by Libya Investment Company occurred in early 2025 and February 2026; no new share disposal filings occurred after 30 June 202631.

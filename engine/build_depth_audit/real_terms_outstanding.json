@@ -1,0 +1,23 @@
+{
+ "rule": "R-REAL-01 / a price path declares what it does in REAL terms",
+ "note": "Studies committing a per-unit money path that moves materially in real terms against the house inflation ladder and saying so nowhere. SEEDED 18-09-2026 on the gate's first run, each entry carrying its MEASUREMENT [R-ENF-08]. May only ever SHORTEN. An entry closes by NAMING the real change in a real_terms_block with its mechanism and disclosure -- NEVER by deleting the figure and NEVER by changing the path, because what is wrong is the claim and not the construction. A real decline may be entirely correct: Egyptian medicine prices are set administratively and do lag inflation. What it may not be is unsaid. ELEC CAME OFF 18-09-2026 and the reason is a fix to the GATE rather than to the study: ebitda_per_t is a unit conversion MARGIN caught by the per_t token, and this rule matches price tokens only — never volume, margin or utilisation — so the entry was never this rule right about that study.",
+ "adopted": "2026-09-18",
+ "measurements": {
+  "ADNOCDIST": "price_avi moves -8.5% in REAL terms over its window (a local-currency level against the domestic ladder) and the study declares nothing about it | price_comm moves -8.4% in REAL terms over its window (a local-currency level against the domestic ladder) and the study declares nothing about it | price_corp moves -8.4% in REAL terms over its window (a local-currency level against the domestic ladder) and the study declares nothing about it | price_retfuel moves -8.4% in REAL terms over its window (a local-currency level against the domestic ladder) and the study declares nothing about it",
+  "AMOC": "line_price_growth moves -11.6% in REAL terms over its window (nominal growth against the domestic ladder) and the study declares nothing about it",
+  "ARCC": "price_exp_path moves -45.1% in REAL terms over its window (a local-currency level against the domestic ladder) and the study declares nothing about it | price_local_path moves -6.9% in REAL terms over its window (a local-currency level against the domestic ladder) and the study declares nothing about it",
+  "DU": "arpu_mobile_path moves -6.9% in REAL terms over its window (a local-currency level against the domestic ladder) and the study declares nothing about it",
+  "PHAR": "dom_price_growth moves -15.9% in REAL terms over its window (nominal growth against the domestic ladder) and the study declares nothing about it | exp_price_usd_growth moves -7.1% in REAL terms over its window (hard-currency growth against long-run foreign inflation) and the study declares nothing about it",
+  "SCEM": "price_exp_usd_t moves -17.1% in REAL terms over its window (a hard-currency level against long-run foreign inflation) and the study declares nothing about it",
+  "SWDY": "unit_price_inflation moves -12.7% in REAL terms over its window (nominal growth against the domestic ladder) and the study declares nothing about it"
+ },
+ "outstanding": [
+  "ADNOCDIST",
+  "AMOC",
+  "ARCC",
+  "DU",
+  "PHAR",
+  "SCEM",
+  "SWDY"
+ ]
+}

@@ -1,0 +1,1815 @@
+   SIXTH OF OCTOBER FOR DEVELOPMENT
+     AND INVESTMENT COMPANY SODIC
+   (AN EGYPTIAN JOINT STOCK COMPANY)
+
+         LIMITED REVIEW REPORT
+AND THE INTERIM CONDENSED CONSOLIDATED
+FINANCIAL STATEMENTS FOR THE NINE-MONTH
+     PERIOD ENDED 30 SEPTEMPER 2025
+SIXTH OF OCTOBER FOR DEVELOPMENT AND INVESTMENT COMPANY SODIC
+(AN EGYPTIAN JOINT STOCK COMPANY)
+
+The interim condensed consolidated financial statements
+For the nine-month period ended 30 September 2025
+
+
+
+
+Index                                                              Page
+
+
+Limited review report                                                1
+Statement of interim condensed consolidated financial position       2
+Statement of interim condensed consolidated profit or loss           3
+Statement of interim condensed consolidated comprehensive income     4
+Statement of interim condensed consolidated changes in equity        5
+Statement of interim condensed consolidated cash flows               6
+Notes to the interim condensed consolidated financial statements   7 – 37
+
+
+
+
+[
+SIXTH OF OCTOBER FOR DEVELOPMENT AND INVESTMENT COMPANY SODIC
+(AN EGYPTIAN JOINT STOCK COMPANY)
+Statement of interim condensed consolidated financial position – As of 30 September 2025
+(All amounts are shown in Egyptian Pounds)                                     Note       30 September 2025       31 December 2024
+Assets
+Non-current assets
+Property, plant and equipment                                                                    666,324,294             648,473,192
+Projects under construction                                                                      793,320,863             497,749,583
+Investment properties under development                                        (21)              202,124,690              78,574,672
+Investment in associates and joint ventures                                    (22)                        -                       -
+Investment properties                                                          (23)            1,449,716,386           1,527,933,294
+Right of use assets                                                                               12,166,153              38,447,925
+Trade and notes receivable                                                     (17-2)          6,001,356,116           5,261,736,875
+Deferred tax assets                                                             (14)             452,765,625             514,078,016
+Total non-current assets                                                                       9,577,774,127           8,566,993,557
+Current assets
+Inventory                                                                                         39,508,816              26,581,742
+Completed real estate properties                                                               1,826,292,046           2,816,790,168
+Works in process                                                                (16)          33,801,691,191          25,209,597,778
+Trade and notes receivable                                                     (17-1)          4,643,159,793           3,327,957,157
+Debtors and other debit balances                                                (18)          15,461,702,021          11,011,344,244
+Loans to joint ventures                                                         (19)                       -                       -
+Financial investments at amortized cost                                                          803,200,320              55,546,905
+Cash and cash equivalents                                                      (20)            2,840,201,311           3,348,973,933
+Current assets excluding assets classified as held for sale                                   59,415,755,498          45,796,791,927
+Assets classified as held for sale                                                                         -               8,370,419
+Total current assets                                                                          59,415,755,498          45,805,162,346
+Total assets                                                                                  68,993,529,625          54,372,155,903
+Equity and liabilities
+Equity
+Issued and paid in capital                                                                     5,157,174,344           1,424,789,472
+Legal reserve                                                                                    238,985,416             247,658,774
+Special reserve - share premium                                                                1,690,069,708           1,690,069,708
+Retained earnings                                                                              5,926,392,224           7,992,415,961
+Other equity                                                                                     689,087,153                       -
+Profit from sale of treasury shares                                                                        -               1,725,456
+Equity attributable to equity holders of the Parent Company                                   13,701,708,845          11,356,659,371
+Non-controlling interests                                                                         70,570,080              62,846,377
+Total equity                                                                                  13,772,278,925          11,419,505,748
+Liabilities
+Non-current liabilities
+Loans                                                                          (24)            4,114,599,051           2,430,045,490
+Land liabilities                                                               (25)            6,680,496,037           6,447,002,121
+Lease contracts liabilities                                                                        7,744,063              26,843,770
+Total non-current liabilities                                                                 10,802,839,151           8,903,891,381
+Current liabilities
+Bank facilities                                                                                1,656,485,235             898,011,273
+Loans                                                                          (24)              211,540,114             461,152,897
+Advances - from customers                                                      (26)           29,677,709,952          21,679,299,472
+Contractors, suppliers and notes payable                                       (27)              999,193,784             679,125,219
+Income tax liabilities                                                                           677,850,923             855,444,749
+Land liabilities                                                               (25)              757,096,463             881,096,901
+Creditors and other credit balances                                            (28)            8,091,924,484           5,951,771,765
+Lease contracts liabilities                                                                       11,403,951              28,413,847
+Provisions                                                                                     2,335,206,643           2,613,659,406
+Current liabilities excluding liabilities classified as held for sale                         44,418,411,549          34,047,975,529
+Liabilities classified as held for sale                                                                    -                 783,245
+Total current liabilities                                                                     44,418,411,549          34,048,758,774
+Total liabilities                                                                             55,221,250,700          42,952,650,155
+Total equity and liabilities                                                                  68,993,529,625          54,372,155,903
+-          The accompanying notes from 1 to 37 form an integral part of these interim condensed consolidated financial statements
+           and to be read therewith.
+
+    Ashraf Abdelmaksoud                  Mohamed Samir                        Ahmed Hegazi                      Ayman Amer
+     Finance Ex. Director              Finance Ex. Director              Group Financial Controller            General Manager
+23 October 2025
+Limited review report attached.
+
+
+                                                                        -2-
+SIXTH OF OCTOBER FOR DEVELOPMENT AND INVESTMENT COMPANY SODIC
+(AN EGYPTIAN JOINT STOCK COMPANY)
+
+Statement of interim condensed consolidated comprehensive income
+For the nine-month period ended 30 September 2025
+
+(All amounts are shown in Egyptian Pounds)
+
+                                          Nine-months ended        Three-months ended
+                                     30 September 30 September 30 September 30 September
+                                         2025           2024       2025          2024
+
+Profit of the period                 2,353,067,460     941,676,684    1,050,005,854     312,109,282
+Total comprehensive income items
+for the period after income tax                   -               -               -                 -
+Total comprehensive income of the
+period                               2,353,067,460     941,676,684    1,050,005,854     312,109,282
+Total comprehensive income is
+attributable to:
+Equity holders of the Parent
+company                              2,345,049,475     934,553,694    1,047,179,009     309,018,839
+Non-controlling interests                8,017,985       7,122,990        2,826,845       3,090,443
+Total comprehensive income for
+the period                           2,353,067,460     941,676,684    1,050,005,854     312,109,282
+
+The accompanying notes from 1 to 37 form an integral part of these interim condensed consolidated
+financial statements and to be read therewith.
+
+
+
+
+                                               -4-
+           SIXTH OF OCTOBER FOR DEVELOPMENT AND INVESTMENT COMPANY SODIC (AN EGYPTIAN JOINT STOCK COMPANY)
+
+           Statement of interim condensed consolidated changes in equity - For the nine-month period ended 30 September 2025
+
+(All amounts are shown in Egyptian Pounds)                                                                                              Profit from      Total Equity        Non-
+                                                         Issued & paid               Special reserve-     Retained                       selling of   attributable to the Controlling
+                                                            in capital Legal reserve share premium        earnings       Other Equity treasury shares Parent Company       interests        Total equity
+
+Balance as at 1 January 2024                              1,424,789,472   224,840,771    1,483,154,057   5,488,021,516               -      1,725,456     8,622,531,272    61,168,199       8,683,699,471
+Profit for the period                                                 -              -               -    934,553,694                -               -      934,553,694     7,122,990        941,676,684
+Other comprehensive income items                                      -              -               -              -                -               -                -             -                  -
+Total comprehensive income for the period                             -              -               -    934,553,694                -               -      934,553,694     7,122,990        941,676,684
+Transactions with owners of the Company
+Transfer to legal reserve                                             -     22,818,003               -    (22,818,003)               -               -                 -                -                  -
+Selling /Acquisition of shares in subsidiaries without
+change in control                                                     -             -                -               -               -              -                 -        29,817              29,817
+Selling ESOP shares at a premium                                      -             -      154,848,140               -               -              -       154,848,140             -         154,848,140
+Total transactions with owners of the Company                         -    22,818,003      154,848,140    (22,818,003)               -              -       154,848,140        29,817         154,877,957
+Balance as at 30 September 2024                           1,424,789,472   247,658,774    1,638,002,197   6,399,757,207               -      1,725,456     9,711,933,106    68,321,006       9,780,254,112
+Balance as at 1 January 2025 before Merge Adjustments     1,424,789,472   247,658,774    1,690,069,708   7,992,415,961               -      1,725,456    11,356,659,371    62,846,377 11,419,505,748
+Closing Merger Company net equity as at
+31 December 2021                                         (1,424,789,472) (224,840,771) (1,483,154,056)     73,496,282                -     (1,725,456)   (3,061,013,473)                - (3,061,013,473)
+Net Equity of Merger and Merged Companies as at 31
+December 2021                                                         -              -               -               - 6,640,328,400                 -     6,640,328,400                - 6,640,328,400
+Distributing Merger results                               5,157,174,344              -   1,483,154,056               - (6,640,328,400)               -                 -                -               -
+Merger results adjustments                                            -              -               - (4,268,402,081)     689,087,153               -   (3,579,314,928)                - (3,579,314,928)
+Transfer to legal reserve from 1 January 2022 to 31
+December 2024                                                         -    95,532,166                -    (95,532,166)               -               -                -             -              -
+Balance as at 1 January 2025 after merge adjustments      5,157,174,344   118,350,169    1,690,069,708   3,701,977,996     689,087,153               -   11,356,659,370    62,846,377 11,419,505,747
+Profit for the period                                                 -              -               -   2,345,049,475               -               -    2,345,049,475     8,017,985       2,353,067,460
+Other comprehensive income items                                      -              -               -               -               -               -                -             -                   -
+Total comprehensive income for the period                             -              -               -   2,345,049,475               -               -    2,345,049,475     8,017,985       2,353,067,460
+Transactions with owners of the Company
+Transfer to legal reserve                                             -   120,635,247                -   (120,635,247)               -               -                 -                -                  -
+Selling /Acquisition of shares in subsidiaries without
+change in control                                                     -             -                -               -               -               -                -     (294,282)      (294,282)
+Total transactions with owners of the Company                         -   120,635,247                -   (120,635,247)               -               -                -     (294,282)      (294,282)
+Balance as at 30 September 2025                           5,157,174,344   238,985,416    1,690,069,708   5,926,392,224     689,087,153               -   13,701,708,845    70,570,080 13,772,278,925
+
+           The accompanying notes from 1 to 37 form an integral part of these interim condensed consolidated financial statements and to be read therewith.
+                                                                                       -5-
+  SIXTH OF OCTOBER FOR DEVELOPMENT AND INVESTMENT COMPANY SODIC
+  (AN EGYPTIAN JOINT STOCK COMPANY)
+  Statement of interim condensed consolidated cash flows - For the nine-month period ended 30 September 2025
+(All amounts are shown in Egyptian Pounds)                              Note 30 September 2025      30 September 2024
+Cash flows from operating activities
+Profit for the period before tax                                                   3,074,445,158        1,244,109,755
+Adjustments for:
+Depreciation of fixed assets, investment properties and amortization of
+right of use assets                                                                  167,998,846          105,878,255
+Loss / gain on sale of property, plant and equipment                                  (2,131,445)             (95,904)
+Loss / gain on sale of Investment properties                                       (342,317,167)                      -
+Interest on lease contract liabilities                                   13             3,434,528            7,094,342
+Net return on investments at amortized cost                                           (6,471,736)        (57,016,696)
+ECL on investments at amortized cost                                                    1,567,579            9,052,840
+ECL on Trade and notes receivables                                                  (16,462,856)             6,011,632
+Reversal of impairment losses of property, plant and equipment            8           (1,366,942)          (1,366,942)
+Provisions formed                                                                    314,602,430          669,319,539
+Write down to NRV to DWIP                                                             (6,557,235)                     -
+Interest income                                                          12        (231,146,104)        (206,246,433)
+Interest expense                                                         13          378,664,561          462,219,508
+Gain(loss) on acquiring /selling to NCI without change in control                       (433,811)               (6,853)
+Gain on disposal of right of use                                                      (4,182,713)               (3,683)
+Gain on sale of assets held for sale                                                  (1,716,810)                     -
+Operating profit before changes in working capital                                 3,327,926,283        2,238,949,360
+Change in working capital
+Inventory                                                                           (12,927,074)            (6,083,450)
+Completed units ready for sale                                                     1,010,629,701           312,676,786
+Works in process                                                                 (5,377,046,664)       (3,762,614,645)
+Trade and notes receivables                                                      (2,038,359,020)         (980,118,459)
+Debtors and other debit balances                                                 (4,433,500,049)       (1,889,821,754)
+Provisions used                                                                    (593,055,196)         (620,475,887)
+Advances - from customers                                                          5,344,155,444         5,679,830,951
+Contractors, suppliers and notes payable                                             320,068,565             75,453,721
+Land liabilities and creditors and other credit balances                           1,333,234,043         1,254,941,355
+Income tax paid                                                                    (837,659,133)         (534,567,058)
+Restricted cash & Bank time deposits maturity over three months                         6,500,000           (6,000,000)
+Net cash flows (used in) / generated from operating activities                   (1,950,033,100)         1,762,170,920
+Cash flows from investing activities
+Payments for purchase of property, plant and equipment and projects
+under construction                                                                 (383,785,434)         (64,969,364)
+Proceeds from sale of Assets classified as held for sale                                  933,565                   -
+Payments for investments properties under development                               (13,103,967)         (86,322,894)
+Proceeds from credit interests                                                       214,427,903          213,661,135
+Proceeds from disposal of investment properties                                      387,789,481                    -
+Payments for investments at amortized cost                                       (1,584,078,491)        (803,798,844)
+Proceeds from investments at amortized cost                                          841,329,232        1,587,960,725
+Proceeds from sale of property, plant and equipment                                     2,426,330             255,126
+Net cash flows (used in) / generated from investing activities                     (534,061,381)          846,785,884
+Cash flows from financing activities
+Proceeds from bank loans and facilities                                            2,939,002,712          429,476,502
+Payment to bank loans and facilities                                               (746,795,664)        (655,926,490)
+Finance cost paid                                                                  (196,962,132)        (609,343,098)
+Payment for operating lease contracts liabilities                                   (21,793,476)         (18,349,025)
+Selling ESOP shares at a premium                                                                -         154,848,141
+Net cash flows generated from / (used in) financing activities                     1,973,451,440        (699,293,970)
+Net change in cash and cash equivalents                                            (510,643,041)        1,909,662,834
+Cash and cash equivalents at the beginning of the period                           3,355,323,742        1,868,167,259
+Effect of movement in expected credit loss on cash and cash equivalents 11            (7,824,366)          10,363,848
+Cash and cash equivalents at the end of the period                                 2,836,856,335        3,788,193,941
+  The accompanying notes from 1 to 37 form an integral part of these interim condensed consolidated
+  financial statements and to be read therewith.
+
+
+                                                        -6-
+SIXTH OF OCTOBER FOR DEVELOPMENT AND INVESTMENT COMPANY SODIC
+(AN EGYPTIAN JOINT STOCK COMPANY)
+
+Notes to the interim condensed consolidated financial statements
+For the nine-month period ended 30 September 2025
+
+(In the notes all amounts are shown in Egyptian Pounds unless otherwise stated)
+
+1.      Background and activities
+1.1     Sixth of October for Development and Investment Company – SODIC (An Egyptian Joint
+        Stock Company) was incorporated in accordance with the provisions of Law No. 159 of 1981
+        and its Executive Regulations and considering the provisions of Law No. 95 of 1992 and its
+        Executive Regulations and by virtue of the decree of the Minister of Economy and International
+        Cooperation No. 322 of 1996 issued on 12 May 1996. The Company was registered in Giza
+        Governorate Commercial Registry under No. 625 on 25 May 1996.
+
+1.2     The purpose of the Group is represented in the following:
+-       Land acquisition and the subsequent sale/lease to clients after connecting the relevant
+        infrastructure.
+-       Operating in the field of construction, integrated construction, and supplementary works.
+-       Planning, dividing, and preparing lands for building and construction according to modern
+        building techniques.
+-       Building, selling, and leasing all various types of real estate.
+-       Developing and reclaiming land in new urban communities.
+-       Operating in the field of tourism development and tourism related establishments including,
+        building, managing, selling or utilizing hotels, motels and tourist villages in accordance with
+        applicable Egyptian laws and regulations.
+-       Building, managing, selling and leasing –residential, service, commercial, industrial and
+        tourism projects.
+-       Operating in the field of coordinating and planting gardens, roads and squares and also
+        providing security, steward ship, maintenance and cleaning services.
+-       Operating in the field of ownership and management of sporting, entertainment, medical,
+        educational buildings and also ownership, management and operating of restaurants.
+-       In addition, the Group may have interest or participate in any manner with companies or others
+        that share similar activities or which may assist it to achieve its purposes in Egypt or abroad.
+-       Also the Group is entitled to merge into or acquire the aforementioned companies or make them
+        subsidiaries in accordance with the provisions of law and its executive regulations.
+1.3     The Company's duration is 50 years starting from the date of registration in the Commercial
+        Registry.
+1.4     The Company is listed on the Egyptian Stock Exchange.
+1.5     The parent company is Aldar Ventures International holding RSC Limited, and the ultimate
+        parent company is Aldar properties PJSC which is listed in the Abu Dhabi Securities Exchange
+        and closely held.
+1.6     The interim condensed consolidated financial statements have been authorized by the
+        company’s Board of directors on October 23,2025
+1.7     The condensed consolidated interim financial statements of Sixth of October for Development
+        & Investment Company SODIC (the Parent Company) for the financial period ended 30
+        September 2024, comprise the financial statements of the Company and its subsidiaries
+        (together referred to as the “Group”) and the Group’s interest in the profit or loss of associates
+        and joint ventures.
+                                                  -7-
+SIXTH OF OCTOBER FOR DEVELOPMENT AND INVESTMENT COMPANY SODIC
+(AN EGYPTIAN JOINT STOCK COMPANY)
+
+Notes to the interim condensed consolidated financial statements
+For the nine-month period ended 30 September 2025
+
+(In the notes all amounts are shown in Egyptian Pounds unless otherwise stated)
+
+1.       Background and activities (continued)
+
+1.8      The registered office of the Parent Company is located at Km. 38 Cairo / Alexandria Desert
+         Road, Sheikh Zayed City. Mr. Talal Al Dhiyebi is the Chairman of the Parent Company and
+         Mr. Ayman Amer is the General Manager of the Parent Company.
+
+-        The financial statements of subsidiaries are included in the interim condensed consolidated
+         financial statements from the date on which control commences until the date on which control
+         ceases.
+-        Subsidiaries are represented in the following:
+                                                                                     Ownership (Directly or Indirectly)
+                                                                                         As at               As at
+                                                                      Country of     30 September       31 December
+Subsidiary name                              Nature and activity     Incorporation        2025               2024
+                                                                                           %                  %
+1- Beverly Hills for Management of Cities    Facility Management        Egypt            44.18              44.46
+    and Resorts Co. - S.A.E.
+2- Edara for Services of Cities and Resorts Facility Management         Egypt             100                100
+    Co. –S.A.E.
+3- SODIC Garden City for Development         Facility Management        Egypt             50                 50
+    and Investment Co. S.A.E.                        (Strip I)
+4- SODIC for Clubs Company                    Clubs Management          Egypt             100                100
+5- Fourteen for Real Estate Investment Co. - Real estate developer      Egypt             100                100
+    S.A.E.                                     (Palmyra project)
+6- SODIC Syria L.L.C (*)                     Real estate developer       Syria            100                100
+                                               (palmyra project)
+7- SODIC for Securitization (**)                 Securitization         Egypt              -                 100
+8- Tegara for Trading Centers Co. S.A.E.      Dormant company           Egypt              -                99.99
+    (***)                                          liquidated
+Merged entities as of 14 July 2025 (Note
+37)
+1- Sixth of October for Development and      Real estate developer      Egypt              -                 100
+    Real Estate Projects Company              (East town project)
+    “SOREAL” - S.A.E. (1.9)                  Merged into SODIC
+2- Al Yosr for Projects and Real Estate      Real estate developer      Egypt              -                 100
+    Development Co. - S.A.E. (1.9)              (Estates project)
+                                             Merged into SODIC
+3- SODIC for Development and Real Estate Real estate developer          Egypt              -                 100
+    Investment Co. – S.A.E. (1.9)            Merged into SODIC
+4- SODIC Polygon for Real Estate             Real estate developer      Egypt              -                 100
+    Investment Co. - S.A.E. (1.9)              (Polygon project)
+                                             Merged into SODIC
+5- La Maison for Real Estate Investment Co. Management of Hub           Egypt              -                 100
+    - S.A.E. (1.9)                           Merged into SODIC
+6- Soreal for Real Estate Investment (1.9)   Real estate developer      Egypt              -                 100
+                                                (Villette project)
+                                             Merged into SODIC
+7- Tabrouk Development Company (1.9)         Real estate developer      Egypt              -                 100
+                                                 (June project)
+                                             Merged into SODIC
+                                                       -8-
+SIXTH OF OCTOBER FOR DEVELOPMENT AND INVESTMENT COMPANY SODIC
+(AN EGYPTIAN JOINT STOCK COMPANY)
+
+Notes to the interim condensed consolidated financial statements
+For the nine-month period ended 30 September 2025
+
+(In the notes all amounts are shown in Egyptian Pounds unless otherwise stated)
+
+1.       Background and activities (continued)
+
+(*)      On June 15, 2010, SODIC Syria Co. a Syrian limited liability Co. was established for acquiring
+         a 50% stake of the share capital of Palmyra - SODIC for Real Estate Development L.L.C, a
+         limited liability company registered and operating in the Syrian Arab Republic.
+(**)     In February 2025, the sale of SODIC Securitization to Beltone was completed for a total amount
+         of EGP 8.5 million.
+(***)    In July 2025, liquidation process of Tegara for Trading Centers company was finalized, and
+         the commercial register was erased on July 20,2025.
+
+1.9     The Group merged the subsidiaries listed below (the merged companies) into its parent company,
+         Sixth of October Development and Investment Company - SODIC (the merging company),
+         based on the approval of the Extraordinary General Assembly held on March 25, 2025,
+         approved on May 19, 2025, and based on the resolution No. 365/2 of 2025 of the Chairman of
+         the General Authority for Investment and Free Zones, issued on May 14, 2025. The merged
+         companies were delisted from the commercial register on July 14, 2025. The merger was
+         accounted for at the book value of the net equity of the merged and merging companies, as per
+         the financial statements as of December 31, 2021. (Note 37)
+
+
+2.       Basis of preparation of the interim condensed consolidated financial statements
+
+2.1      Compliance with EAS
+
+The interim condensed consolidated financial statements for the financial period ended 30 September
+2025 have been prepared in accordance with the requirements of the Egyptian Accounting Standard
+(30) “Interim Financial Statements”.
+
+These interim condensed consolidated financial statements don’t contain all the information required in
+preparing the full annual financial statements and should be read in conjunction with the Group’s annual
+consolidated financial statements as at 31 December 2024.
+
+The accounting policies adopted in the preparation of these interim condensed consolidated financial
+statements are consistent with those of the previous financial year and corresponding interim reporting
+period. In addition, results of the Nine month period ended 30 September 2025 are not necessary
+indicative for the results that may be expected for the financial year ending 31 December 2024.
+
+
+3.       Critical accounting estimates and judgments
+
+In preparing these interim condensed consolidated financial statements, the significant judgments made
+by the management in applying the Group’s accounting policies and the key sources of estimation
+uncertainty were the same as those that were applied to the consolidated financial statements for the
+year ended 31 December 2024.
+
+
+
+                                                 -9-
+SIXTH OF OCTOBER FOR DEVELOPMENT AND INVESTMENT COMPANY SODIC
+(AN EGYPTIAN JOINT STOCK COMPANY)
+
+Notes to the interim condensed consolidated financial statements
+For the nine-month period ended 30 September 2025
+
+(In the notes all amounts are shown in Egyptian Pounds unless otherwise stated)
+
+4.      Financial risk management
+
+The Group's activities are exposed to a range of financial risks: market risk (including currency risk and
+interest rate risk), liquidity risk and credit risk. The interim condensed consolidated financial statements
+do not include all information and disclosures related to risk management that are required in the annual
+financial statements. It should be read in conjunction with the Group's annual consolidated financial
+statements as at 31 December 2024. There have been no changes in risk management policies since the
+end of last year.
+
+(a)     Liquidity risk
+
+In comparison to the year end, no material changes in the undiscounted contracted cash flow to meet
+the expected payment of financial obligations.
+
+(b)     Credit Risk
+
+The carrying amount of financial assets represents the maximum exposure to credit risk as at the
+financial position date, are as follows:
+                                                             30 September      31 December
+                                                                 2025                2024
+
+Trade and notes receivable – non-current (Note 17.2)                  6,031,564,663        5,305,062,014
+Trade and notes receivable – current (Note 17.1)                      4,672,835,637        3,360,979,265
+Debtors and other debit balances (Note 18)                            6,982,082,891        4,966,597,396
+Financial investments at amortized cost                                 803,200,320           57,114,484
+Loans to joint ventures (Note 19)                                       212,870,624          211,886,181
+Cash and cash equivalent (Note 20)                                    2,851,722,812        3,368,319,800
+                                                                     21,554,276,947       17,269,959,140
+
+(c)     Market risk
+
+(i)     Exposure to currency risk
+
+The Group’s exposure in original foreign currencies was as follows:
+
+30 September 2025
+Description                                   USD                     Euro                    GBP
+
+Cash at banks                                  19,549,335                 102,871                  36,886
+Surplus of foreign currencies                  19,549,335                 102,871                  36,886
+
+31 December 2024
+Description                                   USD                     Euro                    GBP
+
+Cash at banks                                  20,218,683                  22,739                  36,899
+Surplus of foreign currencies                  20,218,683                  22,739                  36,899
+                                                   - 10 -
+SIXTH OF OCTOBER FOR DEVELOPMENT AND INVESTMENT COMPANY SODIC
+(AN EGYPTIAN JOINT STOCK COMPANY)
+
+Notes to the interim condensed consolidated financial statements
+For the nine-month period ended 30 September 2025
+
+(In the notes all amounts are shown in Egyptian Pounds unless otherwise stated)
+
+4.      Financial risk management (continued)
+
+The following is the average exchange rates during the period:
+
+                                           Average exchange rate   Spot rate at the financial
+                                             during the period         statements date
+                                        30 September 31 December 30 September 31 December
+                                            2025           2024      2025             2024
+
+USD                                             49.81            48,37            48.08            50,79
+Euro                                            54.58            51,58            56.20            52,87
+GBP                                             64.42            62,12            64.29            63,80
+
+(ii)    Sensitivity Analysis
+
+A reasonably possible strengthening (weakening) of 10% other currencies exchange rate against
+Egyptian pound as of 30 September 2025, would have affected the measurement of financial
+instruments denominated in a foreign currency and affected equity and profit or loss by the amounts
+shown below. This analysis assumes that all other variables, in particular interest rates, remain constant
+and ignores any impact of forecast sales and purchases.
+                                                                        Profit or Loss (EGP)
+                                                               Strengthening               Weakening
+
+USD                                                                  93,993,202            (93,993,202)
+Euro                                                                    578,136               (578,136)
+GBP                                                                     237,138               (237,138)
+                                                                     94,808,476            (94,808,476)
+
+A reasonably possible strengthening (weakening) of 10% other currencies exchange rate against
+Egyptian pound as of 31 December 2024, would have affected the measurement of financial instruments
+denominated in a foreign currency and affected equity and profit or loss by the amounts shown below.
+This analysis assumes that all other variables, in particular interest rates, remain constant and ignores
+any impact of forecast sales and purchases.
+                                                                         Profit or Loss (EGP)
+                                                                 Strengthening            Weakening
+
+USD                                                                 105,079,003           (105,079,003)
+Euro                                                                    119,834               (119,834)
+GBP                                                                     194,532               (194,532)
+                                                                    105,393,369           (105,393,369)
+
+
+
+
+                                                  - 11 -
+SIXTH OF OCTOBER FOR DEVELOPMENT AND INVESTMENT COMPANY SODIC
+(AN EGYPTIAN JOINT STOCK COMPANY)
+
+Notes to the interim condensed consolidated financial statements
+For the nine-month period ended 30 September 2025
+
+(In the notes all amounts are shown in Egyptian Pounds unless otherwise stated)
+
+4.      Financial risk management (continued)
+
+(d)     Interest rate risk
+
+At the date of consolidated financial statements, the interest rate profile of the Group’s financial
+instruments was as follows:
+                                                                      Carrying amount
+                                                             30 September           31 December
+                                                                  2025                   2024
+Financial instruments with a fixed rate
+Financial assets                                              12,345,232,134        10,677,775,075
+Financial liabilities                                        (7,772,621,187)        (7,502,836,534)
+                                                               4,572,610,947          3,174,938,541
+Financial instruments with a variable rate
+Financial liabilities                                        (6,325,439,810)        (3,789,209,660)
+                                                             (6,325,439,810)        (3,789,209,660)
+
+The Group does not account for any fixed rate financial assets and liabilities at fair value through profit
+or loss. The Group does not designate derivatives (interest rate swaps) as hedging instruments under a
+fair value hedge accounting model. Therefore, a change in interest rates at the consolidated financial
+statements date would not affect the consolidated statement of profit or loss.
+
+
+5.      Functional and presentation currency
+
+The interim condensed consolidated financial statements were presented in Egyptian pounds, which
+represents the functional currency of the parent company and each of the Group’s companies (except
+for SODIC Syria, a limited liability company).
+
+
+6.      Real estate sales
+
+The Group’s operations are considered to fall into one broad class of business, sale of real estate units
+and hence, The Group’s revenues can be analyzed as follows:
+                                                               Nine months ended 30 September
+                                                                   2025                    2024
+
+Revenues from the sale of projects in West Cairo                   6,009,124,964          2,622,802,197
+Revenues from the sale of projects in East Cairo                   1,740,852,216          2,371,149,840
+Revenues from the sale of Sodic projects in North Coast              445,816,300                      -
+                                                                   8,195,793,480          4,993,952,037
+Discount for early payment                                         (406,063,527)          (257,005,744)
+                                                                   7,789,729,953          4,736,946,293
+Interest income from installments for the period                   1,226,809,434            891,030,266
+                                                                   9,016,539,387          5,627,976,559
+
+                                                   - 12 -
+SIXTH OF OCTOBER FOR DEVELOPMENT AND INVESTMENT COMPANY SODIC
+(AN EGYPTIAN JOINT STOCK COMPANY)
+
+Notes to the interim condensed consolidated financial statements
+For the nine-month period ended 30 September 2025
+
+(In the notes all amounts are shown in Egyptian Pounds unless otherwise stated)
+
+6.      Real estate sales (continued)
+
+Total real estate sales Includes an amount of EGP 766.8 million (30 September 2024 EGP 352,714,548)
+representing the financial component on installments collected from customers of delivered units prior
+to delivery in compliance with the Egyptian accounting standard No. 48.
+
+
+7.      Cost of real estate sold
+
+                                                                 Nine months ended 30 September
+                                                                    2025                2024
+
+Cost of sales of projects in West Cairo (*)                       3,165,943,897           1,374,540,713
+Cost of sales of projects in East Cairo                             996,725,264           1,908,657,156
+Cost of sales of Sodic projects in North Coast                      237,154,346                       -
+                                                                  4,399,823,507           3,283,197,869
+
+Total cost of real estate sold Includes an amount of EGP 752 million (30 September 2024 EGP
+352,714,548) representing the financing component on installments collected from customers of
+delivered units prior to delivery in compliance with the Egyptian accounting standard No. 48.
+
+
+8.      Other operating revenue
+
+                                                                   Nine months ended 30 September
+                                                                        2025             2024
+
+Cancellations and delay penalties                                      132,105,142           46,905,074
+Reversal of impairment losses of property, plant and equipment           1,366,942            1,366,942
+Subscription fees                                                        4,262,343            7,716,380
+Provisions no longer required                                           32,000,000                    -
+Gain on sale of property, plant, and equipment                           2,131,445               95,904
+Gain on sale of investments properties under development (*)           342,317,167                    -
+Gain on sale / liquidation of subsidiaries                               2,180,271               29,023
+Other income                                                            47,483,757           23,666,855
+                                                                       563,847,067           79,780,178
+
+* The gain on sale of investment properties under development represents the net profit resulting from
+the sale of commercial units in two administrative buildings in the Six West project, with a total cost of
+EGP 45,472,314 and proceeds of EGP 387,789,481.
+
+
+
+
+                                                  - 13 -
+SIXTH OF OCTOBER FOR DEVELOPMENT AND INVESTMENT COMPANY SODIC
+(AN EGYPTIAN JOINT STOCK COMPANY)
+
+Notes to the interim condensed consolidated financial statements
+For the nine-month period ended 30 September 2025
+
+(In the notes all amounts are shown in Egyptian Pounds unless otherwise stated)
+
+9.      Selling and marketing expenses
+
+                                                              Nine months ended 30 September
+                                                                 2025                2024
+
+Salaries and wages                                                57,703,633        61,732,140
+Sales commissions                                                331,120,343       221,818,841
+Advertising & Events                                             366,302,735       192,482,515
+Rent                                                               9,802,368         9,264,487
+Fixed assets depreciation and amortization of right of use
+assets                                                             8,443,870        14,149,603
+Communication, electricity, telephone, and water                   2,273,725         4,541,683
+Fees, stamps and licenses                                          6,615,161         6,065,624
+Maintenance, security, cleaning, and agriculture                   2,990,506         1,495,875
+Tips and gifts                                                       446,816           764,805
+Travel, transportation, and cars                                   6,429,883         2,715,019
+Printing and photocopying                                          1,852,440         1,428,404
+Employees vacations                                                  619,727           272,538
+Professional and consultants’ fees                                 4,866,324         1,305,788
+Other                                                              9,680,329        29,864,790
+                                                                 809,147,860       547,902,112
+
+
+
+
+                                               - 14 -
+SIXTH OF OCTOBER FOR DEVELOPMENT AND INVESTMENT COMPANY SODIC
+(AN EGYPTIAN JOINT STOCK COMPANY)
+
+Notes to the interim condensed consolidated financial statements
+For the nine-month period ended 30 September 2025
+
+(In the notes all amounts are shown in Egyptian Pounds unless otherwise stated)
+
+10.     General and administrative expenses
+
+                                                              Nine months ended 30 September
+                                                                 2025                2024
+
+Salaries, wages, and bonuses                                     410,322,071        248,475,609
+Board of Directors’ remunerations and allowances                  18,000,000         12,000,000
+Medical care, training, meals & uniforms                          46,194,970         31,513,160
+Specific employee’s benefits                                         426,620            328,765
+Maintenance, security, cleaning, and agriculture                 170,057,924        105,656,829
+Professional and consultancy fees                                 82,329,249         69,688,223
+Exhibitions, and conferences                                       1,021,070            755,038
+Donations                                                          5,280,000          5,242,000
+Gifts and tips                                                     6,460,616          3,737,381
+Fixed assets depreciation and amortization of right of use
+assets                                                            21,052,950         19,512,878
+Takaful contribution                                              26,643,347         15,779,321
+Programs and computer supplies                                   102,432,191         62,269,603
+Stationery and printing supplies                                   1,567,378          1,575,493
+Subscriptions and governmental dues                               14,560,608          8,752,542
+Rent                                                               4,777,042          3,546,336
+Bank charges                                                      14,592,826         10,689,806
+Reception and hospitality                                         10,245,050          7,877,613
+Communication, electricity, telephone, and water                  17,066,997          7,127,002
+Travel, transportation and cars                                    7,960,766          6,880,032
+Employees vacations                                                5,795,791          8,085,992
+Insurance installments                                             3,772,068          2,808,479
+Other                                                             19,326,527         10,433,071
+                                                                 989,886,061        642,735,173
+
+
+11.     Expected credit losses reversal
+
+                                                  Balance in         Movement       Balance in
+                                                 31 December         during the    30 September
+                                                     2024              period          2025
+
+Loans to joints ventures (Note 19)                 211,886,181           984,443    212,870,624
+Cash and cash equivalent (Note 20)                  19,345,867       (7,824,366)     11,521,501
+Financial investment at amortized cost               1,567,579       (1,567,579)              -
+Trade and notes receivable (Note 17)                76,347,247      (16,462,856)     59,884,391
+Debtors and other debit balances (Note 18)         215,931,966         (779,718)    215,152,248
+                                                   525,078,840      (25,650,076)    499,428,764
+
+
+
+
+                                               - 15 -
+SIXTH OF OCTOBER FOR DEVELOPMENT AND INVESTMENT COMPANY SODIC
+(AN EGYPTIAN JOINT STOCK COMPANY)
+
+Notes to the interim condensed consolidated financial statements
+For the nine-month period ended 30 September 2025
+
+(In the notes all amounts are shown in Egyptian Pounds unless otherwise stated)
+
+11.     Expected credit losses reversal (continued)
+
+                                                  Balance in         Movement         Balance in
+                                                 31 December         during the      30 September
+                                                     2023              period            2024
+
+Loans to joints ventures (Note 19)                 210,069,108         1,613,144       211,682,252
+Cash and cash equivalent (Note 20)                   7,959,630        10,363,848        18,323,478
+Financial investment at amortized cost                       -         9,052,840         9,052,840
+Trade and notes receivable (Note 17)                64,353,210         6,011,632        70,364,842
+Debtors and other debit balances (Note 18)         158,213,553      (30,861,494)       127,352,059
+                                                   440,595,501       (3,820,030)       436,775,471
+
+
+The Group applied the Prime Minister's Decree No. (4575) of 2023 that was issued amending some
+provisions of the Egyptian Accounting standards, by exempting debt instruments issued by the Egyptian
+government in local currency at banks operating in Egypt with a maturity of one month or less from
+recognizing and measuring the expected credit loss starting from the date of the financial position.
+
+
+12.     Finance income
+
+                                                                 Nine months ended 30 September
+                                                                      2025             2024
+
+Interest income                                                     231,146,104        206,246,433
+Return on financial investment at amortized cost                      6,471,736         57,016,696
+Foreign exchange gains from balances denominated in foreign
+currencies                                                                    -        228,687,106
+                                                                    237,617,840        491,950,235
+
+
+13.     Finance cost
+
+                                                                 Nine months ended 30 September
+                                                                      2025             2024
+
+Interest expense                                                    378,664,561        462,219,508
+Interest of lease contract liabilities                                3,434,528          7,094,342
+Foreign exchange losses from balances denominated in foreign
+currencies                                                           46,474,283                  -
+                                                                    428,573,372        469,313,850
+
+
+
+
+                                               - 16 -
+SIXTH OF OCTOBER FOR DEVELOPMENT AND INVESTMENT COMPANY SODIC
+(AN EGYPTIAN JOINT STOCK COMPANY)
+
+Notes to the interim condensed consolidated financial statements
+For the nine-month period ended 30 September 2025
+
+(In the notes all amounts are shown in Egyptian Pounds unless otherwise stated)
+
+14.     Income tax
+
+(a)     Items recognized in the profit or loss
+                                                                      Nine months ended 30 September
+                                                                         2025                2024
+
+Current income tax expense                                              658,951,115                 274,318,197
+Treasury bills income tax                                                 1,114,192                   8,990,606
+Dividends tax                                                                     -                       7,765
+Deferred income tax expense                                              61,312,391                  19,116,503
+                                                                        721,377,698                 302,433,071
+
+(b)     Deferred tax assets and liabilities movement
+                                                                    Balance as at 30 September 2025
+                                                                                                     Net deferred
+                        Balance as at                           Deferred tax       Deferred tax     tax resulted in
+                       1 January 2024          Charged to        resulted in        resulted in        (Assets) /
+                       Asset / (liability)    profit or loss        asset            (liability)       Liability
+
+Property, plant and
+equipment                     (6,191,297)         2,149,309                -         (4,041,988)      (4,041,988)
+Foreign exchange
+differences                  (74,223,698)         5,709,111                -       (68,514,587)      (68,514,587)
+Provisions                    595,760,045      (68,995,959)      526,764,086                  -       526,764,086
+EAS application
+differences                  (1,267,034)    (174,852)                      -        (1,441,886)        (1,441,886)
+                            514,078,016 (61,312,391)             526,764,086        (73,998,461)      452,765,625
+
+                                                                        Balance as at 31 December 2024
+                                                                                                Net deferred
+                         Balance as at                           Deferred tax    Deferred tax tax resulted in
+                        1 January 2024          Charged to        resulted in     resulted in      (Assets) /
+                        Asset / (liability)    profit or loss        asset         (liability)     Liability
+
+Property, plant and
+equipment                     (1,797,900)       (4,393,397)                    -      (6,191,297)      (6,191,297)
+Foreign exchange
+differences                  (28,920,967)      (45,302,731)                -        (74,223,698)      (74,223,698)
+Provisions                    529,383,142        66,376,903      595,760,045                   -       595,760,045
+EAS application
+differences                     (941,696)         (325,338)                 -         (1,267,034)      (1,267,034)
+                              497,722,579        16,355,437       595,760,045        (81,682,029)      514,078,016
+
+Liability for temporary differences related to investments in subsidiaries, associates and joint ventures
+were not recognized because the Group controls the timing of the reversal of the related temporary
+differences and is satisfied that they will not reverse in the foreseeable future
+
+
+
+                                                     - 17 -
+SIXTH OF OCTOBER FOR DEVELOPMENT AND INVESTMENT COMPANY SODIC
+(AN EGYPTIAN JOINT STOCK COMPANY)
+
+Notes to the interim condensed consolidated financial statements
+For the nine-month period ended 30 September 2025
+
+(In the notes all amounts are shown in Egyptian Pounds unless otherwise stated)
+
+14.     Income tax (continued)
+
+(c)     Unrecognized deferred tax assets
+                                                               30 September            31 December
+                                                                   2025                    2024
+Temporary deductible differences                                   192,795,627            208,469,259
+                                                                   192,795,627            208,469,259
+Deferred tax assets have not been recognized in respect of the above-mentioned items because of
+uncertainty associated with the taxable profit to cover these tax assets.
+
+
+15.     Basic/Diluted earnings per share
+15.1    Consolidated earnings per share
+Earnings per share as of 30 September 2024, is calculated based on the Parent company share in
+earnings for the period using the weighted average number of outstanding shares during the period as
+follows:
+                                                                       Nine months ended 30
+                                                                             September
+                                                                       2025              2024
+Profit of the period (parent company share)                           2,345,049,475       934,553,694
+                                                                      2,345,049,475       934,553,694
+Weighted average number of shares outstanding during the
+period (*)                                                            1,289,293,586     1,289,293,586
+Basic/Diluted earnings per share (EGP / share)                                 1.82              0.72
+
+15.2    Separate basic/diluted earnings per share
+Earnings per share is calculated based on the net profit of the period using the weighted average number
+of outstanding shares during the period as follows:
+                                                                           Nine-month period ended
+                                                                                 30 September
+                                                                              2025             2024
+Profit of the period                                                  1,320,218,743       156,779,219
+Employees share of profit                                                         -                 -
+                                                                      1,320,218,743       156,779,219
+Divided on:
+Weighted average number of shares outstanding during the
+period (*)                                                            1,289,293,586     1,289,293,586
+Basic/Diluted earnings per share (EGP / share)                                 1.02              0.12
+(*) The weighted average number of outstanding shares in the comparative figures has been adjusted to
+account for the company's capital issuance after the merger, resulting in a capital of EGP 5,157,174,344
+distributed over 1,289,293,586 shares.
+
+                                                 - 18 -
+SIXTH OF OCTOBER FOR DEVELOPMENT AND INVESTMENT COMPANY SODIC
+(AN EGYPTIAN JOINT STOCK COMPANY)
+
+Notes to the interim condensed consolidated financial statements
+For the nine-month period ended 30 September 2025
+
+(In the notes all amounts are shown in Egyptian Pounds unless otherwise stated)
+
+16.     Work in process
+
+This item represents the total costs related to works currently being undertaken. Details of these works
+are as follows:
+                                                                 30 September          31 December
+                                                                     2025                   2024
+
+West Cairo projects costs (16-1)                                18,255,578,831         14,771,136,447
+East Cairo projects costs (16-2)                                 2,723,062,300          2,245,118,750
+North Coast projects costs (16-3)                               12,823,050,060          8,193,342,581
+                                                                33,801,691,191         25,209,597,778
+
+The work in process balances includes the following:
+-      Total capitalized interest on work in process 9.7 billion (31 December 2024: 6.1 billion EGP).
+
+16.1    West Cairo projects costs
+
+(A)     The Estates project
+
+The Balance includes the value of two plots of land owned by the Group, on which the The-Estates and
+The-Estates residences projects are developed.
+
+The purchase of the Front plot with a total area of 150 acres, according to the agreement was concluded
+On 11 July 2019 between the Group and the New Urban Communities Authority (NUCA).
+
+The back plot with a total area of 115.34 acres, according to the contract annex signed in May 2022,
+accordingly the total land area allocated to the Group became 265.34 acres.
+
+(B)     VYE and Karmell Projects
+On 21 March 2019 SODIC development agreement was signed between SODIC and the Urban
+Communities Authority “NUCA” to establish an integrated urban project with an area of 464.81 acres,
+according to the contract.
+
+(C)      New Sphinx land
+An amount of EGP 580,940,399 has been paid as an advance against the variable cost for a plot of land
+measuring 1,007.48 feddans, located within New Sphinx City. On May 11, 2025, SODIC (as the real
+estate developer) signed a co-development agreement for the land with Rula Land Reclamation
+Company – Freiji & Partners. Subsequently, on June 24, 2025, a partial handover of 1,001.812 feddans
+out of the total land area was completed to SODIC.
+
+
+
+
+                                                 - 19 -
+SIXTH OF OCTOBER FOR DEVELOPMENT AND INVESTMENT COMPANY SODIC
+(AN EGYPTIAN JOINT STOCK COMPANY)
+
+Notes to the interim condensed consolidated financial statements
+For the nine-month period ended 30 September 2025
+
+(In the notes all amounts are shown in Egyptian Pounds unless otherwise stated)
+
+16.     Work in process (continued)
+
+16.2    East Cairo projects costs
+
+(A)     SODIC East Project
+
+Joint agreement with Heliopolis Housing and Development Company
+
+On March 16,2016 SODIC entered into a joint arrangement contract with Heliopolis Housing and
+Development Company, according to the contract SODIC will act as a real estate developer for the land
+plot owned by Heliopolis Housing and Development Company with an area of 655 acres in New
+Heliopolis City. Heliopolis Housing and Development Company will earn a share of the revenue, with
+minimum guarantee.
+
+On December 21,2020 an appendix to the contract was signed between the two parties where some of
+the terms and conditions of the co-development contract were amended including increasing the
+minimum guarantee to be EGP 5.9 billion.
+
+The Group considered that the payment of the minimum guarantee is not expected on the basis that the
+approved budgeted revenue exceeds the revenue share of Heliopolis Housing and Development
+Company. The Group will only recognize a liability which they expect to pay off expected
+shortfalls over the life of the contract which is not likely to take place. The two parties have agreed that
+the Group at its own expense and under its responsibility will implement, finance, market and sell the
+real estate properties of the project and all its inclusions and components.
+
+The balance in note (18) includes an amount of EGP 98.6 million (31 December 2024: EGP 47.7
+million), represents the company’s share of the collected amounts from customers in the joint accounts
+- escrow bank account held by the banks for SODIC East project. These balances are restricted unless
+agreed upon by both the developer and the owner in accordance with the contract terms of the joint
+bank accounts between the company as a developer, the bank, and the owner (70% for the developer
+and 30% for the owner).
+
+And the amount paid as a down payment to Heliopolis Housing and Development Company, amounting
+to EGP 261 million note (18), this amount will be settled with Heliopolis Housing and Development
+Company’s revenue share in the co-development contract.
+
+
+
+
+                                                   - 20 -
+SIXTH OF OCTOBER FOR DEVELOPMENT AND INVESTMENT COMPANY SODIC
+(AN EGYPTIAN JOINT STOCK COMPANY)
+
+Notes to the interim condensed consolidated financial statements
+For the nine-month period ended 30 September 2025
+
+(In the notes all amounts are shown in Egyptian Pounds unless otherwise stated)
+
+16.     Work in process (continued)
+
+16.2    East Cairo projects costs (continued)
+
+The Group conclusion to a joint arrangement is supported by the following information:
+1-     The purpose, activity and duration of the joint arrangement is set in the contractual arrangement
+       between the parties.
+2-     The agreement establishes a decision-making process over relevant activities, where the key
+       decisions are to be made over all Project plans by the two parties.
+3-     Arbitration procedures are set in the arrangement in case the parties cannot agree on decisions
+       related to relevant activities, for example, amendments to the plans. It is important that neither
+       party has the right to make a decision unilaterally and obtain control over the arrangement as a
+       result of a resolution process, including by means of terminating the participation of the other
+       party in the project. The parties will either have to adhere to the initial plans and agreements or
+       follow the expert opinion of the independent bodies involved in the arbitration process in
+       accordance with the procedures set in the contractual agreement.
+4-     The contributions required from the parties, where New Heliopolis contributes land for the
+       project development and SODIC contributes development and other project related costs,
+       appear to reflect the parties share of the revenue from the sale of the joint operation’s output.
+
+(B)     Villete Project
+
+On 9 June 2014 a purchase of land agreement was signed between the Group, and the New Urban
+Communities Authority “NUCA” to establish an integrated urban project with an area of 301.48 acres
+under deficit or increase, according to the contract.
+
+16.3    North Cost projects costs
+
+(A)     June Project
+
+On August 25, 2021, a development contract was concluded between the Group and the Owners Union
+– Shahin, to include the area of land belonging to Owners Union – Shahin after increasing it to 1,182,004
+sqm accourding to the Master plan for the North Coast and as per the contract signed between the
+Owners Union – Shahin and the New Urban Communities Authority on September 12, 2021.
+
+Under the development contract, the Group at its expense, is responsible to develop all the components
+of the project, including the internal infrastructure and facilities, except for the licensing and
+construction of 200 hotel rooms, including internal facilities and infrastructure, with the commitment
+of the Group, to deliver the facilities to the boundaries of the hotel plot.
+
+The land cost as per the development contract is as follows:
+(1)    A fixed payments with a total amount of EGP 2,659,509,000 to be paid over 24 equal semi-
+       annual installments of EGP 110,812,875 each.
+(2)    A variable cost represnting the Owners Union – Shahin’s percentage of the project’s revenues
+       as per the terms of the contract.
+
+
+                                                  - 21 -
+SIXTH OF OCTOBER FOR DEVELOPMENT AND INVESTMENT COMPANY SODIC
+(AN EGYPTIAN JOINT STOCK COMPANY)
+
+Notes to the interim condensed consolidated financial statements
+For the nine-month period ended 30 September 2025
+
+(In the notes all amounts are shown in Egyptian Pounds unless otherwise stated)
+
+16.     Work in process (continued)
+
+16.3    North Cost projects costs (continued)
+
+(B)     Ceaser Project back plot
+
+On May 15, 2023, the Group signed the minutes of meeting of negotiation with the New Urban
+Communities Authority to acquire a plot of land of approximately 180 acres, which is an extension of
+its "Caesar" project on the north coast. On August 1st, 2023 the contract was signed with the New Urban
+Communities Authority, and the remaining down payment amount was paid, the rest of the price and
+interests will be paid over 10 consecutive semi-annual installments.
+
+(C)      Ogami Project
+On July 11, 2023, a development contract was concluded between SODIC and Al-Safi Real Estate
+Development Company and one of its related parties to establish and develop a tourist and residential
+project for two adjacent plots of land with a total area of approximately 440 acres on the North Coast
+near the Caesar project at kilo 83 Alexandria/Marsa Matrouh road with a façade on the sea of more than
+800 meters, on July 18,2024 a 336 acres of the total plot area was handed over to SODIC.
+
+The land cost as per the co-development contract is variable consideration.
+
+
+17.     Trade and note receivable
+
+17.1    Trade and notes receivable - current
+
+                                                              30 September            31 December
+                                                                  2025                    2024
+
+Trade receivable                                                  377,842,878            341,846,010
+Notes receivable – units *                                      4,611,418,076          3,438,936,486
+Notes receivable - others                                          51,647,833             13,532,780
+                                                                5,040,908,787          3,794,315,276
+Unamortized interest – notes receivable                         (368,073,150)           (433,336,011)
+                                                                4,672,835,637          3,360,979,265
+Expected credit losses                                           (29,675,844)            (33,022,108)
+                                                                4,643,159,793          3,327,957,157
+
+*       The balance of notes receivable represents the value of notes receivable received from real
+        estate delivered units customers that are due within 12 months from the date of the financial
+        position.
+
+
+
+
+                                                - 22 -
+SIXTH OF OCTOBER FOR DEVELOPMENT AND INVESTMENT COMPANY SODIC
+(AN EGYPTIAN JOINT STOCK COMPANY)
+
+Notes to the interim condensed consolidated financial statements
+For the nine-month period ended 30 September 2025
+
+(In the notes all amounts are shown in Egyptian Pounds unless otherwise stated)
+
+17.     Trade and note receivable (continued)
+
+17.2    Trade and notes receivable - non-current
+
+This item represents the present value of long-term trade and notes receivable, and debtors’ balances as
+follows:
+                                                               30 September            31 December
+                                                                     2025                  2024
+
+Trade receivable                                                    18,528,964             16,239,569
+Notes receivable – units *                                     10,127,066,894           8,399,415,710
+                                                               10,145,595,858           8,415,655,279
+Unamortized interest – notes receivables                       (4,114,031,195)         (3,110,593,265)
+                                                                 6,031,564,663          5,305,062,014
+Expected credit losses                                            (30,208,547)            (43,325,139)
+                                                                 6,001,356,116          5,261,736,875
+
+*       The balance of notes receivable installments represents the value of notes receivable received
+        from real estate delivered units customers that are due after 12 months from the date of the
+        financial position.
+
+Trade and notes receivable not included in the financial statements amounting to EGP 76,47 billion
+have been disclosed in note No. (33).
+
+
+18.     Debtors and other debit balances
+
+                                                               30 September           31 December
+                                                                   2025                   2024
+
+Contractors and suppliers – advance payments                     5,872,039,903          4,040,468,757
+Due from related parties – Joint Venture                            35,191,620             35,191,620
+Accrued Revenues                                                   306,588,852             80,643,605
+Due from related parties                                               567,747              1,042,141
+Prepaid expenses and sales commissions                           2,822,731,475          2,220,210,057
+Deposits with others                                                39,420,812             28,048,007
+letter of guarantees                                               107,477,268                      -
+Tax Authority                                                      228,479,663            206,265,736
+Heliopolis Development and Housing Company (18-1)                  260,802,472            260,802,472
+Bank accounts – Escrow account (18-2)                              382,899,994            202,518,192
+Bank current accounts & deposits - Maintenance (18-3)            5,072,472,705          3,666,158,427
+Project maintenance receivables                                    370,390,768            402,980,099
+Other debit balances                                               177,790,990             82,947,097
+                                                                15,676,854,269         11,227,276,210
+Expected credit losses                                            (215,152,248)          (215,931,966)
+                                                                15,461,702,021         11,011,344,244
+                                                 - 23 -
+SIXTH OF OCTOBER FOR DEVELOPMENT AND INVESTMENT COMPANY SODIC
+(AN EGYPTIAN JOINT STOCK COMPANY)
+
+Notes to the interim condensed consolidated financial statements
+For the nine-month period ended 30 September 2025
+
+(In the notes all amounts are shown in Egyptian Pounds unless otherwise stated)
+
+18.     Debtors and other debit balances (continued)
+18.1    This item represents the amount paid as a down payment to Heliopolis Housing and
+        Development Company, this amount will be settled with Heliopolis Housing and Development
+        Company’s revenue share in the co-development contract pertaining to a plot of land with an
+        area of 655 acres in New Heliopolis City. Heliopolis Housing and Development Company will
+        earn a share of the revenue, with minimum guarantee amounting to EGP 5.9 billion. The Group
+        considered that the payment of the minimum guarantee is not expected on the basis that the
+        approved budgeted revenue exceeds the revenue share of Heliopolis Housing and Development
+        Company. The Group will only recognize a liability which they expect to pay off expected
+        shortfalls over the life of the contract which is not likely to take place. The two parties have
+        agreed that the Group at its own expense and under its responsibility will implement, finance,
+        market and sell the units of the project and all its inclusions and components.
+18.2    This balance represents the Group’s share of the collected amounts from customers in the joint
+        accounts held by the banks for SODIC East project, New Sheikh Zayed land plot, and June.
+        These balances are restricted unless agreed upon by both the developer and the owner in
+        accordance with the contract terms of the joint bank accounts between the Group as a developer,
+        the bank, and the owner.
+18.3    The balance represents maintenance deposits collected from customers, which have been
+        invested in time deposits and interest-bearing current accounts for the purpose of financing the
+        regular maintenance expenses related to the delivered units and cannot be used for any other
+        purpose.
+
+
+19.     Loans to joint ventures
+
+                                                               30 September           31 December
+                                                                   2025                   2024
+This item represents the loan granted to the Joint Venture
+ project in the by the Group on 16 August 2010 for a total
+ amount of USD 19.5 Million. The loan carries an interest
+ rate of 8.5% per annum. The principal together with
+ interest were scheduled for payment before 31 December
+ 2011. The loan was renewed with an interest rate of
+ 12.5% per annum.                                                  135,485,961            135,485,961
+This item represents the utilized amount of the bridge loan
+granted to the Joint Venture project in the on 28 October
+2010 for a total amount of USD 8,445,674. The loan carries
+an interest rate of 8.5% per annum.                                 77,384,663             76,400,220
+                                                                   212,870,624            211,886,181
+Expected credit losses                                           (212,870,624)           (211,886,181)
+                                                                             -                      -
+The Group’s exposure to market risks and interest rate risks associated with financial investments at
+amortized cost was disclosed in note No. (4).
+                                                 - 24 -
+SIXTH OF OCTOBER FOR DEVELOPMENT AND INVESTMENT COMPANY SODIC
+(AN EGYPTIAN JOINT STOCK COMPANY)
+
+Notes to the interim condensed consolidated financial statements
+For the nine-month period ended 30 September 2025
+
+(In the notes all amounts are shown in Egyptian Pounds unless otherwise stated)
+
+20.     Cash and cash equivalents
+
+                                                               30 September           31 December
+                                                                   2025                   2024
+
+Bank - time deposits *                                             897,515,905          2,032,534,137
+Bank - current accounts                                          1,888,233,986          1,301,514,488
+Checks under collection                                             55,379,554             28,667,223
+Cash on hand                                                        10,593,367              5,603,952
+                                                                 2,851,722,812          3,368,319,800
+Expected credit losses                                            (11,521,501)            (19,345,867)
+                                                                 2,840,201,311          3,348,973,933
+
+For the purpose of preparing the consolidated statement of cash flows, cash and cash equivalents items
+are represented as follows:
+                                                              30 September            31 December
+                                                                   2025                   2024
+
+Cash and cash equivalents before ECL                             2,851,722,812          3,368,319,800
+Cash and cash equivalents classified as held for sale                        -              8,370,419
+Time deposits maturing after three months                            (500,000)             (7,000,000)
+Restricted deposits *                                             (14,366,477)            (14,366,477)
+Cash and cash equivalents in the consolidated
+statement of cash flows                                          2,836,856,335          3,355,323,742
+
+*       Deposits include an amount of EGP 14.4 million restricted as a guarantee for the credit facility
+        granted to the Parent Company and one of its subsidiaries from commercial banks.
+
+
+21.     Investment properties under development
+
+                                                               30 September           31 December
+                                                                   2025                   2024
+
+Projects in West Cairo                                              40,573,331             78,574,672
+Projects in North cost                                             161,551,359                      -
+                                                                   202,124,690             78,574,672
+
+
+
+
+                                                 - 25 -
+SIXTH OF OCTOBER FOR DEVELOPMENT AND INVESTMENT COMPANY SODIC
+(AN EGYPTIAN JOINT STOCK COMPANY)
+
+Notes to the interim condensed consolidated financial statements
+For the nine-month period ended 30 September 2025
+
+(In the notes all amounts are shown in Egyptian Pounds unless otherwise stated)
+
+22.     Investment in associates and joint ventures
+
+The Group has the following investments in associates:
+
+                          Legal
+                          form         Ownership Percentage %       Carrying amount
+                                     30 September 31 December 30 September 31 December
+                                         2025          2024       2025          2024
+
+Royal Gardens for    S.A.E.
+Investment Property
+Co.                                             20               20                -                 -
+Palmyra SODIC Real Syrian Ltd.
+Estate Development
+(*)                                             50               50                -                 -
+                                                                                   -                 -
+
+* Due to the current political circumstances in the Syrian Arab Republic and the confiscation of assets
+and documents related to Palmyra - SODIC Real Estate Development Co by the state government, the
+management of SODIC addressed the Embassy of the Syrian Arab Republic in Egypt and commissioned
+a law firm to handle the issue and protect the interest of SODIC’s shareholders.
+
+This situation coupled with the unstable political environment witnessed in Syria led SODIC’s Board
+of Directors to take the view that the invested amounts in Syria are non-recoverable. As such, SODIC
+recognized a loss arising from the inability to recover its investments.
+
+
+
+
+                                                - 26 -
+SIXTH OF OCTOBER FOR DEVELOPMENT AND INVESTMENT COMPANY SODIC
+(AN EGYPTIAN JOINT STOCK COMPANY)
+
+Notes to the interim condensed consolidated financial statements
+For the nine-month period ended 30 September 2025
+
+(In the notes all amounts are shown in Egyptian Pounds unless otherwise stated)
+
+23.     Investment properties
+
+Investment properties include commercial, administrative and residential units leased out to others.
+The movement of the investment properties and its depreciation is as follows:
+Description                                                                         Leased out units
+
+Cost
+On 1 January 2024                                                                       470,682,789
+Additions during the year                                                             1,200,907,645
+On 31 December 2024                                                                   1,671,590,434
+
+On 1 January 2025                                                                     1,671,590,434
+Additions during the period                                                               5,632,996
+On 30 September 2025                                                                  1,677,223,430
+Less
+Accumulated depreciation
+On 1 January 2024                                                                       83,197,213
+Depreciation for the year                                                               60,459,927
+On 31 December 2024                                                                    143,657,140
+
+On 1 January 2025                                                                      143,657,140
+Depreciation for the period                                                             83,849,904
+On 30 September 2025                                                                   227,507,044
+
+Net book value as of 1 January 2024                                                     387,485,576
+Net book value as of 31 December 2024                                                 1,527,933,294
+Net book value as of 30 September 2025                                                1,449,716,386
+
+-       Fair value of investment properties were determined by external, independent property Valuer,
+        having appropriate recognized professional qualifications and experience in the location and
+        category of the properties being valued. The fair value of investment properties amounted to
+        EGP 2.9 billion as per last valuation prepared by the Valuer on 31 December 2024.
+
+
+
+
+                                               - 27 -
+SIXTH OF OCTOBER FOR DEVELOPMENT AND INVESTMENT COMPANY SODIC
+(AN EGYPTIAN JOINT STOCK COMPANY)
+
+Notes to the interim condensed consolidated financial statements
+For the nine-month period ended 30 September 2025
+
+(In the notes all amounts are shown in Egyptian Pounds unless otherwise stated)
+
+24.       Bank Loans
+                                                                                                                  30 September 2025                                     31 December 2024
+                                                                                                                                      Non-current                                          Non-current
+                                                                                                   Total Loan     Current portion       portion         Total Loan       Current portion     portion
+
+On October 13, 2021, Sixth of October for Development and Investment Company “SODIC”              1,108,300,703       125,650,370       982,650,333     1,192,067,617       112,763,153    1,079,304,464
+singed a medium-term syndicated loan contract with the Arab African International Bank
+"facility and guarantee agent" and Banque Misr (in its capacity as the account bank) with a total
+amount of EGP 1 570 million according to the previous syndicated loan contract signed on
+April 4, 2017 on two tranches: First tranche amount to finance the total debt outstanding
+&Second tranche to finance “SODIC West” projects. (The interest rate is CBE corridor plus
+margin).
+
+Debt covenant:
+- The company pledges to deposit all proceeds from the sale of the project.
+- The company is obligated to conclude an insurance policy on the construction work of the
+project in favor of the bank, with a coverage rate of 120%.
+- As of 30 September 2025, no breaching to the debt covenant.
+
+On December 26, 2019, one of the subsidiaries signed a medium-term loan contract with               87,500,000         87,500,000                   -    350,000,000        350,000,000                  -
+Commercial International Bank "CIB" with a total amount of EGP one Billion to finance
+technical investment cost of EDNC Project except any payments for the project land. (The
+interest rate is CBE corridor plus margin)
+
+Debt covenant:
+- The Company committed to deposit all revenues from the sale of the project.
+- The Company shall sign a mortgage and a first-degree right of transfer on the project in favor
+of the bank.
+- The Company shall get insurance cover 110% the project’s constructions in favor of the bank.
+
+As of 30 September 2025, no breaching to the debt covenant.
+
+
+
+
+                                                                                                   - 28 -
+SIXTH OF OCTOBER FOR DEVELOPMENT AND INVESTMENT COMPANY SODIC
+(AN EGYPTIAN JOINT STOCK COMPANY)
+
+Notes to the interim condensed consolidated financial statements
+For the nine-month period ended 30 September 2025
+
+(In the notes all amounts are shown in Egyptian Pounds unless otherwise stated)
+
+24.       Bank Loans (continued)
+                                                                                                                      30 September 2025                                      31 December 2024
+                                                                                                                                          Non-current                                             Non-current
+                                                                                                    Total Loan        Current portion       portion        Total Loan         Current portion       portion
+
+On January 22, 2023, a Group’s subsidiary signed a medium-term facility agreement with the          1,060,000,000                    -    1,060,000,000     460,000,000                      -     460,000,000
+Arab African International Bank for the purpose of obtaining a loan of 2.75 billion Egyptian
+pounds, to finance the cost of completing and developing the Estates project including the land
+cost. (The interest rate is CBE corridor plus margin).
+
+Debt covenant:
+- Pledge of project accounts in favor of the escrow agent
+- Issuing a power of attorney in favor of the guaranteed agent authorizing the guaranteed agent
+to pledge the unsold and recovered project units immediately after the start of the project.
+
+As of 30 September 2025, no breaching to the debt covenant.
+After                                                                                               2,255,800,703         213,150,370     2,042,650,333    2,002,067,617          462,763,153     1,539,304,464
+
+Before                                                                                              2,255,800,703         213,150,370     2,042,650,333    2,002,067,617          462,763,153     1,539,304,464
+On September 8, 2024, SODIC signed a long-term syndicated facility with Bank Misr and               2,080,000,000                   -     2,080,000,000      900,000,000                    -       900,000,000
+commercial international bank CIB for a total amount of EGP 4.14 billion, to Partially finances
+remaining development cost along with other expenses related to Sodic 464 acres project, the
+loan will be repaid on 12 unequal quarterly installments. (The interest rate is CBE corridor plus
+margin).
+
+Debt Covenant:
+Pledge of project accounts to the guaranteed agent All insurance policy in favor of the
+guaranteed agent.
+
+As of 30 September 2025, no breaching to the debt covenant.
+Unamortized borrowing cost                                                                              (9,661,538)        (1,610,256)       (8,051,282)      (10,869,230)          (1,610,256)       (9,258,974)
+                                                                                                    4,326,139,165         211,540,114     4,114,599,051    2,891,198,387          461,152,897     2,430,045,490
+
+
+
+                                                                                                    - 29 -
+SIXTH OF OCTOBER FOR DEVELOPMENT AND INVESTMENT COMPANY SODIC
+(AN EGYPTIAN JOINT STOCK COMPANY)
+
+Notes to the interim condensed consolidated financial statements
+For the nine-month period ended 30 September 2025
+
+(In the notes all amounts are shown in Egyptian Pounds unless otherwise stated)
+
+25.     Land liabilities
+
+                                                                 30 September            31 December
+                                                                     2025                    2024
+New Urban Communities Authority (Note 25.1)                       6,331,545,952           6,136,518,830
+Owners Union – Shahin (Note 25.2)                                 1,106,046,548           1,191,580,192
+                                                                  7,437,592,500           7,328,099,022
+Current portion                                                     757,096,463            881,096,901
+Non-current portion                                               6,680,496,037          6,447,002,121
+                                                                  7,437,592,500          7,328,099,022
+
+25.1    New Urban Communities Authority (NUCA)
+                                                    30 September 2025                                                       31 December 2024
+                                               464 Acres (b)                                                           464 Acres (b)
+                                                 (VYE &       180 Acres (c)                                              (VYE &      180 Acres (c)
+                              The Estates(a)     Karmell)       (Ceaser)                Total        The Estates (a)     Karmell)       (Ceaser)         Total
+
+New Urban Communities
+ Authority                      391,664,215    10,147,289,663    425,539,224      10,964,493,102       618,702,085 10,343,855,608       516,338,792 11,478,896,485
+Unamortized interest            (48,848,805)   (4,487,183,617)   (96,914,728)     (4,632,947,150)      (88,933,560) (5,097,939,151)    (155,504,944) (5,342,377,655)
+                                342,815,410      5,660,106,046   328,624,496        6,331,545,952      529,768,525   5,245,916,457      360,833,848   6,136,518,830
+
+Current portion                 171,091,629       393,075,710    109,293,238           673,460,577     176,378,794       532,294,201    100,919,183     809,592,178
+Non-current portion             171,723,781     5,267,030,336    219,331,258         5,658,085,375     353,389,731     4,713,622,256    259,914,665   5,326,926,652
+New Urban Communities
+ Authority                      342,815,410     5,660,106,046    328,624,496         6,331,545,952     529,768,525     5,245,916,457    360,833,848   6,136,518,830
+
+                                                                            - 30 -
+SIXTH OF OCTOBER FOR DEVELOPMENT AND INVESTMENT COMPANY SODIC
+(AN EGYPTIAN JOINT STOCK COMPANY)
+
+Notes to the interim condensed consolidated financial statements
+For the nine-month period ended 30 September 2025
+
+(In the notes all amounts are shown in Egyptian Pounds unless otherwise stated)
+
+25.     Land liabilities (continued)
+
+25.1    New Urban Communities Authority (NUCA) (continued)
+
+(a)     The Estate Residences
+
+In May 2022 an agreement was signed between Egyptian New Urban Communities Authority
+(“NUCA”) and the Group to purchase a plot of land covering an area of 115.34 acres with a total value
+of EGP1.16 billion. The remaining purchase price and any associated interest are to be paid in semi-
+annual installments concluding on 8 September 2027, by this agreement the total land area allocated to
+the Company housing the Estate & The Estate residence increased to 265.34 acres.
+
+(b)     464 Acres Land plot
+
+On June 2022 a purchase of land agreement was signed between the Group and NUCA to establish an
+integrated urban project with an area of 464.81 acres with a total value of EGP 11.36 billion.
+
+(c)     180 Acres Land plot
+
+On 1 August 2023, the Group signed a contract with the NUCA to acquire a plot of land area
+approximately 180 acres with a total amount of EGP 807.5 million, the down payment amount was
+paid, and the rest of the price and interest will be paid over 10 consecutive semi-annual instalments.
+
+25.2    Owners Union-Shahin
+
+                                                                  30 September        31 December
+                                                                      2025                2024
+
+Owners Union – Shahin                                              1,773,006,000      1,883,818,875
+Unamortized interest                                               (666,959,452)      (692,238,683)
+                                                                   1,106,046,548      1,191,580,192
+
+Current portion                                                       83,635,886         71,504,723
+Non-current portion                                                1,022,410,662      1,120,075,469
+                                                                   1,106,046,548      1,191,580,192
+
+The balance represents the present value of the deferred installments due to Owners Union – Shahin for
+the fixed payments of the co-development contract.
+
+
+
+
+                                                - 31 -
+SIXTH OF OCTOBER FOR DEVELOPMENT AND INVESTMENT COMPANY SODIC
+(AN EGYPTIAN JOINT STOCK COMPANY)
+
+Notes to the interim condensed consolidated financial statements
+For the nine-month period ended 30 September 2025
+
+(In the notes all amounts are shown in Egyptian Pounds unless otherwise stated)
+
+26.     Advances - from customers
+
+                                                              30 September           31 December
+                                                                  2025                   2024
+
+Advances – Projects in West Cairo                             10,903,996,444          9,051,240,233
+Advances – Projects in East Cairo (*)                          2,724,965,524          2,284,745,671
+Advances – Projects on the North Coast                        15,132,322,788          9,099,705,849
+Advances – Clubs memberships                                     834,692,585          1,187,151,753
+Advances for other Group activities                               81,732,611             56,455,966
+                                                              29,677,709,952         21,679,299,472
+
+(i)     Includes an amount of EGP 5.77 billion representing the value of financial component on
+        installments collected from customers (31 December 2024: EGP 1.527 billion).
+
+(ii)    Uncollected notes receivable for undelivered units, amounting to EGP 70.5 billion that are not
+        included in the financial statements have been disclosed in (Note 33).
+
+
+27.     Contractors, suppliers and notes payable
+
+                                                                  30 September       31 December
+                                                                      2025               2024
+
+Contractors                                                          130,508,662        129,114,237
+Suppliers                                                            190,841,025        148,235,592
+Notes payables                                                       677,844,097        401,775,390
+                                                                     999,193,784        679,125,219
+
+
+
+
+                                                - 32 -
+SIXTH OF OCTOBER FOR DEVELOPMENT AND INVESTMENT COMPANY SODIC
+(AN EGYPTIAN JOINT STOCK COMPANY)
+
+Notes to the interim condensed consolidated financial statements
+For the nine-month period ended 30 September 2025
+
+(In the notes all amounts are shown in Egyptian Pounds unless otherwise stated)
+
+28.     Creditors and other credit balances
+
+                                                              30 September            31 December
+                                                                  2025                    2024
+
+Amounts collected on account for management, operation,
+and maintenance of projects *                                   4,905,473,105          3,672,312,261
+Accrued expenses                                                  909,932,952            576,911,659
+Customers – credit balances                                       253,143,168            154,152,004
+Tax Authority – other than income tax                             211,754,076            258,630,418
+Accrued compensated absence                                        10,509,040                389,290
+Insurance Deposits collected from customers – Against
+modifications                                                      25,171,696             28,888,636
+Social insurance – Contractors                                    137,929,850             70,417,390
+Unearned revenue                                                    4,719,024              3,313,944
+Retentions                                                        966,276,009            654,023,624
+Deposits from others                                              378,496,631            341,691,399
+Other creditors                                                   288,518,933            191,041,140
+                                                                8,091,924,484          5,951,771,765
+
+*       The balance represents maintenance deposits collected from customers, which have been invested
+        in time deposits and interest-bearing current accounts for the purpose of financing the regular
+        maintenance expenses related to the delivered units and cannot be used for any other purpose.
+*       Uncollected notes receivable for maintenance of undelivered units amounting to EGP 5.94
+        billion as disclosed in (Note 33)
+
+
+29.     Non - cash transactions
+For the purpose of preparing the consolidated statement of cash flows for the financial period ended 30
+September 2025, the effect of the following investment transactions was excluded as they are
+considered non-cash transactions:
+                                                                                          EGP
+
+Addition to investment properties from investment properties under development                993,608
+Loans amortized cost                                                                        1,207,680
+Amortized interests on NUCA & land purchase creditors, that were capitalized to
+ work in process                                                                         694,624,981
+Capitalized financial component on installments collected from customers               2,654,255,036
+Reversal /Write down of the amount of work in progress                                     6,557,235
+Transfer between investment properties under development and work in progress            161,551,359
+Transfer between inventories, completed real estate properties and work in
+ progress                                                                                 20,131,579
+Acquisition / sale to NCI without change of control                                          139,530
+
+
+                                                - 33 -
+SIXTH OF OCTOBER FOR DEVELOPMENT AND INVESTMENT COMPANY SODIC
+(AN EGYPTIAN JOINT STOCK COMPANY)
+
+Notes to the interim condensed consolidated financial statements
+For the nine-month period ended 30 September 2025
+
+(In the notes all amounts are shown in Egyptian Pounds unless otherwise stated)
+
+30.     Related parties
+
+Related parties are represented in the Parent Company’ shareholders, Board of Directors, executive
+directors and companies in which they own directly or indirectly shares giving them significant
+influence or control over these companies. The Parent Company made several transactions with related
+parties during the period and these transactions have been made in accordance with the terms
+determined by the Group’s management. Summary of significant transactions concluded during the
+year and the resulting balances of the related parties at the consolidated balance sheet date were as
+follows:
+
+30.1    Transactions with related parties
+                                                                                     30 September
+                                                                                         2025
+                                                                  Nature of           Amount of
+Party                                Nature of relationship      Transaction          Transaction
+
+                                      Executive directors    Salaries and                33,442,270
+Executive and board of directors        Board members        allowances                  18,000,000
+Al Dar Egypt                         Under common control Payment on behalf               (474,394)
+
+30.2    Balances resulting from transactions with related parties in other debit balances
+
+                                                                    Carrying amount as at
+                                   Paid amount of             30 September       31 December
+                                   participation %                2025               2024
+
+Palmyra – SODIC for Real
+Estate Development *     Loans to Joint Ventures                 212,870,624           211,886,181
+                         Accrued interest on loan
+                         under debtors and other
+                          debit balances caption                  65,482,130             65,482,130
+                           Accrued on – related
+                           parties joint venture
+                          under debtor and other
+                          debit balances caption                  35,191,620             35,191,620
+                          Debtors & other debit
+Al Dar Egypt                     balances                            567,747              1,042,141
+                                                                 314,112,121            313,602,072
+ECL                                                            (313,544,374)           (312,559,931)
+Total                                                                567,747              1,042,141
+
+*       Impairment in dues from Palmyra – SODIC for Real Estate Development has been recorded as
+        described in note No. (18 & 19).
+
+
+
+                                               - 34 -
+SIXTH OF OCTOBER FOR DEVELOPMENT AND INVESTMENT COMPANY SODIC
+(AN EGYPTIAN JOINT STOCK COMPANY)
+
+Notes to the interim condensed consolidated financial statements
+For the nine-month period ended 30 September 2025
+
+(In the notes all amounts are shown in Egyptian Pounds unless otherwise stated)
+
+31.     Capital commitments.
+
+The value of contracts concluded with third parties for work in progress and real estate investments
+under development amounted to EGP 33 billion (EGP 27.25 billion as of 31 December 2024), and
+executed works till 30 September 2025 amounted to EGP 15.7 billion (EGP 13.4 billion as of 31
+December 2024).
+
+
+32.     Contingent liabilities
+
+The Group signed a credit facility contract with the Commercial International Bank to issue letters of
+guarantee with a credit limit of EGP 221,625,750 for the purpose of issuing letters of guarantee for
+checks issued to the Owners Union – Shahin. The letters of guarantee are subject to renewal and
+modification as the issuance of checks continues until the final settlement of the fixed installments due
+to the owner according to the co-development contract concluded between one of the subsidiaries and
+the Owners Union – Shahin.
+
+The Group signed a credit facility contract with the Commercial International Bank to issue letters of
+guarantee with a credit limit of EGP 26,704,450 for the purpose of issuing letters of guarantee for
+installment due to New Urban Communities Authority for acquiring a plot of land area approximately
+180 acres in North Coast.
+
+
+33.     Post-dated checks (off balance sheet)
+
+The value of post-dated checks and installment customers are not included in the consolidated statement
+of financial position items - for the undelivered units, is the value of the post-dated checks retained and
+received from customers according to the payment terms of each customer in accordance with the
+contracts, as well as the value of future installments that have not received checks on them where the
+contract was made and the payment was collected in advance and no future checks have been presented
+for the rest of the unit value until the date of the financial position, and its statement is as follows:
+
+                                                                 30 September            31 December
+                                                                     2025                    2024
+
+Postdated checks clients and unit’s installments                 70,502,615,540          69,108,074,623
+Postdated checks customers cancellations                             31,480,785               7,870,952
+Postdated checks clients and maintenance installments             5,944,688,047           5,439,772,521
+                                                                 76,478,784,372          74,555,718,096
+These are due
+Checks due short term                                            14,541,651,084          13,095,747,190
+Checks due long term                                             61,937,133,288          61,459,970,906
+                                                                 76,478,784,372          74,555,718,096
+
+
+
+                                                  - 35 -
+SIXTH OF OCTOBER FOR DEVELOPMENT AND INVESTMENT COMPANY SODIC
+(AN EGYPTIAN JOINT STOCK COMPANY)
+
+Notes to the interim condensed consolidated financial statements
+For the nine-month period ended 30 September 2025
+
+(In the notes all amounts are shown in Egyptian Pounds unless otherwise stated)
+
+34.     Segment reporting
+
+The Group’s main business segment is developing projects and selling the developed units. Revenues,
+profits and investments in other business segments are currently immaterial. Accordingly rental, service
+& managing cities and clubs business segments do not meet the criteria of reportable segments under
+EAS (41), and as such, are not separately disclosed in the condensed consolidated financial statements.
+All revenues of the Company in the period ended 30 September 2025 were reported under one segment
+in the condensed consolidated financial statements. The financial information about the projects is
+aggregated and disclosed based on its geographical locations in the related notes of revenues, cost of
+sales, investment properties under development, completed units, work in progress, advances from
+customers and the land liabilities.
+
+
+35.     Significant events during the period
+
+The following companies of the group were merged into the parent company (Sixth of October
+Development and Investment Company SODIC) on July 14, 2025, as detailed in note (37).
+
+On March 10, 2025, the Group entered into a bridge credit facility agreement with the Commercial
+International Bank (CIB) for an amount of EGP 2.45 billion, aimed at partially financing the cost of
+June project.
+
+On April 17, 2025, the Central Bank of Egypt's Monetary Policy Committee (MPC) decided, during its
+meeting on Thursday, to cut the overnight deposit and lending rates, as well as the central bank's main
+operation rate, by 225 basis points to 25%, 26%, and 25%, respectively. It also decided to cut the credit
+and discount rates by 225 basis points to 25.5%.
+
+On August 28, 2025, the Central Bank of Egypt's Monetary Policy Committee (MPC) decided to cut
+the CBE’s overnight deposit rate, overnight lending rate, and the rate of the main operation by 200 basis
+points to 22%, 23%, and 22.5%, respectively. The Committee also decided to cut the discount rate to
+22.5%.
+
+
+36.     Subsequent events
+
+On October 2, 2025, the overnight deposit and lending rates, and the rate of the central bank's main
+operation were reduced by 100 basis points to 21.0%, 22.0%, and 21.5%, respectively. The credit and
+discount rate was reduced by 100 basis points to 21.5%.
+
+
+On October 12, 2025, the Group signed a revenue-sharing agreement with Midar Investment and Urban
+Development Company to develop an integrated urban project within city “MADA”. Under this
+agreement, the Group will develop a 500-acre plot of land.
+
+
+
+
+                                                 - 36 -
+SIXTH OF OCTOBER FOR DEVELOPMENT AND INVESTMENT COMPANY SODIC
+(AN EGYPTIAN JOINT STOCK COMPANY)
+
+Notes to the interim condensed consolidated financial statements
+For the nine-month period ended 30 September 2025
+
+(In the notes all amounts are shown in Egyptian Pounds unless otherwise stated)
+
+37.     Merger
+
+The Group has merged the subsidiaries listed below (the merged companies) into the parent company,
+Sixth of October for Development and Investment – SODIC (the merging company), based on the
+approval of the Extraordinary General Assembly held on March 25, 2025, and ratified on May 19, 2025.
+This is in accordance with the decision of the Chairman of the General Authority for Investment and
+Free Zones No. 2/365 of 2025, issued on May 14, 2025. The merged companies were removed from
+the commercial register on July 14, 2025. The merger was completed at the book value of the net equity
+of the merged and merging companies according to the financial statements as of December 31, 2021.
+
+According to the resolution of the General Authority for Investment and Free Zones No. 365/2 of 2025,
+the authorized capital of Sixth of October for Development and Investment – SODIC after the merger
+became EGP 25 billion, and the issued capital after the merger became EGP 5,157,174,344 (only five
+billion, one hundred fifty-seven million, one hundred seventy-four thousand, three hundred forty-four
+Egyptian pounds). The number of capital shares is 1,289,293,586 shares with a nominal value of 4
+Egyptian pounds per share, after transferring an amount of 1,483,154,056 Egyptian pounds (only one
+billion, four hundred eighty-three million, one hundred fifty-four thousand, fifty-six Egyptian pounds)
+to the “Special Reserve– Share Premium Account.”
+
+The following table shows the net equity according to the report of the Evaluation and Review
+Committee, finalized by the committee formed by the General Authority for Investment and ratified by
+the Authority on April 24, 2024, regarding the merger and specifying the net equity of both the merging
+and merged companies as of the merger date, December 31, 2021:
+
+                                                                                      Net Equity
+ Company                                                                                 EGP
+
+ Sixth of October for Development and Investment – SODIC (Merging)                     1,349,403,900
+ SODIC for Development and Real Estate Investment Co (Merged 1)                          118,065,800
+ SODIC Polygon for Real Estate Investment (Merged 2)                                     152,128,900
+ Soreal for Real Estate Investment (Merged 3)                                          1,405,409,200
+ Sixth of October for Development and Real Estate Projects Company –
+ “SOREAL” (Merged 4)                                                                   2,991,783,500
+ Tabrouk for Development Company (Merged 5)                                              463,858,100
+ La Maison for Real Estate Investment (Merged 6)                                         120,240,800
+ Al Yosr for Projects and Real Estate Development (Merged 7)                              39,438,200
+ Total                                                                                 6,640,328,400
+ Issued capital (After merger)                                                         5,157,174,344
+ Share premium                                                                         1,483,154,056
+ Total                                                                                 6,640,328,400
+
+
+
+
+                                                - 37 -
+

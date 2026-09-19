@@ -1,0 +1,3129 @@
+CLEOPATRA HOSPITAL COMPANY “S.A.E.”
+       AND ITS SUBSIDIARIES
+
+      AUDITOR'S REPORT AND
+CONSOLIDATED FINANCIAL STATEMENTS
+       FOR THE YEAR ENDED
+         31 DECEMBER 2022
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Consolidated financial statements - For the year ended 31 December 2022
+
+
+
+
+Index                                                                     Page
+
+Independent Auditor’s report                                              1–2
+
+Consolidated statement of financial position                                3
+
+Consolidated statement of profit or loss                                    4
+
+Consolidated statement of other comprehensive income                        5
+
+Consolidated statement of changes in equity                                 6
+
+Consolidated statement of cash flows                                        7
+
+Notes to the consolidated financial statements                            8 – 59
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Consolidated statement of profit or loss - For the year ended 31 December 2022
+
+                                                        Note           2022               2021
+(All amounts in Egyptian Pounds)
+
+Revenue                                                  25        2,614,421,170       2,549,286,862
+Deduct:
+Cost of revenue                                          26       (1,741,106,085)    (1,618,621,622)
+Gross profit                                                          873,315,085        930,665,240
+
+(Deduct) Add;
+General and administrative expenses                      27         (381,203,142)      (344,937,147)
+Net impairment losses on financial assets                29          (26,247,634)       (43,030,111)
+Other expenses                                           18          (22,396,400)       (25,050,909)
+Other income                                             30              4,874,287         9,359,862
+Operating profit                                                      448,342,196        527,006,935
+Finance income                                           31            49,185,413         59,586,759
+Finance expenses                                         31          (43,573,306)       (34,449,556)
+Consulting expenses for acquisition activities                         (4,289,105)      (17,523,030)
+Profit for the year before income tax                                 449,665,198        534,621,108
+
+Income tax                                               32          (92,933,359)      (123,948,980)
+Net profit for the year                                               356,731,839        410,672,128
+
+Profit is attributable to
+Owners of the Parent Company                                         325,762,928        387,245,151
+Non-controlling interest                                 24           30,968,911         23,426,977
+                                                                     356,731,839        410,672,128
+
+Earnings per share (basic)                               34                   0.17                  0.20
+Earnings per share (diluted)                             34                   0.17                  0.20
+
+The accompanying notes from 1 to 40 are integral part of these consolidated financial statements.
+
+
+
+
+                                                 -4-
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Consolidated statement of comprehensive income - For the year ended 31 December 2022
+
+                                                                     2022                 2021
+(All amounts in Egyptian Pounds)
+
+Profit for the year                                                 356,731,839         410,672,128
+Other comprehensive income items                                              -                   -
+Comprehensive income for the year                                   356,731,839         410,672,128
+
+Profit is attributable to:
+Owners of the Parent Company                                        325,762,928         387,245,151
+Non-controlling interest                                             30,968,911          23,426,977
+                                                                    356,731,839         410,672,128
+
+The accompanying notes from 1 to 40 are integral part of these consolidated financial statements.
+
+
+
+
+                                                 -5-
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Consolidated Statement of changes in equity - For the year ended 31 December 2022
+
+                                                                                                                                  Total
+                                                                                                         Employees           Shareholders’
+                                                                                                           stock              equity of the      Non-
+                                      Share          Treasury                             Retained       ownership               parent       controlling
+                                      capital         Shares          Reserve             Earnings         plan                 company         interest         Total equity
+(All amounts in Egyptian Pounds)
+
+Balance at 1 January 2021            800,000,000                -    281,336,162         939,860,762                 -       2,021,196,924     98,780,007       2,119,976,931
+Treasury shares                                -       (4,152,742)             -                   -                 -          (4,152,742)             -          (4,152,742)
+Employees and board of directors’
+dividends                                       -               -              -         (45,444,024)              -           (45,444,024)    (2,197,732)       (47,641,756)
+Reserves                                        -               -     21,606,417         (11,666,617)              -             9,939,800        732,813         10,672,613
+Employees stock ownership plan                  -               -              -                   -       8,289,941             8,289,941              -          8,289,941
+Total comprehensive income                      -               -              -         387,245,151               -           387,245,151     23,426,977        410,672,128
+Balance at 31 December 2021          800,000,000       (4,152,742)   302,942,579        1,269,995,272      8,289,941         2,377,075,050    120,742,065       2,497,817,115
+Treasury shares                                -    (778,266,336)              -                    -              -         (778,266,336)              -       (778,266,336)
+Employees and board of directors
+                                                -               -               -        (62,408,742)                -        (62,408,742)    (4,659,818)        (67,068,560)
+dividends
+Reserves (note 23)                              -               -     16,268,979         (15,979,670)                -             289,309      1,361,138           1,650,447
+Employees Stock Ownership Plan
+                                                -               -               -                    -    16,486,060            16,486,060                  -     16,486,060
+value (note 22)
+Issue of Employees Stock Ownership
+                                                -     16,392,238                -                    -   (16,392,238)                     -                 -               -
+Plan (note 22)
+Total comprehensive income                     -                -                   -      325,762,928                   -      325,762,928     30,968,911   356,731,839
+Balance at 31 December 2022          800,000,000    (766,026,840)    319,211,558        1,517,369,788      8,383,763         1,878,938,269    148,412,296 2,027,350,565
+
+The accompanying notes from 1 to 40 are integral part of these consolidated financial statements.
+
+
+
+
+                                                                                -6-
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Consolidated Statement of cash flows - for the year ended 31 December 2022
+
+(All amounts in Egyptian Pounds)                                 Note       2022               2021
+Cash flows from operating activities
+Profit before tax                                                          449,665,198        534,621,108
+Adjustments to settle net profit with cash flow from
+operating activities:
+Fixed Assets depreciation                                          7       133,124,003        113,882,651
+Right of use depreciation                                          8        25,956,681          25,956,342
+Losses on disposal of fixed assets                                30           428,331             786,749
+Financial assets impairment                                       29        26,247,634          43,030,111
+Inventory impairment                                              11           320,309           1,051,896
+Provisions                                                        18        22,396,400          25,050,909
+Interest and commission - Bank's overdraft                        31        20,442,311           9,934,055
+Interest and commission - Lease contracts                         31        23,130,995          24,506,126
+Interest income                                                   31      (40,914,292)       (59,586,759)
+Share of results of associates and joint ventures                            (407,606)         (1,034,710)
+Intangible assets amortization                                               2,069,284           2,069,284
+Other liabilities                                                 38        13,820,001          13,820,001
+Employees stock ownership plan                                              16,486,060           8,289,941
+Operating cash flows before changing in assets and liabilities            692,765,309         742,377,704
+Changes in assets and liabilities
+Changes in inventories                                                    (57,039,845)         13,954,066
+Changes in trade receivables                                              (79,275,615)         30,923,259
+Changes in due from related parties                                         (2,622,672)         (143,473)
+Changes in debtors and other debit balances                                  14,201,705        13,618,371
+Changes in due to related parties                                                     -         (597,889)
+Changes in trade and other payables                                          69,717,960         (352,354)
+Change in working capital                                                  637,746,842        799,779,684
+Income taxes paid                                                        (103,493,806)       (89,889,206)
+Impairment of financial assets - used                                     (69,258,483)       (36,971,406)
+Provisions - used                                                         (19,013,851)       (24,763,818)
+Payments for other liabilities                                    9       (10,000,000)                  -
+Net cash flow generated from operating activities                          435,980,702        648,155,254
+Cash flows from investing activities
+Payments for fixed assets                                         7      (161,666,332)       (97,474,252)
+Payments for Projects under construction                          7      (189,604,595)      (167,122,143)
+Proceeds from the sale of fixed assets                                       2,187,384          3,397,434
+Fixed assets down-payments                                                (73,407,468)       (17,567,325)
+Payments under acquisition of long-term investments                          1,471,025        (5,673,000)
+Payments under acquisition of associates                                   (1,225,020)                  -
+Interest received                                                           40,970,615         50,822,178
+Net cash flows used in investing activities                              (381,274,391)      (233,617,108)
+Cash flows from financing activities
+Proceeds from bank's overdraft                                             183,836,492         60,627,560
+Proceeds from loans                                                         88,033,127                  -
+Payments for lease liabilities                                            (40,734,524)        (43,722,954)
+Payments for the purchase of treasury shares                             (778,266,336)        (74,176,267)
+Proceeds from the sale of treasury shares                                   80,696,141
+Interest and commission paid                                              (20,442,311)        (13,217,154)
+Dividends paid                                                            (67,919,500)        (47,041,913)
+Net cash flows used in financing activities                              (554,796,911)       (117,530,728)
+Changed in cash and cash equivalents during the year                     (500,090,600)        297,007,418
+Cash and cash equivalents at the beginning of the year                     847,525,002        550,517,584
+Cash and cash equivalents at the end of the year                  15       347,434,402        847,525,002
+
+The accompanying notes from 1 to 40 are an integral part of these consolidated financial statements.
+
+                                                      -7-
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+1.        Introduction
+
+Cleopatra Hospital Company the “parent company” previously (Lasheen and Partners) was established
+as a limited partnership on 19 July 1979.The decision of the Chairman of Investment Authority No.
+4092 of 2005 was issued on 27 June 2005 authorising the conversion of the legal type of Cleopatra
+Hospital (Lasheen and Partners) from a "limited partnership" into Cleopatra Hospital Company
+"S.A.E." The Company was incorporated and is domiciled in the Arab Republic of Egypt. The Company
+is a public joint stock company and was incorporated in accordance with law no.95 of 1992.
+
+The company is listed in the Egyptian Stock Exchange.
+
+Principal activity.
+The Company's purpose is to establish a private hospital to provide advanced modern health and medical
+services, as well as the medical care of in-patients. The Company may have interest or participate in
+any manner in companies or other firms which carry on similar activities in Egypt or abroad. The
+Company may acquire, merge or affiliate such entities under the General Authority for Investment.
+
+Registered address and place of business.
+The Company is located at 39, 41 Cleopatra Street, Heliopolis, Cairo.
+
+Presentation currency.
+Presentation currency is Egyptian pound
+
+These consolidated financial statements have been approved for issuance by the Board of Directors of
+the Parent company on 16 March 2023, and the shareholders of the Parent company have the right to
+amend the financial statements after issuance.
+
+2.        Operating Environment of the Group
+
+The Arab Republic of Egypt displays certain characteristics of an emerging market. The legal, tax and
+regulatory frameworks continue to develop and are subject to frequent changes and varying
+interpretations.
+
+For the purpose of measurement of expected credit losses (“ECL”) on the Group’s financial assets, the
+Group uses supportable forward-looking information, including forecasts of macroeconomic variables.
+As with any economic forecast, however, the projections and likelihoods of their occurrence are subject
+to a high degree of inherent uncertainty and therefore the actual outcomes may be significantly different
+from those projected.
+
+3.        Significant Accounting Policies
+
+3.1       Basis of preparation
+
+The consolidated financial statements have been prepared in accordance with the Egyptian Accounting
+Standards (EASs) and the relevant laws. The consolidated financial statements have been prepared
+under the historical cost convention except for the following item in the Consolidated Statement of
+Financial Position:
+
+      ●   Employees stock ownership Plan are measured at fair value
+
+
+
+
+                                                  -8-
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+3.      Significant Accounting Policies (continued)
+
+3.1     Basis of preparation (continued)
+
+The principal accounting policies applied in the preparation of these consolidated financial statements
+are set out below. These policies have been consistently applied, unless otherwise stated.
+
+The preparation of the consolidated financial statements in conformity with EASs requires the use of
+certain critical accounting estimates. It also requires the management to exercise its judgement in the
+process of applying the Group’s accounting policies. The areas where the most significant accounting
+estimates and judgements applied in preparation of the consolidated financial statements are disclosed
+in Note 4.
+
+3.2     Consolidated financial statements
+
+(a)     Subsidiaries
+
+Subsidiaries are those investees, that the Group controls because the Group (i) has power to direct the
+relevant activities of the investees that significantly affect their returns, (ii) has exposure, or rights, to
+variable returns from its involvement with the investees, and (iii) has the ability to use its power over
+the investees to affect the amount of the investor’s returns. The existence and effect of substantive
+rights, including substantive potential voting rights, are considered when assessing whether the Group
+has power over another entity. For a right to be substantive, the holder must have a practical ability to
+exercise that right when decisions about the direction of the relevant activities of the investee need to
+be made. The Group may have power over an investee even when it holds less than the majority of the
+voting power in an investee. In such a case, the Group assesses the size of its voting rights relative to
+the size and dispersion of holdings of the other vote holders to determine if it has de-facto power over
+the investee. Protective rights of other investors, such as those that relate to fundamental changes of the
+investee’s activities or apply only in exceptional circumstances, do not prevent the Group from
+controlling an investee. Subsidiaries are consolidated from the date on which control is transferred to
+the Group (acquisition date) and are deconsolidated from the date on which control ceases.
+
+The acquisition method of accounting is used to account for the acquisition of subsidiaries. Identifiable
+assets acquired and liabilities and contingent liabilities assumed in a business combination are measured
+at their fair values at the acquisition date, irrespective of the extent of any non-controlling interest.
+
+The Group measures non-controlling interest that represents present ownership interest and entitles the
+holder to a proportionate share of net assets in the event of liquidation on a transaction-by-transaction
+basis, by using the non-controlling interest's proportionate share of net assets of the acquiree. Non-
+controlling interests that are not present ownership interests are measured at fair value.
+
+Goodwill is measured by deducting the net assets of the acquiree from the aggregate of the consideration
+transferred for the acquiree, the amount of non-controlling interest in the acquiree and the fair value of
+an interest in the acquiree held immediately before the acquisition date., after management reassesses
+whether it identified all the assets acquired and all the liabilities and contingent liabilities assumed and
+reviews the appropriateness of their measurement.
+
+
+
+
+                                                     -9-
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+3.      Significant Accounting Policies (continued)
+
+3.2     Consolidated financial statements (continued)
+
+The consideration transferred for the acquiree is measured at the fair value of the assets given up, equity
+instruments issued, and liabilities incurred or assumed, including the fair value of assets or liabilities
+from contingent consideration arrangements, but excludes acquisition related costs such as advisory,
+legal, valuation and similar professional services. Transaction costs related to the acquisition of and
+incurred for issuing equity instruments are deducted from equity; transaction costs incurred for issuing
+debt as part of the business combination are deducted from the carrying amount of the debt and all other
+transaction costs associated with the acquisition are expensed.
+
+Intercompany transactions, balances and unrealised gains on transactions between Group companies
+are eliminated; unrealised losses are also eliminated unless the cost cannot be recovered. The Company
+and all of its subsidiaries use uniform accounting policies consistent with the Group’s policies.
+
+Non-controlling interest is that part of the net results and of the equity of a subsidiary attributable to
+interests which are not owned, directly or indirectly, by the Group. Non-controlling interest forms a
+separate component of the Group’s equity.
+
+The consolidated financial statements consist of Cleopatra Hospital and the following companies:
+
+                                            Relationship
+                                                with
+                                             Cleopatra        Country of     Percentage of      Percentage of
+                                             Hospital       incorporation   ownership 2022     ownership 2021
+
+Al-Shorouk Hospital Company S.A.E.           Subsidiary        Egypt                99.99%              99.99%
+Nile Badrawi Hospital Company S.A.E.         Subsidiary        Egypt                99.99%              99.99%
+Cairo Specialised Hospital Company S.A.E.    Subsidiary        Egypt                56.46%              56.46%
+CHG for Medical Services Company S.A.E.      Subsidiary        Egypt                   20%                 20%
+                                                                                (Preference         (Preference
+                                                                                     shares)             shares)
+CHG Pharma for Pharmacies Management         Subsidiary        Egypt                   98%                 98%
+Company S.A.E.
+CHG for hospitals S.A.E.                     Subsidiary        Egypt                99.99%             99.99%
+Bedaya El Gedida Company for                 Subsidiary        Egypt                99.99%             99.99%
+Medical Centers and Hospitals S.A.E.
+CHG Sky Hospital S.A.E.                      Subsidiary        Egypt                99.99%                     -
+Cleopatra Heavens Hospital S.A.E.            Subsidiary        Egypt                99.99%                     -
+
+Purchases and sales of non-controlling interests.
+The Group applies the economic entity model to account for transactions with owners of non-controlling
+interest in transactions that do not result in a loss of control. Any difference between the purchase
+consideration and the carrying amount of non-controlling interest acquired is recorded as an equity
+transaction directly in equity. The Group recognises the difference between sales consideration and the
+carrying amount of non-controlling interest sold as an equity transaction in the consolidated statement
+of changes in equity.
+
+
+
+
+                                                   - 10 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+3.      Significant Accounting Policies (continued)
+
+3.2     Consolidated financial statements (continued)
+
+(b)     Associates
+
+Associates are entities over which the Group has significant influence (directly or indirectly), but not
+control, generally accompanying a shareholding of between 20 and 50 percent of the voting rights.
+Investments in associates are accounted for using the equity method of accounting and are initially
+recognised at cost, and the carrying amount is increased or decreased to recognise the investor’s share
+of the profit or loss of the investee after the date of acquisition. Dividends received from associates
+reduce the carrying value of the investment in associates. Other post-acquisition changes in the Group’s
+share of net assets of an associate are recognised as follows: (i) the Group’s share of profits or losses of
+associates is recorded in the consolidated profit or loss for the year as the share of results of associates,
+(ii) the Group’s share of other comprehensive income is recognised in other comprehensive income and
+presented separately, (iii); all other changes in the Group’s share of the carrying value of net assets of
+associates are recognised in profit or loss within the share of results of associates.
+
+However, when the Group’s share of losses in an associate equal or exceeds its interest in the associate,
+including any other unsecured receivables, the Group does not recognise further losses, unless it has
+incurred obligations or made payments on behalf of the associate.
+
+Unrealised gains on transactions between the Group and its associates are eliminated to the extent of
+the Group’s interest in the associates; unrealised losses are also eliminated unless the transaction
+provides evidence of an impairment of the asset transferred.
+
+3.3     Foreign currency translation
+
+(a)     Functional and presentation currency
+
+The functional currency of each of the Group’s consolidated entities is the currency of the primary
+economic environment in which the entity operates. The functional currency of the Company and its
+subsidiaries is the national currency of the Arab Republic of Egypt, Egyptian Pounds. The consolidated
+financial statements are presented in Egyptian Pounds, which is the Group’s presentation currency.
+
+(b)     Transactions and balances
+
+Monetary assets and liabilities are translated into each entity’s functional currency at the official
+exchange rate of the Central Bank of Egypt at the respective end of the reporting period. Foreign
+exchange gains and losses resulting from the settlement of the transactions and from the translation of
+monetary assets and liabilities into each entity’s functional currency at year-end are recognised in profit
+or loss. Foreign exchange gains and losses that relate to borrowings and cash and cash equivalents are
+presented in the consolidated statement of profit or loss within ‘finance income or costs. Translation at
+year-end rates does not apply to non-monetary items that are measured at historical cost. Non-monetary
+items measured at fair value in a foreign currency, including equity investments, are translated using
+the exchange rates at the date when the fair value was determined. Effects of exchange rate changes on
+non-monetary items measured at fair value in a foreign currency are recorded as part of the fair value
+gain or loss.
+
+
+
+
+                                                   - 11 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+3.      Significant Accounting Policies (continued)
+
+3.4     Fixed Assets
+
+Fixed Assets are stated at cost less accumulated depreciation. Historical cost includes expenditure that
+is directly attributable to the acquisition of the asset and bringing it to a ready-for-use condition.
+
+Subsequent costs are included in the asset’s carrying amount or recognised as a separate asset, as
+appropriate, only when it is probable that future economic benefits associated with the item will flow
+to the Group and the cost of the item can be measured reliably. Costs of minor repairs and day-to-day
+maintenance are expensed when incurred. Cost of replacing major parts or components of fixed assets
+items is capitalised and the replaced part is retired.
+
+At the end of each reporting period management assesses whether there is any indication of impairment
+of fixed assets. If any such indication exists, management estimates the recoverable amount, which is
+determined as the higher of an asset’s fair value less costs of disposal and its value in use. The carrying
+amount is reduced to the recoverable amount and the impairment loss is recognised in profit or loss for
+the year. An impairment loss recognised for an asset in prior years is reversed where appropriate if there
+has been a change in the estimates used to determine the asset’s value in use or fair value less costs of
+disposal.
+
+Gains and losses on disposals are determined by comparing the proceeds with the carrying amount and
+are recognised in profit or loss for the year within other income/(expenses).
+
+Land is not depreciated. Depreciation on other items of property, plant and equipment is calculated
+using the straight-line method to allocate their cost to their residual values over their estimated useful
+lives:
+
+The depreciation rates by type of asset are as follows:
+
+Machinery, equipment, and devices                                                                  10%
+Furniture                                                                                          15%
+Buildings                                                                                         2.5%
+Vehicles                                                                                    20% to 25%
+Computers                                                                                          25%
+Leasehold improvement                                                    Remaining of the lease contract
+
+The residual value of an asset is the estimated amount that the Group would currently obtain from the
+disposal of the asset less the estimated costs of disposal, if the asset was already of the age and in the
+condition expected at the end of its useful life. The assets’ residual values and useful lives are reviewed
+and adjusted if appropriate.
+
+
+
+
+                                                   - 12 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+3.      Significant Accounting Policies (continued)
+
+3.5     Intangible assets
+
+(a)     Goodwill
+
+Goodwill is carried at cost less accumulated impairment losses, if any. Goodwill is allocated to the cash-
+generating units, or groups of cash-generating units, that are expected to benefit from the synergies of
+the business combination. Such units or groups of units represent the lowest level at which the Group
+monitors goodwill and are not larger than an operating segment.
+
+The Group tests goodwill for impairment at least annually and whenever there are indications that
+goodwill may be impaired. The carrying value of the cash-generating unit containing goodwill is
+compared to the recoverable amount, which is the higher of value in use and the fair value less costs of
+disposal. Any impairment is recognised immediately as an expense and is not subsequently reversed.
+
+Gains or losses on disposal of an operation within a cash generating unit to which goodwill has been
+allocated include the carrying amount of goodwill associated with the disposed operation, generally
+measured on the basis of the relative values of the disposed operation and the portion of the cash-
+generating unit which is retained.
+
+Intangible assets other than goodwill
+
+The Group’s intangible assets other than goodwill and trade name have definite useful lives and
+primarily include capitalised computer software and non-competition agreement
+
+Acquired computer software licences, trademarks and non-competition agreement are capitalised on the
+basis of the costs incurred to acquire and bring them to use.
+
+Amortization is recognized in the income statement on a straight-line basis over the estimated useful
+life of the intangible assets from the date it is available for use
+
+The estimated useful life is:
+                                                                                     Useful lives in years
+Trade name                                                                                      Indefinite
+Non-competition agreement                                                                          7 years
+Computer software                                                                                  5 years
+
+Impairment of non-financial assets
+Intangible assets that have an indefinite useful life or intangible assets not ready for use are not subject
+to amortisation and are tested annually for impairment. Assets that are subject to depreciation and
+amortisation are reviewed for impairment whenever events or changes in circumstances indicate that
+the carrying amount may not be recoverable. An impairment loss is recognised for the amount by which
+the asset’s carrying amount exceeds its recoverable amount. The recoverable amount is the higher of an
+asset’s fair value less costs of disposal and value in use. For the purposes of assessing impairment,
+assets are grouped at the lowest levels for which there are largely independent cash inflows (cash-
+generating units). Prior impairments of non-financial assets (other than goodwill) are reviewed for
+possible reversal at each reporting date.
+
+
+
+
+                                                   - 13 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+3.      Significant Accounting Policies (continued)
+
+3.6     Financial instruments
+
+(i)    Classification
+The group classifies its financial assets in the following measurement categories:
+
+• those to be measured subsequently at fair value (either through OCI or through profit or loss), and
+• those to be measured at amortised cost. The classification depends on the entity’s business model for
+managing the financial assets and the contractual terms of the cash flows.
+
+For assets measured at fair value, gains and losses will either be recorded in profit or loss or OCI. For
+investments in equity instruments that are not held for trading, this will depend on whether the group
+has made an irrevocable election at the time of initial recognition to account for the equity investment
+at fair value through other comprehensive income (FVOCI).
+
+The group reclassifies debt investments when and only when its business model for managing those
+assets changes.
+
+(ii)    Recognition and derecognition
+
+Regular way purchases and sales of financial assets are recognised on trade date, being the date on
+which the group commits to purchase or sell the asset. Financial assets are derecognised when the rights
+to receive cash flows from the financial assets have expired or have been transferred and the group has
+transferred substantially all the risks and rewards of ownership.
+
+(iii)   Measurement
+
+At initial recognition, the group measures a financial asset at its fair value plus, in the case of a financial
+asset not at fair value through profit or loss (FVPL), transaction costs that are directly attributable to
+the acquisition of the financial asset. Transaction costs of financial assets carried at FVPL are expensed
+in profit or loss.
+
+Financial assets with embedded derivatives are considered in their entirety when determining whether
+their cash flows are solely payment of principal and interest.
+
+Debt instruments
+
+Subsequent measurement of debt instruments depends on the group’s business model for managing the
+asset and the cash flow characteristics of the asset. There are two measurement categories into which
+the group classifies its debt instruments:
+
+• Amortised cost: Assets that are held for collection of contractual cash flows, where those cash flows
+represent solely payments of principal and interest, are measured at amortised cost. Interest income
+from these financial assets is included in finance income using the effective interest rate method. Any
+gain or loss arising on derecognition is recognised directly in profit or loss and presented in other
+gains/(losses) together with foreign exchange gains and losses. Impairment losses are presented as
+separate line item in the statement of profit or loss.
+
+• FVPL: Assets that do not meet the criteria for amortised cost or FVOCI are measured at FVPL. A gain
+or loss on a debt investment that is subsequently measured at FVPL is recognised in profit or loss and
+presented net within other gains/(losses) in the period in which it arises.
+                                                    - 14 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+3.      Significant Accounting Policies (continued)
+
+3.6     Financial instruments (continued)
+
+Equity instruments
+The group subsequently measures all equity investments at fair value. Where the group’s management
+has elected to present fair value gains and losses on equity investments in OCI, there is no subsequent
+reclassification of fair value gains and losses to profit or loss following the derecognition of the
+investment. Dividends from such investments continue to be recognised in profit or loss as other income
+when the group’s right to receive payments is established.
+
+Changes in the fair value of financial assets at FVPL are recognised in other gains/(losses) in the
+statement of profit or loss as applicable. Impairment losses (and reversal of impairment losses) on equity
+investments measured at FVOCI are not reported separately from other changes in fair value.
+
+(iv) Impairment
+The Group assesses, on a forward-looking basis, the ECL for debt instruments measured at AC and for
+the exposures arising from contract assets. The Group measures ECL and recognises net impairment
+losses on financial and contract assets at each reporting date. The measurement of ECL reflects: (i) an
+unbiased and probability weighted amount that is determined by evaluating a range of possible
+outcomes, (ii) time value of money and (iii) all reasonable and supportable information that is available
+without undue cost and effort at the end of each reporting period about past events, current conditions
+and forecasts of future conditions.
+
+Key measurement terms
+Fair value is the price that would be received to sell an asset or paid to transfer a liability in an orderly
+transaction between market participants at the measurement date. The best evidence of fair value is the
+price in an active market. An active market is one in which transactions for the asset or liability take
+place with sufficient frequency and volume to provide pricing information on an ongoing basis.
+Fair value of financial instruments traded in an active market is measured as the product of the quoted
+price for the individual asset or liability and the number of instruments held by the entity. This is the
+case even if a market’s normal daily trading volume is not sufficient to absorb the quantity held and
+placing orders to sell the position in a single transaction might affect the quoted price.
+The fair value of financial instruments that are not traded in an active market is determined using
+valuation techniques.
+Transaction costs are incremental costs that are directly attributable to the acquisition, issue, or disposal
+of a financial instrument. An incremental cost is one that would not have been incurred if the transaction
+had not taken place. Transaction costs include fees and commissions paid to agents (including
+employees acting as selling agents), advisors, brokers and dealers, levies by regulatory agencies and
+securities exchanges, and transfer taxes and duties. Transaction costs do not include debt premiums or
+discounts, financing costs or internal administrative or holding costs.
+Amortised cost (“AC”) is the amount at which the financial instrument was recognised at initial
+recognition less any principal repayments, plus accrued interest, and for financial assets less any
+allowance for expected credit losses (“ECL”). Accrued interest includes amortisation of transaction
+costs deferred at initial recognition and of any premium or discount to the maturity amount using the
+effective interest method. Accrued interest income and accrued interest expense, including both accrued
+coupon and amortised discount or premium (including fees deferred at origination, if any), are not
+presented separately and are included in the carrying values of the related items in the consolidated
+statement of financial position.
+
+                                                    - 15 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+3.      Significant Accounting Policies (continued)
+
+3.6     Financial instruments (continued)
+
+Financial assets – classification and subsequent measurement – measurement categories
+
+The Group classifies financial assets in the measurement category at amortised costs ‘AC’. The
+classification and subsequent measurement of debt financial assets depends on: (i) the Group’s business
+model for managing the related assets portfolio and (ii) the cash flow characteristics of the asset.
+
+Financial assets impairment – credit loss allowance for ECL
+
+The Group assesses, on a forward-looking basis, the ECL for debt instruments measured at AC and for
+the exposures arising from contract assets. The Group measures ECL and recognises net impairment
+losses on financial and contract assets at each reporting date. The measurement of ECL reflects: (i) an
+unbiased and probability weighted amount that is determined by evaluating a range of possible
+outcomes, (ii) time value of money and (iii) all reasonable and supportable information that is available
+without undue cost and effort at the end of each reporting period about past events, current conditions
+and forecasts of future conditions.
+
+Debt instruments measured at AC, trade receivables and contract assets are presented in the consolidated
+statement of financial position net of the allowance for ECL. For, changes in amortised cost, net of
+allowance for ECL, are recognised in profit or loss
+
+The Group applies a simplified approach for impairment of financial assets.
+
+Financial assets – derecognition
+
+The Group writes off a financial asset when (a) the assets are redeemed or the rights to cash flows from
+the assets expire or (b) the Group has transferred the rights to cash flows from the financial assets or
+has entered into a qualifying pass-through arrangement while (i) it has also transferred all the risks and
+rewards of ownership of the assets or (ii) transfers substantially all the risks and rewards of ownership
+of the assets or (ii) does not transfer or retain substantially all the risks and rewards of ownership but
+does not retain control. Control is retained if the counterparty does not have the practical ability to sell
+the entire asset to an unrelated third party without the need to impose additional restrictions on the sale.
+
+Financial liabilities – measurement categories
+
+Financial liabilities are classified as subsequently measured at AC. Contingent consideration recognised
+by an acquirer in a business combination is measured at FVPL together with other financial liabilities
+designated as such at initial recognition.
+
+Financial liabilities – derecognition
+
+Financial liabilities are written-off when they are terminated (i.e., when the obligation specified in the
+contract has been fulfilled or cancelled).
+
+
+
+
+                                                   - 16 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+3.      Significant Accounting Policies (continued)
+
+3.7     Cash and cash equivalents (continued)
+
+Cash and cash equivalents represent cash on hand, callable deposits at banks, and other short-term
+highly liquid investments with original maturities of three months or less. Cash and cash equivalents
+are carried at AC because: (i) they are held for collection of contractual cash flows and those cash flows
+represent only principal and interest payments, and (ii) they are not designated at FVTPL.
+
+Interest income
+Interest income is recorded for all debt instruments on an accrual basis using the effective interest
+method.
+
+3.8     Trade and other receivables.
+
+Trade and other receivables are recognised initially at fair value and are subsequently carried at AC
+using the effective interest method.
+
+3.9     Trade and other payables.
+
+These amounts represent liabilities for goods and services provided to the group prior to the end of the
+financial year which are unpaid. Trade and other payables are presented as current liabilities unless
+payment is not due within 12 months after the reporting period. They are recognised initially at their
+fair value and subsequently measured at amortised cost using the effective interest method.
+
+3.10     Borrowings and bank’s overdraft
+
+Borrowings are initially recognised at fair value, net of transaction costs incurred. Borrowings are
+subsequently measured at amortised cost. Any difference between the proceeds (net of transaction costs)
+and the redemption amount is recognised in profit or loss over the period of the borrowings using the
+effective interest method. Fees paid on the establishment of loan facilities are recognised as transaction
+costs of the loan to the extent that it is probable that some or all of the facility will be drawn down. In
+this case, the fee is deferred until the draw-down occurs. To the extent there is no evidence that it is
+probable that some or all of the facility will be drawn down, the fee is capitalised as a prepayment for
+liquidity services and amortised over the period of the facility to which it relates.
+
+Borrowings are derecognized from the balance sheet when the obligation specified in the contract is
+discharged, cancelled or expired. The difference between the carrying amount of a financial liability
+that has been extinguished or transferred to another party and the consideration paid, including any
+noncash assets transferred or liabilities assumed, is recognised in profit or loss as other income or
+finance costs.
+
+Capitalisation of borrowing costs.
+
+General and specific borrowing costs directly attributable to the acquisition, construction or production
+of assets that necessarily take a substantial time to get ready for intended use or sale (qualifying assets)
+are capitalised as part of the costs of those assets.
+
+Borrowings are classified as current liabilities unless the group has an unconditional right to defer
+settlement of the liability for at least 12 months after the reporting period.
+
+
+
+                                                   - 17 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+3.       Significant Accounting Policies (continued)
+
+3.11     Lease liabilities
+
+Liabilities arising from a lease are initially measured on a present value basis. Lease liabilities include
+the net present value of the following lease payments:
+
+●        fixed payments (including in-substance fixed payments), less any lease incentives receivable,
+●        variable lease payment that are based on an index or a rate, initially measured using the index
+         or rate as at the commencement date,
+●        amounts expected to be payable by the Group under residual value guarantees,
+●        the exercise price of a purchase option if the Group is reasonably certain to exercise that option,
+         and
+●        payments of penalties for terminating the lease, if the lease term reflects the Group exercising
+         that option.
+
+Extension and termination options are included in a number of property and equipment lease contracts
+across the Group. These terms are used to maximise operational flexibility in terms of managing the
+assets used in the Group’s operations. The majority of extension and termination options held are
+exercisable only by the Group and not by the respective lessor. Extension options (or period after
+termination options) are only included in the lease term if the lease is reasonably certain to be extended
+(or not terminated). Lease payments to be made under reasonably certain extension options are also
+included in the measurement of the liability.
+
+The lease payments are discounted using the interest rate implicit in the lease. If that rate cannot be
+readily determined, which is generally the case for leases of the Group, the Group’s incremental
+borrowing rate is used, being the rate that the Group would have to pay to borrow the funds necessary
+to obtain an asset of similar value to the right-of-use asset in a similar economic environment with
+similar terms, collateral and conditions.
+
+To determine the incremental borrowing rate, the Group:
+
+●    where possible, uses recent third-party financing received by the Group as a starting point, adjusted
+     to reflect changes in financing conditions since third party financing was received,
+
+The Group is exposed to potential future increases in variable lease payments based on an index or rate,
+which are not included in the lease liability until they take effect. When adjustments to lease payments
+based on an index or rate take effect, the lease liability is reassessed and adjusted against the right-of-
+use asset.
+
+Lease payments are allocated between principal and finance costs. The finance costs are charged to
+profit or loss over the lease period so as to produce a constant periodic rate of interest on the remaining
+balance of the liability for each period.
+
+Payments associated with short-term leases of equipment and vehicles and all leases of low-value assets
+are recognised on a straight-line basis as an expense in profit or loss. Short-term leases are leases with
+a lease term of 12 months or less. Low-value assets comprise small medical equipment and small items
+of office equipment.
+
+
+
+
+                                                   - 18 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+3.      Significant Accounting Policies (continued)
+
+3.11    Lease liabilities (continued)
+
+To optimise lease costs during the contract period, the Group sometimes provides residual value
+guarantees in relation to equipment leases. The Group initially estimates and recognises amounts
+expected to be payable under residual value guarantees as part of the lease liability. Typically, the
+expected residual value at lease commencement is equal to or higher than the guaranteed amount, and
+so the Group does not expect to pay anything under the guarantees. At the end of each reporting period,
+the expected residual values are reviewed, and adjusted if appropriate, to reflect actual residual values
+achieved on comparable assets and expectations about future prices.
+
+Rental income
+The Groups rents spaces to others. The rental amount is recognised in the statement of profit or loss
+over the period of contract.
+
+3.12    Current and deferred income tax
+
+The income tax for the period is calculated on the basis of the tax laws enacted at the financial position
+date. The management periodically evaluates the tax situation through tax returns, taking into account
+the differences that may arise from some interpretations issued by administrative or regulatory
+authorities, and establishes provisions where appropriate on the basis of amounts expected to be paid to
+the tax authority.
+
+Deferred income tax is fully recognised, using the liability method, on temporary differences arising
+between the tax bases of assets and liabilities and their carrying amounts in the consolidated financial
+statements. The deferred income taxes are not accounted for if it arises from initial recognition of an
+asset or liability other than those arising from business combination that at the time of the transaction
+affects neither accounting nor taxable income.
+
+Deferred income tax is determined using tax rates in accordance with the law prevailing at the
+consolidated financial position date that are expected to apply when the deferred income tax asset is
+realised, or the deferred income tax liability is settled.
+
+Current and deferred tax is recognised in profit or loss, except to the extent that it relates to items
+recognised in other comprehensive income or directly in equity. In this case, the tax is also recognised
+in other comprehensive income or directly in equity, respectively.
+
+3.13    Inventories
+
+Inventories are stated at the lower of actual cost or net realisable value. Cost is determined using the
+moving average method and includes purchase cost and other direct costs. The net realisable value
+comprises the estimated selling price in the ordinary course of business, less realisable expenses.
+Allowance is made for slow moving inventories based on management’s assessment of inventory
+movements.
+Cost of inventories is recognised as an expense and included in cost of revenue.
+
+
+
+
+                                                  - 19 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+3.      Significant Accounting Policies (continued)
+
+3.14    Share capital
+
+Ordinary shares are classified as equity.
+
+Treasury shares. Where the Company or its subsidiaries purchase the Company’s equity instruments,
+the consideration paid, including any directly attributable incremental costs, is deducted from the equity
+attributable to the Company’s owners until the equity instruments are reissued, disposed of or cancelled.
+Where such shares are subsequently sold or reissued, any consideration received, net of any directly
+attributable incremental transaction costs, is included in equity attributable to the Company’s owners.
+
+3.15    Legal reserve
+
+As required by the parent Company, 5% of the net profit shall be transferred to constitute the legal
+reserve, once the financial statements are approved by the Company's ordinary general assembly
+meeting. Such transfer may be discontinued when the reserve equals 50% of the Company's issued and
+paid-up capital. Whenever this reserve is lower than this percentage, the deduction should be continued.
+This reserve is not available for distribution.
+
+3.16    Dividends
+
+Dividends are recognised in the consolidated financial statements in the period in which the dividends
+are approved by the Company’s General Assembly of Shareholders.
+
+The company does not record the dividends payable until it is approved by the general assembly.
+
+3.17    Provisions
+
+Provisions are recognised when the Company has a (legal or constructive) obligation as a result of past
+events. It is expected that this settlement will result in an outflow of the Company's resources, which
+ensures that economic benefits will arise, and it is probable that the resource usage will be required to
+settle the obligation and a reliable estimate of the amount of this obligation can be made.
+
+Provisions are measured at the present value of the expenditures expected to be required to settle the
+obligation using a pre-tax rate that reflects market assessments of the time value of money and the risks
+specific to the obligation. The increase in the provision due to passage of time is recognised as interest
+expense.
+
+3.18    Revenue recognition
+
+Revenue is measured at the fair value of the consideration received or receivable for the services in the
+ordinary course of the Group’s activities. The Group recognizes revenue based on a five-step model:
+
+Step 1. Identify contract(s) with a customer.
+
+Step 2. Identify performance obligations in the contract.
+
+Step 3. Determine the transaction price.
+
+Step 4. Allocate the transaction price to the performance obligations in the contract.
+
+                                                  - 20 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+3.       Significant Accounting Policies (continued)
+
+3.18     Revenue recognition (continued)
+
+Step 5. Recognize revenue when (or as) the Group satisfies a performance obligation. The Group
+satisfies a performance obligation and recognises revenue over time, if one of the following criteria is
+met:
+
+●    The patient simultaneously receives and consumes the benefits provided by the Group’s
+     performance as the Group performs; or
+
+●    The Group’s performance creates or enhances an asset that the patient controls as the asset is created
+     or enhanced; or
+
+●    The Group’s performance does not create an asset with an alternative use to the Group and the
+     entity has an enforceable right to payment for performance completed to date.
+
+Medical and other services revenue
+
+Revenue primarily comprises fees charged for inpatient, day case and outpatient medical services. The
+Group renders several medical services, including surgeries, admission, medical supervision, analyses,
+investigations, x-rays and outpatient services. Inpatient and day case revenue is recognised as services
+are provided to patients. These services are typically provided over a short time frame and in substance
+recorded at a point in time. Outpatient cases do not involve surgical procedures and revenue is
+recognised on an individual component basis when performance obligations are satisfied. Other revenue
+comprises non-medical services rendered to patients and third parties, including the rendering of
+restaurant services at the hospitals, corporate and site-based emergency service contracts and other
+third-party revenues.
+
+Revenues are measured at the transaction price which is the amount of consideration that the Group
+expects to be entitled to in exchange for the services provided. Fees charged for medical services are
+calculated and billed based on tariff agreements. In determining the transaction price, variable
+consideration in terms of EAS 48 exists in the form of discounts, tariff adjustments and claims
+disallowances.
+
+The business practice with insurers includes claims rejected for various technical or medical reasons.
+Accordingly, the Group expects an amount of consideration that is less than what was originally
+invoiced. These write-offs constitute variable consideration under EAS 48. Variable consideration is
+recognised as revenue to the extent that it is highly probable that a reversal of revenue will not occur.
+The disallowed claims are calculated based on historical experience of outcomes to negotiations with
+insurers. This is regularly reassessed based on the actual outcome of negotiations. In terms of EAS 48,
+these rejected claims are recognised as a reduction of revenue with a corresponding entry against trade
+receivables.
+
+Sale of medicine revenue
+
+The Group sells drugs through the hospital's pharmacy or when giving them to inpatients admitted in
+the hospital. The Group recognises the revenues of medicines when the control of goods is transferred,
+which normally happens when a patient receives the medicine or when the medicine is used for the
+treatment of inpatients - revenue is recognized at point of time.
+
+
+
+                                                   - 21 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+3.        Significant Accounting Policies (continued)
+
+3.19      Earnings per share
+
+Preference shares are not redeemable and are considered to be participating shares. Earnings per share
+are determined by dividing the profit or loss attributable to owners of the Company by the weighted
+average number of participating shares outstanding during the financial year.
+
+3.20      Employees' benefits
+
+3.20.1 Pension and insurance scheme
+
+The Group pays contributions to the Public Authority for Social Insurance on a mandatory basis in
+accordance with the rules of Social Security Law. The Group has no further obligations other than the
+payment of its obligations. The regular contributions are recognised as periodic costs for the period in
+which they are due and as such are included in staff costs
+
+3.20.2 Employee stock ownership plan
+
+Share-based compensation benefits are provided to employees via Employee stock ownership plan, an
+employee share scheme, the executive short-term incentive scheme and share appreciation rights.
+
+The fair value of options granted under the Employee stock ownership plan is recognised as an
+employee benefits expense, with a corresponding increase in equity. The total amount to be expensed
+is determined by reference to the fair value of the options granted:
+
+      ●   including any market performance conditions.
+      ●   excluding the impact of any service and non-market performance vesting conditions, and
+      ●   including the impact of any non-vesting conditions.
+
+The total expense is recognised over the vesting period, which is the period over which all of the
+specified vesting conditions are to be satisfied. At the end of each period, the entity revises its estimates
+of the number of options that are expected to vest based on the non-market vesting and service
+conditions. It recognises the impact of the revision to original estimates, if any, in profit or loss, with a
+corresponding adjustment to equity.
+
+(a)       On 15 October 2020, the Company’s general assembly agreed to approve the system of reward
+          and motivation for employees, managers, and executive board members of the company, by
+          promising to sell shares, to be effective from July 1, 2020, the system was approved by the
+          Financial Regulatory Authority on 31 December 2020.
+
+(b)       Definition of the system:
+
+1-        A promise to sell shares equivalent to 5% of the shares issued to the company is made to the
+          employees, managers and members of the executive board of directors of the company and its
+          subsidiary companies who are selected by the supervision committee, noting that the same
+          beneficiary may be selected more than once during the term of the system within the limits of
+          this percentage. The supervision committee may include other beneficiaries during the term of
+          the system.
+
+
+
+
+                                                   - 22 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+3.      Significant Accounting Policies (continued)
+
+3.20    Employees' benefits (continued)
+
+3.20.2 Employee stock ownership plan (continued)
+
+2-      The term of the system is a maximum of seven years, starting from July 1, 2020, during which
+        each beneficiary is allocated a specific number of units according to the decision of the
+        supervision committee, with a maximum of five segments.
+
+3-      The shares allocated to the beneficiary are calculated according to the following equation:
+
+The difference between (1) the share price determined on the basis of the weighted average (Volume
+Weighted Average Price) in the month prior to the date of allotment and (2) the share price determined
+on the basis of the weighted average (Volume Weighted Average Price) in the month preceding the date
+of commencement of exercise Right, which is the date that one year has passed since the date of each
+allocation (“the share price upon exercising the right”). Then the result is multiplied by the number of
+units allocated to each particular segment for each beneficiary, and the indicated output is divided by
+the share price upon exercising the right, resulting in the final number of shares allocated to the
+beneficiary ("the final number of shares"), which links the economic interest of the beneficiaries of the
+system with the interest of the shareholders of the company
+
+In the event that the total percentage of the output of the number of shares for all the beneficiaries of
+the system exceeds 1% of the total shares issued to the company annually at any time, the percentage
+increase will be reduced to 1% in proportion and proportionality to all the beneficiaries of the system
+who have not exercised their right on the shares allocated to them.
+
+(i)     The final number of shares allocated to each beneficiary is distributed over three years
+        according to the allocation contract for each beneficiary.
+(ii)    In the event that the beneficiary does not exercise his right during the period of exercising the
+        right, his right to these shares shall be forfeited.
+(iii)   The issuance of the increase in shares allocated to the application of the system is funded
+        through a special reserve, share premium and / or retained earnings, and / or by converting the
+        reserve money or part thereof into shares, the value of which is increased by the issued capital
+        based on a decision by the company’s board of directors or by cash purchase of the company’s
+        shares traded on the Egyptian Stock Exchange, as treasury shares, and their allocation according
+        to the system.
+(iv)    And the fair value of these liabilities is recognized in the statement of profit or loss.
+(v)     The General Assembly may terminate this system, subject to obtaining the approval of the
+        Financial Supervisory Authority, without any prejudice to the rights of the beneficiaries.
+
+3.21    Segment reporting
+
+Operating segments are reported in a manner consistent with the internal reporting provided to the
+Group’s chief operating decision maker. The chief operating decision-maker is responsible for
+allocating resources and assessing performance of the operating segments. Reportable segments whose
+revenue, result or assets are ten percent or more of all the segments are reported separately.
+
+
+
+
+                                                  - 23 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+4.      Critical Accounting Estimates and Judgements in Applying Accounting Policies
+
+The Group makes estimates and assumptions that affect the amounts recognised in the consolidated
+financial statements and the carrying amounts of assets and liabilities within the next financial year.
+Estimates and judgements are continually evaluated and are based on management’s experience and
+other factors, including expectations of future events that are believed to be reasonable under the
+circumstances. Management also makes certain judgements, apart from those involving estimations, in
+the process of applying the accounting policies. Judgements that have the most significant effect on the
+amounts recognised in the consolidated financial statements and estimates that can cause a significant
+adjustment to the carrying amount of assets and liabilities within the next financial year include:
+
+4.1     Impairment of goodwill and other intangible assets
+
+The Group's management evaluates goodwill and other intangible assets annually to determine any
+impairment in goodwill. The carrying amount of goodwill is reduced if it is higher than the expected
+recoverable amount. Any losses resulting from the impairment of goodwill are charged to the statement
+of profit or loss, and cannot be reversed subsequently, (Note 9) illustrates more information regarding
+its accounting estimates.
+
+4.2     ECL measurement
+Measurement of ECLs is a significant estimate that involves determination methodology, models and
+data inputs. The following components have a major impact on credit loss allowance: definition of
+default, probability of default (“PD”), exposure at default (“EAD”), and loss given default (“LGD”), as
+well as models of macro-economic scenarios. The Group regularly reviews and validates the models
+and inputs of the models to reduce any differences between expected credit loss estimates and actual
+credit loss experience The data for forward-looking information has been extracted from studies by
+independent companies such as Moody's. S&P.
+
+The Group used supportable forward-looking information for measurement of ECL, primarily an
+outcome of its own macro-economic forecasting model. The most significant forward-looking
+assumptions that correlate with ECL level and their assigned weights were inflation rate and GDP
+growth rate.
+4.3     Depreciation of fixed assets
+The estimation of the useful lives of items of fixed assets is a matter of judgement based on the
+experience with similar assets. The future economic benefits embodied in the assets are consumed
+principally through use. However, other factors, such as technical or commercial obsolescence and wear
+and tear, often result in the diminution of the economic benefits embodied in the assets. Management
+assesses the remaining useful lives in accordance with the current technical conditions of the assets and
+estimated period during which the assets are expected to earn benefits for the Group. The following
+primary factors are considered: (a) the expected usage of the assets; (b) the expected physical wear and
+tear, which depends on operational factors and maintenance programme; and (c) the technical or
+commercial obsolescence arising from changes in market conditions.
+
+
+
+
+                                                  - 24 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+4.      Critical Accounting Estimates and Judgements in Applying Accounting Policies (continued)
+
+4.4      Depreciation of right-of-use assets
+Depreciation of right-of-use assets: In determining the lease term, management considers all facts and
+circumstances that create an economic incentive to exercise an extension option, or not exercise a
+termination option. Extension options (or periods after termination options) are only included in the
+lease term if the lease is reasonably certain to be extended (or not terminated).
+For leases of buildings and equipment, the following factors are normally the most relevant:
+
+●       If there are significant penalties to terminate (or not extend), the Group is typically reasonably
+        certain to extend (or not terminate) the lease. Most extension options in buildings and
+        equipment leases have not been included in the lease liability, because the Group could replace
+        the assets without significant cost or business disruption.
+●       If any leasehold improvements are expected to have a significant remaining value, the Group
+        is typically reasonably certain to extend (or not terminate) the lease.
+
+Otherwise, the Group considers other factors including historical lease durations and the costs and
+business disruption required to replace the leased asset. Most extension options in buildings and
+equipment leases have not been included in the lease liability, because the Group could replace the
+assets without significant cost or business disruption.
+
+Extension and termination options: Extension and termination options are included in a number of
+buildings and equipment leases across the Group. These are used to maximise operational flexibility in
+terms of managing the assets used in the Group’s operations. The majority of extension and termination
+options held are exercisable only by the Group and not by the respective lessor.
+
+Discount rates used for determination of lease liabilities
+The Group uses its incremental borrowing rate as a base for calculation of the discount rate because the
+interest rate implicit in the lease cannot be readily determined.
+
+The following factors determine the usage of the latest incremental borrowing rate using recent third-
+party financing received by the Group as a starting point, adjusted to reflect changes in financing
+conditions since third party financing was received and for specific conditions attributable to the lease,
+e.g. term, currency and collateral.
+
+4.5     Provisions
+
+Provisions are recognised when there is a present legal or constructive obligation as a result of past
+events; it is probable that an outflow of resources will be required to settle the obligation; and the amount
+has been reliably estimated. The Group reviews the provision at the date of each financial position and
+adjusts it to reflect the best current estimate by using the appropriate advisory expertise.
+
+
+
+
+                                                   - 25 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+5.      Financial risk management
+
+5.1     Financial risk factors
+
+The risk management function within the Group is carried out with respect to financial risks, operational
+risks and legal risks. Financial risk comprises market risk (including currency risk, interest rate risk and
+other price risks), credit risk and liquidity risk. The primary function of financial risk management is to
+establish risk limits and to ensure that any exposure to risk stays within these limits. The operational
+and legal risk management functions are intended to ensure the proper functioning of internal policies
+and procedures in order to minimise operational and legal risks.
+
+(a)    Credit risk
+
+The Group exposes itself to credit risk, which is the risk that one party to a financial instrument will
+cause a financial loss for the other party by failing to meet an obligation.
+Trade receivables are represented net of the allowance for expected credit losses. Credit risk with
+respect to trade receivables is limited due to the large number of customers comprising the Group’s
+customer base, which consists mainly of insured customers, corporate and government related entities.
+The financial condition of these customers in relation to their credit standing is evaluated on an ongoing
+basis. The policy for uninsured patients that do not represent corporate clients or government entities is
+to require a preliminary payment instead.
+
+The Group’s maximum exposure to credit risk is reflected in the carrying amounts of financial assets in
+the consolidated statement of financial position.
+
+Credit risk management. Credit risk is the single largest risk for the Company's business; management
+therefore carefully manages its exposure to credit risk.
+
+External ratings are assigned to counterparties by independent international rating agencies, such as
+S&P, Moody’s and Fitch. These ratings are publicly available. Such ratings and the corresponding range
+of probabilities of default (“PD”) are applied for the following financial instruments: [Cash At banks.]
+
+Expected credit loss (ECL) measurement
+
+ECL is a probability-weighted estimate of the present value of future cash shortfalls (i.e., the weighted
+average of credit losses, with the respective risks of default occurring in a given time period used as
+weights). An ECL measurement is unbiased and is determined by evaluating a range of possible
+outcomes. ECL measurement is based on four components used by the Group: Probability of Default
+(“PD”), Exposure at Default (“EAD”), Loss Given Default (“LGD”) and Discount Rate.
+
+EAD is an estimate of exposure at a future default date, taking into account expected changes in the
+exposure after the reporting period, including repayments of principal and interest.
+
+For purposes of measuring PD, the Group defines default as a situation when the exposure meets one
+or more of the following criteria:
+
+For trade receivable and other debit balance:
+
+●       The customer meets the unlikeliness-to-pay criteria listed below:
+●       Evidence that the customer is unable to pay
+●       Customer checks are return.
+
+                                                   - 26 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+5.      Financial risk management (continued)
+
+5.1     Financial risk factors (continued)
+
+(a)     Credit risk (continued)
+
+For purposes of disclosure, the Group fully aligned the definition of default with the definition of credit-
+impaired assets. The default definition stated above is applied to all types of financial assets of the
+Group.
+
+The Company performs assessments based on external ratings for [Cash at banks]
+
+Forward-looking information incorporated in the ECL models. The calculation of ECLs both
+incorporate supportable forward-looking information. The Group identified certain key economic
+variables that correlate with developments in credit risk and ECLs. Forecasts of economic variables (the
+"base economic scenario") are provided by the Group's management and provide the best estimate of
+the expected macro-economic development over future years.
+
+The group applies the simplified approach to measuring expected credit losses which uses a lifetime
+expected loss allowance for all trade receivables and contract assets.
+
+To measure the expected credit losses, trade receivables have been grouped based on shared credit risk
+characteristics and the days past due.
+
+The expected loss rates are based on the payment profiles of sales over a period of 36 – month period
+prior to each statement of financial position date and the corresponding historical credit losses
+experienced within this period. The historical loss rates are adjusted to reflect current and forward-
+looking information on macroeconomic factors affecting the ability of the customers to settle the
+receivables. The group has identified the GDP and the unemployment rate in Egypt to be the most
+relevant factors, and accordingly adjusts the historical loss rates based on expected changes in these
+factors.
+
+Trade receivables are written off where there is no reasonable expectation of recovery. Impairment
+losses on trade receivables and contract assets are presented as net impairment losses within operating
+profit. Subsequent recoveries of amounts previously written off are credited against the same line item.
+
+Debt investments
+
+The Company’s investments in debt instruments “at amortized cost” are considered to be low risk
+investments and therefore the loss allowance recognized during the period is limited to expected losses
+for 12 months. Management considers "low credit risk" listed bonds an investment grade credit rating
+with at least one major rating agency. Other instruments are considered to be of low credit risk as they
+have a low risk of default and the issuer has a strong ability to meet contractual cash flow obligations
+in the near term.
+
+Currently the Group does not hold any debt instruments with a maturity of more than 1 year.
+
+The Group regularly reviews its methodology and assumptions to reduce any difference between the
+estimates and the actual loss of credit.
+
+
+
+
+                                                   - 27 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+5.      Financial risk management (continued)
+
+5.2     Financial risk factors (continued)
+
+(a)     Credit risk (continued)
+
+The following are the balances exposed to credit risk before deducting the ECL:
+
+                                                     Impairment             2022                2021
+                                                       model
+
+Cash at banks                                          General         244,095,386            166,950,224
+Trade receivables                                     Simplified       592,439,221            513,163,607
+Other debit balances                                  Simplified         5,879,185             90,182,543
+Due from related parties                              Simplified         3,152,972                530.300
+Treasury bills                                         General          98,900,022            677,072,914
+                                                                       944,466,786          1,447,899,588
+
+Credit risk on receivable and bank balances is limited as:
+
+●       Cash balances, term deposits are held with reputable banks in Egypt that have a strong financial
+        position in which all banks in Egypt are guaranteed from the Egyptian Central Bank.
+
+●       The carrying amount of financial assets represents the maximum credit exposure.
+
+(b)     Market risk
+
+The Group takes on exposure to market risks. Market risks arise from open positions in (a) currency,
+(b) interest rates and (c) equity investments, all of which are exposed to general and specific market
+movements. Management sets limits on the value of risk that may be accepted, which is monitored on
+a daily basis. However, the use of this approach does not prevent losses outside of these limits in the
+event of more significant market movements.
+
+(i)     Currency risk
+
+In respect of currency risk, management sets limits on the level of exposure by currency and in total for
+both overnight and intra-day positions, which are monitored daily.
+
+The table below summarises the Group’s exposure to foreign currency exchange rate risk at the end of
+the reporting period:
+
+                           At 31 December 2022                          At 31 December 2021
+                 Monetary        Monetary                     Monetary        Monetary
+                 financial       financial                    financial       financial
+                   assets        liabilities Net position       assets        liabilities Net position
+
+US Dollars        27,618,407              -     27,618,407     20,338,797               -      20,338,797
+Euros                650,340              -        650,340         99,087               -          99,087
+Pound Sterling         3,845              -          3,845        313,809               -         313,809
+Total             28,272,592              -     28,272,592     20,751,693               -      20,751,693
+
+
+
+
+                                                  - 28 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+5.      Financial risk management (continued)
+
+5.1     Financial risk factors (continued)
+
+(b)     Market risk (continued)
+
+The following table presents sensitivities of profit or loss and equity to reasonably possible changes in
+exchange rates applied at the end of the reporting period relative to the functional currency of the
+respective Group entities, with all other variables held constant:
+
+                                                                              2022                     2021
+Impact on profit or loss
+US Dollar strengthening by 10% (2021: strengthening by 10%)                     2,761,841                2,033,880
+US Dollar weakening by 10% (2022: weakening by 10%)                           (2,761,841)               (2,033,880)
+Euro strengthening by 10% (2021: strengthening by 10%)                             65,034                    9,909
+Euro weakening by 10% (2021: weakening by 10%)                                   (65,034)                     9,909
+Pound Sterling strengthening by 10% (2021: strengthening by 10%)                      385                   31,381
+Pound Sterling weakening by 10% (2021: weakening by 10%)                            (385)                  (31,381)
+
+(ii)    Interest rate risk
+
+The Group takes on exposure to the effects of fluctuations in the prevailing levels of market interest
+rates on its financial position and cash flows. Interest margins may increase as a result of such changes
+but may reduce or create losses in the event that unexpected movements arise. Management monitors
+on a daily basis and sets limits on the level of mismatch of interest rate repricing that may be undertaken.
+
+The table below summarises the Group’s exposure to interest rate risks. The table presents the
+aggregated amounts of the Group’s financial assets and liabilities at carrying amounts, categorised by
+the earlier of contractual interest repricing or maturity dates:
+
+                                              Less than 1     More than              1 to 2
+                                                 year          1 year                years              Total
+
+31 December 2022
+Total financial assets                         346,143,272               -                        -     346,143,272
+Total financial liabilities                  (244,464,052)    (88,033,127)                        -   (332,497,179)
+Net interest sensitivity gap
+at 31 December 2022                            101,679,220    (88,033,127)                        -     13,646,093
+
+31 December 2021
+Total financial assets                        845,979,507                 -                   -       845,979,507
+Total financial liabilities                   (60,627,560)                -                       -   (60,627,560)
+Net interest sensitivity gap
+at 31 December 2021                           785,351,947                 -                   -       785,351,947
+
+At 31 December 2022, if interest rates at that date had been [100] basis points lower (2021: [100] basis
+points lower) with all other variables held constant, profit for the year would have been EGP 265,901
+(2021: EGP 2,514,658) higher, mainly as a result of lower interest expense on variable interest
+liabilities.
+
+
+
+
+                                                   - 29 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+5.       Financial risk management (continued)
+
+5.1       Financial risk factors(continued)
+
+(b)      Market risk (continued)
+
+If interest rates had been [100] basis points higher (2021: [100] basis points higher), with all other
+variables held constant, profit would have been EGP 265,901 (2021: EGP 2,514,658) lower, mainly as
+a result of higher interest expense on variable interest liabilities
+
+The Group monitors interest rates for its financial instruments. The table below summarises interest
+rates at the respective reporting date based on reports reviewed by key management personnel. For
+securities, the interest rates represent yields to maturity based on market quotations at the reporting
+date:
+                                                            2022                            2021
+                                                    EGP                USD          EGP               USD
+
+Assets
+Cash and cash equivalents Current accounts         10% - 10.5%                 -    6% - 6.5%                  -
+Cash and cash equivalents Time Deposits                       -    2.5% - 3.25%              -     0.5% - 0.75%
+Investments in Treasury bills                  11.20% - 11.40%                 -   8.40% - 9%                  -
+
+Liabilities
+Banks overdraft                                        17.35%                  -       9.35%                   -
+
+(c)      Liquidity risk
+
+Liquidity risk is the risk that an entity will encounter difficulty in meeting obligations associated with
+financial liabilities. The Group is exposed to daily calls on its available cash resources. Liquidity risk
+is managed by Finance department of the Group. Management monitors monthly rolling forecasts of
+the Group’s cash flows.
+
+The Group seeks to maintain a stable funding base primarily consisting of borrowings, trade and other
+payables. The Group invests the funds in diversified portfolios of liquid assets, in order to be able to
+respond quickly and smoothly to unforeseen liquidity requirements. The Group’s liquidity portfolio
+comprises cash and cash equivalents (Note 15) and investments in treasury bills (Note 14). Management
+estimates that the liquidity portfolio cash, bank deposits can be realised in cash [within a day] in order
+to meet unforeseen liquidity requirements.
+
+The liquidity position is monitored and regular liquidity stress testing under a variety of scenarios
+covering both normal and more severe market conditions is performed by the [Finance Department].
+
+The table below shows liabilities at 31 December 2022 by their remaining contractual maturity. The
+amounts disclosed in the maturity table are the contractual undiscounted cash flows, including gross
+finance lease obligations (before deducting future finance charges), gross loan commitments and
+financial guarantees. Such undiscounted cash flows differ from the amount included in the statement of
+financial position because the statement of financial position amount is based on discounted cash flows.
+
+When the amount payable is not fixed, the amount disclosed is determined by reference to the conditions
+existing at the end of the reporting period. Foreign currency payments are translated using the spot
+exchange rate at the end of the reporting period.
+
+
+
+                                                  - 30 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+5.      Financial Risk Management (continued)
+The maturity analysis of financial liabilities at 31 December 2022, 2021 is as follows:
+                                                       From a year        More than 2
+2022                                   Within 1 year    to 2 years          years            Total
+Liabilities
+Banks overdraft                        244,464,052                  -                 -      244,464,052
+Trade payables                         530,750,517                  -                 -      530,750,517
+Loans                                            -         28,256,023      113,024,094       141,280,117
+Lease liabilities                       38,983,371         40,528,180      265,024,461       344,536,012
+Total future payments, including       814,197,940         68,784,203      378,048,555     1,261,030,698
+future principal and interest payments
+
+2021
+Liabilities
+Banks overdraft                         60,627,560                  -                -       60,627,560
+Trade payables                         461,032,559                  -                -      461,032,559
+Lease liabilities                       38.742.917         40,604,329      306,272,186      385.619.432
+Total future payments, including       561,705,386         40,604,329      306,272,186      907,279,551
+future principal and interest payments
+
+5.2     Capital risk
+The Group’s objectives when managing capital are to safeguard the Group’s ability to continue as a
+going concern in order to maximise returns for shareholders and provide benefits to the stakeholders,
+and to maintain an optimal capital structure to reduce the cost of capital, as is followed by other
+companies operating in the same industry.
+The Group's management monitors capital structure using the gearing ratio, which is calculated as the
+ratio of net debt to total borrowings, advances, notes payable, and due to related parties, less cash. The
+total capital represents the total net debt in addition to equity as shown in the consolidated financial
+position.
+Net debt to total invested capital as at 31 December 2022 and 31 December 2021 is as follows:
+                                                                  2022                   2021
+
+Creditors and other credit balances                                       530,750,517       461,032,559
+Bank overdrafts                                                           244,464,052        60,627,560
+Lease liabilities                                                         194,442,401       211,458,082
+Loans                                                                      88,033,127                 -
+Less: Cash on hand and at banks                                         (347,434,402)      (847,525,002)
+Net debt                                                                  710,255,695      (114,406,801)
+Total equity                                                            2,027,350,565     2,497,817,115
+Total invested capital                                                  2,737,606,260     2,383,410,314
+
+Net debts to total invested capital                                          25.94%              (4,80%)
+
+The loans contain certain covenants. The covenants are monitored by management. During 2022 there
+has not been any non-compliance observed for any of the covenants.
+
+5.3     Estimations of fair values of financial instruments
+The fair value of the current financial assets and liabilities approximate their carrying amount, after
+taking into account any impairment.
+
+                                                  - 31 -
+    CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+    Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+    (All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+    6.          Segment reporting
+
+    Business segments are reported in line with the reports provided internally to the senior management, which makes decisions related to resources allocation and
+    evaluation of segments' performance in the Group. The senior management is represented in Group's executive management committee. The segment reports
+    are provided to the Group based on each company, as each subsidiary is considered a separate business segment.
+
+    Below is a summary of each segment, which is presented for the year ended 31 December 2022 for each segment:
+
+                                                                                                                                                                    Bedaya El
+                                                                                                       CHG Pharma                                                  Gedida for
+                                Cleopatra        Cairo         Nile                      CHG for           for                                                       Medical
+                                Hospital       Specialised   Badrawi       Al Shorouk    Medical        pharmacies     CHG for          Queens       Al Kateb      Centers and   CHG SKY       Consolidated
+                                Company         Hospital     Hospital       Hospital     Services      management      Hospitals       Hospitals     Hospitals      Hospitals     Hospital     adjustment*        Total
+Statement of financial
+position
+Non-current assets             1,644,670,640   351,715,466   288,891,045   314,891,373    33,580,003      3,163,143             -       64,974,500   143,338,304    91,548,692     6,569,114 (795,464,370) 2,147,877,910
+Current assets                   337,431,210   190,785,262   207,844,535   178,251,501    23,149,902     14,570,552    32,640,658       77,328,280    26,180,904    59,066,363    82,710,545 (94,468,665) 1,135,491,047
+Total assets                   1,982,101,850   542,500,728   496,735,580   493,142,874    56,729,905     17,733,695    32,640,658      142,302,780   169,519,208   150,615,055    89,279,659 (889,933,035) 3,283,368,957
+
+Current liabilities             513,529,605    134,265,495    97,518,839   109,512,367    90,690,373     21,457,970     1,115,689       28,264,647    39,928,098    15,469,717     1,266,247 (165,521,819)   887,497,228
+Non-current liabilities          56,565,896     25,604,134    69,951,018    27,269,432    32,102,148      3,861,929             -       69,948,933     3,547,149    33,260,609             -    46,409,916   368,521,164
+Total Liabilities               570,095,501    159,869,629   167,469,857   136,781,799   122,792,521     25,319,899     1,115,689       98,213,580    43,475,247    48,730,326     1,266,247 (119,111,903) 1,256,018,392
+
+Statement of profit or loss:
+Revenue                        1,014,052,500 525,559,329 378,418,379 439,722,048         87,646,799   48,036,184                   -     30,388,796   48,998,403   68,886,213                - (27,287,481) 2,614,421,170
+Cost of revenue                (573,406,102) (358,271,371) (286,979,023) (314,547,047) (67,173,514) (45,405,318)                   -   (22,341,515) (57,778,172) (39,401,570)                -   24,197,547 (1,741,106,085)
+Gross profit                     440,646,398 167,287,958      91,439,356 125,175,001     20,473,285    2,630,866                   -      8,047,281 (8,779,769)    29,484,643                - (3,089,934)      873,315,085
+
+Other expenses and revenues (197,848,076)      (97,034,893) (64,950,868) (76,466,648) (18,544,032)       (3,319,523)    (359,336)      (10,001,395) (14,810,906) (32,450,276)       513,413      (1,310,706)   (516,583,246)
+Profit for the year           242,798,322        70,253,065   26,488,488   48,708,353    1,929,253         (688,657)    (359,336)       (1,954,114) (23,590,675) (2,965,633)        513,413      (4,400,640)     356,731,839
+
+Other Items
+Capital expenditure              77,648,177     85,100,844    58,558,885   102,561,496      459,680          80,782                -       365,942    11,914,328     8,011,679     6,569,114              -     351,270,927
+Fixed assets depreciation        39,036,628     26,723,229    21,032,836    24,207,781      224,983          15,548                -     3,300,858     5,408,666     4,597,951             -      8,575,523     133,124,003
+
+    * - Consolidated adjustment is mainly represented by elimination of intercompany balances, transactions and consolidation adjustments for investment in subsidiaries.
+
+
+
+                                                                                                        - 32 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+6.         Segment reporting (continued)
+
+Below is a summary of each segment, which is presented for the year ended 31 December 2021 for each segment:
+
+                                                                                                                                                                              Bedaya El
+                                                                                                                                                                             Gedida for
+                                 Cleopatra        Cairo           Nile                         CHG for         CHG Pharma                                                      Medical
+                                 Hospital       Specialised     Badrawi        Al Shorouk      Medical        for pharmacies   CHG for          Queens        Al Kateb       Centers and Consolidated
+                                 Company         Hospital       Hospital        Hospital       Services        management      Hospitals       Hospitals      Hospitals       Hospitals  adjustment*           Total
+
+Statement of financial position
+Non-current assets              1,460,626,912   294,687,131     253,669,733    237,447,580      49,061,664        3,809,120             -       72,791,123    134,865,621     90,287,957     (637,462,776) 1,959,784,065
+Current assets                    791,225,113   179,127,975     159,423,841    188,924,507      20,212,049        9,090,455    25,456,940      106,725,556     63,940,470     44,503,263     (115,792,725) 1,472,837,444
+Total assets                    2,251,852,025   473,815,106     413,093,574    426,372,087      69,273,713       12,899,575    25,456,940      179,516,679    198,806,091    134,791,220     (753,255,501) 3,432,621,509
+
+Current liabilities              241,752,965    138,147,695      84,073,028     87,690,796      88,785,291       15,220,662       911,972       66,870,655     43,577,783     11,362,104     (129,873,561)   648,519,390
+Non-current liabilities           38,015,589     13,032,679      22,107,912     23,308,314      48,480,290        4,576,460             -       66,602,710      3,382,956     18,596,421       48,181,673    286,285,004
+Total Liabilities                279,768,554    151,180,374     106,180,940    110,999,110     137,265,581       19,797,122       911,972      133,473,365     46,960,739     29,958,525      (81,691,888)   934,804,394
+
+
+Statement of profit or loss:
+Revenue                          935,166,243 458,923,126 375,285,656       379,473,301          74,520,431       37,365,554     1,193,771      164,383,486 110,217,897         49,272,776     (36,515,379) 2,549,286,862
+Cost of revenue                 (523,192,530) (308,912,823) (268,928,355) (266,151,463)        (63,104,174)     (35,782,687)            -       (77,718,776) (77,201,230)     (30,030,881)     32,401,297 (1,618,621,622)
+Gross profit                     411,973,713 150,010,303 106,357,301       113,321,838          11,416,257        1,582,867     1,193,771        86,664,710   33,016,667       19,241,895       (4,114,082) 930,665,240
+
+
+Other expenses and revenues     (184,257,324)    (86,719,952)   (71,000,261)    (67,987,355)   (21,703,339)      (2,744,419)      (379,696)    (33,963,941)   (21,063,178)    (30,310,011)       136,364     (519,993,112)
+Profit for the year              227,716,389      63,290,351     35,357,040      45,334,483    (10,287,082)      (1,161,552)       814,075      52,700,769     11,953,489     (11,068,116)     (3,977,718)    410,672,128
+
+
+Other Items
+Capital expenditure               57,220,004    131,756,662      36,713,943     21,194,874        581,728            17,430                -     2,830,097      8,004,500      6,277,157               -     264,596,395
+Fixed assets depreciation         34,827,246     24,387,131      16,828,440     17,837,994        106,399             1,493                -     3,171,302      3,987,360      4,159,763       8,575,523     113,882,651
+
+* - Consolidated adjustment is mainly represented by elimination of intercompany balances, transactions and consolidation adjustments for investment in subsidiaries.
+
+
+
+
+                                                                                                    - 33 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+7.       Fixed Assets
+
+                                                             Machinery,
+                                                           equipment and                                                                 Projects under
+                                              Lands           devices       Furniture       Buildings      Vehicles       Computers       construction        Total
+At 1 January 2021
+Cost                                         173,240,262      626,167,940   105,792,062      549,004,858    15,691,737    102,687,785       99,720,766    1,672,305,410
+Accumulated depreciation                               -    (261,113,137)   (38,054,959)   (114,997,947)    (7,328,973)   (45,614,534)               -    (467,109,550)
+Net book value                               173,240,262      365,054,803     67,737,103     434,006,911      8,362,764     57,073,251      99,720,766    1,205,195,860
+Year ended 31 December 2021
+Opening net book value                       173,240,262     365,054,803      67,737,103    434,006,911       8,362,764     57,073,251       99,720,766   1,205,195,860
+Additions                                              -       48,252,892     19,125,873         868,488      4,902,800     24,324,199      167,122,143     264,596,395
+Disposals                                              -      (8,189,448)    (1,349,937)       (106,884)       (76,000)       (11,528)                -      (9,733,797)
+Write-off                                              -      (4,179,426)      (967,569)               -              -      (572,134)                -      (5,719,129)
+Transfers from projects under construction             -       12,955,477     12,375,644    108,837,042               -     10,055,925    (144,224,088)                -
+Depreciation for the year                              -     (51,598,344)   (14,197,713)    (20,513,110)    (2,943,291)   (24,630,193)                -   (113,882,651)
+Accumulated depreciation of disposal                   -        8,462,378      2,125,592          23,103         76,000        581,671                -      11,268,744
+Closing net book value                       173,240,262     370,758,332      84,848,993    523,115,550     10,322,273      66,821,191      122,618,821   1,351,725,422
+At 31 December 2021
+Cost                                         173,240,262      675,007,435   134,976,073      658,603,504     20,518,537   136,484,246      122,618,821    1,921,448,879
+Accumulated depreciation                               -    (304,249,103)   (50,127,080)   (135,487,954)   (10,196,264)   (69,663,056)               -    (569,723,457)
+Net book value                               173,240,262      370,758,332     84,848,993     523,115,550     10,322,273     66,821,191     122,618,821    1,351,725,422
+At 31 December 2022
+Opening net book value                       173,240,262     370,758,332     84,848,993     523,115,550     10,322,273     66,821,191      122,618,821    1,351,725,422
+Additions                                              -     128,830,449     16,777,434       1,513,754               -    14,544,695      189,604,595     351,270,927
+Disposals                                              -      (9,980,156)    (4,193,733)      (220,000)     (1,606,042)     (718,334)                -     (16,718,265)
+Write-off
+Transfers from projects under construction             -        1,265,886     19,565,319      72,275,065              -      4,025,101     (97,131,371)               -
+Depreciation for the year                              -     (59,282,606)   (18,654,591)    (24,419,422)    (4,255,730)   (26,511,654)                -   (133,124,003)
+Accumulated depreciation of disposal                   -        8,673,706      3,998,126               -        757,917        672,799                -      14,102,548
+Balance at 31 December 2022                  173,240,262     440,265,611    102,341,548     572,264,947       5,218,418     58,833,798     215,092,045    1,567,256,629
+
+Cost                                         173,240,262      795,123,614   167,125,093      732,172,323     18,912,495   154,335,709      215,092,045    2,256,001,541
+Accumulated depreciation                               -    (354,858,003)   (64,783,545)   (159,907,376)   (13,694,077)   (95,501,911)               -    (688,744,912)
+Net book value at the year end               173,240,262      440,265,611   102,341,548      572,264,947      5,218,418     58,833,798     215,092,045    1,567,256,629
+
+
+
+                                                                                 - 34 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+8.      Right-of-use assets
+
+The Egyptian Standard No. (49) “Leasing Contracts” has been applied in two phases as follows:
+The first stage relates to lease contracts that were subject to Law (95) for the year 1995 starting on or
+after 1 January 2019, which are lease contracts related to medical equipment and measured at the
+beginning of the contract at a value equal to the value of the lease obligations in addition to rental
+expenses and subsequently depreciated over the life of the lease contracts using the straight-line method.
+
+The second phase represents lease contracts related to buildings that were subject to Law (95) for the
+year 1995 starting on or after 1 January 2021 and measured at a carrying amount as if the standard had
+been applied since inception of the lease but discounted using the lending rate to the lessee at the date
+of application, and it is subsequently depreciated over the life of the lease using the straight-line method.
+
+                                                                          2022                 2021
+Machinery and equipment
+Beginning balance for the year                                            16,818,578           18,824,508
+Additions during the year                                                                                -
+Depreciation during the year                                              (2,115,928)          (2,005,930)
+Total – machinery and equipment                                           14,702,650           16,818,578
+Buildings
+Beginning balance for the year                                        157,873,037                       -
+Impact of applying the Egyptian Accounting Standard no. 49                      -             161,848,949
+“Lease contracts”
+Settlements                                                             (4,157,171)
+Additions for the year                                                    5,369,594             19,974,500
+Disposals for the year                                                    (785,421)                      -
+Depreciation for the year                                             (23,840,753)            (23,950,412)
+Total                                                                  134,459,286             157,873,037
+                                                                       149,161,936             174,691,615
+
+Lease payments are discounted using the interest rate implicit in the lease contract, If this rate cannot
+be determined, then the borrowing rate of the lessee is used, which is the rate that the lessee would have
+to pay to borrow the money needed to obtain an asset of similar value in a similar economic environment
+with similar terms and conditions. An average interest rate of 11.15% has been used.
+
+
+9.      Goodwill and other intangible assets
+
+                                         Non-
+                                      competition
+Cost                                   agreement        Trade name               Total        Goodwill
+2022
+Balance at 1 January 2022              11.898.393            44.354.000       56.252.393      369.263.334
+Amortization                           (2,069,284)                    -       (2,069,284)               -
+Balance at 31 December 2022              9,829,109           44.354.000       54,183,109      369.263.334
+
+
+Balance at 1 January 2022              13,967,679            44.354.000       58,321,679      369.263.334
+Amortization                           (2,069,286)                    -       (2,069,286)               -
+Balance at 31 December 2022            11.898.393            44.354.000       56.252.393      369.263.334
+
+                                                    - 35 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+9.      Goodwill and other intangible assets (continued)
+
+The goodwill is as follows:
+
+                                                                  Balance at              Balance at
+                                                                 31 December             31 December
+                                                                     2022                    2021
+
+El-Kateb Hospital                                                    158,516,300             158,516,300
+Al Shorouk Hospital S.A.E.                                           120,823,014             120,823,014
+Nile Badrawi Hospital                                                 75,853,020              75,853,020
+Queens Hospital                                                       14,071,000              14,071,000
+Total                                                                369,263,334             369,263,334
+
+Goodwill
+To calculate goodwill, Nile Badrawi Hospital Company S.A.E., Al-Shorouk Hospital S.A.E. Queens
+Hospital and ElKateb Hospital were each considered as a separate cash generating unit, and the goodwill
+resulting from acquisition was allocated.
+
+Recoverable amount of the cash-generating unit is estimated by calculating the value in use, using pre-
+tax cash flows based on financial budgets approved by the management, which cover a period of five
+years maximum. The management determines the specific assumptions of cash flow forecasts based
+on revenues, past experience and expectations of the market.
+
+Estimates have been made in terms of sales growth, operating costs and expected gross profit. Future
+capital expenditures for future replenishment plans have been taken into account for the same existing
+assets. A discount rate and a long-term growth rate have been used to reflect the specific risks associated
+with the industry and economy sector.
+
+The following table sets out the key assumptions for those CGUs that have significant goodwill
+allocated to them:
+
+                                                       Al Shorouk
+                                      El-Kateb          Hospital        Nile Badrawi         Queens
+               2022                   Hospital           S.A.E.           Hospital           Hospital
+
+Average sales growth rate                  55.00%            12.10%            12.00%            34.10%
+Average pre-tax discount rate              18.90%            18.90%            18.90%            18.90%
+Terminal discount rate                     14.90%            14.90%            14.90%            14.90%
+
+                                                       Al Shorouk
+                                      El-Kateb          Hospital        Nile Badrawi         Queens
+               2021                   Hospital           S.A.E.           Hospital           Hospital
+
+Average sales growth rate                  36.00%            13.70%             9.60%            15.40%
+Average pre-tax discount rate              15.60%            15.60%            15.60%            15.60%
+Terminal discount rate                     13.60%            13.60%            13.60%            13.60%
+
+
+
+
+                                                   - 36 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+9.      Goodwill and other intangible assets (continued)
+
+Management has determined the values assigned to each of the above key assumptions as follows:
+
+Assumption                    Approach used to determine values
+
+Sales growth rate             Average annual growth rate over the five-year forecast period; based on
+                              past performance and management’s expectations of market
+                              development.
+Pre-tax discount rates        A discount rate, namely weighted average cost of capital (WACC), is
+                              applied for specific business areas based on assumptions regarding
+                              interest rates, tax rates and risk premiums and is recalculated to a before-
+                              tax rate ('Pre-tax discount rate').
+
+Trade name
+
+The fair value of the trade name is estimated using relief from royalty method. This method determines
+the value by referring to the nominal royalty payments, which are provided when acquiring the asset
+compared with the license of the asset and trade name by another party.
+
+The management evaluated the impairment of trade name at the date of the financial statements using
+the adjusted cash flow that reflects the actual data up to the date of the financial statements and expected
+changes in the following periods, including revenues, operating and capital expenses, and this did not
+result in any impact on the impairment of trade name.
+
+El Bedaya El Gedida for Medical Centers and Hospitals
+
+In September 2020, the Cleopatra Hospital Company signed an agreement to transfer the assets and
+activities of the Bedaya Hospital Company, owned by its founder, Dr. Ismail Aboul Fotouh. Under the
+new agreement, the assets and operational activity of Bedaya Hospital will be transferred to a new
+company - El Bedaya El Gedida for Medical Centers and Hospitals - at the start of October 2020.
+
+Also, an appointment contract was signed between the New Beedaya Company for Medical Centres
+and Hospitals and Dr. Ismail Aboul Fotouh.
+
+The transaction value comprising medical equipment, assets, and real estate was estimated at
+approximately EGP 105 million, which were paid as capital in the new company. As a part of the
+transaction, on the final settlement date Dr. Aboul Fotouh will be entitled to receipt of consideration
+equivalent to 40% of the capital of Bedaya Hospital Company, provided that the appointment agreement
+remains effective and certain conditions are fulfilled. The remuneration is accounted for in accordance
+with EAS 39 as a share-based compensation to be settled in cash. The remainder of the deal's value will
+be determined and paid based on the results of the new company’s business during 2021 and 2022 and
+is accounted for as an employee benefit under EAS 38. The final settlement date of the deal will be in
+June 2023.
+
+The present value of the cash portion of the remainder of the transaction value at the transaction date
+was estimated at 14,485,000 EGP and 10,000,000 EGP out of this balance was repaid to Dr. Abul
+Fotouch in 2022. The fair value of consideration attributable to share-based compensation (which is
+equivalent to 40% of the shares of Bedaya Hospital Company) was estimated at acquisition date at
+38,005,000 EGP. The share-based compensation is vesting in June 2023 and has certain non-vesting
+conditions specified in the transfer agreement. Remuneration expense on the amount of 13.820.000
+EGP attributable to the share-based compensation was recognised in 2022.
+
+                                                   - 37 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+9.      Goodwill and other intangible assets (continued)
+
+The total outstanding liability attributable to Dr. Abul Fotouch as of 31 December 2022 was 35,580,000
+EGP (31,760,000 EGP as of 31 December 2021) and the balance is recorded under Other liabilities in
+the statement of financial position.
+
+The fair value was calculated for net assets of the acquired business at the date of acquisition, which
+represents other assets other than tangible non-current assets at the date of acquisition. The net assets
+acquired, and goodwill were as follows:
+
+                                                                                           EGP
+
+Acquisition cost
+Cash paid                                                                                  105,000,000
+Purchased investments liabilities                                                           14,485,000
+Total acquisition cost                                                                     119,485,000
+Fair value of the assets acquired
+Buildings                                                                                   60,000,000
+Machinery and Equipment                                                                     15,099,000
+Furniture                                                                                      789,000
+Computers                                                                                      145,000
+Inventory                                                                                    3,967,000
+Cash                                                                                        25,000,000
+Fair value of acquired assets                                                              105,000,000
+Non-competition agreement                                                                   14,485,000
+
+
+10.     Investments in associates
+
+                                                                     2022                   2021
+
+Egypt Healthcare Facilities Services for facility
+management                                                            3,810,927              2,178,301
+                                                                      3,810,927              2,178,301
+Amount recognized in profit or loss:
+Egypt Healthcare Facilities Services for facility
+                                                                        407,606              1,034,710
+management
+                                                                        407,606              1,034,710
+
+The investment in associate on 31 December 2022 is as follows:
+                                                   The main
+                                                business place
+                                                 / Country of
+Company name                                    incorporation         Measurement       Ownership %
+
+Egypt Healthcare Facilities Services for facility            Egypt    Equity method           49%
+management
+
+
+
+
+                                                    - 38 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+10.     Investments in associates (continued)
+
+The following is the most important summarized financial information on the associate companies as
+of 31 December 2022:
+
+                                                                               Total        Profit for the
+                                       Total assets    Total equity          revenues           year
+
+Egypt Healthcare Facilities Services
+for facility management                 16,041,958         8,019,086         54,260,997          832,003
+
+The principal business of the entity is providing medical cleaning and catering services.
+
+
+11.     Inventories
+
+                                                                      2022                    2021
+
+Medical supply inventory                                            64,489,857                26,439,233
+Medicine inventory                                                  39,735,167                21,709,850
+Stationary inventory                                                 1,752,880                 1,142,632
+Hospitality inventory                                                1,548,385                   655,754
+Maintenance and spare parts inventory                                1,092,657                 1,647,600
+Food and beverage inventory                                            191,059                   175,091
+                                                                   108,810,005                51,770,160
+Less: Impairment of inventory                                        (789,281)                 (468,972)
+                                                                   108,020,724                51,301,188
+
+Movement in the provision for inventory is as follows:
+
+                                                                      2022                    2021
+
+Balance at the beginning of the year                                     468,972                  466,550
+Provisions formed during the year                                        686,895                1,312118
+Provisions no longer required during the year                          (160,636)              (1,049,474)
+Write-offs during the year                                             (205,950)                (260,222)
+Balance at the end of the year                                           789,281                  468,972
+
+
+12.     Trade receivables
+
+                                                                      2022                    2021
+
+Trade receivables                                                  579,083,205              502,010,165
+Inpatients                                                          13,356,016               11,153,442
+                                                                   592,439,221              513,163,607
+Less: Expected credit losses                                      (87,083,087)            (129,839,577)
+                                                                   505,356,134              383,324,030
+
+
+
+                                                  - 39 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+12.     Trade receivables (continued)
+
+The income from inpatients comprises of the revenues that have not been billed at the financial position
+date in exchange for their stay while the procedures of the medical services have not been completed.
+Such income is calculated net of the amounts collected in advance during the period of their stay.
+
+The Group applies the EAS no. (47) is simplified approach to measuring expected credit losses which
+uses a lifetime expected loss allowance for all trade receivables.
+
+The expected loss rates are based on the payment profiles of customers over a period of 36 month before
+each financial position date and the corresponding historical credit losses experienced within this
+period. The historical loss rates are adjusted to reflect current and forward-looking information on
+macroeconomic factors affecting the ability of the customers to settle the receivables. The Group has
+identified the GDP and the unemployment rate of the countries in which it sells its goods and services
+to be the most relevant factors, and accordingly adjusts the historical loss rates based on expected
+changes in these factors.
+
+The credit loss allowance for trade receivables is determined according to the provision matrix
+presented in the table below. The provision matrix is based on the number of days that an asset is past
+due, with adjusting it.
+
+                                                               31 December 2022
+                                            Loss      Gross carrying                    Net carrying
+ Trade receivables                                                   Lifetime ECL
+                                            Rate         amount                            value
+
+ - current until less than 30 days
+                                             0,2%          396,045,019      981,582       395,063,437
+   overdue
+ - 31 to 60 days overdue                       2%           43,908,049       976,967       42,931,082
+ - 61 to 90 days overdue                       4%           20,589,638       775,431       19,814,207
+ - 91 to 120 days overdue                      8%           12,943,079     1,055,967       11,887,112
+ - 121 to 360 days overdue                    28%           40,768,725    11,419,488       29,349,237
+ - 361 to 720 days overdue                    44%           11,199,388     4,888,329        6,311,059
+ - More than 720 days                        100%           66,985,323    66,985,323               -
+                                                           592,439,221    87,083,087      505,356,134
+
+
+                                                             31 December 2021
+                                           Loss     Gross carrying                     Net carrying
+ Trade receivables                                                 Lifetime ECL
+                                           Rate        amount                             value
+
+ - current until less than 30 days
+                                               1%          313,356,068     1,970,326      311,385,742
+   overdue
+ - 31 to 60 days overdue                       5%           34,286,882     1,747,469       32,539,413
+ - 61 to 90 days overdue                      11%           18,700,626     2,027,866       16,672,760
+ - 91 to 120 days overdue                     23%            9,174,368     2,114,843        7,059,525
+ - 121 to 360 days overdue                    57%           28,980,899    16,485,495       12,495,404
+ - 361 to 720 days overdue                    70%           10,477,794     7,306,608        3,171,186
+ - More than 720 days                        100%           98,186,970    98,186,970                -
+ Trade receivables                                         513,163,607   129,839,577      383,324,030
+
+
+
+
+                                                  - 40 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+12.     Trade receivables (continued)
+
+The movement in the impairment consists of the following:
+
+                                                                 2022              2021
+
+Balance at the beginning of the year                             129,839,577       125,326,367
+Effect of application of EAS 47 “Financial assets”                          -       11,289,842
+Formed during the year                                            34,825,615       105,383,023
+Used during the year                                            (69,258,483)      (52,753,994)
+No longer required during the year                                (8,323,622)     (59,405,661)
+                                                                  87,083,087       129,839,577
+
+
+13.     Debtors and other debit balances
+
+                                                                 2022              2021
+
+Advances to suppliers                                           131,893,622        67,780,202
+Prepaid expenses                                                 14,790,848         7,592,208
+Withholding taxes                                                11,072,891        11,494,414
+Deposits with others                                              5,699,554         5,105,318
+Accrued income                                                      365,584           421,907
+Employee’s custodies                                                179,631           648,595
+Treasury shares debtors                                                    -       84,428,630
+Other debtors                                                     8,818,599        14,233,929
+                                                                172,820,729       191,705,203
+Less: ECL of other debit balances during the year                    (2,784)           (2,784)
+                                                                172,817,945       191,702,419
+
+The movement of the provision for ECL during the year is as follows:
+
+                                                                 2022              2022
+
+Balance at 1 January                                                    2,784            42,202
+No longer required                                                          -          (39,418)
+                                                                        2,784             2,784
+
+
+14.     Financial assets at amortised cost – treasury bills
+
+                                                                 2022              2021
+
+Treasury Bills (Maturity 31 days)                                50,000,000                  -
+Treasury Bills (Maturity 61 days)                                50,000,000       636,400,000
+Treasury bills (Maturity 91 days)                                          -       45,450,070
+Less: Unearned revenue                                           (1,099,978)       (4,777,156)
+                                                                 98,900,022       677,072,914
+
+
+
+                                                - 41 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+14.     Financial assets at amortised cost – treasury bills (continued)
+
+-       Treasury bills are entitled to a constant annual return of 11.20% and 11.40% after taxes on 31
+        December 2022 (2021: 8.40% and 9.6%).
+
+-       The fair value of the treasury bills does not differ materially from the book value, as all
+        maturities of treasury bills are short-term.
+
+-       Credit risk rating for treasury bills is B.
+
+
+15.     Cash on hand and at banks
+
+                                                                   2022                   2021
+
+Current accounts                                                  222,933,856            151,913,259
+Time deposit                                                       21,161,530             15,036,965
+Cash on hand                                                        4,438,994              3,501,864
+
+Deduct: Cash and cash equivalents impairment                       (1,291,130)            (1,545,495)
+                                                                  247,243,250            168,906,593
+
+Movement in the impairment is as follows:
+
+                                                                    2022                   2021
+
+Balance at the beginning of the year                                 1,545,489                      -
+Formed during the year                                              1,548,434                 246,880
+Impact of applying EAS no. 47 “Financial Instruments”                        -              4,492,746
+No longer required                                                 (1,802,793)              (3,194,131)
+Ending balance                                                       1,291,130              1,545,495
+
+The time deposits item includes an amount EGP 21.161.530 on 31 December 2022 (2021: EGP
+15,036,065) are denominated in local banks in US dollars and is paid within one month from the date
+of deposit and is subject to a fixed annual return of 2.5% to 3.25%.
+
+Current accounts deposited in Egyptian Pounds are subject to a fixed annual rate of [10%] to [10.5%]
+(2021: from 6% to 6.5%)
+
+For the purpose of preparation of the cash flow statements, cash and cash equivalents consist of:
+
+                                                                   2022                    2021
+
+Cash and bank balances                                            248,534,380             170,452,088
+Treasury bills with maturities of 3 months or less                 98,900,022             677,072,914
+Total                                                             347,434,402             847,525,002
+
+
+
+
+                                                      - 42 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+16.     Banks overdraft
+
+The group obtained total credit limits in the form of overdrafts from banks in order to finance working
+capital at an interest rate of 0.1% in addition to the announced lending rate from the Central Bank. The
+total available credit limits amounted to EGP 330 million and the withdrawn value of these credit limits
+in 31 December 2022 equals EGP 244,464,052 (EGP 60,627,560 in 31 December 2021).
+
+The table below sets out an analysis of liabilities from financing activities and the movements in the
+Group’s liabilities from financing activities for each of the periods presented. The items of these
+liabilities are those that are reported as financing in the statement of cash flows:
+
+Net debt reconciliation
+
+                                                                    2022                   2021
+
+Cash and cash equivalent                                           347,434,402            847,525,002
+Less:
+Lease liabilities                                                (194,442,401)           (211,458,082)
+Bank Overdraft                                                   (244,464,052)            (60,627,560)
+Loans                                                             (88,033,127)                       -
+Total                                                            (179,505,178)             575,439,360
+
+
+                                   Lease                        Bank
+                                 Liabilities   Cash at bank   overdrafts     Loans           Net
+
+Net debt as at 31 December 2021 211,458,082 (847,525,002)      60,627,560            -   (575,439,360)
+Financing cash flows            (40,734,524) 500,090,600      164,514,246   86,913,062     710,783,384
+Changes in Leases                    587,848             -              -            -         587,848
+Interest expense                  23,130,995             -     19,322,246    1,120,065      43,573,306
+Net debt as at 31 December       194,442,401 (347,434,402)    244,464,052   88,033,127    179,505,178
+2022
+
+
+                                   Lease                        Bank
+                                 Liabilities   Cash at bank   overdrafts     Loans           Net
+
+Net debt as at 31 December 2020 13,275,080 (550,517,584)                -            -   (537,242,504)
+Effect of applying EAS 49        197,425,332             -              -            -     197,425,332
+Financing cash flows            (43,722,954) (297,007,418)     60,627,560            -   (280,102,812)
+Changes in Leases                 19,974,499             -                           -      19,974,499
+Interest expense                  24,506,125             -      9,934,055            -      24,506,125
+Net debt as at 31 December       211,458,082 (847,525,002)     60,627,560            -   (575,439,360)
+2021
+
+
+
+
+                                                  - 43 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+17.     Loans
+
+31 December 2022                                      Current          Non-current          Total
+
+Loans                                                            -        88,033,127       88,033,127
+Total                                                            -        88,033,127       88,033,127
+
+31 December 2021                                      Current          Non-current          Total
+
+Loans                                                            -                   -                -
+Total                                                            -                   -                -
+
+-       On October 27, 2021, Cleopatra Hospital Company signed a medium-term loan contract with
+        Ahli United Bank, with a total amount of 145 million Egyptian pounds, with a return of 0.65%,
+        in addition to the lending rate announced by the Central Bank.
+
+-       On August 10, 2022, Cleopatra Hospital Company, Nile Badrawi Hospital Company, and Cairo
+        Specialist Hospital Company signed an appendix to the loan contract from Ahli United Bank.
+        The following are the most important terms of the contract:
+
+-       Increasing the financing amount to 285 million Egyptian pounds, and it will be divided among
+        the companies as follows:
+
+-       Cleopatra Hospital Company                        45 million Egyptian pounds
+-       Cairo Specialist Hospital Company                 90 million Egyptian pounds
+-       Nile Badrawi Hospital Company                     150 million Egyptian pounds
+
+-       The purpose of the loan is to finance and/or refinance the capital needs and renovation of the
+        group’s hospitals starting from 2021, including medical equipment, medical beds, medical and
+        non-medical furniture, as well as internal development of movables (finishes,
+        electromechanical equipment, and power station).
+-       The validity of this contract begins for a period of six years and six months from the date of
+        signing the financing contract on 10 October 2021, with the group being granted a grace period
+        of a maximum of one year and six months ending on12 December 2023, and a grace period
+        (applied to repayment of the principal) of one year and six Months ending on 31 January 2024,
+        and in the event that the entire amount of financing is not withdrawn during the aforementioned
+        grace period, the unwithdrawn part will be automatically cancelled and the bank is not obligated
+        to lend the group any amounts other than what has been withdrawn from the financing amount.
+-       The group is committed to repaying the total financing amount in 20 quarterly instalments, with
+        the first instalment starting on 31 December 2024.
+
+Financial ratios
+
+According to the terms of the contract, the company is committed to achieving the following financial
+ratios:
+
+-       The financial leverage of the group should not exceed 0.7 and that of the Nile Badrawi Hospital
+        Company should not be less than 1.
+-       The debt service ratio should not be less than 1.3.
+-       The liquidity ratio should not be less than 1.
+
+
+
+                                                 - 44 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+17.     Loans (continued)
+
+The loans contain certain covenants. A future breach of covenants may lead to renegotiation. The
+covenants are monitored by management, in case of potential breach, actions are taken by management
+to ensure compliance. During 2022, there has not been any non-compliance observed for any of the
+covenants.
+
+
+18.     Provisions
+                                                                   2022                   2021
+
+Provision for claims                                                8,780,294              10,765,879
+Provision for human resources                                      16,519,753              11,151,619
+                                                                   25,300,047              21,917,498
+
+Movement in the provision during the year is as follows:
+
+                                                             2022
+                            Balance at the    Formed        Utilised      Provisions no
+                             beginning of    during the    during the        longer     Balance at the
+                               the year        year          year           required    end of the year
+
+Provision for human             11,151,619    29,131,018   (11,116,375)    (12,646,509)    16,519,753
+resources
+Provision for claims            10,765,879     6,367,770    (7,897,476)       (455,879)     8,780,294
+Total                           21,917,498    35,498,788   (19,013,851)    (13,102,388)    25,300,047
+
+                                                             2021
+                            Balance at the    Formed        Utilised      Provisions no
+                             beginning of    during the    during the        longer     Balance at the
+                               the year        year          year           required    end of the year
+
+Provision for human resources   12,849,633    34,829,810   (21,090,859)    (15,436,965)    11,151,619
+Provision for claims             8,780,774     5,658,064    (3,672,959)               -    10,765,879
+Total                           21,630,407    40,487,874   (24,763,818)    (15,436,965)    21,917,498
+
+Provision for human resources
+Provisions for human resources include provisions for the employees leave provision.
+Provision for claims
+Other provisions represent provisions for contingent liabilities on potential claims from certain
+authorities and parties regarding the Company's activity. The Company did not disclose the usual
+information on the provisions in accordance with the accounting standards as management believes that
+doing so may severely affect the outcome of the negotiations with those bodies and authorities. The
+management reviews these provisions on a yearly basis, and the allocated amount is adjusted according
+to the latest developments, discussions and agreements with such parties.
+
+
+
+
+                                                 - 45 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+19.     Trade and other payables
+
+                                                                   2022                   2021
+
+Trade and other payables                                          253,631,129            227,368,417
+Accrued expenses                                                  228,526,996            173,697,850
+Social insurance                                                    8,753,744              5,787,212
+Dividends payable                                                   3,074,547              3,925,487
+Other creditors                                                    36,764,101             50,253,593
+                                                                  530,750,517            461,032,559
+
+
+20.     Lease liabilities
+
+The lease liabilities represent the present value of the lease obligations related to medical equipment
+(first stage - Note 8) entered by one of the group companies and lease contracts for buildings (second
+stage). It was measured at the present value of the contractual lease payments discounted at an implied
+rate of return in the range between 11.15% and 16.65%.
+
+                                                                   2022                   2021
+Undiscounted
+During the year                                                    38,983,371             38,742,917
+More than a year                                                  305,552,641            346,876,515
+                                                                  344,536,012            385,619,432
+The present value of the lease obligations is as follows:
+During the year                                                    38,983,371             38,742,917
+More than a year                                                  155,459,030            172,715,165
+Balance                                                           194,442,401            211,458,082
+
+                                                                   2022                   2021
+Lease Liabilities were presented as follows:
+Lease liabilities shown as at 31 December 2021                    211,458,082             13,275,078
+Impact of applying EAS no. 49 “Lease contracts”                              -           197,425,332
+Adjustments                                                        (3,589,929)                     -
+Add: Additions during the year                                       5,142,778            19,974,500
+Add: Interest formed during the year                               23,130,995             24,506,126
+Deduct: Disposal during the year                                     (965,001)                     -
+Deduct: Payments during the year                                  (40,734,524)           (43,722,954)
+Lease liabilities at 31 December 2022                             194,442,401            211,458,082
+
+
+
+
+                                                 - 46 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+21.     Share capital
+
+Paid share capital of the Company is EGP 800,000,000 distributed on 1,600,000,000 shares.
+Shareholder’s structure in 31 December 2022 and 31 December 2021 as follows:
+
+                                                   Percentage of        Number of      Nominal value
+Name                                                ownership            shares
+
+Care Healthcare Ltd.                                         29%         464,000,000      232,000,000
+MCE Capital Health care                                   27.79%         444,688,538      222,344,269
+Other shareholders                                        43.21%         691,311,462      345,655,731
+Total                                                      100%        1,600,000,000      800,000,000
+
+The Group purchased treasury shares during the year, and the outstanding balance as at 31 December
+2022 is EGP 766,026,840.
+
+
+22.     Employee stock ownership plan
+The balance of the employees’ stock ownership plan is calculated on the basis of the difference between
+the price’s weighted average on the month preceding the units granting date and the month prior the
+units vesting date which is one year after the granting. The difference is multiplied by the number of
+units granted to each beneficiary and then divided by the price at vesting resulting in the final shares
+for the beneficiary.
+The estimated discounted value of the incentive and reward scheme for three years is EGP 50,442,715
+(estimated payment in the year is EGP 16,814,238), The estimated value for the period recorded in
+statement of equity amounted to 8,383,763 Egyptian pounds.
+
+23.     Reserves
+Below is the movement on reserves during the year:
+                                                                       2022
+                                               Balance at the        formed during Balance at the
+                                            beginning of the year       the year   end of the year
+
+Legal reserve                                          85,159,143        14,618,532        99,777,675
+Special reserve                                        49,090,006                 -        49,090,006
+Acquisition reserve                                  (89,475,574)                 -      (89,475,574)
+Other reserves                                        258,169,004         1,650,447       259,819,451
+Total                                                 302,942,579        16,268,979       319,211,558
+
+                                                                       2021
+                                               Balance at the        formed during Balance at the
+                                            beginning of the year       the year   end of the year
+
+Legal reserve                                          74,225,339        10,933,804         85,159,143
+Special reserve                                        49,090,006                 -         49,090,006
+Acquisition reserve                                  (89,475,574)                 -       (89,475,574)
+Other reserves                                        247,496,391        10,672,613        258,169,004
+Total                                                 281,336,162        21,606,417        302,942,579
+
+
+
+                                                 - 47 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+23.      Reserves (continued)
+23.1     Legal reserve
+In accordance with the Law No. 159 of 1981 and the Company's Articles of Association, 5% of the net
+profit for the year are transferred to the legal reserve. Based on a proposal by the Board of Directors,
+this transfer may be stopped if the legal reserve reaches 50% of the issued paid-up capital. The legal
+reserve is not available for distribution to shareholders.
+23.2     Acquisition reserve
+This reserve represents the difference between the value of the acquisition by Cleopatra Hospital
+Company S.A.E. and the carrying value of net assets and liabilities of Cairo Specialised Hospital
+Company S.A.E. at the acquisition date, as the two companies are under common control. The reason
+for the acquisition is the reorganisation of the group companies. Therefore, the assets and liabilities of
+the subsidiary were transferred at historical cost. Cleopatra Hospital Company S.A.E acquired
+additional 85,428 Shares from the non-controlling interest of Cairo Specialised Hospital Company
+S.A.E which resulted additional EGP 7,688,520 added to the acquisition reserve represented in the
+difference between the fair value of the shares EGP 100 per share and nominal value EGP 10 per share.
+
+23.3     Special reserve
+The special reserve represents the amount that was due to Care Healthcare Ltd. (Shareholder) valued at
+EGP 47,379,722. As per the letter issued by the Company on 12 April 2016, both parties have agreed
+that this amount shall be claimed only in the case of dissolution or liquidation of the Company, either
+voluntary or for any other legal reason. In that case, the due amount shall be divided between recent
+shareholders of the Company upon liquidation or dissolution at the same proportion of their shares in
+the Company's share capital to the total number of shares issued. Accordingly, this amount has been
+recognised as a special reserve of equity. In addition to the resulting reconciliation from treasury shares
+related to Cairo Specialised Hospital (Subsidiary Company). Valued at EGP 1,710,284.
+
+23.4    Other reserves
+The amount represents the amount transferred from share premium according to the requirements of
+Law No.159 of 1981, and there is no movement in this reserve during the year. In addition to the
+difference between the buying and selling price of the treasury shares.
+
+
+24.      Non-controlling interests
+
+                                                                                  NCI share in
+                                                                   Retained        acquisition
+                                     Capital        Reserves       earnings       adjustments       Total
+
+Balance at 1 January 2021            34,074,639       7,984,596     56,600,588         120,184     98,780,007
+Employee profit share                         -               -     (2,197,732)              -     (2,197,732)
+Legal reserve                                 -         732,813              -               -        732,813
+Comprehensive income for the year             -               -     23,426,977               -     23,426,977
+Balance at 31 December 2021          34,074,639       8,717,409     77,829,833         120,184    120,742,065
+
+Balance at 1 January 2022            34,074,639       8,717,409     77,829,833         120,184    120,742,065
+Employee profit share                          -               -    (4,659,818)              -     (4,659,818)
+Legal reserve                                  -       1,361,138              -               -       1,361,138
+Comprehensive income for the year              -              -      30,968,911               -     30,968,911
+Balance at 31 December 2022           34,074,639     10,078,547     104,138,926         120,184    148,412,296
+
+
+
+
+                                                   - 48 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+24.      Non-controlling interests (continued)
+
+Set out below is summarised financial information for each subsidiary that has non-controlling interests
+that are material to the group. The amounts disclosed for each subsidiary are before inter-company
+eliminations.
+
+                                         Cairo
+                                                   Nile Badrawi Al Shorouk            CHG            CHG
+                                       Specialized
+                                                     Hospital    Hospital            Pharma           MS
+2022                                    Hospital
+Summarised balance sheet
+
+Current assets                         190,785,262    207,844,535     178,251,501    14,570,552     23,149,904
+Current liabilities                    134,265,492     97,518,839     109,512,367    21,457,970     90,690,169
+Current net assets (liabilities)        56,519,770    110,325,696      68,739,134   (6,887,418)   (67,540,265)
+
+
+Non-current assets                     351,715,466    288,891,045     314,891,373    3,163,143     41,043,573
+Non-current liabilities                 25,604,134     69,951,018      27,269,432    3,861,929     39,565,924
+Non-current net assets (liabilities)   326,111,332    218,940,027     287,621,941    (698,786)      1,477,649
+
+Net assets                             382,631,102    329,265,723     356,361,075   (7,586,204)   (66,062,616)
+
+NCI %                                       43.54%            0.01%        0.01%            2%            40%
+
+                                         Cairo
+                                                   Nile Badrawi Al Shorouk            CHG            CHG
+                                       Specialized
+                                                     Hospital    Hospital            Pharma           MS
+2021                                    Hospital
+Summarised balance sheet
+
+Current assets                         179,127,975    159,882,840     188,924,507     9,090,455     20,212,049
+Current liabilities                    138,147,695     84,532,051      87,690,796    15,220,662     88,785,292
+Current net assets (liabilities)        40,980,280     75,350,789     101,233,711   (6,130,207)   (68,573,243)
+
+
+Non-current assets                     294,687,131    252,703,628     237,106,978    3,809,120     49,061,664
+Non-current liabilities                 12,377,233     21,141,783      22,967,712    4,576,460     48,480,290
+Non-current net assets (liabilities)   282,309,898    231,561,845     214,139,266    (767,340)        581,374
+
+Net assets                             323,290,178    306,912,634     315,372,977   (6,897,547)   (67,991,869)
+
+NCI %                                       43.54%            0.01%        0.01%            2%            40%
+
+                                         Cairo
+                                                   Nile Badrawi Al Shorouk            CHG           CHG
+                                       Specialized
+                                                     Hospital    Hospital            Pharma          MS
+2022                                    Hospital
+Summarised profit or loss
+
+Revenue                                525,559,329    378,418,379     439,722,048   48,036,184 87,646,799
+Profit (loss) for the period            70,253,065     26,488,488      48,708,353    (688,657) 1,929,253
+Other comprehensive income                       -              -               -            -          -
+Total comprehensive income (loss)       70,253,065     26,488,488      48,708,353    (688,657) 1,929,253
+
+Profit allocated to NCI                 30,203,198            2,899         4,871      (13,773)     771,701
+
+
+
+
+                                                     - 49 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+24.      Non-controlling interests (continued)
+
+                                       Cairo
+                                                 Nile Badrawi Al Shorouk        CHG            CHG
+                 2021                Specialized
+                                                   Hospital    Hospital        Pharma           MS
+                                      Hospital
+Summarised profit or loss
+Revenue                              458,923,126 375,285,656 379,473,301 37,365,554 74,520,431
+Profit for the period                 63,290,351 35,357,040 45,334,483 (1,161,552) (10,287,082)
+Other comprehensive income                     -            -           -          -            -
+Total comprehensive income            63,290,351 35,357,040 45,334,483 (1,161,552) (10,287,082)
+
+Profit allocated to NCI               27.556.619            3.889      4.533   (4.114.833)      (23.231)
+
+                                       Cairo
+                                                 Nile Badrawi Al Shorouk        CHG            CHG
+                 2022                Specialized
+                                                   Hospital    Hospital        Pharma           MS
+                                      Hospital
+Summarised cash flows
+Cash flows from operating activities    43,673,281 12,093,136 66,643,320       715,967 11,218,273
+Cash flows from investing activities  (66,519,594) (83,507,023) (92,076,324)    62,441    (412,537)
+Cash flows from financing activities     1,142,031 37,509,203 (10,669,172) (1,198,888) (13,991,204)
+Net increase / (decrease) in cash and
+cash equivalents                       (21,704,282) (33,904,684) (36,102,176) (420,480) (3,185,468)
+
+                                       Cairo
+                                                 Nile Badrawi Al Shorouk        CHG            CHG
+                 2021                Specialized
+                                                   Hospital    Hospital        Pharma           MS
+                                      Hospital
+Summarised cash flows
+Cash flows from operating activities    98,255,135 61,293,631 60,332,964         740,388    8,084,653
+Cash flows from investing activities  (92,214,642) (66,277,436) (32,552,471)      76,023    (367,178)
+Cash flows from financing activities   (5,927,092) (7,694,229) (5,631,811)     (661,257) (12,715,317)
+Net increase / (decrease) in cash and
+cash equivalents                           113,401 (12,678,036) 22,148,682        155,154    (4,997,842)
+
+
+
+
+                                                   - 50 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+25.     Revenue
+
+                                                                   2022                   2021
+
+Surgeries revenue                                                  559,698,599            482,811,623
+Accommodation and medical supervision revenue                      535,527,326            641,340,368
+Outpatient clinics revenue                                         300,292,279            268,983,244
+Laboratories revenue                                               282,235,681            278,888,810
+Service charge revenue *                                           187,509,676            181,859,320
+Cardiac catheterization revenue                                    183,902,580            187,654,337
+Radiology revenue                                                  178,893,170            188,537,209
+Pharmacy revenue                                                   143,383,952            120,935,589
+Emergency revenue                                                   91,551,652             80,993,846
+Oncology centre revenue                                             36,499,537             37,977,076
+Physiotherapy revenue                                               32,460,936             22,735,482
+Endoscopy revenue                                                   30,541,573             18,221,196
+Cardiac tests revenue                                               21,154,373             15,512,792
+Other sections revenue                                              15,725,828             12,371,880
+Dentistry revenue                                                   15,044,008             10,464,090
+                                                                 2,614,421,170          2,549,286,862
+
+*       “Service charge” does not represent a separate performance obligation but is a surcharge at a
+        fixed percentage rate applied to all revenue streams except for sale of medicines.
+
+As stated in the accounting policy, all medical services except for Accommodation and medical
+supervision are typically provided over a short time frame and in substance recorded at a point in time.
+Accommodation and medical supervision revenue is recognized over time.
+
+Timing of revenue recognition (for each revenue stream) is as follows:
+
+                                                                    2022                   2021
+
+ At a point in time                                             2,078,893,844          1,907,946,494
+ Over time -Accommodation and medical
+ supervision revenue                                              535,527,326            641,340,368
+                                                                2,614,421,170          2,549,286,862
+
+
+
+
+                                                 - 51 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+26.    Cost of revenue
+
+                                                                 2022               2021
+
+Medical and pharmaceutical supplies                              504,147,179        505,768,752
+Salaries, wages and benefits                                     449,808,482        419,500,348
+Doctor fees                                                      443,590,454        404,102,932
+Fixed assets depreciation                                        104,869,239         91,599,858
+Maintenance, spare parts and energy expenses                      83,830,442         71,260,338
+Consumables costs                                                 51,646,245         46,152,071
+Third party services                                              37,775,460         36,191,203
+Right of use depreciation                                         19,434,847         18,074,111
+Other expenses                                                    46,003,737         25,972,009
+                                                               1,741,106,085      1,618,621,622
+
+
+27.    General and administrative expenses
+
+                                                                 2022               2021
+
+Salaries, wages and benefits                                    188,930,565        172,177,475
+Professional and consulting fees                                 32,864,947         28,890,874
+Fixed assets depreciation                                        28,254,764         22,282,793
+Third party services                                             24,116,547         19,936,445
+Maintenance, spare parts and energy expenses                     22,652,385         18,654,505
+Right of use depreciation                                         6,521,834          7,882,231
+Consumables costs                                                 2,566,952          2,569,161
+Intangible assets amortization                                    2,069,284          2,069,284
+Other expenses                                                   73,225,864         70,474,379
+                                                                381,203,142        344,937,147
+
+
+
+
+                                               - 52 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+28.     Expenses by nature
+
+                                                                 2022               2021
+
+Salaries, wages and benefits                                     638,739,047        591,677,823
+Medical and pharmaceutical supplies                              504,147,179        505,768,752
+Doctor fees                                                      443,590,454        404,102,932
+Fixed assets depreciation                                        133,124,003        113,882,651
+Maintenance, spare parts and energy expenses                     106,482,827         89,914,843
+Third party services                                              61,892,007         56,127,648
+Consumables costs                                                 54,213,197         48,721,232
+Right of use depreciation                                         25,956,681         25,956,342
+Intangible assets amortization                                     2,069,284          2,069,284
+Other expenses                                                   152,094,548        125,337,262
+                                                               2,122,309,227      1.963.558.769
+
+
+29.     Net impairment losses on financial assets
+
+                                                                 2022               2021
+
+ECL in trade receivables                                         26,501,993          45,977,362
+ECL in cash no longer required                                    (254,359)         (2,947,251)
+                                                                 26,247,634          43,030,111
+
+
+30.     Other income
+
+                                                                 2022               2021
+
+Rent                                                               2,023,618           1,945,895
+Losses on the disposal of fixed assets                             (428,331)           (786,749)
+Other income                                                       3,279,000           8,200,716
+                                                                   4,874,287           9,359,862
+
+
+
+
+                                               - 53 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+31.     Finance income and finance cost
+
+                                                                    2022                   2021
+
+Finance income
+Interest income                                                     40,914,292             59,586,759
+Foreign currency valuation                                           8,271,121                      -
+Total finance income                                                49,185,413             59,586,759
+Finance costs
+Interest expense – loans and banks overdraft                      (20,442,311)             (9,934,055)
+Interest expense – lease contracts                                (23,130,995)            (24,506,126)
+Foreign currency revaluation                                                 -                  (9,375)
+Total finance expenses                                            (43,573,306)            (34,449,556)
+Net finance income                                                   5,612,107              25,137,203
+
+
+32.     Income taxes
+
+                                                                    2022                   2021
+
+Current income tax                                                   85,294,191           120,033,506
+Deferred tax (Note 33)                                                7,639,168             3,915,474
+                                                                     92,933,359           123,948,980
+
+The tax on profit before tax theoretically differs from the amount expected to be earned by applying the
+average tax rate applicable to the Company's profits as follows:
+
+                                                                    2022                   2021
+
+Net profit before tax                                              449,665,198            534,621,108
+Income tax calculated based on the applicable local tax rate       101,174,670            120,289,749
+Add/ (deduct):
+Non-deductible expenses                                              8,122,555              19,551,454
+Income not subject to tax                                         (17,509,992)            (21,680,398)
+Unrecognised deferred tax assets                                     1,146,126               5,788,175
+Income taxes                                                        92,933,359             123,948,980
+Effective tax rate                                                     20.67%                  23.18%
+
+
+                                                                    2022                   2021
+Current income tax liabilities
+Balance at 1 January                                                66,198,856              36,054,556
+Payments during the year                                          (52,794,758)            (36,402,286)
+Current year tax                                                    85,294,191             120,033,506
+Advance payments to tax authorities                               (50,699,048)            (53,486,920)
+                                                                    47,999,241              66,198,856
+
+
+
+
+                                                 - 54 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+33.      Deferred tax
+
+Change in tax assets and liabilities during the year is as follows:
+                                                                           (Expense)/
+                                                                        Income charged
+                                                      Balance at        to the statement      Balance at
+                                                   1 January 2022       of profit or loss        2022
+                                                      (Liability)       during the year       (Liability)
+Liabilities
+Fixed assets                                          (44,281,274)         (10,488,237)        (54,769,511)
+Fixed assets - Effect of fair value                   (38,359,550)            1,929,493        (36,430,057)
+Intangible assets - Effect of fair value               (9,979,650)                    -         (9,979,650)
+Total Liabilities                                     (92,620,474)          (8,558,744)       (101,179,218)
+
+Assets
+Provisions (excluding claims provision)                  3,347,063               919,576          4,266,639
+Subsidiaries Accumulated losses                          7,463,572                     -          7,463,572
+Net deferred tax - liability                          (81,809,839)           (7,639,168)       (89,449,007)
+
+Liabilities
+Fixed assets                                           (38,636,541)            (5,644,733)      (44,281,274)
+Fixed assets - Effect of fair value                    (40,289,043)             1,929,493       (38,359,550)
+Intangible assets - Effect of fair value                (9,979,650)                     -        (9,979,650)
+Total Liabilities                                      (88,905,234)            (3,715,240)      (92,620,474)
+
+Assets
+Provisions (excluding claims provision)                  3,547,297               (200,234)        3,347,063
+Subsidiaries Accumulated losses                          7,463,572                      -         7,463,572
+Net deferred tax - liability                           (77,894,365)            (3,915,474)      (81,809,839)
+
+
+34.      Earnings per share
+
+The basic share of the profit for the year is calculated by dividing the net profit for the year attributable
+to the parent company’s shareholders by the weighted average number of shares outstanding during the
+year after excluding the distribution of employee dividends.
+
+                                                                        2022                   2021
+
+Profit for the year                                                     325,762,928            387,245,151
+(Less) Dividends for employees and the board of directors              (67,950,544)           (66,127,121)
+                                                                        257,812,384            321,118,030
+The weighted average number of ordinary shares for basic
+                                                                      1.514.721.828          1,598,704,166
+earnings per share purposes
+The weighted average number of ordinary shares for the
+                                                                         2.246.395                          -
+purpose of the ESOP
+Weighted average number of ordinary shares for diluted
+                                                                      1,516,968,223          1.598.704.166
+earnings per share purposes
+Earnings per share - Basic                                                      0.17                   0.20
+Earnings per share - Diluted                                                    0.17                   0.20
+
+Weighted average number of shares are adjusted to take account of shares held under the Employee
+Stock Options Programme.
+
+
+                                                   - 55 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+35.      Related parties’ transactions
+
+During the year the Group made transactions with certain related parties. The balances with related
+parties at the financial statements date as well as the transactions during the year were as follows:
+
+Balances of financial position
+
+                                                                 Balance due from    Balance due from
+                                                                   / (to) related      / (to) related
+(Related parties)                Nature of transaction             parties 2022        parties 2021
+
+
+Other parties           Expenses paid on behalf of the Company           3,152,972            530,300
+
+                                                                         3,152,972            530,300
+
+The transactions with the related parties are the Group’s dealings with the parent company, whether by
+buying, selling or exchanging services. Prices, policies and conditions related to these operations are
+approved by the Group’s management and are on the same basis as dealing with others.
+
+
+36.      Tax position
+
+Cleopatra Hospital Company
+
+First: Corporate tax
+-       The examination was conducted until 31 December 2019 and the settlement and payment were
+        made in full.
+-       The year 2020 has been examined, payment has been made, and settlement is underway.
+-       For the years 2021/2022, the monthly reports are submitted on the legal dates, and the company
+        has not been notified of the examination.
+
+Secondly: Payroll tax
+-      The examination was conducted until 31 December 2019 and the settlement and payment were
+       made in full.
+-      2020 under inspection.
+-      For the years 2021/2022, the monthly reports are submitted on the legal dates, and the company
+       has not been notified of the examination.
+
+Third: Stamp taxes
+-       Inspected until 31 July 2006, and payment has been made.
+-       The inspection was carried out until the year 2020, and the payment was made and the
+        settlement is underway.
+-       For the years 2021/2022, the monthly reports are submitted on the legal dates, and the company
+        has not been notified of the examination.
+
+Fourth: Value Added Taxes
+-       Inspected until 31 December 2004.
+-       The sales tax was inspected for the years from 2005 to 2020 and the examination differences
+        were paid.
+-       Monthly tax returns are submitted on the legal dates, and the company has not been notified of
+        the examination.
+
+                                                  - 56 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+36.     Tax position (continued)
+
+Cairo Specialized Hospital Company
+
+First: Corporate tax
+-       The inspection was conducted until 31 December 2019 and the settlement and payment were
+        made in full.
+-       The year 2020 has been inspected, payment has been made, and settlement is underway.
+-       For the years 2021/2022, the monthly reports are submitted on the legal dates, and the company
+        has not been notified of the examination.
+
+Secondly: Payroll tax
+-      The inspection was carried out until 31 December 2018, and the settlement and payment were
+       made in full.
+-      The year 2019 and 2020 was inspected, payment has been made.
+-      For the years 2021/2022, the monthly reports are submitted on the legal dates, and the company
+       has not been notified of the examination.
+
+Third: Stamp taxes
+-       Inspected until 31 December 2016 and payment was made.
+-       The years from 2017 to 2019 have been inspected, payment has been made and settlement is
+        underway
+-       2020 is under inspection.
+-       For the years 2021/2022, the monthly reports are submitted on the legal dates, and the company
+        has not been notified of the examination.
+
+Fourth: Value Added Taxes
+-       The inspection was conducted from 2016 to 2020, and the tax differences are being paid and
+        the settlement is being done.
+-       Monthly tax returns are submitted on the legal dates.
+-       For the years 2021/2022, the monthly reports are submitted on the legal dates, and the company
+        has not been notified of the examination.
+
+Nile Badrawi Hospital Company
+
+First: Corporate tax
+-       The inspection was carried out until 31 December 2020, and the settlement and payment were
+        made in full.
+-       For the years 2021/2022, the monthly reports are submitted on the legal dates, and the company
+        has not been notified of the examination.
+
+Secondly: Payroll tax
+-      The inspection was carried out until 31 December 2020 and the settlement was made and the
+       principal tax paid.
+-      For the years 2021/2022, the monthly reports are submitted on the legal dates, and the company
+       has not been notified of the examination.
+
+Third: Stamp taxes
+-       The inspection was carried out until the year 2019 and the settlement and payment were made
+        in full.
+
+Fourth: Value Added Taxes
+-       Monthly tax returns are submitted on the legal dates.
+                                                - 57 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+36.     Tax position (continued)
+
+Al Shorouk Hospital Company
+
+First: Corporate tax
+-       The inspection was conducted until 31 December 2019 and the settlement and payment were
+        made in full.
+-       The year 2020 has been inspected, payment has been made, and settlement is in progress.
+-       For the years 2021/2022, the monthly reports are submitted on the legal dates, and the company
+        has not been notified of the examination.
+
+Secondly: Payroll tax
+-      The inspection was carried out until 31 December 2014 and the settlement and payment was
+       made in full.
+-      The years from 2015 to 2020 were inspected and the original tax was paid.
+-      For the years 2021/2022, the monthly reports are submitted on the legal dates, and the company
+       has not been notified of the examination.
+
+Third: Stamp taxes
+-       The inspection was carried out until 31 December 2018, and the settlement and payment were
+        made in full.
+-       The years from 2019 to 2020 are under inspection.
+-       For the years 2021/2022, the monthly reports are submitted on the legal dates, and the company
+        has not been notified of the examination.
+
+Fourth: Value Added Taxes
+-       The inspection was carried out from 2016 to November 2020 and the original tax was paid.
+-       Monthly tax returns are submitted on the legal dates.
+-       For the years 2021/2022, the monthly reports are submitted on the legal dates, and the company
+        has not been notified of the examination.
+
+
+37.     Commitments
+
+Capital commitments:
+Capital commitments at financial year end, which are not yet due, amounted to EGP [1.110.636.050]
+(2021: EGP 141,285,345), which represent the capital commitments to purchase of fixed assets and
+projects under constructions.
+
+
+38.     Other liabilities
+
+The present value of the outstanding liability to Dr. Aboul Fotouh arising from the El Bedaya transaction
+(Note 9) was estimated at EGP 14,485,000, and the present value of the fair value of the share-based
+compensation (which is equivalent to 40% of the shares of the El Bedaya El Gedida for Medical Centers
+and Hospitals) was estimated in June 2023 against the commitment of Dr. Abul-Fotouh with all the
+conditions for the contracts between the two parties, at an amount of EGP 38,005,000, an amount of
+EGP 13.820.000 was recognized as an expense within the year.
+
+
+
+
+                                                  - 58 -
+CLEOPATRA HOSPITAL COMPANY “S.A.E.” AND ITS SUBSIDIARIES
+
+Notes to the consolidated financial statements - For the year ended 31 December 2022
+
+(All amounts in the notes are shown in Egyptian Pounds unless otherwise stated)
+
+39.     Treasury shares
+
+On February 24, 2022, the Board of Directors unanimously approved that the company purchase
+treasury shares from the open market, provided that execution takes place on the price of the security
+during the trading sessions. From the session on February 27, 2022, until the purchase of treasury shares
+amounting to a maximum of 10% of the total shares of the company, without the participation of any
+of the main or internal shareholders and their associated groups in accordance with the law.
+
+Based on the decision of the Board of Directors, the company purchased 160,737,312 shares of its
+shares from the stock market for a total amount of EGP 766,026,840, and they were offered by
+deduction from the ownership rights of the treasury shares, and on December 6, 2022, the Board of
+Directors agreed to the cancel 154,565,797 treasury shares, and on 25 January 2023, the general
+assembly approved the cancelation of the shares.
+
+
+40.     Significant and Subsequent events
+
+On 13 February 2020, the Cleopatra Hospital Company, the General Authority for River Transport, the
+Nile Badrawi Hospital Company and the heirs of Eng. Hassan Badrawi signed a comprehensive and
+final settlement agreement, according to which it was agreed to resolve, settle and end all disputes and
+claims related to the land on which Nile Badrawi Hospital was built. The total settlement amounted to
+36 million EGP, bearing in mind that part of the settlement falls within the limits of the amounts
+deducted from the sale price of the shares of Nile Badrawi Hospital in favor of Cleopatra Hospital, and
+it was agreed to waive between the General Authority for River Transport and the Nile Badrawi Hospital
+
+Company for the disputes raised by each of them regarding the land being settled. On 31 March 2021,
+the Administrative Court of Justice issued a ruling accepting the case in form and rejecting it in
+substance. The Cairo Governorate and the Nile Badrawi Hospital Company appealed the
+aforementioned ruling before the Supreme Administrative Court, and a session was set for 23 May
+2023, until both parties submit the settled settlement contracts between the parties.
+
+
+
+
+                                                  - 59 -
+

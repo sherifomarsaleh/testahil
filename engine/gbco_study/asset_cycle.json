@@ -1,0 +1,203 @@
+{
+ "ticker": "GBCO",
+ "segment": "GB Auto",
+ "unit": "EGP mn",
+ "as_of": "2026-09-17",
+ "published_central": 45.78258185873978,
+ "published_central_is": "MNT-Halan at its reviewed carrying value",
+ "published_central_two_sided": [
+  45.78258185873978,
+  56.77947453492587
+ ],
+ "published_spot": 28.98,
+ "rule": "SIGCM clause 4; QC gate 07-09-2026 row 21",
+ "disclosed": {
+  "4Q22": {
+   "inventory": 3920.0,
+   "receivables": 1432.2,
+   "advances": 742.5,
+   "debtors_other": 1927.1,
+   "payables": 4715.9,
+   "working_capital": 3305.9,
+   "source": "GB_Corp_ER_4Q23_-_ER_-_FINAL.pdf, Table 6",
+   "basis": "payables NET of finance-lease liabilities"
+  },
+  "4Q23": {
+   "inventory": 6366.1,
+   "receivables": 1743.5,
+   "advances": 913.6,
+   "debtors_other": 1547.9,
+   "payables": 6104.7,
+   "working_capital": 4466.3,
+   "source": "GB_Corp_ER_4Q24-_E_-_Final.pdf, Table 6",
+   "basis": "payables GROSS"
+  },
+  "4Q24": {
+   "inventory": 21134.3,
+   "receivables": 3708.7,
+   "advances": 1583.0,
+   "debtors_other": 3258.5,
+   "payables": 18900.5,
+   "working_capital": 10783.9,
+   "source": "GB_Corp_ER_4Q25-_E_-_Final.pdf, Table 6",
+   "basis": "payables GROSS"
+  },
+  "4Q25": {
+   "inventory": 24649.7,
+   "receivables": 5316.9,
+   "advances": 1299.6,
+   "debtors_other": 3371.0,
+   "payables": 15720.2,
+   "working_capital": 18917.0,
+   "source": "GB_Corp_ER_2Q26-_E_-_Final.pdf, Table 6",
+   "basis": "payables GROSS"
+  },
+  "2Q26": {
+   "inventory": 22959.1,
+   "receivables": 5873.5,
+   "advances": 1153.7,
+   "debtors_other": 2598.9,
+   "payables": 15492.5,
+   "working_capital": 17092.8,
+   "source": "GB_Corp_ER_2Q26-_E_-_Final.pdf, Table 6",
+   "basis": "payables GROSS"
+  }
+ },
+ "flows": {
+  "FY2023": {
+   "revenue": 23429.5,
+   "cost_of_sales": 17616.4,
+   "days": 365,
+   "opening": "4Q22",
+   "closing": "4Q23"
+  },
+  "FY2024": {
+   "revenue": 46692.0,
+   "cost_of_sales": 37634.6,
+   "days": 366,
+   "opening": "4Q23",
+   "closing": "4Q24"
+  },
+  "FY2025": {
+   "revenue": 65913.5,
+   "cost_of_sales": 56076.4,
+   "days": 365,
+   "opening": "4Q24",
+   "closing": "4Q25"
+  },
+  "1H2026": {
+   "revenue": 39627.0,
+   "cost_of_sales": 33904.9,
+   "days": 181,
+   "opening": "4Q25",
+   "closing": "2Q26"
+  }
+ },
+ "footing": {
+  "4Q22": {
+   "computed": 3305.9,
+   "stated": 3305.9,
+   "gap": -0.0
+  },
+  "4Q23": {
+   "computed": 4466.4,
+   "stated": 4466.3,
+   "gap": 0.1
+  },
+  "4Q24": {
+   "computed": 10784.0,
+   "stated": 10783.9,
+   "gap": 0.1
+  },
+  "4Q25": {
+   "computed": 18917.0,
+   "stated": 18917.0,
+   "gap": -0.0
+  },
+  "2Q26": {
+   "computed": 17092.7,
+   "stated": 17092.8,
+   "gap": -0.1
+  }
+ },
+ "cycle": {
+  "FY2023": {
+   "dso": 27.16,
+   "dio": 131.9,
+   "dpo": 126.49,
+   "ccc": 32.58,
+   "advance_days": 14.23,
+   "debtor_days": 24.11,
+   "balance_basis": "closing",
+   "wc_closing": 4466.3,
+   "wc_over_annualised_revenue": 0.1906
+  },
+  "FY2024": {
+   "dso": 21.37,
+   "dio": 133.72,
+   "dpo": 121.59,
+   "ccc": 33.5,
+   "advance_days": 9.78,
+   "debtor_days": 18.84,
+   "balance_basis": "average",
+   "wc_closing": 10783.9,
+   "wc_over_annualised_revenue": 0.2316
+  },
+  "FY2025": {
+   "dso": 24.99,
+   "dio": 149.0,
+   "dpo": 112.67,
+   "ccc": 61.32,
+   "advance_days": 7.98,
+   "debtor_days": 18.36,
+   "balance_basis": "average",
+   "wc_closing": 18917.0,
+   "wc_over_annualised_revenue": 0.287
+  },
+  "1H2026": {
+   "dso": 25.56,
+   "dio": 127.08,
+   "dpo": 83.31,
+   "ccc": 69.32,
+   "advance_days": 5.6,
+   "debtor_days": 13.63,
+   "balance_basis": "average",
+   "wc_closing": 17092.8,
+   "wc_over_annualised_revenue": 0.2139
+  }
+ },
+ "ttm_to_30_june_2026": {
+  "revenue": 75046.7,
+  "cost_of_sales": 64239.4,
+  "working_capital": 17092.8,
+  "wc_over_revenue": 0.2278,
+  "source": "1H2025 auto revenue 30,493.8 and cost of sales 25,741.9 from the 2Q26 release's own prior-year column"
+ },
+ "basis_breaks": [
+  {
+   "period": "4Q22 and 4Q23",
+   "what": "payables shown NET of finance-lease liabilities",
+   "measured": "the 4Q23 release reports 4Q23 payables of 5,828.9 and the 4Q24 release reports 6,104.7 for the same date; the difference of 275.8 reconciles to the pound against the 275.9 of lease liabilities the 4Q23 release names in its own footnote",
+   "consequence": "FY2023's payable days are computed on CLOSING balances only. Averaging a net-basis opening with a gross-basis closing would be a days figure of no definition at all, and is not done."
+  }
+ ],
+ "restatements": [
+  {
+   "line": "Accounts and notes receivables, 31-Dec-2024",
+   "as_reported": 7581.323,
+   "restated": 8334.218,
+   "where": "FY2024 audited statements as reported; FY2025 audited statements label the 2024 column 'Restated'"
+  },
+  {
+   "line": "Accounts and notes receivables, 31-Dec-2025",
+   "as_reported": 13465.131,
+   "restated": 14157.949,
+   "where": "FY2025 audited statements as reported; the 30-June-2026 reviewed interim carries the higher figure as its comparative"
+  }
+ ],
+ "receivables_contamination": {
+  "group_current_receivables_31dec2025": 13465.131,
+  "auto_segment_trade_receivables_31dec2025": 5316.9,
+  "note": "the difference is GB Capital's loan book and a group-level days figure is meaningless; the cycle is built on the auto segment alone"
+ }
+}

@@ -1,0 +1,128 @@
+Egyptian Chemical Industries Post-September 2026 Operational and Capital Rebalancing
+The official corporate records of the Egyptian Exchange (EGX) confirm that the registered Arabic name of EGX:EGCH is شركة الصناعات الكيماوية المصرية - كيما (Egyptian Chemical Industries - KIMA), operating under ISIN EGS38201C017 and Reuters identifier EGCH.CA1. Following the regulatory listing of its rights issue shares in July 2024, KIMA's capital base stands at EGP 9,932,894,995, divided across 1,986,578,999 common shares at a nominal par value of EGP 5.00 per share1.
+Corporate disclosures and regulatory notices filed after 1 September 2026 show significant shifts across KIMA's capital allocation structure, balance sheet liabilities, physical plant execution, and earnings baseline4. On 9 and 14 September 2026, the company posted convening notices for an Ordinary General Meeting (OGM) set for 30 September 20267. The assembly was called to approve the audited FY2025/26 accounts following Central Auditing Organization (CAO) revisions, deliberate a proposed dividend distribution, authorize the conveyance of 8.08 feddans of quarry land to the Aswan Governorate, approve the decommissioning and scrapping of the legacy KIMA 1 plant, and accept the board resignation of Nermine Nabil Mohamed Abou El-Ata6.
+A comprehensive capital utilization audit submitted under Article 52 on 17 September 2026 confirmed that KIMA disbursed EGP 2.59 billion of its EGP 4.00 billion capital increase proceeds, primarily clearing legacy debts owed to its state parent and financing operating bills for natural gas and seaport logistics4. The remaining EGP 1.41 billion remains locked as restricted cash at Banque Misr4. On the operational front, cumulative engineering, procurement, and construction (EPC) progress on the USD 278 million Ammonium Nitrate and Nitric Acid (ANNA) expansion reached 46.60%4. These project milestones coincided with statutory post-audit restatements that reduced FY2025/26 net profit by EGP 101 million to EGP 1.794 billion, alongside the formal release of KIMA's FY2026/27 budget targeting EGP 1.505 billion in net profit and EGP 7.3 billion in capital investments6.
+Corporate Identity Verification and Egyptian Exchange Trading Framework
+KIMA's listing file with the EGX and Misr for Central Clearing, Depository and Registry (MCDR) establishes the formal trading parameters and ownership architecture that govern its corporate actions1.
+The controlling state interest, held through the Chemical Industries Holding Company, directly steers board configuration, state gas clearing terms, and dividend extraction demands, creating a specific corporate finance dynamic where public agricultural supply mandates intersect with commercial equity performance4.
+Ordinary General Meeting Agenda and Asset Rationalization Directives
+The convening notices circulated on 9 September 2026 and supplemented on 14 September 2026 establish four strategic measures scheduled for shareholder vote on 30 September 20267.
+Real Estate Monetization in Kom Ombo
+The board resolved to sell and transfer legal ownership of an 8.08-feddan land parcel owned by KIMA at the Fatira quarry in the Kom Ombo district of the Aswan Governorate directly to the executive council of the Aswan Governorate9. This transaction converts non-operational real estate assets into immediate balance-sheet liquidity, while resolving historical municipal land counterclaims and avoiding administrative disputes with local authorities9.
+Scrapping and Metal Salvage of Legacy KIMA 1 Units
+The OGM agenda includes an item to ratify the board's decision regarding the final scrapping (تخريد) and competitive auction sale of all remaining production units, structures, and industrial scrap from the legacy KIMA 1 plant9. Historically reliant on energy-intensive water electrolysis to produce hydrogen for ammonia synthesis, KIMA 1 became obsolete after the commercial commissioning of the natural gas-based KIMA 2 complex18. The planned decommissioning and disposal through competitive industrial scrap tenders eliminates remaining carrying depreciation, clears industrial acreage for potential project expansions at the Aswan site, and provides non-operating cash inflows9.
+Governance Rebalancing and Resignation
+Shareholders are set to review the resignation tendered by Board Member Nermine Nabil Mohamed Abou El-Ata9. The assembly is scheduled to formally discharge the outgoing director and vote on an institutional nominee proposed by the Chemical Industries Holding Company, realigning the board's oversight committee as the ANNA expansion enters peak construction4.
+Capital Increase Proceed Utilization and Balance Sheet Liquidity Audit
+On 17 September 2026, KIMA filed its semi-annual disclosure detailing the disbursement of proceeds from its EGP 4.000 billion capital increase for the period ended 30 June 2026, fulfilling Article 52 requirements under EGX listing regulations4. The rights issue, completed on 4 June 2024 and formally registered on the exchange on 17 July 2024, expanded share capital from EGP 5.933 billion to EGP 9.933 billion through the issuance of 800 million new common shares3. Total proceeds comprised EGP 933.3 million in debt-for-equity conversions against existing shareholder credit balances and EGP 3.067 billion in cash subscriptions4.
+The disclosure, endorsed by the Central Auditing Organization, notes that the remaining EGP 1.41 billion remains locked in dedicated escrow accounts at Banque Misr4. These funds are legally designated to serve as the local-currency equity contribution toward the ongoing ANNA project's EPC contracts and associated financing facilities4.
+Project Execution and Feedstock Realignment for the ANNA Expansion
+Primary regulatory disclosures from mid-September 2026, alongside executive briefings by Chief Executive Officer Eng. Sameh Talaat on 13 September 2026, provide verified project metrics on KIMA’s Ammonium Nitrate and Nitric Acid (ANNA) expansion4.
+Valuation Implications of the Intermediate Ammonia Siphon
+The operational configuration of the ANNA complex structurally alters KIMA's commodity exposure and margin profile4. Siphoning 300 tonnes/day of basic ammonia from KIMA 2 diverts intermediate chemical output away from standard urea granulation4.
+This internal offtake will convert basic ammonia into nitric acid and two grades of ammonium nitrate: granulated agricultural fertilizer and industrial technical-grade porous prills (HDAN and LDAN) used for mining and civil infrastructure explosive manufacture4.
+Technical ammonium nitrate trades at a conversion premium relative to bulk agricultural urea, giving KIMA higher realized pricing per MMBtu of natural gas consumed while shielding top-line cash flows from international urea spot price cycles4.
+Central Auditing Organization Revisions and the FY2026/27 Operational Budget
+Exchange disclosures published between 9 and 17 September 2026 confirmed that KIMA’s financial results for the fiscal year ended 30 June 2026 underwent regulatory adjustment following a statutory audit by the Central Auditing Organization (CAO)6.
+Audit Reconciliation for FY2025/26
+KIMA’s preliminary draft financials had indicated an unaudited net profit of EGP 1.895 billion6. Following comprehensive auditing by the CAO, the company booked net downward adjustments of EGP 101 million, reflecting revised provisioning for natural gas billing arrears, modified depreciation schedules on legacy equipment, and the reclassification of deferred operating expenses6.
+Audited Net Profit: EGP 1.794 billion, down 5.3% from the preliminary release, but up 81.8% year-over-year compared to the EGP 986.96 million recorded in FY2024/256.
+Operating Revenue: EGP 11.23 billion, an increase of 30.6% compared to EGP 8.60 billion in FY2024/256.
+Adjusted Net Profit Margin: 16.0%, compared to 11.5% in FY2024/25, driven by higher gross margins on export cargo contracts despite higher industrial energy costs6.
+Board-Approved Operating Budget for FY2026/27
+On 13 September 2026, Managing Director and CEO Eng. Sameh Talaat publicly detailed the primary operating benchmarks and budgetary metrics adopted by the board of directors for the 2026/2027 fiscal year15:
+Liquid Ammonia Production Target: 335,000 metric tonnes, matching a 90% utilization rate of KIMA 2's maximum design capacity (~1,080 tonnes/day)15.
+Target Activity Revenue: EGP 8.9 billion15.
+Target Export Sales Volume: USD 115 million in direct export revenues15.
+Target Net Profit: Budgeted at EGP 1.505 billion12.
+Capital Investment Plan: EGP 7.3 billion, concentrated heavily on procurement milestones and civil construction outlays for the ANNA plant11.
+Workforce Structure: 1,700 direct industrial and engineering personnel15.
+Energy Tariffs and Domestic Agricultural Quota Structures
+KIMA's margins remain sensitive to Egyptian natural gas pricing policies and compulsory agricultural delivery obligations set by the state16.
+Natural Gas Indexation and the USD 8.50 Floor Tariff
+Nitrogen fertilizer manufacturers in Egypt operate under an energy pricing formula supervised by the Egyptian Natural Gas Holding Company (EGAS), with accounts settled bi-weekly21. The billing rate is linked to FOB Mediterranean urea benchmarks, subject to a regulatory minimum floor21.
+During mid-2026, the Egyptian Cabinet kept this price floor at USD 8.50 per MMBtu21. Because feedstock and fuel natural gas constitute approximately 60% of KIMA’s cash costs per synthesized tonne, holding the tariff at the USD 8.50 floor sets an elevated operating cost baseline21.
+Furthermore, mid-2026 regional offshore upstream production swings caused spot curtailments across Egypt's national grid, but feedstocks stabilized by mid-August 2026 as Egypt expanded LNG imports24.
+Subsidy Quota Reductions and Export Allocations
+Under administrative decisions formulated by the Ministry of Agriculture and Land Reclamation in consultation with the fertilizer manufacturing committee, Egypt adjusted the compulsory domestic supply framework16.
+Supply Quota Reduction: The aggregate domestic supply quota across Egypt's primary producers (MOPCO, Abu Qir, Helwan, KIMA, and AlexFert) was lowered from 2.4 million tonnes/year to 1.8 million tonnes/year16. This reduced the mandatory domestic surrender allocation from the historical 55% level toward approximately 37% of plant output16.
+Subsidized Price Cap: Delivered volume to local agricultural cooperatives remains pegged at EGP 4,500 per tonne16.
+Export Realization Boost: Reducing the domestic surrender quota from 55% toward 37% broadens KIMA’s commercial flexibility16. A larger share of production can now be directed toward the domestic free market or exported at world spot prices, with the elimination of the 10% export tax providing additional netback support16.
+Auxiliary Commercial Agreements for Byproduct Monetization and Power Efficiency
+KIMA disclosed two targeted energy and emissions initiatives in mid-September 2026 intended to optimize plant overhead and commercialize manufacturing byproducts15:
+Commercial Offtake of Carbon Dioxide
+KIMA signed a commercial offtake contract with a private-sector industrial gas operator to capture, liquefy, and market excess carbon dioxide () emissions from its steam methane reformer11. While KIMA’s synthesis loop consumes carbon dioxide to react with ammonia and yield urea, stoichiometric variations yield surplus gaseous 18. Commercializing this surplus stream creates an incremental high-margin revenue line while mitigating total facility emissions11.
+Rooftop Solar Photovoltaic Generation Facilities
+KIMA entered into an engineering agreement with a private renewable energy contractor to install rooftop solar photovoltaic (PV) generation arrays across administrative and ancillary buildings at the Aswan industrial complex15. Power generated from these solar arrays will replace daytime electricity drawn from the national grid, reducing facility power bills and insulating auxiliary operations from domestic electricity tariff hikes30.
+Negative Verification Register for Unannounced Industry Capacity and Missing Corporate Guidance
+In accordance with strict verification standards, targeted search sweeps were run across the Egyptian Exchange filing archive, the Chemical Industries Holding Company portal, the Ministry of Petroleum and Mineral Resources gazette, and specialized petrochemical data services.
+KIMA's near-term operational performance will be shaped by its progress on the Tecnimont-Orascom ANNA facility ahead of targeted completion in June 2027, the stability of natural gas deliveries against the USD 8.50/MMBtu price floor, and its ability to maximize export earnings under reduced domestic surrender quotas4. Concurrently, the deployment of the remaining EGP 1.41 billion in restricted cash at Banque Misr and the auction of legacy KIMA 1 plant assets will adjust the company's fixed-asset base and liquidity position4. These developments are central to KIMA's structural shift from an energy-intensive producer of subsidized bulk urea toward an integrated manufacturer of value-added chemical fertilizers and technical-grade ammonium nitrate4.
+Works cited
+الصناعات الكيماوية المصرية (EGCH) - Mubasher.Info, https://www.mubasher.info/markets/EGX/stocks/EGCH/
+تفاصيل الشركة - البورصة المصرية, https://www.egx.com.eg/ar/CompanyDetails.aspx?ISIN=EGS38201C017
+أين أنفقت "كيما" 2.59 مليار جنيه من متحصلات زيادة رأس المال؟, https://www.mubasher.info/news/4617535/%D8%A3%D9%8A%D9%86-%D8%A3%D9%86%D9%81%D9%82%D8%AA-%D9%83%D9%8A%D9%85%D8%A7-2-59-%D9%85%D9%84%D9%8A%D8%A7%D8%B1-%D8%AC%D9%86%D9%8A%D9%87-%D9%85%D9%86-%D9%85%D8%AA%D8%AD%D8%B5%D9%84%D8%A7%D8%AA-%D8%B2%D9%8A%D8%A7%D8%AF%D8%A9-%D8%B1%D8%A3%D8%B3-%D8%A7%D9%84%D9%85%D8%A7%D9%84-/
+بين ديون القابضة وفواتير الغاز.. "كيما" تصرف 2.6 مليار جنيه من, https://m.youm7.com/story/2026/9/17/%D8%A8%D9%8A%D9%86-%D8%AF%D9%8A%D9%88%D9%86-%D8%A7%D9%84%D9%82%D8%A7%D8%A8%D8%B6%D8%A9-%D9%88%D9%81%D9%88%D8%A7%D8%AA%D9%8A%D8%B1-%D8%A7%D9%84%D8%BA%D8%A7%D8%B2-%D9%83%D9%8A%D9%85%D8%A7-%D8%AA%D8%B5%D8%B1%D9%81-2-6-%D9%85%D9%84%D9%8A%D8%A7%D8%B1/7549542
+​"كيما" توضح أين أنفقت 2.59 مليار جنيه من متحصلات زيادة رأس المال؟, https://www.mubasher.info/news/4673716/-%D9%83%D9%8A%D9%85%D8%A7-%D8%AA%D9%88%D8%B6%D8%AD-%D8%A3%D9%8A%D9%86-%D8%A3%D9%86%D9%81%D9%82%D8%AA-2-59-%D9%85%D9%84%D9%8A%D8%A7%D8%B1-%D8%AC%D9%86%D9%8A%D9%87-%D9%85%D9%86-%D9%85%D8%AA%D8%AD%D8%B5%D9%84%D8%A7%D8%AA-%D8%B2%D9%8A%D8%A7%D8%AF%D8%A9-%D8%B1%D8%A3%D8%B3-%D8%A7%D9%84%D9%85%D8%A7%D9%84-/
+«كيما» تعتمد نتائج معدلة بعد تصويبات «المركزي للمحاسبات», https://egxpert.com/blog/kima-adjusted-fy26-results-caba-audit-2026-09-13-2
+كيما (EGCH.CA) بخصوص دعوة الجمعية العامة العادية - البورصة المصرية, https://www.egx.com.eg/ar/NewsDetails.aspx?NewsID=294646
+كيما (EGCH.CA) بخصوص دعوة الجمعية العامة العادية - البورصة المصرية, https://www.egx.com.eg/ar/NewsDetails.aspx?NewsID=294521
+كيما تدعو العمومية لمناقشة توزيعات الأرباح وبيع أرض في أسوان, https://tradersunion.com/ar/news/financial-news/show/3272979-kima-dividends-sale-aswan-land/
+«كيما» تدعو عموميتها لمناقشة توزيع أرباح العام المالي 2025-2026, https://almalnews.com/2134362/%C2%AB%D9%83%D9%8A%D9%85%D8%A7%C2%BB-%D8%AA%D8%AF%D8%B9%D9%88-%D8%B9%D9%85%D9%88%D9%85%D9%8A%D8%AA%D9%87%D8%A7-%D9%84%D9%85%D9%86%D8%A7%D9%82%D8%B4%D8%A9-%D8%AA%D9%88%D8%B2%D9%8A%D8%B9-%D8%A3%D8%B1%D8%A8%D8%A7%D8%AD-%D8%A7%D9%84%D8%B9%D8%A7%D9%85/
+بقفزة 91.4% في الأرباح و11.2 مليار جنيه إيرادات.. "كيما" ترصد 7.3, https://almosadron.com/%D8%A7%D9%84%D8%A7%D9%82%D8%AA%D8%B5%D8%A7%D8%AF/%D8%A8%D9%82%D9%81%D8%B2%D8%A9-91-4-%D9%81%D9%8A-%D8%A7%D9%84%D8%A3%D8%B1%D8%A8%D8%A7%D8%AD-%D9%8811-2-%D9%85%D9%84%D9%8A%D8%A7%D8%B1-%D8%AC%D9%86%D9%8A%D9%87-%D8%A5%D9%8A%D8%B1%D8%A7%D8%AF%D8%A7/
+"كيما" تعلن عن استثمار جديد في الغاز الطبيعي وتدعم منشآتها بالطاقة, https://www.elmuashir.com/40296
+معلومات وتحديثات الصناعات الكيماوية المصرية - كيما - الشرق بلومبرغ, https://asharqbusiness.com/stocks/security/EGCH:EC/egyptian-chemical-industries-kima/
+أداء سهم الصناعات الكيماوية المصرية - Decypha, http://34.240.189.1/ar/stock-overview/public/EGX/EGCH
+رئيس شركة كيما لـ"اليوم السابع": تطوير المصانع منع تسريح آلاف, https://www.youm7.com/story/2026/9/13/%D8%B1%D8%A6%D9%8A%D8%B3-%D8%B4%D8%B1%D9%83%D8%A9-%D9%83%D9%8A%D9%85%D8%A7-%D9%84%D9%80-%D8%A7%D9%84%D9%8A%D9%88%D9%85-%D8%A7%D9%84%D8%B3%D8%A7%D8%A8%D8%B9-%D8%AA%D8%B7%D9%88%D9%8A%D8%B1-%D8%A7%D9%84%D9%85%D8%B5%D8%A7%D9%86%D8%B9-%D9%85%D9%86%D8%B9-%D8%AA%D8%B3%D8%B1%D9%8A%D8%AD/7545330
+مصر تخفض حصة الأسمدة المدعومة من إنتاج المصانع مع ارتفاع كلفة الغاز, https://asharqbusiness.com/economics/145410/%D8%A7%D8%B1%D8%AA%D9%81%D8%A7%D8%B9-%D8%AA%D9%83%D9%84%D9%81%D8%A9-%D8%A7%D9%84%D8%BA%D8%A7%D8%B2-%D9%8A%D8%AF%D9%81%D8%B9-%D9%85%D8%B5%D8%B1-%D9%84%D8%AA%D9%82%D9%84%D9%8A%D8%B5-%D8%AD%D8%B5%D8%A9-%D8%A7%D9%84%D8%A3%D8%B3%D9%85%D8%AF%D8%A9-%D8%A7%D9%84%D9%85%D8%AF%D8%B9%D9%85%D8%A9/
+عمومية "كيما" تعتمد توزيع 135.7 مليون جنيه أرباح للمساهمين - جريدة المال, https://almalnews.com/111766/%D8%B9%D9%85%D9%88%D9%85%D9%8A%D8%A9-%D9%83%D9%8A%D9%85%D8%A7-%D8%AA%D8%B9%D8%AA%D9%85%D8%AF-%D8%AA%D9%88%D8%B2%D9%8A%D8%B9-135-7-%D9%85%D9%84%D9%8A%D9%88%D9%86/
+مصنع كيما 2.. صرح عملاق جديد على أرض أسوان.. توفير ٥٠٠ ألف طن أمونيا, https://www.elbalad.news/4654367
+إيقاف وحدة حامض النيتريك بمصنع كيما القديم فى أسوان بسبب, https://www.youm7.com/story/2019/11/25/%D8%A5%D9%8A%D9%82%D8%A7%D9%81-%D9%88%D8%AD%D8%AF%D8%A9-%D8%AD%D8%A7%D9%85%D8%B6-%D8%A7%D9%84%D9%86%D9%8A%D8%AA%D8%B1%D9%8A%D9%83-%D8%A8%D9%85%D8%B5%D9%86%D8%B9-%D9%83%D9%8A%D9%85%D8%A7-%D8%A7%D9%84%D9%82%D8%AF%D9%8A%D9%85-%D9%81%D9%89-%D8%A3%D8%B3%D9%88%D8%A7%D9%86-%D8%A8%D8%B3%D8%A8%D8%A8/4517587
+سامح طلعت: مصانع كيما تحقق 6.7 مليار جنيه صادرات بنسبة زيادة 39.4%, https://www.youm7.com/story/2025/10/6/%D8%B3%D8%A7%D9%85%D8%AD-%D8%B7%D9%84%D8%B9%D8%AA-%D9%85%D8%B5%D8%A7%D9%86%D8%B9-%D9%83%D9%8A%D9%85%D8%A7-%D8%AA%D8%AD%D9%82%D9%82-6-7-%D9%85%D9%84%D9%8A%D8%A7%D8%B1-%D8%AC%D9%86%D9%8A%D9%87-%D8%B5%D8%A7%D8%AF%D8%B1%D8%A7%D8%AA/7147100
+سعر الغاز عند الحد الأدنى.. هبوط مفاجئ لأسعار الأسمدة الآزوتية في مصر, https://www.alarabiya.net/aswaq/exclusive/2026/07/20/%D8%B3%D8%B9%D8%B1-%D8%A7%D9%84%D8%BA%D8%A7%D8%B2-%D8%B9%D9%86%D8%AF-%D8%A7%D9%84%D8%AD%D8%AF-%D8%A7%D9%84%D8%A7%D8%AF%D9%86%D9%89-%D9%87%D8%A8%D9%88%D8%B7-%D9%85%D9%81%D8%A7%D8%AC%D8%A6-%D9%84%D8%A7%D8%B3%D8%B9%D8%A7%D8%B1-%D8%A7%D9%84%D8%A7%D8%B3%D9%85%D8%AF%D8%A9-%D8%A7%D9%84%D8%A7%D8%B2%D9%88%D8%AA%D9%8A%D8%A9-%D9%81%D9%8A-%D9%85%D8%B5%D8%B1
+البورصة المصرية, https://www.egx.com.eg/ar/NewsDetails.aspx?NewsID=276690
+كيما تخطط لضخ 7.3 مليار جنيه استثمارات خلال 2027/2026 - Bloom Gate, https://bloom-gate.com/%D8%A7%D8%B3%D8%AA%D8%AB%D9%85%D8%A7%D8%B1/%D9%83%D9%8A%D9%85%D8%A7-%D8%AA%D8%AE%D8%B7%D8%B7-%D9%84%D8%B6%D8%AE-7-3-%D9%85%D9%84%D9%8A%D8%A7%D8%B1-%D8%AC%D9%86%D9%8A%D9%87-%D8%A7%D8%B3%D8%AA%D8%AB%D9%85%D8%A7%D8%B1%D8%A7%D8%AA-%D8%AE%D9%84/
+مصر ترفع إمدادات الغاز لمصانع الأسمدة والبتروكيماويات 19% - العربية, https://www.alarabiya.net/aswaq/exclusive/2026/08/19/%D9%85%D8%B5%D8%B1-%D8%AA%D8%B1%D9%81%D8%B9-%D8%A7%D9%85%D8%AF%D8%A7%D8%AF%D8%A7%D8%AA-%D8%A7%D9%84%D8%BA%D8%A7%D8%B2-%D9%84%D9%85%D8%B5%D8%A7%D9%86%D8%B9-%D8%A7%D9%84%D8%A7%D8%B3%D9%85%D8%AF%D8%A9-%D9%88%D8%A7%D9%84%D8%A8%D8%AA%D8%B1%D9%88%D9%83%D9%8A%D9%85%D8%A7%D9%88%D9%8A%D8%A7%D8%AA-19-
+Middle East Conflict: Urea supply disruptions could be catastrophic, https://www.crugroup.com/en/communities/thought-leadership/2026/Middle-East-Conflict-Urea-supply-disruptions-could-be-catastrophic/
+مصر تتجه لرفع أسعار الأسمدة المدعمة 33% وزيادة حصة التصدير - العربية, https://www.alarabiya.net/aswaq/exclusive/2025/09/23/%D9%85%D8%B5%D8%B1-%D8%AA%D8%AA%D8%AC%D9%87-%D9%84%D8%B1%D9%81%D8%B9-%D8%A7%D8%B3%D8%B9%D8%A7%D8%B1-%D8%A7%D9%84%D8%A7%D8%B3%D9%85%D8%AF%D8%A9-%D8%A7%D9%84%D9%85%D8%AF%D8%B9%D9%85%D8%A9-33-%D9%88%D8%B2%D9%8A%D8%A7%D8%AF%D8%A9-%D8%AD%D8%B5%D8%A9-%D8%A7%D9%84%D8%AA%D8%B5%D8%AF%D9%8A%D8%B1
+نظام جديد لتوزيع الأسمدة المدعمة وخفض حصص بعض المحاصيل إلى 55%, https://ccsr-eg.net/news/news.aspx?id=22403
+«كيما» ترفع أرباحها 82% إلى 1.79 مليار جنيه خلال العام المالي الماضي, https://amwalalghad.com/2026/09/17/%D9%83%D9%8A%D9%85%D8%A7-%D8%AA%D8%B1%D9%81%D8%B9-%D8%A3%D8%B1%D8%A8%D8%A7%D8%AD%D9%87%D8%A7-82-%D8%A5%D9%84%D9%89-1-79-%D9%85%D9%84%D9%8A%D8%A7%D8%B1-%D8%AC%D9%86%D9%8A%D9%87-%D8%AE%D9%84/
+Urea Market Size, Share, Analysis and Forecast 2036 - ChemAnalyst, https://www.chemanalyst.com/industry-report/urea-market-666
+كيما تستهدف إقامة محطة شمسية وتحقيق 1.5 مليار جنيه أرباحا في عام 2027, https://www.elbalad.news/6891299
+"كيما" تقرر إنشاء وحدة لإسالة الغاز ومحطات شمسية - جريدة البورصة, https://www.alborsaanews.com/2026/03/04/1953115
+ANNUAL REPORT2025 - Fertiglobe, https://fertiglobe.com/wp-content/uploads/2026/03/Fertiglobe-2025-Annual-Report-vF.pdf
+FERTINEWS - IFDC Hub, https://hub.ifdc.org/bitstreams/997e63c4-19b0-4043-81d2-ea11bb6185a0/download
+=== TABLE 0 ===
+Listing Parameter | Official Regulatory Specification | Primary Filing Verification
+Registered Arabic Name | شركة الصناعات الكيماوية المصرية - كيما | EGX Corporate Action Directory2
+English Corporate Name | Egyptian Chemical Industries (KIMA) | EGX Listing Registry2
+Ticker Code | EGCH | Egyptian Exchange2
+Reuters Code | EGCH.CA | Refinitiv Market Identifier1
+ISIN Code | EGS38201C017 | MCDR System Registry1
+Exchange Admission Date | 16 August 1995 | Listing Historical Master2
+Par Value per Share | EGP 5.00 | Registered Articles of Incorporation1
+Total Listed Shares | 1,986,578,999 shares | MCDR Registered Capital Ledger1
+Paid-Up Capital | EGP 9,932,894,995.00 | Statutory Audit Filing1
+Majority Shareholder | Chemical Industries Holding Company (CIHC) | Ministry of Public Business Sector Directory4
+=== TABLE 1 ===
+Disbursement Category | Disclosed Capital Allocation (EGP) | % of Total Capital | Primary Deployment Mechanism and Operational Objective
+Shareholder Debt Extinguishment | EGP 933,300,000 | 23.33% | Complete debt settlement of outstanding credit balances due as of 31 January 2024 to Chemical Industries Holding Co.4.
+Operating Working Capital & Logistics | EGP 1,656,700,000 | 41.42% | Payment of energy bills for industrial natural gas to EGAS and settlement of transport receivables for railway and trucking logistics hauling urea to export ports4.
+Cumulative Disbursed Capital | EGP 2,590,000,000 | 64.75% | Aggregated capital deployed across debt relief and operational expenditure support4.
+Unutilized Capital (Restricted Cash) | EGP 1,410,000,000 | 35.25% | Restricted cash (نقدية غير حرة) ring-fenced at Banque Misr under Note 13 of audited accounts4.
+=== TABLE 2 ===
+Parameter | Primary Engineering & Commercial Specification | Verification Source
+EPC Consortium | Tecnimont S.p.A. (Italy) and Orascom Construction (Consortium) | Statutory Disclosure Filing4
+EPC Contract Execution | 12 October 2023 (Turnkey Contract) | Statutory Disclosure Filing4
+Advance Payment Discharge | Settled December 2023 | Statutory Disclosure Filing4
+Site Handover Date | 7 August 2024 | Board Operational Report4
+Contractual Execution Period | 34 Calendar Months (Mechanical Completion Target: June 2027) | EPC Contract Terms4
+Physical Completion Status | 46.60% (Cumulative as of mid-September 2026 audit) | CAO Monitored Audit4
+Turnkey Contract Cost | USD 234.042 million + EGP 1.611 billion + USD 11.0 million in EGP | Binding EPC Agreement4
+Total Feasibility Investment | USD 278.385 million plus EGP 6.422 billion | Project Investment Model4
+Feedstock Offtake Ratio | Diverts 300 tonnes/day of liquid ammonia from KIMA 2 synthesis loop | Plant Flowsheet & Balance4
+Downstream Output Design | Nitric acid capacity: 600 tonnes/day; downstream ammonium nitrate synthesis | Process Licensor Design4
+=== TABLE 3 ===
+Investigation Category | Targeted Query Strings Used in Sweep | Execution Date | Audit Finding and Verification Status
+New Egyptian Greenfield Nitrogen Capacity | "Egypt" "urea plant" OR "nitrogen fertilizer" "greenfield" 2026, NCIC expansion, green ammonia greenfield urea Egypt | 18 September 2026 | Searched, Not Found. No ministerial approvals, engineering contract awards, or financial closes were announced for new greenfield urea or nitrogen plants in Egypt. Activity in Egypt's fertilizer sector remains centered on green ammonia export facilities (such as the Scatec/Yara/MOPCO and Fertiglobe projects) and existing plant debottlenecks32.
+KIMA Investor Presentations and Call Transcripts | "KIMA investor presentation", "كيما مؤتمر المحللين", "EGCH" earnings call transcript 2026, كيما علاقات المستثمرين عرض تقديمي | 18 September 2026 | Searched, Not Found. KIMA does not publish presentation decks, IR fact sheets, or earnings call transcripts. Investor communications remain limited to statutory financial releases, CAO audit notes, and verified press statements from executive leadership6.
+Non-ANNA Sustaining Capex Program | "كيما خطة استثمارية", "KIMA capex plan", كيما موازنة استثمارية صيانة 2026 2027 | 18 September 2026 | Searched, Not Found. The company has not published an itemized multi-year capital expenditure schedule for maintenance or non-ANNA projects outside the EGP 7.3 billion FY2026/27 capex budget. That budget remains dedicated to ANNA milestone payments, standard turnaround provisions, and the rooftop solar and  contracts11.

@@ -135,13 +135,42 @@ def clean_local_module(work):
     return _add_probe(work, 'import band_record\nimport engine\nprint(band_record, engine)\n')
 
 
+def clean_sibling_through_declared_path(work):
+    """A module reached through a declared sys.path, importing a SIBLING that declares nothing.
+
+    THE FALSE POSITIVE THIS CASE EXISTS FOR, 18-09-2026: a gate imported `panel`, eleven
+    files called panel.py sit under engine/, and the checker reported it as a PyPI package
+    the workflow forgets to install — it is not on PyPI at all, and the message would have
+    sent somebody to add it. TWO THINGS DECIDE WHICH FILE IS MEANT and the checker read
+    neither: the entry script's own sys.path inserts, and, once the walk recurses into a
+    module in that directory, THE DIRECTORY THAT MODULE ALREADY LIVES IN — a sibling import
+    declares nothing because it does not have to.
+
+    The probe reproduces both hops: it declares a directory, imports a module from it, and
+    that module imports its own sibling. Neither name is on PyPI, and neither may fire.
+    """
+    import os as _os
+    d = _os.path.join(work, 'engine', 'nc_pkg_xyz')
+    _os.makedirs(d, exist_ok=True)
+    open(_os.path.join(d, 'nc_sibling_xyz.py'), 'w').write('VALUE = 1\n')
+    open(_os.path.join(d, 'nc_entry_xyz.py'), 'w').write(
+        'import nc_sibling_xyz\nprint(nc_sibling_xyz.VALUE)\n')
+    return _add_probe(work,
+                      'import os, sys\n'
+                      'ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))\n'
+                      'sys.path.insert(0, os.path.join(ROOT, "engine", "nc_pkg_xyz"))\n'
+                      'import nc_entry_xyz\nprint(nc_entry_xyz)\n')
+
+
 CASES = [('the openpyxl condition exactly as it shipped', case_drop_openpyxl),
          ('a gate grows a top-level import nobody installed', case_new_top_level_import),
          ('a pip line emptied', case_pip_line_emptied),
          ('no workflows at all', case_no_workflows)]
 CLEAN = [('an import inside a function', clean_function_level_import),
          ('a distribution whose import name differs', clean_alias_distribution),
-         ("this repository's own modules", clean_local_module)]
+         ("this repository's own modules", clean_local_module),
+         ('a sibling import two hops down a declared path',
+          clean_sibling_through_declared_path)]
 
 
 def main():
