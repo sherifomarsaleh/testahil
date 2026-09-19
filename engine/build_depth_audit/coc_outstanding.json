@@ -1,25 +1,28 @@
 {
-  "why": "[R-COC-01] with the ratchet of [R-ENF-02]. Every study on disk when engine/cost_of_capital.py was adopted (02-Sep-2026) carries either a flat rate or a schedule built inline; each is allowed to fail while it waits its turn. AMOC alone implements the procedure, and even its record predates this module's shape. The build breaks on a NEW study with no entry either way, or on a listed study whose record has appeared and is wrong. The list may only SHORTEN (--prune).",
-  "adopted": "2026-09-02",
-  "outstanding": [
-    "ADNOCDIST",
-    "ADNOCDRILL",
-    "AIRARABIA",
-    "AMOC",
-    "AMR",
-    "BOROUGE",
-    "DU",
-    "ELEC",
-    "EMPOWER",
-    "FERTIGLOBE",
-    "MODON",
-    "PHAR",
-    "RIYADHCABLE",
-    "SAVOLA",
-    "SWDY",
-    "XPT",
-    "EGCH",
-    "ARCC: terminal risk-free 0.1050 against the derived 0.0900. NOT a deferral of the correction and no rule forbids applying it [R-REBUILD-01 CLAUSE TWO]. The study REFUSES TO BUILD at the lower rate on its own terminal sign test: N/IC 11.7296% against W 15.5421%, so marginal ROIC says real growth destroys value, while the model's own response to real growth ADDS 0.64% (85.3469 at real 0% against 85.8972 at real +2%). Measured 19-09-2026: at main's 10.50% rate W is 16.7421% and the two agree (spread -0.61%), so the agreement was a coincidence of magnitudes rather than evidence -- the published 3%/7% NOMINAL pair spans real -4.00% to real 0.00% against a 7.00% terminal inflation and never tested positive real growth at all. The growth charge is real (gr x IC) while the denominator moves with NOMINAL g, so N/IC vs W is not this construction's crossover and the study's guard is right to refuse. Owed: re-derive the sign condition for [R-TERM-01]'s FCFF definition, then rebuild. Measured cost of leaving it: ARCC stays at 77.1781 where the 2% rate gives 85.3469, +10.6%.",
-    "GBCO: terminal risk-free 0.1050 against the derived 0.0900. Blocked on a PRE-EXISTING failure that is not this change's and not this branch's: recalc.py refuses with '571 formula cells disagree with the model', and it refuses IDENTICALLY -- the same 571 -- on origin/main restored untouched, measured 19-09-2026. build_all.py stops there because later steps read what recalc writes, so the study cannot be rebuilt at any rate until that is fixed. Consistent with main's own 'Study provenance gate' having been red since 14-09-2026."
-  ]
+ "why": "[R-COC-01] with the ratchet of [R-ENF-02]. Every study on disk when engine/cost_of_capital.py was adopted (02-Sep-2026) carries either a flat rate or a schedule built inline; each is allowed to fail while it waits its turn. AMOC alone implements the procedure, and even its record predates this module's shape. The build breaks on a NEW study with no entry either way, or on a listed study whose record has appeared and is wrong. The list may only SHORTEN (--prune).",
+ "adopted": "2026-09-02",
+ "outstanding": [
+  "ADNOCDIST",
+  "ADNOCDRILL",
+  "AIRARABIA",
+  "AMOC",
+  "AMR",
+  "ARCC",
+  "BOROUGE",
+  "DU",
+  "ELEC",
+  "EMPOWER",
+  "FERTIGLOBE",
+  "GBCO",
+  "MODON",
+  "PHAR",
+  "RIYADHCABLE",
+  "SAVOLA",
+  "SWDY",
+  "XPT"
+ ],
+ "why_each": {
+  "ARCC": "terminal risk-free 0.1050 against the derived 0.0900. NOT a deferral of the correction and no rule forbids applying it [R-REBUILD-01 CLAUSE TWO]. The study REFUSES TO BUILD at the lower rate on its own terminal sign test: N/IC 11.7296% against W 15.5421%, so marginal ROIC says real growth destroys value, while the model's own response to real growth ADDS 0.64% (85.3469 at real 0% against 85.8972 at real +2%). At main's 10.50% rate W is 16.7421% and the two agree (spread -0.61%), so the agreement was a coincidence of magnitudes rather than evidence: the published 3%/7% NOMINAL pair spans real -4.00% to real 0.00% against a 7.00% terminal inflation and never tested positive real growth at all. The growth charge is real (gr x IC) while the denominator moves with NOMINAL g, so N/IC vs W is not this construction's crossover and the study's guard is right to refuse. Owed: re-derive the sign condition for [R-TERM-01]'s FCFF definition, then rebuild. Measured cost of leaving it: ARCC stays at 77.1781 where the 2% rate gives 85.3469, +10.6%. [19-09-2026]",
+  "GBCO": "terminal risk-free 0.1050 against the derived 0.0900. Blocked on a PRE-EXISTING failure that is not this change's and not this branch's: recalc.py refuses with '571 formula cells disagree with the model', and it refuses IDENTICALLY -- the same 571 -- on origin/main restored untouched. build_all.py stops there because later steps read what recalc writes, so the study cannot be rebuilt at any rate until that is fixed. Consistent with main's own 'Study provenance gate' having been red since 14-09-2026. [19-09-2026]"
+ }
 }

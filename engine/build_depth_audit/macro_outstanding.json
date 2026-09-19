@@ -6,6 +6,7 @@
     "ADNOCDRILL",
     "AIRARABIA",
     "AMR",
+    "ARCC",
     "BOROUGE",
     "DU",
     "ELEC",
@@ -16,8 +17,7 @@
     "RIYADHCABLE",
     "SAVOLA",
     "SWDY",
-    "XPT",
-    "ARCC: terminal risk-free 0.1050 against the derived 0.0900. NOT a deferral of the correction and no rule forbids applying it [R-REBUILD-01 CLAUSE TWO]. The study REFUSES TO BUILD at the lower rate on its own terminal sign test: N/IC 11.7296% against W 15.5421%, so marginal ROIC says real growth destroys value, while the model's own response to real growth ADDS 0.64% (85.3469 at real 0% against 85.8972 at real +2%). Measured 19-09-2026: at main's 10.50% rate W is 16.7421% and the two agree (spread -0.61%), so the agreement was a coincidence of magnitudes rather than evidence -- the published 3%/7% NOMINAL pair spans real -4.00% to real 0.00% against a 7.00% terminal inflation and never tested positive real growth at all. The growth charge is real (gr x IC) while the denominator moves with NOMINAL g, so N/IC vs W is not this construction's crossover and the study's guard is right to refuse. Owed: re-derive the sign condition for [R-TERM-01]'s FCFF definition, then rebuild. Measured cost of leaving it: ARCC stays at 77.1781 where the 2% rate gives 85.3469, +10.6%."
+    "XPT"
   ],
   "pruned_on": [],
   "declared_open": {
@@ -30,5 +30,8 @@
       "what_would_settle_it": "the TERMINAL, not the horizon. 7.00% is terminal inflation at zero real growth -- the bank stops taking share AND stops participating in credit deepening the moment the window closes, in an economy growing about 4.5% real. A terminal real growth near 3% puts nominal at about 10.2% and clears the window with no extension, and RAISES the answer, which is why it must be argued from evidence about this bank and this credit market or not at all. It is not a route back to 44.46.",
       "recorded": "2026-09-13, when the study first carried a macro record and the breach became measurable. Before that ADIB sat on the outstanding list for the weaker reason that it carried no record at all."
     }
+  },
+  "why_each": {
+    "ARCC": "terminal risk-free 0.1050 against the derived 0.0900. NOT a deferral of the correction and no rule forbids applying it [R-REBUILD-01 CLAUSE TWO]. The study REFUSES TO BUILD at the lower rate on its own terminal sign test: N/IC 11.7296% against W 15.5421%, so marginal ROIC says real growth destroys value, while the model's own response to real growth ADDS 0.64% (85.3469 at real 0% against 85.8972 at real +2%). At main's 10.50% rate W is 16.7421% and the two agree (spread -0.61%), so the agreement was a coincidence of magnitudes rather than evidence: the published 3%/7% NOMINAL pair spans real -4.00% to real 0.00% against a 7.00% terminal inflation and never tested positive real growth at all. The growth charge is real (gr x IC) while the denominator moves with NOMINAL g, so N/IC vs W is not this construction's crossover and the study's guard is right to refuse. Owed: re-derive the sign condition for [R-TERM-01]'s FCFF definition, then rebuild. Measured cost of leaving it: ARCC stays at 77.1781 where the 2% rate gives 85.3469, +10.6%. [19-09-2026]"
   }
 }
