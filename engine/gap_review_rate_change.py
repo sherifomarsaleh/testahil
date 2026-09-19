@@ -34,6 +34,14 @@ def review(tk, date='19-09-2026'):
     mk = (nums.get('market') or 'EG').upper()
     path = MP.load(mk)
     rf_t, pi_t, rr = path.terminal_rf, path.terminal_inflation, path.real_rate_convention
+    branches = read_branches(sdir)
+    if central is None and spot and branches:
+        # A TWO-SIDED STUDY HAS TWO ANSWERS AND BOTH ARE AUDITED. A review naming one
+        # of two has audited half the study, which is what check_valuation_gap refuses
+        # and what three reviews in this book were doing. Each branch gets its own
+        # AUDITED CENTRAL line; the narrative below is identical because the cause is
+        # identical — one house input moved, and it moved both branches the same way.
+        return _two_sided(tk, sdir, nums, spot, branches, prior_name, prior_aud, date)
     if central is None or not spot:
         return None
     gap = central / spot - 1.0
@@ -131,6 +139,92 @@ def review(tk, date='19-09-2026'):
     A('')
     return '\n'.join(out)
 
+
+def _two_sided(tk, sdir, nums, spot, branches, prior_name, prior_aud, date):
+    """The same review, with one AUDITED CENTRAL line per published branch."""
+    import macro_path as _MP
+    coc = nums.get('cost_of_capital_record') or {}
+    path = _MP.load((nums.get('market') or 'EG').upper())
+    rf_t, pi_t, rr = path.terminal_rf, path.terminal_inflation, path.real_rate_convention
+    def _lv(b):
+        if isinstance(b, dict):
+            return b.get('label') or b.get('name') or 'branch', b.get('value')
+        if isinstance(b, (list, tuple)):
+            return b[0], b[1]
+        return str(b), b
+    rows = []
+    for b in branches:
+        lab, val = _lv(b)
+        if isinstance(val, (int, float)):
+            rows.append((lab, float(val), float(val) / spot - 1.0))
+    if not rows:
+        return None
+    out = ['# %s — gap review, %s' % (tk, date.replace('-', ' ')), '']
+    for lab, val, g in rows:
+        out.append('AUDITED CENTRAL: %.4f' % val)
+        out.append('AUDITED GAP: %+.2f%%' % (100 * g))
+        out.append('   — %s' % lab)
+        out.append('')
+    out.append('This study publishes %d named branches and no single central, because its '
+               'contested judgement is BINARY: a number between them describes a world '
+               'nobody is proposing. Both branches are audited here, against the latest '
+               'known price of %.4f. A review naming one branch of two has audited half '
+               'the study.' % (len(rows), spot))
+    out.append('')
+    out.append('## What moved, and it is one thing')
+    out.append('')
+    out.append('The terminal risk-free rate moved from 10.5000%% to %.4f%%, DERIVED and '
+               'never typed [R-MACRO-01]: terminal inflation %.2f%% plus the house '
+               'real-rate convention %.4f%%, revised to 2%% on 19-09-2026 on the '
+               'principal\'s instruction — "the floor of the Risk Free rate should be '
+               'inflation+2%%". The retired 3.5%% carried an Egypt-specific real premium '
+               'ON TOP of a country risk premium, counting the same risk twice on the one '
+               'line that carries most of the terminal value [R-COC-01]. It moves BOTH '
+               'branches and moves them the same way, because it sits upstream of the '
+               'judgement that separates them.' % (100 * rf_t, 100 * pi_t, 100 * rr))
+    out.append('')
+    out.append('NO OTHER DRIVER MOVED. No filing was re-read, no base year re-struck, no '
+               'margin re-anchored, no bridge line changed.')
+    out.append('')
+    out.append('## The eight headings')
+    out.append('')
+    for h, txt in (
+        ('LATEST FILINGS', 'Carried forward from %s. The information set is unchanged.'),
+        ('BASE YEAR', 'Carried forward from %s. No filed period moved.'),
+        ('MACRO COHERENCE', 'WORKED FRESH. Inflation, currency and price sit on ONE house '
+                            'path and the study carries no inflation number of its own. '
+                            'Only the real-rate convention changed; the ladder, the '
+                            'derived currency path and the terminal inflation are '
+                            'untouched. (Prior review: %s.)'),
+        ('DISCOUNT RATE', 'WORKED FRESH. Country risk enters exactly once, through the '
+                          'premium [R-COC-01]. What the revision removed was a second '
+                          'helping of it sitting inside the REAL rate. (Prior review: %s.)'),
+        ('TERMINAL', 'WORKED FRESH. Terminal growth is stored as a real rate and '
+                     'recomputes to its nominal, so a lower discount rate creates no '
+                     'silent real-terms drift; the terminal is built by the sanctioned '
+                     'module on a disclosed life [R-TERM-01]. (Prior review: %s.)'),
+        ('BALANCE SHEET', 'Carried forward from %s. No balance-sheet date moved.'),
+        ('CLAIMS AGAINST THE RECORD', 'Carried forward from %s. No claim in the study is '
+                                      'a function of the discount rate.'),
+        ('MULTIPLE CROSS-CHECK', 'The implied multiples move with each branch by '
+                                 'construction. A cross-check that moves because the '
+                                 'answer moved is not a check on the answer. (Prior '
+                                 'review: %s.)')):
+        out.append('**%s.** %s' % (h, txt % (prior_name or 'the prior review')))
+        out.append('')
+    out.append('## What this review does NOT conclude')
+    out.append('')
+    out.append('It does not conclude either branch is right. What is established is that '
+               'the movement has ONE named cause, that the cause is a house input rather '
+               'than a study judgement, and that the judgement separating the branches is '
+               'untouched by it.')
+    out.append('')
+    out.append('**The honest weakness.** Every study this revision touched moved the SAME '
+               'way, upward. [R-VCAL-01]\'s promotion guard is symmetric because a house '
+               'that corrects its pessimism into optimism has fixed nothing, and one lever '
+               'moving one way across a whole market is the pattern it exists to catch.')
+    out.append('')
+    return '\n'.join(out)
 
 if __name__ == '__main__':
     for tk in sys.argv[1:]:

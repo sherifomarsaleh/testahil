@@ -112,6 +112,28 @@
       "bear": 2.6,
       "full": 2.4
      }
+    },
+    {
+     "delivered": "2026-09-19",
+     "edition": 4,
+     "fair": {
+      "base": 51.127561364140576,
+      "bear": 49.891024358395484,
+      "full": 52.81008737740287
+     },
+     "lessons": [],
+     "origins": "",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": -5.8,
+      "bear": 57.9,
+      "full": -44.6
+     },
+     "vs_previous_pct": {
+      "base": 15.0,
+      "bear": 15.6,
+      "full": 14.8
+     }
     }
    ],
    "exchange": "EGX",
@@ -332,6 +354,28 @@
       "base": 13.7,
       "bear": -0.6,
       "full": 15.0
+     }
+    },
+    {
+     "delivered": "2026-09-19",
+     "edition": 9,
+     "fair": {
+      "base": 22.570479873030084,
+      "bear": 1.6549378955760952,
+      "full": 31.267432758681615
+     },
+     "lessons": [],
+     "origins": "",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": 279.3,
+      "bear": -59.5,
+      "full": 267.0
+     },
+     "vs_previous_pct": {
+      "base": 12.6,
+      "bear": -0.5,
+      "full": 13.6
      }
     }
    ],
@@ -937,6 +981,38 @@
       "bear": 0.0,
       "full": 34.5
      }
+    },
+    {
+     "delivered": "2026-09-19",
+     "edition": 12,
+     "fair": {
+      "base": null,
+      "bear": 9.235379308069334,
+      "branches": [
+       {
+        "label": "Cash-flow lens, capital programme carried through",
+        "value": 9.235379308069334
+       },
+       {
+        "label": "Cash-flow lens, capital programme stopped",
+        "value": 12.772343731962982
+       }
+      ],
+      "full": 12.772343731962982
+     },
+     "lessons": [],
+     "origins": "",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": null,
+      "bear": null,
+      "full": -17.4
+     },
+     "vs_previous_pct": {
+      "base": null,
+      "bear": 916.7,
+      "full": 10.0
+     }
     }
    ],
    "exchange": "EGX",
@@ -1353,6 +1429,38 @@
       "bear": -24.4,
       "full": -23.7
      }
+    },
+    {
+     "delivered": "2026-09-19",
+     "edition": 7,
+     "fair": {
+      "base": null,
+      "bear": 101.41618860076002,
+      "branches": [
+       {
+        "label": "Frame A \u2014 provision charge permanent at 5.25% of revenue",
+        "value": 101.41618860076002
+       },
+       {
+        "label": "Frame B \u2014 provision charge normalising to 2.5% of revenue",
+        "value": 121.61088716090093
+       }
+      ],
+      "full": 121.61088716090093
+     },
+     "lessons": [],
+     "origins": "",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": null,
+      "bear": 74.7,
+      "full": 66.5
+     },
+     "vs_previous_pct": {
+      "base": null,
+      "bear": 19.0,
+      "full": 18.2
+     }
     }
    ],
    "exchange": "EGX",
@@ -1511,6 +1619,24 @@
       "bear": 0.0,
       "full": -0.0
      }
+    },
+    {
+     "delivered": "2026-09-19",
+     "edition": 8,
+     "fair": {
+      "base": 23.944898997935084,
+      "bear": 5.593349114660554,
+      "full": 62.913552694550916
+     },
+     "lessons": [],
+     "origins": "",
+     "scope": "full",
+     "vs_baseline_pct": null,
+     "vs_previous_pct": {
+      "base": 13.5,
+      "bear": 12.3,
+      "full": 14.3
+     }
     }
    ],
    "exchange": "EGX",
@@ -1602,6 +1728,28 @@
       "base": 9.9,
       "bear": -17.8,
       "full": 9.9
+     }
+    },
+    {
+     "delivered": "2026-09-19",
+     "edition": 4,
+     "fair": {
+      "base": 133.47171947917428,
+      "bear": 22.242028368069153,
+      "full": 133.47171947917428
+     },
+     "lessons": [],
+     "origins": "",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": 151.3,
+      "bear": -52.5,
+      "full": 125.8
+     },
+     "vs_previous_pct": {
+      "base": 8.8,
+      "bear": -0.2,
+      "full": 8.8
      }
     }
    ],
@@ -1975,6 +2123,28 @@
       "base": 17.6,
       "bear": 20.9,
       "full": 14.2
+     }
+    },
+    {
+     "delivered": "2026-09-19",
+     "edition": 6,
+     "fair": {
+      "base": 116.13628860350131,
+      "bear": 84.53695349504933,
+      "full": 149.24258044732997
+     },
+     "lessons": [],
+     "origins": "",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": -21.1,
+      "bear": 1.1,
+      "full": -21.3
+     },
+     "vs_previous_pct": {
+      "base": 7.3,
+      "bear": 9.6,
+      "full": 6.0
      }
     }
    ],

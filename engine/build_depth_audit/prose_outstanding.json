@@ -1,20 +1,14 @@
 {
-  "entries": {
-    "ADNOCDIST": "no script reconciles the delivered documents' figures against the committed numbers",
-    "BOROUGE": "no script reconciles the delivered documents' figures against the committed numbers",
-    "ELEC": "no script reconciles the delivered documents' figures against the committed numbers",
-    "XPT": "no script reconciles the delivered documents' figures against the committed numbers",
-    "ADNOCDRILL": "no script reconciles the delivered documents' figures against the committed numbers",
-    "AMR": "no script reconciles the delivered documents' figures against the committed numbers",
-    "GBCO": "no script reconciles the delivered documents' figures against the committed numbers",
-    "PHAR": "no script reconciles the delivered documents' figures against the committed numbers",
-    "SWDY": "no script reconciles the delivered documents' figures against the committed numbers"
-  },
-  "note": "Studies with no prose-figure verification when this gate was adopted (03-Sep-2026). Allowed to fail; the list may only ever get shorter. --prune rewrites it. Run --measure for the advisory unmatched rate per study. ENTRIES ARE TICKERS AND NOTHING ELSE. A removal note was written in as an entry KEY on 10-09-2026 and the gate reads every key as a ticker, so it refused a list naming a study that does not exist on disk -- correctly. What is removed and why belongs in 'removed' below, where it is preserved without pretending to be a study.",
-  "removed": {
-    "PHAR": {
-      "removed_on": "2026-09-10",
-      "why": "PHAR CARRIES A CLEAN PROSE CHECK AND IS OFF THIS LIST. Its entry recorded 495 figures checked with 7 unmatched; the study now reports 490 checked and 0 unmatched, after five figures a reader was shown and nothing could reach were registered -- the controlling shareholding, the superseded January-2026 country-risk vintage, and the rating-basis normalised risk-free rate -- and the check itself was taught to reach the technical read's distances from the close. A ratchet may only ever SHORTEN, and this is the shortening. Its previous entry read: carries a prose check that RUNS and is red: 495 figures checked, 7 unmatched."
-    }
+ "entries": {
+  "ADNOCDIST": "no script reconciles the delivered documents' figures against the committed numbers",
+  "BOROUGE": "no script reconciles the delivered documents' figures against the committed numbers",
+  "ELEC": "no script reconciles the delivered documents' figures against the committed numbers",
+  "GBCO": "no script reconciles the delivered documents' figures against the committed numbers",
+  "PHAR": "no script reconciles the delivered documents' figures against the committed numbers",
+  "XPT": {
+   "measured_on": "2026-09-19",
+   "reason": "XPT is PLATINUM, a metal. It has no issuer, no financial statements and no drivers \u2014 the campaign excludes metals by construction for exactly that reason \u2014 so it delivers no valuation study, there is no prose carrying figures and there is no numbers file to reconcile them against. This is not debt: there is nothing to build. It is listed rather than excluded silently because the population this gate anchors on is engine/*_study on disk [R-ENF-04], and XPT has a directory. The right fix is the gate's population, not a script for a metal; that is a gate amendment and is not done in passing."
   }
+ },
+ "note": "Studies with no prose-figure verification when this gate was adopted (03-Sep-2026). Allowed to fail; the list may only ever get shorter. --prune rewrites it. Run --measure for the advisory unmatched rate per study."
 }
