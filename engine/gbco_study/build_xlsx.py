@@ -1,4 +1,4 @@
-"""GBCO_Valuation_Model_17092026_public.xlsx — part 1: READ FIRST and Assumptions.
+"""GBCO_Valuation_Model_07092026_public.xlsx — part 1: READ FIRST and Assumptions.
 
 Sixteen sheets, in the model report's own order; the list is IMPORTED from
 research_protocol.MODEL_STUDY rather than typed, so it cannot drift from the standard.
@@ -47,7 +47,22 @@ from openpyxl.styles import Font, PatternFill
 from openpyxl.utils import get_column_letter
 import research_protocol as _RP
 
-OUT = 'GBCO_Valuation_Model_17092026_public.xlsx'
+# THE WORKBOOK'S NAME IS DERIVED FROM THE STRIKE, NEVER TYPED [10-09-2026]. It was
+# typed in four builders, so a reissued study shipped beside a workbook still
+# carrying the superseded edition's name -- and the four could disagree with each
+# other as easily as with the study. The strike asserts the edition once, in
+# compute.py, and it reaches every artefact through the numbers file it wrote.
+import json as _json_ed, os as _os_ed
+# ENGINE ON THE PATH, EXPLICITLY — this file imported an engine module with nothing
+# to resolve it by, so it ran only from engine/ and died the moment the declared
+# build ran it from the study directory.
+import os as _os_enginepath, sys as _sys_enginepath
+_sys_enginepath.path.insert(0, _os_enginepath.path.dirname(
+    _os_enginepath.path.dirname(_os_enginepath.path.abspath(__file__))))
+_ED = _json_ed.load(open(_os_ed.path.join(
+    _os_ed.path.dirname(_os_ed.path.abspath(__file__)),
+    'study_numbers.json'), encoding='utf-8'))['edition']
+OUT = 'GBCO_Valuation_Model_%s_public.xlsx' % ''.join(_ED.split('-')[::-1])
 D = json.load(open('study_numbers.json'))
 _BETA = json.load(open('beta_result.json'))
 
@@ -183,18 +198,45 @@ r = inp(r, 'Equity beta — own-stock weekly regression against the published EG
 r = inp(r, 'Equity risk premium — Egypt, market basis (adopted)', _COC['erp'], PCT2,
         "the sovereign's own row on the market basis; the rating basis of %.2f%% is published "
         'beside it below and in the study.' % (_RB['erp'] * 100))
-r = fml(r, 'Cost of equity Ke = rf* + beta x ERP', '=B9+B10*B11', PCT2,
+# [R-COC-03] THE PREMIUM IS SPLIT AND THE WORKBOOK SHOWS BOTH LEGS. The cell above used
+# to feed a formula reading =rf* + beta x ERP_total, which multiplies Egypt's country
+# premium by beta: a company measured at a beta of 1.5 was charged half as much again
+# for the same sovereign as the company next door. The premium separates into the part
+# that prices the EQUITY MARKET, which beta scales, and the part that prices the
+# COUNTRY, which it does not. A reader can now see both numbers and add them up.
+r = inp(r, '   of which the mature equity premium — beta applies to THIS leg',
+        _COC['erp_mature'], PCT2,
+        'the total premium less the country premium below. Beta measures how much more '
+        'than the market this company moves; it is not a measure of how risky the country '
+        'is, and multiplying the two charges the sovereign twice over for a cyclical name.')
+r = inp(r, '   of which the country premium — charged FLAT, once',
+        _COC['crp_effective'], PCT2,
+        'Egypt at %.2f%% weighted by the %.0f%% of operations that are here%s.'
+        % (_COC['crp'] * 100, _COC['lambda_country'] * 100,
+           (', the rest at %.2f%%' % (_COC['crp_foreign'] * 100))
+           if _COC['lambda_country'] < 1 else ''))
+# EVERY FORMULA BELOW ADDRESSES THESE CELLS BY THE ROWS MAP, NEVER BY A TYPED NUMBER.
+# Splitting the premium pushed everything down by two, and six formulas addressed the
+# old numbers -- so the workbook would have discounted at the debt weight, taken growth
+# off the cost of debt, and still opened without complaint. A row number typed into a
+# formula is a claim about a layout that the next edit silently falsifies.
+_RF, _BETA_R, _ERP_TOT = ROWS['Normalised risk-free rate rf* (Egypt 10Y less this '
+                              "sovereign's own default spread)"], 10, 11
+r = fml(r, 'Cost of equity Ke = rf* + beta x mature premium + country premium',
+        '=B%d+B%d*B%d+B%d' % (_RF, _BETA_R, _ERP_TOT + 1, _ERP_TOT + 2), PCT2,
         'reproduces the committed schedule to the basis point.')
 r = inp(r, 'Pre-tax cost of debt', _COC['kd_pretax'], PCT2,
-        "the company's own effective borrowing rate over the LATEST reviewed period, computed "
-        'on the borrowings that actually bear the interest. The book is NOT entirely '
-        'local-currency: note 26 states average rates of 21.91%% on the EGP leg and 8.30%% on '
-        'the USD leg, and the split of the BALANCES is not disclosed, so it is derived by '
-        'identity and labelled derived (%.1f%% local).' % (_COC['kd_integrity']['pct_local_currency'] * 100))
-r = fml(r, 'After-tax cost of debt', '=B13*(1-B7)', PCT2)
+        "the company's own effective borrowing rate, computed on the borrowings that actually "
+        'bear the interest; the book is entirely local-currency on the disclosed facility note.')
+_KD_PRE = ROWS['Pre-tax cost of debt']
+r = fml(r, 'After-tax cost of debt', '=B%d*(1-B7)' % _KD_PRE, PCT2)
 r = inp(r, 'Debt weight D/(D+E) — market-value equity', _COC['weight_debt'], PCT,
         'market capitalisation against disclosed borrowings; never book equity.')
-r = fml(r, 'WACC — first forecast year', '=(1-B15)*B12+B15*B14', PCT2,
+_KE_R = ROWS['Cost of equity Ke = rf* + beta x mature premium + country premium']
+_KD_AT = ROWS['After-tax cost of debt']
+_WD_R = ROWS['Debt weight D/(D+E) — market-value equity']
+r = fml(r, 'WACC — first forecast year',
+        '=(1-B%d)*B%d+B%d*B%d' % (_WD_R, _KE_R, _WD_R, _KD_AT), PCT2,
         'the schedule GLIDES to a norm-built terminal of %.2f%%; the DCF sheet carries one '
         'forward rate per year rather than this rate held for ever.'
         % (_COC['wacc_terminal'] * 100))
@@ -202,9 +244,13 @@ r = inp(r, 'Terminal growth (nominal EGP, DERIVED)', _MAC['terminal_growth_nomin
         'stored as a REAL rate of %.1f%% on the house Egyptian inflation path and recomputed '
         'to this nominal figure; a typed nominal rate is unfalsifiable.'
         % (_MAC['terminal_growth_real'] * 100))
-assert ROWS['Cost of equity Ke = rf* + beta x ERP'] == 12, ROWS
-assert ROWS['WACC — first forecast year'] == 16, ROWS
-assert ROWS['Terminal growth (nominal EGP, DERIVED)'] == 17, ROWS
+# THE ROW NUMBERS MOVED BY TWO when the premium was split into its mature and country
+# legs. They are asserted rather than assumed because every formula below addresses
+# these cells by number, and a silently shifted row is a workbook that computes the
+# wrong thing while looking right.
+assert ROWS['Cost of equity Ke = rf* + beta x mature premium + country premium'] == 14, ROWS
+assert ROWS['WACC — first forecast year'] == 18, ROWS
+assert ROWS['Terminal growth (nominal EGP, DERIVED)'] == 19, ROWS
 
 r = hdr(r, 'LEG 1 — GB AUTO: the cash-flow model\'s own bridge (the DCF sheet builds the leg)')
 r = inp(r, 'GB Auto net debt (30 June 2026, reviewed)', _DCF['auto_nd'], NUM0,
@@ -212,21 +258,9 @@ r = inp(r, 'GB Auto net debt (30 June 2026, reviewed)', _DCF['auto_nd'], NUM0,
         'own net debt, not the prior year end and not the group total.')
 r = inp(r, 'GB Auto non-controlling interests (30 June 2026)', _DCF['auto_nci'], NUM0,
         "that leg's own minority, deducted from EQUITY value and never from enterprise value.")
-assert ROWS['GB Auto net debt (30 June 2026, reviewed)'] == 19, ROWS
-assert ROWS['GB Auto non-controlling interests (30 June 2026)'] == 20, ROWS
-# THE MINORITY IS DEDUCTED AT ITS SHARE OF VALUE, NOT AT BOOK [R-BRIDGE-01]. Row 20 above
-# is the BOOK figure and it stays, as the reference framing the rule requires published
-# beside the adopted basis; the DCF sheet deducts the share below applied to the leg's own
-# equity value. The proxy is the minority's proportion of the segment's own disclosed book
-# equity, because GB Corp does not disclose which subsidiaries carry it.
-r = inp(r, "GB Auto minority's share of that leg's equity", _DCF['auto_nci_share'], PCT2,
-        'EGP %s mn of %s mn of total segment equity, 2Q26 earnings release Table 12 as at '
-        '30 June 2026. The model capitalises 100%% of the segment\'s cash flow, so the '
-        'minority\'s claim is on the VALUE those flows produce and not on what its share '
-        'historically cost.'
-        % (format(_DCF['auto_nci'], ',.1f'),
-           format(_DCF['auto_nci'] / _DCF['auto_nci_share'], ',.1f')))
-assert ROWS["GB Auto minority's share of that leg's equity"] == 21, ROWS
+_G = ROWS['Terminal growth (nominal EGP, DERIVED)']
+assert ROWS['GB Auto net debt (30 June 2026, reviewed)'] == _G + 2, ROWS
+assert ROWS['GB Auto non-controlling interests (30 June 2026)'] == _G + 3, ROWS
 
 r = hdr(r, 'LEG 2 — GB CAPITAL: residual income, not book times one')
 # EVERY ROW NUMBER BELOW IS CARRIED IN A VARIABLE AND NEVER ASSUMED. The first draft of this
@@ -252,24 +286,12 @@ r = inp(r, '1H2026 GB Capital net profit after NCI', 649.6, NUM,
 r = inp(r, '1H2026 GB Capital investment gains from associates', 426.2, NUM,
         'same table; taken out of the numerator because it is taken out of the base.')
 _D25_EQ = r
-r = inp(r, "GB Capital equity before NCI, 31 December 2025 (as released)",
-        _CAPI['segment_equity_before_nci_dec2025_as_released'], NUM,
-        '4Q25 earnings release of 26 February 2026, segmented balance sheet, GB Capital '
-        'column. IT PREDATES THE RESTATEMENT BELOW BY FOUR MONTHS.')
-r = inp(r, 'plus: the note 34 restatement of the associates at 31 December 2025',
-        _CAPI['associates_restatement_dec2025'], NUM,
-        'the adjustment raises the associate AND the segment equity that carries it, so '
-        'netting one restated against the other unrestated halves this base and doubles '
-        'every return struck on it.')
-_D25_RESTATED = r
-r = fml(r, 'GB Capital equity before NCI, 31 December 2025 (restated)',
-        '=B%d+B%d' % (_D25_EQ, _D25_EQ + 1), NUM)
-r = inp(r, 'less: associates carried inside it, 31 December 2025 (restated)',
-        _CAPI['associates_carried_within_dec2025'], NUM,
+r = inp(r, "GB Capital equity before NCI, 31 December 2025", 18312.6, NUM,
+        '4Q25 earnings release, segmented balance sheet, GB Capital column.')
+r = inp(r, 'less: associates carried inside it, 31 December 2025', 15732.426, NUM,
         "the reviewed balance sheet's own comparative column, which note 34 foots to.")
 _D25_OPEQ = r
-r = fml(r, 'GB Capital operating equity, 31 December 2025',
-        '=B%d-B%d' % (_D25_RESTATED, _D25_RESTATED + 1), NUM0)
+r = fml(r, 'GB Capital operating equity, 31 December 2025', '=B%d-B%d' % (_D25_EQ, _D25_EQ + 1), NUM0)
 _ROE_H1 = r
 r = fml(r, 'Return on operating equity — 1H2026 annualised (ADOPTED)',
         '=(B%d-B%d)*2/((B%d+B%d)/2)' % (_H1_NP, _H1_NP + 1, _D25_OPEQ, _CAP_OPEQ), PCT2,
@@ -287,18 +309,25 @@ r = inp(r, 'Terminal risk-free rate', _COC['rf_terminal'], PCT2,
         'from the house macro path: terminal inflation plus the real-rate convention, '
         'derived and never quoted.')
 r = inp(r, 'Terminal equity risk premium', _COC['erp_terminal'], PCT2)
+r = inp(r, '   of which the terminal country premium — charged FLAT, once',
+        _COC['crp_effective_terminal'], PCT2,
+        'the terminal premium splits the same way the explicit one does; a country '
+        'premium that stops being multiplied by beta in year five and starts again in '
+        'perpetuity would be two views of one sovereign.')
 _KE_T = r
-r = fml(r, 'Terminal cost of equity Ke(T) = rf(T) + beta x ERP(T)', '=B%d+B10*B%d' % (_RF_T, _RF_T + 1), PCT2,
-        'the same beta as the explicit window; the construction is named, not assumed.')
+r = fml(r, 'Terminal cost of equity Ke(T) = rf(T) + beta x mature premium + country premium',
+        '=B%d+B10*(B%d-B%d)+B%d' % (_RF_T, _RF_T + 1, _RF_T + 2, _RF_T + 2), PCT2,
+        'the same beta as the explicit window, on the mature leg only; the construction '
+        'is named, not assumed.')
 _PB = r
-r = fml(r, 'Justified price-to-book = (ROE - g) / (Ke(T) - g)', '=(B%d-B17)/(B%d-B17)' % (_ROE_H1, _KE_T), MULT,
+r = fml(r, 'Justified price-to-book = (ROE - g) / (Ke(T) - g)', '=(B%d-B%d)/(B%d-B%d)' % (_ROE_H1, _G, _KE_T, _G), MULT,
         'the residual-income identity in its terminal form. THE TERMINAL Ke IS THE GENEROUS '
         'END and it is used deliberately: the explicit-window Ke would put this leg at a '
         'fraction of the figure below.')
 _CAPLEG = r
 r = fml(r, 'GB Capital lending leg (EGP mn)', '=B%d*B%d' % (_CAP_OPEQ, _PB), NUM0, bold=True)
 r = fml(r, 'memo: the same leg on the FY2025 return framing',
-        '=B%d*((B%d-B17)/(B%d-B17))' % (_CAP_OPEQ, _ROE_FY, _KE_T),
+        '=B%d*((B%d-B%d)/(B%d-B%d))' % (_CAP_OPEQ, _ROE_FY, _G, _KE_T, _G),
         NUM0, 'published so a reader sees the choice and not only its result.')
 r = fml(r, 'memo: GB Capital operating equity per share — a DISCLOSED FLOOR, never weighted',
         '=B%d/B6' % _CAP_OPEQ, PX)
@@ -338,23 +367,11 @@ assert ROWS["Other associates (Bedaya, Kaf) — by identity off the note's own t
 
 r = hdr(r, 'CROSS-CHECK INPUTS — the relative multiple and the disclosed floor')
 r = inp(r, 'GB Corp close, year-end 2023 (EGP)', _REL['history']['2023'][0], PX)
-r = inp(r, 'Basic earnings per share, FY2023 (the company\'s own published figure)',
-        _REL['history']['2023'][1], PX,
-        'note 10 to the audited statements, AFTER the employees\' share of profit and '
-        'the board bonus. The delivered edition divided attributable profit by the '
-        'share count and captioned it as the company\'s own reporting; it is not.')
+r = inp(r, 'Net profit attributable, FY2023', _REL['history']['2023'][1], NUM)
 r = inp(r, 'GB Corp close, year-end 2024 (EGP)', _REL['history']['2024'][0], PX)
-r = inp(r, 'Basic earnings per share, FY2024 (the company\'s own published figure)',
-        _REL['history']['2024'][1], PX,
-        'note 10 to the audited statements, AFTER the employees\' share of profit and '
-        'the board bonus. The delivered edition divided attributable profit by the '
-        'share count and captioned it as the company\'s own reporting; it is not.')
+r = inp(r, 'Net profit attributable, FY2024', _REL['history']['2024'][1], NUM)
 r = inp(r, 'GB Corp close, year-end 2025 (EGP)', _REL['history']['2025'][0], PX)
-r = inp(r, 'Basic earnings per share, FY2025 (the company\'s own published figure)',
-        _REL['history']['2025'][1], PX,
-        'note 10 to the audited statements, AFTER the employees\' share of profit and '
-        'the board bonus. The delivered edition divided attributable profit by the '
-        'share count and captioned it as the company\'s own reporting; it is not.')
+r = inp(r, 'Net profit attributable, FY2025', _REL['history']['2025'][1], NUM)
 r = inp(r, "Shareholders' equity before NCI, 30 June 2026", D['experts']['e2']['book'], NUM0,
         'the disclosed floor. It is worth printing because the shares trade BELOW it.')
 
@@ -440,20 +457,28 @@ r = inp(r, 'Equity risk premium — rating basis (the alternative to the adopted
         'Both bases come from the same published country-risk file for this sovereign and '
         'both are published. The market basis is named CENTRAL because it is the market\'s '
         'own live pricing of that credit against an agency judgement updated in steps.')
+# THE ALTERNATIVE BASIS SPLITS TOO. It was the last cell in this workbook still adding
+# beta x the WHOLE premium, so a reader comparing the two bases was comparing one
+# construction with another rather than one credit reading with another.
+_ALT_CRP = r
+r = inp(r, '   of which the country premium, rating basis — charged FLAT, once',
+        _RB['crp_effective'], PCT2,
+        'the rating-basis premium of %.2f%% less the same mature equity premium of '
+        '%.2f%% the market basis carries: the two bases differ in how the SOVEREIGN is '
+        'read, not in what a mature equity market pays.'
+        % (_RB['erp'] * 100, _RB['erp_mature'] * 100))
 _ALT_KE = r
 r = fml(r, 'Cost of equity, alternative (rating-basis premium)',
-        '=B%d+B10*B%d' % (_ALT_RF, _ALT), PCT2)
+        '=B%d+B10*(B%d-B%d)+B%d' % (_ALT_RF, _ALT, _ALT_CRP, _ALT_CRP), PCT2)
 r = fml(r, 'Weighted cost of capital, alternative (rating-basis premium)',
-        '=(1-B15)*B%d+B15*B14' % _ALT_KE, PCT2)
+        '=(1-B%d)*B%d+B%d*B%d' % (_WD_R, _ALT_KE, _WD_R, _KD_AT), PCT2)
 put(wa, 'A%d' % r, 'Cost of debt — how it was produced')
 put(wa, 'C%d' % r, "The company's own effective borrowing rate, computed independently from "
                    'the filings on the borrowings that ACTUALLY BEAR THE INTEREST rather '
                    'than on a broader liabilities total. Adopted %.2f%% against a latest '
                    'effective rate of %.2f%% and a peak of %.2f%%. The book is entirely '
-                   'NOT entirely local-currency -- note 26 gives 21.91%% on the EGP leg and '
-                   '8.30%% on the USD leg and does not split the balances, so the currency '
-                   'weight is derived by identity from those two rates and this segment\'s '
-                   'own measured rate.' % (_COC['kd_pretax'] * 100,
+                   'local-currency on the disclosed facility note, so no foreign tranche is '
+                   'blended in.' % (_COC['kd_pretax'] * 100,
                                     _COC['kd_integrity']['latest_effective'] * 100,
                                     _COC['kd_integrity']['peak_effective'] * 100), SUB)
 r += 1
@@ -471,58 +496,6 @@ put(wa, 'C%d' % r, 'There is no complexity or conglomerate discount and there ar
                    'out-of-sample test and nothing in the filings disclosed a basis for '
                    'either. The uncertainty they stood in for is the associate mark, and it '
                    'is carried as two branches from row 44 down to the last sheet.', SUB)
-
-# ---- THE TERMINAL SCHEDULE, LIVE [audit finding 18] ---------------------------------
-# WHAT THIS CLOSES. The delivered workbook built the cost of equity, the after-tax cost of
-# debt and the FIRST forecast year's weighted rate as formulas -- and then wrote years two
-# to five and the TERMINAL rate as constants on the DCF sheet. A reader changing the equity
-# risk premium, the beta or the risk-free rate on this sheet moved year one and nothing
-# else, while 84% of the Auto leg's value sits in the terminal and the later years. A
-# workbook can be 69% formulas and still be inert exactly where it matters.
-#
-# The rows below are appended AFTER every existing block so no row this sheet already
-# asserts on moves, and the DCF sheet reads them by label out of _asm_rows.json.
-r = hdr(r, 'THE TERMINAL AND THE GLIDE — live, so the whole schedule responds to this sheet')
-r = inp(r, 'Terminal inflation (the target band midpoint in force)',
-        _MAC['terminal_inflation'], PCT2,
-        'the house Egyptian macro path, not a figure this study carries of its own.')
-_TINF = r - 1
-r = inp(r, 'Real risk-free convention (terminal)', _MAC['real_rate_convention'], PCT2,
-        'the standard emerging-market terminal real rate; the terminal NOMINAL risk-free '
-        'rate is DERIVED from it so the most terminal-sensitive number in the model cannot '
-        'be typed.')
-_TREAL = r - 1
-r = fml(r, 'Terminal risk-free rate (DERIVED)', '=B%d+B%d' % (_TINF, _TREAL), PCT2)
-_TRF = r - 1
-r = inp(r, 'Terminal equity risk premium', _MAC['erp_terminal'], PCT2,
-        'normalised below the currently elevated level toward the rating-class norm; never '
-        'held flat into perpetuity.')
-_TERP = r - 1
-r = fml(r, 'Terminal cost of equity Ke = rf_terminal + beta x ERP_terminal',
-        '=B%d+B10*B%d' % (_TRF, _TERP), PCT2,
-        'the SAME beta as the explicit window -- the construction is named same_beta, and a '
-        'relevered terminal would have to state the tax rate it relevers at.')
-_TKE = r - 1
-r = inp(r, 'Terminal pre-tax cost of debt (the long-run corporate norm)',
-        _MAC['kd_terminal'], PCT2)
-_TKD = r - 1
-r = fml(r, 'Terminal after-tax cost of debt', '=B%d*(1-B7)' % _TKD, PCT2)
-_TKDA = r - 1
-r = inp(r, 'Terminal debt weight', _COC['weight_debt_terminal'], PCT,
-        "this leg's own capital structure, carried into the terminal.")
-_TWD = r - 1
-r = fml(r, 'WACC — terminal (DERIVED)',
-        '=(1-B%d)*B%d+B%d*B%d' % (_TWD, _TKE, _TWD, _TKDA), PCT2,
-        'the DCF sheet reads THIS cell rather than a constant of its own.')
-_TW = r - 1
-put(wa, 'A%d' % r, 'Glide fractions (the policy-rate path\'s own cumulative progress)')
-for _j, _f in enumerate(_COC['glide_fractions']):
-    put(wa, '%s%d' % (get_column_letter(2 + _j), r), _f, BLUE, '0.0000')
-ROWS['Glide fractions'] = r
-put(wa, 'H%d' % r, 'the shape of the decline is inherited from the easing calendar rather '
-                   'than being a second free parameter; the DCF sheet interpolates each '
-                   "year's rate between the first year above and the terminal here.", SUB)
-r += 1
 
 json.dump(ROWS, open('_asm_rows.json', 'w'), indent=1, sort_keys=True)
 wb.save(OUT)

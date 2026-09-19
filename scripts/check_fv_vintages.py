@@ -25,6 +25,7 @@ from __future__ import annotations
 
 import json
 import os
+import subprocess
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -49,12 +50,47 @@ def main(argv):
             return 1
         V.build()
 
+    # COMPARE LIKE WITH LIKE, AND THE REF IS THE WHOLE OF IT.
+    #
+    # The archive is built by walking FIRST-PARENT ON origin/main, deliberately: a
+    # vintage is what main carried, because that is what deploys. This check then
+    # read the WORKING TREE's data.js — a different ref on any branch — so a branch
+    # that corrected a published number was told to "rebuild the archive in the same
+    # pass", which its own builder CANNOT do, because the builder does not look at
+    # the branch. The gate asked for something impossible and no amount of rebuilding
+    # cleared it. Found on 09-09-2026 by the FERTIGLB correction.
+    #
+    # So the comparison is against the data.js at the ref the ARCHIVE was built from.
+    # That is not a weakening: it asks whether the archive is current with what the
+    # SITE carries, which is the gate's own stated subject, and it goes red the moment
+    # a change reaches main without the archive being rebuilt — the failure it exists
+    # for. A branch's own edit is simply not yet published, which is true.
+    #
+    # WHERE THE REF CANNOT BE READ, FALL BACK TO THE WORKING TREE AND SAY SO. A
+    # silent fallback to a different population is the shape [R-ENF-04] refuses.
     data_js = os.path.join(ROOT, V.DATA_JS)
     if not os.path.exists(data_js):
         print("FAIL — %s does not exist. An absent file is not a clean file."
               % V.DATA_JS)
         return 1
-    live = V.parse_data_js(open(data_js, encoding="utf-8").read())
+    _src, _blob = "the working tree", None
+    try:
+        _ref = subprocess.run(["git", "rev-parse", "--verify", "--quiet", V.MAIN_REF],
+                              cwd=ROOT, capture_output=True, text=True).stdout.strip()
+        if _ref:
+            _r = subprocess.run(["git", "show", "%s:%s" % (_ref, V.DATA_JS)], cwd=ROOT,
+                                capture_output=True, text=True)
+            if _r.returncode == 0:
+                _blob, _src = _r.stdout, "%s (%s)" % (V.MAIN_REF, _ref[:9])
+    except OSError:
+        pass
+    if _blob is None:
+        print("  NOTE — %s could not be read, so this compares the working tree "
+              "instead. That is a different population and is said rather than "
+              "assumed [R-ENF-04]." % V.MAIN_REF)
+    print("  comparing the archive against data.js at: %s" % _src)
+    live = V.parse_data_js(_blob if _blob is not None
+                           else open(data_js, encoding="utf-8").read())
     if live.get("error"):
         print("FAIL — could not load %s: %s" % (V.DATA_JS, live["error"]))
         return 1

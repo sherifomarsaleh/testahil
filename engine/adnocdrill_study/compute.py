@@ -64,8 +64,17 @@ PR26 = "1H-2026 earnings press release"
 
 INP = dict(
     # ---------------- market anchors ----------------------------------------
-    spot_aed=I(5.94, "Uploaded ADX daily price history for ADNOCDRILL, last close 07-Aug-2026",
-               "2026-08-07", "Market"),
+    # RE-STRUCK ONTO THE LATEST SUPPLIED PRICE, 09-09-2026 [R-GAP-01 AMENDED]. This study
+    # was struck at AED 5.94 of 7 August and the latest price this repository holds is
+    # AED 5.80 of 3 September. THE FAIR VALUE IS UNTOUCHED: a re-strike moves the price
+    # the answer is compared with, never the answer. The dividend yield the Monte Carlo
+    # carry anchor runs on is DERIVED from this spot through market_cap_usd_k, so it
+    # follows the change rather than having to be found and edited.
+    spot_aed=I(5.80, "Uploaded ADX daily price history for ADNOCDRILL, last close "
+               "03-Sep-2026 — the latest price supplied to this repository "
+               "(SUPPLIED_03-09-2026.json). Superseded: AED 5.94 of 7 August 2026, on "
+               "which every edition before this one was struck",
+               "2026-09-03", "Market"),
     fx_aed_usd=I(3.6725, "AED/USD central-bank peg, unchanged since 1997; the rate at which the "
                  "company itself translates its AED-declared dividends into the USD amounts "
                  "disclosed in Note 24 of the audited statements", "2026-08-07", "Country"),
@@ -1768,7 +1777,13 @@ OUT = dict(
               gross_debt=gross_debt_now,
               weight_equity=w_e, weight_debt=w_d,
               wacc_rating=wacc_rating, wacc_cds=wacc_cds, wacc_used=WACC),
-    market=dict(spot_aed=V('spot_aed'), spot_usd=spot_usd, fx=V('fx_aed_usd'),
+    # THE PRICE CARRIES ITS DATE [R-GAP-01 AMENDED, 09-09-2026]. This record committed a
+    # spot and no date of any kind, so nothing outside the study could tell a price struck
+    # today from one struck a month ago — and this study was a month stale when that was
+    # measured. The date is the spot input's OWN, surfaced rather than invented, so it
+    # cannot disagree with the price beside it.
+    market=dict(spot_aed=V('spot_aed'), spot_date=INP['spot_aed']['date'],
+                spot_usd=spot_usd, fx=V('fx_aed_usd'),
                 shares_outstanding_k=shares_out_k, market_cap_usd_k=mkt_cap,
                 enterprise_value_usd_k=mkt_cap + net_debt_now,
                 net_debt_usd_k=net_debt_now),

@@ -136,6 +136,25 @@ case("an incomplete edition that is listed on the ratchet", False,
      lambda: tree(study_files=files()[:-1], ratchet={"TK": "queued for the audit"}))
 
 
+# THE QC GATE DOES NOT SET THE EDITION, AND IT MAY NOT PRECEDE IT.
+#
+# This gate took max() across all four artefacts including the QC gate, so auditing a
+# delivered study three days after issuing it moved the "edition" forward and reported
+# the report, the PDF, the workbook and the bibliography as four failures each. Three
+# studies went red that way for having been audited that morning, and the remedy the
+# message implied — re-date the delivered files — would mean re-issuing an edition to a
+# reader because this desk looked at it again.
+#
+# The relaxation has to be bounded in the other direction, and case two is the bound: a
+# QC gate OLDER than the edition it certifies has measured a document nobody received,
+# which is exactly the L-066/L-067 failure that ran through four studies this week.
+case("a QC gate dated AFTER a complete edition — auditing late is not a defect", False,
+     lambda: tree(study_files=files(qc="13-09-2026")))
+
+case("a QC gate dated BEFORE the edition it certifies", True,
+     lambda: tree(study_files=files(qc="01-08-2026")))
+
+
 def main():
     caught = passed = 0
     red = sum(1 for _, r, _ in CASES if r)

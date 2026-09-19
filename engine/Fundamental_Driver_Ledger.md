@@ -1128,58 +1128,170 @@ conclusion from it before asking what wrote the field. It is now committed as
 ANOTHER IS WORSE THAN A MISSING FIELD, because a missing field stops a reader and a
 mislabelled one does not.
 
-**CORRECTED 17-09-2026 — appended rather than rewritten, because a dated record says what was
-true when it was written.** Two things in the entry above are wrong and one is superseded.
+---
 
-**(i) THE CAPEX FIGURE IS UNDERSTATED BY A FACTOR OF FOUR AND A HALF.** "EGP 8.98 a share off
-both branches" is the change in the present value of the EXPLICIT window alone. Held at the
-filed intensity through FY2030E, the terminal — a perpetuity struck on that final year's free
-cash flow — falls with it: **−40.34 a share, not −8.98.** Held instead at the filed FY2025
-COVERAGE of depreciation, **−22.91.**
+## ABUK · Abu Qir Fertilizers and Chemical Industries · EGX · 09-09-2026
+**Class:** provisionally `petrochemical` — a poor fit, and the entry says why below.
+**Context:** fundamental walk-forward training run, `engine/abuk_walkforward/`.
+Scope FULL, eleven sourceable fiscal years FY-Jun-2015 to FY-Jun-2025, six
+origins FY2019-FY2024, horizons 1-5, 20 scoreable cells per driver.
+**Nothing in this entry has been published. No fair value has been struck and
+`fair{}` in `assets/data.js` is untouched.**
 
-**(ii) THE SECOND MITIGATION RUNS BACKWARDS AND SHOULD BE STRUCK.** "The terminal carries 84%
-of the auto leg, so an explicit-window driver moves less of the answer than its own size
-suggests" is true of a driver that ends inside the window and **false of one held flat to the
-last explicit year**, which is what a corrected capex path is. A terminal carrying 84% of the
-leg makes such a driver matter MORE, not less — roughly fifteen times more, that being the
-terminal multiple. The first mitigation stands: capex does still run above replacement.
+### Drivers set, and from what
 
-**(iii) THE DISCLOSED COVERAGE SHARPENS THE FINDING RATHER THAN SOFTENING IT.**
-
-| | capex | D&A | capex / D&A | capex / auto revenue |
+| # | driver | rule as set | set from | tested? |
 |---|---|---|---|---|
-| FY2023 | 2,056.0 | 531.4 | 3.87× | 8.78% |
-| FY2024 | 3,171.9 | 1,138.5 | 2.79× | 6.79% |
-| FY2025 | 3,664.2 | 999.3 | 3.67× | 5.56% |
+| D1 | volume proxy | `min(v(o) x (1+g)^h, max v over the 5 years to o)`, g = Egypt population CAGR over the five calendar years to the origin | revenue deflated by the world urea price and the exchange rate — ABUK discloses NO tonnage anywhere | yes — bias **+0.225**, robust, sign holds across eras |
+| D2 | world urea price, USD/t | held FLAT at the FY-origin average (random walk) | World Bank Commodity Markets monthly pink sheet, tier C | inside D1's error |
+| D3 | EGP per USD | held FLAT at the FY-origin average | World Bank WDI PA.NUS.FCRF, tier C | inside D1's error |
+| D4 | cost-of-sales ratio | trailing three-year mean of COGS/revenue, held flat | filed statements, both presentations, scored inside each window | yes — bias −0.310, **SIGN CHANGES between eras** |
+| D5 | selling & distribution ratio | trailing three-year mean of the ratio to revenue | filed statements | yes — bias −0.458, **SIGN CHANGES** |
+| D6 | general & administrative | origin level escalated on trailing three-year Egyptian CPI | filed statements + World Bank WDI | yes — bias −0.559, **SIGN CHANGES**, 91% specification residual |
+| D7 | non-operating income | trailing three-year mean yield ON THE INVESTABLE BALANCE, times that balance, escalated on inflation | filed statements: cash at banks plus investments held to maturity or at amortised cost | yes — bias −0.612, **SIGN CHANGES** |
+| D8 | effective tax rate | trailing three-year mean of tax/PBT | filed statements — the company's own printed charge, never the statutory rate | not separately scored; it is a ratio inside net profit |
 
-The guided first year lands at 3.47× coverage against FY2025's filed 3.67× — close. **What is
-unsourced is the DECLINE to 1.76×**, below every year the company has filed, which is
-[R-ANCHOR-01 CLAUSE TWO]: a rate falling materially from its own opening year makes the same
-claim as one opening below the record and must name a mechanism. None is named. Note also that
-holding intensity flat is itself a hypothesis, not a measurement — intensity fell 8.78% → 5.56%
-while revenue nearly tripled, so a flat ratio asserts a capacity build that never ends.
+Gross profit, profit before tax and net profit are OUTPUTS. No margin is typed
+anywhere in the model.
 
-**(iv) AND THE CORRECTION CANNOT BE PRICED HONESTLY ON THIS NAME YET.** GBCO's terminal is
-`FCFF_FY2030E × (1+g)/(w−g)`, which capitalises a growth year's capital spending and
-working-capital build into perpetuity. It sits on the [R-TERM-01] ratchet, and the sanctioned
-module REFUSES to rebuild it because `useful_lives.json` records that no usable asset life is
-sourceable. **Order of levers, fixed here in advance per [R-REBUILD-01]: terminal, then capex,
-then working capital.** Correcting capex first would multiply a real correction through a
-retired construction.
+### Decisions worth carrying to the next same-class study
 
-**(v) THE WORKING-CAPITAL ENTRY'S EVIDENCE IS SUPERSEDED.** `engine/gbco_study/asset_cycle.json`
-now builds the conversion cycle from the disclosed segment tables, four periods, every table
-footed. Against the LATEST REVIEWED period rather than the FY2025 opening, the ladder runs
-26.5% → 21.5% against **22.78% of trailing-twelve-month revenue** — so it opens ABOVE the
-latest actual, not below the base, and is conservative. Its stated mechanism is half
-contradicted: the inventory pre-build unwind is measured (DIO 149.0 → 127.1), payables
-"re-extending" is not (DPO 112.7 → **83.3**, the largest mover in the cycle).
+1. **On a debt-free issuer the interest trap runs the other way.** ABUK
+   discloses "no loans at the reporting date" and carried EGP 45,506 of
+   borrowings at FY-Jun-2021. The rule "interest comes from the borrowings that
+   actually bear it" has a mirror image on a net-cash name: financial income
+   must be built on the balances that actually EARN — cash at banks plus
+   investments held to maturity or at amortised cost — and not on total assets.
+   D7 does that. Had it divided by total assets the implied yield would have
+   been understated by roughly a third at FY2019 and the resulting bias would
+   have been arithmetic rather than evidence.
 
-**WHAT IS STILL MISSING FROM THIS LEDGER AND FROM THE MODEL: A PPE ROLL-FORWARD.** Capex,
-depreciation and working capital are three independent typed ratios with no balance sheet
-joining them — capex at 3.82% of revenue, depreciation at a flat 1.1% — so the asset base the
-model buys never appears, never depreciates and never constrains anything. SIGCM clause 7 asks
-for driver → IS → **BS** → CF → DCF as a live formula model, and for property, plant and
-equipment it is not met. **That is the defect underneath both rows**, and it is why row 30's
-obvious fix produced a negative equity value on a company filing EGP 66bn of revenue: fixing
-one of three unjoined ratios is arithmetic, not modelling.
+2. **A flat exchange rate is the only honest origin-dated assumption and it is
+   the largest single source of error.** 56% of the net-profit error and 65% of
+   the gross-profit error is macro. The naive trend benchmark beats the model at
+   every horizon from three years out purely because extrapolating nominal
+   growth happens to track a serially devaluing currency. That is a bet, not a
+   model, and the record says so rather than adopting it.
+
+3. **The calibrated band must be macro-conditioned before a study with its own
+   FX path uses it.** The raw band on net profit over horizons 3-5 is x2.19 to
+   x4.13; the macro-conditioned band is x0.80 to x1.86. Applying the raw band to
+   a forward model that already forecasts the pound counts the same devaluation
+   twice.
+
+4. **Where an issuer discloses no tonnage, say so and price what the proxy
+   costs.** ABUK's volume driver is revenue deflated by price, so it conflates
+   volume with realisation. On the company's own charts roughly half the proxy's
+   32% decline over the window is tonnes and roughly half is realisation. A
+   haircut derived from it is NOT the same object as the flat-tonne haircut
+   EGCH and AMOC measured off disclosed tonnage, and treating it as confirmation
+   would be superstition.
+
+5. **The gas bill is a named, separately quantified purchase from a named
+   counterparty, and its price is a disclosed FORMULA.** GASCO is a related
+   party; the contract price is set "according to a price formula that takes
+   into consideration the selling prices of the Ministry of Agriculture and
+   export prices according to the average price of international bulletins and
+   the average selling price of the USD against EGP." So the single largest cost
+   moves WITH the revenue it funds, and a fixed USD/mmBtu assumption misstates
+   both the level and the volatility. Prime Minister Decree 928 of 2026 puts a
+   USD 8.50/mmBtu FLOOR under it, which binds precisely when a post-spike urea
+   price pushes the formula output below it. This driver is not used in the
+   walk-forward — the cost ratio is — and it is recorded here because any study
+   built on this name must build cost from it.
+
+### Why the class is recorded as provisional
+
+`petrochemical` is the nearest registered class and it is a poor fit. ABUK's
+feedstock price is contractually linked by formula to the export price of its
+own output and to the exchange rate, with a regulatory floor underneath. That
+is neither a petrochemical producer whose input and output prices move
+independently for long stretches, nor the thin-spread refiner AMOC was
+separated out as. Whether it earns its own class is a scope question for the
+principal, not a decision this run makes.
+
+### What was NOT set
+
+No terminal, no cost of capital, no fair value. The delivered study is not
+built; the beta was re-derived through the sanctioned route and is recorded
+(0.6463 against EGX30, weekly, n=256, Dimson-adjusted, R² 0.193, usable and
+conforming) but nothing consumes it yet.
+
+---
+
+## ADIB — Abu Dhabi Islamic Bank – Egypt S.A.E. (EGX: ADIB), 09-Sep-2026
+
+Class `bank`. **The first bank in the fundamental walk-forward campaign**, so this entry
+is mostly about what a bank's driver set IS, and about the two protocol traps that do not
+survive the move from an industrial company unchanged.
+
+**Not ADIB Group PJSC (ADX: ADIB).** That is the Abu Dhabi parent and the separate covered
+name ADIBUAE. This is the Cairo listing, in Egyptian pounds, formerly National Bank for
+Development.
+
+### The driver set — and what an industrial list gets wrong
+
+A bank has no units times price, no capex driving volume and depreciation, and no
+working-capital cycle. Its drivers are:
+
+1. **Customer financing volume** — anchored on system credit times share. The protocol's own
+   volume clause names this case explicitly and it transfers unchanged.
+2. **Deposits and total assets** — from financing via the disclosed loan-to-deposit and
+   assets-to-deposits ratios.
+3. **Asset yield** on average total assets — an INPUT.
+4. **Cost of funds** on average interest-bearing liabilities — an INPUT.
+5. **Net interest margin** — an OUTPUT of 3 and 4, and never typed. This is [L-005] in its
+   bank form and it is the driver a bank study is most tempted to set directly.
+6. **Cost of risk** on average financing.
+7. **Net fees**, and other non-interest income as one block, as rates on average assets.
+8. **Administrative expenses** — a two-part overhead, fixed escalated with inflation plus a
+   variable component per unit of average assets, with a pure-inflation fallback.
+9. **Effective tax rate** — for an Egyptian bank this runs well above the 22.5 per cent
+   statutory rate because withholding on treasury-bill income is not creditable.
+10. **The capital ratio** — the binding constraint, and the reason a bank's dividend is
+    DERIVED rather than chosen. Equity pinned at a target share of assets; the dividend is
+    whatever profit is left after getting there.
+
+### TRAP 1 INVERTS FOR A BANK AND THE RULE STILL HOLDS
+
+"Interest comes from the borrowings that actually bear it" EXCLUDES customer deposits for an
+industrial company; the protocol says so in terms. For a bank, customers' deposits are the
+LARGEST thing that bears the charge. The denominator is customers' deposits plus due to
+banks plus subordinated financing, and nothing wider: at ADIB's FY2025 that is EGP 293.7bn
+against total liabilities of EGP 312.1bn, and using the wider figure understates the funding
+rate by about a sixth of itself. **The principle transfers; the example is class-specific,
+and reading it literally on a bank would have excluded 94 per cent of the right denominator.**
+
+### TRAP 2 HAS A BANK-SHAPED ANALOGUE AND IT IS THE ONE THAT BITES
+
+Financing income and the cost of deposits already accrue on the same effective-yield clock,
+so percentage-of-completion cannot go wrong on a bank. What can: **income accrues on AVERAGE
+balances, not closing ones.** ADIB grew financing 54 per cent in FY2025. Applying a yield to
+a closing balance credits a full year of income to half a year of assets and inflates every
+projected profit — the same shape as the PHDC error, in different clothing. Every rate in the
+build must reach its base through an opening/closing average and by no other route.
+
+### What the run found, and what it did NOT put into the live study
+
+Eleven origins, horizons 1–5, 45 cells per driver, 14 drivers, on sixteen consolidated fiscal
+years that all foot. The method beats "no change" on thirteen of fourteen drivers and by
+40 per cent on attributable profit, with a bootstrap interval clear of zero — the first name
+in this campaign to beat the freeze benchmark on net profit. It is a dead heat against a
+trailing-CAGR benchmark on profit and materially WORSE than it on balance-sheet volume.
+
+The volume finding is a SPECIFICATION finding and no multiplier may hide it: holding the
+share of system credit flat, which is how this book anchors every name's volume, was wrong in
+the same direction at all eleven origins because ADIB has taken share for a decade. The
+correction passes its own by-origin test and is REFUSED on the second clause. **Zero
+corrections promoted; four watch flags.**
+
+### What was set
+
+Cost of equity 29.81 per cent (a 23.00 per cent ten-year yield less a 3.42 per cent sovereign
+spread, plus a 1.0747 beta against EGX30 times a 9.5164 per cent total equity premium),
+gliding to a 20.02 per cent terminal on a 12.50 per cent terminal risk-free rate. Terminal
+growth 7.00 per cent, equal to terminal inflation, zero real. Class primary is the dividend
+discount [R-LENS-03]; central EGP 37.18 against a 3 September close of EGP 52.05.
+
+**The risk-free rate is 34 days old and four live re-source routes failed.** It is declared
+stale on the face of the register, sensitised, and named as this study's first data request.

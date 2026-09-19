@@ -17,32 +17,12 @@ WITHIN A MARKET the order is by the standard each name was last built to
 [R-STD-01], because that is what makes a book-wide re-issue a finite, countable
 queue rather than an open-ended one:
 
-    tier 1  reissue            a study exists, commits a record directory this
-                               repository can read, and was built to an older
-                               standard or carries no standard stamp at all
-    tier 2  reissue-no-record  a study EXISTS AND WAS DELIVERED -- every covered
-                               name has one, under files/ -- but it commits no
-                               engine/{ticker}_study record, so the reissue must
-                               reconstruct the record from the delivered document
-                               before it can rebuild anything
-    tier 3  current            a study stamped at the live STANDARD_VERSION
-
-TIER 2 WAS CALLED `first-build` AND SAID `no study` FOR AS LONG AS THIS FILE
-HAS EXISTED, AND THAT WAS FALSE OF EVERY ONE OF THE 67 NAMES IN IT.  This
-module resolved the population of studies by globbing `engine/*_study`, which
-returns 24 directories, and reported the absence of a DIRECTORY as the absence
-of a STUDY.  All ninety covered names carry a delivered valuation study, model
-and bibliography under `files/`; what the 67 do not carry is a RECORD a gate
-can read.  Those are two different facts and only one of them was measured.
-
-It is [R-ENF-04] and [L-355] together -- a probe that reads one naming
-convention finds nothing under the other and REPORTS THAT AS A RESULT -- and
-it had already been closed once, in `engine/study_population.py`, whose own
-docstring states the corrected population in terms.  This consumer never
-imported it, so the repository held the right answer and the wrong one at the
-same time and nothing compared them.  The population is therefore taken from
-that module here rather than re-derived, on the same discipline that removed
-the duplicated alias table: ONE MEASUREMENT, EVERY CONSUMER IMPORTS IT.
+    tier 1  reissue      a study exists but was built to an older standard,
+                         or carries no standard stamp at all
+    tier 2  first-build  no study directory exists -- the name carries a
+                         published fair value that no study of the current
+                         standard ever produced
+    tier 3  current      a study stamped at the live STANDARD_VERSION
 
 Alphabetical inside each tier, so the queue is deterministic and two readings a
 week apart differ only where the repository actually moved.
@@ -59,8 +39,8 @@ Read the queue:   python3 engine/campaign_queue.py
 """
 
 import json
-import os
 import re
+import os
 import subprocess
 import sys
 
@@ -86,7 +66,6 @@ MARKET_ORDER = (
 # listed a studied name as unstudied for three days. One table, every consumer
 # imports it, nothing left to drift.
 from study_aliases import DIR_ALIAS as STUDY_ALIAS  # noqa: E402
-import study_population  # noqa: E402  -- the population of STUDIES, not of directories
 
 # Study directories that intentionally resolve to no equity in the queue.
 STUDY_NOT_IN_QUEUE = {'XPT': 'metals study - no issuer, no statements, no drivers'}
@@ -113,15 +92,12 @@ def load_register(path=DATA_JS):
     return d['tickers'], d['metals']
 
 
-def study_standards():
-    """ticker -> standard_version stamped by its study RECORD, or None if the
-    record carries no stamp.
+STAMP_SOURCE = {}
 
-    ABSENT FROM THIS DICT MEANS NO RECORD DIRECTORY, WHICH IS NOT THE SAME AS
-    NO STUDY.  Every covered name has a delivered study under `files/`; this
-    reads the subset that also commits `engine/{ticker}_study`.  Callers join
-    it to `study_population.population()` for the delivered half and must not
-    read an absence here as an absence of work."""
+
+def study_standards():
+    """ticker -> standard_version stamped by its study, or None if unstamped.
+    Absent from the dict means no study directory at all."""
     sys.path.insert(0, ENGINE)
     from research_protocol import STANDARD_VERSION
     out = {}
@@ -130,40 +106,68 @@ def study_standards():
             continue
         tk = d[:-len('_study')].upper()
         tk = STUDY_ALIAS.get(tk, tk)
-        version = None
-        for f in sorted(os.listdir(os.path.join(ENGINE, d))):
-            if not f.endswith('.json'):
+        # THE STUDY'S OWN NUMBERS FILE IS THE ANSWER, NOT WHICHEVER JSON SORTS FIRST
+        # [corrected 13-09-2026]. This scanned every .json in the directory in
+        # ALPHABETICAL ORDER and took the first one carrying a standard_version. On AMOC
+        # that is beta_result.json, stamped 2026.09.01 when the beta was last re-derived,
+        # while study_numbers.json beside it says 2026.09.10 -- so a study rebuilt to the
+        # live standard went on being listed as needing a reissue because 'b' sorts before
+        # 's'. The queue's answer depended on filename order, which is not a fact about
+        # any study.
+        #
+        # A SIDE RECORD IS NOT THE STUDY. The numbers file is what every other gate in
+        # this book reads and it is what this one reads now; the fallback scan is kept for
+        # a study that genuinely keeps its record elsewhere, and it now SAYS which file it
+        # took the answer from rather than leaving that to be guessed.
+        version, src = None, None
+        sdir = os.path.join(ENGINE, d)
+        for primary in ('study_numbers.json', 'numbers.json'):
+            fp = os.path.join(sdir, primary)
+            if not os.path.exists(fp):
                 continue
             try:
-                j = json.load(open(os.path.join(ENGINE, d, f), encoding='utf-8'))
+                j = json.load(open(fp, encoding='utf-8'))
             except Exception:
                 continue
             if isinstance(j, dict) and 'standard_version' in j:
-                version = j['standard_version']
-                break
+                version, src = j['standard_version'], primary
+            break
+        if version is None:
+            for f in sorted(os.listdir(sdir)):
+                if not f.endswith('.json'):
+                    continue
+                try:
+                    j = json.load(open(os.path.join(sdir, f), encoding='utf-8'))
+                except Exception:
+                    continue
+                if isinstance(j, dict) and 'standard_version' in j:
+                    version, src = j['standard_version'], f
+                    break
+        STAMP_SOURCE[tk] = src
         out[tk] = version
     return out, STANDARD_VERSION
 
 
-def delivered_edition(files):
-    """The latest DD-MM-YYYY carried by a name's delivered artefacts.
+def _delivered_note(tk):
+    """What a tier-2 name actually has: a delivered study, and no engine directory.
 
-    Read off the filenames because that is where this book records an edition;
-    two spellings are in use (`29-06-2026` and the model's `11072026`) and both
-    are read, since a reader that knows one convention finds nothing under the
-    other and reports that as a result [L-355]."""
-    best = None
-    for f in files:
-        for m in re.finditer(r'(\d{2})-(\d{2})-(\d{4})', f):
-            d, mo, y = m.groups()
-            best = max(best or '', '%s-%s-%s' % (y, mo, d))
-        for m in re.finditer(r'_(\d{2})(\d{2})(\d{4})[._]', f):
-            d, mo, y = m.groups()
-            best = max(best or '', '%s-%s-%s' % (y, mo, d))
-    if not best:
-        return 'undated'
-    y, mo, d = best.split('-')
-    return '%s-%s-%s' % (d, mo, y)
+    Resolved through study_population, the same source the valuation-gap gate reads, so
+    the queue and that gate cannot disagree about whether a document exists. If the
+    population cannot be read at all the note says SO rather than falling back to a
+    cheerful default -- an unreadable population is not an absent study [R-ENF-04].
+    """
+    try:
+        sys.path.insert(0, ENGINE)
+        import study_population as _sp
+        entry = _sp.population().get(tk) or {}
+        docs = [f for f in entry.get('delivered', []) if f.lower().endswith('.docx')]
+        if docs:
+            m = re.search(r'(\d{2}-\d{2}-\d{4})', docs[0])
+            return ('delivered %s; no engine directory' % m.group(1)) if m else \
+                   'study delivered; no engine directory'
+        return 'NO DELIVERED STUDY FOUND; no engine directory'
+    except Exception as exc:
+        return 'delivered-study lookup FAILED (%s); no engine directory' % type(exc).__name__
 
 
 def build_queue(path=DATA_JS):
@@ -175,11 +179,6 @@ def build_queue(path=DATA_JS):
     result is not a clean result [R-ENF-04]."""
     tickers, metals = load_register(path)
     stamps, current = study_standards()
-
-    # THE DELIVERED STUDIES, from the module that owns that population.  It
-    # refuses on any covered name that resolves to no delivered artefact, so a
-    # short answer here is a raise and never a quietly shorter queue.
-    pop = study_population.population()
 
     total = len(tickers) + len(metals)
     queue, excluded, seen = [], [], set()
@@ -195,16 +194,20 @@ def build_queue(path=DATA_JS):
                 continue
             if tk in stamps:
                 tier = 3 if stamps[tk] == current else 1
-                built = stamps[tk]
             else:
-                # A DELIVERED STUDY WITH NO RECORD IN THE REPOSITORY -- never a
-                # name with no study.  Report the edition it was delivered at,
-                # so the queue says what has to be reissued rather than what is
-                # missing.
                 tier = 2
-                built = 'delivered %s, no record in repo' % (
-                    delivered_edition(pop[tk]['delivered']) if tk in pop else 'unknown date')
-            tiers[tier].append((tk, ex, built))
+            # THE LABEL SAYS WHAT IS ACTUALLY MISSING, WHICH IS THE ENGINE DIRECTORY AND
+            # NOT THE STUDY. It read "(no study)" and that is false for every name in this
+            # tier: this queue's own tier-2 definition says the name "carries a published
+            # fair value", and study_population resolves a delivered .docx and .pdf for all
+            # of them -- KABO's is dated 06-07-2026, ABUK's 01-07-2026, COMI's 29-06-2026.
+            # A session reading "(no study)" concludes no study exists, which is a claim
+            # about the world that is wrong, and it decides the KIND of work: building a
+            # study from nothing and re-issuing a delivered document to the current
+            # standard are different jobs under different rules. This label has already
+            # produced exactly that wrong claim once, to the principal, on 09-09-2026, and
+            # the correction came from the principal rather than from any check.
+            tiers[tier].append((tk, ex, stamps.get(tk, _delivered_note(tk))))
         for tier in (1, 2, 3):
             for tk, ex, stamp in sorted(tiers[tier]):
                 seen.add(tk)
@@ -212,8 +215,7 @@ def build_queue(path=DATA_JS):
                     'position': len(queue) + 1,
                     'ticker': tk, 'market': market, 'exchange': ex,
                     'market_label': label,
-                    'tier': {1: 'reissue', 2: 'reissue-no-record',
-                             3: 'current'}[tier],
+                    'tier': {1: 'reissue', 2: 'first-build', 3: 'current'}[tier],
                     'built_to': stamp if stamp else '(study carries no stamp)',
                     'run_dir': 'engine/%s_walkforward' % tk.lower(),
                 })
@@ -235,13 +237,6 @@ def build_queue(path=DATA_JS):
     if not queue:
         raise SystemExit('FATAL: the queue is empty. An empty result is not a '
                          'clean result -- the register did not load.')
-    queued = {q['ticker'] for q in queue}
-    unstudied = sorted(queued - set(pop))
-    if unstudied:
-        raise SystemExit('FATAL: %d queued name(s) resolve to no delivered study: %s. '
-                         'Every covered name has one; a name that will not resolve '
-                         'means the alias table is short [L-355].'
-                         % (len(unstudied), ', '.join(unstudied)))
     covered = set(tickers) | set(metals)
     for tk in stamps:
         if tk not in covered and tk not in STUDY_NOT_IN_QUEUE:

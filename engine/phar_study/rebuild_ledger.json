@@ -66,12 +66,21 @@
    "before": 36.639497733882315,
    "after": 32.99747064299512,
    "why": "engine/terminal_value.py states the basis in its own contract and says what breaking it costs: 'Pass a NOPAT already grown by (1+g) and the terminal is overstated by exactly (1+g) — a year-seven flow discounted at the year-five factor.' Both call sites did it, on nopat, on dna_book and on working_capital. The parked-construction depreciation catch-up deducted beside the NOPAT is cip[-1] x dep_rate, a FY2030E balance at the annual rate, so it is ALREADY on the last-explicit-year basis and is deducted at full value rather than deflated — the correction is the removal of a growth factor, not the division of an expression.",
-   "evidence": "rebuilt through the same sanctioned module: terminal value 20109.0 -> 18664.9 (-7.18%) on Frame A and 25691.4 -> 23882.1 (-7.04%) on Frame B; value per share 36.6395 -> 32.9975 (-9.94%) and 54.2420 -> 49.6789 (-8.41%). The share effect exceeds the terminal effect because the bridge is geared — net debt 7364.3 against equity 5568.5 on Frame A. The superseded construction, rebuilt through the module, reproduces the previous edition's published pair exactly, which is the evidence that this pass moved one thing.",
+   "evidence": "rebuilt through the same sanctioned module: terminal value 19639.5 -> 18229.1 (-7.18%) on Frame A and 25091.5 -> 23324.5 (-7.04%) on Frame B; value per share 34.8974 -> 31.3738 (-10.10%) and 52.0182 -> 47.6035 (-8.49%). The share effect exceeds the terminal effect because the bridge is geared — net debt 7364.3 against equity 5294.5 on Frame A. The superseded construction, rebuilt through the module, reproduces the previous edition's published pair exactly, which is the evidence that this pass moved one thing.",
    "move": -0.09940166531047279
+  },
+  {
+   "name": "the beta re-derived against the published index of its own exchange",
+   "rule": "SIGCM-6",
+   "before": 32.99747064299512,
+   "after": 31.373799027335803,
+   "why": "the beta was regressed against an EQUAL-WEIGHT COMPOSITE of 36 covered Egyptian names, and the study said so in its own source field. A constituent composite is not a weaker tier: it changes whenever a stock is posted and it shares constituents with the panel it prices, so it is a coverage artefact rather than a market, which is why SIGCM clause 6 calls it a hard fail. AND THE NUMBER WAS TYPED — the input carried a literal 0.629, so re-running the regression to any answer at all would have left the model discounting at the old one. Running it first and watching the valuation not move is how that was found. The correction moves both frames FURTHER BELOW a price they already sit far below.",
+   "evidence": "beta_regression.own_stock_beta('PHAR','EG','EGX') against raw_indices/EG/EGX30.csv as at 2026-09-08: beta 0.6658, R-squared 0.143, n 256, standard error 0.1355, 90% interval [0.443, 0.889], Dimson-corrected and matched to the exchange's own trading week. THE WITHDRAWN COMPOSITE FIT BETTER — 0.6295 at an R-squared of 0.235 — and that is recorded rather than left out: a basket sharing constituents with the panel it prices will track a member of that panel more closely than a blue-chip index does, and a better fit against the wrong regressor is not evidence for the wrong regressor. Frame A 32.9975 -> 31.3738, Frame B 49.6789 -> 47.6035.",
+   "move": -0.04920594166825931
   }
  ],
- "value": 32.99747064299512,
- "cumulative_move": -0.43150508105446383,
+ "value": 31.373799027335803,
+ "cumulative_move": -0.45947840887479974,
  "rules": {
   "R-TERM-01": {
    "levers": [
@@ -107,8 +116,16 @@
    "first_before": 36.639498,
    "last_after": 36.639497733882315,
    "move": -7.263136869717357e-09
+  },
+  "SIGCM-6": {
+   "levers": [
+    "the beta re-derived against the published index of its own exchange"
+   ],
+   "first_before": 32.99747064299512,
+   "last_after": 31.373799027335803,
+   "move": -0.04920594166825931
   }
  },
- "distinct_rules": 4,
+ "distinct_rules": 5,
  "note": "Several levers serving ONE rule are one piece of evidence, not several. `rules` combines them; `levers` keeps the order they were applied in so the route can be walked."
 }

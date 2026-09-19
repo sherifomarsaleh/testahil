@@ -66,7 +66,88 @@ gas_standard = reprice(gas_m3_per_t_ammonia=V('gas_standard_m3_t'))
 kd_floored = reprice(glide=True, kd_floor=W['sovereign_floor'])
 project_faster = reprice(anna_capex_path=[3000.0, 3500.0, 3500.0, 3000.0, 2000.0])
 
+# THE EXPORT DUTY, PRICED. It was in NO alternatives table until 09-09-2026 while being
+# the largest single line anyone has priced in this study: a 10% ad-valorem duty applied
+# to every export tonne in perpetuity, worth EGP 2.68 a share against a central of 4.04.
+# Its source names no decree, no ministry and no rate document, and the study's own sweep
+# register records it as press reporting while the three policy inputs beside it cite
+# cabinet decision 170 of 2021 and trade-ministry decree 241 of 2021 by number. It has
+# been re-tiered L3 -> L4 in inputs.py for that reason. Here it is priced rather than
+# argued about, at the rate adopted, at no duty at all, and at half.
+# THE BASE IS NOW NIL, so the alternatives price the duty's RETURN rather than its
+# removal. Decision 340 of 2026 cancelled it effective 1 August 2026.
+_duty_ten = reprice(export_duty_pct=0.10)
+_duty_half = reprice(export_duty_pct=0.05)
+# APPLIED 10-09-2026, SO THIS ALTERNATIVE TURNED ROUND. The base now prices the new
+# complex's nitrate at the company's own disclosed EGP 20,000/t realisation, which is what
+# this row used to argue FOR. The alternative is therefore the RETIRED basis — the typed
+# US$280/t — kept so the reader can still price the judgement that was made, in the
+# direction it was actually made. An alternative that patches the value already in use
+# scores exactly zero, and the assertion below says so rather than letting an inert row sit
+# in the grid looking like a test.
+_an_retired = reprice(anna_price_usd_t=280.0)
+
 ALTS = [
+    dict(key="export_duty_2026",
+         made="No export duty, because Ministerial Decision 340 of 2026 cancelled the levy "
+              "with effect from 1 August 2026 — five weeks before this study's strike",
+         alt="The 10%% ad-valorem duty back, charged on every export tonne for ever "
+             "(%.4f), or at half that rate (%.4f)" % (_duty_ten, _duty_half),
+         value=_duty_ten,
+         why="THIS IS THE LARGEST SINGLE LINE IN THE STUDY AND IT TURNED OVER TWICE. The "
+             "instrument was found in June and adopted: Decree 258 of 2026, 10% ad valorem "
+             "on the FOB invoice value of nitrogen fertiliser exports, carrying no stated "
+             "expiry of its own. It was then CANCELLED — Ministerial Decision 340 of 2026, "
+             "effective 1 August 2026, striking down Decisions 190, 203 and 258 together. "
+             "The Egyptian Customs Authority issued Circular 46 of 2026 to govern shipments "
+             "whose declarations were opened before the levy ceased, which is the "
+             "administrative trace a real cancellation leaves behind. This study strikes on "
+             "3 September, so the rate in force at the strike is NIL and the duty belonged "
+             "to a window that had closed. "
+             "IT WAS MISSED BECAUSE IT WAS SEARCHED FOR IN ENGLISH. Three searches found "
+             "nothing and NOT FOUND WAS REPORTED AS NOT TRUE, on an Egyptian ministerial "
+             "decision whose register, customs circular and trade coverage are all Arabic. "
+             "Absence of evidence produced by looking in the wrong language is not evidence "
+             "of absence, and five forecast years of a repealed duty is what it cost — EGP "
+             "2.98 a share against a gap of 9.21. "
+             "THE ALTERNATIVE IS NOW THE DUTY'S RETURN, which is the honest direction to "
+             "price it in: it was imposed once this year and can be imposed again, and a "
+             "reader is entitled to see what the largest line in the study is worth if it "
+             "comes back. PURE AMMONIUM NITRATE ABOVE " + ("%.1f%%" % (100 * V('an_exempt_n_pct')))
+             + " NITROGEN AND FREE-ZONE SHIPMENTS WERE EXEMPT while it ran, and the duty was "
+             "applied to the UREA export leg alone, where urea is not exempt. "
+             "What would improve the citation: the Gazette text of Decision 340 itself "
+             "rather than the decree register and the customs circular that implement it."),
+    dict(key="an_price_usd_t",
+         made="The new complex's granulated ammonium nitrate priced at the SAME PRODUCT'S "
+              "OWN DISCLOSED REALISED PRICE — EGP 20,000/t from note 20, carried on the "
+              "currency exactly as the existing nitrate business is",
+         alt="Priced at the retired typed US$280/t, the weakest-sourced input in a "
+             "304-input register, whose source string was four words long and named no "
+             "assessor, series, date or basis (%.4f)" % _an_retired,
+         value=_an_retired,
+         why="THE STUDY PRICES ONE PRODUCT TWICE, 31% APART, AND THE TERMINAL TAKES THE "
+             "LOWER. The existing granulated nitrate is carried at the disclosed EGP "
+             "20,000/t; the new complex's identical output is carried at a typed "
+             "US$280/t whose source string is four words long and names no assessor, "
+             "series, date or basis. The study set out at length why the terminal "
+             "tonne's COST had to come off the auditor's own product cost table for this "
+             "exact product -- granulated ammonium nitrate at EGP 4,076.31/t -- rather "
+             "than from a ratio, and then took the price from a guess. The same "
+             "principle, applied to one side of the margin only, and the side it was not "
+             "applied to is the one 31% below the company's own realised figure. "
+             "IT IS PRICED AND NOT ADOPTED. Two things are unresolved from what this "
+             "desk holds: the disclosed figure is a LOCAL realised price while the new "
+             "complex's output is modelled as export, and a mid-cycle price is by "
+             "construction below a realised one. A search for an assessed mid-cycle "
+             "ammonium nitrate series returned vendor subscription databases only, which "
+             "is not a source this house uses, and what qualitative reporting there is "
+             "points UP for 2026 on gas and Hormuz supply risk rather than down. "
+             "Replacing an unsourced number with another unsourced number that happens "
+             "to raise the value is not a correction, so the conservative "
+             "figure stands and the reader is shown what it costs. What would settle it: "
+             "an assessed FOB Egypt or Black Sea series with its assessor and date, or a "
+             "note 20 splitting nitrate revenue into local and export."),
     dict(key="premium_basis",
          made="Country risk priced off the sovereign's traded default swap",
          alt="Priced off the sovereign's credit rating instead, which is the wider of "

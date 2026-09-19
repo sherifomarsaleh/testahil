@@ -856,7 +856,12 @@ sens_wg = [[(dcf_ps_at(w, g) if w - g > 0.02 else None) for g in g_steps] for w 
 beta_steps = sorted({0.30, 0.50, SCHED.beta, 0.85, 1.00, 1.20})
 sens_beta = []
 for _b in beta_steps:
-    _ke = SCHED.rf_star + _b * SCHED.erp
+    # [R-ENF-03] THE GRID MUST PRICE EVERY BETA THE WAY THE ADOPTED RATE IS PRICED. This
+    # read rf* + beta x the WHOLE premium while the schedule moved onto the split, so the
+    # row carrying the adopted beta stopped reproducing the adopted WACC and the assertion
+    # below fired — 39bp apart. Beta multiplies the mature leg; country risk is charged flat
+    # and once, and does not vary with beta at all [R-COC-03].
+    _ke = SCHED.rf_star + _b * SCHED.erp_mature + SCHED.crp_effective
     _w = WE * _ke + (1.0 - WE) * KD_AT
     sens_beta.append(dict(beta=_b, ke=_ke, wacc=_w,
                           ps=dcf_ps_at(_w, TG) if _w - TG > 0.02 else None,
@@ -930,6 +935,8 @@ e1 = dict(base=e1_ps, rng=(e1_ps_at(FADE_HI, WACC), e1_ps_at(FADE_LO, WACC)),
           fade_lo=FADE_LO, fade_hi=FADE_HI)
 # Expert 2 — Karim (normalized earnings power)
 e2 = dict(base=norm['base'], rng=(norm['bear'], norm['bull']))
+# his implied multiple, for the sensitivity band his own paragraph quotes
+_E2_X = e2['base'] / norm_eps
 # Expert 3 — Omar (macro-policy scenario tree on the DDM/rate path)
 scen = [(0.30, ddm_lens['bull'] * 1.02), (0.45, ddm_ps), (0.25, ddm_lens['bear'] * 0.96)]
 e3 = dict(base=sum(p * v_ for p, v_ in scen))
@@ -1626,6 +1633,14 @@ out = dict(
                  'dividend-discount and normalised-earnings reads are not permitted '
                  'cross-checks for this class and carried 45% of the answer between them.')),
     },
+    # THE SENSITIVITY BAND THE SECOND EXPERT'S PARAGRAPH QUOTES, COMMITTED. That sentence
+    # walks his multiple a turn and a half either way and printed both ends, and neither end
+    # was a committed figure — so the prose check could not match a number the document had
+    # worked out for itself [R-DCF-01]. The band is his implied multiple plus and minus 1.5
+    # turns; the multiple itself is his own base divided by his own normalised earnings.
+    expert2_band=dict(turns=1.5,
+                      implied_x=_E2_X, low_x=_E2_X - 1.5, high_x=_E2_X + 1.5,
+                      low_ps=(_E2_X - 1.5) * norm_eps, high_ps=(_E2_X + 1.5) * norm_eps),
     rel_basis=dict(ebitda26=ebitda26, np26=np26, eps26=eps26, evx=rel_evx,
                    norm_pat=norm_pat, norm_eps=norm_eps),
     sens=dict(wacc_steps=wacc_steps, g_steps=g_steps, table_wg=sens_wg,

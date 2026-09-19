@@ -2,6 +2,75 @@
 
 Questions and deliveries that arose overnight, each with the evidence and the recommended answer. Empty means nothing needs you.
 
+### Later on 09 Sep — four more CI reds closed, each larger than its own error line
+
+**Nothing here needs you.** Recorded so the next session does not rediscover it.
+
+| red | what it actually was |
+|---|---|
+| record-survives-rebuild | **Five primary generators were deleting records they do not own.** AMOC, PHAR, PHDC, SWDY, TMGH each ended in a wholesale `json.dump`, so re-running the primary alone silently destroyed the asset-base vintage, the cost-of-capital reproduction, the bridge and the information-set date. Now 23 rebuilds, 0 lost. |
+| page-integrity | **We were serving SODIC's own web pages from our domain** — 1.8MB of captured third-party markup, linked from nothing, published because GitHub Pages serves the whole repository. The favicon it reported was the small half. |
+| artefact-currency | **Four re-struck studies had two stale artefacts each** (ADNOCDIST, AMR, ELEC, FERTIGLOBE). The gate's own line is the lesson: the re-strike reached the valuation and not the paper. |
+| — | Fixing the first one **broke the detector that finds it**, and the gate failed again for a different reason. It was right both times. A detector that knows one spelling of an act goes blind the next time the spelling changes. |
+
+**Still red, and none of it touches a valuation:** the delivered-PDF currency failure on AMR,
+the published-gap worsening on FERTIGLB, and the output-sanity negative control whose EGCH
+mutation does not land. The five ABUK gates stay red on purpose — they are escalated, and
+widening them to clear them is the one thing refused.
+
+**Your ten referred documents are unchanged and waiting.** Nothing was published.
+
+## 09 Sep 2026 — Phase 1 is proven, and the bar that blocked it was never yours
+
+**One thing needs you, and it is ten documents rather than a decision about the method.**
+
+You corrected the record: *"Criterion 4 is not true. I never said that."* The rule as you
+stated it is adopted and the 15% criterion is scrapped — [R-VCAL-02 CLAUSE THREE], amended
+in both governing documents, digest renamed to `PROJECT_INSTRUCTIONS_10-09-2026.md`.
+
+| | |
+|---|---|
+| fair value **above** the latest recorded traded price | passes |
+| **below** it by less than 10% | passes |
+| **below** it by 10% or more | **referred to you** — you read the document and pass it or ask for changes |
+
+All six Phase 1 acceptance criteria now read MET, and the publish block holds **nothing** on
+the method. Read both live rather than from this page — `python3 scripts/check_publish_block.py`
+— because a name crosses the line whenever a price moves.
+
+**What was wrong with criterion 4, because none of it was a small slip.** It was
+**two-sided**, penalising a study for sitting far *above* the price exactly as hard as far
+below — the opposite of what you asked for. It was **pooled**, a median across names, so one
+name's excess hid inside four and no individual study could be cleared on its own merits. And
+it **contradicted itself**: the file computing it carried a note saying that matching the
+price is Part E's explicit non-criterion, next to the code testing for exactly that.
+
+**And the plan already said so.** `PLAN_02-09-2026.md` line 308 calls it *"not an acceptance
+criterion but a graded prediction"* and warns in the next sentence that *"an acceptance
+criterion on price would be a target a standing goal would learn to hit"*. Something later
+promoted it into criterion 4 anyway. That dated record is left as written.
+
+**Nothing was published and no fair value moved.** Publishing needs your explicit word, and a
+referral is answered by you reading the document — never by the document being fitted to the
+market.
+
+**THE ONE HONEST CAVEAT.** Criterion 1 says *green in CI*, and CI is not green. It reads its
+own record rather than a live run, so it can say MET while the branch is red. A full sweep
+from outside the work found 15 red gates plus one on the site pages; three are closed, the
+rest stand. Phase 1 is proven on the record; it is not proven until CI agrees.
+
+**A live [R-ENF-01] violation was found inside a negative control**, which is the finding of
+the day after your rule. `check_lessons_register_negative_control.py` restored a file from
+`json.dumps(doc)` instead of its raw bytes — semantically identical, byte-different — then
+exited 0 while leaving the tracked tree modified. A green result hiding a mutation. Fixed and
+verified.
+
+**Escalations opened, none needing an answer today:** ABUK's Document 1 was never built and
+five gates are correctly red on it; OCDI's FY2025 statements and EMFD's own post-Q2-2021
+filings are both behind an EGX firewall that returns HTTP 200 with a challenge page; EMFD's
+walk-forward panel rests partly on refused JBIG2 scans, with FY2012 and FY2013 established as
+not surviving.
+
 ## 06 Sep 2026 — the valuation-input priority: three of the four already exist
 
 **Nothing here needs a decision.** You directed that PHDC, TMGH, EGCH and AMOC's per-origin

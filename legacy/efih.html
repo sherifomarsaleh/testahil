@@ -1,10 +1,11 @@
 <!doctype html>
 <html lang="en" dir="ltr">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<script src="/assets/gate.js"></script><meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="icon" type="image/png" href="/favicon.png?v=2">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
-<meta name="robots" content="max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="robots" content="noindex,nofollow">
 <title>e-finance (EFIH) — is the stock worth it? | testahil?</title>
 <meta name="description" content="Where could e-finance (EGX:EFIH) be in 1–3 months? A plain-language read of the odds, plus the full study and open model.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -384,7 +385,7 @@
   </div>
 </div>
 
-<script src="assets/data.js?v=20260907borouge"></script><script src="assets/app.js?v=20260906silverprose"></script>
+<script src="assets/data.js?v=20260908fertiglb"></script><script src="assets/levers.js"></script><script src="assets/app.js?v=20260906silverprose"></script>
 <script>
 const T=TICKERS.EFIH;
 document.getElementById("upd").textContent=SITE.updated;
@@ -420,18 +421,7 @@ if(T.files && T.files.biblio){
 renderGauge("gauge", T.spot, T.fair, T.spotDate);
 
 renderStaticFan("mc-fan-static", T);
-renderFairLevers("fl-lever-card", T, [
-  { name:'EGP interest-rate path — impact on e-finance', min:-6, max:4, step:0.5, def:0, impact:1,
-    lo:'tighter / rate headwind', hi:'easier / rate tailwind', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
-  { name:'Regulatory / fee-cap shock — probability', min:0, max:35, step:1, def:20, impact:0.12,
-    lo:'high risk', hi:'calm', fmt:v=>Math.round(v)+'% chance' },
-  { name:'New government mandate / growth execution — probability', min:0, max:90, step:1, def:25, impact:0.05,
-    lo:'unlikely', hi:'likely', fmt:v=>Math.round(v)+'% chance' },
-  { name:'Transaction / e-payment volume growth', min:-12, max:20, step:1, def:8, impact:0.8,
-    lo:'growth stalls', hi:'growth accelerates', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
-  { name:'Blended take-rate / margin', min:-8, max:8, step:0.5, def:0, impact:1,
-    lo:'compresses', hi:'expands', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' }
-]);
+renderFairLevers("fl-lever-card", T, (typeof LEVERS!=="undefined"&&LEVERS["EFIH"])||[]);
 if (T.levels) {
   injectLevels("ta-chart-svg", T.levels.res, T.levels.sup);
   renderLevelList("level-list", T.levels.res, T.levels.sup);

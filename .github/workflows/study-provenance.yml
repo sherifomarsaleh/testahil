@@ -92,6 +92,12 @@ on:
       - 'scripts/check_prose_figures_negative_control.py'
       - 'scripts/check_workbook_values.py'
       - 'scripts/check_workbook_values_negative_control.py'
+      - 'scripts/check_workbook_formula_targets.py'
+      - 'scripts/check_workbook_formula_targets_negative_control.py'
+      - 'scripts/check_workbook_live_inputs.py'
+      - 'scripts/check_workbook_live_inputs_negative_control.py'
+      - 'scripts/check_artefact_freshness.py'
+      - 'scripts/check_artefact_freshness_negative_control.py'
       - 'scripts/check_walkforward_scope.py'
       - 'scripts/check_walkforward_scope_negative_control.py'
       - 'scripts/check_table_footing.py'
@@ -239,6 +245,12 @@ on:
       - 'scripts/check_prose_figures_negative_control.py'
       - 'scripts/check_workbook_values.py'
       - 'scripts/check_workbook_values_negative_control.py'
+      - 'scripts/check_workbook_formula_targets.py'
+      - 'scripts/check_workbook_formula_targets_negative_control.py'
+      - 'scripts/check_workbook_live_inputs.py'
+      - 'scripts/check_workbook_live_inputs_negative_control.py'
+      - 'scripts/check_artefact_freshness.py'
+      - 'scripts/check_artefact_freshness_negative_control.py'
       - 'scripts/check_walkforward_scope.py'
       - 'scripts/check_walkforward_scope_negative_control.py'
       - 'scripts/check_table_footing.py'
@@ -687,6 +699,70 @@ jobs:
       - name: Workbook-values gate — negative control
         run: python3 scripts/check_workbook_values_negative_control.py
 
+      # NO FORMULA IN A DELIVERED WORKBOOK MAY POINT AT AN EMPTY CELL. TMGH's workbook
+      # discounted at zero: DCF!B9:K9 read =1/(1+'Summary'!$B$14)^n and Summary!B14 is
+      # blank, so every discount factor evaluated to 1.0000, the explicit years printed
+      # 758,476 against the model's 213,065 and enterprise value printed 818,577 against
+      # the study's 273,166 — three times the answer, in the file a reader opens. Its own
+      # recalc.py reported 85 of 85 clean throughout, because it reads the workbook with
+      # data_only=False and recomputes each relationship from the model; it never
+      # evaluates one of the workbook's own formulas. The workbook-values gate above RUNS
+      # that recalculation and deliberately does not prescribe what it checks. So two
+      # green results stood over a workbook wrong by a factor of three, and it took a
+      # narrative audit to find. This is the cheap structural check that closes the class:
+      # a reference into a RANGE is exempt, a single-cell reference to a blank never is.
+      - name: Workbook formula-target gate
+        run: python3 scripts/check_workbook_formula_targets.py
+
+      # and the proof it can go red, on nine conditions — among them the TMGH defect
+      # verbatim, and its twin that must stay GREEN: an empty cell inside a SUM range is
+      # ordinary and deliberate, and a gate that cannot tell the two apart would be untrue
+      # on almost every workbook in the book
+      - name: Workbook formula-target gate — negative control
+        run: python3 scripts/check_workbook_formula_targets_negative_control.py
+
+      # THE SAME DEFECT FROM THE OTHER END. The gate above catches a formula pointing at
+      # a blank; this one catches a number on an input sheet that no formula points at.
+      # Both are the workbook saying one thing and doing another, and both were found by
+      # narrative audit rather than by a gate: SWDY published 49 declared inputs that
+      # drove nothing, because the forecast block had been pasted rather than built. A
+      # reader changes such a cell, watches the answer not move, and has no way to tell
+      # whether the model is wrong or the cell is decorative.
+      #
+      # The exemption is a LABEL, not a list: a cell whose own label says reference, not
+      # used, alternative, for comparison, memo or superseded is a published comparison
+      # and passes. Everything else is wired or it is red.
+      - name: Workbook live-input gate
+        run: python3 scripts/check_workbook_live_inputs.py
+
+      # and the proof it can go red — including the case that must stay GREEN, a cell
+      # nothing reads whose label declares it a reference, which is most of what an input
+      # sheet legitimately publishes beside its live drivers
+      - name: Workbook live-input gate — negative control
+        run: python3 scripts/check_workbook_live_inputs_negative_control.py
+
+      # NO DELIVERED FILE MAY PREDATE WHAT IT WAS MADE FROM. Seven studies were audited
+      # from outside on 13-09-2026 and the largest defect class in every one was a step
+      # somebody forgot: AMOC shipped four of five figures at EGP 11.40 beside tables at
+      # 20.05, ARCC shipped four at 66.53 against a published 77.18, SCEM shipped nine at
+      # 111.62 against 122.67, and ARCC, TMGH, PHDC and GBCO each shipped a workbook PDF
+      # older than the spreadsheet it was rendered from. None was a modelling error and
+      # every one reached a reader. TIER A — a render older than its own source — is
+      # hard. TIER B — a figure older than the numbers — is ratcheted and may only
+      # shorten. A study whose numbers file has uncommitted changes is UNKNOWN, not
+      # clean [R-ENF-04].
+      - name: Artefact-freshness gate
+        run: python3 scripts/check_artefact_freshness.py
+
+      # and the proof it can go red, on eight conditions. Three of them test the BUILD
+      # MANIFEST, which exists because a figure that regenerates byte-identically is
+      # never re-committed and git then reads it as stale: the manifest with the figure
+      # edited after it, with the numbers edited after it, and one that will not parse
+      # must each drop back to the commit-time test. An escape hatch nobody tried to
+      # abuse is not known to be safe.
+      - name: Artefact-freshness gate — negative control
+        run: python3 scripts/check_artefact_freshness_negative_control.py
+
       # EVERY STUDY STATES ITS FUNDAMENTAL WALK-FORWARD SCOPE DECISION. [R-FCAL-01] has
       # required one since 31-Aug-2026 — FULL at eight or more sourceable fiscal years,
       # LIGHT at five to seven, SKIP below five, on the same footing as the data-quality
@@ -798,6 +874,21 @@ jobs:
       - name: Source-integrity gate — negative control
         run: python3 scripts/check_source_integrity_negative_control.py
 
+      # EVERY SOURCE GATE ABOVE READS WHAT A STUDY SAYS ITS SOURCE WAS. NONE OF THEM EVER
+      # OPENED THE FILE. A fetch a firewall refuses does not fail loudly — it returns 200
+      # with a rejection page in the body, and the fetcher writes that body to the filename
+      # it intended. On 09-09-2026 three of those were found in the tree, one of them real
+      # HTML under a correct .html extension, where only the CONTENT was a lie. So this
+      # gate has two tests: magic bytes against extension, and a CLOSED list of block-page
+      # signatures over what studies fetched. Exceptions are exact paths with reasons.
+      - name: Fetch-authenticity gate
+        run: python3 scripts/check_fetch_authenticity.py
+
+      # Weighted toward the clean cases: the same IMF bytes at another path still fail, a
+      # 300 KB filing that quotes a rejection page does not, and an empty run goes red.
+      - name: Fetch-authenticity gate — negative control
+        run: python3 scripts/check_fetch_authenticity_negative_control.py
+
       # [L-290] A SOURCE IS A STRING AND EVERY GATE HERE CHECKS ONLY THAT ONE EXISTS. A
       # study assigned a new source constant to a name sixty lines after that name already
       # held a different document; twelve inputs registered afterwards were re-sourced to a
@@ -871,6 +962,24 @@ jobs:
       - name: Grade-writer layout gate
         run: python3 scripts/check_grade_writer_layout.py
 
+      # THE LESSONS PAGE IS GENERATED FROM THE REGISTER AND MUST NOT DRIFT FROM IT.
+      # method.html carried "Completed on 1 name to date" until it was false by a
+      # factor of eleven, because it was a status sentence a person had to remember
+      # to update [R-DOC-02]. The counts on lessons.html are read from the register
+      # at build time; this step is what stops the generated page going stale the
+      # same way the typed one did.
+      - name: The lessons page is current with the register
+        run: python3 scripts/build_lessons_page.py --check
+
+      # [R-GAP-02 CLAUSE SIX] WRITING THE CASE AND PUBLISHING IT ARE DIFFERENT ACTS,
+      # and until this line existed only the first was enforced. SWDY published a fair
+      # value 35.4% below the market with its MARKET_DISSENT filed and NOTHING on the
+      # ticker page pointing at it. The gate that closes that was written, ran green by
+      # hand, and was named in no workflow — so it checked nothing anybody would notice.
+      # A gate that runs only when somebody types its name is a note to self.
+      - name: A filed dissent is reachable from its ticker page
+        run: python3 scripts/check_dissent_published.py
+
       - name: Site-data reader gate
         run: python3 scripts/check_site_data_reader.py
 
@@ -919,6 +1028,48 @@ jobs:
       # the case count is asserted too.
       - name: New-study gauntlet — negative control
         run: python3 scripts/check_new_study_gauntlet_negative_control.py
+
+      # A DATE THE RECORD HOLDS MAY NOT BE TYPED AGAIN. Adopted 09-09-2026 after three
+      # studies were re-issued and every one shipped a date that had been written down
+      # instead of read — a masthead a month behind its own price, a bibliography headed
+      # with the wrong August, a roll to an anchor the model had left. Each was a
+      # one-line repair; the cost was that each surfaced only when something downstream
+      # disagreed, roughly one per CI cycle. A sweep found 150 in two minutes.
+      - name: Typed dates — a date the record states is never typed again
+        run: python3 scripts/check_typed_dates.py
+
+      # THE RECALCULATOR IS THE ONLY PROOF THAT THE DELIVERED WORKBOOK REPRODUCES THE
+      # MODEL, so a recalculator pointed at a superseded workbook is a proof about the
+      # wrong file that passes every time. Found on SWDY 09-09-2026: recalc.py named the
+      # 5-August workbook and kept naming it through a 2-September edition and a
+      # 9-September one, and the check went on printing RECALC OK.
+      - name: Recalculator target — the workbook each study actually delivers
+        run: python3 scripts/check_recalculator_target.py
+
+      - name: Recalculator target — the falsifier [R-ENF-07]
+        run: python3 scripts/check_recalculator_target_negative_control.py
+
+      # A SUPPLIED PRICE IS A HAND-OFF, NOT A SOURCE. Ten studies read
+      # engine/prices/SUPPLIED_*.json and so does the traded-price gate, which is Phase 1's
+      # criterion 4 -- the one that decides which names PASS and which are REFERRED. A wrong
+      # price there produces a wrong ROUTING, not a wrong fair value. Found 09-09-2026 when
+      # the principal said "Noo Kabo is not 34 EGP"; running the comparison across all
+      # ninety names found four, not one.
+      - name: Supplied prices — each held against its own OHLC library
+        run: python3 scripts/check_supplied_prices.py
+
+      - name: Supplied prices — the falsifier [R-ENF-07]
+        run: python3 scripts/check_supplied_prices_negative_control.py
+
+      # FOUR GATES POLICE THE TERMINAL AND EVERY ONE READS A COMMITTED RECORD, so a study
+      # that builds its terminal by hand and commits none is examined by NONE of them and
+      # passes all four. Measured 09-09-2026: 24 study directories, 12 carrying a record,
+      # four with a terminal and no terminal_value import anywhere.
+      - name: Terminal construction — built through the sanctioned module
+        run: python3 scripts/check_terminal_module_use.py
+
+      - name: Terminal construction — the falsifier [R-ENF-07]
+        run: python3 scripts/check_terminal_module_use_negative_control.py
 
       # THE LARGEST BLIND SPOT IN THE SYSTEM, and the gauntlet above cannot see it either:
       # every construction gate here takes a STUDY DIRECTORY as its subject, so a name with
@@ -1485,102 +1636,18 @@ jobs:
       - name: Every named error is planted and caught
         run: python3 scripts/check_error_injection.py
 
-      # ---- the six gates adopted on 18-09-2026, ADDED IN THE SAME PASS THAT FOUND THEM
-      # MISSING. Every one was written, negative-controlled and committed that day and
-      # NONE was in this file: scripts/repair_loop.py discovers gates by glob and picked
-      # them up, CI is a typed list and did not. A gate outside this file is enforcement
-      # that runs when somebody remembers, which is what the whole enforcement layer
-      # exists to replace — and [R-MERGE-01] says green means EVERY gate, not a subset.
-      # check_workflows_complete.py below now makes the omission impossible to repeat.
-
-      # [R-REAL-01]. A revenue line that does not move with inflation while the cost
-      # lines do manufactures a margin collapse, and the model reports the collapse as a
-      # finding. PHAR's drug price falls 15.9% in REAL terms under a note saying it
-      # "tracks domestic inflation". The gate catches SILENCE, never the decline itself.
-      - name: Price paths declare what they do in real terms
-        run: python3 scripts/check_real_terms_paths.py
-
-      - name: Real-terms gate — negative control
-        run: python3 scripts/check_real_terms_paths_negative_control.py
-
-      # A quantity held FLAT in nominal terms is a real-decline forecast, and two studies
-      # describe it as the absence of one.
-      - name: A flat nominal path is not the absence of a forecast
-        run: python3 scripts/check_flat_nominal_claim.py
-
-      - name: Flat-nominal gate — negative control
-        run: python3 scripts/check_flat_nominal_claim_negative_control.py
-
-      # [R-LESSON-02]. 19 of 312 lessons reach the layer that binds. The debt is counted
-      # rather than felt, and a lesson added with no declaration is a NEW breach.
-      - name: Lessons declare whether they reach the binding layer
-        run: python3 scripts/check_lesson_promotion.py
-
-      - name: Lesson-promotion gate — negative control
-        run: python3 scripts/check_lesson_promotion_negative_control.py
-
-      # [R-BETA-05]. A document quoting beta diagnostics names the estimator, because a
-      # careful outside reader applying the textbook identity to a Dimson beta concludes
-      # the figures were fabricated — and is right to, on what the page tells them.
-      - name: Beta diagnostics name their estimator
-        run: python3 scripts/check_beta_estimator_disclosure.py
-
-      - name: Beta-estimator gate — negative control
-        run: python3 scripts/check_beta_estimator_disclosure_negative_control.py
-
-      # [R-REBUILD-01 CLAUSE TWO]. "The promotion guard forbids it" is not a reason to
-      # defer a correction, and seven passages gave it as one — every single one
-      # deferring a correction that RAISES the value.
-      - name: No deferral cites a rule that does not govern it
-        run: python3 scripts/check_deferral_reason.py
-
-      - name: Deferral-reason gate — negative control
-        run: python3 scripts/check_deferral_reason_negative_control.py
-
-      # The total recorded debt across every ratchet, which no single list can show and
-      # which nobody who maintains one of them can see.
-      - name: The recorded debt is counted
-        run: python3 scripts/check_study_debt.py
-
-      - name: Study-debt gate — negative control
-        run: python3 scripts/check_study_debt_negative_control.py
-
-      # CLOSES THE CLASS RATHER THAN THE INSTANCE [R-ENF-01]: every gate on disk runs in
-      # some workflow. Six adopted in one day ran in none, and nothing could have said
-      # so, because a typed list is silent about what is not in it.
-      - name: Every gate on disk runs somewhere
-        run: python3 scripts/check_workflows_complete.py
-
-      - name: Workflows-complete gate — negative control
-        run: python3 scripts/check_workflows_complete_negative_control.py
-
-      # ---- EIGHT MORE THE COMPLETENESS GATE FOUND ON ITS FIRST RUN, and none of these
-      # is from today. They were written, negative-controlled, committed — and run by
-      # nobody. That is the finding rather than an untidiness: [R-MACRO-01 AMENDED]'s
-      # anchor-age gate has been enforcing nothing since 6 September.
-      - name: A study is not struck long after its currency anchor
-        run: python3 scripts/check_macro_anchor_age.py
-
-      - name: Macro anchor-age gate — negative control
-        run: python3 scripts/check_macro_anchor_age_negative_control.py
-
-      - name: Delivered bibliographies source the company's own historicals
-        run: python3 scripts/check_bibliography_sources.py
-
-      - name: Bibliography-sources gate — negative control
-        run: python3 scripts/check_bibliography_sources_negative_control.py
-
-      - name: The terminal declares its basis
-        run: python3 scripts/check_terminal_basis.py
-
-      - name: Terminal-basis gate — negative control
-        run: python3 scripts/check_terminal_basis_negative_control.py
-
-      - name: Convergence-refusal — negative control
-        run: python3 scripts/check_convergence_refusal_negative_control.py
-
-      - name: Terminal ERP basis — negative control
-        run: python3 scripts/check_erp_terminal_basis_negative_control.py
+      # THE CLAUSE ITSELF IS NOT RUN HERE AND THAT IS DELIBERATE. criterion3.py is an
+      # ADOPTION criterion measured on the mechanical series, so it goes red whenever a
+      # cell moves and a clause stops holding — which is the programme's own finding
+      # rather than a defect in a push, and wiring it here would be the permanently-red
+      # check [R-ENF-02] forbids. WHAT IS WIRED IS THE INSTRUMENT: the control proves
+      # clause G still behaves as [R-VCAL-02 CLAUSE THREE] says — that it fires on an
+      # unaudited expensive call, refuses an unreadable or absent audit, refuses an
+      # empty population, and STAYS SILENT on a cell far above its price, the bar being
+      # one-sided by instruction. That is a property of the check and never of the book,
+      # so it cannot be red for a reason outside anybody's control.
+      - name: The expensive-call bar behaves as the rule says — negative control
+        run: python3 scripts/check_clause_g_negative_control.py
 
       - name: Tree-unmodified gate — negative control
         run: python3 scripts/check_tree_unmodified_negative_control.py

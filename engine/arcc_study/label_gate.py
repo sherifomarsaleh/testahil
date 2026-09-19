@@ -10,11 +10,15 @@ says it is, computed independently from study_numbers.json.
 """
 import json, sys, openpyxl, os
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
 os.chdir(HERE)
 D = json.load(open('study_numbers.json'))
 H, F, DCF, UC = D['history'], D['forecast'], D['dcf'], D['unit_calibration']
 IN = {k: v['value'] for k, v in D['inputs'].items()}
-wb = openpyxl.load_workbook('ARCC_Valuation_Model_03092026_public.xlsx')
+# POINTED AT THE EDITION MODULE. It named the 03-09 files, and a check that opens a
+# SUPERSEDED file reports that file's defects as current [L-066/L-067].
+wb = openpyxl.load_workbook(_ed.MODEL_XLSX)
 XP = json.load(open('xlsx_expected.json'))
 
 

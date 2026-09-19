@@ -1,4 +1,4 @@
-"""ADNOCDIST_Bibliography_09-08-2026.docx — the standalone bibliography document that ships
+"""ADNOCDIST_Bibliography_{edition}.docx — the standalone bibliography document that ships
 alongside the ADNOC Distribution valuation study.
 
 Six things, in order: what the document is and how the research layers work; the primary
@@ -14,6 +14,8 @@ extracted_financials.json, sweep_research.json, beta_result.json or step0_result
 import json, os, re, sys, glob
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
 sys.path.insert(0, HERE)
 import docx_base as B                                                     # noqa: E402
 
@@ -921,6 +923,6 @@ if width_fails:
 assert not hits, 'external-reader vocabulary found'
 assert not width_fails, 'table geometry check failed'
 
-OUT = os.path.join(HERE, 'ADNOCDIST_Bibliography_09-08-2026.docx')
+OUT = os.path.join(HERE, _ed.BIBLIO_DOCX)
 B.doc.save(OUT)
 print('wrote', os.path.basename(OUT))

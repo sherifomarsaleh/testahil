@@ -179,14 +179,7 @@ CLASSES = (
 
 
 def L(id, scope, applies_to, headline, plain, source, origin, evidence,
-      overturned_by, status=None,
-      promotion=None, promoted_by=None, promotion_note=None):
-    # promotion / promoted_by / promotion_note are [R-LESSON-02]. They are OPTIONAL
-    # here and required by the GATE, on the ratchet's terms: every one of the 312
-    # lessons predating that rule keeps its exact shape, and a lesson added after it
-    # declares. Putting the requirement in this signature instead would make every
-    # existing call red at import, which is the permanently-red check [R-ENF-02]
-    # forbids, and would do it inside the module every reader loads.
+      overturned_by, status=None):
     # A walk-forward finding is PROVISIONAL by construction — it cannot be
     # written in as adopted, whatever the caller passes, until the method that
     # produced it has been validated on more than one name.
@@ -199,19 +192,10 @@ def L(id, scope, applies_to, headline, plain, source, origin, evidence,
     if origin == "walk_forward_fundamental" and status == "adopted":
         raise ValueError("%s: a fundamental walk-forward lesson may not be "
                          "adopted while the method rests on one name" % id)
-    out = {"id": id, "scope": scope, "applies_to": applies_to,
-           "headline": headline, "plain": plain, "source": source,
-           "origin": origin, "evidence": evidence,
-           "overturned_by": overturned_by, "status": status}
-    # Only written when declared, so a lesson that has not been ruled on is
-    # ABSENT rather than carrying a null that reads like a decision.
-    if promotion is not None:
-        out["promotion"] = promotion
-    if promoted_by is not None:
-        out["promoted_by"] = promoted_by
-    if promotion_note is not None:
-        out["promotion_note"] = promotion_note
-    return out
+    return {"id": id, "scope": scope, "applies_to": applies_to,
+            "headline": headline, "plain": plain, "source": source,
+            "origin": origin, "evidence": evidence,
+            "overturned_by": overturned_by, "status": status}
 
 
 DEV = "real-estate developer, off-plan, percentage-of-completion"
@@ -1479,9 +1463,7 @@ LESSONS = [
       "the other five corrections.",
       "A study that deliberately assumes real decline in perpetuity, "
       "says so, and shows the disclosure or industry evidence "
-      "supporting it — that is a stated assumption, not this defect.",
-      promotion="enforced", promoted_by="[R-MACRO-01]",
-      promotion_note="The house macro path derives terminal growth as terminal inflation plus a STATED real growth, and derives the terminal risk-free rate from the same terminal inflation, so the two cannot disagree about inflation by construction. assert_macro_coherence() reproduces both."),
+      "supporting it — that is a stated assumption, not this defect."),
 
     L("L-056", "ALL", None,
       "A claim about the record — 'best ever', 'never' — is "
@@ -1504,9 +1486,7 @@ LESSONS = [
       "June 2026, so the claim was false twice over.",
       "A delivered superlative that a reader can verify from the "
       "study's own committed numbers without recomputing it — at "
-      "which point it was computed, not typed.",
-      promotion="enforced", promoted_by="engine/prose_figures.py",
-      promotion_note="Every figure a reader sees is reconciled against the model by the shared instrument, so a claim about the record cannot be typed and reach a page unmatched. scripts/check_prose_figures.py runs it over the book."),
+      "which point it was computed, not typed."),
 
     L("L-057", "ALL", None,
       "Interest income is a balance times a rate, and holding it flat "
@@ -6745,8 +6725,16 @@ LESSONS = [
       "looking for a macro fix would waste the effort.",
       "SWDY walk-forward, date not recorded",
       "walk_forward_fundamental",
-      "Average miss 0.563 as known, 0.563 with perfect foresight of "
-      "inflation — the macro share is only -61.7%.",
+      "Average miss 0.556 as known, 0.497 with perfect foresight of "
+      "inflation — an 11% improvement — while the BIAS moves the other "
+      "way, macro share -61.7%. CORRECTED 08-09-2026: this clause read "
+      "'0.563 as known, 0.563 with perfect foresight' beside that same "
+      "-61.7%, which is self-contradictory on its face and was one "
+      "number printed twice — that run's harvest view filled both "
+      "fields from the as-known error, so every draft it produced "
+      "asserted the strongest possible form of this claim by a copy "
+      "rather than by a measurement. The finding survives the "
+      "correction and the evidence for it is weaker than it looked.",
       "A market or period where the same decomposition puts most of "
       "the error on the macro path."),
 
@@ -6812,823 +6800,144 @@ LESSONS = [
       "legs, which would make a normalised read of the group "
       "meaningful again."),
 
-    # ---- from the seven forensic audits of 18 September 2026 -----------------
-    # 292 findings raised across seven delivered studies by three outside
-    # readers, 254 accepted. The rules that could be made arithmetic went into
-    # the standing protocol by their own route ([R-REBUILD-01 CLAUSE TWO],
-    # [R-BETA-05]); what follows is what was learned and could not.
-
-    L("L-378", "ALL", None,
-      "A charge conceded in a give-back table must be conceded at its own "
-      "line, or the concession understates itself.",
-      "A give-back table asks what the value would be if a contested charge "
-      "were surrendered. Adding the charge back as a MARGIN improvement is "
-      "not the same thing: it then flows down through tax, through the "
-      "employees' profit share and through every rate struck on profit, so "
-      "part of what was conceded is taken away again on the way down. Concede "
-      "it where the model charges it.",
-      "AMOC critique response, 18-09-2026", "critique",
-      "AMOC's adversarial.py conceded the employees' profit share as "
-      "gm_shift and published EGP 11.6888. Setting the rate itself to zero "
-      "and re-running the same waterfall gives 12.0632 — the published row "
-      "understates the concession by EGP 0.3744, 3.3% of the central. An "
-      "outside auditor reached 12.0632 independently.",
-      "A model where the conceded charge sits outside every rate struck "
-      "below it, so the two routes coincide.",
-      promotion="outstanding",
-      promotion_note=
-      "A give-back table could be re-run both ways by an instrument — conceded at the line and conceded as a margin — and the two compared. Nothing does it."),
 
     L("L-379", "ALL", None,
-      "A sensitivity row that moves the answer by exactly zero is re-running "
-      "nothing.",
-      "Every row of a give-back or sensitivity table is a claim that some "
-      "input was changed and the model re-run. A row printing the base case "
-      "to the last decimal is almost never a finding about the input; it is "
-      "a row that never re-ran. Exact zero is the signature, and it is easy "
-      "to read as reassurance.",
-      "AMOC critique response, 18-09-2026", "critique",
-      "AMOC's adversarial.py line 83 reads row('effective_tax', "
-      "waterfall(B)) — the row IS the base case by construction, and it is "
-      "excluded from the assertion loop that would have caught it. The "
-      "delivered table publishes it as a tested alternative.",
-      "A sensitivity genuinely insensitive to its input over the range "
-      "tested, demonstrated by re-running it at a second value.",
-      promotion="outstanding",
-      promotion_note=
-      "A row equal to the base case to the model's own printed precision is arithmetic about the table and needs no judgement. Nothing checks it."),
+      "The method under-forecasts nominal revenue wherever a currency "
+      "steps.",
+      "Every origin holds the exchange rate flat because that is all "
+      "that is knowable then. In a stepping currency that is a "
+      "systematic downward lean on every nominal line, and it "
+      "compounds with the horizon. Read any nominal forecast in such "
+      "a market as a floor rather than a central until the currency "
+      "leg is carried explicitly.",
+      "ABUK walk-forward, date not recorded",
+      "walk_forward_fundamental",
+      "Bias -0.469 log (about 60% too low), average miss 0.497, wrong "
+      "in the same direction in 85% of cases, and the sign holds "
+      "across every bootstrap block tested (n=20).",
+      "A market whose currency did not step showing the same lean — "
+      "the UAE leg is the test, and the mechanism predicts a macro "
+      "share near zero there. A peg that shows -0.30 log of revenue "
+      "bias refutes this."),
 
-    L("L-380", "ALL", None,
-      "A row labelled 'all of the above at once' that runs a subset is a "
-      "defect no arithmetic check can see.",
-      "Every figure in such a row is computed and individually correct, so "
-      "recalculation, provenance and prose-figure checks all pass. What is "
-      "wrong is the relationship between the label and the set — which is a "
-      "claim about the table rather than about any number in it.",
-      "AMOC critique response, 18-09-2026", "critique",
-      "AMOC's ALL_GIVEBACKS is case(nci=0.0, prov=0.0, divp=0.0) — three "
-      "concessions — published under a table listing six, in a document that "
-      "passed 6,069 formula cells with zero disagreements.",
-      "A label that enumerates the cases it runs, so the set and the claim "
-      "cannot drift apart.",
-      promotion="outstanding",
-      promotion_note=
-      "Testable on the prose_figures architecture: the builder declares which cases a combined row runs, and the label is held to the declaration. Not built."),
 
     L("L-381", "ALL", None,
-      "A registered, sourced, four-field input that no arithmetic reads is a "
-      "dead input, and the register cannot tell it from a live one.",
-      "The four-field discipline proves where a number came from. It says "
-      "nothing about whether the model uses it. An input can be sourced to a "
-      "named document, dated, layered and described as the anchor for a "
-      "driver while the driver is built another way entirely — and every "
-      "provenance check passes, because provenance is not consumption.",
-      "AMOC critique response, 18-09-2026", "critique",
-      "AMOC registers capex_pct at 1.45% tapering to 1.25%, sourced to the "
-      "approved EGP 580.19mn capital budget and described in the bibliography "
-      "as 'the anchor for the capital-expenditure driver'. waterfall() builds "
-      "capex as MAINT_CAPEX0 x inflation + growth capital; capex_pct is read "
-      "by nothing. TMGH carries the same shape in two sensitivity rows that "
-      "move the answer by 1.00x and 0.0%.",
-      "A check that reads consumption rather than presence, which "
-      "[R-ASSET-02] now does for the operating asset base and nothing yet "
-      "does for an ordinary driver.",
-      promotion="outstanding",
-      promotion_note=
-      "[R-ASSET-02] does exactly this for the operating asset base. Generalising it to any registered driver is the debt."),
+      "Test whether the macro path explains an error before assuming "
+      "it does.",
+      "Substitute the actual macro path and re-measure. If the error "
+      "falls, it is macro; if it does not move, it is the company; if "
+      "it RISES, the macro path is wired into that line the wrong way "
+      "round and no correction factor will fix it.",
+      "ABUK walk-forward, date not recorded",
+      "walk_forward_fundamental",
+      "Average miss 0.646 as known, 0.585 with perfect foresight of "
+      "inflation — the macro share is only 9.4%.",
+      "A line where substituting the actual macro path never changes "
+      "the error in either direction, making the test uninformative "
+      "rather than diagnostic."),
 
     L("L-382", "ALL", None,
-      "A declared absence is re-searched before it is published, because a "
-      "gap that is not a gap is load-bearing in the wrong direction.",
-      "Saying 'the company does not disclose this' is a claim about the "
-      "world, and it is the one kind of claim a study makes that nothing "
-      "downstream can test — every other figure is checkable and an absence "
-      "is not. It is also the most consequential, because a declared gap is "
-      "what licenses a judgement in its place.",
-      "TMGH critique response, 18-09-2026", "critique",
-      "TMGH declares four gaps and all four are disclosed. Its crux rests on "
-      "'one number that the company does not publish: how long its order book "
-      "takes to convert' and adopts fourteen years; TMG has published 'the "
-      "backlog will be delivered over the coming 4-5 years' in every earnings "
-      "release since FY2018. Its cost of debt rests on 'TMG does not disclose "
-      "the rate on any of its own facilities'; note 25 of the interim "
-      "statements states 28.6%. Both documents were fetched from the "
-      "company's own archive on the first request.",
-      "A study whose declared gap survives a fresh search of the company's "
-      "own channel, logged with its date.",
-      promotion="prose",
-      promotion_note=
-      "Whether a fresh search was run is not a property of the repository. What IS mechanically enforced is the consequence — the sweep register's dated negative-search invariant — and that catches a gap nobody looked for, never a gap somebody looked for once and did not look for again."),
+      "A driver defined as another driver's denominator is not "
+      "independent evidence about either.",
+      "Check the definitions before scoring two drivers as two "
+      "findings. If one is computed from the other, their errors will "
+      "mirror and cancel, and a correction factor applied to either "
+      "hides the wiring instead of fixing it.",
+      "ABUK walk-forward, date not recorded",
+      "walk_forward_fundamental",
+      "ABUK's volume proxy is defined as revenue divided by the urea "
+      "price and the exchange rate. Across 20 cells the volume leg "
+      "and the commodity-price leg correlate at -0.578 with a slope "
+      "of -1.28 against an exact-cancellation -1.00, and the two legs "
+      "SUM to -0.0013 log — they cancel to within a tenth of a "
+      "percent. Two of this run's drafts were two readings of that "
+      "one defect.",
+      "A run where two drivers are definitionally linked and their "
+      "error legs do NOT cancel — which would mean the linkage is not "
+      "load-bearing and the two can be scored apart after all."),
 
     L("L-383", "ALL", None,
-      "A study's own diagnostic can be right while the page prints the sign "
-      "backwards, and nothing compares the two.",
-      "Diagnostics are generated and pages are written. Where both state the "
-      "same quantity, only the generated one is checked — so a page can "
-      "reverse it and every instrument still reports the study clean, because "
-      "each is correct about its own half.",
-      "AMOC critique response, 18-09-2026", "critique",
-      "AMOC's reverse_read.json commits shift = +0.009264 and its "
-      "diagnostics.json reads it correctly in words — 'the price is 87 basis "
-      "points ABOVE the study's own forecast'. The delivered page states 'a "
-      "REDUCTION of -0.93%', in the headline box, and builds the direction of "
-      "proof on it.",
-      "A page that reads its direction words from the committed sign rather "
-      "than stating them, which is the prose-figure discipline applied to a "
-      "direction instead of to a figure.",
-      promotion="outstanding",
-      promotion_note=
-      "A committed sign and the direction words on the page are both readable; comparing them is the prose-figure discipline applied to a direction rather than to a figure. Not built."),
+      "Fin customers forecasts run about 37% too low for ADIB.",
+      "The method misses this driver in the same direction almost "
+      "every time, not at random. That is a fixable defect rather "
+      "than noise — find what is wired wrong before adding any "
+      "correction factor.",
+      "ADIB walk-forward, date not recorded",
+      "walk_forward_fundamental",
+      "Bias -0.311 log (about 37% too low), average miss 0.326, wrong "
+      "in the same direction in 84% of cases, and the sign holds "
+      "across every bootstrap block tested (n=45).",
+      "A later run of the same name where the sign no longer holds "
+      "across bootstrap blocks."),
 
-    L("L-384", "ALL", None,
-      "A panel median computed over a set containing a figure the study has "
-      "already withdrawn is not the panel's read.",
-      "An expert panel earns its place by disagreeing. When the "
-      "cross-examination concedes that one expert's number is wrong and "
-      "restates it, the median must be taken over the restated set — "
-      "otherwise the concession is published two pages before a headline that "
-      "ignores it.",
-      "AMOC critique response, 18-09-2026", "critique",
-      "AMOC's Appendix C concedes Expert 1 is an undiscounted 2028 number "
-      "worth 8.10 rather than 14.50, and prints the panel median as 12.32 "
-      "over the set containing 14.50. The median of the discounted set "
-      "(8.10, 9.34, 12.32) is 9.34 — the panel read moves from -8.8% against "
-      "the price to -30.8%.",
-      "A panel whose concessions are all immaterial to its own median, "
-      "demonstrated rather than assumed.",
-      promotion="outstanding",
-      promotion_note=
-      "A panel median is arithmetic over a committed set, and a conceded restatement is a committed figure. Reconciling the two needs no judgement."),
+    L("L-384", "CLASS", "bank",
+      "The ecl bias changes direction between regimes.",
+      "It runs one way in one period and the other way in the next. "
+      "Averaging them produces a correction that is wrong in both. "
+      "Record it, do not correct for it.",
+      "ADIB walk-forward, date not recorded",
+      "walk_forward_fundamental",
+      "By era: E1 recapitalisation and the 2016 float (origins "
+      "FY2014-FY2017) +0.089; E2 the 2022-24 devaluation sequence "
+      "(origins FY2018-FY2024) -0.351.",
+      "A longer record in which one sign dominates across all "
+      "regimes."),
 
-    L("L-385", "ALL", None,
-      "A cross-check lens struck on a different capital basis does not walk "
-      "through the same bridge, and the difference is invisible until "
-      "somebody walks it.",
-      "Two lenses can be individually correct, individually reconciled and "
-      "still not comparable, because the enterprise value each produces "
-      "stands on a different definition of invested capital. A study that "
-      "claims the lenses reconcile has made a testable claim, and the test is "
-      "to put the second lens's enterprise value through the first lens's own "
-      "bridge.",
-      "AMOC critique response, 18-09-2026", "critique",
-      "AMOC's section 1.9 declares 'one view is now applied across the "
-      "model'. Its terminal runs on GROSS capital at 30.3%, Table A.3 carries "
-      "a net-book memo at 42.3%, and Expert 3 runs wholly on net book. "
-      "Expert 3's enterprise value of 13,536 walked through the study's own "
-      "bridge gives EGP 11.9144, against a published 12.3183 — reproduced "
-      "here and independently by an outside auditor.",
-      "A study whose lenses genuinely share one capital basis, shown by the "
-      "walk rather than by the sentence.",
-      promotion="outstanding",
-      promotion_note=
-      "Walking a cross-check lens's enterprise value through the study's own committed bridge is arithmetic both sides already commit."),
+    L("L-385", "CLASS", "bank",
+      "For a bank, the cost of funds is divided by the deposits — the "
+      "industrial rule says exclude them and it inverts.",
+      "The house rule says a borrowing cost is divided by the "
+      "borrowings that actually bear it, and it names customer "
+      "deposits as the thing to LEAVE OUT. For a bank that is "
+      "backwards: depositors are who the bank is paying. Divide the "
+      "cost of deposits by customers' deposits plus money owed to "
+      "banks plus subordinated financing, and by nothing wider. The "
+      "principle travels; the example does not.",
+      "ADIB walk-forward, date not recorded",
+      "walk_forward_fundamental",
+      "At ADIB-Egypt's FY2025 the balances that bear the charge are "
+      "EGP 293.7 billion against total liabilities of EGP 312.1 "
+      "billion. Reading the industrial rule literally would have "
+      "excluded customers' deposits — 94% of the correct denominator "
+      "— and dividing by total liabilities instead understates the "
+      "funding rate by about a sixth of itself. The build obeys it "
+      "structurally: bottom_up.interest_bearing() is the only route "
+      "to that denominator and total liabilities appears nowhere.",
+      "A deposit-taking institution whose disclosed funding charge is "
+      "levied on something other than its deposits, bank borrowings "
+      "and subordinated debt."),
 
     L("L-386", "ALL", None,
-      "A spread quoted across 'N consecutive filed periods' must name which "
-      "N, because the subset chosen can exclude the period that matters.",
-      "A range over filed history is a fact, and which periods it spans is "
-      "part of the fact. Quoting a spread over a subset without naming it is "
-      "not a rounding difference — the excluded period is usually the "
-      "extreme one, which is why the subset was convenient.",
-      "AMOC critique response, 18-09-2026", "critique",
-      "AMOC's section 5 states 'the filed record spans 514 basis points' "
-      "while Table 6 and section 1.2 state 737 basis points across five "
-      "periods. 514bp is the spread of the FIRST FOUR — it excludes the "
-      "12.43% half the company had just reported, which is the best period in "
-      "the record and the one the margin thesis turns on. The defect was "
-      "already recorded in this house's own standing digest as a worked "
-      "example and shipped anyway.",
-      "A quoted spread that reproduces from the full filed set.",
-      promotion="outstanding",
-      promotion_note=
-      "A spread quoted in prose against the committed filed series is exactly what prose_figures reconciles; what is missing is that the SUBSET be declared."),
-
-    L("L-387", "ALL", None,
-      "A source claim in the delivered bibliography is read by no gate, "
-      "because the source gate reads the committed input register.",
-      "The two artefacts make the same kind of claim about where numbers came "
-      "from, and only one of them is checked. A bibliography can tell a "
-      "reader that an aggregator supplied figures the model in fact takes "
-      "from the filings, and the study passes the source-integrity check "
-      "because that check never opens the bibliography.",
-      "AMOC critique response, 18-09-2026", "critique",
-      "AMOC's bibliography cites stockanalysis.com, Investing.com and "
-      "TradingView for total assets, total liabilities, cash and equivalents "
-      "and total debt — every one of which exists in the statements the study "
-      "holds and takes them from. check_source_integrity.py reads the input "
-      "register, where every AMOC source names a filing, and passes the "
-      "study.",
-      "A source gate whose population is the delivered documents as well as "
-      "the committed register.",
-      promotion="enforced",
-      promoted_by="scripts/check_bibliography_sources.py",
-      promotion_note=(
-          "BUILT 18-09-2026, the same day the lesson was registered. The gate takes "
-          "its population from the DELIVERED documents -- 46 read, 12,654 table rows "
-          "-- and runs the shared instrument in engine/source_integrity.py rather "
-          "than re-implementing it [R-ENF-03]. The instrument was re-pointed twice "
-          "against work that is RIGHT and never widened [R-COC-01]: peer multiples "
-          "off an aggregator are SIGCM clause 5's own construction, and a forward "
-          "revenue target inside a budget announcement is not a reported historical. "
-          "15 rows remain, 0.119%, ratcheted at four with each entry's measurement.")),
-
-    L("L-388", "CLASS", "refiner, commodity pass-through on a thin spread",
-      "Holding a dollar-linked price flat in nominal dollars while domestic "
-      "costs escalate at full inflation is a real-terms price decline, not "
-      "the absence of a forecast.",
-      "On a pass-through processor the slate is priced off a dollar "
-      "benchmark and the conversion costs are domestic. Declining to forecast "
-      "the benchmark is right; holding it flat in NOMINAL dollars is not the "
-      "way to decline, because it forecasts the price falling in real terms "
-      "at foreign inflation every year for ever, against domestic costs that "
-      "do not. The neutral assumption is flat in REAL terms.",
-      "AMOC critique response, 18-09-2026", "critique",
-      "AMOC derives realisation growth as (1 + Egyptian inflation) / 1.025 - "
-      "1 while operating expense and capital expenditure take the full "
-      "Egyptian ladder — an undisclosed 2.5%-a-year wedge that drifts "
-      "opex/revenue from 3.795% to 4.189% where parity holds it at 3.703%. "
-      "Closing it, re-run through the study's own compute.py, is +17.84%: "
-      "EGP 11.4012 to 13.4350. Four studies in the book carry the "
-      "convention.",
-      "Evidence that the real dollar price of this slate has in fact "
-      "declined at foreign inflation over a long enough record to measure, "
-      "which would make the nominal convention the right one.",
-      promotion="outstanding",
-      promotion_note=
-      "Whether a study holds a foreign-currency price flat in nominal terms while escalating domestic costs at the full ladder is arithmetic over what [R-MACRO-01] already makes studies declare. Not built."),
-
-    L("L-389", "CLASS",
-      "real-estate developer, off-plan, point-in-time on handover",
-      "A partial-adjustment conversion model cannot reach the period it is "
-      "labelled with, and the label is what the study sensitises.",
-      "Where revenue moves a fraction of the way toward a target each year "
-      "and the target itself compounds, realised conversion never reaches the "
-      "rate the target was built from. The cell carrying the period is then a "
-      "label rather than a driver — and it is the label the crux grid, the "
-      "headline and the sensitivity all move.",
-      "TMGH critique response, 18-09-2026", "critique",
-      "TMGH commits CAPACITY_YEARS 14 and CAPACITY_RAMP 0.25. Revenue moves "
-      "a quarter of the way to (opening book + sales) / 14 each year while "
-      "the book compounds at 15%, so the committed book cover runs 15.03 to "
-      "20.97 to 19.75 years and never 14. The 2027 recursion reproduces the "
-      "workbook to ten decimals. The words ramp, partial adjustment and "
-      "adjustment speed appear zero times in the delivered document.",
-      "A conversion model whose realised rate reaches its stated period "
-      "within the explicit window, shown by the committed series."),
-
-    L("L-390", "CLASS",
-      "real-estate developer, off-plan, point-in-time on handover",
-      "Contracted sales earned as a development fee never enter the backlog, "
-      "and must not drive the collections line.",
-      "A developer can sell on its own balance sheet and sell for somebody "
-      "else on a commission. Only the first creates a deliverable obligation "
-      "and only the first is collected against. Feeding total reported sales "
-      "into an advances driver treats fee volume as if it were an order book, "
-      "and the company usually says so in a footnote on the same page as the "
-      "backlog chart.",
-      "TMGH critique response, 18-09-2026", "critique",
-      "TMG discloses that SouthMed sales sit outside the backlog under an "
-      "asset-light model earning a c.8% fee; SouthMed was EGP 93.9bn of the "
-      "219.1bn of 1H2026 sales, 43%. The FY2023 release separately states "
-      "EGP 47.8bn of third-party commission volume, which the study's "
-      "register characterises as a land transaction. TMGH's model injects "
-      "EGP 300bn of new sales a year at face into the collections driver, "
-      "and by 2035 that line supplies 152,135 against total free cash flow "
-      "of 137,742.",
-      "A company of this class whose fee-based volume does create a "
-      "collectable obligation, disclosed as such."),
-
-    L("L-391", "STOCK", "TMGH",
-      "TMG publishes its own discount rate, projection period and terminal "
-      "growth in its goodwill note, and no study here has read them.",
-      "The goodwill impairment test is a discounted cash flow the company "
-      "runs on itself and discloses annually. It is the one place a filing "
-      "states what the company believes about its own cost of capital and "
-      "horizon — a free cross-check on the two inputs a study argues hardest "
-      "about.",
-      "TMGH critique response, 18-09-2026", "critique",
-      "Note 9 of TMG's 30 June 2026 interim consolidated statements: a "
-      "pre-tax discount rate of 33.9% applied to cash-flow projections, a "
-      "20-year period, and a terminal growth rate of 5%. The study runs a "
-      "terminal WACC of 21.93% and terminal growth of 7%. Neither the study "
-      "nor either outside audit found it.",
-      "A year in which the note stops disclosing the rate, or discloses one "
-      "built on a basis the study's own rate cannot be compared with."),
-
-    L("L-392", "ALL", None,
-      "A rule about how a model is BUILT binds every instrument that builds one, "
-      "and the gates for it were all pointed at studies.",
-      "The house requires a forecast's explicit window to run until growth has "
-      "converged to the terminal, because a model whose last year still compounds "
-      "far above its terminal capitalises a rate it never reached. That rule was "
-      "enforced on studies by a gate reading each study's committed record. The "
-      "valuation calibration's own mechanical lens builds a value at every past "
-      "origin and is not a study, so nothing held it to the rule — and every cell "
-      "it had ever produced broke it.",
-      "valuation calibration, 18-09-2026", "self_audit",
-      "Measured on all seven cells the mechanical cash-flow lens had scored: the "
-      "gap between the last explicit year's growth and the terminal ran 3.8pp at "
-      "best and 15.6pp at worst against a bound of 2pp, and six of the seven "
-      "carried a terminal worth MORE than the whole enterprise value (102% to "
-      "1820%), meaning an explicit window contributing nothing or less. PHDC 2019 "
-      "showed an explicit present value of -EGP 2.28bn against a terminal of "
-      "+EGP 32.52bn. The rule had been adopted four days before the declaration "
-      "that sealed the lens.",
-      "An instrument found to build a forecast value while being genuinely outside "
-      "the rule's subject — which would mean the rule is narrower than its own "
-      "reasoning, not that the instrument escaped it.",
-      promotion="prose",
-      promotion_note=(
-          "The INSTANCE is closed in code — cashflow_lens.cell() now refuses a "
-          "non-converged window on research_protocol.HORIZON_CONVERGENCE, and "
-          "check_convergence_refusal_negative_control.py holds it there. The "
-          "LESSON is the general claim, and 'ask what else in the repository "
-          "performs this construction' is a question for a person: a checker "
-          "cannot tell an instrument that builds a forecast value from one that "
-          "merely reads figures, and a keyword classifier for it would be the "
-          "free parameter the promotion rule forbids.")),
-
-    L("L-393", "ALL", None,
-      "A larger pool of inadmissible cells is not closer to an answer than a "
-      "small one.",
-      "The plan for the valuation calibration was to wire more names until the "
-      "pooled sample could answer its acceptance clause. The defect that was "
-      "actually blocking it sat in the construction rather than in any name, so "
-      "every name added would have added more cells of the same broken kind — "
-      "while the count rose and the table looked healthier.",
-      "valuation calibration, 18-09-2026", "self_audit",
-      "The convergence refusal dropped 21 cells spanning six of the nine names "
-      "(AMOC, ARCC, EGCH, PHAR, PHDC, TMGH) and became the largest single drop "
-      "class in the run at a stroke. Before it, five cells scored and the work in "
-      "front of the desk was wiring three more projectors; after it, the declared "
-      "run scores none and the work is in the runs' own pre-registered windows.",
-      "A pooled sample whose defect is genuinely name-specific, where adding names "
-      "dilutes it rather than reproducing it.",
-      promotion="prose",
-      promotion_note=(
-          "A judgement about where to spend effort when a pool is thin, which no "
-          "checker can make: whether a defect is in the construction or in the "
-          "name is exactly the question being asked, and a gate that could answer "
-          "it would not need the lesson.")),
-
-    L("L-394", "ALL", None,
-      "A verdict printed in two states hides the third, and the hidden one is "
-      "always 'we did not measure this'.",
-      "A clause that can be met, failed or unmeasured must print all three. Where "
-      "the printer collapses unmeasured onto failed, a criterion reports a "
-      "conclusion it has no evidence for; where it collapses onto met, worse. The "
-      "collapse survives because it is invisible until the third state first "
-      "occurs, which may be months after the line was written.",
-      "criterion 3 reporter, 18-09-2026", "self_audit",
-      "criterion3.py printed clause A as 'MET if a_met else NOT MET' while clauses "
-      "B and C printed all three states correctly. The line was right for as long "
-      "as the series could not be empty, and the moment the convergence refusal "
-      "emptied it, an UNMEASURED clause printed as a FAILED one — in the clause "
-      "that gates Phase 1 hardest. The same run found the reporter crashing on the "
-      "empty series and a header count typed as a literal (28 of 33) that had gone "
-      "on printing through two population changes.",
-      "A clause genuinely binary by construction, where no third state can arise — "
-      "which must then be argued rather than assumed from the printer.",
-      promotion="outstanding",
-      promotion_note=(
-          "TESTABLE AND NOT YET DONE, which is why it is filed here rather than as "
-          "prose. A reporter that prints a verdict can be read for the shape "
-          "'MET if x else NOT MET' where x is a tri-state, and criterion3.py "
-          "carried exactly that for months. What makes it real work rather than a "
-          "one-line grep is telling a tri-state from a genuine boolean, which "
-          "needs the callee's own contract; filed with its measurement so the debt "
-          "is countable rather than remembered.")),
-
-    L("L-395", "ALL", None,
-      "An instrument built to grade a method must reproduce the method, and "
-      "sharing its inputs is not reproducing it.",
-      "The mechanical valuation lens takes the same drivers, the same audited "
-      "statements, the same point-in-time macro archive and the same sanctioned "
-      "terminal module as the studies it grades. It still is not those studies, "
-      "because it stops the forecast where the driver walk-forward stops rather "
-      "than where a valuation converges — and nothing about the shared inputs "
-      "made that visible.",
-      "valuation calibration, 18-09-2026", "self_audit",
-      "Every delivered study committing the record converges exactly to its "
-      "terminal: PHDC on FIFTEEN explicit years, TMGH on ten, the rest on five. "
-      "The mechanical lens runs five for every name, because its sealed "
-      "declaration fixes the window at the walk-forward's own horizons 1-5. On "
-      "PHDC it therefore rebuilds a fifteen-year construction on five years, and "
-      "produced 6.08, 2.49, 8.81, 6.37, 6.46 and 7.51 across six origins against "
-      "a delivered central of 17.85. Every input agreed and the answer was a "
-      "third of the size.",
-      "A rebuild on the study's own window landing in the same place as the "
-      "five-year one, which would make the window immaterial to the comparison "
-      "rather than the whole of it.",
-      promotion="outstanding",
-      promotion_note=(
-          "TESTABLE AND NOT YET DONE. A check can compare a calibration "
-          "instrument's declared explicit window against the explicit_years each "
-          "delivered study commits, and refuse an instrument claiming to grade a "
-          "study it does not reproduce — the records for both sides already exist "
-          "(study_numbers.json carries explicit_years; the lens declaration "
-          "carries its horizons). Not built tonight because the repair it would "
-          "demand is a re-sealed declaration, which must not be written with the "
-          "gap in view.")),
-
-    L("L-396", "ALL", None,
-      "Point-in-time discipline forbids foresight, not a declining forecast — and "
-      "the difference decides whether a past origin can converge at all.",
-      "A mechanical rule that compounds the LAST PUBLISHED inflation print flat "
-      "at every horizon looks like the strictest possible reading of 'only what "
-      "was known at the origin'. It is stricter than the rule requires and wrong "
-      "in a way that compounds: a forecast PUBLISHED at the origin was known at "
-      "the origin, and published forecasts decline where a realised print does "
-      "not.",
-      "valuation calibration, 18-09-2026", "self_audit",
-      "The walk-forward projectors escalate on (1 + cpi(origin)) ** h, so a "
-      "31-December-2019 Egyptian origin compounds at the 13.87% realised print "
-      "for five straight years and ends still growing at four times its terminal. "
-      "The IMF World Economic Outlook of October 2019 — already extracted in "
-      "engine/macro_history/ with its file name and sha256, and in existence at "
-      "that origin — projects 13.866, 9.965, 7.217, 7.011, 7.002, 7.078, "
-      "converging to the house terminal by year three with no fade and no free "
-      "parameter.",
-      "An origin where no forecast had been published by the origin date, which "
-      "is the case the flat rule is actually right for — and which must then be "
-      "named rather than assumed.",
-      promotion="outstanding",
-      promotion_note=(
-          "TESTABLE AND NOT YET DONE. Whether a projector escalates on a scalar "
-          "print or on a dated published path is readable from its own code and "
-          "from what the archive holds at that origin. Deliberately not built in "
-          "the same pass as the finding: the repair changes a pre-registered "
-          "driver rule, which may not move on the strength of a valuation "
-          "result [R-FCAL-01].")),
-
-    L("L-397", "ALL", None,
-      "A rule cited as a reason is not checked the way a number is.",
-      "Every figure in a committed record is computed, sourced and dated, and the one "
-      "sentence carrying a rule identifier is simply believed — by the record that "
-      "wrote it, by the standing digest that repeated it, and by every reader since. "
-      "Where a record gives a standing rule as the reason something was not done, read "
-      "the rule.",
-      "AMOC forecast anchor, 18-09-2026", "critique",
-      "AMOC's forecast-anchor record gave [R-VCAL-01]'s one-lever-at-a-time guard as "
-      "the reason a correction priced at +55% was not applied. That guard governs "
-      "levers promoted from the valuation calibration, never corrections to defects, "
-      "and the standing digest had repeated the same false reason in its own "
-      "[R-ANCHOR-01] paragraph. Measured the day the clause was adopted, the "
-      "misreading had reached SIX passages across two study builders and one ratchet, "
-      "and EVERY ONE OF THEM DEFERRED A CORRECTION THAT RAISES THE VALUE — so an "
-      "interpretation that always ran one way was behaving exactly like a house lean "
-      "while every individual step in it was defensible. All six carried their own "
-      "measurement already, so correcting them was rewriting the reason and keeping "
-      "the number; no value moved.",
-      "A deferral citing a rule that genuinely does govern it — which would make the "
-      "citation a fact to check rather than a reason to believe.",
-      promotion="enforced",
-      promoted_by="scripts/check_deferral_reason.py",
-      promotion_note=(
-          "Built the same day. A committed RECORD giving the guard as a deferral "
-          "reason is a hard refusal; a builder COMMENT is measured and printed and "
-          "never a bar, because a comment that merely EXPLAINS the guard is ordinary "
-          "and a gate unable to tell the two apart would push builders to stop "
-          "explaining things. Ratchet EMPTY at adoption, since all six passages were "
-          "corrected rather than excused.")),
-
-    L("L-398", "ALL", None,
-      "A pile of individually-correct lists has a total, and nobody who maintains one "
-      "of them can see it.",
-      "Every ratchet entry in this repository was a correct decision to carry a known "
-      "defect rather than fix it in passing, and every list may only ever shorten. "
-      "What no list can show is how many there are altogether, because each is "
-      "maintained by whoever wrote the rule it belongs to.",
-      "recorded debt census, 18-09-2026", "self_audit",
-      "[R-REPAIR-01] was adopted on '47 ratchet entries accumulated on five studies', "
-      "read off the lists somebody happened to open. Counted across all 67 ratchets "
-      "the figure is 386 entries across 94 names — 274 on the 24 studies that exist "
-      "on disk and 112 on 70 names the site publishes with no study directory at all. "
-      "The gap between 47 and 386 is not an error in either number; it is what a total "
-      "looks like when nothing computes it.",
-      "A census finding the total close to what the separate lists suggested, which "
-      "would mean the lists were being read together already.",
-      promotion="enforced",
-      promoted_by="scripts/check_study_debt.py",
-      promotion_note=(
-          "Built the same day, and it sets NO CEILING deliberately: a new standard "
-          "legitimately adds entries on the day it is adopted, so a bar on the total "
-          "would fire on a rule being written, which is the permanently-red check "
-          "[R-ENF-02] forbids. What it refuses is the three ways a count stops being "
-          "a count — an unrecognised key, a name that resolves to no study, no "
-          "published name and no index, and a run that read nothing.")),
-
-    L("L-399", "ALL", None,
-      "A reader that classifies by pattern finds what the pattern was written for; "
-      "one that REFUSES what it cannot place finds what nobody thought of.",
-      "The difference is not strictness, it is what happens to the residue. A "
-      "pattern-based reader silently absorbs anything it does not recognise into "
-      "whichever bucket it falls through to, and reports a number. A reader that "
-      "names every category and refuses the rest reports a QUESTION, and the "
-      "questions are where the findings are.",
-      "recorded debt census, 18-09-2026", "self_audit",
-      "The first run of the ratchet census refused eleven keys across 67 files and "
-      "every one needed a decision a pattern could not make — an unrunnable figure "
-      "script is a debt, a resolved-and-kept entry is not, an [R-ENF-08] failure "
-      "signature sitting beside its entry is not, a walk-forward run owing a "
-      "valuation-input block is. It also refused two NAMES that turned out to be "
-      "index series rather than studies, which resolve against a different "
-      "population entirely. And it found 2POINTZERO — a ticker starting with a digit, "
-      "which the first draft's ticker pattern silently dropped, and which this "
-      "protocol already records as having been dropped from three separate tools by a "
-      "regex written the same way.",
-      "A residue that turns out to be uniform, where one rule really does cover every "
-      "case the reader could not place.",
-      promotion="enforced",
-      promoted_by="engine/study_debt.py",
-      promotion_note=(
-          "The refusal IS the enforcement and it lives in the shared reader rather "
-          "than in the gate: study_debt.read_one classifies every key against two "
-          "CLOSED named lists and raises on anything else, so a new ratchet key "
-          "cannot enter the count by falling through. The gate turns that refusal "
-          "into a red build and prints the keys that need a decision. The general "
-          "claim — prefer refusing to classifying by pattern — is not itself "
-          "mechanisable and travels as prose; what is mechanised is this instance.")),
-
-    L("L-400", "ALL", None,
-      "Re-running a generator re-asserts every claim its stamps are taken from, and "
-      "a comment change is enough to do it.",
-      "A study's committed record carries claims about the standard it was built to "
-      "and the day the work was done. Where those are read from a live constant or a "
-      "clock rather than frozen to a fact, ANY rebuild moves them — and a rebuild "
-      "happens for reasons that have nothing to do with the claim, such as correcting "
-      "a comment.",
-      "AMOC rebuild, 18-09-2026", "self_audit",
-      "Re-running amoc_study/compute.py to correct a COMMENT moved the committed "
-      "standard claim from 2026.09.01 to 2026.09.07, silently asserting conformance "
-      "to four standards nobody had checked the study against — one of which, "
-      "[R-ASSET-01], it is ratcheted as not meeting. check_standard_claim went red "
-      "the same evening, on the first rebuild after [R-STD-02] was written, having "
-      "been green before it. The fix is the one that rule prescribes and the one "
-      "another generator had already taken for its study DATE: freeze the claim to "
-      "the version the edition was actually built to.",
-      "A generator whose stamps are all frozen to facts, where a rebuild genuinely "
-      "changes nothing but what was rebuilt.",
-      promotion="enforced",
-      promoted_by="scripts/check_standard_claim.py",
-      promotion_note=(
-          "[R-STD-02]'s gate already enforces the standard-version half and caught "
-          "this instance in flight. The general claim — that any stamp read from a "
-          "live value re-asserts on every rebuild — reaches further than that one "
-          "field, and the rest of it is not yet mechanised.")),
-
-    L("L-401", "ALL", None,
-      "A convention adopted to AVOID making a forecast can be a forecast, and saying "
-      "it is not is a false statement about the model.",
-      "Holding a traded price flat in nominal terms is legitimate and often sensible. "
-      "Describing it as 'no forecast of a traded commodity price is defensible' is not "
-      "a wording problem: the model IS forecasting a price that falls in real terms "
-      "every year for ever, and the reader is told the opposite. The genuinely "
-      "view-free choice — the one with no forecast in it — is flat in REAL terms.",
-      "flat-nominal price convention, 18-09-2026", "critique",
-      "Measured across 898 study builders and committed records carrying 407 "
-      "quantities held flat: TWO studies name the consequence ('flat in nominal "
-      "terms, which is a REAL DECLINE across the window'; 'holding earnings flat in "
-      "NOMINAL terms while discounting at a NOMINAL rate') and TWO deny it. In both "
-      "deniers the costs escalate at full domestic inflation while revenue does not, "
-      "so the convention manufactures a margin decline the forecast then reports as a "
-      "finding; closing the wedge is worth +17.8% on one and +68.7% on the other, "
-      "measured independently by two outside auditors.",
-      "A market with no inflation in it, where flat nominal and flat real are the same "
-      "path and the claim costs nothing.",
-      promotion="enforced",
-      promoted_by="scripts/check_flat_nominal_claim.py",
-      promotion_note=(
-          "Built the same day and it refuses THE CLAIM, never the construction: a "
-          "study may hold a price flat, and may not say that doing so is not a "
-          "forecast. 10 passages in 407 mentions, zero false positives on "
-          "inspection, ratcheted at two with each entry's measurement. The clean "
-          "cases in its control are the two studies that already NAME the real "
-          "decline, in their own words.")),
-
-    L("L-402", "ALL", None,
-      "A judgement declared 'not contested' is removed from the instrument that counts "
-      "which way judgements go.",
-      "[R-ENF-05]'s sign test exists because any single contested choice is "
-      "defensible and what is not is a study resolving every one of them the same way "
-      "without noticing. A study that declares a material choice settled convention "
-      "does not merely mislead a reader about that choice — it takes the choice out of "
-      "the count, and the count is the only instrument that can see a lean.",
-      "flat-nominal price convention, 18-09-2026", "critique",
-      "One study records 'Holding a traded commodity price flat rather than "
-      "forecasting it is settled house convention and IS NOT CONTESTED', of a choice "
-      "worth +68.7% of its own central. The sign test then runs on the judgements that "
-      "remain, correctly, and reports on a population the largest item is missing "
-      "from.",
-      "A declaration of settled convention on a choice worth less than the 5% "
-      "materiality line the sign test already applies, where nothing is being removed "
-      "from the count.",
-      promotion="outstanding",
-      promotion_note=(
-          "TESTABLE AND NOT YET DONE. A check could hold each study's contested-"
-          "judgements record against the choices its own sensitivity grid prices "
-          "above the 5% materiality line, and refuse a choice priced above it that "
-          "the record declares settled — both sides are already committed. Not built "
-          "tonight because the instance that provoked it is closed by "
-          "check_flat_nominal_claim, and the general form needs a decision about "
-          "which grid rows count as a judgement rather than a sensitivity, which is "
-          "a rule question rather than a coding one.")),
-
-    L("L-403", "ALL", None,
-      "[L-278] WAS ALREADY REGISTERED, IS CORRECT, AND SIX CONTROLS BROKE ITS WAY "
-      "ANYWAY — a fixture pinned to live repository state has an expiry date "
-      "nobody sets.",
-      "[L-278] says it in its own words — 'plant the starting state; do not assume "
-      "it' — after THREE controls broke this way on one day in September. This is "
-      "the same lesson, registered, correct, cited nowhere that binds, and "
-      "re-violated by six more controls a fortnight later. THE LESSON IS NOT THE "
-      "FINDING; THE RE-VIOLATION IS. What survives of the original claim is "
-      "unchanged: a control that finds its condition in the repository is correct "
-      "the day it is written and is invalidated by ordinary legitimate work "
-      "elsewhere, and the gate it protects is then unevidenced. What is added is "
-      "that saying so once did not stop it.",
-      "full negative-control sweep, 18-09-2026", "self_audit",
-      "Running every check including the controls — which the ordinary sweep excludes "
-      "— found SIX red, all in CI, none caused by that day's work and all green "
-      "at a commit eleven days earlier. THE FIRST COUNT WAS FOUR AND CAME FROM A "
-      "PARTIAL SWEEP, which is this lesson's own subject arriving in its own "
-      "evidence. Five fail for one reason: the bibliography "
-      "ratchet had been PRUNED TO EMPTY so the 'a ratcheted breach stays green' case "
-      "had no breach to use; the asp driver no longer carried an applied correction so "
-      "the mutation removing one removed nothing; and PHDC's applied count moved off "
-      "the 6 a fixture was pinned to; and a terminal-record control counts 38 markers in a tree its fixture pins at 37. Each REFUSED rather than reporting green, which "
-      "is the opposite of the failure caught five times the same session.",
-      "A sweep finding no control pinned to live state, which would mean [L-278] "
-      "had reached the work after all and this entry is about a fortnight rather "
-      "than about a pattern.",
-      promotion="prose",
-      promotion_note=(
-          "Whether a fixture builds its condition or borrows it is visible in the "
-          "control's source and is not mechanically separable from a control that "
-          "legitimately reads the tree to set up a sandbox — the gauntlet and several "
-          "controls copy the repository on purpose. A checker could not tell the two "
-          "apart without deciding what each control is FOR, which is judgement. What "
-          "is already mechanical is the half that matters: every control in this book "
-          "asserts that its mutation LANDED, which is why these six went red instead "
-          "of quiet — and that assertion, unlike [L-278] itself, IS in the code.")),
-
-    L("L-404", "ALL", None,
-      "POINT-IN-TIME DISCIPLINE FORBIDS FORESIGHT, NOT A DECLINING FORECAST — and "
-      "every run in this book had quietly read it as forbidding both.",
-      "Nine walk-forward runs escalate their drivers on the last published inflation "
-      "print at the origin, held FLAT at every horizon. That reads like the cautious "
-      "choice and it is not a neutral one: holding a rate flat is itself a forecast — "
-      "the forecast that inflation never changes — and it is the only forecast on the "
-      "table that NO institution published. The archive held the alternative the whole "
-      "time. A cautious-sounding convention is still a claim about the world and is "
-      "audited like one, which is [R-CAL-02]'s lesson arriving in a macro path.",
-      "the mechanical lens rebuild, 18-09-2026", "build",
-      "The point-in-time archive carries, at every origin, the IMF World Economic "
-      "Outlook vintage's own forward projection for that year and the four after it, "
-      "published at the origin and declining on its own with no fade: origin 2017 runs "
-      "16.92 / 10.91 / 8.09 / 7.18 / 6.96 and origin 2023 runs 32.18 / 19.88 / 13.77 / "
-      "11.47 / 9.50. A forecaster standing there could have used exactly that. Under "
-      "the flat convention NO window of ANY length can satisfy [R-MACRO-01]'s 2pp "
-      "convergence bound, because a constant rate converges to nothing; under the "
-      "published ladder a window ending at horizon h carries the ladder's own rate for "
-      "that year and the bound measures what is actually left, which is real growth.",
-      "An archive origin whose vintage published no forward path, where the flat print "
-      "genuinely is the only knowable figure — which is why pit_inflation refuses such "
-      "an origin rather than extending a ladder this desk would have invented.",
-      promotion="enforced",
-      promoted_by="engine/valuation_calibration/pit_inflation.py",
-      promotion_note=(
-          "The module reads the ladder and REFUSES a horizon the archive does not "
-          "reach, so the alternative to a published path is a dropped cell rather than "
-          "an extrapolation. It does not bind the nine runs' own projections, which "
-          "keep their pre-registered flat legs for driver scoring — correctly, since "
-          "that is a different question — so what is enforced is the VALUE path only.")),
-
-    L("L-405", "ALL", None,
-      "AN INSTRUMENT ASSEMBLED FROM ANOTHER PROCESS'S PARTS INHERITS THAT PROCESS'S "
-      "PURPOSE, AND NOBODY CHECKS THE FIT BECAUSE THE PARTS ARE KNOWN TO BE GOOD.",
-      "The mechanical valuation lens builds a fair value at every past origin out of "
-      "the walk-forward runs' projections. Those projections are careful, "
-      "pre-registered, point-in-time clean and correct — for the question they were "
-      "built for, which is whether a forecaster could have got three to five years of "
-      "DRIVERS right. Nothing in them was ever required to reach a steady state, "
-      "because a driver score does not need one. A VALUE does. The parts were sound "
-      "and the assembly was never tested against the new question.",
-      "the mechanical lens rebuild, 18-09-2026", "build",
-      "Asked for fifteen horizons instead of the pre-registered five, PHDC's projection "
-      "ends GROWING AT 20.66% and TMGH's at 39.37% — they accelerate, because each "
-      "compounds a population or intensity term that never decays. So the obvious "
-      "repair, running the explicit window longer, makes it worse rather than better, "
-      "and was tested rather than assumed. Meanwhile every delivered study that commits "
-      "the record converges exactly, PHDC on fifteen explicit years and TMGH on ten, on "
-      "drivers that genuinely mature. 22 of 60 cells are refused on this and the lens "
-      "scores none.",
-      "A run whose pre-registered driver rules reach a steady state on their own, which "
-      "would make this a property of these particular models rather than of borrowing a "
-      "driver-scoring instrument to build values.",
-      promotion="outstanding",
-      promotion_note=(
-          "The testable claim is that a projection used to build a value must converge, "
-          "and it IS enforced — cashflow_lens refuses on [R-MACRO-01]'s imported bound. "
-          "What is NOT built is anything holding the general claim, that an instrument "
-          "reused across questions is checked against the new one. It is registered as "
-          "a debt rather than declared prose because it is expressible: a checker could "
-          "require any module consuming another process's committed output to name the "
-          "question that output was produced for.")),
-
-    L("L-406", "ALL", None,
-      "A POWER OF TEN IS A UNIT, NOT A VIEW — and the instrument built to measure gaps "
-      "was not looking at its own answer.",
-      "Every gate in the valuation lens examined how a number was BUILT. The first run "
-      "of the rebuilt lens scored exactly one cell and it read plus seventy-five "
-      "thousand per cent. No method disagrees with a market by a factor of ten; a share "
-      "count or a price series was in the wrong unit. This is [R-GAP-01]'s own lesson — "
-      "when a result is surprising, that is evidence, and evidence gets a gate — "
-      "arriving INSIDE the instrument written to apply it elsewhere.",
-      "the mechanical lens rebuild, 18-09-2026", "build",
-      "SWDY 2015: a fair value of 2,782.87 against a price of 3.67, +75,727.6%. The "
-      "unit ratio measured, the terminal built, the bridge footed, the convergence "
-      "bound held, and the cell would have been pooled into a bias it would have "
-      "dominated on its own. The refusal's bound is not chosen: one order of magnitude, "
-      "because the failure it catches IS an order of magnitude — the same argument "
-      "panel_scale already makes when it pins a unit to a power of ten, reused rather "
-      "than minted.",
-      "A cell genuinely reading a tenfold disagreement that survives an audit of its "
-      "share count and price series, which would make the bound a bound on views "
-      "rather than on units and would have to be withdrawn.",
-      promotion="enforced",
-      promoted_by="engine/valuation_calibration/cashflow_lens.py",
-      promotion_note=(
-          "The refusal is in cell() and prints the factor it refused on, so a suspect "
-          "cell is named rather than silently absent. It binds this lens only; whether "
-          "every instrument that produces a number should look at its own answer is the "
-          "wider claim and is not built.")),
-
-    L("L-407", "ALL", None,
-      "A GATE THAT CANNOT EXPRESS A CORRECTION FORBIDS THE CORRECTION ITS OWN DOCUMENT "
-      "REQUIRES.",
-      "The valuation pre-registration says in terms that it may never be edited and "
-      "that a correction is a NEW dated document superseding it. The gate enforcing it "
-      "held every score against the LATEST pre-registration — so the moment a second "
-      "one was committed, every score correctly produced under the first became 'a "
-      "score that predates the design it claims to follow'. The rule and the gate "
-      "disagreed, and the gate was what bound. Nobody could have discovered it without "
-      "actually superseding, which is why it survived from the day both were written.",
-      "the mechanical lens rebuild, 18-09-2026", "self_audit",
-      "check_valuation_calibration.py now pairs each score with the pre-registration in "
-      "force AT THAT SCORE'S OWN COMMIT, read off topology, and verifies EVERY sealed "
-      "document rather than only the current one — the superseded one being exactly "
-      "where a rationalisation would go, since it is the design the earlier scores "
-      "claim to follow and nobody opens it again. Negative-controlled on twelve "
-      "conditions, the decisive pair being a score under design 1 with design 2 "
-      "committed later, which must PASS and which the old gate condemned, and a "
-      "superseded document edited after its seal, which must FAIL and which the old "
-      "gate could not see.",
-      "A supersession the changed gate lets through that the old one would have caught, "
-      "which would mean the pairing weakened the order test rather than sharpening it.",
-      promotion="enforced",
-      promoted_by="scripts/check_valuation_calibration.py",
-      promotion_note=(
-          "The specific claim — each score after the design in force at its own commit, "
-          "every seal verified — is arithmetic and is enforced. The general claim, that "
-          "a gate should be tested against the corrections its own rule prescribes, is "
-          "prose: it is a question about what a rule permits, which no checker can read "
-          "off a repository.")),
-
-    L("L-408", "ALL", None,
-      "AN INFRASTRUCTURE FAILURE WEARING A REPOSITORY FAILURE'S CLOTHES IS WORSE THAN "
-      "EITHER — a full disk turned every gate in the book red with an empty message.",
-      "Two harnesses copy the whole repository into a sandbox and remove it in a "
-      "`finally`, which runs exactly as often as the process finishes. A kill, a "
-      "timeout or an out-of-space error skips it. Twenty-five abandoned copies "
-      "accumulated, the session's disk allowance ran out, and a sweep of 172 checks "
-      "reported 66 consecutive RED results — not one of them true. The first thing a "
-      "false catastrophe costs is the reader's belief that anything is working, and the "
-      "second is the hours spent looking for a defect in the work rather than under it.",
-      "the full gate sweep, 18-09-2026", "self_audit",
-      "The sandboxes ran 1.4 to 1.6 GB each. Every RED line carried an EMPTY message, "
-      "which is what an unwritable output file looks like and is indistinguishable on "
-      "the page from a gate that failed silently — including check_valuation_calibration, "
-      "which had returned OK minutes earlier and returned OK again once space was freed. "
-      "engine/sandbox_reclaim.py now RECLAIMS BEFORE MAKING: a process that died cannot "
-      "clean up after itself and the next one can. The test is exact and carries no "
-      "threshold — each sandbox records its making process and one whose process is gone "
-      "is finished with, whatever its age. An age cutoff would be a free parameter and "
-      "would be wrong in both directions, deleting a long run's live sandbox and keeping "
-      "a short run's dead one.",
-      "A harness that leaves a sandbox behind while its process is still alive, which "
-      "would mean the ownership stamp is not the right test and reclamation needs "
-      "something other than liveness.",
-      promotion="enforced",
-      promoted_by="engine/sandbox_reclaim.py",
-      promotion_note=(
-          "Reclamation is arithmetic and is in the code, called by both harnesses before "
-          "they copy. What is NOT enforced is the general claim — that a sweep reporting "
-          "many gates red at once should first ask whether the SWEEP is broken — because "
-          "no checker can tell a real mass failure from an infrastructure one without "
-          "knowing what the failure means. The injection harness's own docstring says "
-          "'there is no undo that has to run', and it was right about the tree it mutates "
-          "and wrong about the copy it makes to mutate it.")),
+      "Apply every rate to the AVERAGE balance, never the closing "
+      "one. On anything growing fast the closing base inflates every "
+      "projected profit.",
+      "A bank earns its yield on the assets it held through the year, "
+      "not on the ones it finished with. Put a full year of yield on "
+      "a closing balance sheet that grew a third and you have "
+      "credited twelve months of income to assets the bank owned for "
+      "six. The error is large, it looks like evidence, and it "
+      "survives every check that does not go looking for it. WIDENED "
+      "FROM THE BANK CLASS TO EVERY COMPANY by the principal, "
+      "10-09-2026: \"For non banks when they borrow apply the average "
+      "debt as well.\" That is right and it is the same arithmetic. A "
+      "cost of debt is interest paid over the debt that bore it, and "
+      "an industrial that drew down a facility in November did not "
+      "pay a full year on it either. The bank case is where the error "
+      "is biggest, not where it is unique.",
+      "ADIB walk-forward, date not recorded",
+      "walk_forward_fundamental",
+      "ADIB-Egypt grew customer financing 54% in FY2025 and total "
+      "assets 33%, and 19.5% again in the first half of 2026. This is "
+      "the bank-shaped form of the recognition-clock trap that "
+      "produced a net-profit forecast several times too high on the "
+      "first name in this campaign. In this run every rate reaches "
+      "its base through _avg() and by no other route, which is why "
+      "the rate drivers came out close to unbiased (net fees 0.984x "
+      "actual, other income 1.106x, admin 0.897x at the FY2024 "
+      "origin) while the volume anchor carried the whole miss.",
+      "A company whose balance sheet grows slowly enough that the "
+      "average and the closing base give the same answer, in which "
+      "case the distinction is real and immaterial."),
 ]
 
 

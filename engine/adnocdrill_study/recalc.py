@@ -1,3 +1,4 @@
+import sys
 """Recalculate the DELIVERED workbook and reconcile it against the model.
 
 Verification runs on the delivered file, not on the builder. The evaluator in
@@ -19,7 +20,9 @@ import openpyxl
 import xlcalc
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-XLSX = os.path.join(HERE, 'ADNOCDRILL_Valuation_Model_09082026.xlsx')
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
+XLSX = os.path.join(HERE, _ed.MODEL_XLSX)
 wb = openpyxl.load_workbook(XLSX)
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 XP = json.load(open(os.path.join(HERE, 'xlsx_expected.json')))

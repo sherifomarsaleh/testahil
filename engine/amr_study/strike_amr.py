@@ -13,13 +13,40 @@ import market_profiles as MP
 import horizons as HZ
 import adaptive_width as AW
 
-Q_ANNUAL = (0.024 * 3.6725) / 2.23   # The board declared USD 201.6 million against FY2025,
-                                     # USD 0.024 a share, and has already declared USD 0.012 as
-                                     # an interim against 2026. At the 3.6725 peg that is AED
-                                     # 0.0881 against a close of AED 2.23, a yield of 3.95%. The
-                                     # carry anchor is ln(1+rf) - ln(1+q): this is a PRICE
-                                     # forecast, and the shares do not earn the dividend they pay
-                                     # away.
+# THE DIVIDEND YIELD DIVIDES BY THE PRICE, SO IT CANNOT CARRY ITS OWN COPY OF IT.
+# This line typed 2.23 while compute.py typed the same figure separately, and a re-strike
+# on 09-09-2026 would have moved one and left the other — a yield computed against a price
+# the study had stopped using, with nothing to say so. Both now come from the study's own
+# committed record: the board declared USD 201.6 million against FY2025, USD 0.024 a
+# share, and has already declared USD 0.012 as an interim against 2026. The carry anchor
+# is ln(1+rf) - ln(1+q), because this is a PRICE forecast and the shares do not earn the
+# dividend they pay away.
+_SN = json.load(open(os.path.join(HERE, 'study_numbers.json'), encoding='utf-8'))
+
+
+def _spot_from_record(d):
+    """The committed spot, wherever the record puts it. Refuses rather than guessing."""
+    for k in ('spot_aed', 'spot'):
+        def f(o):
+            if isinstance(o, dict):
+                if k in o:
+                    v = o[k]
+                    return v.get('value') if isinstance(v, dict) else v
+                for x in o.values():
+                    r = f(x)
+                    if r is not None:
+                        return r
+            return None
+        r = f(d)
+        if isinstance(r, (int, float)):
+            return float(r)
+    raise SystemExit('FATAL: strike_amr cannot find the committed spot. A dividend yield '
+                     'divided by a price this script guessed is worse than no yield.')
+
+
+_SPOT = _spot_from_record(_SN)
+_DPS_USD, _PEG = 0.024, 3.6725
+Q_ANNUAL = (_DPS_USD * _PEG) / _SPOT
 
 prof = MP.PROFILES['AE']
 raw = load_ohlc(os.path.join(HERE, 'AMR_Stock_Price_History.csv'))

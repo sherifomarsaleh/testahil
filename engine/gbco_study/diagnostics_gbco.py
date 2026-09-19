@@ -48,6 +48,12 @@ import hashlib
 import json
 import os
 import sys
+# ENGINE ON THE PATH, EXPLICITLY — this file imported an engine module with nothing
+# to resolve it by, so it ran only from engine/ and died the moment the declared
+# build ran it from the study directory.
+import os as _os_enginepath, sys as _sys_enginepath
+_sys_enginepath.path.insert(0, _os_enginepath.path.dirname(
+    _os_enginepath.path.dirname(_os_enginepath.path.abspath(__file__))))
 from math import comb
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -111,11 +117,7 @@ class Model:
         self.rows = N['dcf']['rows']
         self.SH = N['shares']
         self.nd = N['dcf']['auto_nd']
-        # THE MINORITY IS A SHARE OF THIS LEG'S EQUITY VALUE, NOT ITS BOOK
-        # [R-BRIDGE-01]: the model capitalises 100% of the segment's cash flow, so
-        # a diagnostic deducting a constant book figure re-prices a different
-        # company at every point it moves a driver.
-        self.nci_share = N['dcf']['auto_nci_share']
+        self.nci = N['dcf']['auto_nci']
         self.wacc = N['dcf']['wacc']
         self.tg = N['dcf']['tg']
         self.wb = N['dcf']['wacc_build']
@@ -229,7 +231,7 @@ class Model:
         g = self.tg if g is None else g
         mark = self.mark if mark is None else mark
         cap = self.cap if cap is None else cap
-        auto_eq = (self.auto_ev(fcff, w, g) - self.nd) * (1.0 - self.nci_share)
+        auto_eq = self.auto_ev(fcff, w, g) - self.nd - self.nci
         return auto_eq, auto_eq + cap + self.other + mark
 
     def primary(self, disc=None, **kw):
@@ -271,11 +273,22 @@ class Model:
         its single `default_spread` field is the CDS basis. The committed
         wacc_rating is the rating-basis figure; read it, do not rebuild it here.
         """
-        ke = self.wb['rf_star'] + beta * erp
+        # THE COST OF EQUITY IS BUILT THROUGH THE SANCTIONED MODULE, not re-derived
+        # here [10-09-2026]. This line read rf* + beta x ERP_total, which multiplies
+        # the country premium by beta -- the double count [R-COC-03] was adopted to
+        # stop -- so once the study moved to the split construction this assert fired
+        # on an answer that was right, and stopped the study rebuilding at all. A
+        # second implementation of an identity beside the module that owns it is the
+        # shape that lets two readers of one fact disagree; the fix is to have one
+        # reader, not to relax the tolerance.
+        import cost_of_capital as _COC
+        ke, _ = _COC.cost_of_equity(self.wb['rf_star'], beta, erp,
+                                    self.wb['default_spread'])
         if abs(beta - self.wb['beta']) < 1e-12 and abs(erp - self.wb['erp_cds']) < 1e-12:
             assert abs(ke - self.wb['ke_cds']) < 1e-12, (
-                'the CAPM identity no longer reproduces this study\'s own committed '
-                'cost of equity (%.12f vs %.12f)' % (ke, self.wb['ke_cds']))
+                'the cost of equity no longer reproduces this study\'s own committed '
+                'figure under the sanctioned construction (%.12f vs %.12f)'
+                % (ke, self.wb['ke_cds']))
         return self.wb['we'] * ke + self.wb['wd'] * self.wb['kd_aftertax']
 
     # -- the reverse read ---------------------------------------------------
@@ -427,15 +440,10 @@ def main():
                                  "transaction'"),
                 'carrying_stake_value_egp_mn': M.mark_carrying,
                 'whole_company_at_carrying_value_usd_mn': carry_usd,
-                # THE FIGURE ATTRIBUTED TO THE FILING IS THE ONE THE MODEL USES, AND IT
-                # WAS TYPED TEN MILLION AWAY [17-09-2026]. This read "EGP 15,733,523
-                # thousand" beside a mark column printing 15,723.5 — the same note, two
-                # figures, and the one attributed to the auditor's own statement was the
-                # one nothing else in the study carries.
                 'carrying_value_source': (
                     "note 34 to GB Corp's reviewed consolidated interim statements at "
-                    '30 June 2026, EGP %s thousand, which foots to that balance '
-                    "sheet's own associates line" % "{:,.0f}".format(M.mark_carrying * 1000)),
+                    '30 June 2026, EGP 15,733,523 thousand, which foots to that balance '
+                    "sheet's own associates line"),
                 'carrying_value_caveat': (
                     'the carrying value is an equity-accounted book figure — cost plus the '
                     "group's share of retained results and the revaluation on "
@@ -808,9 +816,8 @@ def main():
                 'full instead, with both values, and named in the sign test\'s own reading '
                 'so nobody reads that test as covering it.'),
             'basis_a': {'label': L_ROUND, 'mark_egp_mn': M.mark_round, 'value': round_ps,
-                        'what': ('41.61%% of the USD 1.4bn primary round completed with Al '
-                                 'Ahly Capital Holding, translated at EGP %.2f'
-                                 % N['audit_2026_09_17']['egp_usd']),
+                        'what': ('41.61% of the USD 1.4bn primary round completed with Al '
+                                 'Ahly Capital Holding, translated at EGP 47.5'),
                         'against_it': ("a primary round's headline valuation prices NEW "
                                        'money with whatever preferences ride with it, and '
                                        'GB Corp holds an ordinary equity-accounted minority '
@@ -818,9 +825,8 @@ def main():
                                        'realisable price.')},
             'basis_b': {'label': L_CARRY, 'mark_egp_mn': M.mark_carrying, 'value': carry_ps,
                         'what': ('note 34 to the reviewed consolidated interim statements at '
-                                 '30 June 2026, EGP %s thousand, footing to that '
-                                 "balance sheet's own associates line"
-                                 % "{:,.0f}".format(M.mark_carrying * 1000)),
+                                 '30 June 2026, EGP 15,733,523 thousand, footing to that '
+                                 "balance sheet's own associates line"),
                         'against_it': ('it is an ACCOUNTING measure — cost plus accumulated '
                                        'share of profit plus the revaluation on '
                                        'deconsolidation — and book is a floor rather than a '

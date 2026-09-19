@@ -122,7 +122,14 @@ def run_model(patches=(), label=''):
             fh.write(txt)
         for f in COPY_ALONGSIDE:
             shutil.copy(os.path.join(HERE, f), d)
-        p = subprocess.run([sys.executable, 'compute.py'], cwd=d,
+        # THE COPY NEEDS THE ENGINE ON ITS PATH. compute.py reads the house macro
+        # path, and this harness runs it from a temp directory whose parents hold
+        # nothing — so the engine root is passed in the environment rather than
+        # left for the copied file to deduce from a location it no longer has.
+        _env = dict(os.environ)
+        _root = os.path.dirname(HERE)
+        _env['PYTHONPATH'] = _root + os.pathsep + _env.get('PYTHONPATH', '')
+        p = subprocess.run([sys.executable, 'compute.py'], cwd=d, env=_env,
                            capture_output=True, text=True)
         _RUNS[0] += 1
         if p.returncode != 0:
@@ -233,10 +240,10 @@ s_lens, r_lens = solve(ept_patch, LATEST_PRICE, 1.0, 8.0,
 # ---- the doors that do not open, measured rather than asserted
 OTHER = []
 
-_g, _ = solve(lambda g: [("g_term=I(0.05,", "g_term=I(%r," % round(g, 10))],
+_g, _ = solve(lambda g: [("g_term=I(_MP_EG.terminal_growth(0.0),", "g_term=I(%r," % round(g, 10))],
               LATEST_PRICE, 0.0, 0.1349, label='terminal growth')
-_g_lo = run_model([("g_term=I(0.05,", "g_term=I(0.0,")], 'terminal growth zero')
-_g_hi = run_model([("g_term=I(0.05,", "g_term=I(0.1349,")], 'terminal growth at the ceiling')
+_g_lo = run_model([("g_term=I(_MP_EG.terminal_growth(0.0),", "g_term=I(0.0,")], 'terminal growth zero')
+_g_hi = run_model([("g_term=I(_MP_EG.terminal_growth(0.0),", "g_term=I(0.1349,")], 'terminal growth at the ceiling')
 OTHER.append(dict(
     quantity='terminal growth', value=_g, study_value=0.05,
     not_reachable=None if _g is not None else (
@@ -263,9 +270,9 @@ OTHER.append(dict(
         'while 82%% of enterprise value sits in the terminal.'
         % (_w_lo['central'], LATEST_PRICE))))
 
-_r_zero = run_model([("rf=I(0.2231,", "rf=I(0.0,"), ("rf_term=I(0.105,", "rf_term=I(0.0,")],
+_r_zero = run_model([("rf=I(0.2231,", "rf=I(0.0,"), ("rf_term=I(_MP_EG.terminal_rf,", "rf_term=I(0.0,")],
                     'both risk-free rates at zero')
-_r_term0 = run_model([("rf_term=I(0.105,", "rf_term=I(0.0,")], 'the terminal risk-free at zero')
+_r_term0 = run_model([("rf_term=I(_MP_EG.terminal_rf,", "rf_term=I(0.0,")], 'the terminal risk-free at zero')
 OTHER.append(dict(
     quantity='the risk-free rate, explicit and terminal together', value=None,
     study_value=N['coc']['rf'],
@@ -501,7 +508,7 @@ SPECS = [
                  'names post-disinflation',
          alternative='the house terminal inflation of %.1f%% with zero real growth, which is '
                      'what [R-MACRO-01] returns for this market' % (100 * HOUSE_TERMINAL_INFLATION),
-         patches=[("g_term=I(0.05,", "g_term=I(%r," % HOUSE_TERMINAL_INFLATION)],
+         patches=[("g_term=I(_MP_EG.terminal_growth(0.0),", "g_term=I(%r," % HOUSE_TERMINAL_INFLATION)],
          why='5% nominal against a terminal discount rate embedding 7% inflation is a perpetual '
              'REAL DECLINE of about two points a year, which nothing disclosed supports and the '
              'study states nowhere. The direction is counter-intuitive and it is the reason this '
@@ -513,7 +520,7 @@ SPECS = [
                  '5.5-point real convention',
          alternative='the house terminal risk-free of %.2f%%, derived as the terminal inflation '
                      'in force plus the same real convention' % (100 * HOUSE_TERMINAL_RF),
-         patches=[("rf_term=I(0.105,", "rf_term=I(%r," % HOUSE_TERMINAL_RF)],
+         patches=[("rf_term=I(_MP_EG.terminal_rf,", "rf_term=I(%r," % HOUSE_TERMINAL_RF)],
          why='The study carries an inflation number of its own, which [R-MACRO-01] does not '
              'permit: the 5% it builds on is a target the central bank\'s own August 2026 '
              'guidance has superseded, and the house path terminates at 7% with the return to '

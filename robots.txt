@@ -1,4 +1,3 @@
+# TESTAHIL is invitation-only (14-09-2026). Nothing here is for the index.
 User-agent: *
-Allow: /
-
-Sitemap: https://testahil.com/sitemap.xml
+Disallow: /

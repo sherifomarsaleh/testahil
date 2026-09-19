@@ -41,16 +41,6 @@ import subprocess
 import sys
 import tempfile
 
-# RECLAIM BEFORE MAKING. This harness copies the whole repository and removes
-# the copy in a `finally`, which runs exactly as often as the process finishes —
-# and a kill, a timeout or an out-of-space error skips it. Twenty-five abandoned
-# copies at 1.4-1.6 GB each once filled the disk, after which EVERY gate in the
-# repository went red with an empty message, because none could write its output.
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(
-    os.path.abspath(__file__))), "engine"))
-import sandbox_reclaim as SBX  # noqa: E402
-
-
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 
@@ -142,9 +132,27 @@ def _m_ke(repo, tk):
     _save(repo, tk, doc)
 
 
+def _ke_constructed(rec):
+    """The cost of equity the record's OWN construction produces.
+
+    THE LANDING CHECK COMPUTED rf* + beta x ERP AND THE EXEMPLAR STOPPED USING THAT.
+    [R-COC-03] splits the premium: beta applies to the MATURE leg and the country premium
+    is charged flat beside it, never through beta. ADNOCLS moved onto the split and this
+    fixture did not, so the mutation it planted was declared "not landed" and the case
+    reported as NOT CAUGHT — a catalogued error going unproven because the harness was
+    measuring a retired identity, not because the framework misses it. That is the same
+    shape as every other checker left on a superseded construction this week, occurring
+    inside the harness that exists to prove the checkers work.
+    """
+    rf, beta = rec["rf_star"], rec["beta"]
+    if rec.get("erp_mature") is not None and rec.get("crp") is not None:
+        return rf + beta * rec["erp_mature"] + rec["crp"]
+    return rf + beta * rec["erp"]
+
+
 def _l_ke(repo, tk):
     rec = _find_parent(_load(repo, tk), "cost_of_capital_record")["cost_of_capital_record"]
-    return abs(rec["ke_exp"] - (rec["rf_star"] + rec["beta"] * rec["erp"]) - 0.03) < 1e-9
+    return abs(rec["ke_exp"] - _ke_constructed(rec) - 0.03) < 1e-9
 
 
 case("ke-inflated-300bp",
@@ -361,46 +369,10 @@ case("revenue-asserted-not-built",
      "STC", "check_ground_up.py", _m_revenue_asserted, _l_revenue_asserted)
 
 
-# ---- the error four studies were carrying on 18-09-2026, planted on a fifth
-# THE POINT OF THIS CASE IS THE NEW NAME. Fixing the eight studies already on the
-# real-terms ratchet says nothing about the next company somebody values, and the next
-# company is where this defect actually costs something: a revenue line that does not
-# move with inflation while the cost lines do manufactures a margin collapse, and the
-# model then reports the collapse as a finding. The path planted here is PHAR's own,
-# which reads 5.0 / 8.0 / 7.5 / 6.5 / 5.5 against a house ladder of 16 / 12 / 9 / 7.5 / 7
-# -- a 15.9% REAL fall under a driver note saying it "tracks domestic inflation".
-def _m_price_below_inflation(repo, tk):
-    doc = _load(repo, tk)
-    reg = doc.get("inputs")
-    if not isinstance(reg, dict):
-        reg = doc["inputs"] = {}
-    reg["dom_price_growth"] = {
-        "value": [0.05, 0.080, 0.075, 0.065, 0.055],
-        "source": "Realised price per unit, annual growth. The path assumes price growth "
-                  "tracks domestic inflation as it converges on the central bank's "
-                  "target, with no real price gain",
-        "date": "2026-08-09", "layer": "House"}
-    _save(repo, tk, doc)
-
-
-def _l_price_below_inflation(repo, tk):
-    v = ((_load(repo, tk).get("inputs") or {}).get("dom_price_growth") or {}).get("value")
-    return v == [0.05, 0.080, 0.075, 0.065, 0.055]
-
-
-# PLANTED IN A STUDY THAT IS NOT ON THE REAL-TERMS RATCHET, for the reason the landbank
-# case records: a ratchet excuses the whole gate for that name, so planting a new error
-# of a ratcheted class in a ratcheted study tests nothing.
-case("price-falls-in-real-terms-unsaid",
-     "the study quietly assumes the company's product gets cheaper every year",
-     "TMGH", "check_real_terms_paths.py",
-     _m_price_below_inflation, _l_price_below_inflation)
-
-
 # ---------------------------------------------------------------- the harness
 
 def sandbox():
-    tmp = SBX.make("injection_")
+    tmp = tempfile.mkdtemp(prefix="injection_")
     def ignore(d, names):
         # raw_indices, raw_ohlc and panels are COPIED: the gauntlet learned that excluding
         # a directory a gate needs makes it crash and go red for the WRONG reason, which

@@ -20,6 +20,236 @@
  "origins_not_held": {
   "FY2011 … FY2019": "NO ANNUAL FILING IN THIS RUN'S OWN ARCHIVE. The 25 documents held are the FY2020–FY2025 annuals and interim statements from 2020 onward, plus one Arabic interim from 2016. RECORDED AS MISSING WITH ITS REASON rather than reconstructed from the driver panel or from a later filing's comparative column [SIGCM clause 8]: a figure carried back from a restated comparative is fabricated in vintage, plausible on the page and invisible in the pooled error afterwards."
  },
+ "prior_year_anchor": {
+  "_": "FY2017, FY2018 and FY2019 are NOT origins of this run and adding them tests nothing new: this run's origins are FY2020-FY2025 and stay exactly that. They are carried because a trailing window reaches back past the first origin — a capital-spending intensity is taken over the three fiscal years to an origin, so FY2020 reads FY2018, FY2019 and FY2020, and the identity capex = dPPE + D&A needs the property base at two dates, so FY2018's capex reads FY2017. Recording any of them inside `origins` would misstate what this run tested. FY2017 is reached ONLY by that identity and sits in no window.",
+  "source_class": "EVERY FIGURE HERE COMES FROM THE COMPANY'S OWN EARNINGS RELEASES RATHER THAN FROM AUDITED STATEMENTS, under [R-SIGCM-03], and the principal was told so in the turn that used it. The statement was tried first: this run's own archive holds no annual filing before FY2020 and its `origins_not_held` field says so, and the company's investor-relations index — re-probed 08-09-2026, apex host answering, 385 documents listed — carries the FY2018 and FY2019 earnings releases and NO audited financial-statement link naming either fiscal year, the statements beginning at 2020. So the fallback is not a workaround for a site that will not answer; the statement is not on the shelf at all. WHERE A LATER AUDITED DOCUMENT HAPPENS TO CARRY THE SAME FIGURE IT IS RECORDED AS A CROSS-CHECK AND NEVER SUBSTITUTED, because point-in-time discipline takes each year as first reported.",
+  "basis": "THE RELEASE'S BALANCE-SHEET TAXONOMY WAS TESTED AGAINST THE AUDITED STATEMENT'S RATHER THAN ASSUMED TO MATCH, on the one year where both exist. At FY2020 every audited line this block reads equals its release line exactly — inventory 1,119.4, accounts and notes receivable 31,112.1, development properties 46,202.9, creditors and notes payable 22,363.4, customers' advance payments 37,870.0 — and the working-capital definition this run committed at FY2020 reproduces off the release lines to EGP 0.05mn on 18,200.9, which is the rounding of figures printed to one decimal. THE FIRST RUN OF THAT TEST REPORTED A 53% GAP AND THE GAP WAS THE READER'S: it added the release's 'accrued expenses and other credit balances' on top of notes payable, and the audited 'creditors and notes payable' line is the release's notes-payable line alone. The discrepancy was exactly that row. There is no basis break; there was a wrong mapping, and it was measured rather than argued [L-355].",
+  "FY2017": {
+   "cash": {
+    "value": 3339600000.0,
+    "as_at": "2017-12-31",
+    "source": "TMG_Holding_FY2018_earnings_release.pdf, consolidated balance sheet, the FY2017 COMPARATIVE column, 'Cash and cash equivalents' (the company's OWN EARNINGS RELEASE — not an audited or reviewed financial statement, and recorded as such under [R-SIGCM-03]: this run holds no annual filing before FY2020 and the company's investor-relations index carries none, the statements beginning at 2020, so the figure comes from the company's own other document rather than from a statement that does not exist on the shelf)",
+    "route": "text layer — the release carries one on every page and every figure was footed against the document's own printed subtotals before it was kept; arithmetic rather than the extractor's confidence is what settled it",
+    "units": "PRINTED IN EGP MILLIONS TO ONE DECIMAL AND CONVERTED TO UNITS to sit on the same scale as this run's FY2020-onward origins; the recorded figure therefore carries the release's own precision of EGP 0.1mn and no more",
+    "check": "the balance sheet foots exactly: non-current 22,932.9 + current 50,186.5 = total assets 73,119.4, and total liabilities 43,966.5 + total equity 29,152.9 = 73,119.4"
+   },
+   "debt": {
+    "missing": true,
+    "reason": "RECORDED AS MISSING RATHER THAN BUILT SHORT ONE LINE. The three named borrowing lines this release carries for FY2017 are bank loans 2,948.6, current portion of bank loans 555.2 and bank facilities 1,726.6; its condensed FY2017 comparative column does not print the bank-overdraft line, and no document this run holds does — the 1Q2018 earnings release, which would carry it as a comparative, is not held. A debt figure built from three of the four lines would read as complete, which is worse than an absence [R-FCAL-01 AMENDED clause (i)]. FY2017 is an anchor for the capex identity and no window reaches it, so nothing in this run reads a debt figure at FY2017.",
+    "lines_held": {
+     "lt_loans": 2948600000.0,
+     "current_portion": 555200000.0,
+     "bank_facilities": 1726600000.0
+    },
+    "line_not_held": "bank_overdrafts"
+   },
+   "ppe": {
+    "value": 3833900000.0,
+    "as_at": "2017-12-31",
+    "source": "TMG_Holding_FY2018_earnings_release.pdf, consolidated balance sheet, the FY2017 COMPARATIVE column, 'Property, plant and equipment' (the company's OWN EARNINGS RELEASE — not an audited or reviewed financial statement, and recorded as such under [R-SIGCM-03]: this run holds no annual filing before FY2020 and the company's investor-relations index carries none, the statements beginning at 2020, so the figure comes from the company's own other document rather than from a statement that does not exist on the shelf)",
+    "route": "text layer — the release carries one on every page and every figure was footed against the document's own printed subtotals before it was kept; arithmetic rather than the extractor's confidence is what settled it",
+    "units": "PRINTED IN EGP MILLIONS TO ONE DECIMAL AND CONVERTED TO UNITS to sit on the same scale as this run's FY2020-onward origins; the recorded figure therefore carries the release's own precision of EGP 0.1mn and no more",
+    "note": "'Projects under construction' is a SEPARATE printed line and is recorded beside rather than added, exactly as this run's FY2020 origin records it.",
+    "check": "the balance sheet foots exactly: non-current 22,932.9 + current 50,186.5 = total assets 73,119.4, and total liabilities 43,966.5 + total equity 29,152.9 = 73,119.4"
+   },
+   "cip": {
+    "value": 2785300000.0,
+    "as_at": "2017-12-31",
+    "source": "TMG_Holding_FY2018_earnings_release.pdf, consolidated balance sheet, the FY2017 COMPARATIVE column, 'Projects under construction' (the company's OWN EARNINGS RELEASE — not an audited or reviewed financial statement, and recorded as such under [R-SIGCM-03]: this run holds no annual filing before FY2020 and the company's investor-relations index carries none, the statements beginning at 2020, so the figure comes from the company's own other document rather than from a statement that does not exist on the shelf)",
+    "route": "text layer — the release carries one on every page and every figure was footed against the document's own printed subtotals before it was kept; arithmetic rather than the extractor's confidence is what settled it",
+    "units": "PRINTED IN EGP MILLIONS TO ONE DECIMAL AND CONVERTED TO UNITS to sit on the same scale as this run's FY2020-onward origins; the recorded figure therefore carries the release's own precision of EGP 0.1mn and no more",
+    "check": "the balance sheet foots exactly: non-current 22,932.9 + current 50,186.5 = total assets 73,119.4, and total liabilities 43,966.5 + total equity 29,152.9 = 73,119.4"
+   },
+   "dep": {
+    "value": 144800000.0,
+    "as_at": "2017-12-31",
+    "source": "TMG_Holding_FY2018_earnings_release.pdf, consolidated balance sheet, the FY2017 COMPARATIVE column, 'Depreciation and amortization', condensed cash flow statement (the company's OWN EARNINGS RELEASE — not an audited or reviewed financial statement, and recorded as such under [R-SIGCM-03]: this run holds no annual filing before FY2020 and the company's investor-relations index carries none, the statements beginning at 2020, so the figure comes from the company's own other document rather than from a statement that does not exist on the shelf)",
+    "route": "text layer — the release carries one on every page and every figure was footed against the document's own printed subtotals before it was kept; arithmetic rather than the extractor's confidence is what settled it",
+    "units": "PRINTED IN EGP MILLIONS TO ONE DECIMAL AND CONVERTED TO UNITS to sit on the same scale as this run's FY2020-onward origins; the recorded figure therefore carries the release's own precision of EGP 0.1mn and no more",
+    "check": "the balance sheet foots exactly: non-current 22,932.9 + current 50,186.5 = total assets 73,119.4, and total liabilities 43,966.5 + total equity 29,152.9 = 73,119.4"
+   },
+   "wc": {
+    "value": 14959200000.0,
+    "as_at": "2017-12-31",
+    "source": "TMG_Holding_FY2018_earnings_release.pdf, consolidated balance sheet, the FY2017 COMPARATIVE column, the trading lines of the consolidated balance sheet (the company's OWN EARNINGS RELEASE — not an audited or reviewed financial statement, and recorded as such under [R-SIGCM-03]: this run holds no annual filing before FY2020 and the company's investor-relations index carries none, the statements beginning at 2020, so the figure comes from the company's own other document rather than from a statement that does not exist on the shelf)",
+    "route": "text layer — the release carries one on every page and every figure was footed against the document's own printed subtotals before it was kept; arithmetic rather than the extractor's confidence is what settled it",
+    "units": "PRINTED IN EGP MILLIONS TO ONE DECIMAL AND CONVERTED TO UNITS to sit on the same scale as this run's FY2020-onward origins; the recorded figure therefore carries the release's own precision of EGP 0.1mn and no more",
+    "definition": "inventories + notes receivable + development properties, less notes payable and advance payments — the same five quantities this run's FY2020 origin reads off the audited statement, tested line by line against it (see `basis`)",
+    "lines": {
+     "inventories": 58000000.0,
+     "notes_receivable": 18329200000.0,
+     "development_properties": 24410400000.0,
+     "notes_payable": 3720400000.0,
+     "customers_advance_payments": 24118000000.0
+    },
+    "check": "the balance sheet foots exactly: non-current 22,932.9 + current 50,186.5 = total assets 73,119.4, and total liabilities 43,966.5 + total equity 29,152.9 = 73,119.4"
+   },
+   "shares": {
+    "value": 2063562286,
+    "as_at": "2017-12-31",
+    "issued_capital": 20635622860,
+    "par_value": 10.0,
+    "source": "TMG Consolidated FS 12-2020 _ Final _ Eng.pdf — the AUDITED consolidated financial statements. The exact issued capital cannot come from an earnings release, which prints capital rounded to EGP 0.1mn and so cannot foot to a count, and a count that does not foot is not recorded [R-FCAL-01 AMENDED clause (ii)].",
+    "route": "text layer",
+    "check": "FOOTED: issued and paid up capital 20,635,622,860 over the LE 10 par value the capital note's recital states throughout reproduces 2,063,562,286.",
+    "note": "THIS IS NOT TODAY'S COUNT CARRIED BACK, which clause (ii) forbids. The audited statement of changes in equity PRINTS issued and paid capital of 20,635,622,860 at 1 January 2019 and at 31 December 2019 — 1 January 2019 being FY2018's own closing balance — so FY2018 and FY2019 are STATED figures rather than inferred ones. FY2017 rests on the capital note's recital instead, whose last resolution CHANGING the capital is the Extraordinary General Assembly of 30 September 2011 that took it to LE 20,635,622,860; the FY2018 release's own FY2017 column corroborates at 20,635.6mn, to the decimal it prints. As at this run's FY2020 origin, the recital stops at the last capital-changing resolution and cannot see a later treasury movement, so this is the ISSUED count and is labelled as such."
+   }
+  },
+  "FY2018": {
+   "cash": {
+    "value": 4873200000.0,
+    "as_at": "2018-12-31",
+    "source": "TMG_Holding_FY2018_earnings_release.pdf, consolidated balance sheet, the FY2018 CURRENT-YEAR column, 'Cash and cash equivalents' (the company's OWN EARNINGS RELEASE — not an audited or reviewed financial statement, and recorded as such under [R-SIGCM-03]: this run holds no annual filing before FY2020 and the company's investor-relations index carries none, the statements beginning at 2020, so the figure comes from the company's own other document rather than from a statement that does not exist on the shelf)",
+    "route": "text layer — the release carries one on every page and every figure was footed against the document's own printed subtotals before it was kept; arithmetic rather than the extractor's confidence is what settled it",
+    "units": "PRINTED IN EGP MILLIONS TO ONE DECIMAL AND CONVERTED TO UNITS to sit on the same scale as this run's FY2020-onward origins; the recorded figure therefore carries the release's own precision of EGP 0.1mn and no more",
+    "check": "the balance sheet foots: non-current 23,806.7 + current 72,466.8 = 96,273.5, and total liabilities 65,776.1 + total equity 30,497.5 = 96,273.6, within the rounding of figures printed to one decimal. THE PRINTED TOTAL-ASSETS FIGURE IN THIS RELEASE IS 96,274.5 AND DOES NOT FOOT ITS OWN COLUMN by 1.0; the same balance sheet in the FY2019 earnings release and in the 1Q2019 earnings release both print 96,273.5, which does foot. Arithmetic is the arbiter, so 96,273.5 is what the column is held to be"
+   },
+   "debt": {
+    "value": 5149100000.0,
+    "as_at": "2018-12-31",
+    "source": "TMG_Holding_FY2018_earnings_release.pdf, consolidated balance sheet, the FY2018 CURRENT-YEAR column, the four NAMED borrowing lines (the company's OWN EARNINGS RELEASE — not an audited or reviewed financial statement, and recorded as such under [R-SIGCM-03]: this run holds no annual filing before FY2020 and the company's investor-relations index carries none, the statements beginning at 2020, so the figure comes from the company's own other document rather than from a statement that does not exist on the shelf)",
+    "route": "text layer — the release carries one on every page and every figure was footed against the document's own printed subtotals before it was kept; arithmetic rather than the extractor's confidence is what settled it",
+    "units": "PRINTED IN EGP MILLIONS TO ONE DECIMAL AND CONVERTED TO UNITS to sit on the same scale as this run's FY2020-onward origins; the recorded figure therefore carries the release's own precision of EGP 0.1mn and no more",
+    "lines": {
+     "lt_loans": 2995300000.0,
+     "current_portion_of_bank_loans": 407500000.0,
+     "bank_facilities": 1745000000.0,
+     "bank_overdrafts": 1300000.0
+    },
+    "overdraft_source": "TMG_Holding_1Q2019_earnings_release.pdf, consolidated balance sheet, FY2018 comparative column, 'Bank overdrafts' — the company's own earnings release, supplied by the principal 08-09-2026 and committed under engine/tmgh_study/src/",
+    "note": "BUILT FROM THE BORROWINGS THAT ACTUALLY BEAR INTEREST and from nothing else, on the same definition as this run's FY2020-onward origins. 'Long-term liabilities' (3247.5mn) is NOT included: it is not a named borrowing line, and 'notes payable' (14659.7mn) is a land- and supplier-instalment balance carried inside working capital here exactly as the audited statement carries it. Dividing a finance charge by a total that included either would understate the rate by a multiple and manufacture a bias that looks exactly like evidence [R-FCAL-01 trap (i)].",
+    "check": "the balance sheet foots: non-current 23,806.7 + current 72,466.8 = 96,273.5, and total liabilities 65,776.1 + total equity 30,497.5 = 96,273.6, within the rounding of figures printed to one decimal. THE PRINTED TOTAL-ASSETS FIGURE IN THIS RELEASE IS 96,274.5 AND DOES NOT FOOT ITS OWN COLUMN by 1.0; the same balance sheet in the FY2019 earnings release and in the 1Q2019 earnings release both print 96,273.5, which does foot. Arithmetic is the arbiter, so 96,273.5 is what the column is held to be"
+   },
+   "ppe": {
+    "value": 4283600000.0,
+    "as_at": "2018-12-31",
+    "source": "TMG_Holding_FY2018_earnings_release.pdf, consolidated balance sheet, the FY2018 CURRENT-YEAR column, 'Property, plant and equipment' (the company's OWN EARNINGS RELEASE — not an audited or reviewed financial statement, and recorded as such under [R-SIGCM-03]: this run holds no annual filing before FY2020 and the company's investor-relations index carries none, the statements beginning at 2020, so the figure comes from the company's own other document rather than from a statement that does not exist on the shelf)",
+    "route": "text layer — the release carries one on every page and every figure was footed against the document's own printed subtotals before it was kept; arithmetic rather than the extractor's confidence is what settled it",
+    "units": "PRINTED IN EGP MILLIONS TO ONE DECIMAL AND CONVERTED TO UNITS to sit on the same scale as this run's FY2020-onward origins; the recorded figure therefore carries the release's own precision of EGP 0.1mn and no more",
+    "note": "'Projects under construction' is a SEPARATE printed line and is recorded beside rather than added, exactly as this run's FY2020 origin records it.",
+    "check": "the balance sheet foots: non-current 23,806.7 + current 72,466.8 = 96,273.5, and total liabilities 65,776.1 + total equity 30,497.5 = 96,273.6, within the rounding of figures printed to one decimal. THE PRINTED TOTAL-ASSETS FIGURE IN THIS RELEASE IS 96,274.5 AND DOES NOT FOOT ITS OWN COLUMN by 1.0; the same balance sheet in the FY2019 earnings release and in the 1Q2019 earnings release both print 96,273.5, which does foot. Arithmetic is the arbiter, so 96,273.5 is what the column is held to be"
+   },
+   "cip": {
+    "value": 3169900000.0,
+    "as_at": "2018-12-31",
+    "source": "TMG_Holding_FY2018_earnings_release.pdf, consolidated balance sheet, the FY2018 CURRENT-YEAR column, 'Projects under construction' (the company's OWN EARNINGS RELEASE — not an audited or reviewed financial statement, and recorded as such under [R-SIGCM-03]: this run holds no annual filing before FY2020 and the company's investor-relations index carries none, the statements beginning at 2020, so the figure comes from the company's own other document rather than from a statement that does not exist on the shelf)",
+    "route": "text layer — the release carries one on every page and every figure was footed against the document's own printed subtotals before it was kept; arithmetic rather than the extractor's confidence is what settled it",
+    "units": "PRINTED IN EGP MILLIONS TO ONE DECIMAL AND CONVERTED TO UNITS to sit on the same scale as this run's FY2020-onward origins; the recorded figure therefore carries the release's own precision of EGP 0.1mn and no more",
+    "check": "the balance sheet foots: non-current 23,806.7 + current 72,466.8 = 96,273.5, and total liabilities 65,776.1 + total equity 30,497.5 = 96,273.6, within the rounding of figures printed to one decimal. THE PRINTED TOTAL-ASSETS FIGURE IN THIS RELEASE IS 96,274.5 AND DOES NOT FOOT ITS OWN COLUMN by 1.0; the same balance sheet in the FY2019 earnings release and in the 1Q2019 earnings release both print 96,273.5, which does foot. Arithmetic is the arbiter, so 96,273.5 is what the column is held to be"
+   },
+   "dep": {
+    "value": 174400000.0,
+    "as_at": "2018-12-31",
+    "source": "TMG_Holding_FY2018_earnings_release.pdf, consolidated balance sheet, the FY2018 CURRENT-YEAR column, 'Depreciation and amortization', condensed cash flow statement (the company's OWN EARNINGS RELEASE — not an audited or reviewed financial statement, and recorded as such under [R-SIGCM-03]: this run holds no annual filing before FY2020 and the company's investor-relations index carries none, the statements beginning at 2020, so the figure comes from the company's own other document rather than from a statement that does not exist on the shelf)",
+    "route": "text layer — the release carries one on every page and every figure was footed against the document's own printed subtotals before it was kept; arithmetic rather than the extractor's confidence is what settled it",
+    "units": "PRINTED IN EGP MILLIONS TO ONE DECIMAL AND CONVERTED TO UNITS to sit on the same scale as this run's FY2020-onward origins; the recorded figure therefore carries the release's own precision of EGP 0.1mn and no more",
+    "check": "the balance sheet foots: non-current 23,806.7 + current 72,466.8 = 96,273.5, and total liabilities 65,776.1 + total equity 30,497.5 = 96,273.6, within the rounding of figures printed to one decimal. THE PRINTED TOTAL-ASSETS FIGURE IN THIS RELEASE IS 96,274.5 AND DOES NOT FOOT ITS OWN COLUMN by 1.0; the same balance sheet in the FY2019 earnings release and in the 1Q2019 earnings release both print 96,273.5, which does foot. Arithmetic is the arbiter, so 96,273.5 is what the column is held to be"
+   },
+   "wc": {
+    "value": 11733300000.0,
+    "as_at": "2018-12-31",
+    "source": "TMG_Holding_FY2018_earnings_release.pdf, consolidated balance sheet, the FY2018 CURRENT-YEAR column, the trading lines of the consolidated balance sheet (the company's OWN EARNINGS RELEASE — not an audited or reviewed financial statement, and recorded as such under [R-SIGCM-03]: this run holds no annual filing before FY2020 and the company's investor-relations index carries none, the statements beginning at 2020, so the figure comes from the company's own other document rather than from a statement that does not exist on the shelf)",
+    "route": "text layer — the release carries one on every page and every figure was footed against the document's own printed subtotals before it was kept; arithmetic rather than the extractor's confidence is what settled it",
+    "units": "PRINTED IN EGP MILLIONS TO ONE DECIMAL AND CONVERTED TO UNITS to sit on the same scale as this run's FY2020-onward origins; the recorded figure therefore carries the release's own precision of EGP 0.1mn and no more",
+    "definition": "inventories + notes receivable + development properties, less notes payable and advance payments — the same five quantities this run's FY2020 origin reads off the audited statement, tested line by line against it (see `basis`)",
+    "lines": {
+     "inventories": 97700000.0,
+     "notes_receivable": 26525200000.0,
+     "development_properties": 33559000000.0,
+     "notes_payable": 14659700000.0,
+     "customers_advance_payments": 33788900000.0
+    },
+    "check": "the balance sheet foots: non-current 23,806.7 + current 72,466.8 = 96,273.5, and total liabilities 65,776.1 + total equity 30,497.5 = 96,273.6, within the rounding of figures printed to one decimal. THE PRINTED TOTAL-ASSETS FIGURE IN THIS RELEASE IS 96,274.5 AND DOES NOT FOOT ITS OWN COLUMN by 1.0; the same balance sheet in the FY2019 earnings release and in the 1Q2019 earnings release both print 96,273.5, which does foot. Arithmetic is the arbiter, so 96,273.5 is what the column is held to be"
+   },
+   "shares": {
+    "value": 2063562286,
+    "as_at": "2018-12-31",
+    "issued_capital": 20635622860,
+    "par_value": 10.0,
+    "source": "TMG Consolidated FS 12-2020 _ Final _ Eng.pdf — the AUDITED consolidated financial statements. The exact issued capital cannot come from an earnings release, which prints capital rounded to EGP 0.1mn and so cannot foot to a count, and a count that does not foot is not recorded [R-FCAL-01 AMENDED clause (ii)].",
+    "route": "text layer",
+    "check": "FOOTED: issued and paid up capital 20,635,622,860 over the LE 10 par value the capital note's recital states throughout reproduces 2,063,562,286.",
+    "note": "THIS IS NOT TODAY'S COUNT CARRIED BACK, which clause (ii) forbids: the audited statement of changes in equity PRINTS issued and paid capital of 20,635,622,860 at 1 January 2019 and at 31 December 2019, and 1 January 2019 is FY2018's own closing balance — so this year's figure is stated in the document rather than inferred from a later one. The release's own column corroborates at 20,635.6mn, to the decimal it prints. The recital stops at the last capital-changing resolution and cannot see a later treasury movement, so this is the ISSUED count and is labelled as such."
+   }
+  },
+  "FY2019": {
+   "cash": {
+    "value": 4211700000.0,
+    "as_at": "2019-12-31",
+    "source": "TMG_Holding_FY2019_earnings_release.pdf, consolidated balance sheet, the FY2019 CURRENT-YEAR column, 'Cash and cash equivalents' (the company's OWN EARNINGS RELEASE — not an audited or reviewed financial statement, and recorded as such under [R-SIGCM-03]: this run holds no annual filing before FY2020 and the company's investor-relations index carries none, the statements beginning at 2020, so the figure comes from the company's own other document rather than from a statement that does not exist on the shelf)",
+    "route": "text layer — the release carries one on every page and every figure was footed against the document's own printed subtotals before it was kept; arithmetic rather than the extractor's confidence is what settled it",
+    "units": "PRINTED IN EGP MILLIONS TO ONE DECIMAL AND CONVERTED TO UNITS to sit on the same scale as this run's FY2020-onward origins; the recorded figure therefore carries the release's own precision of EGP 0.1mn and no more",
+    "check": "the balance sheet foots: non-current 26,024.2 + current 77,857.1 = 103,881.3 against a printed 103,881.2, and total liabilities 71,650.3 + total equity 32,230.9 = 103,881.2, within the rounding of figures printed to one decimal"
+   },
+   "debt": {
+    "value": 4690600000.0,
+    "as_at": "2019-12-31",
+    "source": "TMG_Holding_FY2019_earnings_release.pdf, consolidated balance sheet, the FY2019 CURRENT-YEAR column, the four NAMED borrowing lines (the company's OWN EARNINGS RELEASE — not an audited or reviewed financial statement, and recorded as such under [R-SIGCM-03]: this run holds no annual filing before FY2020 and the company's investor-relations index carries none, the statements beginning at 2020, so the figure comes from the company's own other document rather than from a statement that does not exist on the shelf)",
+    "route": "text layer — the release carries one on every page and every figure was footed against the document's own printed subtotals before it was kept; arithmetic rather than the extractor's confidence is what settled it",
+    "units": "PRINTED IN EGP MILLIONS TO ONE DECIMAL AND CONVERTED TO UNITS to sit on the same scale as this run's FY2020-onward origins; the recorded figure therefore carries the release's own precision of EGP 0.1mn and no more",
+    "lines": {
+     "lt_loans": 3019000000.0,
+     "current_portion_of_bank_loans": 402700000.0,
+     "bank_facilities": 1242100000.0,
+     "bank_overdrafts": 26800000.0
+    },
+    "overdraft_source": "TMG_Holding_1Q2020_earnings_release.pdf, consolidated balance sheet, FY2019 comparative column, 'Bank overdrafts' — the company's own earnings release, supplied by the principal 08-09-2026 and committed under engine/tmgh_study/src/",
+    "note": "BUILT FROM THE BORROWINGS THAT ACTUALLY BEAR INTEREST and from nothing else, on the same definition as this run's FY2020-onward origins. 'Long-term liabilities' (1868.0mn) is NOT included: it is not a named borrowing line, and 'notes payable' (15826.4mn) is a land- and supplier-instalment balance carried inside working capital here exactly as the audited statement carries it. Dividing a finance charge by a total that included either would understate the rate by a multiple and manufacture a bias that looks exactly like evidence [R-FCAL-01 trap (i)].",
+    "check": "the balance sheet foots: non-current 26,024.2 + current 77,857.1 = 103,881.3 against a printed 103,881.2, and total liabilities 71,650.3 + total equity 32,230.9 = 103,881.2, within the rounding of figures printed to one decimal"
+   },
+   "ppe": {
+    "value": 5714700000.0,
+    "as_at": "2019-12-31",
+    "source": "TMG_Holding_FY2019_earnings_release.pdf, consolidated balance sheet, the FY2019 CURRENT-YEAR column, 'Property, plant and equipment' (the company's OWN EARNINGS RELEASE — not an audited or reviewed financial statement, and recorded as such under [R-SIGCM-03]: this run holds no annual filing before FY2020 and the company's investor-relations index carries none, the statements beginning at 2020, so the figure comes from the company's own other document rather than from a statement that does not exist on the shelf)",
+    "route": "text layer — the release carries one on every page and every figure was footed against the document's own printed subtotals before it was kept; arithmetic rather than the extractor's confidence is what settled it",
+    "units": "PRINTED IN EGP MILLIONS TO ONE DECIMAL AND CONVERTED TO UNITS to sit on the same scale as this run's FY2020-onward origins; the recorded figure therefore carries the release's own precision of EGP 0.1mn and no more",
+    "note": "'Projects under construction' is a SEPARATE printed line and is recorded beside rather than added, exactly as this run's FY2020 origin records it.",
+    "check": "the balance sheet foots: non-current 26,024.2 + current 77,857.1 = 103,881.3 against a printed 103,881.2, and total liabilities 71,650.3 + total equity 32,230.9 = 103,881.2, within the rounding of figures printed to one decimal"
+   },
+   "cip": {
+    "value": 4092800000.0,
+    "as_at": "2019-12-31",
+    "source": "TMG_Holding_FY2019_earnings_release.pdf, consolidated balance sheet, the FY2019 CURRENT-YEAR column, 'Projects under construction' (the company's OWN EARNINGS RELEASE — not an audited or reviewed financial statement, and recorded as such under [R-SIGCM-03]: this run holds no annual filing before FY2020 and the company's investor-relations index carries none, the statements beginning at 2020, so the figure comes from the company's own other document rather than from a statement that does not exist on the shelf)",
+    "route": "text layer — the release carries one on every page and every figure was footed against the document's own printed subtotals before it was kept; arithmetic rather than the extractor's confidence is what settled it",
+    "units": "PRINTED IN EGP MILLIONS TO ONE DECIMAL AND CONVERTED TO UNITS to sit on the same scale as this run's FY2020-onward origins; the recorded figure therefore carries the release's own precision of EGP 0.1mn and no more",
+    "check": "the balance sheet foots: non-current 26,024.2 + current 77,857.1 = 103,881.3 against a printed 103,881.2, and total liabilities 71,650.3 + total equity 32,230.9 = 103,881.2, within the rounding of figures printed to one decimal"
+   },
+   "dep": {
+    "value": 261600000.0,
+    "as_at": "2019-12-31",
+    "source": "TMG_Holding_FY2019_earnings_release.pdf, consolidated balance sheet, the FY2019 CURRENT-YEAR column, 'Depreciation and amortization', condensed cash flow statement (the company's OWN EARNINGS RELEASE — not an audited or reviewed financial statement, and recorded as such under [R-SIGCM-03]: this run holds no annual filing before FY2020 and the company's investor-relations index carries none, the statements beginning at 2020, so the figure comes from the company's own other document rather than from a statement that does not exist on the shelf)",
+    "route": "text layer — the release carries one on every page and every figure was footed against the document's own printed subtotals before it was kept; arithmetic rather than the extractor's confidence is what settled it",
+    "units": "PRINTED IN EGP MILLIONS TO ONE DECIMAL AND CONVERTED TO UNITS to sit on the same scale as this run's FY2020-onward origins; the recorded figure therefore carries the release's own precision of EGP 0.1mn and no more",
+    "check": "the balance sheet foots: non-current 26,024.2 + current 77,857.1 = 103,881.3 against a printed 103,881.2, and total liabilities 71,650.3 + total equity 32,230.9 = 103,881.2, within the rounding of figures printed to one decimal"
+   },
+   "wc": {
+    "value": 13314200000.0,
+    "as_at": "2019-12-31",
+    "source": "TMG_Holding_FY2019_earnings_release.pdf, consolidated balance sheet, the FY2019 CURRENT-YEAR column, the trading lines of the consolidated balance sheet (the company's OWN EARNINGS RELEASE — not an audited or reviewed financial statement, and recorded as such under [R-SIGCM-03]: this run holds no annual filing before FY2020 and the company's investor-relations index carries none, the statements beginning at 2020, so the figure comes from the company's own other document rather than from a statement that does not exist on the shelf)",
+    "route": "text layer — the release carries one on every page and every figure was footed against the document's own printed subtotals before it was kept; arithmetic rather than the extractor's confidence is what settled it",
+    "units": "PRINTED IN EGP MILLIONS TO ONE DECIMAL AND CONVERTED TO UNITS to sit on the same scale as this run's FY2020-onward origins; the recorded figure therefore carries the release's own precision of EGP 0.1mn and no more",
+    "definition": "inventories + notes receivable + development properties, less notes payable and advance payments — the same five quantities this run's FY2020 origin reads off the audited statement, tested line by line against it (see `basis`)",
+    "lines": {
+     "inventories": 1002000000.0,
+     "notes_receivable": 30772800000.0,
+     "development_properties": 36480900000.0,
+     "notes_payable": 15826400000.0,
+     "customers_advance_payments": 39115100000.0
+    },
+    "check": "the balance sheet foots: non-current 26,024.2 + current 77,857.1 = 103,881.3 against a printed 103,881.2, and total liabilities 71,650.3 + total equity 32,230.9 = 103,881.2, within the rounding of figures printed to one decimal"
+   },
+   "shares": {
+    "value": 2063562286,
+    "as_at": "2019-12-31",
+    "issued_capital": 20635622860,
+    "par_value": 10.0,
+    "source": "TMG Consolidated FS 12-2020 _ Final _ Eng.pdf — the AUDITED consolidated financial statements. The exact issued capital cannot come from an earnings release, which prints capital rounded to EGP 0.1mn and so cannot foot to a count, and a count that does not foot is not recorded [R-FCAL-01 AMENDED clause (ii)].",
+    "route": "text layer",
+    "check": "FOOTED: issued and paid up capital 20,635,622,860 over the LE 10 par value the capital note's recital states throughout reproduces 2,063,562,286.",
+    "note": "THIS IS NOT TODAY'S COUNT CARRIED BACK, which clause (ii) forbids: the audited statement of changes in equity PRINTS issued and paid capital of 20,635,622,860 at 1 January 2019 and at 31 December 2019, and 1 January 2019 is FY2018's own closing balance — so this year's figure is stated in the document rather than inferred from a later one. The release's own column corroborates at 20,635.6mn, to the decimal it prints. The recital stops at the last capital-changing resolution and cannot see a later treasury movement, so this is the ISSUED count and is labelled as such."
+   }
+  }
+ },
  "origins": {
   "FY2020": {
    "cash": {

@@ -171,11 +171,24 @@ r = inp(wa, r, 'Equity risk premium (%s basis, central)' % _CR['erp_basis'], _CR
         PCT2, 'both bases are published; the swap basis is central because it is the '
               "market's own live pricing of the sovereign's credit against an agency "
               'judgement updated in steps')                                # B11
-put(wa, f'A{r}', 'Cost of equity Ke = rf* + beta x ERP')
-put(wa, f'B{r}', '=B%d+B%d*B%d'
+# [R-COC-03] BETA APPLIES TO THE MATURE LEG AND TO NOTHING ELSE. This cell read
+# rf* + beta x the WHOLE premium, which multiplies Saudi Arabia's country risk by beta.
+# The schedule moved onto the split and the cell did not, so the delivered workbook
+# published a central of 38.08 against a study committing 36.06 — 5.6% apart. The two legs
+# are inputs a reader can see and change, read from the committed record.
+r = inp(wa, r, '   of which the MATURE premium — beta applies to this leg only',
+        _CR['erp_mature'], PCT2,
+        "Damodaran's identity: the total premium less the country leg below")
+r = inp(wa, r, 'Country premium — charged FLAT, once, never multiplied by beta',
+        _CR['crp_effective'], PCT2,
+        'the sovereign default spread scaled to equity volatility. Country risk is a '
+        'charge on being here, not a charge that scales with a stock\'s covariance')
+put(wa, f'A{r}', 'Cost of equity Ke = rf* + beta x MATURE premium + country premium, flat')
+put(wa, f'B{r}', '=B%d+B%d*B%d+B%d'
     % (ANCHOR_ROWS['Risk-free rate, normalised by the sovereign default spread'],
        ANCHOR_ROWS['Equity beta — own-stock weekly regression vs the published index'],
-       ANCHOR_ROWS['Equity risk premium (%s basis, central)' % _CR['erp_basis']]),
+       ANCHOR_ROWS['   of which the MATURE premium — beta applies to this leg only'],
+       ANCHOR_ROWS['Country premium — charged FLAT, once, never multiplied by beta']),
     BLACK, PCT2)
 put(wa, f'C{r}', 'reproduces the schedule\'s own %.3f%% from the three cells above it'
                  % (100 * _CR['ke_exp']), SUB)

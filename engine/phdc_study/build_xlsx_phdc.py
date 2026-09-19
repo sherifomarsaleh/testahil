@@ -10,7 +10,17 @@ from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import valuation_v2 as _V2       # the terminal growth this model actually runs
+
 HERE = os.path.dirname(os.path.abspath(__file__))
+
+# THE REVERSE READ, FROM THE FILE THAT OWNS IT. A quantity solved from a price is a
+# DIAGNOSTIC; it was sitting in study_numbers.json, which every builder reads, and that
+# is the reverse-engineered rate the protocol prohibits arriving through a side door.
+# Reading it here from diagnostics.json keeps it printable and keeps it out of the
+# numbers file, where something could consume it as an input [R-ENF-05].
+_IMPLIED = json.load(open(os.path.join(HERE, "diagnostics.json")))["implied"]["value"]
 N = json.load(open(os.path.join(HERE, "study_numbers.json")))
 ST = N["statements"]
 M, D, W, REG = N["meta"], N["derived"], N["wacc"], N["registry"]
@@ -32,17 +42,24 @@ YEARS = [r["year"] for r in N["cases"]["base"]["rows"]]
 # stale address produces a workbook that still computes and is simply wrong.
 ASSUMPTION_AT = {}
 
-
-# THE SHEET THE BRIDGE STANDS ON, IN WORDS, COMPUTED FROM THE RECORD
-# [17-09-2026]. Eleven labels in this workbook said "31 March 2026" while every
-# _bridge line in the registry is dated 2026-06-30. The re-issue moved the sheet
-# and the labels were typed, so they stayed — and a workbook is where a reader
-# goes to check exactly this.
-_BSM = ["January", "February", "March", "April", "May", "June", "July", "August",
-        "September", "October", "November", "December"]
-_BSD = N["bridge_record"]["balance_sheet_date"]
-BRIDGE_BS_WORDS = "%d %s %d" % (int(_BSD[8:10]), _BSM[int(_BSD[5:7]) - 1],
-                                int(_BSD[0:4]))
+# THE BRIDGE SHEETS ARE WRITTEN BEFORE THE ASSUMPTIONS SHEET, so they cannot resolve a
+# label through AT() and five addresses were typed into their formulas instead. Adding
+# one driver row on 13-09-2026 shifted every one of them and the bridge published a
+# value per share of MINUS 2.4 billion. The addresses live here now, in one place, used
+# by the bridge formulas AND asserted against their labels once the Assumptions sheet
+# exists -- so the next inserted row fails the build instead of the bridge.
+BRIDGE_CELLS = {
+    "Net debt (EGP mn)": "B14",
+    "Investments in associates (EGP mn)": "B15",
+    "Investment property (EGP mn)": "B16",
+    "Minority interests, share of equity value": "B17",
+    "Shares outstanding (mn)": "B18",
+}
+_BC = BRIDGE_CELLS
+A_ND, A_ASSOC = _BC["Net debt (EGP mn)"], _BC["Investments in associates (EGP mn)"]
+A_IP = _BC["Investment property (EGP mn)"]
+A_NCI = _BC["Minority interests, share of equity value"]
+A_SH = _BC["Shares outstanding (mn)"]
 
 
 def AT(label):
@@ -57,8 +74,8 @@ def v(k):
 
 
 def q(k):
-    """A line of the reviewed balance sheet the bridge stands on (BRIDGE_BS_WORDS)."""
-    return N["balance_sheet_bridge"][k]["value"]
+    """A line of the 31 March 2026 reviewed balance sheet — what the bridge stands on."""
+    return N["balance_sheet_1q26"][k]["value"]
 
 
 def head(ws, title, note=None, widths=None):
@@ -88,8 +105,11 @@ def build(path):
     # 1 READ FIRST -----------------------------------------------------------
     ws = wb.active
     ws.title = "READ FIRST"
+    # THE STAMP WAS TYPED AND WAS TWO EDITIONS STALE. This file already imports
+    # edition.py for the filename; it reads it for the words too now.
+    import edition as _ED0
     head(ws, "Palm Hills Developments — valuation workbook",
-         "Edition of 2 September 2026. Supersedes 30 August 2026.", [70])
+         "Edition of %s. Supersedes %s." % (_ED0.WORDS, _ED0.PRIOR_WORDS), [70])
     r = 4
     for line in [
         "This workbook is for information and education. It is not investment "
@@ -150,7 +170,7 @@ def build(path):
     r = row(ws, r, "Book value of equity per share",
             [round(D["book_equity_per_share"], 2)], fmt="#,##0.00")
     r = row(ws, r, "Cash conversion implied by the market price",
-            [round(D["market_implied_cash_conversion"], 4)], fmt="0.00%")
+            [round(_IMPLIED, 4)], fmt="0.00%")
     r += 1
     r = row(ws, r, "Cost of capital", [], bold=True)
     r = row(ws, r, "Weighted average, rating basis", [W["wacc_rating"]], fmt="0.00%")
@@ -163,28 +183,25 @@ def build(path):
          "All formulas; drivers live on Assumptions.", [46, 18])
     b = CASES["base"]
     r = 4
-    # COUNTED, NOT TYPED: the model runs fifteen explicit years and this row said five.
-    r = row(ws, r, "Present value of the explicit %d years"
-            % len(N["statements"]["framing_b"]),
+    r = row(ws, r, "Present value of the explicit five years",
             [round(b["pv_explicit"], 1)], fmt="#,##0.0")
     r = row(ws, r, "Present value of the terminal value",
             [round(b["pv_terminal"], 1)], fmt="#,##0.0")
     r = row(ws, r, "Enterprise value", ["=B4+B5"], fmt="#,##0.0", bold=True)
-    # the bridge stands on the reviewed balance sheet named by the record; the four
+    # the bridge stands on the 31 March 2026 reviewed balance sheet; the four
     # Assumptions addresses below are asserted against their labels once that
     # sheet is written (A_NET_DEBT .. A_SHARES)
-    r = row(ws, r, "less net debt, %s" % BRIDGE_BS_WORDS, ["=-Assumptions!B13"],
-            fmt="#,##0.0")
+    r = row(ws, r, "less net debt, 31 March 2026", ["=-Assumptions!" + A_ND], fmt="#,##0.0")
     r = row(ws, r, "plus investments in associates",
-            ["=Assumptions!B14"], fmt="#,##0.0")
-    r = row(ws, r, "plus investment property", ["=Assumptions!B15"], fmt="#,##0.0")
+            ["=Assumptions!" + A_ASSOC], fmt="#,##0.0")
+    r = row(ws, r, "plus investment property", ["=Assumptions!" + A_IP], fmt="#,##0.0")
     r = row(ws, r, "Equity value before minority interests", ["=B6+B7+B8+B9"],
             fmt="#,##0.0", bold=True)
     r = row(ws, r, "less minority interests at their share of value",
-            ["=-B10*Assumptions!B16"], fmt="#,##0.0")
+            ["=-B10*Assumptions!" + A_NCI], fmt="#,##0.0")
     r = row(ws, r, "Equity value attributable to shareholders", ["=B10+B11"],
             fmt="#,##0.0", bold=True)
-    r = row(ws, r, "Shares outstanding (mn)", ["=Assumptions!B17"], fmt="#,##0.0")
+    r = row(ws, r, "Shares outstanding (mn)", ["=Assumptions!" + A_SH], fmt="#,##0.0")
     r = row(ws, r, "Value per share (EGP)", ["=B12/B13"], fmt="#,##0.00", bold=True)
     r += 1
     r = row(ws, r, "Terminal value as a share of enterprise value",
@@ -206,36 +223,43 @@ def build(path):
          "mean of the three published cash-flow statements"),
         ("Cash conversion — weak", D["cfo_lo"], "0.00%", "2023 and 2025 outcome"),
         ("Cash conversion — strong", D["cfo_hi"], "0.00%", "2024 outcome"),
-        # THE WORKBOOK PUBLISHED A MARGIN THE MODEL HAD REJECTED [corrected 17-09-2026].
-        # This cell carried the AVERAGE of FY2025 and 1Q2026 — 38.32% — and the DCF sheet
-        # computes gross profit from it, so that sheet published a 2026 gross profit 8.0%
-        # above the one the Income Statement sheet and the document both print. The
-        # averaging construction is the one this study's own record says it stopped using
-        # on 03-09-2026 because it "took neither" period; the forward margin is ANCHORED
-        # on the latest reviewed period. A driver cell a reader is invited to change must
-        # be the driver the model actually ran.
-        ("Gross margin", N["forecast_anchor"]["first_forecast_rate"], "0.00%",
-         "anchored on the latest reviewed period, %s — the rate the model runs"
-         % N["forecast_anchor"]["latest_reviewed_period"]),
+        # THE SHEET PUBLISHED A MARGIN THE MODEL DOES NOT RUN. This cell carried the
+        # average of FY2025 and 1Q2026 -- the anchor the SUPERSEDED edition used --
+        # on a sheet headed "every blue cell is an input; change one and the whole
+        # workbook recomputes". The model runs the latest disclosure alone.
+        ("Gross margin", N["bottom_up"]["anchors"]["gross_margin_forward"], "0.00%",
+         "the first quarter of 2026 on its own, the latest disclosure; NOT an "
+         "average (FY2025 was %.2f%%, 1Q2026 %.2f%%)"
+         % (100 * D["gross_margin_fy25"], 100 * D["gross_margin_1q26"])),
         ("Overheads as a share of revenue", D["sga_ratio_fy25"], "0.00%",
          "FY2025 as reported"),
         ("Price escalation", D["cpi_trailing3"], "0.00%",
          "Egyptian consumer price inflation, three-year mean"),
-        ("Terminal growth", 0.12, "0.00%", "below nominal growth, stated"),
-        ("Cost of capital", W["wacc_rating"], "0.00%",
-         "built on the Fundamental Valuation and Peer sheets"),
+        # TYPED 0.12 AGAINST A MODEL RUNNING 0.07, and 12% is the alternative the
+        # study's own contested-judgement record marks REJECTED, worth EGP 21.00 a
+        # share. It is read from the model now.
+        ("Terminal growth", _V2.TG, "0.00%",
+         "the terminal growth this model runs, read from the valuation module"),
+        # AND THE COST OF CAPITAL CELL PUBLISHED THE RATING BASIS UNDER A BARE LABEL
+        # while the model discounts on the swap basis and section 1.8 marks that one
+        # ADOPTED. Both are shown, and the adopted one is the one named as adopted.
+        ("Cost of capital — ADOPTED (traded default-swap basis)", W["wacc_cds"],
+         "0.00%", "the rate this model discounts at; section 1.8 marks it adopted"),
+        ("Cost of capital — alternative (credit-rating basis), not used",
+         W["wacc_rating"], "0.00%",
+         "published for comparison only; no cell on this sheet reads it"),
         ("Net debt (EGP mn)", D["net_debt_bridge"], "#,##0.0",
-         "gross borrowings less cash, %s reviewed balance sheet" % BRIDGE_BS_WORDS),
+         "gross borrowings less cash, 31 March 2026 reviewed balance sheet"),
         ("Investments in associates (EGP mn)", q("investments_assoc"), "#,##0.0",
-         "%s reviewed balance sheet" % BRIDGE_BS_WORDS),
+         "31 March 2026 reviewed balance sheet"),
         ("Investment property (EGP mn)", q("investment_property"), "#,##0.0",
-         "%s reviewed balance sheet" % BRIDGE_BS_WORDS),
+         "31 March 2026 reviewed balance sheet"),
         ("Minority interests, share of equity value", D["nci_value_share"], "0.00%",
          "the minority's filed share of FY2025 profit after tax, as its share of value"),
         ("Shares outstanding (mn)", D["shares_mn"], "#,##0.0", "FY2025"),
         ("Opening revenue (EGP mn)", v("revenue_fy25"), "#,##0.0", "FY2025 audited"),
         ("Opening order book (EGP mn)", v("backlog_1q26"), "#,##0.0",
-         "as at %s" % BRIDGE_BS_WORDS),
+         "as at 31 March 2026"),
         ("Units delivered, 2026", BU["rows"][0]["units_delivered"], "#,##0",
          "implied by the reported first quarter of 2026"),
         ("Units delivered, annual growth", BU["anchors"]["delivery_growth"],
@@ -258,12 +282,11 @@ def build(path):
         r += 1
     # the bridge sheets reference these four rows by address; hold the
     # addresses to the labels so an inserted driver cannot silently shift them
-    for lbl, addr in (("Net debt (EGP mn)", "$B$13"),
-                      ("Investments in associates (EGP mn)", "$B$14"),
-                      ("Investment property (EGP mn)", "$B$15"),
-                      ("Minority interests, share of equity value", "$B$16"),
-                      ("Shares outstanding (mn)", "$B$17")):
-        assert ASSUMPTION_AT[lbl] == addr, (lbl, ASSUMPTION_AT[lbl], addr)
+    # THE TRIPWIRE, AGAINST THE ADDRESSES THE BRIDGE ACTUALLY EMITTED. One list, used
+    # by both, so a shift cannot pass the guard and break the formulas.
+    for lbl, addr in BRIDGE_CELLS.items():
+        want = "$%s$%s" % (addr[0], addr[1:])
+        assert ASSUMPTION_AT[lbl] == want, (lbl, ASSUMPTION_AT[lbl], want)
     r += 1
     ws.cell(r, 1, "NOT DISCLOSED — absent by design, never estimated").font = SUB
     r += 1
@@ -300,16 +323,16 @@ def _remaining(wb):
          "the operating cash flows.", [46, 18])
     r = 4
     for lbl, val in (("Operating business, discounted cash flow", b["ev"]),
-                     ("Investments in associates, %s" % BRIDGE_BS_WORDS, q("investments_assoc")),
-                     ("Investment property, %s" % BRIDGE_BS_WORDS, q("investment_property")),
-                     ("Cash, %s" % BRIDGE_BS_WORDS, D["cash_bridge"]),
-                     ("Gross borrowings, %s" % BRIDGE_BS_WORDS, -D["gross_debt_bridge"])):
+                     ("Investments in associates, 31 March 2026", q("investments_assoc")),
+                     ("Investment property, 31 March 2026", q("investment_property")),
+                     ("Cash, 31 March 2026", D["cash_bridge"]),
+                     ("Gross borrowings, 31 March 2026", -D["gross_debt_bridge"])):
         r = row(ws, r, lbl, [round(val, 1)], fmt="#,##0.0")
     r = row(ws, r, "Minority interests at their share of value",
-            ["=-(B4+B5+B6+B7+B8)*Assumptions!B16"], fmt="#,##0.0")
+            ["=-(B4+B5+B6+B7+B8)*Assumptions!" + A_NCI], fmt="#,##0.0")
     r = row(ws, r, "Equity value attributable to shareholders",
             ["=B4+B5+B6+B7+B8+B9"], fmt="#,##0.0", bold=True)
-    r = row(ws, r, "Per share (EGP)", ["=B10/Assumptions!B17"], fmt="#,##0.00",
+    r = row(ws, r, "Per share (EGP)", ["=B10/Assumptions!" + A_SH], fmt="#,##0.00",
             bold=True)
 
     # 6 Segments -------------------------------------------------------------
@@ -410,7 +433,9 @@ def _remaining(wb):
     A_SGA = AT("Overheads as a share of revenue")
     A_CFO = AT("Cash conversion — central")
     A_CAPEX = AT("Maintenance capital expenditure, share of revenue")
-    A_WACC = AT("Cost of capital")
+    # A_WACC WAS RESOLVED AND NEVER USED -- no cell on any sheet read it, which is
+    # the other half of why the Assumptions sheet could publish the wrong rate
+    # under a bare label without anything going red.
 
     def _path_row(label, values, fmt, note=""):
         """A per-year INPUT row: growth is a path, not a single number.
@@ -536,9 +561,7 @@ def _remaining(wb):
     # 9-11 statements --------------------------------------------------------
     ws = wb.create_sheet("Income Statement")
     head(ws, "Income statement — built from units and prices",
-         "Gross margin is ANCHORED on the latest reviewed period and cost per unit is "
-         "solved from it; the company discloses no unit count after FY2024, so there is "
-         "no independent cost per unit to build. See the study, section 1.1.",
+         "Gross margin is an OUTPUT of price per unit against cost per unit.",
          [34, 14, 14, 14, 14, 14])
     rr = 4
     ws.cell(rr, 1, "EGP mn unless stated").font = HEAD
@@ -778,7 +801,7 @@ def _remaining(wb):
         ("Price to book", PM["spot"] / D["book_equity_per_share"], "0.00"),
         ("Earnings per share, 2025 (EGP)",
          v("npat_mi_fy25") / D["shares_mn"], "#,##0.00"),
-        ("Net debt per share, %s (EGP)" % BRIDGE_BS_WORDS, D["net_debt_bridge"] / D["shares_mn"], "#,##0.00"),
+        ("Net debt per share, 31 March 2026 (EGP)", D["net_debt_bridge"] / D["shares_mn"], "#,##0.00"),
         ("Order book per share (EGP)",
          v("backlog_1q26") / D["shares_mn"], "#,##0.00"),
         ("Gross margin, 2025", D["gross_margin_fy25"], "0.0%"),
@@ -816,7 +839,8 @@ def _remaining(wb):
 
 
 if __name__ == "__main__":
-    out = os.path.join(HERE, "PHDC_Valuation_Model_17092026.xlsx")
+    import edition as _EDN
+    out = os.path.join(HERE, _EDN.MODEL_XLSX)
     wb = build(out)
     # the skeleton's order is part of the standard, so it is asserted, not assumed
     ORDER = ["READ FIRST", "Summary", "Fundamental Valuation", "Assumptions",

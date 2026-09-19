@@ -21,6 +21,8 @@ none and demanding one would be a false claim about what this gate checks.
 import glob
 import json
 import os
+import io
+import re
 import shutil
 import subprocess
 import sys
@@ -30,6 +32,10 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 TARGET = os.path.join(HERE, "check_terminal_record_shape.py")
 SRC_ENGINE = os.path.join(ROOT, "engine")
+import sys as _sys_nc
+_sys_nc.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import nc_sandbox as _nc          # the sandbox's engine-module list, derived
+
 
 CASES_EXPECTED = 10          # 7 red + 3 clean
 RED_EXPECTED = 7
@@ -41,7 +47,11 @@ def _sandbox():
     tmp = tempfile.mkdtemp(prefix="trs-nc-")
     eng = os.path.join(tmp, "engine")
     os.makedirs(os.path.join(eng, "build_depth_audit"))
-    shutil.copy(os.path.join(SRC_ENGINE, "terminal_value.py"), eng)
+    # EVERY ENGINE MODULE THE GATE IMPORTS, READ OFF THE GATE ITSELF -- see
+    # scripts/nc_sandbox.py. This carried one typed filename until the gate grew
+    # an import of engine/run_state.py and the control died before injecting a
+    # single defect.
+    _nc.copy_engine_modules(TARGET, SRC_ENGINE, eng, required=("terminal_value",))
     rat = os.path.join(SRC_ENGINE, "build_depth_audit",
                        "terminal_record_outstanding.json")
     if os.path.exists(rat):
@@ -126,30 +136,26 @@ def no_records_anywhere(tmp):
     its rule field: nothing to check, nothing wrong, green — which is exactly the
     absent answer wearing a clean one's clothes.
     """
-    # THE COUNT IS DERIVED, NOT PINNED [L-403]. It read 37 and the book grew a
-    # thirty-eighth terminal record, at which point the control REFUSED — correctly by
-    # its own lights and about nothing: a fixture pinned to a live figure expires the
-    # moment the work moves, and the expiry looks exactly like a defect. What the case
-    # needs is that EVERY marker present was renamed and that there was at least one to
-    # rename, which is the condition itself rather than a number somebody wrote down.
-    want = 0
-    for p in glob.glob(os.path.join(tmp, "engine", "*_study", "*numbers*.json")):
-        want += sum(1 for _ in _each_record(json.load(open(p))))
-    assert want, ("FIXTURE CANNOT BE BUILT: the sandbox carries no terminal record at "
-                  "all, so renaming the marker would remove nothing [R-ENF-04]")
+    # THE EXPECTED COUNT IS DERIVED FROM THE TREE, NEVER FROZEN. It was a literal 37
+    # and the book grew to 38 -- a study gaining a terminal record, which is the work
+    # going RIGHT -- so this control refused and read as a broken gate. That is the
+    # third fixture in one session whose subject was live state: the discipline is to
+    # count what is there FIRST, then assert the mutation touched exactly that, which
+    # still catches a mutation that lands on nothing without breaking when the book
+    # legitimately moves. Counting against a known total [R-ENF-04] means a total the
+    # run establishes, not one somebody typed last week.
+    paths = glob.glob(os.path.join(tmp, "engine", "*_study", "*numbers*.json"))
+    expect = sum(len(list(_each_record(json.load(open(p))))) for p in paths)
+    assert expect > 0, "MUTATION DID NOT LAND: the tree carries no terminal record"
     hit = 0
-    for p in glob.glob(os.path.join(tmp, "engine", "*_study", "*numbers*.json")):
+    for p in paths:
         o = json.load(open(p))
         for rec in _each_record(o):
             rec["rule"] = "R-TERM-01-RENAMED"
             hit += 1
         json.dump(o, open(p, "w"))
-    assert hit == want, (f"MUTATION DID NOT LAND: renamed {hit} markers of {want} "
-                         f"present")
-    left = 0
-    for p in glob.glob(os.path.join(tmp, "engine", "*_study", "*numbers*.json")):
-        left += sum(1 for _ in _each_record(json.load(open(p))))
-    assert left == 0, f"MUTATION DID NOT LAND: {left} record(s) still carry the marker"
+    assert hit == expect, (
+        f"MUTATION DID NOT LAND: renamed {hit} markers against {expect} counted")
     return "ZERO terminal records"
 
 

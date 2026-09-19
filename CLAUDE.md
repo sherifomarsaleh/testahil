@@ -1,11 +1,97 @@
 # TESTAHIL — project memory
 
+## RESPONSE LENGTH — HARD CAP, READ FIRST
+
+**Chat answers: 4 sentences maximum. No preamble. No summary of what was done. Lead with
+the answer.** Expand ONLY when the user says "expand", "in full", or "why". If an answer
+seems to need more, it needs fewer words, not more sentences — cut the reasoning, keep
+the conclusion. A number, a filename and a one-line verdict beat a paragraph explaining
+them.
+
+THE CAP IS ON PROSE, NOT ON WORK. It does not apply to: a table the user asked for (QC
+gate, gap review, findings list), the verbatim digest text after a protocol amendment, a
+delivered study document, or tool/gate output quoted as evidence. Those are artefacts,
+not answers — emit the artefact, then say at most 4 sentences about it.
+
+WHERE THE ANSWER GENUINELY DOES NOT FIT: give the conclusion in one sentence and offer
+the rest ("say expand for the workings"). Never pre-empt that choice by writing both.
+
+## PLAIN LANGUAGE — SAME FORCE AS THE CAP
+
+**Write the way you would say it out loud to a colleague.** Short words. Short sentences.
+One idea per sentence. Say "we found" not "it was established that"; "the number is
+wrong" not "the figure appears to be inconsistent with the underlying record".
+
+BANNED IN CHAT: em-dash pile-ups and nested clauses; SHOUTED phrases; the protocol's own
+register ("THE GENERAL LESSON, WHICH IS NOT ABOUT X", "stated rather than discovered
+later", "the shape of the thing"); rule identifiers as shorthand for an idea — say what
+the rule requires, in words, and put the [R-XXX-NN] tag in brackets after it if it is
+needed at all.
+
+USE A PLAIN WORD FOR A TECHNICAL ONE WHENEVER ONE EXISTS: "fair value is 30% under the
+market price" beats "the central sits materially below the latest known spot". Keep the
+technical term only where it is the actual name of a thing in this repo (fair value,
+beta, the cone, the ledger).
+
+THE DOCUMENTS ARE NOT AFFECTED. Study documents, protocol amendments and the digest keep
+their own voice and their own precision. This rule is about how the chat reads.
+
+## STANDING PRIORITY — FINISH THE FRAMEWORK
+
+**The principal's number one priority is finishing the fundamental-research framework.
+It has been stated repeatedly and it outranks every other piece of work in this
+repository.** Nothing below reorders it. Read this before deciding what to do next.
+
+WHAT FINISHING MEANS IS ALREADY DEFINED AND IS NOT OPEN — [R-VCAL-02 CLAUSE TWO]: the
+framework is adopted when it is BACKTESTED and the GATES PASS. Two conditions and
+nothing else is an adoption condition. The backtest is criterion 3's clauses G, B, C
+and F on the mechanical series — clause A's symmetric zero-bias test is REPORTED and
+no longer gates, replaced by [R-VCAL-02 CLAUSE THREE]'s one-sided bar: no company
+called expensive by more than 10% without an audit behind it. The gates are the
+standing set every study is held to.
+Phase 2b is calibration, not a bar to clear first.
+
+WHAT IS ACTUALLY BLOCKING IT, READ LIVE — `python3 engine/method_reassessment/criterion3.py`
+— never from this file, because cells are carried, vintages mature and a clause that
+passes today can go red on the next run. THE SAMPLE CONSTRAINT THIS PARAGRAPH USED TO
+NAME IS CLOSED: it said clauses B and C could not be measured on one name, and that was
+true when it was written and stopped being true on 08-09-2026, when the series reached
+five names, eight origins and 22 cells and both clauses went green. A status sentence in
+a standing document is a claim about the world and it rots [R-DOC-02] — which is exactly
+why the live command is named here and the state is not.
+
+The two conditions are answered separately and neither is answered from this file. The
+BACKTEST half is criterion3.py's own print. The GATES half is the standing set, run from
+outside the work they govern. What remains after both is DEBT rather than a blocker, and
+it is countable rather than remembered: the ratchet lists, and the named data-carry job
+of taking valuation-input blocks to more origins across the ten completed runs per
+[R-FCAL-01 AMENDED] — a copy out of filings each run has already parsed, which is work
+with a rate.
+
+**THE FAILURE THIS RECORD EXISTS TO STOP IS DRIFT, NOT DISAGREEMENT.** No session has
+ever disputed the priority; sessions drift into adjacent work because the adjacent work
+is real, is in front of them, and each individual step is defensible — a gate goes red,
+a rule needs amending, a study wants re-issuing. Every one of those is legitimate and
+none of them is this. Where a red gate or an amendment stands between the framework and
+its next measurement, clear it and return; where it does not, it waits.
+
+ISSUING NEW STUDIES IS NOT THE FRAMEWORK, per instruction 08-09-2026 — "i just need to
+finish the framework. I do not care about issuing new reports now." A study is rebuilt
+only where the framework's own measurement needs it.
+
+REPORT ONE NAME AT A TIME, per instruction — "if there is something I do not like I want
+to catch it early." A carry is reported when that name is done, not batched at the end.
+
 This repo runs the TESTAHIL Standing Research Protocol: valuation studies, calibrated
 probability cones, and a public ledger, published to the live site. Read this before
 doing any research, study-build, critique-response, or publishing work here.
 
-**Full governing rules — read before starting any study:**
-@engine/PROJECT_INSTRUCTIONS_19-09-2026.md
+**Full governing rules — `engine/PROJECT_INSTRUCTIONS_19-09-2026.md`. NOT auto-loaded**
+(~55k characters; injecting it into every session is what makes ordinary answers long and
+ornate). READ IT IN FULL, with `cat`, before any of: starting or re-issuing a study, a
+walk-forward run, a critique response, a roll-forward, a publish, or amending a rule. For
+a quick factual question, do not read it. This literal path is still the one reference
+that cannot glob — update it in the same commit as any digest rename.
 
 That file is the condensed, binding digest (rules only, never volatile numbers). The
 complete prose version, with the reasoning and the failures each rule was adopted from,
@@ -104,6 +190,15 @@ diff-only summary leaves that copy silently behind.
   compiled, and that is stated in the file rather than implied.
 
 **Shared code every study should use, not reinvent:**
+- `engine/research_primer_prompt.py` — [R-PRIME-01]. **`python3 engine/research_primer_prompt.py
+  TICKER` BEFORE a study is built or re-issued**, then hand the prompt over and read what comes
+  back. Built from what the repo already holds: the company's registered name in English AND the
+  language its own regulator and trade press write it in, the driver headings its industry turns
+  on, and the study's OWN dated negative searches read live out of its sweep register. Never
+  hand-write it — if the generator refuses the name, stop and say so. What comes back is a LEAD
+  AND NEVER AN INPUT: traced to the primary source and read there before it moves anything,
+  historicals from the company's own issued statements alone, and every untraceable claim
+  written back as a dated negative search rather than dropped.
 - `engine/research_sweep.py` — the Step 2A Information Sweep register and its enforced
   invariants (coverage, provenance, consequence, gate linkage, primary access, FS depth,
   study-year quarter coverage, IR coverage). Import this rather than hand-rolling a
@@ -195,6 +290,6 @@ and reports evidence rather than a verdict on itself.
 or from a document — always read `engine/market_profiles.py` and
 `engine/fitted_configs.json` live first; they are volatile and refit on every post.
 
-**Response style in this repo:** 3-4 sentences max, no preamble, lead with the answer.
-Expand only if asked. Never a rating or a price target — fair-value ranges and
-distributions only.
+**Response style:** the hard cap at the top of this file governs — 4 sentences, no
+preamble, lead with the answer. Stated once, there and not here. Separately and always:
+never a rating or a price target — fair-value ranges and distributions only.

@@ -1,0 +1,202 @@
+{
+ "_": "Seeded once, at this gate's creation, with every artefact already behind its own numbers file. This list may only ever SHORTEN: an entry leaves when the study is rebuilt whole. Nothing may be added.",
+ "seeded": "2026-09-13",
+ "stale": {
+  "ADNOCDIST": [
+   "fig2_volume_price.png",
+   "fig3_margin_bridge.png"
+  ],
+  "ADNOCDRILL": [
+   "fig3_ma.png",
+   "fig7_mix.png"
+  ],
+  "ADNOCLS": [
+   "fig1_football.png",
+   "fig2_sens.png",
+   "fig3_ma.png",
+   "fig4_fan.png",
+   "fig5_dist.png",
+   "fig6_dist.png",
+   "fig7_mix.png",
+   "fig8_tce.png",
+   "figD1_experts.png"
+  ],
+  "AIRARABIA": [
+   "fig1_football.png",
+   "fig2_sens.png",
+   "fig3_ma.png",
+   "fig4_fan.png",
+   "fig5_dist.png",
+   "fig6_dist.png",
+   "fig7_units.png",
+   "figD1_experts.png"
+  ],
+  "AMOC": [
+   "fig1_football.png",
+   "fig2_sens.png",
+   "fig3_ma.png",
+   "fig4_fan.png",
+   "fig5_dist.png",
+   "fig5_spread.png",
+   "fig6_dist.png",
+   "fig7_mix.png",
+   "fig8_waterfall.png",
+   "figD1_experts.png"
+  ],
+  "AMR": [
+   "fig3_price.png",
+   "fig7_build.png"
+  ],
+  "BOROUGE": [
+   "fig1_football.png",
+   "fig2_sens.png",
+   "fig3_ma.png",
+   "fig4_fan.png",
+   "fig5_dist.png",
+   "fig6_dist.png",
+   "fig7_stack.png",
+   "fig8_peers.png",
+   "fig9_framings.png",
+   "figD1_experts.png"
+  ],
+  "DU": [
+   "fig1_football.png",
+   "fig2_sens.png",
+   "fig3_ma.png",
+   "fig4_fan.png",
+   "fig5_dist.png",
+   "fig6_dist.png",
+   "fig7_mix.png",
+   "figD1_experts.png"
+  ],
+  "EGCH": [
+   "fig10_fan.png",
+   "fig12_dist1m.png",
+   "fig13_dist3m.png",
+   "fig14_programme.png",
+   "fig1_range.png",
+   "fig2_bridge.png",
+   "fig3_revenue.png",
+   "fig4_cashflow.png",
+   "fig5_crux.png",
+   "fig6_coststack.png",
+   "fig7_glide.png",
+   "fig8_price.png",
+   "fig9_field.png",
+   "figD1_experts.png"
+  ],
+  "ELEC": [
+   "fig1_football.png",
+   "fig2_sens.png",
+   "fig3_ma.png",
+   "fig4_fan.png",
+   "fig5_dist.png",
+   "fig6_dist.png",
+   "figD1_experts.png"
+  ],
+  "EMPOWER": [
+   "fig1_football.png",
+   "fig2_sens.png",
+   "fig3_ma.png",
+   "fig4_fan.png",
+   "fig5_dist.png",
+   "fig6_dist.png",
+   "fig7_bridge.png",
+   "fig8_unit.png",
+   "figD1_experts.png"
+  ],
+  "FERTIGLOBE": [
+   "fig3_costpass.png",
+   "fig6_segments.png"
+  ],
+  "MODON": [
+   "fig1_football.png",
+   "fig2_sens.png",
+   "fig3_ma.png",
+   "fig4_fan.png",
+   "fig5_dist.png",
+   "fig6_dist.png",
+   "fig7_mix.png",
+   "figD1_experts.png"
+  ],
+  "PHAR": [
+   "fig1_field.png",
+   "fig2_volume_price.png",
+   "fig3_depreciation.png",
+   "fig4_multiple.png",
+   "fig5_cone.png",
+   "fig6_tornado.png",
+   "fig7_crux.png",
+   "fig8_experts.png"
+  ],
+  "RIYADHCABLE": [
+   "fig1_football.png",
+   "fig2_sens.png",
+   "fig3_ma.png",
+   "fig4_fan.png",
+   "fig5_dist.png",
+   "fig6_dist.png",
+   "fig7_stack.png",
+   "fig8_margin.png",
+   "figD1_experts.png"
+  ],
+  "SAVOLA": [
+   "fig1_football.png",
+   "fig2_sens.png",
+   "fig3_ma.png",
+   "fig4_fan.png",
+   "fig5_dist.png",
+   "fig6_dist.png",
+   "fig7_mix.png",
+   "figD1_experts.png"
+  ],
+  "SCEM": [
+   "fig3_ma.png",
+   "fig7_bridge.png",
+   "fig8_sector.png",
+   "figD1_experts.png"
+  ],
+  "STC": [
+   "fig1_football.png",
+   "fig2_sens.png",
+   "fig3_ma.png",
+   "fig4_fan.png",
+   "fig5_dist.png",
+   "fig6_dist.png",
+   "figD1_experts.png"
+  ]
+ },
+ "stale_renders": {
+  "ADNOCDIST": [
+   "ADNOCDIST_Bibliography_09-08-2026.pdf",
+   "ADNOCDIST_Valuation_Model_09082026.pdf",
+   "ADNOCDIST_Valuation_Study_09-08-2026.pdf"
+  ],
+  "ADNOCDRILL": [
+   "ADNOCDRILL_Bibliography_09-08-2026.pdf",
+   "ADNOCDRILL_Valuation_Model_09082026.pdf",
+   "ADNOCDRILL_Valuation_Study_09-08-2026.pdf"
+  ],
+  "ADNOCLS": [
+   "ADNOCLS_Valuation_Model_09082026_public.pdf"
+  ],
+  "AMR": [
+   "AMR_Bibliography_09-08-2026.pdf",
+   "AMR_Valuation_Model_09082026_public.pdf"
+  ],
+  "ELEC": [
+   "ELEC_Valuation_Study_05-08-2026_public.pdf"
+  ],
+  "FERTIGLOBE": [
+   "Fertiglobe_Bibliography_09-08-2026.pdf",
+   "Fertiglobe_Valuation_Model_09-08-2026.pdf",
+   "Fertiglobe_Valuation_Study_09-08-2026.pdf"
+  ],
+  "MODON": [
+   "MODON_Valuation_Model_10082026_public.pdf"
+  ],
+  "RIYADHCABLE": [
+   "RIYADHCABLE_Valuation_Model_18082026_public.pdf"
+  ]
+ }
+}

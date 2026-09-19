@@ -3,31 +3,32 @@
  "started_at": "the delivered 08-07-2026 edition, restruck on the same drivers",
  "start_value": 35.746804894778066,
  "start_spot": 28.98,
- "audit_after": "TWO STOPS AND ONE STANDING TRIGGER, all three declared in REBUILD_PLAN_17-09-2026.md and committed in an earlier commit than any recomputed figure. (1) AFTER L14, the inputs complete and the constructions untouched, so the construction levers are measured against a clean base -- read at -0.94% cumulative, the four input levers largely cancelling. (2) AFTER L19, the constructions complete, before any document is rebuilt. (3) STANDING, at every lever: a running total passing 10% either side of the latest known price owes [R-GAP-01]'s eight-heading review before any file is staged. The carrying branch entered this pass at +42.7% and CROSSED BACK INSIDE THE BAND AT L15, which is the crossing the plan said to watch for -- during the rebuild rather than at the end of it.",
+ "start_gap": 0.23349913370524722,
+ "audit_after": "L4 and again at L9 — each declared IN ADVANCE of the pass it closes: the running total is looked at once the pass's rule-driven corrections have landed and BEFORE the price is consulted",
  "levers": [
   {
    "name": "L1",
    "rule": "[R-COC-01] · [R-COC-02] · [L-004]",
    "before": 35.746804894778066,
-   "after": 73.71156579442516,
+   "after": 91.72114370961131,
    "why": "cost of capital rebuilt through engine/cost_of_capital.py — country risk counted ONCE (rf* = 23.00% - 3.41%), a conforming tier-1 beta of 0.8907 in place of an assumed 1.0, Kd re-derived at 26.53% on the borrowings that actually bear the interest, and a glide from 22.91% to a norm-built terminal of 14.21% in place of one crisis rate for ever",
    "evidence": "engine/gbco_study/compute.py",
-   "move": 1.0620462727059845
+   "move": 1.5658557171639709
   },
   {
    "name": "L2",
    "rule": "[R-MACRO-01]",
-   "before": 73.71156579442516,
-   "after": 43.955512067253494,
+   "before": 91.72114370961131,
+   "after": 46.08546651686495,
    "why": "terminal growth stored as (real 0.0%, inflation path EG) and recomputed to its nominal 7.00%, replacing a TYPED nominal 11.5% nobody could falsify",
    "evidence": "engine/gbco_study/compute.py",
-   "move": -0.403682290648371
+   "move": -0.49754806086183023
   },
   {
    "name": "L3",
    "rule": "[R-TERM-01] — STOP AND INFORM, SIGCM clause 8",
-   "before": 43.955512067253494,
-   "after": 43.955512067253494,
+   "before": 46.08546651686495,
+   "after": 46.08546651686495,
    "why": "terminal through engine/terminal_value.py on a DISCLOSED useful life — NOT APPLIED. Both admissible routes were run and both failed: the policy note discloses RATE RANGES only (2%-33%, a 3-to-50-year span) and the derived identity returns 10.9-17.1 years depending on an undisclosed land split, with per-class rates that contradict the disclosed bands. A life this desk chose is not a disclosed life. See useful_lives.json.",
    "evidence": "engine/gbco_study/compute.py",
    "move": 0.0
@@ -35,26 +36,26 @@
   {
    "name": "L4",
    "rule": "[R-BRIDGE-01]",
-   "before": 43.955512067253494,
-   "after": 44.329496406267786,
+   "before": 46.08546651686495,
+   "after": 46.459450855879226,
    "why": "the enterprise-to-equity bridge moved from 31-Dec-2025 onto the reviewed 30-June-2026 balance sheet, GB Corp's own segmented net debt for the AUTO leg and that leg's own non-controlling interest",
    "evidence": "engine/gbco_study/compute.py",
-   "move": 0.008508246666358632
+   "move": 0.008115016886666826
   },
   {
    "name": "L5",
    "rule": "[R-LENS-03]",
-   "before": 44.329496406267786,
-   "after": 53.52589213266374,
+   "before": 46.459450855879226,
+   "after": 57.28463527903688,
    "why": "the four-lens weighted blend RETIRED and the class primary taken as the answer. A number produced by averaging several methods is a new method with free parameters nobody tested; the weights here were 0.40/0.15/0.20/0.25 and two of the four lenses were the SAME sum-of-the-parts at two discount levels",
    "evidence": "engine/gbco_study/compute.py",
-   "move": 0.20745545228200846
+   "move": 0.23300284923164938
   },
   {
    "name": "L6",
    "rule": "the PROMOTION RULE",
-   "before": 53.52589213266374,
-   "after": 59.473213480737485,
+   "before": 57.28463527903688,
+   "after": 63.64959475448541,
    "why": "the TYPED 10% conglomerate discount removed. Nothing in the filings discloses a basis for it, and the blend above applied it at an EFFECTIVE 4% by weighting the discounted and undiscounted sums both — so the number the study named was not the number it applied. A free parameter that has never cleared an out-of-sample test",
    "evidence": "engine/gbco_study/compute.py",
    "move": 0.11111111111111094
@@ -62,285 +63,100 @@
   {
    "name": "L7",
    "rule": "[R-LENS-03]",
-   "before": 59.473213480737485,
-   "after": 52.24674131942111,
+   "before": 63.64959475448541,
+   "after": 56.68095587992817,
    "why": "GB Capital from a TYPED 9,500 at 1.0x book to residual income on its own operating equity — segment shareholders' equity before NCI less the associates carried inside it, 22,497.8 - 16,230.5 = 6,267.3, at the justified price-to-book its own disclosed return supports. Book times one is the weighting of book value this rule forbids outright, and the old base came from a ratio whose NUMERATOR held the associate income the sum of the parts counts again",
    "evidence": "engine/gbco_study/compute.py",
-   "move": -0.12150801576674386
+   "move": -0.10948441858015379
   },
   {
    "name": "L8",
    "rule": "SIGCM clause 1",
-   "before": 52.24674131942111,
-   "after": 52.345259974418816,
+   "before": 56.68095587992817,
+   "after": 56.77947453492587,
    "why": "the associates other than MNT-Halan from a TYPED 390.0 to 496.9, the residual of note 34's own total less its MNT row, both of which foot to the reviewed balance sheet",
    "evidence": "engine/gbco_study/compute.py",
-   "move": 0.0018856420995787548
+   "move": 0.001738126209557933
   },
   {
    "name": "L9",
    "rule": "depth-bar standard 8 — the contested judgement published both ways",
-   "before": 52.345259974418816,
-   "after": 52.345259974418816,
-   "why": "the associate marked BOTH WAYS and the answer published as two branches rather than one. This walk stays on the round-price branch, 52.3453; the other branch, MNT-Halan at its reviewed carrying value of 15,733.5, reads 41.3484. Neither is averaged into the other.",
+   "before": 56.77947453492587,
+   "after": 56.77947453492587,
+   "why": "the associate marked BOTH WAYS and the answer published as two branches rather than one. This walk stays on the round-price branch, 56.7795; the other branch, MNT-Halan at its reviewed carrying value of 15,733.5, reads 45.7826. Neither is averaged into the other.",
    "evidence": "engine/gbco_study/compute.py",
    "move": 0.0
-  },
-  {
-   "name": "L10 — the ledger tracks the study's DECLARED central, the carrying branch",
-   "rule": "bookkeeping · [R-ENF-06]",
-   "before": 52.345259974418816,
-   "after": 41.348367298232716,
-   "why": "Finding 1 establishes that the June-2026 round price is not one of GB Corp's own two disclosures: the study's committed record cites the company's 9-June release for the 41.61% STAKE, and the round figure itself carries no source field at all. Both branches stay published and are relabelled; what changes here is only which of them this ledger walks.",
-   "evidence": "NO VALUATION MOVED. study_numbers.json, asset_cycle.json and GAP_REVIEW_07-09-2026.md all declare 41.3484 as this study's central and have since the 07-09 edition; the ledger walked 52.3453. The two branches were both published throughout, so a reader saw both numbers either way. Recorded at its full -21.0% rather than folded into L11, because a bookkeeping correction absorbed into a valuation lever makes that lever look twice its size.",
-   "move": -0.21008382958763205
-  },
-  {
-   "name": "L11 — the associate carrying value, re-read off the pixels",
-   "rule": "SIGCM clause 1",
-   "before": 41.348367298232716,
-   "after": 41.348367298232716,
-   "why": "Audit finding 16: note 34 reads 15,723,523 thousand and the study carried 15,733,523. The delivered edition's own comment reconstructed its figure from 'restated 15,315,532 + 8,006 of other comprehensive income + 409,985 of period profit' and recorded a 'ten-thousand OCR ambiguity' in the three SMALLER rows. The ambiguity was in the MNT row itself.",
-   "evidence": "Re-read at 500 dpi off the rendered page, the filing carrying no text layer at all. EVERY COLUMN AND EVERY ROW FOOTS ON THE AUDIT'S FIGURE AND ON NONE OF THEM ON THE STUDY'S: 12,853,320 + 2,460,218 = 15,313,538 restated; + 409,985 profit = 15,723,523; the four rows' restated column sums to the stated 15,732,426 and the June column to the stated 16,230,465, both exactly. Two further cells of the old reconstruction were also wrong -- the restated opening is 15,313,538 and MNT has NO other comprehensive income, the 32,119 in that column being Bedaia's. THE CARRYING BRANCH DOES NOT MOVE because the residual absorbs it; the ROUND branch rises EGP 0.0092 per share, 52.345260 -> 52.354472.",
-   "move": 0.0
-  },
-  {
-   "name": "L12 — GB Auto net debt, at the company's own published figure",
-   "rule": "[R-BRIDGE-01]",
-   "before": 41.348367298232716,
-   "after": 41.46821990072005,
-   "why": "Audit finding 24, and self-audit S-2 reached independently before the audit was opened. The code claimed 'the COMPANY'S OWN definition' in a comment and produced 14,623.7 against a published 14,493.6.",
-   "evidence": "Reconciled to Table 7's own five rows: the delivered edition took only the NON-CURRENT portion of the notes payable to leasing (1,333.3 of 2,345.8) and omitted the due-FROM-related-parties balance of 1,142.1 that the company's own table nets. 22,733.1 + 2,345.8 - 9,445.0 + 1.8 - 1,142.1 = 14,493.6 exactly. +EGP 0.1199 per share, which reproduces the self-audit's own price to the fourth decimal.",
-   "move": 0.002898605442456237
-  },
-  {
-   "name": "L13 — the GB Capital base, struck restated against restated",
-   "rule": "SIGCM clause 1",
-   "before": 41.46821990072005,
-   "after": 40.387038137321575,
-   "why": "Audit finding 8: a RESTATED associate carrying value was subtracted from an UNRESTATED segment equity, halving the lender's operating base and doubling every return struck on it.",
-   "evidence": "Note 34's adjustment of +2,460,218 thousand raises the associate AND the equity that carries it. The 4Q25 release of 26 February 2026 predates the restatement by four months, so its 18,312.6 is the unrestated figure; 18,312.6 + 2,460.218 = 20,772.818 is the like-for-like one. The lender leg falls from EGP 1,656mn to 482mn, which is the audit's own figure to the million, -2.61% per share.",
-   "move": -0.02607253858465486
-  },
-  {
-   "name": "L14 — the fifth GB Auto revenue line, carried rather than zeroed",
-   "rule": "SIGCM clause 2",
-   "before": 40.387038137321575,
-   "after": 40.96201150274129,
-   "why": "Audit finding 5: GB Auto's FY2025 total revenue is 66,358.3 and the four driver lines sum to 65,230.7. The base year carried a fifth line of 1,127.6 that the forecast did not, while the gross margin applied to that forecast is struck by the company on the WHOLE of total revenue.",
-   "evidence": "Two disclosed components, both named rather than merged: EGP 682.8mn of external revenue outside the four published business lines, and EGP 444.8mn of inter-segment revenue. HELD FLAT, because the company publishes no volume, price or growth rate for either. +1.42%, which is the audit's 'carried flat' price. CAUGHT BY A GATE BEFORE IT WAS CAUGHT BY ANYONE: adding the revenue without adding its driver record took the ground-up coverage to 98.9% and assert_ground_up refused the run.",
-   "move": 0.014236581634551326
-  },
-  {
-   "name": "L15 — the walk and the bridge on one date, the intensity held at the reviewed level",
-   "rule": "[R-ANCHOR-01] · [R-BRIDGE-01]",
-   "before": 40.96201150274129,
-   "after": 29.94540767229232,
-   "why": "Audit finding 2, the largest in that audit and THE ONE THIS STUDY'S OWN SELF-AUDIT MISSED -- the same defect had been fixed on another name in the same session hours earlier. The cash-flow walk ran from the 31-Dec-2025 working-capital stock while the bridge deducted 30-June-2026 net debt, and the intensity then glided down a typed ladder to 21.5% on a mechanism nothing had measured.",
-   "evidence": "THREE PARTS, MEASURED SEPARATELY. (a)+(b) the opening stock moves to 17,092.8 at 30 June 2026 and the intensity is held flat at 22.58% -- working capital over TRAILING TWELVE-MONTH total revenue of 75,707.1 on the company's own Table 6 and Table 8 definitions, against a base-year 28.51% on the same basis -- because the stated mechanism's two halves measure in OPPOSITE directions in this company's own conversion cycle: stock build unwinding, DIO 149.0 -> 127.1 days, holds; payables re-extending, DPO 112.7 -> 83.3 days, is contradicted, and the net cycle got WORSE at 61.3 -> 69.3 days. That alone is -24.94% and lands at 30.744, against the audit's own independently derived 31.11. (c) is not the audit's and is the same defect one layer down: a bridge struck at 30 June already reflects the cash the first half produced -- net debt fell 15,210.0 -> 14,493.6 -- so a FULL calendar-2026 free cash flow beside it counts that half twice. The first year's profit, depreciation and capital expenditure are scaled to the 49.77% of the year still unearned, measured from GB Auto's own disclosed first-half revenue against the model's own FY2026E. A further -2.60%.",
-   "move": -0.2689468467560904
-  },
-  {
-   "name": "L16 — one capital structure throughout",
-   "rule": "[R-COC-01]",
-   "before": 29.94540767229232,
-   "after": 31.830516310283087,
-   "why": "Audit finding 11: three capital structures in one calculation -- the GROUP's borrowings and market capitalisation in the weights, a GROUP cost of debt whose numerator deliberately included GB CAPITAL's cost of funds, and the AUTO segment's net debt in the bridge. The published 22.88% landed within 0.3pp of one internally consistent pairing: right by offsetting errors, and no reader could have told.",
-   "evidence": "GB Auto's own book (22,733.1 of debt plus 2,345.8 of leasing notes) and its own cost of debt: the segment's finance cost over a QUARTER-WEIGHTED average of the borrowings that actually bear it, 20.02% for FY2025 and 18.20% for 1H2026 annualised, the leasing notes inside the denominator because the release's own footnote says the charge includes the leasing expense. The equity weight is a segment's, so it has no quoted price and is taken to a FIXED POINT by bisection rather than borrowed from the group's market capitalisation. Finding 4 rides with it: note 26 discloses EGP and USD average rates of 21.91% and 8.30% and does NOT split the balances, so the currency weight is derived by identity and labelled derived, and the delivered edition's claim that the book was entirely local-currency is retired. WACC falls 22.88% -> 19.40% in the explicit window and the terminal barely moves, 14.18% -> 14.16%, so the answer rises 6.30%.",
-   "move": 0.06295151024893242
-  },
-  {
-   "name": "L17 — the minority at its share of value, not at book",
-   "rule": "[R-BRIDGE-01]",
-   "before": 31.830516310283087,
-   "after": 31.63664910279553,
-   "why": "Self-audit S-1: the study committed NO bridge record at all, and writing one forces the minority basis to be chosen. [R-BRIDGE-01] does not permit book to be the adopted basis: the model capitalises 100% of the segment's cash flow, so the minority's claim is on the VALUE those flows produce.",
-   "evidence": "The basis is value_share and the proxy is named, because GB Corp does not disclose which subsidiaries carry the minority: its proportion of the segment's own disclosed book equity, 590.7 of 13,589.0 = 4.347% from Table 12, applied to the leg's equity value. Book, profit share and proportional are all published beside the adopted basis. EGP 801.2mn deducted against 590.7 at book, -0.61%. THE GRID CAUGHT IT: the sensitivity case function still deducted book and stopped reproducing the published branch inside the same run, which is the second time in this pass that a study-local assertion found a second copy of a quantity before a reader could.",
-   "move": -0.0060906083205733985
-  },
-  {
-   "name": "L18 — the relative cross-check on derived inputs",
-   "rule": "depth-bar standard 3 · [R-LENS-03]",
-   "before": 31.63664910279553,
-   "after": 31.63664910279553,
-   "why": "Audit findings 9, 10 and 26. The finance-cost ladder fell -4,100 -> -3,100 while the model's own markers grew borrowings 38,041 -> 66,241, with no derivation anywhere; the FY2026E group profit followed from it; and earnings per share was profit attributable to the parent divided by the share count, captioned as the company's own reporting when note 10 deducts the employees' share of profit and the board bonus first.",
-   "evidence": "THE CARRYING BRANCH DOES NOT MOVE and this is still a lever, because the relative lens IS the published bear: 19.59 -> 18.08, -7.7% on a number a reader is shown. The ladder is now a rate times a book -- the schedule's own forward cost of debt on GB Auto's interest-bearing borrowings held flat, scaled by the FY2025 group-to-Auto finance-cost ratio of 1.0034 -- and it comes out HIGHER than the typed one, which is the honest direction. The multiple is struck on the company's own published basic earnings per share on both sides, 1.682 / 2.609 / 2.635, moving the own-history median from 6.350x to 6.566x. The book held flat is a STATED limitation: this model has no projected balance sheet, and building one is a rebuild rather than a repair.",
-   "move": 0.0
-  },
-  {
-   "name": "L19 — the exchange rate is the house path's, with its date",
-   "rule": "SIGCM clause 1 · [R-MACRO-01]",
-   "before": 31.63664910279553,
-   "after": 31.636760646545103,
-   "why": "Audit finding 32: EGP/USD 47.5 was typed with no source and no date on a line worth roughly half the upper branch, and the audit's complaint that four different dates were in play for one rate is exactly right.",
-   "evidence": "A study may not carry a currency of its own. engine/macro_paths/EG.json holds ONE dated sourced anchor for this market -- USD/EGP 50.25 as at 2026-08-06 -- and every study reads it, which is what stops two studies valuing the same economy differently. The typed 47.5 is committed beside it so the move is countable rather than described. THE CARRYING BRANCH IS UNTOUCHED, because the carrying value is already in pounds; the ROUND branch is a dollar figure and moves with the rate.",
-   "move": 3.5257763617568827e-06
-  },
-  {
-   "name": "L20 — the capital-expenditure path asserts no mechanism",
-   "rule": "[R-ANCHOR-01 CLAUSE TWO]",
-   "before": 31.636760646545103,
-   "after": 17.83311239606159,
-   "why": "The QC gate of 17-09-2026, written from outside this study: the forward capital-expenditure ladder [3000, 2400, 2500, 2600, 2800] falls from 3.765% of this leg's own revenue to 1.919%, a 49.0% RELATIVE FALL FROM ITS OWN OPENING YEAR, with no mechanism named -- and no gate could see it, because forecast_anchor declares the GROSS MARGIN and a rule reaches only the quantity a study declares. The delivered documents also called the opening year 'the EGP 3,000 mn guided', while this study's own dated negative search records that GB Corp publishes NO capital-expenditure figure, maintenance disclosure or costed investment plan anywhere. Both cannot be true.",
-   "evidence": "The rule's default applies where no mechanism can be measured: the rate is HELD FLAT. TWO ANCHORS WERE BUILT AND RUN BEFORE ONE WAS ADOPTED. (i) The FY2025 FILED intensity -- payment for property, plant and equipment of EGP 3,664.2mn over group revenue of EGP 80,229.8mn, 4.567% -- TAKES THE AUTO LEG'S EQUITY VALUE NEGATIVE and the market-value weight solver has no root; it is not adopted because its numerator is GROUP capital expenditure against a denominator that is the AUTO leg alone, a mismatch nothing discloses a decomposition for. (ii) The opening year held flat, which is adopted, and which is itself a forecast rather than an actual and stays REGISTERED AS OUTSTANDING. THE MOVE IS LARGE AND ITS SIZE IS THE FINDING: this leg's free cash flow is a thin residual, so the capital-expenditure path is not a detail of the answer, it IS the answer -- terminal value now stands at 97% of enterprise value and free cash flow is negative in two of five years. A study whose answer is hostage to a driver its issuer discloses nowhere says so.",
-   "move": -0.43631673940014915
   }
  ],
- "value": 17.83311239606159,
- "cumulative_move": -0.5011270951752482,
+ "value": 56.77947453492587,
+ "cumulative_move": 0.5883790090347425,
  "rules": {
   "[R-COC-01] · [R-COC-02] · [L-004]": {
    "levers": [
     "L1"
    ],
    "first_before": 35.746804894778066,
-   "last_after": 73.71156579442516,
-   "move": 1.0620462727059845
+   "last_after": 91.72114370961131,
+   "move": 1.5658557171639709
   },
   "[R-MACRO-01]": {
    "levers": [
     "L2"
    ],
-   "first_before": 73.71156579442516,
-   "last_after": 43.955512067253494,
-   "move": -0.403682290648371
+   "first_before": 91.72114370961131,
+   "last_after": 46.08546651686495,
+   "move": -0.49754806086183023
   },
   "[R-TERM-01] — STOP AND INFORM, SIGCM clause 8": {
    "levers": [
     "L3"
    ],
-   "first_before": 43.955512067253494,
-   "last_after": 43.955512067253494,
+   "first_before": 46.08546651686495,
+   "last_after": 46.08546651686495,
    "move": 0.0
   },
   "[R-BRIDGE-01]": {
    "levers": [
-    "L4",
-    "L12 — GB Auto net debt, at the company's own published figure",
-    "L17 — the minority at its share of value, not at book"
+    "L4"
    ],
-   "first_before": 43.955512067253494,
-   "last_after": 31.63664910279553,
-   "move": -0.28025752368917156
+   "first_before": 46.08546651686495,
+   "last_after": 46.459450855879226,
+   "move": 0.008115016886666826
   },
   "[R-LENS-03]": {
    "levers": [
     "L5",
     "L7"
    ],
-   "first_before": 44.329496406267786,
-   "last_after": 52.24674131942111,
-   "move": 0.17859992905387267
+   "first_before": 46.459450855879226,
+   "last_after": 56.68095587992817,
+   "move": 0.22000916575094354
   },
   "the PROMOTION RULE": {
    "levers": [
     "L6"
    ],
-   "first_before": 53.52589213266374,
-   "last_after": 59.473213480737485,
+   "first_before": 57.28463527903688,
+   "last_after": 63.64959475448541,
    "move": 0.11111111111111094
   },
   "SIGCM clause 1": {
    "levers": [
-    "L8",
-    "L11 — the associate carrying value, re-read off the pixels",
-    "L13 — the GB Capital base, struck restated against restated"
+    "L8"
    ],
-   "first_before": 52.24674131942111,
-   "last_after": 40.387038137321575,
-   "move": -0.22699412217104264
+   "first_before": 56.68095587992817,
+   "last_after": 56.77947453492587,
+   "move": 0.001738126209557933
   },
   "depth-bar standard 8 — the contested judgement published both ways": {
    "levers": [
     "L9"
    ],
-   "first_before": 52.345259974418816,
-   "last_after": 52.345259974418816,
+   "first_before": 56.77947453492587,
+   "last_after": 56.77947453492587,
    "move": 0.0
-  },
-  "bookkeeping · [R-ENF-06]": {
-   "levers": [
-    "L10 — the ledger tracks the study's DECLARED central, the carrying branch"
-   ],
-   "first_before": 52.345259974418816,
-   "last_after": 41.348367298232716,
-   "move": -0.21008382958763205
-  },
-  "SIGCM clause 2": {
-   "levers": [
-    "L14 — the fifth GB Auto revenue line, carried rather than zeroed"
-   ],
-   "first_before": 40.387038137321575,
-   "last_after": 40.96201150274129,
-   "move": 0.014236581634551326
-  },
-  "[R-ANCHOR-01] · [R-BRIDGE-01]": {
-   "levers": [
-    "L15 — the walk and the bridge on one date, the intensity held at the reviewed level"
-   ],
-   "first_before": 40.96201150274129,
-   "last_after": 29.94540767229232,
-   "move": -0.2689468467560904
-  },
-  "[R-COC-01]": {
-   "levers": [
-    "L16 — one capital structure throughout"
-   ],
-   "first_before": 29.94540767229232,
-   "last_after": 31.830516310283087,
-   "move": 0.06295151024893242
-  },
-  "depth-bar standard 3 · [R-LENS-03]": {
-   "levers": [
-    "L18 — the relative cross-check on derived inputs"
-   ],
-   "first_before": 31.63664910279553,
-   "last_after": 31.63664910279553,
-   "move": 0.0
-  },
-  "SIGCM clause 1 · [R-MACRO-01]": {
-   "levers": [
-    "L19 — the exchange rate is the house path's, with its date"
-   ],
-   "first_before": 31.63664910279553,
-   "last_after": 31.636760646545103,
-   "move": 3.5257763617568827e-06
-  },
-  "[R-ANCHOR-01 CLAUSE TWO]": {
-   "levers": [
-    "L20 — the capital-expenditure path asserts no mechanism"
-   ],
-   "first_before": 31.636760646545103,
-   "last_after": 17.83311239606159,
-   "move": -0.43631673940014915
   }
  },
- "distinct_rules": [
-  "SIGCM clause 1",
-  "SIGCM clause 1 · [R-MACRO-01]",
-  "SIGCM clause 2",
-  "[R-ANCHOR-01 CLAUSE TWO]",
-  "[R-ANCHOR-01] · [R-BRIDGE-01]",
-  "[R-BRIDGE-01]",
-  "[R-COC-01]",
-  "[R-COC-01] · [R-COC-02] · [L-004]",
-  "[R-LENS-03]",
-  "[R-MACRO-01]",
-  "[R-TERM-01] — STOP AND INFORM, SIGCM clause 8",
-  "bookkeeping · [R-ENF-06]",
-  "depth-bar standard 3 · [R-LENS-03]",
-  "depth-bar standard 8 — the contested judgement published both ways",
-  "the PROMOTION RULE"
- ],
- "start_gap": 0.23349913370524722,
- "gap": -0.38464070406964834,
- "second_pass_from": {
-  "lever": "L10",
-  "value": 52.345259974418816,
-  "note": "the 07-09-2026 delivered edition's own answer on the branch the first pass walked; the second pass begins by moving the tracked quantity to the branch every committed artefact declares as this study's central."
- },
- "branches_at_the_end": {
-  "MNT-Halan at its reviewed carrying value": 17.83311239606159,
-  "MNT-Halan at the June-2026 round price": 30.31502119385063
- }
+ "distinct_rules": 8,
+ "note": "Several levers serving ONE rule are one piece of evidence, not several. `rules` combines them; `levers` keeps the order they were applied in so the route can be walked."
 }

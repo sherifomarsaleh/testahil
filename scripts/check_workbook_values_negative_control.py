@@ -38,6 +38,13 @@ def sandbox():
         os.makedirs(os.path.join(d, p), exist_ok=True)
     shutil.copy(os.path.join(ROOT, GATE), os.path.join(d, GATE))
     shutil.copy(os.path.join(ROOT, RAT), os.path.join(d, RAT))
+    # THE GATE'S OWN IMPORTS TRAVEL WITH IT. It reads engine/ratchet_shape.py for
+    # [R-ENF-08], and a sandbox that omits the module makes the gate die on import — which
+    # this harness scored as four conditions "not behaving as required" when what actually
+    # happened is that nothing ran at all. An empty result is not a clean result, and it is
+    # not a failing one either.
+    shutil.copy(os.path.join(ROOT, 'engine', 'ratchet_shape.py'),
+                os.path.join(d, 'engine', 'ratchet_shape.py'))
     # a minimal book: three studies, each with a passing recalculation
     for tk in ('alpha', 'beta', 'gamma'):
         sd = os.path.join(d, 'engine', '%s_study' % tk)

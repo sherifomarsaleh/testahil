@@ -127,6 +127,53 @@ DISSENT_RX = __import__("re").compile(
 DISSENT_TOL = 3.0      # percentage points; a dissent argued at -31% still stands
                        # at -33%, and does not stand at -55%
 
+# [R-GAP-02 CLAUSE FOUR, ADOPTED 08-Sep-2026, per instruction — "The instruction
+# should block publishing any study with the fair value 10% below latest traded
+# price. It should get back to me for authorization."]
+#
+# THE DISSENT NO LONGER RELEASES THE BLOCK ON ITS OWN. As the rule stood, a study
+# that disagreed with the market by a third could write its own release: the five
+# headings are hard to write honestly, and they are still written by the same desk
+# that produced the answer under suspicion. THAT IS THE SELF-ATTESTATION SHAPE
+# [R-ENF-01] CLOSES EVERYWHERE ELSE, arriving at the last gate before a reader.
+#
+# From 08-Sep-2026 the dissent is the CASE and the principal is the DECISION. Both
+# are required and the order is fixed: the study makes its argument first, then
+# asks. An authorisation with no dissent behind it releases nothing either — that
+# would put the principal in the position of approving a number with no case
+# attached, which is the menu [R-IND-01] forbids wearing a different hat.
+#
+# THIS IS A NAMED EXCEPTION TO [R-IND-01] AND IT IS THE ONLY KIND THAT RULE ALLOWS:
+# a decision genuinely the principal's, registered with a recommendation and a
+# default, where no command in the room can close it. Whether to tell the market it
+# is wrong is not a fact this repository holds.
+#
+# THE AUTHORISATION IS AN ARTEFACT, NEVER A SENTENCE IN A CONVERSATION [R-IND-01]:
+# the container is rebuilt from the repository, so an approval given in chat and
+# written nowhere binds nothing and the next session asks again. It carries
+# AUTHORISED_AT_GAP for the same reason the dissent does — an approval of a −31%
+# disagreement is not an approval of a −55% one, and the same 3-point tolerance
+# applies, so it goes stale exactly when the case it approved goes stale.
+AUTH_GLOB = "PUBLISH_AUTHORISATION_*.md"
+AUTH_RX = __import__("re").compile(
+    r"AUTHORISED[ _]AT[ _]GAP\s*[:=]\s*(-?[0-9]+\.?[0-9]*)\s*%", __import__("re").I)
+AUTH_BY_RX = __import__("re").compile(
+    r"AUTHORISED[ _]BY\s*[:=]\s*(\S.*?)\s*$", __import__("re").I | __import__("re").M)
+AUTH_TOL = DISSENT_TOL  # the approval goes stale with the case it approved
+
+
+def read_authorisation(sdir):
+    """(filename, who authorised it, the gap they authorised) or (None, None, None)."""
+    hits = sorted(glob.glob(os.path.join(sdir, AUTH_GLOB)))
+    if not hits:
+        return None, None, None
+    raw = open(hits[-1], encoding="utf-8").read()
+    by = AUTH_BY_RX.search(raw)
+    at = AUTH_RX.search(raw)
+    return (os.path.basename(hits[-1]),
+            by.group(1).strip() if by else None,
+            float(at.group(1)) if at else None)
+
 
 def read_dissent(sdir):
     """(filename, covered headings, the gap it was argued at) or (None, [], None)."""
@@ -158,7 +205,7 @@ def _gap_rows(sdir, ticker):
     return px, pxdate, pxsrc, rows
 
 
-def phase1_proven():
+def phase1_proven(ticker=None):
     """(proven, why) — has the method itself been shown to work yet?  [R-GAP-02 clause 3]
 
     THE SECOND CONDITION, per instruction 3 September 2026: "do not issue the reports
@@ -172,11 +219,20 @@ def phase1_proven():
     until they are met a study inside the band is a study that has not been contradicted
     yet, which is a weaker claim than it looks.
 
-    THE COST IS STATED RATHER THAN DISCOVERED LATER, and it is large: criterion 3 — the
-    valuation calibration's pooled bias interval covering zero — cannot mature before the
-    first vintages resolve, so ON ADOPTION THIS HOLDS EVERY STUDY IN THE BOOK, including
-    the ones already inside the band. That is the instruction read literally and it is
-    not softened here. What it does NOT hold is internal work: rebuilding, auditing,
+    THE COST WAS STATED AT ADOPTION AND BOTH HALVES OF IT HAVE SINCE MOVED, so it is
+    recorded here as history rather than left standing as a description of today. As
+    written on 03-Sep-2026 this said criterion 3 — "the valuation calibration's pooled
+    bias interval covering zero" — could not mature before the first vintages resolve,
+    so the block held EVERY study in the book including the ones inside the band. That
+    was the instruction read literally and it was not softened. Neither half survives:
+    [R-VCAL-02 CLAUSE ONE] moved the maturity-bound clauses D and E out of Phase 1 on
+    07-09-2026, and [R-VCAL-02 CLAUSE THREE] retired the pooled-bias test itself as a
+    gating clause on 08-09-2026, per instruction, replacing it with the one-sided audit
+    bar. THE BEHAVIOUR OF THIS GATE NEVER DEPENDED ON EITHER SENTENCE — the function
+    reads progress.acceptance() live and always did, which is the only reason a stale
+    description here cost nothing. A DOCSTRING THAT DESCRIBES A RULE IS A CLAIM ABOUT
+    THE WORLD AND IT ROTS [R-DOC-02]: read the criterion live with
+    engine/method_reassessment/criterion3.py, never from this comment. What it does NOT hold is internal work: rebuilding, auditing,
     re-issuing to the principal and merging to main all continue. This gate governs
     ISSUING A REPORT and publishing to the live site, which is what the instruction names.
 
@@ -185,7 +241,12 @@ def phase1_proven():
     sys.path.insert(0, os.path.join(ROOT, "engine", "method_reassessment"))
     try:
         import progress
-        items = progress.acceptance()
+        # RESOLVED AGAINST THIS NAME [R-GAP-02 CLAUSE FIVE]. Criteria 1 and 2 were
+        # pooled: a crooked record on any company in the book held the publication
+        # of every other, which is the same defect criterion 4 was already amended
+        # to remove. A red naming no company is still global and still holds
+        # everyone.
+        items = progress.acceptance(ticker=ticker)
     except Exception as e:
         # AN UNREADABLE ACCEPTANCE RECORD IS NOT A PASSED ONE [R-ENF-04]. If the
         # programme's own record cannot be read, nothing is proven and nothing issues.
@@ -334,14 +395,31 @@ def _published_pair():
 
 
 def price_only_publish(ticker):
-    """(is it, why) — does this publish leave the fundamental valuation where it was?"""
+    """(is it, why) — does this publish leave the fundamental valuation where it was?
+
+    A STUDY DIRECTORY STEM IS NOT ALWAYS ITS TICKERS KEY, AND THIS FUNCTION LOOKED IT
+    UP AS THOUGH IT WERE (found 08-Sep-2026). Its sibling one screen up resolves the
+    name through the alias map campaign_queue.py has carried since the campaign was
+    written — that is why gap.latest_known_price() prices FERTIGLOBE correctly at its
+    real key FERTIGLB — while this lookup keyed on the raw stem, missed both sides of
+    the comparison, and returned "not on origin/main — a first publish is never
+    price-only". THE MISS WAS AN ABSENT ANSWER WEARING THE COSTUME OF A VERDICT
+    [R-ENF-04]: the sentence is plausible, names a real refusal, and is about a
+    condition that was never tested. It fell to the STRICT side, holding a roll-forward
+    that moves no fair value at all, which is the release [R-GAP-02 AMENDED] exists to
+    give — and it would have fallen the other way just as silently on a rule where the
+    miss releases. ONE NAME, RESOLVED ONE WAY, THROUGH THE MAP THAT ALREADY EXISTS
+    [R-ENF-03] — a second copy would be two claims wearing one name, which is the
+    exact defect the sibling's own docstring records.
+    """
     try:
         here, there = _published_pair()
     except Exception as e:
         return False, ("the published entries could not be compared (%s), and an "
                        "unreadable comparison is not an exemption [R-ENF-04]"
                        % str(e)[:120])
-    a, b = here.get(ticker.upper()), there.get(ticker.upper())
+    key, _ = gap._resolve_ticker(ticker)
+    a, b = here.get(key), there.get(key)
     if b is None:
         return False, "not on origin/main — a first publish is never price-only"
     if a is None:
@@ -356,6 +434,39 @@ def price_only_publish(ticker):
                   "already live, so no output of the method under test reaches a reader")
 
 
+def _study_dir(ticker):
+    """The study directory for a name, resolved in BOTH directions, or None.
+
+    THE POPULATION IS STUDY DIRECTORY STEMS AND THE CALLERS ARE NOT (08-Sep-2026).
+    main() globs engine/*_study and passes the stem; publish_site.py passes the
+    TICKERS key. For 23 of 24 studies those are the same string, so the difference
+    was invisible — and on the one name where they differ, `--ticker FERTIGLB`
+    resolved to engine/fertiglb_study, which does not exist, and the gate answered
+    "no study directory on disk", refusing a name whose study is on disk under
+    engine/fertiglobe_study. THE MIRROR IMAGE of the miss in price_only_publish()
+    one screen up, in the caller rather than the callee, and the same remedy: ONE
+    NAME, RESOLVED ONE WAY, THROUGH THE MAP THAT ALREADY EXISTS [R-ENF-03].
+
+    IT RESOLVES, IT NEVER INVENTS: a name with genuinely no study still returns
+    None and is still refused, because "unreadable is not clean" [R-ENF-04] must
+    not be softened into "unfound is fine".
+    """
+    stem = os.path.join(ENGINE, "%s_study" % ticker.lower())
+    if os.path.isdir(stem):
+        return stem
+    # THE MAP IS stem -> ticker AND THIS LOOKUP IS THE REVERSE, derived from that
+    # same single map rather than a second one written the other way round — two
+    # maps for one relationship is how they drift apart [R-ENF-03].
+    gap._resolve_ticker(ticker)                       # populates the shared cache
+    amap = gap._ALIAS_CACHE[0]
+    for study_stem, tk in amap.items():
+        if tk.upper() == ticker.upper():
+            cand = os.path.join(ENGINE, "%s_study" % study_stem.lower())
+            if os.path.isdir(cand):
+                return cand
+    return None
+
+
 def verdict(ticker):
     """(may_publish, reason, rows). An UNREADABLE study may not publish either.
 
@@ -363,8 +474,8 @@ def verdict(ticker):
     passed — it is one that was never examined, and letting it through would make
     "unreadable" the cheapest way past the block.
     """
-    sdir = os.path.join(ENGINE, "%s_study" % ticker.lower())
-    if not os.path.isdir(sdir):
+    sdir = _study_dir(ticker)
+    if sdir is None:
         if ticker.upper() in _metal_keys():
             return True, ("outside this rule's population — a metal publishes no "
                           "fundamental valuation, so there is no central for the "
@@ -381,10 +492,13 @@ def verdict(ticker):
     # the side that is blocked. A two-sided study with one branch at or above the
     # price is a study whose answer depends on a decision, not one that is too
     # low: it publishes both branches and the reader sees the decision.
-    # BOTH CONDITIONS BIND, AND THE METHOD ONE IS CHECKED FIRST because it is the
-    # same answer for every name: a book-wide hold is reported once as a book-wide
-    # hold rather than as ninety separate coincidences.
-    proven, why_p = phase1_proven()
+    # BOTH CONDITIONS BIND, AND THE METHOD ONE IS CHECKED FIRST. It used to be the
+    # same answer for every name — a book-wide hold reported once rather than as
+    # ninety separate coincidences — and under [R-GAP-02 CLAUSE FIVE] it is no
+    # longer: criteria 1 and 2 resolve against THIS name, so the answer differs by
+    # name wherever a red names a company. A red that names no company still holds
+    # the whole book, and reports identically for every name, as before.
+    proven, why_p = phase1_proven(ticker)
     # [R-GAP-02 AMENDED 06-Sep-2026] A publish that moves no fair value asserts no
     # output of the method under test, so the method hold does not reach it.
     #
@@ -467,8 +581,24 @@ def verdict(ticker):
                            % (why, fn, at, nearest[2] * 100)), rows
         if not proven:
             return False, ("%s — and %s" % (why_p, fn)), rows
-        return True, ("%+.1f%% from the price, released by %s — an evidenced dissent, "
-                      "not an assertion" % (nearest[2] * 100, fn)), rows
+        # [R-GAP-02 CLAUSE FOUR] the dissent is the CASE; the principal is the
+        # DECISION. A study may not release its own block.
+        afn, aby, aat = read_authorisation(sdir)
+        if afn is None:
+            return False, ("%s — %s makes the case, and the principal has not "
+                           "authorised it. This is the one sanctioned escalation: "
+                           "register it and ask" % (why, fn)), rows
+        if not aby:
+            return False, ("%s — %s names nobody who authorised it"
+                           % (why, afn)), rows
+        if aat is None:
+            return False, ("%s — %s states no AUTHORISED_AT_GAP, so nothing says "
+                           "which disagreement was approved" % (why, afn)), rows
+        if abs(aat - nearest[2] * 100) > AUTH_TOL:
+            return False, ("%s — %s authorises a gap of %+.1f%%, and the gap is now "
+                           "%+.1f%%" % (why, afn, aat, nearest[2] * 100)), rows
+        return True, ("%+.1f%% from the price, case made in %s and authorised by %s "
+                      "in %s" % (nearest[2] * 100, fn, aby, afn)), rows
     if not proven:
         return False, ("inside the band at %+.1f%% of %.2f (%s), but %s"
                        % (nearest[2] * 100, px, pxdate, why_p)), rows

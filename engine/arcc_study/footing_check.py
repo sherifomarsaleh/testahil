@@ -30,12 +30,16 @@ import os
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
 sys.path.insert(0, os.path.join(HERE, '..'))
 os.chdir(HERE)
 import table_footing as TF                                              # noqa: E402
 
-STUDY = 'ARCC_Valuation_Study_03-09-2026_public.docx'
-BIBLIO = 'ARCC_Bibliography_03-09-2026.docx'
+# POINTED AT THE EDITION MODULE. It named the 03-09 files, and a check that opens a
+# SUPERSEDED file reports that file's defects as current [L-066/L-067].
+STUDY = _ed.STUDY_DOCX
+BIBLIO = _ed.BIBLIO_DOCX
 DOCS = [STUDY, BIBLIO]
 
 DECLARED = [

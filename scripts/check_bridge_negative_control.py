@@ -24,6 +24,19 @@ Every failure case is a defect this repository actually shipped:
  10. NO RECORD, NOT LISTED — a new study with no bridge record and no ratchet entry.
  11. EMPTY POPULATION — no studies, and a list naming one that does not exist.
 
+THE DECLARATION HALF [13-09-2026, R-BRIDGE-01 CLAUSE FIVE]. A study that values on
+equity directly owes no bridge and must SAY so, and the whole weight of that rests on
+the declaration being unfakeable. So every way out is reinjected here: a declaration
+silent on the claim itself, one that asserts something else, one that drops the
+register, one on a stale sheet, one naming no lenses, one whose primary lens is not
+among them, one whose per-share does not divide, one that divides to a figure the study
+does not publish, four that declare no enterprise value while the study's own committed
+numbers state one, and a study that commits BOTH a bridge and a declaration that it
+builds none. Two clean cases hold the other side: a complete declaration, and one whose
+numbers file says IN PROSE that it computes no weighted cost of capital — prose about
+the absence is evidence FOR the declaration and must not fire, which is ADIB's own
+no_wacc_reason and would have refused the very study the clause was written for.
+
     python3 scripts/check_bridge_negative_control.py
 """
 import json
@@ -79,7 +92,7 @@ def sandbox():
     return tmp
 
 
-def put_study(tmp, ticker, record, raw=None):
+def put_study(tmp, ticker, record, raw=None, declaration=None, extra=None):
     d = os.path.join(tmp, "engine", "%s_study" % ticker.lower())
     os.makedirs(d, exist_ok=True)
     p = os.path.join(d, "study_numbers.json")
@@ -89,6 +102,10 @@ def put_study(tmp, ticker, record, raw=None):
     doc = {"meta": {"ticker": ticker}}
     if record is not None:
         doc["bridge_record"] = record
+    if declaration is not None:
+        doc["equity_direct_declaration"] = declaration
+    if extra:
+        doc.update(extra)
     json.dump(doc, open(p, "w"), indent=1)
 
 
@@ -182,7 +199,119 @@ def main():
         put_list(tmp, ["GHOST"])
     case("12 empty population", b_empty, True, results)
 
+    # ---- THE DECLARATION [R-BRIDGE-01 CLAUSE FIVE, 13-09-2026] --------------
+    # Modelled on ADIB's own committed shape: seven lenses that each land on equity per
+    # share, a reviewed 30-June-2026 sheet, the sweep finding that establishes it is the
+    # latest, and equity over shares reaching the figure the study publishes.
+    DECL = {
+        "declared_on": "2026-09-13",
+        "no_enterprise_value": True,
+        "why": "a bank is valued on what reaches the shareholder; deposits are its raw "
+               "material and not its financing",
+        "lenses": ["dividend_discount", "free_cash_flow_to_equity", "residual_income",
+                   "relative_multiples", "book_value_and_sustainable_return",
+                   "book_value_floor", "normalised_earnings_power"],
+        "primary_lens": "dividend_discount",
+        "balance_sheet_date": "2026-06-30",
+        "latest_disclosed_date": "2026-06-30",
+        "latest_disclosed_source": "the reviewed interim statements registered in the "
+                                   "study's own Step 2A sweep",
+        "equity_value": 66691.468,
+        "shares_mn": 1500.0,
+        "per_share": 44.460978,
+    }
+    CENTRAL = {"central": 44.460978}
+
+    def declared(mutate=None, extra=None, record=None):
+        def build(tmp):
+            dec = json.loads(json.dumps(DECL))
+            if mutate:
+                mutate(dec)
+            ex = dict(CENTRAL)
+            if extra:
+                ex.update(extra)
+            put_study(tmp, "NCB", record, declaration=dec, extra=ex)
+            put_list(tmp, [])
+        return build
+
+    def d_silent(dec):
+        # the exact shape the clause exists to refuse: the study stops saying it, which
+        # is where it already stood before the clause existed
+        dec.pop("no_enterprise_value")
+
+    def d_false(dec):
+        dec["no_enterprise_value"] = "not applicable"
+
+    def d_no_register(dec):
+        dec.pop("latest_disclosed_date"); dec.pop("latest_disclosed_source")
+
+    def d_stale(dec):
+        dec["balance_sheet_date"] = "2025-12-31"
+
+    def d_no_lenses(dec):
+        dec["lenses"] = []
+
+    def d_primary_not_among(dec):
+        dec["primary_lens"] = "discounted_cash_flow"
+
+    def d_no_divide(dec):
+        dec["per_share"] = 52.05
+
+    for n, m in (("13 a declaration silent on the claim itself", d_silent),
+                 ("14 a declaration that asserts something else", d_false),
+                 ("15 a declaration with no register establishing latest", d_no_register),
+                 ("16 a declaration on a stale balance sheet", d_stale),
+                 ("17 a declaration naming no lenses", d_no_lenses),
+                 ("18 a primary lens not among the declared lenses", d_primary_not_among),
+                 ("19 a declaration whose per share does not divide", d_no_divide)):
+        case(n, declared(m), True, results)
+
+    # THE CLAUSE THAT KEEPS THIS FROM BEING A WAY OUT. Each of these is a shape a real
+    # industrial study in this book commits, planted under a declaration that says it
+    # does not exist anywhere.
+    for n, ex in (("20 declared, and an enterprise value in the numbers",
+                   {"valuation": {"enterprise_value": 100000.0}}),
+                  ("21 declared, and a net debt in the numbers",
+                   {"fcst_bs": [{"net_debt": 24133.2}]}),
+                  ("22 declared, and a WACC in the numbers",
+                   {"coc_record": {"wacc_exp": 0.2743}}),
+                  ("23 declared, and an enterprise-value line in a table",
+                   {"value_table": {"lines": [{"label": "Enterprise value",
+                                               "value": 24364.6}]}})):
+        case(n, declared(extra=ex), True, results)
+
+    def b_both(tmp):
+        dec = json.loads(json.dumps(DECL))
+        put_study(tmp, "NCB", GOOD, declaration=dec, extra=dict(CENTRAL))
+        put_list(tmp, [])
+    case("24 commits BOTH a bridge and a declaration that it builds none",
+         b_both, True, results)
+
+    def b_not_the_published_answer(tmp):
+        dec = json.loads(json.dumps(DECL))
+        put_study(tmp, "NCB", None, declaration=dec, extra={"central": 37.18})
+        put_list(tmp, [])
+    case("25 a declaration that divides to a figure the study does not publish",
+         b_not_the_published_answer, True, results)
+
     # ---- clean cases -------------------------------------------------------
+    def c_declared(tmp):
+        put_study(tmp, "NCB", None, declaration=json.loads(json.dumps(DECL)),
+                  extra=dict(CENTRAL))
+        put_list(tmp, [])
+    case("clean: a complete no-bridge declaration", c_declared, False, results)
+
+    def c_declared_prose(tmp):
+        # PROSE ABOUT THE ABSENCE IS EVIDENCE FOR THE DECLARATION, NOT AGAINST IT.
+        put_study(tmp, "NCB", None, declaration=json.loads(json.dumps(DECL)),
+                  extra=dict(CENTRAL, cost_of_capital_record={
+                      "no_wacc_reason": "a bank has no weighted cost of capital: deposits "
+                                        "are raw material, not financing",
+                      "net_debt_note": "there is no net debt in this valuation"}))
+        put_list(tmp, [])
+    case("clean: a declaration beside prose saying there is no WACC",
+         c_declared_prose, False, results)
+
     def c_good(tmp):
         put_study(tmp, "NCB", GOOD)
         put_list(tmp, [])

@@ -1,3 +1,4 @@
+import sys
 """Prove the delivered workbook is a LIVE DRIVER model, not a pasted register.
 
 READ FIRST tells the reader that changing a blue cell on the Assumptions sheet
@@ -21,7 +22,9 @@ import openpyxl
 import xlcalc
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-wb = openpyxl.load_workbook(os.path.join(HERE, 'ADNOCDRILL_Valuation_Model_09082026.xlsx'))
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
+wb = openpyxl.load_workbook(os.path.join(HERE, _ed.MODEL_XLSX))
 ANCH = json.load(open(os.path.join(HERE, 'xlsx_expected.json')))['anchors']
 DR, TR, BT, GR, NR = (ANCH['dcf'], ANCH['terminal'], ANCH['plateau'], ANCH['bridge'],
                       ANCH['relnorm'])

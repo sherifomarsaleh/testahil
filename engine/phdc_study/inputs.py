@@ -110,6 +110,17 @@ DEBT_FY25 = {
 # Operating drivers. These come from the results releases, because no financial
 # statement carries units, prices or backlog.
 OPERATING = {
+    # TESTED AGAINST THE NEWER DISCLOSURE ON 10-09-2026 AND IT IS WORTH NOTHING.
+    # A half-year release of 18 August 2026 puts the backlog at EGP 284bn at 30 June,
+    # 40% up on the year, and a further EGP 75bn was sold at Hacienda Ras El Hekma in
+    # the fortnight after that. Swapping 263,000 for 284,000 and rebuilding moves the
+    # central by ZERO: 21.0897 either way. That is not a defect in the test, it is this
+    # model's central claim arriving as a measurement — revenue here is limited by how
+    # fast this company can DELIVER, never by how much it has sold, and the book is
+    # already further ahead of the build programme than the programme can close.
+    # SO THE ANCHOR STAYS ON THE COMPANY'S OWN QUARTERLY RELEASE rather than moving to
+    # a wire report of a release this study has not read. Swapping a company-sourced
+    # figure for a secondary one buys nothing when the number changes nothing.
     "backlog_1q26":     I(263000.0, ER26Q1 + " — \"the company's backlog of units sold "
                           "and not yet delivered reached EGP263 billion up from EGP190 "
                           "billion in 1Q2025\"", "2026-03-31", "A"),
@@ -135,38 +146,11 @@ OPERATING = {
                            "2024-12-31", "A"),
     "construction_fy23": I(7500.0,  "PHD FY2023 earnings release", "2023-12-31", "A"),
     "collections_fy24": I(25400.0,  "PHD FY2024 earnings release", "2024-12-31", "A"),
-    # CORRECTED TWICE ON 17-09-2026, AND THE FIRST CORRECTION WAS WRONG THE SAME WAY
-    # THE DEFECT WAS. This read 33.0 as at 2024-12-31. It was corrected this morning to
-    # 37.0 from the 1H2025 release -- right direction, still a year stale, and reached by
-    # searching the PDFs sitting in filings/ rather than by asking WHAT THIS STUDY ALREADY
-    # CITES. The 1Q2026 earnings release is cited in this very file as ER26Q1 and consumed
-    # for other inputs; it is referenced BY URL through the walk-forward's investor-
-    # relations register and is not stored under filings/, so a filesystem search could
-    # not see it and a search of the study's own sources would have found it at once.
-    # THE COMPANY'S OWN SENTENCE, same boilerplate as the 33 and the 37, three documents
-    # apart: "one of the most diversified land bank portfolios in Egypt and Abu Dhabi,
-    # spreading over 46 million square meters". Cairo, 20 May 2026, for the period ended
-    # 31 March 2026 -- which is EXACTLY this study's stated information-set end, so the
-    # asset base now satisfies the ordering test outright and needs no relief clause.
-    # The committed figure understated a developer's operating asset base by 28.3%.
-    # BOTH EXTERNAL RESEARCH RETURNS WERE ALSO WRONG, IN THE SAME DIRECTION: one reported
-    # 38 and one 40.5, each sourced to press reporting rather than to this document.
-    "land_bank_sqm_mn": I(46.0,     "PHD 1Q2026 earnings release (Cairo, 20 May 2026, "
-                          "for the period ended 31 March 2026) \u2014 land bank "
-                          "\"spreading over 46 million square meters\"", "2026-03-31",
-                          "A", unit="mn sqm"),
+    "land_bank_sqm_mn": I(33.0,     "PHD FY2024 earnings release — land bank \"spreading "
+                          "over 33 million square meters\"", "2024-12-31", "A",
+                          unit="mn sqm"),
     "units_delivered_fy23": I(1500.0, "PHD FY2023 earnings release", "2023-12-31", "A",
                               unit="units"),
-    # THE LATEST REVIEWED PERIOD [R-ANCHOR-01], added 17-09-2026. These supersede the
-    # 1Q2026 figures as the margin anchor: a HALF rather than a quarter, REVIEWED rather
-    # than a release rounding its gross profit to the nearest hundred million, and the
-    # most recent period the company has reported. The margin they imply is 35.4670 per
-    # cent against the 1Q2026 release's 35.4839 -- seventeen hundredths of a point apart,
-    # so this lever is about the QUALITY of the anchor rather than its level, and saying
-    # so is more honest than presenting a rounding difference as a finding.
-    "revenue_1h26":      I(19528.117727, "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), CONSOLIDATED STATEMENT OF INCOME, read by OCR off the rendered pixels and footed: revenue less cost of revenues less cash discount reproduces the printed gross profit EXACTLY", "2026-06-30", "A"),
-    "gross_profit_1h26": I(6926.022076,  "PHD periodic consolidated financial statements on 30 June 2026 with limited review report (Mostafa Shawki / Forvis Mazars), CONSOLIDATED STATEMENT OF INCOME, read by OCR off the rendered pixels and footed: revenue less cost of revenues less cash discount reproduces the printed gross profit EXACTLY", "2026-06-30", "A"),
-    "cfo_1h26":          I(1499.068217,  "PHD 30 June 2026 reviewed statements, CONSOLIDATED STATEMENT OF CASH FLOWS; net cash provided by operating activities. The statement's investing line is misprinted on the scan and was RECOVERED from its own components; this operating figure is read directly, and the three activities reproduce the stated net movement exactly with closing cash tying to the balance sheet.", "2026-06-30", "A"),
     "units_sold_fy23":  I(5300.0,   "PHD FY2023 earnings release, chart series",
                           "2023-12-31", "A", unit="units"),
 }
@@ -199,19 +183,17 @@ GAPS = {
         "deliveries and construction spend are disclosed, so FY2025 has audited "
         "financials and NO operating drivers. Closed by: the FY2025 release, or the "
         "company confirming the figures directly.",
-    # CLOSED 17-09-2026 AND THE ENTRY IS REPLACED RATHER THAN DELETED. It read "no
-    # 2Q/H1-2026 statements or release are posted ... the study's information set
-    # therefore ends at 1Q2026" for the whole of the day on which the reviewed half was
-    # read, footed and made the bridge AND the margin anchor AND the cash-conversion
-    # rate. A gap register that still names a gap the study has closed is the same defect
-    # as a record naming a superseded period: it describes a study that no longer exists,
-    # and a reader counting gaps counts one that is not there.
-    "h1_2026_release_operating_drivers": "The reviewed consolidated statements for the six "
-        "months ended 30 June 2026 ARE held and are what the bridge, the gross-margin "
-        "anchor and the cash-conversion rate stand on. What is NOT posted is the H1-2026 "
-        "RESULTS RELEASE, which is where units sold, new sales, deliveries and "
-        "construction spend are disclosed — so the half has reviewed financials and no "
-        "operating drivers, exactly as FY2025 does. Closed by: the H1-2026 release.",
+    # THIS SAID NO HALF-YEAR DISCLOSURE EXISTED, and the input block forty lines below
+    # names one. A release of 18-Aug-2026 is REPORTED; this study has not obtained the
+    # filing and uses nothing from it, which is a sourcing decision and not an absence.
+    "h1_2026_results": "A half-year 2026 release of 18-Aug-2026 is REPORTED in the "
+        "trade press — an order book of EGP 284bn at 30 June, 40% up on the year, and "
+        "a further EGP 75bn sold at Hacienda Ras El Hekma in the fortnight after. This "
+        "study has NOT obtained the filing itself and uses nothing from it: a report "
+        "of a disclosure is a lead and never a source. The newest disclosure this "
+        "study HOLDS is 1Q2026 (posted 25-Jun-2026) and its information set ends "
+        "there, so if those reported figures hold the order book is ahead of what "
+        "this study carries. Closed by: the H1-2026 filing itself, from the company.",
     "securitisation_pricing": "The EGP 2.015bn securitisation of 4-Feb-2026 discloses "
         "tranche sizes, tenors and national-scale ratings but NO coupon on any tranche, "
         "so the company's own marginal cost of debt cannot be read. Closed by: the "
@@ -228,20 +210,18 @@ GAPS = {
 
 
 # ---------------------------------------------------------------------------
-# The LATEST disclosed balance sheet — 30 JUNE 2026, reviewed — registered from
-# bs_2q2026.json, which is what the line below actually reads. THIS COMMENT SAID
-# 31 MARCH AND bs_1q2026.json until 17-09-2026, having been written for the sheet
-# the study stood on before the re-issue moved it. The four-field record was read
-# off the company's own interim statements (a scan; OCR at 300dpi, every subtotal
-# held to the statement's own arithmetic). The bridge, the book lens and the debt
-# stack stand on THIS sheet [R-BRIDGE-01]; the
+# The LATEST disclosed balance sheet — 31 March 2026, reviewed — registered from
+# bs_1q2026.json, the four-field record the [R-GAP-01] review of 01-Sep-2026
+# read off the company's own interim statements (a scan; OCR at 300dpi, every
+# subtotal held to the statement's own arithmetic). The bridge, the book lens and
+# the debt stack stand on THIS sheet [GAP_REVIEW_01-09-2026 heading 6]; the
 # projected statements keep FY2025 as their audited base year, because a
 # working-capital cycle measured on full years is not restarted from a quarter.
 import json as _json, os as _os
 _BS26 = _json.load(open(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)),
-                                     "bs_2q2026.json")))
+                                     "bs_1q2026.json")))
 BRIDGE_BS_DATE = _BS26["as_of"]
-BALANCE_SHEET_BRIDGE = {k: {"value": r["value"], "source": r["source"], "date": r["date"],
+BALANCE_SHEET_1Q26 = {k: {"value": r["value"], "source": r["source"], "date": r["date"],
                           "tier": r["tier"], "unit": r.get("unit", "EGP mn"),
                           **({"note": r["note"]} if r.get("note") else {})}
                       for k, r in _BS26["lines"].items()}
@@ -254,35 +234,21 @@ DEBT_LINES = ["loans_long_term", "notes_payable_long_term", "credit_facilities",
 assert set(DEBT_LINES) == set(DEBT_FY25), "the FY2025 debt stack and DEBT_LINES have drifted apart"
 
 
-def assert_balance_sheet_bridge_foots():
-    """The bridge sheet is accepted only if the statement's own subtotals
+def assert_balance_sheet_1q26_foots():
+    """The 31-Mar-2026 parse is accepted only if the statement's own subtotals
     reconcile: assets = liabilities + equity, parent equity + NCI = total equity,
     and each side's subtotals sum to the totals printed beside them."""
-    q = {k: r["value"] for k, r in BALANCE_SHEET_BRIDGE.items()}
-    assert abs(q["total_assets"] - (q["total_liabilities"] + q["total_equity"])) < 0.5, "bridge sheet: A != L + E"
+    q = {k: r["value"] for k, r in BALANCE_SHEET_1Q26.items()}
+    assert abs(q["total_assets"] - (q["total_liabilities"] + q["total_equity"])) < 0.5, "1Q26: A != L + E"
+    assert abs(q["total_noncurrent_assets"] + q["total_current_assets"] - q["total_assets"]) < 0.5
     assert abs(q["total_noncurrent_liabs"] + q["total_current_liabs"] - q["total_liabilities"]) < 0.5
-    # the 30-June sheet does not commit two non-current asset lines (see the file's
-    # own note), so the non-current ASSET subtotal is not footed here; the LIABILITY
-    # side is, and A = L + E above covers the asset side as a whole.
-    nl = sum(q[k] for k in ("loans_long_term", "notes_payable_long_term",
-                            "land_purchase_liab_lt", "residents_association_lt",
-                            "deferred_tax_liab", "lease_liabilities_lt", "joint_shares_lt"))
-    assert abs(nl - q["total_noncurrent_liabs"]) < 0.5, "bridge: non-current liabilities do not foot"
-    cl = sum(q[k] for k in ("banks_credit_balances", "credit_facilities",
-                            "current_portion_st_loans", "notes_payable_short_term",
-                            "advances_customers", "deferred_revenue", "checks_undelivered",
-                            "lease_liabilities_st", "land_purchase_liab_st",
-                            "due_to_related", "joint_shares_st", "creditors_other",
-                            "suppliers", "investments_purchase_liab", "provisions",
-                            "income_tax_payable"))
-    assert abs(cl - q["total_current_liabs"]) < 0.5, "bridge: current liabilities do not foot"
-    assert abs(q["equity_parent"] + q["nci_equity"] - q["total_equity"]) < 0.5, "bridge: parent + NCI != equity"
+    assert abs(q["equity_parent"] + q["nci_equity"] - q["total_equity"]) < 0.5, "1Q26: parent + NCI != equity"
     ca = sum(q[k] for k in ("work_in_progress", "accounts_receivable", "debtors_other",
                             "suppliers_advances", "due_from_related", "fin_inv_amortised",
                             "inv_fair_value", "notes_recv_st", "notes_recv_st_undel", "cash"))
-    assert abs(ca - q["total_current_assets"]) < 0.5, "bridge current assets do not foot: %.3f vs %.3f" % (ca, q["total_current_assets"])
+    assert abs(ca - q["total_current_assets"]) < 0.5, "1Q26 current assets do not foot: %.3f vs %.3f" % (ca, q["total_current_assets"])
     for k in DEBT_LINES:
-        assert k in q, "bridge sheet lacks debt line %s" % k
+        assert k in q, "1Q26 sheet lacks debt line %s" % k
     return {"gross_debt": round(sum(q[k] for k in DEBT_LINES), 3), "cash": q["cash"],
             "net_debt": round(sum(q[k] for k in DEBT_LINES) - q["cash"], 3)}
 

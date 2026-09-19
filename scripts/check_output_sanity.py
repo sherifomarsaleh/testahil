@@ -145,6 +145,26 @@ def central_of(lr):
     return float(v) if isinstance(v, (int, float)) else None
 
 
+def best_branch(lr):
+    """The HIGHEST value a two-sided primary publishes, or None.
+
+    A STUDY WITH NO SCALAR CENTRAL WAS SKIPPING THE FLOOR CHECK ENTIRELY. central_of()
+    reads a scalar, and a two-sided primary publishes branches instead of one — so on
+    09-09-2026 EGCH, whose own record carries a below_floor_reason explaining that BOTH
+    branches sit under its disclosed book equity, was passing this check by being
+    unreadable rather than by being right. An answer the gate cannot see is not an answer
+    that passed [R-ENF-04].
+
+    The HIGHEST branch is the conservative read: if even the most favourable answer a
+    study publishes sits below a floor it printed itself, it is below its floor on any
+    reading, and no choice between branches has to be made to say so.
+    """
+    p = lr.get("primary") or {}
+    vals = [b.get("value") for b in (p.get("branches") or [])
+            if isinstance(b, dict) and isinstance(b.get("value"), (int, float))]
+    return float(max(vals)) if vals else None
+
+
 def floors(lr):
     """[(value, note)] — every cross-check this study publishes as a floor."""
     out = []
@@ -277,6 +297,9 @@ def measure():
         bad = {}
 
         cen = central_of(lr)
+        two_sided = cen is None
+        if cen is None:
+            cen = best_branch(lr)          # a two-sided study, read at its best branch
         if cen is not None:
             for v, note in floors(lr):
                 if cen < v and not lr.get("below_floor_reason"):
@@ -284,9 +307,13 @@ def measure():
                         "central": cen, "floor": v,
                         "ratio": (cen / v) if v else None,
                         "note": note[:120],
-                        "why": ("the central %.4f sits BELOW a cross-check this study "
-                                "itself publishes as a floor (%.4f), and no "
-                                "below_floor_reason is declared" % (cen, v))}
+                        "why": (("every branch this study publishes sits BELOW a "
+                                 "cross-check it prints as a floor — its HIGHEST is "
+                                 "%.4f against %.4f — and no below_floor_reason is "
+                                 "declared" if two_sided else
+                                 "the central %.4f sits BELOW a cross-check this study "
+                                 "itself publishes as a floor (%.4f), and no "
+                                 "below_floor_reason is declared") % (cen, v))}
                     break
 
         rp = reproduction(lr)

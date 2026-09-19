@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<script src="/assets/gate.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Fawry (EGX:FWRY) — 1–3 month odds &amp; study | testahil?</title>
 <meta name="description" content="Where could Fawry (EGX:FWRY) be in 1–3 months? A plain-language read of the odds, the published price bands, and the dated track record behind them.">
@@ -145,6 +147,7 @@
 <footer class="t-footer"><div class="wrap"><span>Educational studies, not investment advice — not licensed by Egypt’s FRA. <a href="/method.html#disclaimer">Full disclaimer</a></span><span>Data: <span class="num" id="tf-upd">…</span> · <a href="/legacy/">legacy site ↗</a></span></div></footer>
 
 <script src="/assets/data.js"></script>
+<script src="/assets/levers.js"></script>
 <script src="/assets/test.js"></script>
 <script>
 (function(){
@@ -218,6 +221,7 @@
   if(files.pdf) fl.push('<a class="t-btn" href="/'+files.pdf+'">Open the study (PDF)</a>');
   if(files.study && !files.pdf) fl.push('<a class="t-btn" href="/'+files.study+'">Open the study</a>');
   if(files.model) fl.push('<a class="t-btn ghost" href="/'+files.model+'">Open the model (Excel)</a>');
+  if(files.dissent) fl.push('<a class="t-btn ghost" href="/'+files.dissent+'">Why we differ from the market (PDF)</a>');
   document.getElementById("s-files").innerHTML = fl.join("") || '<span class="muted" style="font-size:var(--fs-small)">Study documents publish with the next edition.</span>';
   var ed = files.study||files.pdf||"";
   var edDate = (ed.match(/(\d{2})-(\d{2})-(\d{4})/)||[])[0];
@@ -262,18 +266,7 @@
     var T=(typeof TICKERS!=="undefined"&&TICKERS["FWRY"])||(typeof METALS!=="undefined"&&METALS["FWRY"])||null;
     if(!T)return;
     renderGauge("gauge", T.spot, T.fair, T.spotDate);
-    renderFairLevers("fl-lever-card", T, [
-  { name:'CBE rate path — impact on the discount rate', min:-8, max:8, step:0.5, def:2, impact:1,
-    lo:'tighter / rate headwind', hi:'easier / rate tailwind', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
-  { name:'Transaction throughput growth', min:-12, max:20, step:1, def:8, impact:0.8,
-    lo:'growth stalls', hi:'growth accelerates', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
-  { name:'Blended take-rate / EBITDA margin', min:-8, max:8, step:0.5, def:0, impact:1,
-    lo:'compresses', hi:'expands', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
-  { name:'New-product / banking-services mix', min:-6, max:12, step:1, def:3, impact:0.6,
-    lo:'stagnant', hi:'scaling', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
-  { name:'Competitive fee pressure', min:-10, max:5, step:0.5, def:0, impact:0.7,
-    lo:'intense', hi:'benign', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' }
-]);
+    renderFairLevers("fl-lever-card", T, (typeof LEVERS!=="undefined"&&LEVERS["FWRY"])||[]);
     renderStaticFan("mc-fan-static", T);
     if(T.levels){
       injectLevels("ta-chart-svg", T.levels.res, T.levels.sup);

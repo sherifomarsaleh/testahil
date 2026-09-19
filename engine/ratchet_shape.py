@@ -82,8 +82,49 @@ def excused(entry, current):
     got = fingerprint(current)
     if want == got:
         return True, None
-    return False, ("the ratchet excuses %r; the gate now reports %r — a DIFFERENT failure "
-                   "on a listed study is a NEW breach [R-ENF-08]" % (sig[:90], current[:90]))
+
+    # A FAILURE THAT HAS SHRUNK IS THE RATCHET WORKING, NOT A NEW BREACH.
+    #
+    # A message carries one clause per defect, separated by semicolons. Exact comparison
+    # made PARTIAL REPAIR indistinguishable from a new defect: FERTIGLOBE's record was
+    # listed as carrying "no rf_star, beta, erp or ke_exp"; it has since gained three of
+    # the four, the gate correspondingly reports "no ke_exp", and the entry that was
+    # written for the larger failure refused to excuse the smaller one. The study got
+    # BETTER and went red for it, which makes the next improvement look like a cost.
+    #
+    # So a live failure whose clauses are all covered by the recorded ones is EXCUSED,
+    # and a clause that is not covered is a NEW breach and is named. That is strictly
+    # what the ratchet already promises -- it may only ever SHORTEN -- and it cannot be
+    # used to hide anything: adding a defect adds a clause, and an added clause is red.
+    def _clauses(t):
+        return [c.strip() for c in t.split(';') if c.strip()]
+
+    want_c, got_c = _clauses(want), _clauses(got)
+
+    def _words(c):
+        return set(re.findall(r"[a-z0-9_#]+", c))
+
+    def _covered(c):
+        # A clause is covered when it matches a recorded one exactly, or when every word
+        # in it appears in a recorded one -- which is how "no ke_exp" relates to "no
+        # rf_star, beta, erp or ke_exp". Substring containment does not work here: the
+        # field list is not contiguous, so the shrunken clause is not a substring of the
+        # larger one even though it names strictly less.
+        #
+        # COVERAGE IS TESTED IN ONE DIRECTION ONLY. A live clause may name less than a
+        # recorded one; a recorded one may not be a subset of a live one, or a defect
+        # that GREW would excuse itself. A new defect introduces a word the recorded
+        # clause does not carry -- a field name, a construction, a rule id -- and an
+        # uncovered word is red.
+        cw = _words(c)
+        return any(c == w or cw <= _words(w) for w in want_c)
+
+    extra = [c for c in got_c if not _covered(c)]
+    if not extra:
+        return True, None
+    return False, ("the ratchet excuses %r; the gate now reports a failure it does not "
+                   "cover — %s. A defect a listed entry does not name is a NEW breach "
+                   "[R-ENF-08]" % (sig[:90], '; '.join(e[:90] for e in extra)))
 
 # A ratchet that records a MAGNITUDE needs a second test, because the shape of its failure
 # message never changes. check_published_gap is the case: SABIC breaching at +10.8% and

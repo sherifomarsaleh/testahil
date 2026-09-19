@@ -1,0 +1,104 @@
+{
+ "fin_customers": {
+  "n": 9,
+  "improved": 6,
+  "raw": 0.24619068482090803,
+  "adj": 0.20913569305145777,
+  "stable": true,
+  "first_clause": true
+ },
+ "cust_deposits": {
+  "n": 9,
+  "improved": 6,
+  "raw": 0.3024919843616416,
+  "adj": 0.2567230572983791,
+  "stable": true,
+  "first_clause": true
+ },
+ "total_assets": {
+  "n": 9,
+  "improved": 6,
+  "raw": 0.33761534675662985,
+  "adj": 0.29003231615369,
+  "stable": true,
+  "first_clause": true
+ },
+ "fin_income": {
+  "n": 9,
+  "improved": 6,
+  "raw": 0.48390584148744903,
+  "adj": 0.42687626719225696,
+  "stable": true,
+  "first_clause": true
+ },
+ "cost_funds": {
+  "n": 9,
+  "improved": 7,
+  "raw": 0.5155392536094514,
+  "adj": 0.44255183865496533,
+  "stable": true,
+  "first_clause": true
+ },
+ "net_funds": {
+  "n": 9,
+  "improved": 6,
+  "raw": 0.46280098997188457,
+  "adj": 0.42668491644351253,
+  "stable": true,
+  "first_clause": true
+ },
+ "net_fees": {
+  "n": 9,
+  "improved": 4,
+  "raw": 0.3834341682784352,
+  "adj": 0.43091741504100517,
+  "stable": true,
+  "first_clause": false
+ },
+ "other_nii": {
+  "n": 0
+ },
+ "admin": {
+  "n": 9,
+  "improved": 3,
+  "raw": 0.23296813532123417,
+  "adj": 0.2562560730033316,
+  "stable": true,
+  "first_clause": false
+ },
+ "other_op": {
+  "n": 7,
+  "improved": 5,
+  "raw": 0.32926557971265064,
+  "adj": 0.2627471197133081,
+  "stable": true,
+  "first_clause": true
+ },
+ "ecl": {
+  "n": 0
+ },
+ "pbt": {
+  "n": 9,
+  "improved": 6,
+  "raw": 0.5697985573124877,
+  "adj": 0.5315032928440815,
+  "stable": true,
+  "first_clause": true
+ },
+ "np": {
+  "n": 9,
+  "improved": 6,
+  "raw": 0.5953901302546749,
+  "adj": 0.5105321227522369,
+  "stable": true,
+  "first_clause": true
+ },
+ "np_parent": {
+  "n": 9,
+  "improved": 6,
+  "raw": 0.5959193343915065,
+  "adj": 0.5120817588966182,
+  "stable": true,
+  "first_clause": true
+ }
+}

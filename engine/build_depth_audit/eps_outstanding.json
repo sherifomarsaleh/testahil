@@ -1,28 +1,28 @@
 {
- "outstanding": [
-  "ADNOCDIST"
- ],
- "unreadable": [
-  "ADNOCDRILL",
-  "AIRARABIA",
-  "AMOC",
-  "AMR",
-  "ARCC",
-  "BOROUGE",
-  "EGCH",
-  "ELEC",
-  "EMPOWER",
-  "FERTIGLOBE",
-  "GBCO",
-  "MODON",
-  "PHAR",
-  "PHDC",
-  "RIYADHCABLE",
-  "SAVOLA",
-  "SCEM",
-  "STC",
-  "TMGH",
-  "XPT"
- ],
- "note": "Studies whose committed attributable profit and share count do not reproduce their own registered reported EPS, with nothing naming the difference, when this gate was adopted (04-Sep-2026). Allowed to fail; the list may only ever get shorter. --prune rewrites it. A study registering no reported EPS is listed as UNREADABLE in the run output rather than ratcheted, because that state is what made the original defect invisible and it is counted every run."
+  "outstanding": [
+    "ADNOCDIST"
+  ],
+  "unreadable": [
+    "ADNOCDRILL",
+    "AIRARABIA",
+    "AMOC",
+    "AMR",
+    "ARCC",
+    "BOROUGE",
+    "EGCH",
+    "ELEC",
+    "EMPOWER",
+    "FERTIGLOBE",
+    "GBCO",
+    "MODON",
+    "PHAR",
+    "PHDC",
+    "RIYADHCABLE",
+    "SAVOLA",
+    "SCEM",
+    "STC",
+    "TMGH",
+    "XPT"
+  ],
+  "note": "Studies whose committed attributable profit and share count do not reproduce their own registered reported EPS, with nothing naming the difference, when this gate was adopted (04-Sep-2026). Allowed to fail; the list may only ever get shorter. --prune rewrites it. A study registering no reported EPS is listed as UNREADABLE in the run output rather than ratcheted, because that state is what made the original defect invisible and it is counted every run."
 }

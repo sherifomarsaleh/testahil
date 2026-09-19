@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "last_updated": "2026-09-07",
+    "last_updated": "2026-09-08",
     "SOURCE_OF_TRUTH": "engine/market_profiles.py \u2014 this JSON is a DERIVED MIRROR, do not hand-edit",
     "gate_basis": "scale-normalized CRPS (crps/spot); primary since 11-Jul-2026",
     "data_quality_gate": "data_quality.clean_ohlc \u2014 PER-MARKET thresholds derived from each exchange daily price limit (a move beyond the limit is not reachable by trading). A single global threshold was WRONG: KOSPI allows \u00b130%, so a legitimate limit-down (log -0.357) would have been falsely \"repaired\" by the EGX-calibrated 0.35. Also drops non-trading placeholder rows.",
@@ -480,12 +480,12 @@
         ]
       }
     },
-    "auto_refreshed": "2026-09-07",
+    "auto_refreshed": "2026-09-08",
     "superseded": {
       "nu": 5.0,
       "width_cal": 0.951,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-09-07"
+      "replaced_on": "2026-09-08"
     },
     "mid_band_reshape": {
       "applied": false,
@@ -716,12 +716,12 @@
         ]
       }
     },
-    "auto_refreshed": "2026-09-07",
+    "auto_refreshed": "2026-09-08",
     "superseded": {
       "nu": 15.0,
       "width_cal": 1.056,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-09-07"
+      "replaced_on": "2026-09-08"
     },
     "mid_band_reshape": {
       "applied": false,
@@ -809,12 +809,12 @@
         ]
       }
     },
-    "auto_refreshed": "2026-09-07",
+    "auto_refreshed": "2026-09-08",
     "superseded": {
       "nu": 12.0,
       "width_cal": 1.084,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-09-07"
+      "replaced_on": "2026-09-08"
     },
     "mid_band_reshape": {
       "applied": false,
@@ -914,12 +914,12 @@
         ]
       }
     },
-    "auto_refreshed": "2026-09-07",
+    "auto_refreshed": "2026-09-08",
     "superseded": {
       "nu": 8.0,
       "width_cal": 1.063,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-09-07"
+      "replaced_on": "2026-09-08"
     },
     "mid_band_reshape": {
       "applied": false,
@@ -970,17 +970,17 @@
       "SALIK",
       "TWOPOINTZERO"
     ],
-    "windows": 411,
+    "windows": 414,
     "rebuilt_this_run": [],
     "nu": 4.5,
     "width_cal": 0.965,
     "mle_scale": 0.97,
     "gate_basis": "scale-normalized (crps/spot) \u2014 primary since 11-Jul-2026",
-    "market_skill": 0.0183,
+    "market_skill": 0.0178,
     "market_skill_raw_basis": 0.0096,
     "market_ci90": [
-      0.006,
-      0.032
+      0.007,
+      0.031
     ],
     "market_verdict": "PASS",
     "top_name_weight_share": 0.084,
@@ -1000,13 +1000,13 @@
       },
       "ADIB": {
         "nu": 10.0,
-        "width_cal": 0.902,
-        "skill": 0.0406,
-        "skill_raw_basis": 0.0218,
+        "width_cal": 0.909,
+        "skill": 0.0415,
+        "skill_raw_basis": 0.0231,
         "verdict": "PASS",
         "ci_block2": [
-          0.004,
-          0.073
+          0.005,
+          0.074
         ]
       },
       "ADNOCDIST": {
@@ -1065,14 +1065,14 @@
         ]
       },
       "AIRARABIA": {
-        "nu": 12.0,
-        "width_cal": 0.909,
-        "skill": 0.0032,
-        "skill_raw_basis": -0.0015,
+        "nu": 10.0,
+        "width_cal": 0.916,
+        "skill": 0.0156,
+        "skill_raw_basis": 0.0124,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.014,
-          0.015
+          -0.027,
+          0.043
         ]
       },
       "ALDAR": {
@@ -1100,12 +1100,12 @@
       "AMR": {
         "nu": 8.0,
         "width_cal": 0.916,
-        "skill": -0.013,
-        "skill_raw_basis": -0.0187,
+        "skill": 0.0192,
+        "skill_raw_basis": 0.0147,
         "verdict": "BOUNDARY(PARITY-flagged)",
         "ci_block2": [
-          -0.038,
-          0.008
+          -0.002,
+          0.064
         ]
       },
       "BOROUGE": {
@@ -1198,13 +1198,13 @@
       },
       "EMPOWER": {
         "nu": 10.0,
-        "width_cal": 0.916,
-        "skill": -0.0233,
-        "skill_raw_basis": -0.0235,
+        "width_cal": 0.923,
+        "skill": -0.0533,
+        "skill_raw_basis": -0.0523,
         "verdict": "FAIL",
         "ci_block2": [
-          -0.034,
-          -0.006
+          -0.075,
+          -0.025
         ]
       },
       "ENBD": {
@@ -1231,13 +1231,13 @@
       },
       "FERTIGLB": {
         "nu": 10.0,
-        "width_cal": 0.916,
-        "skill": -0.0015,
-        "skill_raw_basis": -0.0055,
+        "width_cal": 0.909,
+        "skill": 0.0011,
+        "skill_raw_basis": -0.0022,
         "verdict": "PARITY",
         "ci_block2": [
-          -0.021,
-          0.011
+          -0.019,
+          0.054
         ]
       },
       "IHC": {
@@ -1265,12 +1265,12 @@
       "MODON": {
         "nu": 10.0,
         "width_cal": 0.916,
-        "skill": 0.0459,
-        "skill_raw_basis": 0.0477,
-        "verdict": "PASS",
+        "skill": 0.0228,
+        "skill_raw_basis": 0.0295,
+        "verdict": "PARITY",
         "ci_block2": [
-          0.022,
-          0.074
+          -0.015,
+          0.068
         ]
       },
       "SALIK": {
@@ -1298,11 +1298,11 @@
     },
     "superseded": {
       "nu": 4.5,
-      "width_cal": 0.965,
+      "width_cal": 0.957,
       "market_verdict": "PASS",
-      "replaced_on": "2026-09-07"
+      "replaced_on": "2026-09-08"
     },
-    "auto_refreshed": "2026-09-07",
+    "auto_refreshed": "2026-09-08",
     "mid_band_reshape": {
       "applied": true,
       "mle_shape": [
@@ -1315,18 +1315,18 @@
         0.965
       ],
       "cov50": {
-        "mle": 0.528,
-        "reshaped": 0.4988,
-        "lono_heldout": 0.5012
+        "mle": 0.5386,
+        "reshaped": 0.4976,
+        "lono_heldout": 0.4976
       },
-      "delta_ll": 2.63,
+      "delta_ll": 2.59,
       "crps_parity_ci": {
         "2": [
-          -0.0017,
+          -0.0016,
           0.0021
         ],
         "3": [
-          -0.0016,
+          -0.0017,
           0.0022
         ],
         "4": [
@@ -1427,12 +1427,12 @@
         ]
       }
     },
-    "auto_refreshed": "2026-09-07",
+    "auto_refreshed": "2026-09-08",
     "superseded": {
       "nu": 6.0,
       "width_cal": 1.014,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-09-07"
+      "replaced_on": "2026-09-08"
     },
     "mid_band_reshape": {
       "applied": false,
@@ -1509,12 +1509,12 @@
         ]
       }
     },
-    "auto_refreshed": "2026-09-07",
+    "auto_refreshed": "2026-09-08",
     "superseded": {
       "nu": 6.0,
       "width_cal": 0.958,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-09-07"
+      "replaced_on": "2026-09-08"
     },
     "mid_band_reshape": {
       "applied": false,
@@ -1576,12 +1576,12 @@
         ]
       }
     },
-    "auto_refreshed": "2026-09-07",
+    "auto_refreshed": "2026-09-08",
     "superseded": {
       "nu": 12.0,
       "width_cal": 0.958,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-09-07"
+      "replaced_on": "2026-09-08"
     },
     "mid_band_reshape": {
       "applied": false,
@@ -1635,12 +1635,12 @@
         ]
       }
     },
-    "auto_refreshed": "2026-09-07",
+    "auto_refreshed": "2026-09-08",
     "superseded": {
       "nu": 8.0,
       "width_cal": 0.86,
       "market_verdict": "PARITY",
-      "replaced_on": "2026-09-07"
+      "replaced_on": "2026-09-08"
     },
     "mid_band_reshape": {
       "applied": false,

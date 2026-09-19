@@ -1,0 +1,441 @@
+{
+ "_built": "2026-09-09",
+ "_currency": "EGP",
+ "_scope": "FULL run, origins FY2019..FY2024, horizons 1-5",
+ "_ticker": "ABUK",
+ "origins": {
+  "FY2019": {
+   "capex": {
+    "derived": false,
+    "document_date": "2019-08",
+    "note": "payments for the purchase of fixed assets and assets under construction, as disclosed in the cash-flow statement",
+    "route": "read off rendered pixels at 400 dpi (pdftoppm) \u2014 the filing carries zero characters of text layer [abuqir.net old investor shelf, retrieved through the Internet Archive (web.archive.org); the document is the company's own audited statement]",
+    "source": "audited FS year ended 30-Jun-2019 \u2014 FS_FY2019_Jun.pdf p59, p63",
+    "tier": "A",
+    "value": 130162865
+   },
+   "cash": {
+    "document_date": "2019-08",
+    "route": "read off rendered pixels at 400 dpi (pdftoppm) \u2014 the filing carries zero characters of text layer [abuqir.net old investor shelf, retrieved through the Internet Archive (web.archive.org); the document is the company's own audited statement]",
+    "source": "audited FS year ended 30-Jun-2019 \u2014 FS_FY2019_Jun.pdf p59, p63",
+    "tier": "A",
+    "value": 403129219
+   },
+   "debt": {
+    "document_date": "2019-08",
+    "note": "INTEREST-BEARING BORROWINGS ONLY \u2014 bank loans and notes payable, long-term portion plus the portion due within one year. Suppliers, other creditors and the tax-authority balance are excluded because they bear no interest, which is the whole point of the rule.",
+    "route": "read off rendered pixels at 400 dpi (pdftoppm) \u2014 the filing carries zero characters of text layer [abuqir.net old investor shelf, retrieved through the Internet Archive (web.archive.org); the document is the company's own audited statement]",
+    "source": "audited FS year ended 30-Jun-2019 \u2014 FS_FY2019_Jun.pdf p59, p63",
+    "tier": "A",
+    "value": 134679205
+   },
+   "dep": {
+    "derived": true,
+    "document_date": "2019-08",
+    "identity": "capex = dppe + d&a",
+    "note": "DERIVED. capex 130,162,865 less the movement in net fixed assets and projects under construction (1,143,527,276 - 1,082,818,259 = 60,709,017) less an implied disposal book value of 215,439 (proceeds 2,934,438 less the capital gain of 2,718,999 the income statement prints)",
+    "route": "read off rendered pixels at 400 dpi (pdftoppm) \u2014 the filing carries zero characters of text layer [abuqir.net old investor shelf, retrieved through the Internet Archive (web.archive.org); the document is the company's own audited statement]",
+    "source": "audited FS year ended 30-Jun-2019 \u2014 FS_FY2019_Jun.pdf p59, p63",
+    "tier": "A",
+    "value": 69238409
+   },
+   "ppe": {
+    "document_date": "2019-08",
+    "note": "net book value of fixed assets; projects under construction of 489,349,601 are recorded beside it and are not included",
+    "projects_under_construction": 489349601,
+    "route": "read off rendered pixels at 400 dpi (pdftoppm) \u2014 the filing carries zero characters of text layer [abuqir.net old investor shelf, retrieved through the Internet Archive (web.archive.org); the document is the company's own audited statement]",
+    "source": "audited FS year ended 30-Jun-2019 \u2014 FS_FY2019_Jun.pdf p59, p63",
+    "tier": "A",
+    "value": 654177675
+   },
+   "shares": {
+    "also": "the same paid-in capital of EGP 1,892,813,580 is printed on the balance sheet of every filing from FY-Jun-2018 to FY-Jun-2025, so the count is unchanged across every origin this run tests and no count is carried back into a year the filings do not support",
+    "document_date": "2024-08-29",
+    "issued_capital": 1892813580,
+    "note": "The count is footed in the document that states it: issued capital EGP 1,892,813,580 over a par value of EGP 1.50 reproduces 1,261,875,720. The same paid-in capital is printed on the balance sheet of every filing from FY-Jun-2018 to FY-Jun-2025, so no count is carried back into a year the filings do not support.",
+    "par_value": 1.5,
+    "route": "text layer (pdftotext -layout), arithmetic-confirmed",
+    "source": "FS_FY2024_Jun_EN.pdf note 18B \u2014 'EGP 1 892 813 580 divided into 1 261 875 720 shares of EGP 1.5 par value'",
+    "tier": "A",
+    "value": 1261875720
+   },
+   "wc": {
+    "document_date": "2019-08",
+    "inventory": 1216610035,
+    "note": "inventories plus trade and other receivables less suppliers and other creditors. THE CAPTION WIDENS AT FY2023: the pre-FY2023 filings print one 'suppliers and other creditors' line while the restated presentation splits trade payables out, so the two windows are not the same measure and the break is in the basis-break register.",
+    "payables": 1385902985,
+    "receivables": 439113216,
+    "route": "read off rendered pixels at 400 dpi (pdftoppm) \u2014 the filing carries zero characters of text layer [abuqir.net old investor shelf, retrieved through the Internet Archive (web.archive.org); the document is the company's own audited statement]",
+    "source": "audited FS year ended 30-Jun-2019 \u2014 FS_FY2019_Jun.pdf p59, p63",
+    "tier": "A",
+    "value": 269820266
+   }
+  },
+  "FY2020": {
+   "capex": {
+    "derived": false,
+    "document_date": "2021-08",
+    "note": "payments for the purchase of fixed assets and assets under construction, as disclosed in the cash-flow statement",
+    "route": "read off rendered pixels at 400 dpi (pdftoppm) \u2014 the filing carries zero characters of text layer [abuqir.net old investor shelf, retrieved through the Internet Archive (web.archive.org); the document is the company's own audited statement]",
+    "source": "audited FS year ended 30-Jun-2021 \u2014 FS_FY2021_Jun.pdf p11 comparative column, p15 cash flow",
+    "tier": "A",
+    "value": 229268790
+   },
+   "cash": {
+    "document_date": "2021-08",
+    "route": "read off rendered pixels at 400 dpi (pdftoppm) \u2014 the filing carries zero characters of text layer [abuqir.net old investor shelf, retrieved through the Internet Archive (web.archive.org); the document is the company's own audited statement]",
+    "source": "audited FS year ended 30-Jun-2021 \u2014 FS_FY2021_Jun.pdf p11 comparative column, p15 cash flow",
+    "tier": "A",
+    "value": 576327552
+   },
+   "debt": {
+    "document_date": "2021-08",
+    "note": "INTEREST-BEARING BORROWINGS ONLY \u2014 bank loans and notes payable, long-term portion plus the portion due within one year. Suppliers, other creditors and the tax-authority balance are excluded because they bear no interest, which is the whole point of the rule.",
+    "route": "read off rendered pixels at 400 dpi (pdftoppm) \u2014 the filing carries zero characters of text layer [abuqir.net old investor shelf, retrieved through the Internet Archive (web.archive.org); the document is the company's own audited statement]",
+    "source": "audited FS year ended 30-Jun-2021 \u2014 FS_FY2021_Jun.pdf p11 comparative column, p15 cash flow",
+    "tier": "A",
+    "value": 71467052
+   },
+   "dep": {
+    "missing": "the identity capex = dPP&E + D&A does not hold across FY-Jun-2020 on this issuer: net fixed assets rose EGP 448.4m against capex of EGP 229.3m, so a revaluation or a transfer sits inside the movement and any charge derived from it would be arithmetic wearing the costume of a disclosure. The charge is disclosed only in the fixed-asset note of the audited FY-Jun-2021 filing, which is a fifty-page Arabic scan with no text layer, and that note was not read in this run."
+   },
+   "ppe": {
+    "document_date": "2021-08",
+    "note": "net book value of fixed assets; projects under construction of 231,574,924 are recorded beside it and are not included",
+    "projects_under_construction": 231574924,
+    "route": "read off rendered pixels at 400 dpi (pdftoppm) \u2014 the filing carries zero characters of text layer [abuqir.net old investor shelf, retrieved through the Internet Archive (web.archive.org); the document is the company's own audited statement]",
+    "source": "audited FS year ended 30-Jun-2021 \u2014 FS_FY2021_Jun.pdf p11 comparative column, p15 cash flow",
+    "tier": "A",
+    "value": 1102832506
+   },
+   "shares": {
+    "also": "the same paid-in capital of EGP 1,892,813,580 is printed on the balance sheet of every filing from FY-Jun-2018 to FY-Jun-2025, so the count is unchanged across every origin this run tests and no count is carried back into a year the filings do not support",
+    "document_date": "2024-08-29",
+    "issued_capital": 1892813580,
+    "note": "The count is footed in the document that states it: issued capital EGP 1,892,813,580 over a par value of EGP 1.50 reproduces 1,261,875,720. The same paid-in capital is printed on the balance sheet of every filing from FY-Jun-2018 to FY-Jun-2025, so no count is carried back into a year the filings do not support.",
+    "par_value": 1.5,
+    "route": "text layer (pdftotext -layout), arithmetic-confirmed",
+    "source": "FS_FY2024_Jun_EN.pdf note 18B \u2014 'EGP 1 892 813 580 divided into 1 261 875 720 shares of EGP 1.5 par value'",
+    "tier": "A",
+    "value": 1261875720
+   },
+   "wc": {
+    "document_date": "2021-08",
+    "inventory": 1276052732,
+    "note": "inventories plus trade and other receivables less suppliers and other creditors. THE CAPTION WIDENS AT FY2023: the pre-FY2023 filings print one 'suppliers and other creditors' line while the restated presentation splits trade payables out, so the two windows are not the same measure and the break is in the basis-break register.",
+    "payables": 1469948288,
+    "receivables": 441789956,
+    "route": "read off rendered pixels at 400 dpi (pdftoppm) \u2014 the filing carries zero characters of text layer [abuqir.net old investor shelf, retrieved through the Internet Archive (web.archive.org); the document is the company's own audited statement]",
+    "source": "audited FS year ended 30-Jun-2021 \u2014 FS_FY2021_Jun.pdf p11 comparative column, p15 cash flow",
+    "tier": "A",
+    "value": 247894400
+   }
+  },
+  "FY2021": {
+   "capex": {
+    "derived": false,
+    "document_date": "2021-08",
+    "note": "payments for the purchase of fixed assets and assets under construction, as disclosed in the cash-flow statement",
+    "route": "read off rendered pixels at 400 dpi (pdftoppm) \u2014 the filing carries zero characters of text layer [abuqir.net old investor shelf, retrieved through the Internet Archive (web.archive.org); the document is the company's own audited statement]",
+    "source": "audited FS year ended 30-Jun-2021 \u2014 FS_FY2021_Jun.pdf p11, p15",
+    "tier": "A",
+    "value": 146587751
+   },
+   "cash": {
+    "document_date": "2021-08",
+    "route": "read off rendered pixels at 400 dpi (pdftoppm) \u2014 the filing carries zero characters of text layer [abuqir.net old investor shelf, retrieved through the Internet Archive (web.archive.org); the document is the company's own audited statement]",
+    "source": "audited FS year ended 30-Jun-2021 \u2014 FS_FY2021_Jun.pdf p11, p15",
+    "tier": "A",
+    "value": 625228485
+   },
+   "debt": {
+    "document_date": "2021-08",
+    "note": "INTEREST-BEARING BORROWINGS ONLY \u2014 bank loans and notes payable, long-term portion plus the portion due within one year. Suppliers, other creditors and the tax-authority balance are excluded because they bear no interest, which is the whole point of the rule.",
+    "route": "read off rendered pixels at 400 dpi (pdftoppm) \u2014 the filing carries zero characters of text layer [abuqir.net old investor shelf, retrieved through the Internet Archive (web.archive.org); the document is the company's own audited statement]",
+    "source": "audited FS year ended 30-Jun-2021 \u2014 FS_FY2021_Jun.pdf p11, p15",
+    "tier": "A",
+    "value": 45506
+   },
+   "dep": {
+    "derived": true,
+    "document_date": "2021-08",
+    "identity": "capex = dppe + d&a",
+    "note": "DERIVED. capex 146,587,751 less the movement in net fixed assets, projects under construction (1,383,303,350 - 1,334,407,430 = 48,895,920) less an implied disposal book value of 1,074,407",
+    "route": "read off rendered pixels at 400 dpi (pdftoppm) \u2014 the filing carries zero characters of text layer [abuqir.net old investor shelf, retrieved through the Internet Archive (web.archive.org); the document is the company's own audited statement]",
+    "source": "audited FS year ended 30-Jun-2021 \u2014 FS_FY2021_Jun.pdf p11, p15",
+    "tier": "A",
+    "value": 96617424
+   },
+   "ppe": {
+    "document_date": "2021-08",
+    "note": "net book value of fixed assets; projects under construction of 379,177,991 are recorded beside it and are not included",
+    "projects_under_construction": 379177991,
+    "route": "read off rendered pixels at 400 dpi (pdftoppm) \u2014 the filing carries zero characters of text layer [abuqir.net old investor shelf, retrieved through the Internet Archive (web.archive.org); the document is the company's own audited statement]",
+    "source": "audited FS year ended 30-Jun-2021 \u2014 FS_FY2021_Jun.pdf p11, p15",
+    "tier": "A",
+    "value": 1004125359
+   },
+   "shares": {
+    "also": "the same paid-in capital of EGP 1,892,813,580 is printed on the balance sheet of every filing from FY-Jun-2018 to FY-Jun-2025, so the count is unchanged across every origin this run tests and no count is carried back into a year the filings do not support",
+    "document_date": "2024-08-29",
+    "issued_capital": 1892813580,
+    "note": "The count is footed in the document that states it: issued capital EGP 1,892,813,580 over a par value of EGP 1.50 reproduces 1,261,875,720. The same paid-in capital is printed on the balance sheet of every filing from FY-Jun-2018 to FY-Jun-2025, so no count is carried back into a year the filings do not support.",
+    "par_value": 1.5,
+    "route": "text layer (pdftotext -layout), arithmetic-confirmed",
+    "source": "FS_FY2024_Jun_EN.pdf note 18B \u2014 'EGP 1 892 813 580 divided into 1 261 875 720 shares of EGP 1.5 par value'",
+    "tier": "A",
+    "value": 1261875720
+   },
+   "wc": {
+    "document_date": "2021-08",
+    "inventory": 1282390100,
+    "note": "inventories plus trade and other receivables less suppliers and other creditors. THE CAPTION WIDENS AT FY2023: the pre-FY2023 filings print one 'suppliers and other creditors' line while the restated presentation splits trade payables out, so the two windows are not the same measure and the break is in the basis-break register.",
+    "payables": 1364622718,
+    "receivables": 615690423,
+    "route": "read off rendered pixels at 400 dpi (pdftoppm) \u2014 the filing carries zero characters of text layer [abuqir.net old investor shelf, retrieved through the Internet Archive (web.archive.org); the document is the company's own audited statement]",
+    "source": "audited FS year ended 30-Jun-2021 \u2014 FS_FY2021_Jun.pdf p11, p15",
+    "tier": "A",
+    "value": 533457805
+   }
+  },
+  "FY2022": {
+   "capex": {
+    "derived": false,
+    "document_date": "2022-09",
+    "note": "payments for the purchase of fixed assets and assets under construction, as disclosed in the cash-flow statement",
+    "route": "read off rendered pixels at 400 dpi (pdftoppm) \u2014 the filing carries zero characters of text layer [abuqir.net old investor shelf, retrieved through the Internet Archive (web.archive.org); the document is the company's own audited statement]",
+    "source": "audited FS year ended 30-Jun-2022 \u2014 FS_FY2022_Jun.pdf p12, p16",
+    "tier": "A",
+    "value": 210456468
+   },
+   "cash": {
+    "document_date": "2022-09",
+    "route": "text layer (pdftotext -layout) [abuqir.net live shelf]",
+    "source": "cash at 30-Jun-2022 is taken from the audited FY-Jun-2024 filing's cash-flow statement, FY2023 comparative column, 'Cash & cash equivalent at the beginning of the year' EGP 2,933,798,595 \u2014 text layer. The FY-Jun-2022 scan's own closing-cash line was read as 2,933,398,095 and does not foot to it by 400,500 EGP, so the text-layer figure governs and the discrepancy is recorded rather than averaged.",
+    "tier": "A",
+    "value": 2933798595
+   },
+   "debt": {
+    "missing": "the borrowings block on the FY-Jun-2022 scan was not separately read; the company discloses 'no loans at the reporting date' in the H1-2026 interest-rate-risk note, so the balance is small, but a figure that was not read is not recorded"
+   },
+   "dep": {
+    "derived": true,
+    "document_date": "2022-09",
+    "identity": "capex = dppe + d&a",
+    "note": "DERIVED. capex 210,456,468 less the movement in net fixed assets, projects under construction and right-of-use assets (1,515,606,548 - 1,383,303,350 = 132,303,198) less an implied disposal book value of 82,292",
+    "route": "read off rendered pixels at 400 dpi (pdftoppm) \u2014 the filing carries zero characters of text layer [abuqir.net old investor shelf, retrieved through the Internet Archive (web.archive.org); the document is the company's own audited statement]",
+    "source": "audited FS year ended 30-Jun-2022 \u2014 FS_FY2022_Jun.pdf p12, p16",
+    "tier": "A",
+    "value": 78070978
+   },
+   "ppe": {
+    "document_date": "2022-09",
+    "note": "net book value of fixed assets; projects under construction of 294,255,347 are recorded beside it and are not included",
+    "projects_under_construction": 294255347,
+    "route": "read off rendered pixels at 400 dpi (pdftoppm) \u2014 the filing carries zero characters of text layer [abuqir.net old investor shelf, retrieved through the Internet Archive (web.archive.org); the document is the company's own audited statement]",
+    "source": "audited FS year ended 30-Jun-2022 \u2014 FS_FY2022_Jun.pdf p12, p16",
+    "tier": "A",
+    "value": 1221255529
+   },
+   "shares": {
+    "also": "the same paid-in capital of EGP 1,892,813,580 is printed on the balance sheet of every filing from FY-Jun-2018 to FY-Jun-2025, so the count is unchanged across every origin this run tests and no count is carried back into a year the filings do not support",
+    "document_date": "2024-08-29",
+    "issued_capital": 1892813580,
+    "note": "The count is footed in the document that states it: issued capital EGP 1,892,813,580 over a par value of EGP 1.50 reproduces 1,261,875,720. The same paid-in capital is printed on the balance sheet of every filing from FY-Jun-2018 to FY-Jun-2025, so no count is carried back into a year the filings do not support.",
+    "par_value": 1.5,
+    "route": "text layer (pdftotext -layout), arithmetic-confirmed",
+    "source": "FS_FY2024_Jun_EN.pdf note 18B \u2014 'EGP 1 892 813 580 divided into 1 261 875 720 shares of EGP 1.5 par value'",
+    "tier": "A",
+    "value": 1261875720
+   },
+   "wc": {
+    "missing": "the payables caption on this scan does not foot to its printed current-liability subtotal, so working capital is not recorded rather than recorded wrong"
+   }
+  },
+  "FY2023": {
+   "capex": {
+    "derived": false,
+    "document_date": "2024-08-29",
+    "note": "payments for the purchase of fixed assets and assets under construction, as disclosed in the cash-flow statement",
+    "route": "text layer (pdftotext -layout), arithmetic-confirmed [abuqir.net investor shelf (live)]",
+    "source": "audited FS year ended 30-Jun-2024 \u2014 FS_FY2024_Jun_EN.pdf notes 4, 11, 12, 17, 24 and the cash-flow statement, comparative columns",
+    "tier": "A",
+    "value": 151217123
+   },
+   "cash": {
+    "document_date": "2024-08-29",
+    "route": "text layer (pdftotext -layout), arithmetic-confirmed [abuqir.net investor shelf (live)]",
+    "source": "audited FS year ended 30-Jun-2024 \u2014 FS_FY2024_Jun_EN.pdf notes 4, 11, 12, 17, 24 and the cash-flow statement, comparative columns",
+    "tier": "A",
+    "value": 17464775441
+   },
+   "debt": {
+    "document_date": "2024-08-29",
+    "note": "INTEREST-BEARING BORROWINGS ONLY \u2014 bank loans and notes payable, long-term portion plus the portion due within one year. Suppliers, other creditors and the tax-authority balance are excluded because they bear no interest, which is the whole point of the rule.",
+    "route": "text layer (pdftotext -layout), arithmetic-confirmed [abuqir.net investor shelf (live)]",
+    "source": "audited FS year ended 30-Jun-2024 \u2014 FS_FY2024_Jun_EN.pdf notes 4, 11, 12, 17, 24 and the cash-flow statement, comparative columns",
+    "tier": "A",
+    "value": 0
+   },
+   "dep": {
+    "derived": true,
+    "document_date": "2024-08-29",
+    "identity": "capex = dppe + d&a",
+    "note": "DERIVED. capex 151,217,123 plus the FALL in net fixed assets (1,221,255,529 - 1,186,400,030 = 34,855,499); the disposal book value is not separable from the FY2023 comparative and is not adjusted for, so this is an upper bound",
+    "route": "text layer (pdftotext -layout), arithmetic-confirmed [abuqir.net investor shelf (live)]",
+    "source": "audited FS year ended 30-Jun-2024 \u2014 FS_FY2024_Jun_EN.pdf notes 4, 11, 12, 17, 24 and the cash-flow statement, comparative columns",
+    "tier": "A",
+    "value": 186072622
+   },
+   "ppe": {
+    "document_date": "2024-08-29",
+    "note": "net book value of fixed assets; projects under construction of an amount not read are recorded beside it and are not included",
+    "projects_under_construction": null,
+    "route": "text layer (pdftotext -layout), arithmetic-confirmed [abuqir.net investor shelf (live)]",
+    "source": "audited FS year ended 30-Jun-2024 \u2014 FS_FY2024_Jun_EN.pdf notes 4, 11, 12, 17, 24 and the cash-flow statement, comparative columns",
+    "tier": "A",
+    "value": 1186400030
+   },
+   "shares": {
+    "also": "the same paid-in capital of EGP 1,892,813,580 is printed on the balance sheet of every filing from FY-Jun-2018 to FY-Jun-2025, so the count is unchanged across every origin this run tests and no count is carried back into a year the filings do not support",
+    "document_date": "2024-08-29",
+    "issued_capital": 1892813580,
+    "note": "The count is footed in the document that states it: issued capital EGP 1,892,813,580 over a par value of EGP 1.50 reproduces 1,261,875,720. The same paid-in capital is printed on the balance sheet of every filing from FY-Jun-2018 to FY-Jun-2025, so no count is carried back into a year the filings do not support.",
+    "par_value": 1.5,
+    "route": "text layer (pdftotext -layout), arithmetic-confirmed",
+    "source": "FS_FY2024_Jun_EN.pdf note 18B \u2014 'EGP 1 892 813 580 divided into 1 261 875 720 shares of EGP 1.5 par value'",
+    "tier": "A",
+    "value": 1261875720
+   },
+   "wc": {
+    "document_date": "2024-08-29",
+    "inventory": 1873998330,
+    "note": "inventories plus trade and other receivables less suppliers and other creditors. THE CAPTION WIDENS AT FY2023: the pre-FY2023 filings print one 'suppliers and other creditors' line while the restated presentation splits trade payables out, so the two windows are not the same measure and the break is in the basis-break register.",
+    "payables": 41178382,
+    "receivables": 257042674,
+    "route": "text layer (pdftotext -layout), arithmetic-confirmed [abuqir.net investor shelf (live)]",
+    "source": "audited FS year ended 30-Jun-2024 \u2014 FS_FY2024_Jun_EN.pdf notes 4, 11, 12, 17, 24 and the cash-flow statement, comparative columns",
+    "tier": "A",
+    "value": 2089862622
+   }
+  },
+  "FY2024": {
+   "capex": {
+    "derived": false,
+    "document_date": "2024-08-29",
+    "note": "payments for the purchase of fixed assets and assets under construction, as disclosed in the cash-flow statement",
+    "route": "text layer (pdftotext -layout), arithmetic-confirmed [abuqir.net investor shelf (live)]",
+    "source": "audited FS year ended 30-Jun-2024 \u2014 FS_FY2024_Jun_EN.pdf notes 4, 11, 12, 17, 24, statement of changes in equity and the cash-flow statement",
+    "tier": "A",
+    "value": 418523619
+   },
+   "cash": {
+    "document_date": "2024-08-29",
+    "route": "text layer (pdftotext -layout), arithmetic-confirmed [abuqir.net investor shelf (live)]",
+    "source": "audited FS year ended 30-Jun-2024 \u2014 FS_FY2024_Jun_EN.pdf notes 4, 11, 12, 17, 24, statement of changes in equity and the cash-flow statement",
+    "tier": "A",
+    "value": 23354598768
+   },
+   "debt": {
+    "document_date": "2024-08-29",
+    "note": "INTEREST-BEARING BORROWINGS ONLY \u2014 bank loans and notes payable, long-term portion plus the portion due within one year. Suppliers, other creditors and the tax-authority balance are excluded because they bear no interest, which is the whole point of the rule.",
+    "route": "text layer (pdftotext -layout), arithmetic-confirmed [abuqir.net investor shelf (live)]",
+    "source": "audited FS year ended 30-Jun-2024 \u2014 FS_FY2024_Jun_EN.pdf notes 4, 11, 12, 17, 24, statement of changes in equity and the cash-flow statement",
+    "tier": "A",
+    "value": 0
+   },
+   "dep": {
+    "derived": false,
+    "route": "text layer (pdftotext -layout), arithmetic-confirmed",
+    "source": "FS_FY2024_Jun_EN.pdf note 4, accumulated-depreciation block",
+    "tier": "A",
+    "value": 120504043
+   },
+   "ppe": {
+    "document_date": "2024-08-29",
+    "note": "net book value of fixed assets; projects under construction of an amount not read are recorded beside it and are not included",
+    "projects_under_construction": null,
+    "route": "text layer (pdftotext -layout), arithmetic-confirmed [abuqir.net investor shelf (live)]",
+    "source": "audited FS year ended 30-Jun-2024 \u2014 FS_FY2024_Jun_EN.pdf notes 4, 11, 12, 17, 24, statement of changes in equity and the cash-flow statement",
+    "tier": "A",
+    "value": 1875134305
+   },
+   "shares": {
+    "also": "the same paid-in capital of EGP 1,892,813,580 is printed on the balance sheet of every filing from FY-Jun-2018 to FY-Jun-2025, so the count is unchanged across every origin this run tests and no count is carried back into a year the filings do not support",
+    "document_date": "2024-08-29",
+    "issued_capital": 1892813580,
+    "note": "The count is footed in the document that states it: issued capital EGP 1,892,813,580 over a par value of EGP 1.50 reproduces 1,261,875,720. The same paid-in capital is printed on the balance sheet of every filing from FY-Jun-2018 to FY-Jun-2025, so no count is carried back into a year the filings do not support.",
+    "par_value": 1.5,
+    "route": "text layer (pdftotext -layout), arithmetic-confirmed",
+    "source": "FS_FY2024_Jun_EN.pdf note 18B \u2014 'EGP 1 892 813 580 divided into 1 261 875 720 shares of EGP 1.5 par value'",
+    "tier": "A",
+    "value": 1261875720
+   },
+   "wc": {
+    "document_date": "2024-08-29",
+    "inventory": 2072434578,
+    "note": "inventories plus trade and other receivables less suppliers and other creditors. THE CAPTION WIDENS AT FY2023: the pre-FY2023 filings print one 'suppliers and other creditors' line while the restated presentation splits trade payables out, so the two windows are not the same measure and the break is in the basis-break register.",
+    "payables": 92153797,
+    "receivables": 241793653,
+    "route": "text layer (pdftotext -layout), arithmetic-confirmed [abuqir.net investor shelf (live)]",
+    "source": "audited FS year ended 30-Jun-2024 \u2014 FS_FY2024_Jun_EN.pdf notes 4, 11, 12, 17, 24, statement of changes in equity and the cash-flow statement",
+    "tier": "A",
+    "value": 2222074434
+   }
+  }
+ },
+ "prior_year_anchor": {
+  "FY2018": {
+   "capex": {
+    "derived": false,
+    "document_date": "2019-08",
+    "note": "payments for the purchase of fixed assets and assets under construction, as disclosed in the cash-flow statement",
+    "route": "read off rendered pixels at 400 dpi (pdftoppm) \u2014 the filing carries zero characters of text layer [abuqir.net old investor shelf, retrieved through the Internet Archive (web.archive.org); the document is the company's own audited statement]",
+    "source": "audited FS year ended 30-Jun-2019 \u2014 FS_FY2019_Jun.pdf p59 comparative column, p63 cash flow",
+    "tier": "A",
+    "value": 107713238
+   },
+   "cash": {
+    "document_date": "2019-08",
+    "route": "read off rendered pixels at 400 dpi (pdftoppm) \u2014 the filing carries zero characters of text layer [abuqir.net old investor shelf, retrieved through the Internet Archive (web.archive.org); the document is the company's own audited statement]",
+    "source": "audited FS year ended 30-Jun-2019 \u2014 FS_FY2019_Jun.pdf p59 comparative column, p63 cash flow",
+    "tier": "A",
+    "value": 831016265
+   },
+   "debt": {
+    "document_date": "2019-08",
+    "note": "INTEREST-BEARING BORROWINGS ONLY \u2014 bank loans and notes payable, long-term portion plus the portion due within one year. Suppliers, other creditors and the tax-authority balance are excluded because they bear no interest, which is the whole point of the rule.",
+    "route": "read off rendered pixels at 400 dpi (pdftoppm) \u2014 the filing carries zero characters of text layer [abuqir.net old investor shelf, retrieved through the Internet Archive (web.archive.org); the document is the company's own audited statement]",
+    "source": "audited FS year ended 30-Jun-2019 \u2014 FS_FY2019_Jun.pdf p59 comparative column, p63 cash flow",
+    "tier": "A",
+    "value": 210744507
+   },
+   "dep": {
+    "missing": "the FY-Jun-2018 charge needs the FY-Jun-2017 fixed-asset balance to derive, and the FY-Jun-2018 filing is not the origin's own year \u2014 it is the prior-year anchor. It was not derived and the fixed-asset note of the FY-Jun-2018 Arabic scan was not read."
+   },
+   "ppe": {
+    "document_date": "2019-08",
+    "note": "net book value of fixed assets; projects under construction of 479,802,316 are recorded beside it and are not included",
+    "projects_under_construction": 479802316,
+    "route": "read off rendered pixels at 400 dpi (pdftoppm) \u2014 the filing carries zero characters of text layer [abuqir.net old investor shelf, retrieved through the Internet Archive (web.archive.org); the document is the company's own audited statement]",
+    "source": "audited FS year ended 30-Jun-2019 \u2014 FS_FY2019_Jun.pdf p59 comparative column, p63 cash flow",
+    "tier": "A",
+    "value": 603015943
+   },
+   "shares": {
+    "also": "the same paid-in capital of EGP 1,892,813,580 is printed on the balance sheet of every filing from FY-Jun-2018 to FY-Jun-2025, so the count is unchanged across every origin this run tests and no count is carried back into a year the filings do not support",
+    "document_date": "2024-08-29",
+    "issued_capital": 1892813580,
+    "note": "The count is footed in the document that states it: issued capital EGP 1,892,813,580 over a par value of EGP 1.50 reproduces 1,261,875,720. The same paid-in capital is printed on the balance sheet of every filing from FY-Jun-2018 to FY-Jun-2025, so no count is carried back into a year the filings do not support.",
+    "par_value": 1.5,
+    "route": "text layer (pdftotext -layout), arithmetic-confirmed",
+    "source": "FS_FY2024_Jun_EN.pdf note 18B \u2014 'EGP 1 892 813 580 divided into 1 261 875 720 shares of EGP 1.5 par value'",
+    "tier": "A",
+    "value": 1261875720
+   },
+   "wc": {
+    "missing": "the payables caption on this scan does not foot to its printed current-liability subtotal, so working capital is not recorded rather than recorded wrong"
+   }
+  }
+ }
+}

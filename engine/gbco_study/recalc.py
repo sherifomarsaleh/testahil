@@ -128,12 +128,7 @@ x = raw('Segments', 'D%d' % SEG['Trading revenue (tires + parts)'])
 for i in range(5):
     x *= 1 + G['trading'][i]
     tr_rev.append(x)
-# THE FIFTH LINE IS CARRIED, NOT ZEROED [audit finding 5]: EGP 682.8mn of external
-# revenue outside the four published business lines plus EGP 444.8mn of inter-segment
-# revenue, held flat. The gross margin applied to this forecast is struck by the
-# company on the WHOLE of total revenue, so omitting it understates gross profit.
-of_rev = [D['forecast'][y]['of_rev'] for y in ('FY26E', 'FY27E', 'FY28E', 'FY29E', 'FY30E')]
-auto_rev = [pc_rev[i] + cv_rev[i] + lm_rev[i] + tr_rev[i] + of_rev[i] for i in range(5)]
+auto_rev = [pc_rev[i] + cv_rev[i] + lm_rev[i] + tr_rev[i] for i in range(5)]
 auto_gp = [auto_rev[i] * CS['gross_margin'][i] for i in range(5)]
 auto_ebit = [auto_gp[i] - auto_rev[i] * CS['gsa_pct'][i]
              + auto_rev[i] * CS['other_income_pct']
@@ -208,14 +203,7 @@ for i in range(5):
     nci.append(nci[-1] - grp_mi[i])
     borrow.append(borrow[-1] + GD['net_new_borrowings'][i])
 nwc = [inv[i] + rec[i] + adv[i] - (pay[i] - NONAUTO) for i in range(8)]
-# TWO MOVEMENTS, AND THEY ARE NOT THE SAME MOVEMENT. The BALANCE SHEET rolls forward from
-# one year end to the next, because a cash-flow statement that did anything else would stop
-# balancing. The DCF's walk starts at 30 JUNE 2026, where the bridge stands, so the first
-# half's working-capital release is not counted twice -- once in the net debt the bridge
-# already deducts and once in the first forecast year's cash flow.
-_WCOPEN = D['dcf']['working_capital_opening']
 dnwc = [nwc[3 + i] - nwc[2 + i] for i in range(5)]
-dnwc_dcf = [nwc[3 + i] - (_WCOPEN if i == 0 else nwc[2 + i]) for i in range(5)]
 
 cf_np = list(grp_npbmi); cf_dna = list(grp_dna)
 cf_assoc = [-grp_assoc[i] for i in range(5)]
@@ -242,10 +230,18 @@ chk = [ta[i] - tle[i] for i in range(8)]
 netdebt = [borrow[i] - cash[i] for i in range(8)]
 
 # ---- the cost of capital, the DCF and the three legs --------------------------------
-ke = COC['rf_star'] + COC['beta'] * COC['erp']
+# THE FIFTH PLACE THIS IDENTITY WAS WRITTEN OUT BY HAND, and the fourth to be
+# left behind when the construction changed. rf* + beta x ERP_total multiplies
+# the country premium by beta; [R-COC-03] charges it once, flat, at the weight of
+# the operations. This gate is supposed to prove the workbook reproduces the
+# model, so a private re-derivation here proves only that two wrong things agree.
+# The record publishes its own components; read them.
+ke = (COC['rf_star'] + COC['beta'] * COC['erp_mature'] + COC['crp_effective'])
 kd_at = COC['kd_pretax'] * (1 - TAX)
 wacc1 = (1 - COC['weight_debt']) * ke + COC['weight_debt'] * kd_at
-ke_alt = RB['rf_star'] + COC['beta'] * RB['erp']
+# The alternative basis splits the same way; it was the sixth hand-written copy of
+# the retired identity in this study alone.
+ke_alt = (RB['rf_star'] + COC['beta'] * RB['erp_mature'] + RB['crp_effective'])
 wacc_alt = (1 - COC['weight_debt']) * ke_alt + COC['weight_debt'] * kd_at
 TG = D['macro']['terminal_growth_nominal']
 fwd = COC['forward_wacc']; wacc_T = COC['wacc_terminal']
@@ -254,37 +250,23 @@ c = 1.0
 for i in range(5):
     c /= (1 + fwd[i]); df.append(c)
 nopat = [auto_ebit[i] * (1 - TAX) for i in range(5)]
-# THE FIRST FORECAST YEAR IS A STUB [17-09-2026 edition, the second half of audit finding
-# 2]: the bridge is struck at 30 June 2026 and already reflects the cash the first half
-# produced, so the profit, depreciation and capital expenditure of a FULL calendar 2026
-# would be counted twice beside it. The change in working capital is not scaled because it
-# already runs from the 30-June stock.
-_UNE = D['dcf']['unearned_fraction']
-fcff = [(nopat[i] + auto_dna[i] - CS['capex'][i]) * (_UNE if i == 0 else 1.0) - dnwc_dcf[i]
-        for i in range(5)]
+fcff = [nopat[i] + auto_dna[i] - CS['capex'][i] - dnwc[i] for i in range(5)]
 pv = [fcff[i] * df[i] for i in range(5)]
 pv_sum = sum(pv)
 tv = fcff[4] * (1 + TG) / (wacc_T - TG)
 pv_tv = tv * df[4]
 ev = pv_sum + pv_tv
-# THE MINORITY IS A SHARE OF THIS LEG'S EQUITY VALUE, NOT ITS BOOK [R-BRIDGE-01]: the
-# model capitalises 100% of the segment's cash flow, so the minority's claim is on the
-# value those flows produce.
-auto_nd = D['dcf']['auto_nd']; auto_nci_share = D['dcf']['auto_nci_share']
-auto_total_eq = ev - auto_nd
-auto_nci = auto_nci_share * auto_total_eq
-auto_eq = auto_total_eq - auto_nci
+auto_nd = D['dcf']['auto_nd']; auto_nci = D['dcf']['auto_nci']
+auto_eq = ev - auto_nd - auto_nci
 evpp = 0.01 * (1 - TAX) * (sum(auto_rev[i] * df[i] for i in range(5))
                            + auto_rev[4] * (1 + TG) / (wacc_T - TG) * df[4])
 
 cap_opeq = CAPI['segment_equity_before_nci'] - CAPI['associates_carried_within']
-# RESTATED AGAINST RESTATED [audit finding 8]: note 34's +2,460.218 adjustment raises the
-# associate AND the segment equity that carries it, and the 4Q25 release of 26 February
-# 2026 predates the restatement by four months.
-cap_opeq_d25 = (18312.6 + 2460.218) - 15732.426
+cap_opeq_d25 = 18312.6 - 15732.426
 roe_h1 = (649.6 - 426.2) * 2 / ((cap_opeq_d25 + cap_opeq) / 2)
 roe_fy25 = (1365.9 - 986.4) / cap_opeq_d25
-ke_T = COC['rf_terminal'] + COC['beta'] * COC['erp_terminal']
+ke_T = (COC['rf_terminal'] + COC['beta'] * COC['erp_mature']
+        + COC['crp_effective_terminal'])
 pb = (roe_h1 - TG) / (ke_T - TG)
 capleg = cap_opeq * pb
 capleg_fy25 = cap_opeq * ((roe_fy25 - TG) / (ke_T - TG))
@@ -300,18 +282,12 @@ sotp_b = auto_eq + capleg + assoc_b
 ps_a = sotp_a / SH
 ps_b = sotp_b / SH
 
-# THE COMPANY'S OWN PUBLISHED BASIC EARNINGS PER SHARE, NOT ATTRIBUTABLE PROFIT OVER THE
-# SHARE COUNT [audit finding 26]: note 10 deducts the employees' share of profit and the
-# board of directors' bonus before dividing, and a multiple and its earnings must be on one
-# basis on both sides.
-eps_hist = {y: REL['history'][y][1] for y in ('2023', '2024', '2025')}
+eps_hist = {y: REL['history'][y][1] / SH for y in ('2023', '2024', '2025')}
 pe_hist = {y: REL['history'][y][0] / eps_hist[y] for y in ('2023', '2024', '2025')}
 pe_med = sorted(pe_hist.values())[1]
-eps26 = grp_np[0] * (1 - REL['eps_deduction_fy25']) / SH
+eps26 = grp_np[0] / SH
 rel_ps = eps26 * pe_med
-# ON THE SAME EARNINGS AS THE MULTIPLE IT IS COMPARED WITH [audit finding 26]: the
-# published basic basis, after the employees' share of profit and the board bonus.
-traded_pe = SPOT / eps26
+traded_pe = SPOT * SH / grp_np[0]
 book = D['experts']['e2']['book']
 bvps = book / SH
 env_lo = min(ps_b, ps_a, rel_ps)
@@ -324,11 +300,7 @@ SHIFTS = ANS['SENS']['shifts']; TGS = ANS['SENS']['tgs']
 # branches. They are deliberately NOT equal steps between the branches, because an equal
 # step would land on the average of two disclosures only one of which can be right.
 marks = sorted([mnt_a * h for h in ANS['SENS']['haircuts']] + [mnt_b, mnt_a])
-# THE MINORITY IS A PROPORTION IN EVERY CELL [R-BRIDGE-01]: a grid deducting a constant
-# book figure while the bridge deducts a share of value prices a different company in every
-# cell but the one the bridge happens to sit on.
-grid1 = [[((ev + s * 100 * evpp - auto_nd) * (1 - auto_nci_share)
-           + capleg + marks[k] + oth_assoc) / SH
+grid1 = [[(ev + s * 100 * evpp - auto_nd - auto_nci + capleg + marks[k] + oth_assoc) / SH
           for k in range(len(marks))] for s in D['sens']['grid_margin']]
 help_df, help_wt, grid2 = [], [], []
 for s in SHIFTS:
@@ -342,7 +314,7 @@ for i, s in enumerate(SHIFTS):
         g = TG + t
         p = sum(fcff[k] * help_df[i][k] for k in range(5))
         tvx = fcff[4] * (1 + g) / (help_wt[i] - g) * help_df[i][4]
-        row.append(((p + tvx - auto_nd) * (1 - auto_nci_share) + capleg + assoc_a) / SH)
+        row.append((p + tvx - auto_nd - auto_nci + capleg + assoc_a) / SH)
     grid2.append(row)
 
 # =====================================================================================
@@ -363,29 +335,14 @@ def one(sheet, coord, v):
 
 
 A = ASM
-one('Assumptions', 'B%d' % A['Cost of equity Ke = rf* + beta x ERP'], ke)
-# THE TERMINAL SCHEDULE IS LIVE FROM THE 17-09-2026 EDITION [audit finding 18]: years two
-# to five and the terminal rate were constants, so a reader changing the beta or the
-# premium on the Assumptions sheet moved the first year and nothing else, while 85% of the
-# auto leg sits in the terminal. Each of those cells is now a formula and each is
-# reconciled here against the committed schedule.
-one('Assumptions', 'B%d' % A['Terminal risk-free rate (DERIVED)'], COC['rf_terminal'])
-one('Assumptions', 'B%d' % A['Terminal cost of equity Ke = rf_terminal + beta x ERP_terminal'],
-    COC['ke_terminal'])
-one('Assumptions', 'B%d' % A['Terminal after-tax cost of debt'], COC['kd_terminal_aftertax'])
-one('Assumptions', 'B%d' % A['WACC — terminal (DERIVED)'], wacc_T)
-for _j, _c in enumerate('BCDEF'):
-    one('DCF', '%s%d' % (_c, DCJ['DC']["Cost of capital — this year's forward rate"]), fwd[_j])
-one('DCF', 'B%d' % DCJ['DC']['Cost of capital — terminal (norm-built)'], wacc_T)
+one('Assumptions', 'B%d' % A['Cost of equity Ke = rf* + beta x mature premium + country premium'], ke)
 one('Assumptions', 'B%d' % A['After-tax cost of debt'], kd_at)
 one('Assumptions', 'B%d' % A['WACC — first forecast year'], wacc1)
 one('Assumptions', 'B%d' % A['GB Capital operating equity'], cap_opeq)
-one('Assumptions', 'B%d' % A['GB Capital equity before NCI, 31 December 2025 (restated)'],
-    18312.6 + 2460.218)
 one('Assumptions', 'B%d' % A['GB Capital operating equity, 31 December 2025'], cap_opeq_d25)
 one('Assumptions', 'B%d' % A['Return on operating equity — 1H2026 annualised (ADOPTED)'], roe_h1)
 one('Assumptions', 'B%d' % A['Return on operating equity — FY2025 framing'], roe_fy25)
-one('Assumptions', 'B%d' % A['Terminal cost of equity Ke(T) = rf(T) + beta x ERP(T)'], ke_T)
+one('Assumptions', 'B%d' % A['Terminal cost of equity Ke(T) = rf(T) + beta x mature premium + country premium'], ke_T)
 one('Assumptions', 'B%d' % A['Justified price-to-book = (ROE - g) / (Ke(T) - g)'], pb)
 one('Assumptions', 'B%d' % A['GB Capital lending leg (EGP mn)'], capleg)
 one('Assumptions', 'B%d' % A['memo: the same leg on the FY2025 return framing'], capleg_fy25)
@@ -422,7 +379,7 @@ setrow(S, SEG['Light-Mobility revenue'], FCOLS, lm_rev)
 setrow(S, SEG['Trading revenue (tires + parts)'], FCOLS, tr_rev)
 setrow(S, SEG['Other Auto / after-sales & regional adj.'], HCOLS,
        [hautor[i] - hpcr[i] - hcvr[i] - hlmr[i] - htrr[i] for i in range(3)])
-setrow(S, SEG['Other Auto / after-sales & regional adj.'], FCOLS, of_rev)
+setrow(S, SEG['Other Auto / after-sales & regional adj.'], FCOLS, [0.0] * 5)
 setrow(S, SEG['GB Auto total revenue'], FCOLS, auto_rev)
 setrow(S, SEG['GB Capital revenue'], FCOLS, cap_rev)
 setrow(S, SEG['Intercompany eliminations'], HCOLS,
@@ -449,7 +406,7 @@ setrow(S, DC['EBIT'], DCOLS, auto_ebit)
 setrow(S, DC['NOPAT = EBIT x (1 - tax)'], DCOLS, nopat)
 setrow(S, DC['+ D&A'], DCOLS, auto_dna)
 setrow(S, DC['- Capex'], DCOLS, [-x for x in CS['capex']])
-setrow(S, DC['- Increase in net working capital'], DCOLS, [-x for x in dnwc_dcf])
+setrow(S, DC['- Increase in net working capital'], DCOLS, [-x for x in dnwc])
 setrow(S, DC['FCFF'], DCOLS, fcff)
 setrow(S, DC['Discount factor (cumulative on the schedule)'], DCOLS, df)
 setrow(S, DC['PV of FCFF'], DCOLS, pv)
@@ -459,8 +416,7 @@ one(S, 'B%d' % DCJ['PVT'], pv_tv)
 one(S, 'B%d' % DCJ['EVR'], ev)
 one(S, 'B%d' % DC['Terminal share of enterprise value'], pv_tv / ev)
 one(S, 'B%d' % DC['less: GB Auto net debt (30 June 2026)'], -auto_nd)
-one(S, 'B%d' % DC["less: GB Auto non-controlling interests, at their share of this "
-                 "value"], -auto_nci)
+one(S, 'B%d' % DC['less: GB Auto non-controlling interests'], -auto_nci)
 one(S, 'B%d' % DCJ['AEQ'], auto_eq)
 one(S, 'B%d' % DC['check: year-1 forward rate less the WACC built on Assumptions'],
     fwd[0] - wacc1)
@@ -572,11 +528,8 @@ for k, rr in enumerate(range(ANS['SOTP']['ladder0'], ANS['SOTP']['ladder1'] + 1)
 S = 'Relative & Normalized'
 for i, y in enumerate(('2023', '2024', '2025')):
     rr = ANS['REL']['pe0'] + i
-    # THE DERIVED-EPS COLUMN IS GONE, because the earnings the multiple is struck on are
-    # now the company's own published figure rather than one this desk computes from the
-    # attributable line: column C IS the published basic earnings per share.
-    one(S, 'B%d' % rr, REL['history'][y][0]); one(S, 'C%d' % rr, eps_hist[y])
-    one(S, 'E%d' % rr, pe_hist[y])
+    one(S, 'B%d' % rr, REL['history'][y][0]); one(S, 'C%d' % rr, REL['history'][y][1])
+    one(S, 'D%d' % rr, eps_hist[y]); one(S, 'E%d' % rr, pe_hist[y])
 one(S, 'E%d' % ANS['REL']['pe'], pe_med)
 one(S, 'B%d' % ANS['REL']['np26'], grp_np[0])
 one(S, 'B%d' % ANS['REL']['eps26'], eps26)
@@ -701,9 +654,10 @@ for (sh, coord), want in E.items():
 print('gate 2 — formula cells reconciled against the model: %d, disagreements: %d'
       % (nchk, len(drift)))
 for sh, coord, got, want in drift[:40]:
-    # '%,.6f' IS NOT A PYTHON FORMAT AND NEVER WAS: this gate's own failure path
-    # raised ValueError instead of printing what disagreed, so the one moment it
-    # had something to say it could not say it. It had simply never been reached.
+    # '%,.6f' IS NOT A PYTHON FORMAT and never was: %-formatting has no comma flag,
+    # so this line raises ValueError. It sits inside the loop that runs ONLY when a
+    # cell disagrees, so it had never executed -- the reporting path crashed at
+    # exactly the moment it was needed and printed nothing about the drift it found.
     g = format(got, ',.6f') if isinstance(got, (int, float)) else repr(got)
     print('    %s!%s: workbook=%s  model=%.6f' % (sh, coord, g, want))
 
@@ -746,10 +700,10 @@ checks = [
     ('GB Capital operating equity', ('Assumptions', 'B%d' % ASM['GB Capital operating equity']),
      D['lens_inputs']['capital']['operating_equity'], 0.01),
     ('terminal cost of equity',
-     ('Assumptions', 'B%d' % ASM['Terminal cost of equity Ke(T) = rf(T) + beta x ERP(T)']),
+     ('Assumptions', 'B%d' % ASM['Terminal cost of equity Ke(T) = rf(T) + beta x mature premium + country premium']),
      D['cost_of_capital_record']['ke_terminal'], 1e-8),
     ('cost of equity, explicit window',
-     ('Assumptions', 'B%d' % ASM['Cost of equity Ke = rf* + beta x ERP']),
+     ('Assumptions', 'B%d' % ASM['Cost of equity Ke = rf* + beta x mature premium + country premium']),
      D['cost_of_capital_record']['ke_exp'], 1e-8),
     ('WACC, first forecast year', ('Assumptions', 'B%d' % ASM['WACC — first forecast year']),
      D['cost_of_capital_record']['wacc_exp'], 1e-8),
@@ -824,27 +778,12 @@ for name, (sh, cd), want, tol in checks:
 # stress, not an answer, and a gate that condemned it would be firing on correct work.
 # So the test is: (i) the sheets a reader takes an ANSWER from carry nothing strictly
 # between the branches except the branches; and (ii) no formula anywhere averages them.
-# THE SAME RE-POINTING ON THE SUMMARY SHEET. The read block runs read0..read1+1, which is
-# the two BRANCHES followed by the relative multiple and the book floor — two answers and
-# two cross-checks. Only the branches are answers; a cross-check lens is published
-# precisely so a reader can see where it falls, including between them.
-ANSWER_CELLS = ([('Summary', 'C%d' % rr) for rr in (ANS['SUM']['read0'],
-                                                    ANS['SUM']['read0'] + 1)]
+ANSWER_CELLS = ([('Summary', 'C%d' % rr) for rr in range(ANS['SUM']['read0'],
+                                                         ANS['SUM']['read1'] + 2)]
                 + [('Summary', 'C%d' % ANS['SUM']['envlo']),
                    ('Summary', 'C%d' % ANS['SUM']['envhi'])]
-                # GATE 4 ASKS WHETHER AN ANSWER SITS BETWEEN THE TWO BRANCHES, so its
-                # population is the cells that ARE an answer. It carried the whole
-                # C6:C12 block, which also holds a CROSS-CHECK LENS (the relative
-                # multiple), the BOOK FLOOR, the LATEST KNOWN PRICE and the lender leg's
-                # own equity — none of them a central, every one of them free to sit
-                # anywhere. It never fired only because the branches happened to sit
-                # ABOVE all four; when L20 moved the branches to 17.83-30.32 the price
-                # and the multiple fell inside and the gate condemned the workbook for
-                # publishing a price. A check whose population is "the cells near the
-                # answer" measures where the answer happens to be [R-COC-01]: it is
-                # re-pointed at the answers rather than widened.
                 + [('Fundamental Valuation', c) for c in
-                   ('C6', 'C7', 'B10', 'D10')]
+                   ('C6', 'C7', 'C8', 'C9', 'B10', 'D10', 'C11', 'C12')]
                 + [('SOTP Bridge', 'C11'), ('SOTP Bridge', 'D11')])
 lo, hi = BRANCH[0]['value'], BRANCH[1]['value']
 between = ['%s!%s' % (sh, cd) for sh, cd in ANSWER_CELLS

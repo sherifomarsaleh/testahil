@@ -174,6 +174,19 @@ Worked precedent: `engine/amoc_study/GAP_REVIEW_01-09-2026.md`.
 
 ## Step 9 — the two documents. A run that produces one is not finished.
 
+**[R-FCAL-01 §6 AMENDED 09-09-2026] — READ THIS BEFORE THE LIST.** A campaign run on a
+name with **no current-standard study** may be **calibration-only**: it is built to the
+same depth and still owes the Word document, the Excel model, the bibliography and the QC
+gate, but it **need not strike a fair value**. You cannot update what does not exist, and
+the clause below says *updated*. Three conditions bind it and none is optional: the run
+**declares** it struck nothing, machine-readably, in a `CALIBRATION_ONLY.json` in its own
+run directory — **silence is not a declaration** and a run that merely omits a value is
+unfinished exactly as before; the exemption is **refused to any name whose study already
+publishes a central**, tested on the struck value rather than on a directory existing; and
+**the deliverable standard is not reduced**. What is optional is the struck value, never
+the work. `engine/calibration_only.py` is what reads it — `declared()` returns a PAIR, so
+unpack it.
+
 1. **The updated fundamental analysis at full model-report depth**: 16-section Word,
    16-sheet Excel with live formulas, standalone bibliography, QC gate as a filled
    evidence table; years 3–5 published as **ranges** from this record's own driver-error

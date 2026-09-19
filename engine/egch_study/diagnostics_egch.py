@@ -240,11 +240,33 @@ def sign_test(items, threshold=0.05):
 
 
 def _pub_central():
+    """The figure this file measures materiality against.
+
+    THIS STUDY PUBLISHES NO SINGLE CENTRAL and the last line here assumed one, so it
+    raised TypeError on a None the study sets DELIBERATELY: the answer is two-sided,
+    the two branches straddle the question of whether the ANNA programme is carried
+    through, and averaging them would describe a half-built plant that nobody is
+    proposing. The function had a two-sided path that never fired because
+    lens_record.primary.value is exactly the field a two-sided primary leaves empty.
+
+    Where there is no central, the CONSERVATIVE branch is named -- the lower of the two
+    -- because a materiality threshold struck on the larger number is the looser test,
+    and this file's whole job is to decide what counts as material. The choice is named
+    in the record beside it rather than inferred from a number.
+    """
     d = json.load(open(NUM, encoding="utf-8"))
     c = d.get("central")
     if isinstance(c, (int, float)):
         return float(c)
-    return float((d.get("lens_record") or {}).get("primary", {}).get("value"))
+    prim = (d.get("lens_record") or {}).get("primary", {})
+    v = prim.get("value")
+    if isinstance(v, (int, float)):
+        return float(v)
+    branches = [b["value"] for b in (prim.get("branches") or [])
+                if isinstance(b.get("value"), (int, float))]
+    if not branches:
+        raise SystemExit("no published central and no priced branch to measure against")
+    return float(min(branches))
 
 
 def _pub_spot():

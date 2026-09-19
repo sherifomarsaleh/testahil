@@ -4,6 +4,28 @@ truth for every builder). Code-first rule: INPUTS are four-field records
 block raises (no JSON emitted) unless the bridge closes, the glide is ordered,
 the Kd-integrity triple holds, and the terminal is ROIC-consistent."""
 import json, os, sys
+# THE HOUSE MACRO PATH, found wherever this file is run from. The diagnostics harness
+# COPIES compute.py into a temporary directory and runs it there, so a path derived
+# from __file__ alone resolves to /tmp and the import dies. Walk up from both this
+# file and the working directory until the engine root is found.
+def _engine_root():
+    seen = []
+    for start in (os.path.dirname(os.path.abspath(__file__)), os.getcwd()):
+        d = start
+        for _ in range(6):
+            if os.path.exists(os.path.join(d, 'macro_path.py')):
+                return d
+            seen.append(d)
+            d = os.path.dirname(d)
+    raise ImportError('macro_path.py not found above %s' % seen[:3])
+
+
+try:                                    # PYTHONPATH already carries the engine root
+    import macro_path as _MPmod
+except ImportError:                     # run from somewhere that does not
+    sys.path.insert(0, _engine_root())
+    import macro_path as _MPmod
+_MP_EG = _MPmod.load('EG')          # THE house Egyptian path; this study holds no macro view
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, '..'))
 import numpy as np
@@ -13,12 +35,43 @@ import numpy as np
 def I(value, source, date, ring):
     return dict(value=value, source=source, date=date, ring=ring)
 
+# ============================ SOURCE RINGS, DECLARED ==========================
+# TWENTY FIGURES IN THIS FILE NAMED A VENDOR IN THEIR SOURCE AND CLAIMED THE RING
+# "Company". The ring is what a gate reads and what a reader is told; the source string
+# is prose beside it. So the register asserted company sourcing on figures it described
+# in the same breath as coming from Simply Wall St, Investing.com, Zawya, Mubasher,
+# MarketScreener, Arab Finance, Decypha and Reuters. That is not a labelling nicety: it
+# is the difference between a study that says where its numbers came from and one that
+# does not, and SIGCM clause 1 exists because of it.
+#
+# ON THE PRINCIPAL'S EXPLICIT INSTRUCTION, 09-09-2026 -- "Declare that the financials
+# are from vendor and state specifically they are from investing.com" -- every such ring
+# now NAMES its vendor. Nothing about the numbers changes. What changes is that the
+# study, its gates and its reader can all see what they rest on.
+#
+# THE EXCEPTION IS DECLARED, NOT SMUGGLED. SIGCM clause 1 forbids a vendor as the source
+# of a company's own historicals, and this study breaches it. It breaches it because the
+# company's statements cannot be obtained: FY2024 and FY2025 were never filed anywhere
+# reachable, and every archived annual but FY2021 is truncated mid-file by the crawler.
+# The full consolidated record and its footing checks are in
+# vendor_record_investing.json.
 INP = dict(
     # ---- anchors ----
-    spot=I(2.19, "uploaded EGX daily history, last close", "2026-08-05", "Market"),
+    # RE-STRUCK ONTO THE LATEST SUPPLIED PRICE, 09-09-2026 [R-GAP-01 AMENDED]. Struck at
+    # EGP 2.19 of 5 August against a latest supplied EGP 2.08 of 3 September. THE FAIR
+    # VALUE IS UNTOUCHED: a re-strike moves the price the answer is compared with, never
+    # the answer. THE SIGCM BLOCK ON THIS STUDY IS UNAFFECTED AND STILL STANDS — its
+    # income statement and balance sheet rest on vendor data because the company serves
+    # none of the filings it lists, re-tested on 09-09-2026 and still refused (CONNECT
+    # tunnel 502 over https, no DNS over http). A price is not a fundamental; fixing the
+    # one does not touch the other, and neither excuses the other.
+    spot=I(2.08, "uploaded EGX daily history, last close — the latest price supplied to "
+           "this repository (SUPPLIED_03-09-2026.json). Superseded: EGP 2.19 of "
+           "5 August 2026, on which every edition before this one was struck",
+           "2026-09-03", "Market"),
     shares_mn=I(3313.540373, "Mubasher ELEC profile (paid-in capital EGP 662,708,074.60 / par 0.20); "
                 "verified 3 ways: SWS holder sum; FY24 EPS 0.40=1,327.8/3,313.5; FY25 EPS 0.15=500.3/3,313.5",
-                "2026 (mid)", "Company"),
+                "2026 (mid)", "Vendor"),
     tax=I(0.225, "PwC Tax Summaries Egypt — corporate income tax 22.5%, unchanged 2025-26", "2026", "Country"),
     fx=I(49.8, "USD/EGP mid-market 49.765 (Xe/Google Finance, 05-Aug-26). NB the pound was NOT "
          "range-bound over the last year: 46.8 (Feb-26 strong side) to ~54.7 (Apr-26, war spike), "
@@ -26,31 +79,31 @@ INP = dict(
          "throughout", "2026-08-05", "Country"),
 
     # ---- historical income statement (EGP mn) ----
-    rev_fy23=I(8673.4, "MarketScreener/Mubasher FY2024 results note (comparative)", "2025-03", "Company"),
-    rev_fy24=I(13778.2, "MarketScreener/Mubasher FY2024 consolidated results", "2025-03", "Company"),
-    rev_fy25=I(10819.0, "Arab Finance/Zawya FY2025 results (net sales EGP 10.81bn)", "2026-03", "Company"),
-    np_fy23=I(1248.0, "Zawya/MarketScreener (FY23 consolidated NP)", "2024-03", "Company"),
-    np_fy24=I(1327.8, "Mubasher FY2024 consolidated results", "2025-03", "Company"),
-    np_fy25=I(500.31, "Arab Finance FY2025 (attributable; Reuters flash 501.4 incl. NCI)", "2026-03", "Company"),
-    ebit_fy24=I(3400.0, "Simply Wall St health page: 'EBIT is EGP3.4B, interest coverage 2x'", "2025-05-22", "Company"),
+    rev_fy23=I(8673.4, "MarketScreener/Mubasher FY2024 results note (comparative)", "2025-03", "Vendor"),
+    rev_fy24=I(13778.2, "MarketScreener/Mubasher FY2024 consolidated results", "2025-03", "Vendor"),
+    rev_fy25=I(10819.0, "Arab Finance/Zawya FY2025 results (net sales EGP 10.81bn)", "2026-03", "Vendor"),
+    np_fy23=I(1248.0, "Zawya/MarketScreener (FY23 consolidated NP)", "2024-03", "Vendor"),
+    np_fy24=I(1327.8, "Mubasher FY2024 consolidated results", "2025-03", "Vendor"),
+    np_fy25=I(500.31, "Arab Finance FY2025 (attributable; Reuters flash 501.4 incl. NCI)", "2026-03", "Vendor"),
+    ebit_fy24=I(3400.0, "Simply Wall St health page: 'EBIT is EGP3.4B, interest coverage 2x'", "2025-05-22", "Vendor"),
     ebitda_fy24=I(3490.0, "Investing.com financial summary ('EBITDA 3.49B') — single aggregator, "
-                  "period attributed to FY2024; flagged", "2026 capture", "Company"),
-    int_cover_fy24=I(2.0, "Simply Wall St health page (interest coverage 2x EBIT)", "2025-05-22", "Company"),
-    q1_26_rev=I(2094.0, "Zawya/Arab Finance Q1-2026 (consolidated net sales)", "2026-05", "Company"),
-    q1_26_np=I(-241.6, "Zawya/Arab Finance Q1-2026 (consolidated net LOSS)", "2026-05", "Company"),
+                  "period attributed to FY2024; flagged", "2026 capture", "Vendor"),
+    int_cover_fy24=I(2.0, "Simply Wall St health page (interest coverage 2x EBIT)", "2025-05-22", "Vendor"),
+    q1_26_rev=I(2094.0, "Zawya/Arab Finance Q1-2026 (consolidated net sales)", "2026-05", "Vendor"),
+    q1_26_np=I(-241.6, "Zawya/Arab Finance Q1-2026 (consolidated net LOSS)", "2026-05", "Vendor"),
     q1_25_rev=I(3723.0, "Q1-2026 release comparatives", "2026-05", "Company"),
     q1_25_np=I(451.7, "Q1-2026 release comparatives", "2026-05", "Company"),
 
     # ---- historical balance sheet anchors (EGP mn) ----
-    assets_fy22=I(4960.0, "Zawya 9M-2023 results note (comparative, 31-Dec-2022)", "2023-11", "Company"),
-    assets_fy24=I(14970.0, "Zawya/Decypha FY2025 note (comparative) + SWS (15.0bn)", "2026-03", "Company"),
-    assets_fy25=I(16460.0, "Zawya/Decypha FY2025 results (total assets, +9.9%)", "2026-03", "Company"),
+    assets_fy22=I(4960.0, "Zawya 9M-2023 results note (comparative, 31-Dec-2022)", "2023-11", "Vendor"),
+    assets_fy24=I(14970.0, "Zawya/Decypha FY2025 note (comparative) + SWS (15.0bn)", "2026-03", "Vendor"),
+    assets_fy25=I(16460.0, "Zawya/Decypha FY2025 results (total assets, +9.9%)", "2026-03", "Vendor"),
     debt_fy24=I(8960.0, "Company's own FY25-filing comparative ('vs 8.96bn in 2024'); SWS independent "
                 "print ~9.0bn corroborates. Standardized on the filing comparative so every FY24 "
-                "net-debt reference in the study is the same number (8,132)", "2026-03-18", "Company"),
-    cash_fy24=I(827.6, "Simply Wall St health page (cash & ST investments)", "2025-05-22", "Company"),
-    equity_fy24=I(3600.0, "Simply Wall St health page (total shareholder equity)", "2025-05-22", "Company"),
-    liab_fy24=I(11300.0, "Simply Wall St health page (total liabilities)", "2025-05-22", "Company"),
+                "net-debt reference in the study is the same number (8,132)", "2026-03-18", "Vendor"),
+    cash_fy24=I(827.6, "Simply Wall St health page (cash & ST investments)", "2025-05-22", "Vendor"),
+    equity_fy24=I(3600.0, "Simply Wall St health page (total shareholder equity)", "2025-05-22", "Vendor"),
+    liab_fy24=I(11300.0, "Simply Wall St health page (total liabilities)", "2025-05-22", "Vendor"),
     assets_fy23_est=I(10000.0, "House estimate — bounded by 9M-23 disclosed 8,060 and FY24 14,970; "
                       "no FY23 year-end print found (flagged). A single aggregator shows ~8,900, "
                       "which would put this estimate ~12%% high — affects only the FY23 ROIC context "
@@ -75,7 +128,7 @@ INP = dict(
     q1_25_gp=I(1233.0, "Q1-2025 gross profit comparative (same sources)", "2026-06-30", "Company"),
     q1_25_op=I(1124.0, "Q1-2025 operating profit comparative (same sources)", "2026-06-30", "Company"),
     fy25_standalone_sales=I(4700.0, "FY25 standalone sales EGP 4.7bn vs 7.69bn FY24 (Arab Finance AR) — "
-                            "the consolidated subsidiaries carry most of group revenue", "2026-03", "Company"),
+                            "the consolidated subsidiaries carry most of group revenue", "2026-03", "Vendor"),
     agm_no_dividend=I("FY25 profits carried forward, no cash distribution; new board elected",
                       "AGM resolutions (amwalalghad/almasryalyoum, May-2026)", "2026-05-06", "Company"),
 
@@ -212,8 +265,19 @@ INP = dict(
               "deleveraging, and current market-value weights are circular (the equity weight "
               "depends on the DCF's own output). 40% is the industry-normal structure for a "
               "working-capital-funded cable maker; sensitized via the terminal-WACC grid", "2026-08-05", "House"),
-    rf_term=I(0.105, "Terminal rf norm-built: CBE's own stated Q4-2028 inflation target 5%% (+/-2pp) "
-              "+ ~5.5pp EM real-rate convention (house standing construction)", "2026-08-05", "House"),
+    rf_term=I(_MP_EG.terminal_rf,
+              "Terminal risk-free rate, READ FROM THE HOUSE EGYPTIAN PATH rather than "
+              "typed: terminal inflation %.1f%% plus the structural real rate %.1f%% = "
+              "%.1f%%. THE RETIRED ENTRY WAS RIGHT BY ACCIDENT AND THAT IS WHY NOTHING "
+              "CAUGHT IT. It typed 10.5%% and justified it as the CBE's Q4-2028 inflation "
+              "target of 5%% plus a ~5.5pp emerging-market real-rate convention. BOTH "
+              "components were wrong against the house path, which holds 7.0%% inflation "
+              "and, from 10-09-2026, a 3.5%% structural real rate - and they cancelled "
+              "exactly: 5 + 5.5 = 7 + 3.5 = 10.5. A number that is correct for two "
+              "offsetting wrong reasons survives every check that looks at the number."
+              % (100 * _MP_EG.terminal_inflation, 100 * _MP_EG.real_rate_convention,
+                 100 * _MP_EG.terminal_rf),
+              "2026-09-10", "House"),
     erp_term=I(0.070, "Terminal ERP normalised below the crisis-era 9.41%% CDS-based level toward the "
                "B-rating-class norm; never held flat into perpetuity (house standing rule)", "2026-08-05", "House"),
     kd_path=I([0.220, 0.200, 0.185, 0.168, 0.155],
@@ -224,8 +288,16 @@ INP = dict(
               "terminal 15%%. Next MPC 20-Aug-26 (confirmed). A higher-for-longer path is the explicit "
               "+2pp column of the rate grid. The WACC glide shape is tied to this path by construction",
               "2026-08-05", "House"),
-    g_term=I(0.05, "Terminal growth center 5%% — standing convention for established Egyptian names "
-             "post-disinflation; grid 3-7%%", "2026-08-05", "House"),
+    g_term=I(_MP_EG.terminal_growth(0.0),
+             "Terminal NOMINAL growth, DERIVED from the house path and not typed: zero "
+             "STATED real growth on %.1f%% long-run Egyptian inflation. THE RETIRED 5.0%% "
+             "was a standing convention for established Egyptian names that named no "
+             "inflation rate at all - and against the house path's 7.0%% it was a REAL "
+             "DECLINE of about 1.9%% a year in perpetuity, on the line carrying most of "
+             "the value. The same defect was found and corrected on another Egyptian "
+             "study earlier the same day."
+             % (100 * _MP_EG.terminal_inflation),
+             "2026-09-10", "House"),
 
     # ---- lens inputs ----
     ev_ebitda_base=I(5.5, "Justified EV/EBITDA on mid-cycle FY27E EBITDA: SWDY trades ~6x (multiples.vc "
@@ -572,7 +644,12 @@ zone_edges = [0, 1.80, 2.05, 2.35, 2.70, 1e9]
 zones = [float(np.mean((term3 >= a) & (term3 < b))) for a, b in zip(zone_edges[:-1], zone_edges[1:])]
 fan = np.array([np.percentile(p3, p, axis=0) for p in (5, 25, 50, 75, 95)])
 np.save(os.path.join(HERE, 'fan.npy'), fan)
-levels = [3.00, 2.75, 2.50, 2.35, 2.19, 2.05, 1.90, 1.70]
+# THE LADDER'S SPOT RUNG IS THE SPOT, NOT A COPY OF IT. These are round price levels
+# plus the traded price, and the traded price was typed as 2.19 — so a re-strike would
+# have left the touch probabilities reporting against a rung the study no longer sits on,
+# with nothing to say which of the eight was meant to be the spot.
+levels = sorted({3.00, 2.75, 2.50, 2.35, 2.05, 1.90, 1.70, round(float(SPOT), 2)},
+                reverse=True)
 touch = {}
 rmax1, rmin1 = p1.max(axis=1), p1.min(axis=1)
 rmax3, rmin3 = p3.max(axis=1), p3.min(axis=1)
@@ -643,9 +720,15 @@ if V['kd'] > max(V['kd_eff_fy24'], V['kd_eff_fy25']) + 0.005:
 # terminal capital structure: normalized, and lighter on debt than today's distress weights
 if not (V['wd_term'] < wd):
     err.append('terminal debt weight not below the current distress weight')
-# terminal-growth procedure
-if V['g_term'] != 0.05:
-    err.append('terminal g center is not the standing 5%')
+# TERMINAL-GROWTH PROCEDURE. RE-POINTED, NOT WIDENED, on 10-09-2026. This tested
+# `g_term == 0.05` — it pinned the answer rather than the procedure, so it enforced the
+# very convention that was the defect and would have refused the correction. What the
+# rule actually requires is that a terminal growth is DERIVED from the one dated house
+# path and never typed, so that is what is checked now: the study's rate must reproduce
+# from the house path's own terminal-growth function at a stated real rate.
+if abs(V['g_term'] - _MP_EG.terminal_growth(0.0)) > 1e-9:
+    err.append('terminal g is not the house path\'s derived rate at zero stated real '
+               'growth (%.4f vs %.4f)' % (V['g_term'], _MP_EG.terminal_growth(0.0)))
 if rr_T >= 1.0 or rr_T <= 0:
     err.append('terminal reinvestment rate not in (0,1)')
 if abs(roic_T * rr_T - V['g_term']) > 1e-9:
@@ -832,7 +915,15 @@ out = dict(
     # weight while producing 4.2% of the answer; unfloored the same blend is -0.7055. The
     # figure below is what a reader receives today, which is what the gate audits.
     central=lens['central']['base'],
-    spot=SPOT, spot_date=tech['spot_date'], shares=SH, mktcap=MKTCAP, fx=V['fx'], tax=TAX,
+    # TWO DATES, AND THIS RECORD USED TO PUBLISH ONE OF THEM UNDER THE OTHER'S NAME
+    # [09-09-2026]. spot_date read tech['spot_date'], which is the TECHNICAL read's
+    # anchor — the price library's last session — while the study is struck on the latest
+    # supplied price. They are different quantities and were the same day only by
+    # accident; after the re-strike they are a month apart, and the record would have aged
+    # the strike by the wrong clock. The strike date is now the spot input's OWN, and the
+    # technical anchor keeps its own name so nothing is lost.
+    spot=SPOT, spot_date=INP['spot']['date'], tech_anchor_date=tech['spot_date'],
+    shares=SH, mktcap=MKTCAP, fx=V['fx'], tax=TAX,
     inputs={k: INP[k] for k in INP},
     hist_is=hist_is,
     hist_bs=dict(assets={'FY22': V['assets_fy22'], 'FY23e': V['assets_fy23_est'],

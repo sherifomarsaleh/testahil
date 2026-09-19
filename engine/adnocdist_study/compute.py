@@ -65,7 +65,16 @@ MKT = ("Daily price history for the ADX listing supplied for this study, cleaned
 
 INP = dict(
     # ---------------- market ----------------
-    spot=I(4.07, MKT + "; last close 7 August 2026", "2026-08-07", "Market"),
+    # RE-STRUCK ONTO THE LATEST SUPPLIED PRICE, 09-09-2026 [R-GAP-01 AMENDED]. This
+    # study was struck at AED 4.07 of 7 August and the latest price this repository
+    # holds is AED 4.02 of 3 September — a study audited against its own past. The
+    # FAIR VALUE IS UNTOUCHED: a re-strike moves the price the answer is compared
+    # WITH, never the answer, and a value adjusted to meet a quote is the
+    # reverse-engineered rate this house prohibits outright.
+    spot=I(4.02, MKT + "; last close 3 September 2026, the latest price supplied to "
+           "this repository (SUPPLIED_03-09-2026.json). Superseded: AED 4.07 of "
+           "7 August 2026, on which every edition before this one was struck",
+           "2026-09-03", "Market"),
     shares_mn=I(12500.0, AUD25 + ", share capital note: AED 1,000,000 thousand of "
                 "issued capital in shares of AED 0.08 each", "2025-12-31", "Company"),
 

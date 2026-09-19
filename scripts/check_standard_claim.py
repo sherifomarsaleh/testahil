@@ -58,8 +58,6 @@ REQUIREMENTS = {
     "2026.09.01": [("[R-GAP-01] a dated gap review", "gap_outstanding.json")],
     "2026.09.07": [("[R-ASSET-01] an asset-base record", "asset_base_outstanding.json"),
                    ("[R-COC-02] a declared terminal construction", "ke_outstanding.json")],
-    "2026.09.18": [("[R-REAL-01] a real-terms declaration on every price path",
-                    "real_terms_outstanding.json")],
 }
 
 

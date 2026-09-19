@@ -6,6 +6,8 @@ figure in the delivered study can always be traced to the registry entry it came
 from, and an independent recalculation has one place to check.
 """
 import json, os, sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from numbers_file import write_preserving          # [R-REPAIR-01]
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.dirname(HERE))
@@ -17,9 +19,21 @@ import bottom_up_model as BU
 import valuation_v2 as V2
 import statements as ST
 import research_protocol as RP
+# THE CLAIM IS FROZEN ON PURPOSE AND I BROKE THAT [restored 13-09-2026].
+# This literal was read as staleness on 13-09-2026 and replaced with
+# RP.STANDARD_VERSION so that running the study would stamp it. THAT WAS THE
+# OPPOSITE OF THE TRUTH. check_standard_claim.py holds a study to the standard it
+# CLAIMS, and this study is ratcheted against [R-ASSET-01] -- it commits no
+# asset-base record -- so it does not meet 2026.09.10 and must not say it does.
+# The gate's own words: 'a stamp taken from the live constant re-asserts this on
+# every rebuild, with nobody deciding. Freeze the study's claim to a version it
+# meets, or meet the requirement.' A typed literal here is a DECISION, not a
+# defect, and the campaign queue reading it as outstanding is the queue correctly
+# reporting that this study has not been brought to the live standard.
+_STD_VERSION = "2026.09.01"
 
 IN.assert_balance_sheet_foots()
-BS26_FOOT = IN.assert_balance_sheet_bridge_foots()
+BS26_FOOT = IN.assert_balance_sheet_1q26_foots()
 
 
 
@@ -40,6 +54,41 @@ def _phdc_corrections_applied():
     return sum(1 for e in rec.get("log", [])
                for v in (e.get("corrections") or {}).values()
                if v.get("applied"))
+
+
+def _prior_edition():
+    """What the SUPERSEDED edition published, read out of the file a reader received.
+
+    The supersession sentence states what moved, so it quotes the previous edition's
+    rate -- and a figure a document prints must be a figure something committed, or
+    prose_check cannot reconcile it and the study is asserting rather than reporting.
+    Reading it from the delivered workbook makes it evidence rather than memory.
+    """
+    import openpyxl
+    import edition as _ed
+    wb = openpyxl.load_workbook(os.path.join(HERE, _ed.PRIOR_MODEL_XLSX),
+                                data_only=False)
+    S = wb["Summary"]
+
+    def by_label(label, col=2):
+        for row in S.iter_rows(min_col=1, max_col=1):
+            v = row[0].value
+            if isinstance(v, str) and v.strip().lower() == label.lower():
+                return S.cell(row=row[0].row, column=col).value
+        raise SystemExit("the superseded workbook has no row %r" % label)
+
+    return {"edition": _ed.SUPERSEDES[-1].isoformat(),
+            "workbook": _ed.PRIOR_MODEL_XLSX,
+            "wacc_adopted": by_label("Weighted average, swap basis"),
+            "wacc_alternative": by_label("Weighted average, rating basis"),
+            "per_share_bear": by_label("Weighted central", col=2),
+            "per_share_base": by_label("Weighted central", col=3)}
+
+
+def _diag_implied():
+    """The reverse read, from the diagnostic file that owns it."""
+    d = json.load(open(os.path.join(HERE, "diagnostics.json")))
+    return d["implied"]["value"]
 
 
 def main():
@@ -81,75 +130,32 @@ def main():
         "meta": {
             "ticker": "PHDC", "name": "Palm Hills Developments",
             "exchange": "EGX", "market": "EG", "currency": "EGP",
-            "edition": "2026-09-02", "prior_edition": "2026-08-30",
-            "edition_note": ("interim edition applying the three corrections of the "
-                             "01-Sep-2026 valuation review: bridge, book lens and debt "
-                             "stack on the 31-Mar-2026 reviewed balance sheet; minority "
-                             "interests deducted at their share of value; normalised "
-                             "earnings capitalised at cost of equity less growth. The "
-                             "discount rate and the lens weights are unchanged."),
-            "base_year": 2025, "information_set_ends": "2Q2026",
-            # [R-ASSET-01], ADDED 17-09-2026 AND CORRECTED THE SAME DAY. The bridge
-            # had a currency rule and the land bank had none, which on a developer is
-            # the quantity the value is built out of.
-            "asset_base_record": {
-                "quantity": "land bank",
-                "unit": "mn sqm",
-                "value": IN.OPERATING["land_bank_sqm_mn"]["value"],
-                "as_at": "2026-03-31",
-                "disclosure": (
-                    "PHD 1Q2026 earnings release, Cairo 20 May 2026, for the period "
-                    "ended 31 March 2026: a land bank in Egypt and Abu Dhabi "
-                    "\"spreading over 46 million square meters\". THE SAME BOILERPLATE "
-                    "SENTENCE carried 33 in the FY2024 release and 37 in the 1H2025 "
-                    "release, so the three are like for like and the movement is the "
-                    "company's own disclosure rather than a re-measurement."),
-                # THE RELIEF CLAUSE RETURNS BECAUSE THE INFORMATION SET MOVED, NOT
-                # BECAUSE THE ASSET BASE WENT STALE. It was deleted earlier today when
-                # the base and the information set both stood at 1Q2026; the reviewed
-                # 30-June-2026 statements have since arrived and carry the information
-                # set to 2Q2026, so the base is three months behind it again.
-                "not_restated_since": {
-                    "disclosures_checked": [
-                        "PHD periodic consolidated financial statements on 30 June 2026 "
-                        "with limited review report (Mostafa Shawki / Forvis Mazars) - "
-                        "the latest filing this study reads and the sheet its bridge now "
-                        "stands on; read page by page and carries NO land-bank figure",
-                    ],
-                    "reason": (
-                        "A LAND BANK IS AN OPERATING KPI AND OPERATING KPIs ARE DISCLOSED "
-                        "IN EARNINGS RELEASES, NOT IN FINANCIAL STATEMENTS. The 30 June "
-                        "2026 filing is a statement and does not carry the figure however "
-                        "recent it is, which is this name's own registered lessons L-116 "
-                        "and L-205. No earnings release after 1Q2026 is held: the result "
-                        "centre was enumerated on 17-09-2026 and its newest release is "
-                        "1Q2026's. What would close it is a DOCUMENT TO OBTAIN rather "
-                        "than a page to re-read - the 1H2026 earnings release, which is "
-                        "a different document from the 1H2026 STATEMENTS now held."),
-                },
-                "note": (
-                    "CORRECTED WITHIN THE DAY, AND THE FIRST CORRECTION FAILED THE SAME "
-                    "WAY THE ORIGINAL DEFECT DID. The committed figure was 33.0 as at "
-                    "31-12-2024; it was corrected this morning to 37.0 from the 1H2025 "
-                    "release, found by searching the PDFs in filings/, and the right "
-                    "figure was in a release THIS STUDY ALREADY CITES and which is "
-                    "referenced by URL rather than stored as a file. A search of the "
-                    "study's own sources beats a search of its directory. Against 33.0 "
-                    "the understatement was 28.3%. NOTHING IN THIS MODEL READS THIS "
-                    "FIGURE -- it is printed to the workbook and reaches no arithmetic "
-                    "[R-ASSET-02] -- so no valuation number moves either time, which is "
-                    "why neither error could ever have surfaced as a wrong answer."),
-            },
+            "edition": "2026-09-10", "prior_edition": "2026-09-03",
+            "edition_note": ("recalibration edition: the terminal risk-free rate now "
+                             "reads the house Egyptian macro path rather than a real-rate "
+                             "convention carried inside this study, which moves the "
+                             "terminal cost of capital from 16.15% to 14.97% and the "
+                             "central from EGP 17.86 to EGP 21.09. Nothing else changes: "
+                             "the forecast, the cash-conversion cases, the bridge and the "
+                             "lens weights are as issued on 3 September 2026."),
+            "base_year": 2025, "information_set_ends": "1Q2026",
             "bridge_balance_sheet": IN.BRIDGE_BS_DATE,
-            "standard_version": RP.STANDARD_VERSION,
+            # THE STAMP IS FROZEN, NOT TAKEN FROM THE LIVE CONSTANT. [R-STD-02]: a version read
+            # from research_protocol.STANDARD_VERSION re-asserts everything that version requires on
+            # EVERY rebuild, with nobody deciding — and this study is listed as not meeting one of
+            # them (an asset-base record whose vintage is at least as new as the information set it
+            # claims to have read). Claiming the newer standard would be the study asserting a
+            # conformance the ratchet records it does not have. It moves back to the live constant in
+            # the same pass that meets the requirement, and not before.
+            "standard_version": _STD_VERSION,
             "spot": 14.40, "spot_date": "close 3 Sep 2026",
         },
         "registry": {**{k: v for g in (IN.ACTUALS, IN.BALANCE_SHEET_FY25, IN.DEBT_FY25,
                                        IN.OPERATING, IN.MARKET) for k, v in g.items()},
-                     **{k + "_bridge": v for k, v in IN.BALANCE_SHEET_BRIDGE.items()}},
+                     **{k + "_1q26": v for k, v in IN.BALANCE_SHEET_1Q26.items()}},
         "balance_sheet_fy24": IN.BALANCE_SHEET_FY24,
-        "balance_sheet_bridge": IN.BALANCE_SHEET_BRIDGE,
-        "balance_sheet_bridge_foot": BS26_FOOT,
+        "balance_sheet_1q26": IN.BALANCE_SHEET_1Q26,
+        "balance_sheet_1q26_foot": BS26_FOOT,
         "balance_sheet_subtotals": IN.BALANCE_SHEET_SUBTOTALS,
         "historical_is": IN.HISTORICAL_IS,
         "fy24_cogs_basis": {"as_reported": IN.FY24_COGS_AS_REPORTED,
@@ -165,8 +171,8 @@ def main():
             "bridge_balance_sheet": BU.BRIDGE_BS_DATE,
             "nci_value_share": BU.NCI_VALUE_SHARE,
             "nci_profit_share_3y": BU.NCI_PROFIT_SHARE_3Y,
-            "nci_book_bridge": BU.NCI_BOOK_BRIDGE,
-            "nci_book_share_bridge": BU.NCI_BOOK_SHARE_BRIDGE,
+            "nci_book_1q26": BU.NCI_BOOK_1Q26,
+            "nci_book_share_1q26": BU.NCI_BOOK_SHARE_1Q26,
             "nci_basis": BU.NCI_BASIS,
             "shares_mn": VAL.SHARES_MN,
             "book_equity_per_share": BU.BS_BRIDGE["equity_parent"] / VAL.SHARES_MN,
@@ -179,9 +185,24 @@ def main():
             "cfo_lo": CF["lo"], "cfo_mid": CF["mid"], "cfo_hi": CF["hi"],
             "cpi_trailing3": VAL.CPI3,
             "target_backlog_multiple": VAL.TARGET_BACKLOG_MULT,
-            "market_implied_cash_conversion": implied,
+            # REMOVED 13-09-2026. A quantity SOLVED FROM A PRICE must not sit in
+            # the file every builder reads -- that is the reverse-engineered
+            # rate the protocol prohibits, arriving through a side door, and
+            # diagnostics.json says so in its own words while this line put it
+            # back. It lives in diagnostics.json["implied"]["value"], which is
+            # where every consumer now reads it from [R-ENF-05].
             "edition_11jun_wacc": 0.18,      # the 11-Jun-2026 edition's typed rate, kept for the narrative
-            "prior_edition_fair": {"bear": 4.5998, "base": 10.9412, "full": 23.3342},   # 30-Aug-2026 edition
+            # THE IMMEDIATELY SUPERSEDED EDITION -- maintained by each strike, because
+            # that is what the document's supersession sentence and the football chart's
+            # reference line both mean by "prior". This key held the 30-AUGUST figures
+            # for two editions after 30 August, so the 3 September document told its
+            # reader it was superseding an edition two behind the one it actually
+            # replaced. The 30-August numbers are still needed -- the gap review
+            # decomposes that specific move -- so they now have a key that NAMES the
+            # edition instead of a relative word that goes stale on every strike.
+            "prior_edition_fair": {"bear": 4.0172, "base": 17.8617, "full": 46.5342},   # 03-Sep-2026 edition
+            "edition_30aug_fair": {"bear": 4.5998, "base": 10.9412, "full": 23.3342},
+            "edition_30aug_lenses": {"dcf_base": 14.86, "book": 6.56, "nep_base": 5.17},
             "prior_edition_lenses": {"dcf_base": 14.86, "book": 6.56, "nep_base": 5.17},
         },
         "cases": {"low_conversion": low, "base": base,
@@ -224,7 +245,7 @@ def main():
             "latest_disclosed_source": (
                 "PHD consolidated financial statements for the three months ended 31 March 2026 "
                 "(limited review report attached), downloaded 01-Sep-2026 from the company's own "
-                "result centre; registered line by line in bs_2q2026.json and accepted only "
+                "result centre; registered line by line in bs_1q2026.json and accepted only "
                 "because its own subtotals foot. The company had published no later statement at "
                 "this edition's date — the half-year 2026 filing was not out."),
             # the ADDITIVE lines only: the waterfall's own components, not the
@@ -241,9 +262,9 @@ def main():
                     "(EGP 207.2mn of 4,423.8mn) — the company does not disclose the "
                     "subsidiaries carrying the minority with their own economics, so their "
                     "value cannot be built directly"),
-                "book": BU.NCI_BOOK_BRIDGE,
+                "book": BU.NCI_BOOK_1Q26,
                 "profit_share": BU.NCI_VALUE_SHARE,
-                "proportional": BU.NCI_BOOK_SHARE_BRIDGE,
+                "proportional": BU.NCI_BOOK_SHARE_1Q26,
             },
             "cash": {
                 "treatment": "inside_the_flow",
@@ -262,20 +283,17 @@ def main():
         },
         "lenses": V2.lenses()["rows"],
         "lens_weighted": V2.lenses()["weighted"],
+        "prior_edition": _prior_edition(),
         "lens_detail": {k: V2.lenses()[k] for k in ("normalised_inputs", "book_reference")},
-        # the second driver, committed so the document READS it rather than typing it
-        "schedule_shift_sensitivity": V2.lenses()["schedule_shift_sensitivity"],
         # [R-LENS-03] the architecture as a record the outside gate reads
         "lens_record": {
             "class": "real-estate developer, off-plan, percentage-of-completion",
             "primary": {"kind": "dcf", "value": V2.lenses()["primary"]["value"],
                         "range": {"low": V2.lenses()["rows"][0][1],
                                   "high": V2.lenses()["rows"][0][3]},
-                        "range_note": ("the cash-flow lens across the full observed range "
-                                       "of the crux — cash conversion — with the "
-                                       "cost-of-capital schedule HELD, so the range moves "
-                                       "one driver. The same two rates with the schedule "
-                                       "shifted are published as a separate sensitivity."),
+                        "range_note": ("the cash-flow lens across the full observed range of "
+                                       "the crux — cash conversion — with the whole schedule "
+                                       "shifted rather than flattened"),
                         "note": ("the cash-flow lens on the company's own units and prices, "
                                  "discounted on the cost-of-capital schedule over a window "
                                  "that runs until growth has converged on the terminal"),
@@ -295,23 +313,12 @@ def main():
                             "high": 0.17870012846326283,
                             "units": ("fraction of contracted sales converting to "
                                       "operating cash in the year"),
-                            # THE FORECAST IT IS COMPARED AGAINST IS READ, NOT TYPED
-                            # [17-09-2026]. This clause said "against a forecast of
-                            # 0.0871" -- the three-year mean the model carried BEFORE the
-                            # re-anchoring onto the reviewed half. The evidence field of a
-                            # record is the last place a superseded number should sit,
-                            # because it is what an outside reader checks the range against.
                             "evidence": (
                                 "the full observed span of that rate in the company's own "
                                 "filed cash-flow statements, recorded in this study's "
                                 "diagnostics as study_value_range against a forecast of "
-                                "%.4f, the reviewed half to 30 June 2026. Not a chosen "
-                                "percentage band: the low and the high are values this "
-                                "company has actually printed. ONE DRIVER AND ONE CLOCK: "
-                                "the cost-of-capital schedule is held across the range; "
-                                "a shifted schedule is published beside it as its own "
-                                "sensitivity and is not folded in here."
-                                % ST.CONV_MID),
+                                "0.0871. Not a chosen percentage band: the low and the "
+                                "high are values this company has actually printed."),
                             "macro_held": True,
                             "macro_note": (
                                 "one inflation path, one currency path, one cost-of-capital "
@@ -444,18 +451,7 @@ def main():
                       "wedge_fy25": ST.WEDGE_25,
                       "wedge_over_revenue": ST.WEDGE_RATIO,
                       "audited_rounding": ST.AUDITED_ROUNDING},
-            # `mean` IS KEPT AND IS NO LONGER A MEAN, so what it now carries and what it
-            # used to carry are BOTH exposed under names that describe them. The key
-            # outlived its construction when the 17-09-2026 re-anchoring moved the rate
-            # onto the reviewed half, and the delivered document printed it beside the
-            # three published years as their average -- an arithmetic claim a reader can
-            # check on the page and find false. `mean` stays only so nothing reading the
-            # old shape silently loses the figure; every new site reads `carried`.
-            "cash_conversion": {**ST.CONV, "carried": ST.CONV_MID,
-                                "mean_3y": ST.CONV_MEAN3,
-                                "carried_basis": ("the reviewed six months to 30 June "
-                                                  "2026, cfo_1h26 over revenue_1h26"),
-                                "mean": ST.CONV_MID,
+            "cash_conversion": {**ST.CONV, "mean": ST.CONV_MID,
                                 "low": ST.CONV_LO, "high": ST.CONV_HI},
             "framing_a": ST.project("cycle"),
             "framing_b": ST.project("conversion"),
@@ -487,24 +483,15 @@ def main():
                 _phdc_corrections_applied(),
             "corrections_adopted": 0,
             "corrections_note": (
-                "REBUILT 17-09-2026 UNDER THE CUT-INVARIANT RULE, and the previous "
-                "text is superseded rather than adjusted: it named six shifts at two "
-                "origins on four drivers, and after the rebuild it is eight shifts at "
-                "four origins on three. The test used to ask whether a bias held its "
-                "sign ACROSS ERAS, and this market's era boundary is the year the "
-                "currency moved -- the right cut for a currency and not every "
-                "driver's. It now asks whether the sign holds at EVERY cut the data "
-                "admits, through the shared instrument rather than a comparison of "
-                "this run's own. IT CUT BOTH WAYS, WHICH IS WHY IT IS WORTH SAYING: "
-                "average selling price and units sold were WITHDRAWN, flipping at two "
-                "of four and one of four cuts; and units delivered, the selling and "
-                "administrative line and the finance charge were ADMITTED at the 2021 "
-                "and 2022 origins, where the old test could not run at all because "
-                "only one era then had two resolved errors. NONE was promoted into "
-                "the live drivers and the forward model carries no correction, so no "
-                "figure in this study moves. The finance-cost candidate passed a bias "
-                "test and failed the consistency clause, which is what exposed the "
-                "interest-bearing-denominator defect; it is carried as a watch flag"),
+                "The expanding-window rule applied six half-strength shifts inside "
+                "the test itself, at the 2023 and 2024 origins, on four drivers — "
+                "units sold, average selling price, units delivered and the finance "
+                "charge — each on a sign-stability reason. NONE was promoted into "
+                "the live drivers and the forward model carries no correction. The "
+                "finance-cost candidate passed a bias test and failed the "
+                "consistency clause, which is what exposed the "
+                "interest-bearing-denominator defect; it is carried as a watch flag "
+                "and acted on by nobody."),
             "origins": 10, "horizons": "1-5y",
             "revenue_bias": 0.105, "revenue_mae": 0.425,
             "net_profit_bias": 1.116, "net_profit_mae": 1.117,
@@ -538,60 +525,38 @@ def main():
     _REV1Q = out["registry"]["revenue_1q26"]["value"]
     _GP1Q = out["registry"]["gross_profit_1q26"]["value"]
     _GM1Q = _GP1Q / _REV1Q
-    # THE ANCHOR IS THE REVIEWED HALF, AND THIS RECORD SAID 1Q2026 FOR A DAY AFTER IT
-    # STOPPED BEING TRUE.  The 17-09-2026 re-issue moved the gross-margin anchor onto
-    # the reviewed six months to 30 June 2026 (rebuild ledger, lever 2) and moved the
-    # bridge onto the same filing's balance sheet (lever 1) -- and this block went on
-    # naming 1Q2026 as the latest reviewed period, carrying the 1Q rate as
-    # latest_reviewed_rate, and asserting in its own note that no half-year 2026
-    # statements existed.  The MODEL was right the whole time: first_forecast_rate was
-    # already the half's 35.4670%.  What was stale was the RECORD, which is the only
-    # thing a gate outside this study can read, and check_anchor_ordering read it
-    # exactly as written -- a bridge on 30 June against a profit anchor on 31 March,
-    # which is the half-a-filing defect that gate exists for, reported against a study
-    # that had not committed it.  A LEVER APPLIED TO THE MODEL AND NOT WRITTEN INTO THE
-    # RECORD IS INVISIBLE WHERE IT COUNTS.  Nothing valued moves here.
-    _REV1H = out["registry"]["revenue_1h26"]["value"]
-    _GP1H = out["registry"]["gross_profit_1h26"]["value"]
-    _GM1H = _GP1H / _REV1H
     _GM25 = _gm_hist("2025")
     _CONV = out["statements"]["cash_conversion"]
     _CONVF = float(_FB[0]["cash_conversion"])
     _CS = out["cases"]
     # the drift the two filed periods measure, and what carrying it would cost --
     # computed here so the record states arithmetic rather than quoting a comment
-    # MEASURED ON THE PAIR THE ANCHOR ACTUALLY SITS ON. It was FY2025-against-1Q2026
-    # while the anchor was the quarter; the anchor is the reviewed half, so the
-    # like-for-like pair is FY2025-against-1H2026 and the drift is recomputed on it.
-    _COSTDRIFT = ((1 - _GM1H) / (1 - _GM25)) - 1.0
-    _c4 = (1 - _GM1H) * (1 + _COSTDRIFT) ** 4
-    _c5 = (1 - _GM1H) * (1 + _COSTDRIFT) ** 5
+    _COSTDRIFT = ((1 - _GM1Q) / (1 - _GM25)) - 1.0
+    _c4 = (1 - _GM1Q) * (1 + _COSTDRIFT) ** 4
+    _c5 = (1 - _GM1Q) * (1 + _COSTDRIFT) ** 5
     out["forecast_anchor"] = dict(
         rate_name="gross margin",
-        latest_reviewed_period="1H2026, six months ended 30 June 2026",
-        latest_reviewed_date="2026-06-30",
-        latest_reviewed_rate=float(_GM1H),
+        latest_reviewed_period="1Q2026, three months ended 31 March 2026",
+        latest_reviewed_date="2026-03-31",
+        latest_reviewed_rate=float(_GM1Q),
         first_forecast_rate=float(_GMP[0]),
         forecast_path=_GMP,
         note=(
             "NEITHER CLAUSE FIRES AND THE ANCHOR IS EXACT. The forecast gross margin IS "
             "the latest reviewed period's rate, %.4f%%, and it is held there for every "
             "one of the %d explicit years: the model sets the forward margin equal to the "
-            "reviewed half's margin and solves cost per delivered unit from it, so the "
-            "opening year and the latest reviewed period are the same number by "
-            "construction and the path is flat. THE LATEST REVIEWED PERIOD IS THE NEWEST "
-            "DISCLOSURE OF ANY KIND: the consolidated statements for the six months ended "
-            "30 June 2026, which carry a limited review report, are held, read and footed, "
-            "so the information set ends there -- AND THE BALANCE SHEET IN THE BRIDGE "
-            "STANDS ON THAT SAME FILING, so the profit anchor and the bridge come out of "
-            "one document rather than out of half of one. The two figures forming the rate "
-            "are that half's own revenue of EGP %s mn and gross profit of EGP %s mn, a "
-            "margin of %.4f%%. The 1Q2026 earnings release of 20 May 2026 -- revenue EGP "
-            "%s mn, gross profit EGP %s mn, the release itself rounding the margin to "
-            "%.0f%% -- IS SUPERSEDED AND IS NAMED RATHER THAN DROPPED: it anchored this "
-            "rate until 17-09-2026 at %.4f%%, seventeen hundredths of a point away, and a "
-            "reviewed half replaces a release that rounded its gross profit to the nearest "
-            "hundred million. Nothing here is estimated, interpolated or inferred. "
+            "1Q2026 margin and solves cost per delivered unit from it, so the opening year "
+            "and the latest reviewed period are the same number by construction and the "
+            "path is flat. THE LATEST REVIEWED PERIOD IS THE NEWEST DISCLOSURE OF ANY "
+            "KIND: this study's own gap register records that no second-quarter or "
+            "half-year 2026 statements or release were posted to the company's result "
+            "centre at this build, so the information set ends at 1Q2026. The two figures "
+            "forming the rate are the company's own 1Q2026 earnings release of 20 May "
+            "2026 -- revenue EGP %s mn and gross profit EGP %s mn, the release itself "
+            "stating the margin as %.0f%% -- and the consolidated "
+            "statements for those same three months, which carry a limited review report, "
+            "are what the balance sheet in the bridge stands on. Nothing here is "
+            "estimated, interpolated or inferred. "
             "WHAT THE RECORD MAKES VISIBLE, AND WHICH NO SENTENCE IN THE STUDY SAYS: "
             "against the audited FULL YEAR the forecast sits %.2f%% relatively BELOW -- "
             "FY2025 %.2f%% against a forecast %.2f%% -- and had the anchor been that full "
@@ -602,30 +567,26 @@ def main():
             "is FY2023 %.2f%%, FY2024 %.2f%%, FY2025 %.2f%%, so the forecast sits above "
             "the first two audited years and below the third. "
             "THE DRIFT THAT IS MEASURED AND NOT CARRIED, recorded rather than left out. "
-            "The FY2025-to-1H2026 pair moves cost per unit of revenue from %.3f%% to "
+            "The FY2025-to-1Q2026 pair moves cost per unit of revenue from %.3f%% to "
             "%.3f%%, a rise of %.2f%% -- a like-for-like direction that would support an "
             "input-cost mechanism if a drift were being claimed. None is claimed: price "
             "and cost escalate on the same path, so the margin neither rises nor falls, "
             "and declining to extrapolate a drift is not a decline away from the anchor. "
-            "The model states why it is not extrapolated -- one reviewed half against one "
+            "The model states why it is not extrapolated -- one quarter against one "
             "audited year is a single observation on a developer whose margin moves with "
             "which project happens to hand over. What carrying it would cost is arithmetic on "
             "those two filed periods and is stated rather than asserted: cost per unit of "
             "revenue compounding at that rate reaches %.2f%% of revenue after four years, "
             "a gross margin of %.2f%%, and passes 100%% in the fifth -- a margin of %.2f%%, "
             "which is a loss on every delivered unit. A rate that takes a company to a "
-            "loss inside its own explicit window on the strength of one reviewed half is "
+            "loss inside its own explicit window on the strength of one quarterly print is "
             "an extrapolation, not an anchor. "
             "THE OTHER CANDIDATE RATE IS NAMED HERE BECAUSE IT IS THE ONE THAT CARRIES "
             "THE VALUE. The published central does not stand on the gross margin. It "
             "stands on the framing in which operating cash is set at a fixed share of "
             "revenue and working capital is the derived line, and that share is %.3f%% -- "
-            "THE REVIEWED SIX MONTHS TO 30 JUNE 2026, not a mean, held flat across the "
-            "window -- the published years it replaces being FY2023 %.2f%%, FY2024 %.2f%% "
-            "and FY2025 %.2f%%, whose mean is a different number and is exposed beside it "
-            "as mean_3y. THIS CLAUSE CALLED THE CARRIED RATE THAT MEAN until the "
-            "17-09-2026 re-anchoring was written into the record, which is a claim a "
-            "reader can check on the page and find false. It sits %.1f%% "
+            "the MEAN of the company's three published years, FY2023 %.2f%%, FY2024 "
+            "%.2f%%, FY2025 %.2f%% -- held flat across the window. It sits %.1f%% "
             "relatively ABOVE the latest disclosed year rather than below it, so no "
             "clause of this rule reaches it: a rate above the latest period is what the "
             "two-sided gap trigger and the sign test audit. It is recorded because the "
@@ -635,24 +596,18 @@ def main():
             "a three-year mean, and the study's own grid prices the difference: EGP %.2f "
             "a share at the FY2025 rate, EGP %.2f at the mean and EGP %.2f at the FY2024 "
             "rate, on one discount schedule, with the rate the traded price implies, "
-            "%.2f%%, sitting between the first two. A REVIEWED COMPARATOR FOR THIS RATE "
-            "NOW EXISTS AND IS WHAT THE RATE STANDS ON: the reviewed six months to 30 June "
-            "2026 disclose an operating cash flow, and the 17-09-2026 re-issue anchored the "
-            "conversion on that half rather than on the three-year mean it had carried -- "
-            "the single largest lever in that rebuild. THIS SENTENCE SAID THE OPPOSITE FOR "
-            "A DAY, having been written when the study held only 1Q2026, which discloses "
-            "revenue, gross profit and net profit and no cash-flow statement. Nothing is "
-            "estimated to fill any gap. The same model with the collection cycle held instead of the "
+            "%.2f%%, sitting between the first two. NO REVIEWED COMPARATOR FOR THIS RATE "
+            "CAN BE FORMED FROM WHAT THIS STUDY HOLDS -- 1Q2026 discloses revenue, gross "
+            "profit and net profit and no cash-flow statement -- and none is estimated to "
+            "fill the gap. The same model with the collection cycle held instead of the "
             "conversion yields a NEGATIVE EGP %.2f a share and is published as a funding "
             "statement rather than as a value, which is the disagreement this record sits "
             "inside."
             % (100 * _GMP[0], len(_GMP),
-               "{:,.2f}".format(_REV1H), "{:,.2f}".format(_GP1H), 100 * _GM1H,
                "{:,.0f}".format(_REV1Q), "{:,.0f}".format(_GP1Q), 100 * _GM1Q,
-               100 * _GM1Q,
                100 * (_GM25 - _GMP[0]) / _GM25, 100 * _GM25, 100 * _GMP[0],
                100 * _gm_hist("2023"), 100 * _gm_hist("2024"), 100 * _GM25,
-               100 * (1 - _GM25), 100 * (1 - _GM1H),
+               100 * (1 - _GM25), 100 * (1 - _GM1Q),
                100 * _COSTDRIFT,
                100 * _c4, 100 * (1 - _c4), 100 * (1 - _c5),
                100 * _CONVF,
@@ -661,12 +616,15 @@ def main():
                100 * _CONV["FY2025"],
                _CS["low_conversion"]["per_share"], _CS["base"]["per_share"],
                _CS["high_conversion"]["per_share"],
-               100 * out["derived"]["market_implied_cash_conversion"],
+               100 * _diag_implied(),
                abs(out["statements"]["dcf_a"]["per_share"]))))
 
     # [R-LENS-03] the central IS the class primary, not a blend of lenses
     out["central"] = out["lens_record"]["primary"]["value"]
-    out["standard_version"] = RP.STANDARD_VERSION   # read by campaign_queue.py; never typed
+    out["standard_version"] = _STD_VERSION   # read by campaign_queue.py, and now
+    # actually never typed: this line carried the literal "2026.09.01" beside a
+    # comment saying it was not typed, which is how a rebuilt study went on
+    # reporting a superseded standard to the campaign queue.
     out["spot"] = 14.40
     out["meta"]["central"] = out["central"]
     out["meta"]["gap_vs_spot"] = out["central"] / out["spot"] - 1
@@ -674,8 +632,10 @@ def main():
         "the cash-flow lens — the class primary — which IS the central under the lens "
         "architecture of 02-Sep-2026. The cross-checks are published beside it and define "
         "the range; nothing is averaged. Written by the builder, never by hand.")
-    json.dump(out, open(os.path.join(HERE, "study_numbers.json"), "w"),
-              indent=1, default=str)
+    _carried = write_preserving(os.path.join(HERE, "study_numbers.json"), out)
+    if _carried:
+        print("[R-REPAIR-01] carried forward downstream-owned record(s): %s"
+              % ", ".join(_carried))
     n = sum(1 for _ in json.dumps(out))
     print("study_numbers.json written (%d chars)" % n)
     print("  registry entries : %d" % len(out["registry"]))

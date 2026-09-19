@@ -16,6 +16,9 @@ from docx.shared import Pt, Cm
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed
+import wacc as _WACC_MOD    # the quote age, computed once        # the edition date, written once
 ENGINE = os.path.dirname(HERE)
 ROOT = os.path.dirname(ENGINE)
 sys.path.insert(0, HERE)
@@ -56,7 +59,7 @@ SPOT = M["spot"]
 # read "1 September 2026" while the file shipped as 02-09-2026. Nothing was wrong with the
 # study; a person had to remember two strings and remembered one. A date is a figure a
 # reader sees, so the standing rule applies to it — COMPUTED, NOT TYPED.
-EDITION_FILE = "TMGH_Valuation_Study_02-09-2026.docx"
+EDITION_FILE = _ed.STUDY_DOCX
 
 
 def _edition_words(fname=EDITION_FILE):
@@ -130,6 +133,15 @@ def build(path):
     # the model report counts the masthead and this note as its first
     # section, so it is a top-level heading and the section count is 16
     doc.add_heading("Read first", level=1)
+    # [R-DOC-03] THE TWO DATES, AT THE TOP, LABELLED. Resolved by engine/doc_dates.py
+    # and never from a file's modification time.
+    import sys as _sys_dd, os as _os_dd
+    _sys_dd.path.insert(0, _os_dd.path.join(_os_dd.path.dirname(
+        _os_dd.path.dirname(_os_dd.path.abspath(__file__)))))
+    import doc_dates as _DD
+    _hp = doc.add_paragraph(_DD.header_line('TMGH'))
+    for _r in _hp.runs:
+        _r.font.size = __import__('docx').shared.Pt(8)
     para(doc, "This document sets out a range of values for one company and the "
               "reasoning behind it. It is not advice, it does not tell anyone to "
               "buy or sell anything, and it contains no target price. Where a "
@@ -706,20 +718,44 @@ def section1_drivers(doc):
     doc.add_heading("1.8 The cost of capital, priced line by line", level=2)
     ins = W["inputs"]
     dam = ins["damodaran"]
+    CBE = ins["cbe"]
     # EACH COST OF EQUITY REPRODUCES FROM THE ROWS THIS TABLE PRINTS, on its own basis.
-    for _rf, _erp, _ke in ((W["rf_star_rating"], dam["total_erp_rating"], W["ke_rating"]),
-                           (W["rf_star_cds"], dam["total_erp_cds"], W["ke_cds"])):
-        assert abs(_rf + W["beta_record"]["beta"] * _erp - _ke) < 5e-4, (
-            "the cost of equity does not reproduce: %.4f + %.4f x %.4f != %.4f"
-            % (_rf, W["beta_record"]["beta"], _erp, _ke))
-        assert abs((ins["rf_observed"] - _rf)
-                   - (dam["adj_default_spread"] if _erp == dam["total_erp_rating"]
-                      else dam["sovereign_cds"])) < 5e-4, "the spread stripped is not printed"
+    # RE-POINTED 10-09-2026 TO THE SPLIT IDENTITY. This asserted rf* + beta x the WHOLE
+    # premium, which multiplies Egypt's country risk by beta. The model moved to charging
+    # country risk ONCE AND FLAT and this assertion did not move with it, so the delivered
+    # document refused to build: 0.1663 + 1.4687 x 0.1394 came to 0.3711 against the
+    # 0.3257 the study publishes. The assertion was right to refuse -- it was reproducing
+    # an identity this house had retired, and 454 basis points is not a rounding argument.
+    # Beta applies to the MATURE leg and to nothing else; the country leg is added flat.
+    _ERPM = W["erp_mature"] if "erp_mature" in W else \
+        dam["total_erp_cds"] - dam["sovereign_cds"] * 1.52
+    for _rf, _crp, _ke, _spread in (
+            # DERIVED, not read off the rounded country-premium row: the published
+            # 9.71% leaves the identity 1.5bp short, which passes on tolerance rather
+            # than on arithmetic. Both bases now strip the same mature leg from their
+            # own total, which is what the split actually is.
+            (W["rf_star_rating"], dam["total_erp_rating"] - _ERPM, W["ke_rating"],
+             dam["adj_default_spread"]),
+            (W["rf_star_cds"], dam["total_erp_cds"] - _ERPM, W["ke_cds"],
+             dam["sovereign_cds"])):
+        assert abs(_rf + W["beta_record"]["beta"] * _ERPM + _crp - _ke) < 5e-4, (
+            "the cost of equity does not reproduce on the split identity: "
+            "%.4f + %.4f x %.4f + %.4f != %.4f"
+            % (_rf, W["beta_record"]["beta"], _ERPM, _crp, _ke))
+        assert abs((ins["rf_observed"] - _rf) - _spread) < 5e-4, \
+            "the spread stripped is not printed"
     table(doc, ["Input", "Value", "Where it comes from"],
           [["Egyptian ten-year government bond yield", pct(ins["rf_observed"], 2),
+            # READ, NOT TYPED [08-09-2026]. These three were typed here and in the
+            # source register, and printed to a reader from both, so the prose check
+            # found figures in two delivered documents that no committed record carried.
+            # They are sourced — the CBE's own August decision — and a sourced figure a
+            # reader is shown belongs in the record where it ages visibly.
             "market quote dated 6 August 2026, cross-checked against a policy "
-            "rate of 19.00%, an overnight lending rate of 20.00% and an "
-            "interbank rate of 19.51% at the central bank's August 2026 meeting"],
+            "rate of " + pct(CBE["policy"], 2) + ", an overnight lending rate of "
+            + pct(CBE["overnight_lending"], 2) + " and an interbank rate of "
+            + pct(CBE["interbank"], 2) + " at the central bank's " + CBE["meeting"]
+            + " meeting"],
            ["Egypt's own default spread, rating basis", pct(dam["adj_default_spread"], 2),
             "the sovereign's own row in the published country-premium file, read "
             "fresh on 1 September 2026"],
@@ -748,7 +784,10 @@ def section1_drivers(doc):
             % (money(W["beta_record"]["window_years"], 2), W["beta_record"]["n"],
                pct(W["beta_record"]["r2"], 1), money(W["beta_record"]["se"], 3))],
            ["Cost of equity", "%s / %s" % (pct(W["ke_rating"], 2), pct(W["ke_cds"], 2)),
-            "the normalised risk-free rate plus beta times each premium"],
+            "the normalised risk-free rate, plus beta times the MATURE premium, plus "
+            "Egypt's country premium charged once and flat. Beta measures this share's "
+            "exposure to its own equity market, not to its sovereign, so it is not "
+            "applied to the country leg"],
            ["Marginal cost of debt, before tax", pct(ins["kd_local"], 2),
             "the sovereign yield plus a 250 basis-point corporate spread. TMG "
             "does not disclose the rate on any of its own facilities, so its own "
@@ -789,8 +828,10 @@ def section1_drivers(doc):
               "gives the same pound arriving on the same day two different values, "
               "and it is not done here."
               % money(SCHED["terminal_discount_factor"], 3), size=9, color=MUTED)
-    para(doc, "One caveat on the risk-free rate. The quote adopted is 26 days "
-              "old at the date of this study. It was cross-checked against three "
+    # TYPED IN TWO PLACES, AND BOTH WERE TRUE OF THE 1-SEPTEMBER EDITION. The quote is
+    # 6 August and this edition is 10 September, which is 35 days, not 26.
+    para(doc, "One caveat on the risk-free rate. The quote adopted is %d days "
+              "old at the date of this study." % _WACC_MOD._QUOTE_AGE_DAYS + " It was cross-checked against three "
               "current central-bank rates rather than accepted alone, and its "
               "effect is priced across the whole plausible range in the next "
               "section. It should be refreshed before this study is relied on.",

@@ -7,8 +7,12 @@ independent evaluator recalculate the delivered workbook against a file that
 was produced by the model rather than transcribed from it.
 """
 import json, os, sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from numbers_file import write_preserving          # [R-REPAIR-01]
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
 ENGINE = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 sys.path.insert(0, ENGINE)
@@ -52,9 +56,29 @@ def build():
         "meta": {
             "instrument": "Talaat Moustafa Group Holding", "ticker": "TMGH",
             "exchange": "EGX", "market": "EG", "currency": "EGP",
-            "edition_date": "2026-09-02",
+            # TYPED, AND IT IS WHAT THE WORKBOOK MASTHEAD PRINTS. Being the record's
+            # sole source it could not disagree with anything, so the typed-date gate
+            # had nothing to compare it against and it sat two editions stale.
+            "edition_date": _ed.ISO,
+            # THE STAMP WAS FROZEN AND THIS IS THE PASS THAT UNFREEZES IT [R-STD-02].
+            # It read a hard 2026.09.01 because this study was listed as not meeting one
+            # requirement of the newer standard: an asset-base record whose vintage is at
+            # least as new as the information set it claims to have read. That requirement
+            # is met as of 09-09-2026 — asset_base_record.py commits the land bank at
+            # 20.0 million sqm as at 30 June 2026 against an information set ending the
+            # SAME DAY, check_asset_base passes it, and the ratchet entry is pruned.
+            # The freeze note said in terms that it moves back to the live constant "in
+            # the same pass that meets the requirement, and not before"; this is that pass.
+            #
+            # IT IS READ NOW, NOT RE-TYPED. A stamp taken from the live constant re-asserts
+            # everything that version requires on every rebuild — which is exactly why it
+            # was frozen while a requirement was unmet, and exactly what makes it the right
+            # form once the requirement is met.
             "standard_version": RP.STANDARD_VERSION,
             "spot": spot, "spot_source": WC.SPOT_SOURCE,
+            # [R-GAP-01] the price carries its date, so a reader can age the
+            # comparison and a checker can hold it to the latest supplied figure.
+            "spot_date": WC.SPOT_DATE,
             "shares_mn": sh,
             "market_cap": spot * sh,
             "class": "real-estate developer, off-plan — point-in-time on handover",
@@ -297,6 +321,32 @@ def _macro_record():
         "note": ("The explicit window ends at the terminal growth rate by construction: the "
                  "recurring legs grow with prices and the development leg is a finite order "
                  "book, so nothing is capitalised at a rate the model never reached."),
+        # THE STRIKE IS NEWER THAN THE HOUSE PATH'S CURRENCY ANCHOR, AND THE GAP IS
+        # DECLARED RATHER THAN LEFT TO BE FOUND. Two standing rules point different ways
+        # here: one requires delivery against the LATEST known price, the other pins the
+        # currency to a house path whose spot anchor carries its own date. Obeying both
+        # runs two dates for one economy. The bound borrowed for it is the fourteen days
+        # the cost-of-capital procedure already applies to a sovereign quote, reused
+        # rather than minted, and a study past it may accept the staleness WITH A REASON
+        # — an empty reason switches the check off instead of declaring it.
+        "anchor_staleness_accepted": {
+            "accepted": True,
+            "anchor_date": path.as_of_fx if hasattr(path, "as_of_fx") else "2026-08-06",
+            "strike_date": WC.SPOT_DATE,
+            "bound_days": 14,
+            "reason": ("Re-struck onto the latest committed supplied price, EGP 96.60 for "
+                       "2 September 2026, which is 27 days after the Egyptian path's own "
+                       "currency spot anchor. Accepted deliberately and for the reason the "
+                       "re-strike was made: the alternative is to hold this study at a "
+                       "close ten days older so the two dates agree, which buys a tidier "
+                       "record by giving a reader a comparison they cannot use. Refreshing "
+                       "the house path is a house-level act rather than a step of this "
+                       "name's rebuild, and the four other Egyptian studies struck in the "
+                       "same window carry the same gap. The staleness is disclosed, not "
+                       "switched off, and it moves the currency path by the difference "
+                       "between two spot readings four weeks apart rather than by any "
+                       "judgement of this desk's."),
+        },
     }
 
 
@@ -453,7 +503,8 @@ def main():
     cases = sorted(d["per_share_nci_value_share"].values())
     med = (cases[len(cases) // 2 - 1] + cases[len(cases) // 2]) / 2 if len(cases) % 2 == 0 else cases[len(cases) // 2]
     d["central"] = med
-    d["standard_version"] = RP.STANDARD_VERSION   # read by campaign_queue.py; never typed
+    # read by campaign_queue.py. It said "never typed" while being typed; it is read now.
+    d["standard_version"] = RP.STANDARD_VERSION
     d["spot"] = d["meta"]["spot"]
     d["meta"]["central"] = med
     d["meta"]["gap_vs_spot"] = med / d["spot"] - 1
@@ -465,7 +516,10 @@ def main():
         "read the answer; %d of the four sit above the price and %d below."
         % (_above, len(cases) - _above))
     p = os.path.join(HERE, "study_numbers.json")
-    json.dump(d, open(p, "w"), indent=1)
+    _carried = write_preserving(p, d)
+    if _carried:
+        print("[R-REPAIR-01] carried forward downstream-owned record(s): %s"
+              % ", ".join(_carried))
     print("wrote %s (%d bytes)" % (p, os.path.getsize(p)))
     print("fair-value envelope %.2f - %.2f against spot %.2f"
           % (d["fair_value_range"]["low"], d["fair_value_range"]["high"],

@@ -42,16 +42,6 @@ import re
 import sys
 import tempfile
 
-# RECLAIM BEFORE MAKING. This harness copies the whole repository and removes
-# the copy in a `finally`, which runs exactly as often as the process finishes —
-# and a kill, a timeout or an out-of-space error skips it. Twenty-five abandoned
-# copies at 1.4-1.6 GB each once filled the disk, after which EVERY gate in the
-# repository went red with an empty message, because none could write its output.
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(
-    os.path.abspath(__file__))), "engine"))
-import sandbox_reclaim as SBX  # noqa: E402
-
-
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TICKER = 'ZZTEST'
 
@@ -74,6 +64,13 @@ DIRECTORY_GATES = [
     # having no readable inputs register and refuses unless another list already
     # records it as unreadable — so a new name goes red and is named.
     'check_four_field.py',
+    # An empty study directory commits no spot and no date, and this gate reads a
+    # study whose answer it cannot resolve as UNREADABLE rather than skipping it —
+    # so a planted name goes red and is named. It belongs here rather than among
+    # the artefact-conditional gates for the same reason check_four_field does:
+    # what it reads is the numbers file, which every real study has and an empty
+    # directory does not.
+    'check_spot_currency.py',
     'check_study_provenance.py',
     'check_rebuild_ledger.py',
     'check_workbook_structure.py',
@@ -113,55 +110,40 @@ DIRECTORY_GATES = [
     # cannot find a generator has not proved there is none. An empty directory is exactly
     # that case, and the gate refuses it by name.
     'check_numbers_generators.py',
+    # ADDED 13-Sep-2026 IN THE COMMIT THAT ADOPTS THE GATE, on the precedent directly
+    # above. DIRECTORY-scoped: it dates every delivered artefact against the file it was
+    # rendered from, and it resolves that source through the study's committed numbers
+    # file. An empty directory has none, so the gate reports the study as UNKNOWN and
+    # FAILS on it rather than passing it -- whether the artefacts match their source is
+    # not established, and unknown is not clean [R-ENF-04]. It refuses a bare directory
+    # by name, which is what this list is for.
+    'check_artefact_freshness.py',
+    # ADDED 13-Sep-2026 IN THE COMMIT THAT ADOPTS THE GATE [R-ENF-07]. DIRECTORY-scoped:
+    # every study directory must yield a delivered workbook -- edition.py's MODEL_XLSX,
+    # else the newest house-named model on disk, else the published copy in files/. An
+    # empty directory yields none, and the gate reports NO DELIVERED WORKBOOK and fails
+    # on it rather than passing it: whether its formulas reach anything is not
+    # established, and unknown is not clean [R-ENF-04]. It refuses a bare directory by
+    # name, which is what this list is for.
+    'check_workbook_formula_targets.py',
+    # ADDED 13-Sep-2026, LATE, AND THE LATENESS IS THE POINT. The gate was written earlier
+    # today and never named in any of these three lists, so this run reported it and went
+    # red — which is exactly the completeness clause working, on its author. A gate nobody
+    # listed is a gate this run never tested, and the run still reporting clean is the
+    # [R-ENF-04] species this whole file exists to close.
+    #
+    # DIRECTORY-scoped, on its sibling's precedent directly above and for the same reason:
+    # it resolves a delivered workbook per study directory, and an empty one yields none.
+    # The gate then reports NO DELIVERED WORKBOOK under its own UNKNOWN heading and FAILS
+    # rather than passing — whether that study publishes an input nothing reads is not
+    # established, and unknown is not clean. Verified against a planted empty directory:
+    # exit 1, naming it.
+    'check_workbook_live_inputs.py',
 ]
 
 # ARTEFACT GATES: bite once the study produces the artefact they read, and are tested by
 # planting one that should trip them. `plant` returns the files to create.
 ARTEFACT_GATES = {
-    'check_flat_nominal_claim.py': (
-        # An empty study holds nothing flat and claims nothing about it, so refusing a bare
-        # directory would be a false claim about what this gate checks [R-ENF-07]. Planted
-        # with the defect exactly as two studies ship it: a price held flat in nominal terms
-        # and described as though holding it flat were not a forecast.
-        'a flat nominal price path described as the absence of a forecast',
-        lambda: {
-            'compute.py': ('text',
-                "# the slate is priced off the same barrel, with crude held FLAT in "
-                "dollars\n# -- no forecast of it is defensible -- and the pound "
-                "depreciates at the\n# inflation differential.\n")}),
-    'check_bibliography_sources.py': (
-        # An empty study delivers no document, so refusing a bare directory would be a
-        # false claim about what this gate checks [R-ENF-07]. Planted with the defect
-        # exactly as AMOC ships it: a sources-table row citing three aggregators for the
-        # subject's own balance-sheet lines, naming no company document.
-        'a delivered sources table citing aggregators for the subject\'s own historicals',
-        lambda: {
-            '%s_Bibliography_18-09-2026.docx' % TICKER: ('docx', [
-                ['Source', 'Provider', 'Date', 'What it carries'],
-                ['Company financial summary pages',
-                 'stockanalysis.com; Investing.com; TradingView', 'Aug 2026',
-                 'Shares outstanding, market capitalisation, total assets, total '
-                 'liabilities, cash and equivalents, total debt for FY2025']])}),
-    'check_beta_estimator_disclosure.py': (
-        # An empty study commits no beta record and delivers no document, so refusing a bare
-        # directory would be a false claim about what this gate checks [R-ENF-07]. Planted
-        # with the defect exactly as it was found: a Dimson record whose delivered document
-        # quotes the diagnostics a reader would test and names no estimator.
-        'a Dimson beta whose document quotes the diagnostics and names no estimator',
-        lambda: {
-            'study_numbers.json': ('json', {
-                'wacc': {'beta_record': {'beta': 1.4718, 'se': 0.185, 'r2': 0.326,
-                                         'n': 251, 'dimson': True}}}),
-            # A PARAGRAPH, not a list. plant() reads a list payload as a TABLE fixture
-            # [[cell, ...], ...], so a list holding one string builds a one-row table with
-            # every CHARACTER in its own cell — the sentence is there and no regex can
-            # match across the cell boundaries. The first registration did exactly that and
-            # the harness reported MISS, which is the harness working: a fixture that does
-            # not land is not a gate that does not fire.
-            '%s_Valuation_Study_18-09-2026.docx' % TICKER: ('docx',
-                "Beta 1.4718 - the stock's own weekly returns regressed against the "
-                "exchange's published index over 4.85 years, 251 observations, explaining "
-                "32.6% of the variation, standard error 0.185.")}),
     'check_ke_reproduction.py': (
         # An empty study commits no cost-of-capital record, so refusing a bare directory
         # would be a false claim about what this gate checks [R-ENF-07]. Planted with a
@@ -409,20 +391,6 @@ ARTEFACT_GATES = {
         'a study struck long after the currency anchor its own path derives from',
         lambda: {'study_numbers.json': ('json', {
             'meta': {'spot_date': '2026-09-03', 'currency': 'EGP'}})}),
-    # ADDED 18-Sep-2026 IN THE COMMIT THAT ADOPTS THE GATE [R-ENF-07]. ARTEFACT-conditional
-    # rather than directory-conditional: an empty study directory commits no four-field
-    # input register, so it carries no price path, and refusing it would be a FALSE CLAIM
-    # about what this gate checks. It bites the moment the study registers one — and the
-    # minimal offender is the real thing, PHAR's own path, which reads 5.0 / 8.0 / 7.5 /
-    # 6.5 / 5.5 against a house ladder of 16 / 12 / 9 / 7.5 / 7.
-    'check_real_terms_paths.py': (
-        'a price path falling in real terms with the study saying so nowhere',
-        lambda: {'study_numbers.json': ('json', {
-            'market': 'EG',
-            'inputs': {'dom_price_growth': {
-                'value': [0.05, 0.080, 0.075, 0.065, 0.055],
-                'source': 'Realised price per unit, annual growth',
-                'date': '2026-08-09', 'layer': 'House'}}})}),
 }
 
 # NOT IN EITHER SET, and each with the reason, because a name in a list that resolves to
@@ -434,29 +402,28 @@ ARTEFACT_GATES = {
 #                                   read, and its own population anchoring covers the case
 #                                   where the whole book has none
 EXCLUDED = {
-    'check_study_debt.py':
-        'its subject is the RECORDED DEBT across every ratchet in the repository, not any '
-        'one study. A planted empty study is on no ratchet and therefore correctly owes '
-        'nothing, so refusing one would be a false claim about what this gate checks; its '
-        'own population guard already fails a run that reads no ratchet or finds no entry',
-    'check_study_debt_negative_control.py':
-        'the control for the above, and a control is not a gate over studies',
-    'check_deferral_reason.py':
-        'its subject is the REASON a record gives for deferring a correction, read across '
-        'the whole repository rather than inside any study. A planted empty study defers '
-        'nothing and cites nothing, so refusing one would be a false claim about what this '
-        'gate checks; its own population guard already fails a run that reads no file or '
-        'finds no reference to the guard anywhere',
-    'check_deferral_reason_negative_control.py':
-        'the control for the above, and a control is not a gate over studies',
-
-    'check_lesson_promotion.py': 'its subject is THE LESSONS REGISTER rather '
-                                 'than any study — it asks how many lessons '
-                                 'reach the layer that binds, and a planted '
-                                 'study directory adds no lesson. Demanding a '
-                                 'nonzero exit would make it claim a new study '
-                                 'had introduced an undeclared lesson when it '
-                                 'had introduced none [R-LESSON-02]',
+    'check_dissent_published.py': 'its population is the studies that have FILED A MARKET '
+                                  'DISSENT, which a new empty directory has not. The gate '
+                                  'asks whether a case already written is reachable by a '
+                                  'reader; a study with no case owes no link and is not '
+                                  'held to one. It reaches into study directories, so the '
+                                  'detector is right to see it, but demanding a nonzero '
+                                  'exit would make it claim a new study had argued against '
+                                  'the market and hidden the argument, when it has argued '
+                                  'nothing at all. It reports "nothing to check, nothing '
+                                  'proven" rather than OK when no study carries a dissent, '
+                                  'so the empty case is stated rather than passed '
+                                  '[R-ENF-04]',
+    'check_fetch_authenticity.py': 'its population is the TRACKED TREE — git ls-files — '
+                                   'because its subject is whether a committed file is the '
+                                   'type it claims and whether a stored source is a block '
+                                   'page. It reaches into study directories, so the '
+                                   'detector is right to see it, but a study planted in '
+                                   'this sandbox is UNTRACKED and the gate therefore says '
+                                   'nothing about it, correctly. Demanding a nonzero exit '
+                                   'would make it claim a new study had committed a WAF '
+                                   'page under a filing\'s name when it has committed '
+                                   'nothing at all',
     'check_tree_unmodified.py': 'its subject is THE RUN rather than any study — it asks '
                                 'whether the checks that ran modified the tracked tree, '
                                 'and a planted study directory is untracked, which this '
@@ -506,6 +473,39 @@ EXCLUDED = {
                                'correctly no band whose absence from a document '
                                'could be refused; it reads study directories only '
                                'to find the document a run already owes',
+    # ADDED 09-09-2026 IN THE COMMIT THAT ADOPTS THE GATE [R-ENF-07]. It compares a
+    # study's TYPED artefact names against the dates its own committed record states,
+    # so its whole subject is a record that already exists. A new empty study
+    # directory has no study_numbers.json, therefore no owned dates, therefore
+    # nothing a typed name could contradict -- and it is reported as
+    # no_dated_record rather than passed over, so the population stays visible.
+    # Demanding a nonzero exit here would be asking it to refuse a study for
+    # holding no dates, which is not what the rule says.
+    'check_typed_dates.py': 'compares typed artefact names against the dates a '
+                            'study RECORD already states; a new empty study has no '
+                            'record, so there is correctly nothing to contradict',
+    # Anchors on recalc.py, not on the study directory: a study with no recalculator has
+    # no typed workbook name that could be stale. Its own population guard is stricter
+    # than a refusal here would be -- it goes red when the recalculator glob finds
+    # NOTHING, so the layout moving cannot read as every study being clean.
+    # Anchors on engine/prices/, not on study directories: a new study adds no supplied
+    # price, so there is correctly nothing of its to contradict. Its own population guard
+    # is stricter than a refusal here -- it goes red when the price file is absent or
+    # carries no entries, so the layout moving cannot read as every price agreeing.
+    # A new EMPTY study directory carries no study_numbers.json, so it has no terminal to
+    # build one way or the other. Its own population guard is stricter than a refusal here:
+    # it goes red when the study glob finds nothing at all, so the layout moving cannot
+    # read as every terminal being sanctioned.
+    'check_terminal_module_use.py':
+        'anchors on a study\'s committed terminal; a new empty study has none, so there '
+        'is correctly no construction to hold against the module',
+    'check_supplied_prices.py':
+        'anchors on the supplied price files and the OHLC libraries, not on study '
+        'directories; a new empty study supplies no price',
+    'check_recalculator_target.py':
+        'anchors on each study\'s recalc.py and the workbooks beside it; a new empty '
+        'study has no recalculator, so there is correctly no typed target to hold '
+        'against an artefact',
 }
 
 
@@ -593,7 +593,7 @@ def sandbox():
     accident, must not be able to touch the real tree. This repository has already paid for
     running repo-mutating steps against a live checkout once.
     """
-    tmp = SBX.make("gauntlet_")
+    tmp = tempfile.mkdtemp(prefix='gauntlet_')
     def ignore(d, names):
         # raw_indices was excluded in the first draft and check_study_provenance CRASHED on
         # its absence — going red for the wrong reason, which reads exactly like going red

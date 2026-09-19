@@ -1,4 +1,5 @@
-"""SCEM_Valuation_Model_07092026_public.xlsx — 16 sheets, formula-first.
+import sys
+"""SCEM_Valuation_Model_{edition}_public.xlsx — 16 sheets, formula-first.
 
 Blue = input · black = formula · green = cross-sheet link.
 
@@ -22,6 +23,8 @@ recalc.py evaluates the workbook independently and asserts the two agree.
 """
 import json, os
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
 from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment
 from openpyxl.utils import get_column_letter
@@ -1144,7 +1147,7 @@ wb._sheets = [wb[n] for n in ORDER]
 wb.calculation.fullCalcOnLoad = True
 wb.calculation.calcCompleted = False
 
-OUT = os.path.join(HERE, 'SCEM_Valuation_Model_07092026_public.xlsx')
+OUT = os.path.join(HERE, _ed.MODEL_XLSX)
 wb.save(OUT)
 json.dump(dict(expected=EXPECT, anchors=ANCH),
           open(os.path.join(HERE, 'xlsx_expected.json'), 'w'), indent=1)

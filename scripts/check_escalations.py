@@ -29,6 +29,23 @@ FIVE REFUSALS, each earned by a measured failure rather than imagined:
    whole re-ask happened because the archive on main still said "the one thing I
    would ask you for" while the answer sat on a branch.
 
+   WHAT THIS ESTABLISHES AND WHAT IT DOES NOT, stated because a green here has
+   already been read as more than it is. The marker check proves A DOCUMENT WAS
+   WRITTEN. It does not prove a person replied: both the entry and the file it
+   points at are written by the same agent, so a ruling nobody gave would satisfy
+   it exactly as well as one that was given. A sweep agent raised precisely this
+   on 08-09-2026, about a ruling file it found in its own deliverable directory
+   and had not written — correctly, because it had no sight of the exchange.
+
+   NO ARTEFACT CAN CLOSE THAT GAP; what an artefact can do is make the claim
+   explicit and attributable. So from 08-09-2026 an entry of class `instruction`
+   records WHO answered and THROUGH WHAT CHANNEL, in `answered_by`. It binds
+   FORWARD ONLY — entries opened before that date are unchanged, because a rule
+   that makes every existing list red is a re-issue rather than a rule, which is
+   the same discipline ratchet_shape uses. A reader who doubts a ruling still has
+   to ask the principal; what they no longer have to do is guess which entries are
+   even claiming to carry one.
+
 5. A GATE WITH NO RELEASE IS A STALL [R-CAL-01]. Every entry carries a default and
    the date that default fires. An open entry past its date FAILS: by then the
    default was to be taken and the entry closed, so an open one means the work
@@ -118,6 +135,16 @@ def main(argv=None) -> int:
                            "work stopped to wait. A gate with no release is a stall."
                            % dd)
         elif status == "resolved":
+            # WHO ANSWERED, for instruction-class entries opened once this rule existed.
+            # Forward-binding by opened-date, so no entry written before it goes red.
+            if e.get("cls") == "instruction" and str(e.get("opened", "")) >= "2026-09-08":
+                ab = e.get("answered_by")
+                if not isinstance(ab, str) or len(ab.strip()) < 12:
+                    bad.append("an instruction resolved without naming WHO answered and "
+                               "through what channel. The marker check proves a document "
+                               "was written, not that a person replied, and both are "
+                               "written by the same agent — so an unattributed ruling "
+                               "reads exactly like one that was given.")
             awt = e.get("answer_written_to")
             if not awt:
                 bad.append("resolved but names no file the answer was written to. An "

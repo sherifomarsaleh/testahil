@@ -31,27 +31,43 @@ import ke_reproduction as kr                 # noqa: E402
 DECLARED_CASES = 24
 
 # ARCC's record, the fields this gate reads, exactly as committed.
+# RE-POINTED, NOT WEAKENED [R-COC-01]. These fixtures were built on rf* + beta x the WHOLE
+# premium, which is what a correct record looked like until 10-09-2026. When the reader was
+# taught to REFUSE that identity, every CLEAN case in this control went red — not because
+# the control had found something, but because its idea of "correct" was the retired one.
+# Six of six clean cases failed with the same sentence. The red cases are untouched and
+# every one of them is still red; what moved is the shape a clean record has, which is the
+# whole point of a fixture.
 ARCC = {
     "rf_star": 0.1955, "beta": 0.9275220650537075, "erp": 0.0941,
-    "ke_exp": 0.28277982632155385,
+    "erp_mature": 0.042420, "crp": 0.051680, "crp_effective": 0.051680,
+    "lambda_country": 1.0, "crp_foreign": 0.0,
+    "ke_construction": "split_premium",
+    "ke_exp": 0.2865254860,
+    # THE TERMINAL IS UNTOUCHED. `relevered` and `same_beta` reproduce on the TOTAL
+    # terminal premium by construction — only the explicit window splits — so these
+    # stay exactly as they were and the terminal cases keep testing what they test.
     "rf_terminal": 0.125, "erp_terminal": 0.07,
     "ke_terminal": 0.20021378024369318,
     "weight_equity": 0.9621629210350936, "weight_debt": 0.03783707896490645,
     "weight_debt_terminal": 0.2,
     "kd_aftertax": 0.10352275371182129,
-    "wacc_exp": 0.9621629210350936 * 0.28277982632155385
+    "wacc_exp": 0.9621629210350936 * 0.2865254860
                 + 0.03783707896490645 * 0.10352275371182129,
     "beta_source": "own_stock_regression",
 }
 # ADNOCLS's shape: a plain same_beta terminal on a pegged market.
 PLAIN = {
     "rf_star": 0.0424, "beta": 0.6, "erp": 0.0866,
-    "ke_exp": 0.0424 + 0.6 * 0.0866,
+    "erp_mature": 0.080216, "crp": 0.006384, "crp_effective": 0.006384,
+    "lambda_country": 1.0, "crp_foreign": 0.0,
+    "ke_construction": "split_premium",
+    "ke_exp": 0.0424 + 0.6 * 0.080216 + 0.006384,
     "rf_terminal": 0.042, "erp_terminal": 0.0858,
     "ke_terminal": 0.042 + 0.6 * 0.0858,
     "weight_equity": 0.9, "weight_debt": 0.1, "weight_debt_terminal": 0.1,
     "kd_aftertax": 0.03,
-    "wacc_exp": 0.9 * (0.0424 + 0.6 * 0.0866) + 0.1 * 0.03,
+    "wacc_exp": 0.9 * (0.0424 + 0.6 * 0.080216 + 0.006384) + 0.1 * 0.03,
     "beta_source": "own_stock_regression",
 }
 
@@ -124,9 +140,12 @@ case("a plain same_beta terminal, DECLARED",
 
 case("a record with an explicit Ke and NO terminal — not this test's subject",
      {"rf_star": 0.1955, "beta": 0.9275220650537075, "erp": 0.0941,
-      "ke_exp": 0.28277982632155385, "beta_source": "own_stock_regression",
+      "erp_mature": 0.042420, "crp": 0.051680, "crp_effective": 0.051680,
+      "lambda_country": 1.0, "crp_foreign": 0.0,
+      "ke_construction": "split_premium",
+      "ke_exp": 0.2865254860, "beta_source": "own_stock_regression",
       "weight_equity": 0.96, "weight_debt": 0.04, "kd_aftertax": 0.10,
-      "wacc_exp": 0.96 * 0.28277982632155385 + 0.04 * 0.10},
+      "wacc_exp": 0.96 * 0.2865254860 + 0.04 * 0.10},
      False, lambda r: "ke_terminal" not in r)
 
 # ---- the weights and the beta's provenance, added 07-09-2026 ------------
@@ -148,12 +167,15 @@ case("a gap in the weights with nothing declared for the remainder",
 # zero. A control carrying only the red half would prove the gate refuses a gap and say
 # nothing about whether it accepts the company that has one legitimately.
 _ADN = {"rf_star": 0.0406, "beta": 1.1032, "erp": 0.0487,
-        "ke_exp": 0.09432584, "kd_aftertax": 0.05181950322693744,
+        "erp_mature": 0.042316, "crp": 0.006384, "crp_effective": 0.006384,
+        "lambda_country": 1.0, "crp_foreign": 0.0,
+        "ke_construction": "split_premium",
+        "ke_exp": 0.0936670112, "kd_aftertax": 0.05181950322693744,
         "weight_equity": 0.8004439128736124, "weight_debt": 0.0719326113922813,
         "other_tranches": [{"name": "perpetual_capital_securities",
                             "weight": 0.12762347573410635, "rate": 0.049,
                             "basis": "SOFR + 1.25%, disclosed"}],
-        "wacc_exp": 0.08548360695382588,
+        "wacc_exp": 0.0849562515,
         "rf_terminal": 0.039751, "erp_terminal": 0.0487, "ke_terminal": 0.09347684,
         "ke_terminal_construction": "same_beta",
         "beta_source": "own_stock_regression"}
@@ -208,7 +230,7 @@ case("SCEM's shape — a PRICED tier-3 fallback, declared, must stay green",
 
 case("NET weights on a net-cash company still sum to one",
      d(PLAIN, weight_equity=1.08, weight_debt=-0.08,
-       wacc_exp=1.08 * (PLAIN["rf_star"] + 0.6 * PLAIN["erp"]) + (-0.08) * 0.03,
+       wacc_exp=1.08 * PLAIN["ke_exp"] + (-0.08) * 0.03,
        ke_terminal_construction="same_beta"),
      False, lambda r: r["weight_debt"] < 0)
 

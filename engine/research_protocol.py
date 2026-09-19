@@ -109,12 +109,20 @@ MODEL_STUDY = {
         "Headline",
         "Valuation summary — every read at a glance",
         "Company overview",
-        "1 Fundamental valuation (1.1 cash-flow model with the full FCFF waterfall + the "
+        "1 Fundamental valuation (1.1 cash-flow model with the full FCFF waterfall and THE "
+        "VALUATION ON ONE PAGE [R-DCF-01] — a single table running revenue, EBITDA, cash "
+        "taxes, capital expenditure, working-capital investment, depreciation, free cash "
+        "flow, the per-year discount rate and factor and the present values, then the bridge "
+        "from enterprise value to value per share with every deduction on its own line, so "
+        "the reader can add the printed steps up — plus the terminal-cost-of-capital x "
+        "terminal-growth grid CENTRED ON THE ADOPTED CASE [R-SENS-01]; the "
         "EV-to-equity bridge; 1.2 book value & sustainable return; 1.3 relative multiples; "
         "1.4 normalised earnings power; 1.5 synthesis — the class primary IS the central under [R-LENS-03], the other lenses published beside it as cross-checks and the RANGE of their present-value reads as the envelope; NEVER a weighted blend, and never a set of typed weights; 1.6 drivers — "
         "each disclosed segment grown on its own driver, margins as outputs; 1.7 the crux; "
         "1.8 macro & country — sourced cost of capital, the cost-of-debt evidence table, and "
-        "every contested construction priced, not just named; 1.9 sensitivity)",
+        "every contested construction priced, not just named; 1.9 sensitivity — every grid "
+        "centred on the struck values, and where the central sits BELOW the traded price the "
+        "air-tight case [R-STAR-01] stating what the market is getting wrong)",
         "2 Technical and price structure",
         "3 A probabilistic price map (percentile map + level-touch ladder; calibration evidence "
         "as plain-language sentences with the statistics inline — no calibration appendix)",
@@ -371,7 +379,7 @@ def assert_beta_provenance(rec: dict, tier2_fallback_documented: bool = False) -
 # study built to an older one. Bump this ONLY when a change would alter a
 # delivered number or a required artefact — not for prose.
 # ---------------------------------------------------------------------------
-STANDARD_VERSION = "2026.09.18"
+STANDARD_VERSION = "2026.09.10"
 STANDARD_VERSION_NOTE = (
     "v2 cost of capital (rf normalised by the sovereign's own default spread); beta via "
     "beta_regression.own_stock_beta() against the registered index of the listing exchange, "
@@ -383,10 +391,18 @@ STANDARD_VERSION_NOTE = (
     "[R-ASSET-01] an asset_base_record whose vintage is at least as new as the study's "
     "own information set, on every study whose class carries an asset-based lens; and "
     "[R-COC-02] a cost-of-capital record declaring the construction its terminal cost of "
-    "equity reproduces under (same_beta or relevered, the relevering tax rate STATED); and "
-    "[R-REAL-01] a real_terms_block declaring every per-unit money path that moves more "
-    "than 5% in REAL terms against the house inflation ladder, with its measured real_change, "
-    "a mechanism from the closed list and the disclosure establishing it from the filings."
+    "equity reproduces under (same_beta or relevered, the relevering tax rate STATED); "
+    "[R-COC-03] a cost of equity built as rf* + beta x ERP_mature + lambda x CRP, the "
+    "country premium charged ONCE and never multiplied by beta, its components "
+    "published and its terminal reproducing under the split_premium construction; "
+    "[R-MACRO-02] a terminal real growth below the market's long-run real GDP growth, "
+    "with the exact Fisher identity in both directions; "
+    "[R-DCF-01] the valuation assembled on ONE PAGE from the study's own committed "
+    "numbers, reconciling to its published enterprise value and value per share; "
+    "[R-SENS-01] sensitivity grids CENTRED on the struck values, the centre cell "
+    "equal to the central; and [R-NEWS-01] a dated announced-plans category in the "
+    "Company ring of the Step 2A sweep, every forward-looking item carrying the legal "
+    "entity that signed it and whether that entity is the listed issuer."
 )
 # Bumped 01-Sep-2026 for [R-GAP-01]. This clears the "prose only" bar deliberately: the
 # rule adds a REQUIRED ARTEFACT — a study whose central sits more than 10% below the
@@ -407,17 +423,16 @@ STANDARD_VERSION_NOTE = (
 # current [R-STD-01]. See engine/build_depth_audit/asset_base_outstanding.json and
 # ke_outstanding.json for what was outstanding on the day.
 #
-# Bumped 18-09-2026 for [R-REAL-01], and for that rule ONLY. It adds a REQUIRED ARTEFACT:
-# a real_terms_block naming every per-unit money path that moves materially in real terms
-# against the house inflation ladder, with its measured real_change, a mechanism from the
-# closed list and the disclosure behind it. A nominal path cannot be read -- "5% growth"
-# is a real gain, a real hold or an eleven-point real cut and nobody can tell which -- so a
-# study built before this requirement is countable rather than assumed current. NO DELIVERED
-# NUMBER MOVES ON THIS BUMP and the rule decides nothing about whether a real decline is
-# right: it catches SILENCE, and a human rules. The other amendments recorded the same day
-# do NOT bump it and saying so is the point, a version justified by the wrong rule being
-# worse than none. See engine/build_depth_audit/real_terms_outstanding.json for the eight
-# studies outstanding on the day, each entry carrying its measurement [R-ENF-08].
+# Bumped 10-09-2026 for [R-COC-03], [R-MACRO-02], [R-DCF-01], [R-SENS-01] and
+# [R-NEWS-01], and for those five ONLY. The first two MOVE A DELIVERED NUMBER: the
+# cost of equity changes shape when the country premium stops being multiplied by
+# beta, and a terminal growth changes when the Fisher identity is made exact and
+# capped by the economy. The last three add a REQUIRED ARTEFACT: the one-page
+# valuation table, a sensitivity grid whose centre cell IS the central, and a dated
+# announced-plans category carrying the legal entity behind every forward-looking
+# item. [R-STAR-01] adopted the same day does NOT bump it, and saying so is the
+# point: it raises the BAR OF EVIDENCE inside the gap review [R-GAP-01] already
+# requires, and a version justified by the wrong rule is worse than none.
 
 
 # ---------------------------------------------------------------------------
@@ -936,6 +951,171 @@ def assert_bridge(record: dict, ticker: str = "?") -> dict:
             "nci_basis": basis, "nci_deduction": nci.get("deduction"),
             "cash_treatment": treat, "weights_basis": wb,
             "lines": len(lines), "per_share": ps,
+            "standard_version": STANDARD_VERSION}
+
+
+# --------------------------------------------------------------------------
+# [R-BRIDGE-01 CLAUSE FIVE]  A BUSINESS VALUED ON EQUITY DIRECTLY OWES NO
+# BRIDGE, AND MUST SAY SO.  [AMENDED 13-Sep-2026, per instruction]
+#
+# The rule was written on four industrial defects and every one of them is about
+# a number that only exists when a study values the WHOLE FIRM and then walks
+# down to the shareholder. ADIB is the book's first bank and it has no such
+# number: all seven of its lenses -- dividend discount, free cash flow to equity,
+# residual income, a relative multiple, book value, the book floor and normalised
+# earning power -- produce a figure PER SHARE directly, off equity. There is no
+# enterprise value anywhere in the study, so there is no bridge to check, and
+# check_bridge.py refused it for carrying no bridge_record.
+#
+# THE ANSWER IS NOT AN EXEMPTION BY NAME OR BY TICKER. A gate that skips ADIB
+# skips whatever else is written into the skip list, and skips it silently. The
+# answer is a DECLARATION, on calibration_only.declared()'s own pattern: SILENCE
+# IS NOT A DECLARATION, IN EITHER DIRECTION. A study that values on equity
+# directly says so, names the lenses that do it, and is then held to what it has
+# declared -- and a study that declares it while carrying an enterprise value
+# anywhere in its own committed numbers FAILS, which is the clause that keeps
+# this from being a way out.
+#
+# WHAT A BANK STILL OWES, AND IT IS THE MAJORITY OF THE ORIGINAL RULE. Three of
+# the four founding defects are about the SHEET and the ARITHMETIC, not about the
+# enterprise: the bridge standing on a stale balance sheet, the register that
+# establishes what "latest disclosed" even is, and the per-share figure that has
+# to divide. All three are meaningful for a bank and all three are carried here
+# unchanged. Only the enterprise-value lines fall away -- the enterprise value
+# itself, net debt, the minority taken at value out of an enterprise number, and
+# cash charged once. You cannot charge cash twice in a model that never charged
+# it at all.
+# --------------------------------------------------------------------------
+EQUITY_DIRECT_REQUIRED = (
+    "declared_on", "no_enterprise_value", "why", "lenses", "primary_lens",
+    "balance_sheet_date", "latest_disclosed_date", "latest_disclosed_source",
+    "equity_value", "shares_mn", "per_share",
+)
+
+# An enterprise value is a NUMBER, and this is the vocabulary it is written in
+# across this book's committed records. Prose saying there is none is not one --
+# which is why the scan below requires the value to parse as a number, and why
+# ADIB's own `no_wacc_reason` (a sentence) does not trip it.
+_EV_TOKENS = {"ev", "enterprise", "wacc", "fcff", "netdebt", "tev"}
+_EV_PAIRS = {("net", "debt"), ("enterprise", "value")}
+_EV_LABELS = ("enterprise value", "net debt", "less net debt", "plus cash")
+
+# the keys check_bridge.py reads a bridge record under; a study may not both declare
+# that it builds no bridge and commit one
+RECORD_KEYS_BRIDGE = ("bridge_record", "bridge_standard")
+
+
+def _is_number(x):
+    return isinstance(x, (int, float)) and not isinstance(x, bool)
+
+
+def _ev_hits(node, path="", hits=None):
+    """Every place in a committed numbers document that states an enterprise value.
+
+    Keyed on the NAME and gated on the VALUE being a number, because the claim
+    being tested is "this study computes no enterprise value anywhere" and a
+    sentence explaining that it does not is evidence FOR the declaration, not
+    against it.
+    """
+    if hits is None:
+        hits = []
+    if isinstance(node, dict):
+        label = str(node.get("label") or node.get("name") or "").strip().lower()
+        if label in _EV_LABELS and _is_number(node.get("value")):
+            hits.append("%s (line %r = %s)" % (path or "/", label, node.get("value")))
+        for k, v in node.items():
+            toks = [t for t in re.split(r"[^A-Za-z0-9]+", str(k).lower()) if t]
+            pair_hit = any((toks[i], toks[i + 1]) in _EV_PAIRS for i in range(len(toks) - 1))
+            if (set(toks) & _EV_TOKENS or pair_hit) and _is_number(v):
+                hits.append("%s/%s = %s" % (path, k, v))
+            _ev_hits(v, "%s/%s" % (path, k), hits)
+    elif isinstance(node, list):
+        for i, v in enumerate(node):
+            _ev_hits(v, "%s[%d]" % (path, i), hits)
+    return hits
+
+
+def assert_equity_direct(record: dict, ticker: str = "?", document: dict = None) -> dict:
+    """Raise unless a no-bridge declaration is complete and true of the study.
+
+    [R-BRIDGE-01 CLAUSE FIVE].  The declaration replaces the bridge record for a
+    study whose valuation produces equity per share with no enterprise value at
+    any point. It does not replace the sheet, the register or the arithmetic.
+    """
+    fails = []
+    r = record or {}
+
+    missing = [k for k in EQUITY_DIRECT_REQUIRED if r.get(k) in (None, "", [], {})]
+    if missing:
+        fails.append(
+            "the declaration is missing %s. SILENCE IS NOT A DECLARATION, IN EITHER "
+            "DIRECTION: a study that simply omits the bridge is in exactly the state it "
+            "was in before this clause existed." % ", ".join(missing))
+
+    if r.get("no_enterprise_value") is not True:
+        fails.append(
+            "the declaration does not assert no_enterprise_value. The claim is made in "
+            "terms or it is not made -- a missing key and a false one are the same "
+            "sentence to a reader and different facts about the work.")
+
+    lenses = r.get("lenses")
+    if not isinstance(lenses, (list, tuple)) or not lenses:
+        fails.append("the declaration names no lenses. The claim is that the lenses "
+                     "produce equity per share DIRECTLY, so the lenses are named.")
+    elif r.get("primary_lens") and r["primary_lens"] not in lenses:
+        fails.append("primary_lens %r is not among the lenses declared (%s). The lens "
+                     "that IS the central [R-LENS-03] is one of the lenses that reaches "
+                     "the shareholder without a bridge, or the declaration is about some "
+                     "other study." % (r["primary_lens"], ", ".join(map(str, lenses))))
+
+    # ---- WHAT A BANK STILL OWES (i): THE SHEET, AND WHAT ESTABLISHES "LATEST"
+    bs = r.get("balance_sheet_date")
+    latest = r.get("latest_disclosed_date")
+    src = r.get("latest_disclosed_source")
+    if bs and latest and bs != latest:
+        fails.append(
+            "the declaration stands on the %s balance sheet while the latest disclosed is "
+            "%s (%s). PHDC's stale sheet is not an enterprise-value defect and does not "
+            "fall away with the bridge." % (bs, latest, str(src)[:120]))
+
+    # ---- WHAT A BANK STILL OWES (ii): THE ARITHMETIC
+    eq, sh, ps = r.get("equity_value"), r.get("shares_mn"), r.get("per_share")
+    if _is_number(eq) and _is_number(sh) and sh and _is_number(ps):
+        if abs(float(eq) / float(sh) - float(ps)) > max(0.01, 0.001 * abs(float(ps))):
+            fails.append("equity value %.1f over %.1f shares is %.4f, not the stated %.4f"
+                         % (eq, sh, float(eq) / float(sh), ps))
+
+    if document is not None:
+        # ---- THE CLAUSE THAT KEEPS THIS FROM BEING A WAY OUT
+        for k in RECORD_KEYS_BRIDGE:
+            if isinstance(document.get(k), dict) or isinstance(
+                    (document.get("meta") or {}).get(k), dict):
+                fails.append(
+                    "the study declares that it computes no enterprise value and commits a "
+                    "%s as well. One of the two is wrong and neither is skippable." % k)
+        hits = _ev_hits(document)
+        if hits:
+            fails.append(
+                "the study declares that it computes no enterprise value and its own "
+                "committed numbers state %d: %s. A declaration is held to what it says."
+                % (len(hits), "; ".join(hits[:6])))
+        # ---- THE PER-SHARE FIGURE IS THE ONE THE STUDY PUBLISHES
+        central = document.get("central")
+        if isinstance(central, dict):
+            central = central.get("value")
+        if _is_number(central) and _is_number(ps):
+            if abs(float(central) - float(ps)) > max(0.01, 0.001 * abs(float(central))):
+                fails.append(
+                    "the declaration divides to %.4f a share while the study publishes "
+                    "%.4f. The arithmetic that has to foot is the arithmetic that reaches "
+                    "the answer, which is [R-BRIDGE-01]'s own reaches-the-answer clause "
+                    "arriving on the equity side." % (ps, central))
+
+    if fails:
+        raise AssertionError(
+            "EQUITY-DIRECT FAIL -- %s:\n  - %s" % (ticker, "\n  - ".join(fails)))
+    return {"ticker": ticker, "balance_sheet_date": bs, "lenses": len(lenses or []),
+            "primary_lens": r.get("primary_lens"), "per_share": ps,
             "standard_version": STANDARD_VERSION}
 
 
@@ -1545,6 +1725,17 @@ def assert_reverse_dcf(diag: dict, study_dir: str, ticker: str = "?") -> dict:
     for f in sorted(_glob.glob(_os.path.join(study_dir, "*.py"))):
         base = _os.path.basename(f)
         if base.startswith(("diagnostic", "gap_review", "recalc", "gate_check")):
+            continue
+        # A BUILD ORDER NAMES WHAT EACH STEP WRITES. build_all.py's STEPS list carries
+        # ('diagnostics_scem.py', 'diagnostics.json', 'the reverse read; follows
+        # compute') -- the filename appears there as the step's OUTPUT, which is the
+        # opposite of consuming it, and is in fact the declaration that makes the
+        # ordering checkable at all. Five of the ten studies under recalibration were
+        # failed for declaring their own build order, on the day that order was written.
+        # A check firing on work that is right is re-pointed, never widened
+        # [R-COC-01]: the build runner executes scripts and reads no study data, so it
+        # cannot be the side door this clause exists to close.
+        if base == "build_all.py":
             continue
         try:
             txt = open(f, encoding="utf-8", errors="ignore").read()

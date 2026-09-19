@@ -87,7 +87,8 @@ import site_data  # noqa: E402
 NON_TICKER_PAGES = {
     "404.html", "googlef90107a488de289e.html", "thanks.html", "archive.html",
     "news.html", "calculator.html", "compare.html", "egypt.html", "index.html",
-    "ledger.html", "metals.html", "method.html", "other-markets.html",
+    "ledger.html", "lessons.html", "metals.html", "method.html",
+    "other-markets.html",
     "stocks.html", "trade.html", "portfolio.html", "picker.html",
     # New-IA pages at root since the 30-Aug-2026 cutover — app pages, not
     # five-lens ticker templates. Ticker studies now live at /{TICKER}/study/,
@@ -389,24 +390,34 @@ def served_pages() -> dict[str, Path]:
     GitHub Pages publishes the whole repository (there is a .nojekyll), so a
     page is anything ending .html anywhere in the tree, not just the root.
     Build directories that are never deployed are skipped by name.
+
+    THE POPULATION IS WHAT IS COMMITTED, NOT WHAT IS ON THIS DISK. This walked
+    REPO.rglob("*.html"), which is a different set: an untracked working file is
+    not published by GitHub Pages and cannot be landed on, while a scratch copy
+    in somebody's checkout would fail the run for everyone. The docstring above
+    already says the subject is "the whole repository" — the repository is the
+    committed tree, so the reader is now git rather than the filesystem, and a
+    file removed from the index stops being served the moment that lands.
     """
+    import subprocess
     skip = {".git", "node_modules", "__pycache__", ".github"}
+    try:
+        tracked = subprocess.run(["git", "ls-files", "-z", "*.html"], cwd=REPO,
+                                 capture_output=True, check=True)
+        names = [n for n in tracked.stdout.decode("utf-8", "surrogateescape").split("\0")
+                 if n]
+    except (OSError, subprocess.CalledProcessError):
+        # [R-ENF-04] — if git cannot be read, do NOT quietly fall back to a
+        # smaller population and report clean. Fail the resolution loudly.
+        raise RuntimeError("the served population could not be read from git; an "
+                           "unreadable population is not an empty one")
     out = {}
-    for p in sorted(REPO.rglob("*.html")):
-        rel = p.relative_to(REPO)
-        if any(part in skip for part in rel.parts):
+    for rel in sorted(names):
+        if any(part in skip for part in rel.split("/")):
             continue
-        # A *_study_pending/ directory holds SOURCE CAPTURES — a company's own IR
-        # page saved as it stood on a date, kept as evidence beside the filings it
-        # came from. It is not a page this site serves and never reaches a browser,
-        # so holding it to our own chrome rules tests somebody else's HTML and
-        # reports a defect in work that is right. Added 17-09-2026 after committing
-        # two of OCDI's saved IR pages turned this gate red on their favicon paths:
-        # per [R-COC-01], a check firing on correct work is RE-POINTED, never widened
-        # and never satisfied by deleting the evidence.
-        if any(part.endswith("_study_pending") for part in rel.parts):
-            continue
-        out[rel.as_posix()] = p
+        fp = REPO / rel
+        if fp.is_file():
+            out[rel] = fp
     return out
 
 

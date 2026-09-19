@@ -1,0 +1,12 @@
+{
+ "_": "THE RECORD OF OVERRIDES TAKEN UNDER [R-PRIN-01]. Every rule in the Standing Research Protocol is the principal's to set aside, and the whole price of doing so is one entry here: the rule, who instructed it, the date, the instruction in their own words, and what was done under it. An EMPTY list means no override has been taken — it does not mean the register stopped being kept. An override changes what this desk DOES and never what the record SAYS HAPPENED, so nothing that would make a record assert an event that did not occur belongs here or anywhere else; that is a false entry rather than an override, and it is outside what this file can authorise.",
+ "_shape": {
+  "rule": "the identifier set aside, e.g. [R-FCAL-01], or a plain description where no identifier fits",
+  "instructed_by": "who gave the instruction",
+  "date": "DD-MM-YYYY",
+  "instruction_verbatim": "the instruction in the principal's own words, not a paraphrase — a summary written by the party acting on it is the thing this register exists to avoid",
+  "what_was_done": "what actually happened under the override, in enough detail that a reader six weeks later can tell a decision from a control that failed"
+ },
+ "_not_recorded_here": "SWDY's publication at a gap of -35.4% on 14-09-2026 is NOT an override and is deliberately absent. The principal authorised it through [R-GAP-02 CLAUSE FOUR]'s own route — a MARKET_DISSENT carrying the case and a PUBLISH_AUTHORISATION carrying the decision — which is the protocol working exactly as written. Recording a sanctioned decision as an override would misstate what happened and would make the register useless for the one thing it is for.",
+ "overrides": []
+}

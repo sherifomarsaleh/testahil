@@ -16,6 +16,14 @@ four rule-driven corrections have landed and BEFORE the price is consulted.
 """
 from __future__ import annotations
 import json, os, sys
+import sys
+# ENGINE ON THE PATH, EXPLICITLY — this file imported an engine module with nothing
+# to resolve it by, so it ran only from engine/ and died the moment the declared
+# build ran it from the study directory.
+import os
+import os as _os_enginepath, sys as _sys_enginepath
+_sys_enginepath.path.insert(0, _os_enginepath.path.dirname(
+    _os_enginepath.path.dirname(_os_enginepath.path.abspath(__file__))))
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ENG = os.path.dirname(HERE)

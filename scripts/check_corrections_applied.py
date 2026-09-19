@@ -105,6 +105,34 @@ def _adopt_listed(rec):
     return out
 
 
+def _adopt_adib(rec):
+    """ADIB's run of 09-09-2026 counts rather than lists: `adopted` is an INTEGER.
+
+    IT WOULD HAVE READ CLEAN BY ACCIDENT. _adopt_listed does `rec.get("adopted", []) or []`,
+    and 0 is falsy, so pointing ADIB at that adapter returns an empty adoption set without
+    ever reading the record — the exact "absent answer wearing a clean answer's clothes"
+    this file's own adapter comment warns about [R-ENF-04]. The day this run promotes one,
+    `adopted` becomes 1 and `for e in 1` raises rather than reports.
+
+    So the count is read as a count, and the record is required to be internally consistent
+    with itself: a run claiming N adopted must list them.
+    """
+    n = rec.get("adopted")
+    if not isinstance(n, int):
+        raise UnknownRecordShape(
+            "ADIB's corrections_log.json carries `adopted` as %s, not the integer count "
+            "this adapter was written for" % type(n).__name__)
+    if n == 0:
+        return {}
+    listed = rec.get("adopted_drivers") or rec.get("promoted") or []
+    if len(listed) != n:
+        raise UnknownRecordShape(
+            "ADIB's record says %d correction(s) adopted and names %d of them. A count "
+            "without the drivers behind it cannot be reconciled to the run."
+            % (n, len(listed)))
+    return {str(x): None for x in listed}
+
+
 def _adopt_amoc(rec):
     """Pre-registered as estimating NO correction from this record: `policy` says so
     in terms and everything under `flags` is a watch flag. An empty adoption set is
@@ -166,6 +194,10 @@ ADAPTERS = {
     "SWDY": _adopt_listed,
     "PHAR": _adopt_listed,
     "GBCO": _adopt_listed,
+    # ADIB's run counts instead of listing, so it gets its own adapter rather
+    # than borrowing _adopt_listed, which would return the right answer today
+    # by never reading the record. See _adopt_adib.
+    "ADIB": _adopt_adib,
 }
 
 

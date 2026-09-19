@@ -70,10 +70,16 @@ def inp(key, value, source, date, layer):
 
 
 # ---- Market layer ----------------------------------------------------------
-SPOT_AED = inp('spot_aed', 2.23,
-               'Closing price on the Abu Dhabi Securities Exchange, 7 August 2026 '
-               '(open 2.26, high 2.26, low 2.21), from the daily price history used '
-               'throughout this study', '2026-08-07', 'Market')
+# RE-STRUCK ONTO THE LATEST SUPPLIED PRICE, 09-09-2026 [R-GAP-01 AMENDED]. This study
+# was struck at AED 2.23 of 7 August; the latest price this repository holds is AED 2.39
+# of 3 September. THE FAIR VALUE IS UNTOUCHED — a re-strike moves the price the answer is
+# compared with, never the answer.
+SPOT_AED = inp('spot_aed', 2.39,
+               'Closing price on the Abu Dhabi Securities Exchange, 3 September 2026, '
+               'the latest price supplied to this repository '
+               '(SUPPLIED_03-09-2026.json). Superseded: AED 2.23 of 7 August 2026 '
+               '(open 2.26, high 2.26, low 2.21), on which every edition before this '
+               'one was struck', '2026-09-03', 'Market')
 AEDUSD = inp('aed_usd_peg', 3.6725,
              'The UAE dirham has been pegged to the US dollar at 3.6725 since 1997; the peg '
              'is the conversion used between the traded price and the reporting currency',
@@ -84,6 +90,21 @@ SH_ISSUED = inp('shares_issued_mn', 8423.6331,
                 FS25 + ', note 17: authorised, issued and paid-up capital of USD 168,473 '
                 'thousand comprising 8,423,633,100 shares of USD 0.02 par value',
                 '2025-12-31', 'Company')
+# THE OWNERSHIP FACTS, COMMITTED AS NUMBERS [09-09-2026]. Both were typed as prose in
+# three places each — the study document, the diagnostics module and the sweep register's
+# own finding text — and committed as a number nowhere, so the prose check could not
+# reconcile them and a change in the register would have to be found and edited three
+# times. They are sourced facts, so they belong in the record like any other input.
+ADEPTIO_PCT = inp('adeptio_holding_pct', 0.6603,
+                  FS25 + ', note 1 and the shareholding disclosure: Adeptio AD Investments '
+                  'holds 66.03% of the issued shares; its parent Adeptio AD Holdings is '
+                  'owned equally by Mohamed Ali Rashed Alabbar and a sovereign investor, '
+                  'which is what makes this a controlled company',
+                  '2025-12-31', 'Company')
+LEBANON_PCT = inp('lebanon_revenue_pct', 0.3089,
+                  FS25 + ', segment note: 30.89% of revenue arises in Lebanon, which is '
+                  'the concentration the currency and country risk sections turn on',
+                  '2025-12-31', 'Company')
 SH_TREASURY = inp('shares_treasury_mn', 25.0,
                   FS25 + ', note 17: 25,000,000 treasury shares held against a consideration '
                   'of USD 16,749 thousand (USD 0.67 per share) for the long-term incentive plan',
@@ -1495,7 +1516,15 @@ OUT = dict(
               'The valuation runs in US dollars, the reporting and functional currency of the '
               'group, and is converted to dirhams at the 3.6725 peg.',
               listing_currency='AED', fx=AEDUSD,
-              asof='2026-08-07', spot=SPOT, spot_aed=SPOT_AED,
+              # THE PRICE CARRIES ITS DATE, AND asof IS NOT IT [R-GAP-01 AMENDED,
+              # 09-09-2026]. asof was a typed '2026-08-07' that stayed put through the
+              # re-strike, and no key in this record said when the spot was taken — so
+              # nothing outside the study could tell a price struck today from one struck
+              # a month ago. Both are now the spot input's OWN date, surfaced rather than
+              # invented, so neither can go stale while the price moves.
+              asof=I['spot_aed']['date'],
+              spot_date=I['spot_aed']['date'],
+              spot=SPOT, spot_aed=SPOT_AED,
               shares_mn=SH, shares_issued_mn=SH_ISSUED, mktcap=MKTCAP,
               klass='Operating company — multi-country restaurant operator and master franchisee',
               sector='Consumer discretionary — restaurants and quick-service food',
@@ -1649,7 +1678,17 @@ OUT = dict(
                 book=dict(bvps=bvps_now, roe=SUSTAINABLE_ROE, justified_pb=justified_pb,
                           ke_terminal=KE_TERM),
                 expert_median=expert_median),
+    # THE AXIS A READER SEES IS THE ABSOLUTE LEVEL, AND ONLY THE OFFSET WAS COMMITTED
+    # [09-09-2026]. w_grid holds -1.5pp to +1.5pp around the adopted rate, and both
+    # sensitivity tables print `wacc_rating + dw` — so the levels on the page reconciled
+    # against nothing, and the prose check matched three of the five only because they
+    # collided with unrelated figures elsewhere in the record. The two that did not
+    # collide, 8.23% and 10.48%, are the ENDS of the axis, which is the same shape found
+    # on PHDC's conversion axis and ARCC's discount schedule the same day: a quantity
+    # computed at render time is a quantity nothing can check. This is the identical
+    # expression the document evaluates, so no printed figure moves.
     sensitivity=dict(g_grid=g_grid, w_grid=w_grid, grid_growth_wacc=grid_g_w,
+                     w_grid_levels=[float(WACC_RATING + dw) for dw in w_grid],
                      m_grid=m_grid, grid_margin_wacc=grid_m_w, single=single,
                      base=A['fv']),
     experts=experts,

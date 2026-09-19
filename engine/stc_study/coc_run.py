@@ -240,8 +240,14 @@ WEIGHTS_SOURCE = (
 
 def record(sched):
     """The committed cost-of-capital record, straight off the Schedule the model used."""
-    from dataclasses import asdict
-    r = asdict(sched)
+    # THE SCHEDULE'S OWN RECORD, NOT A GENERIC DATACLASS DUMP. asdict() returns the
+    # declared FIELDS; as_record() returns the record, and the one thing it computes rather
+    # than stores — ke_terminal_construction — was therefore dropped on the floor here. So
+    # this study committed a terminal cost of equity with no construction beside it, and
+    # [R-COC-02]'s reader could not tell a relevered terminal from a typo. The name for a
+    # method that quietly returns less than the method beside it is a trap, and the fix is
+    # to call the right one rather than to re-add the field by hand [R-REPAIR-01].
+    r = sched.as_record()
     r['build_date'] = BUILD_DATE
     r['spot'] = SPOT
     r['spot_date'] = SPOT_DATE

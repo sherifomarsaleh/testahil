@@ -31,7 +31,7 @@ if ENGINE not in sys.path:
 
 import ratchet_shape as rs                    # noqa: E402
 
-DECLARED_CASES = 18
+DECLARED_CASES = 20
 
 # Two real failure messages this book produces, kept verbatim so the control tests the
 # strings the gates actually emit rather than strings written to be easy.
@@ -66,6 +66,27 @@ case("same_beta seeded, relevered now reported", "too loose",
 # as an ABSENT one and excused the study — the cheapest possible route back to the old
 # blindness, and inconsistent with every other release in this repository, each of which
 # says an EMPTY reason has switched the check off rather than declared it.
+# ---- a failure that SHRANK, and one that GREW ---------------------------------
+# The ratchet promises to shorten and compared signatures exactly, so partial repair was
+# indistinguishable from a new defect: FERTIGLOBE was listed as carrying "no rf_star,
+# beta, erp or ke_exp", gained three of the four, and went RED for the improvement. The
+# comparison covers a clause naming LESS. It must not cover one naming MORE, and that is
+# the second case here — the direction that would let a growing defect excuse itself.
+_BIG = ("record carries no rf_star, beta, erp or ke_exp, so the explicit cost of equity "
+        "cannot be reproduced at all; record carries no market-value weights")
+_SMALL = ("record carries no ke_exp, so the explicit cost of equity cannot be reproduced "
+          "at all; record carries no market-value weights")
+_GREW = (_BIG + "; the record names no beta_source, so nothing distinguishes a measured "
+         "regression from a number somebody typed")
+
+case("a listed failure that SHRANK is still excused", "too strict",
+     lambda: rs.excused({"reason": "x", "signature": _BIG}, _SMALL)[0], True,
+     lambda: rs.fingerprint(_BIG) != rs.fingerprint(_SMALL))
+
+case("a listed failure that GREW a clause is a NEW breach", "too loose",
+     lambda: rs.excused({"reason": "x", "signature": _BIG}, _GREW)[0], False,
+     lambda: rs.fingerprint(_BIG) != rs.fingerprint(_GREW))
+
 case("a BLANK signature is not an absent one", "too loose",
      lambda: rs.excused({"reason": "x", "signature": ""}, MISSING)[0], False,
      lambda: True)

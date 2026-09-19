@@ -1,10 +1,11 @@
 <!doctype html>
 <html lang="en" dir="ltr">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<script src="/assets/gate.js"></script><meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="icon" type="image/png" href="/favicon.png?v=2">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
-<meta name="robots" content="max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="robots" content="noindex,nofollow">
 <title>Lulu Retail (LULU) — is the stock worth it? | testahil?</title>
 <meta name="description" content="Where could Lulu Retail (ADX:LULU) be in 1–3 months? A plain-language read of the odds, a four-lens fair value, and the one number the company does not report — sales per square metre.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -396,7 +397,7 @@
   </div>
 </div>
 
-<script src="assets/data.js?v=20260907borouge"></script><script src="assets/app.js?v=20260906silverprose"></script>
+<script src="assets/data.js?v=20260908fertiglb"></script><script src="assets/levers.js"></script><script src="assets/app.js?v=20260906silverprose"></script>
 <script>
 const T=TICKERS.LULU;
 document.getElementById("upd").textContent=SITE.updated;
@@ -430,18 +431,7 @@ if(T.files && T.files.biblio){
 renderGauge("gauge", T.spot, T.fair, T.spotDate);
 
 renderStaticFan("mc-fan-static", T);
-renderFairLevers("fl-lever-card", T, [
-  { name:'Sales density — the crux', min:-6, max:6, step:0.1, def:0, impact:1,
-    lo:'sharp depreciation', hi:'firm / tailwind', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
-  { name:'Hormuz normalisation holds — deferred non-food demand returns', min:5, max:95, step:1, def:55, impact:0.025,
-    lo:'soft', hi:'strong', fmt:v=>Math.round(v)+'% chance' },
-  { name:'Interim dividend cut toward the 75%-of-earnings policy', min:5, max:95, step:1, def:25, impact:0.05,
-    lo:'no surprise', hi:'upside surprise', fmt:v=>Math.round(v)+'% chance' },
-  { name:'The mature-store cost programme', min:-3, max:3, step:0.1, def:0, impact:1,
-    lo:'weaker', hi:'stronger', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
-  { name:'CBUAE / Fed policy-rate path — the carry', min:-3, max:3, step:0.1, def:0, impact:1,
-    lo:'tighter / rate headwind', hi:'easier / rate tailwind', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' }
-]);
+renderFairLevers("fl-lever-card", T, (typeof LEVERS!=="undefined"&&LEVERS["LULU"])||[]);
 if (T.levels) {
   injectLevels("ta-chart-svg", T.levels.res, T.levels.sup);
   renderLevelList("level-list", T.levels.res, T.levels.sup);

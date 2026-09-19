@@ -1,8 +1,23 @@
-"""SWDY_Bibliography_05-08-2026.docx — the companion bibliography document.
+"""SWDY_Bibliography_{edition}.docx — the companion bibliography document.
 Every input in the model: value, source, date and research layer — emitted from
 study_numbers.json (the compute script's own INPUTS block), plus the document
 bibliography and the negative results."""
 import json, os
+import sys
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed                      # the edition date, written once
+
+
+def edition_words(d):
+    """The edition date in words, from the edition module — so the companion
+    document cannot name a date the study is not filed under. It said '5 August
+    2026' through two later editions."""
+    return '%d %s %d' % (d.day, d.strftime('%B'), d.year)
+
+
+_BETA = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                    'beta_result.json'), encoding='utf-8'))
 from docx import Document
 from docx.shared import Pt, Inches, RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -10,9 +25,17 @@ from docx.enum.table import WD_TABLE_ALIGNMENT
 from docx.oxml.ns import qn
 from docx.oxml import OxmlElement
 
-HERE = os.path.dirname(os.path.abspath(__file__))
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
+M = D['meta']                       # the anchor date, read rather than typed
 INP = D['inputs']
+# THE SAME HANDLES THE STUDY USES, so a figure on this page and the same figure in the
+# study come from one place. Three rows of the judgements table below published RETIRED
+# values as adopted [F26] — terminal growth at 5% against a study that strikes 9.14%,
+# working capital at 19.9% against a re-anchored 19.67%, the currency path at 6% against
+# 7.56% — because they were typed here and read there.
+IN = {k: v['value'] for k, v in INP.items()}
+SN, DCF = D['sens'], D['dcf']
+def pc(x, dp=1): return f"{x*100:.{dp}f}%"
 INK = RGBColor(0x1C, 0x3A, 0x36); GREY = RGBColor(0x6E, 0x7B, 0x77); WHITE = RGBColor(0xFF, 0xFF, 0xFF)
 F_DARK, F_PANEL, F_CREAM = '1C3A36', 'EAF0EE', 'F6F1E6'
 
@@ -102,7 +125,7 @@ def fmt(v):
 # ============================================================================
 masthead()
 H1('Elsewedy Electric Company S.A.E. (EGX: SWDY) — Bibliography and Source Register')
-P('Companion document to the valuation study dated 5 August 2026. It records where every number '
+P(f'Companion document to the valuation study dated {edition_words(_ed.EDITION)}. It records where every number '
   'in that study came from.', size=9.5, color=GREY)
 
 H2('READ FIRST')
@@ -162,19 +185,57 @@ table([['Document', 'Publisher', 'Date', 'What was taken from it'],
         'three-segment revenue note reconciling exactly to Q1-2026 revenue; loans and borrowings '
         'note with average rates by currency; cash-flow statement; confirmation that no FY2025 '
         'dividend had been declared, proposed or approved as at the report date'],
+       # THE MOST RECENT FILING THIS STUDY READS WAS NOT IN ITS OWN PRIMARY-DOCUMENTS
+       # TABLE. The reviewed half to 30 June 2026 is where three segment margin paths are
+       # re-anchored [R-ANCHOR-01], where the minority profit and equity shares come from,
+       # and where the employees' statutory share for the half is read — twenty-one
+       # registered inputs cite it and five sweep findings rest on it. A bibliography that
+       # lists four filings while the model reads five is understating its own evidence.
+       ['Condensed interim consolidated financial statements for the six months ended 30 June '
+        '2026 (limited review), KPMG Hazem Hassan', 'Elsewedy Electric Company',
+        '11 August 2026',
+        'H1-2026 income statement with H1-2025 comparatives; balance sheet at 30 June 2026; '
+        'three-segment revenue and segment profit note — the disclosure the three segment '
+        'margin paths and the FY2026 segment growth rates are RE-ANCHORED on; minority share '
+        'of profit and of equity; the employees\' statutory share for the half; capital '
+        'expenditure for the half. The most recent disclosure this study reads'],
        ['Country risk premium and default spread file', 'Damodaran, NYU Stern',
         '5 January 2026', 'Egypt equity risk premium and sovereign default spread, credit-default-'
         'swap basis and rating basis'],
        ['Egypt 10-year local-currency government bond yield', 'Market data, house cost-of-capital '
-        'reference', '21 July 2026, re-verified 5 August 2026', 'The risk-free rate anchor'],
+        'reference', '21 July 2026, re-verified 5 August 2026 — the rate reading is that '
+        'date and is NOT the valuation anchor', 'The risk-free rate anchor'],
        ['Worldwide Tax Summaries — Egypt', 'PwC', '2026', 'Corporate income tax rate'],
-       ['Daily price history for SWDY on the Egyptian Exchange', 'Supplied price series',
-        'to 5 August 2026',
+       # THE SUPPLIED SERIES IS NOT WHAT THIS STUDY READS, AND HAS NOT BEEN SINCE THE
+       # STRIKE WAS REPOINTED. It ended 5 August 2026 at 105.20 and disagreed with this
+       # name's own price library on all 35 overlapping sessions after 14 June 2026. The
+       # library is the source now, cut at this study's valuation date, and the entry says
+       # which file and to when rather than describing a file nothing opens.
+       # A REPOSITORY PATH ON A READER'S PAGE IS INTERNAL MACHINERY, and the delivered
+       # vocabulary gate is right to refuse it. The reader needs to know WHICH series
+       # this is and how far it runs, not where the file sits on a disk they will never
+       # see. Named for the reader; the path lives in price_series.py, where the person
+       # who needs it is already looking.
+       ['Daily price history for SWDY on the Egyptian Exchange',
+        "This desk's own daily price library for the Egyptian Exchange — the same series "
+        'every other name in this book is struck on',
+        'read to ' + M['asof'] + ', the valuation date',
         'The anchor price, the volatility estimate, the moving-average structure, the beta '
-        'regression and the price distributions'],
-       ['Daily price history for the covered Egyptian equity library', 'House data library',
-        'to August 2026', 'The 31-name equal-weight composite used as the market proxy in the '
-        'beta regression']],
+        'regression and the price distributions. A study-local copy of this series was read '
+        'in earlier editions and is withdrawn: it ended 5 August 2026 at 105.20 against a '
+        'library close of 130.00 on the valuation date'],
+       # THE MARKET PROXY IS THE PUBLISHED INDEX AND HAS BEEN SINCE THE BETA WAS
+       # RE-DERIVED. This row still credited the withdrawn 31-name composite, which is
+       # a source register naming a source the study does not use.
+       # NAMED FOR A READER, NOT BY ITS PATH IN THIS REPOSITORY. The first cut printed
+       # the file the series is stored in, which is internal machinery on a delivered
+       # page: the reader wants the INDEX, and the file name is how we happen to keep
+       # it. The gate that caught this says so in its own words — rewrite the sentence,
+       # do not add the path to a list, because the next hole is a different shape.
+       ['%s, the published index of the exchange this share is listed on'
+        % os.path.splitext(os.path.basename(_BETA['index_file']))[0],
+        'Published index series', 'to ' + str(_BETA['index_asof']),
+        'The regressor in the beta regression']],
       [1.55, 1.25, 0.95, 3.25], size=8.0)
 
 # ---- the four-field input register ------------------------------------------
@@ -183,15 +244,35 @@ P('Every input to the valuation model, in the order the model declares them. The
   'is the research layer defined above. Values are shown as the model holds them: EGP millions '
   'for financial-statement lines, decimals for rates and shares.', size=9.5, color=GREY)
 
-for ring in ['Market', 'Company', 'Country', 'House']:
+# THE HEADING SAID "EVERY INPUT" AND THE LOOP PRINTED 205 OF 220. It walked a TYPED
+# list of four layers -- Market, Company, Country, House -- and the register also holds
+# Company/House (11), Industry (2), Company/derived (1) and Market/Company (1). Fifteen
+# inputs, among them the ones whose layer is compound precisely because they were the
+# hardest to place, vanished from the one document whose entire job is to show all of
+# them. The layers are READ from the register now, in a stable order with the four named
+# ones first, and the count is ASSERTED against the register's own length, so a layer
+# invented tomorrow appears instead of disappearing.
+_RING_FIRST = ['Market', 'Company', 'Country', 'House']
+_rings = ([r for r in _RING_FIRST if any(v['ring'] == r for v in INP.values())]
+          + sorted({v['ring'] for v in INP.values()} - set(_RING_FIRST)))
+_printed = 0
+for ring in _rings:
     items = [(k, v) for k, v in INP.items() if v['ring'] == ring]
     if not items:
         continue
+    _printed += len(items)
     H2(f'{ring} layer — {len(items)} inputs')
     rows = [['Input', 'Value', 'Date', 'Source and construction']]
     for k, v in items:
         rows.append([k.replace('_', ' '), fmt(v['value']), v['date'], v['source']])
-    table(rows, [1.15, 0.95, 0.72, 4.18], size=7.6)
+    # THE DATE COLUMN WAS 0.05in TOO NARROW AND ITS WIDEST DATE WRAPPED. Widened
+    # from the source column beside it, which has slack; the total is unchanged, so
+    # nothing else on the page moves. Measured, not nudged: 1.83cm declared against
+    # 1.94cm needed.
+    table(rows, [1.15, 0.95, 0.78, 4.12], size=7.6)
+
+assert _printed == len(INP), ('the input register prints %d of the %d inputs the model '
+                              'declares' % (_printed, len(INP)))
 
 # ---- judgements ---------------------------------------------------------------
 H1('The judgements, stated separately')
@@ -206,20 +287,30 @@ table([['Judgement', 'What was chosen', 'Why', 'What would overturn it'],
         'Evidence that convertibility is not a binding constraint for this issuer would shift the '
         'primary reading materially higher'],
        ['Exchange-rate path',
-        'About 6% a year of depreciation, far below what the interest-rate differential implies',
+        # F26: "about 6% a year" against a path the model runs at 7.56%.
+        f"About {pc(DCF['fx_dep_avg'])} a year of depreciation, far below what the "
+        f"interest-rate differential implies",
         'The base case assumes the central bank\'s disinflation path closes most of the gap rather '
         'than the currency absorbing it',
         'A disorderly move in the pound; the sensitivity table carries the parity case'],
-       ['Working capital held near the FY2025 share of revenue',
-        'Net working capital stays near 19.9% of revenue, the FY2025 audited level',
+       [f"Working capital held near {pc(IN['nwc_pct'])} of revenue",
+        # F26 AND F16: this row said 19.9%, "the FY2025 audited level". The study
+        # re-anchored on the reviewed 30-Jun-2026 sheet at 19.67% and this row did not
+        # follow. Both the number and the period it belongs to were wrong.
+        f"Net working capital stays near {pc(IN['nwc_pct'])} of revenue — the level measured "
+        f"on the REVIEWED 30 June 2026 balance sheet, not the FY2025 audited "
+        f"level of 19.87% an earlier edition of this row named",
         'All three audited years show working capital absorbing cash rather than converting, '
         'though FY2025 improved (24.1% -> 23.1% -> 19.9% of revenue)',
         'Two consecutive years of operating cash flow above 60% of EBITDA'],
        ['Valuation date rolled to the anchor',
-        'Every lens value, dated 31 December 2025 by construction, is rolled 217/365 of a year '
-        'to the 5-Aug-2026 anchor at the cost of equity, less the EGP 1.85 dividend paid in the '
-        'window',
-        'The comparison price is dated 5 August 2026; comparing an end-2025 value to it would '
+        # THE ROLL IS READ OFF THE RECORD. Typed, it said 217/365 to a 5-August anchor
+        # through two later editions while the model rolled 246 days to 3 September.
+        f'Every lens value, dated 31 December 2025 by construction, is rolled '
+        f'{D["dcf"]["anchor_days"]}/365 of a year '
+        f'to the {M["asof"]} anchor at the cost of equity, less the EGP '
+        f'{IN["dps_fy25"]:.2f} dividend paid in the window',
+        'The comparison price is dated ' + M['asof'] + '; comparing an end-2025 value to it would '
         'leave seven months of accretion out of the comparison — an external review flagged the '
         'omission and it was accepted',
         'A different roll rate (the risk-free rate instead of the cost of equity) would cut the '
@@ -231,14 +322,25 @@ table([['Judgement', 'What was chosen', 'Why', 'What would overturn it'],
         'FY2030E; 15% splits the difference between today\'s 8.4% and a structurally levered '
         'steady state, and costs about 2.4/share on the weighted central versus 25%',
         'Evidence the group intends to run materially higher structural net leverage'],
-       ['Forecast payout ratio of 25%',
-        'Struck at the actual FY2025 payout (EGP 1.85/share = 22.8% of attributable EPS), '
-        'rounded up for the rising trajectory the +85% step-up implies',
+       [f"Forecast payout ratio of {pc(SN['payout_forecast'], 0)}",
+        f"Struck at the actual FY2025 payout (EGP {IN['dps_fy25']:.2f}/share = "
+        f"{pc(DCF['dps_payout_fy25'])} of attributable EPS), rounded up for the rising "
+        f"trajectory the step-up implies",
         'The FY2025 dividend was ratified 6 May 2026 and paid from 4 June 2026 (EGX '
         'disclosure); an earlier revision wrongly removed it on absence-of-evidence grounds',
         'The distribution proposed on the FY2026 result'],
-       ['Terminal growth of 5%',
-        'The standing centre for established names in this market, sensitised 3–7%',
+       [f"Terminal growth of {pc(IN['g_term'])}",
+        # F26: THIS ROW SAID 5%, "sensitised 3-7%", IN A DOCUMENT DELIVERED BESIDE A STUDY
+        # THAT ADOPTS 9.14% AND TESTS 7.14-11.14%. It is the retired construction, left in
+        # the bibliography when the study moved off it — a reader checking the study
+        # against its own register would have found two different terminal growth rates.
+        # Read from the record now, like every other figure on this page.
+        f"Derived from the house macro path — {pc(IN['pi_term'])} long-run Egyptian "
+        f"inflation compounded with a {pc(IN['g_term_real'], 1)} real rate — and sensitised "
+        f"{pc(SN['g_grid'][0])}-{pc(SN['g_grid'][-1])} around it. NOT a standing centre "
+        f"chosen for the market: an earlier edition of this row published 5% 'sensitised "
+        f"3-7%', which is the construction this study retired, and which does not contain "
+        f"the rate the study actually strikes",
         'It is below the blended long-run nominal growth ceiling of the economies the company '
         'operates in, and is reconciled to the return on capital and reinvestment rate',
         'A demonstrated structural change in the export franchise\'s long-run growth'],
@@ -253,12 +355,17 @@ table([['Judgement', 'What was chosen', 'Why', 'What would overturn it'],
         'conservative charge',
         'A reader preferring the book convention can add the difference back; the amount is stated '
         'in the study'],
-       ['Effective tax rate of 24.5% for NOPAT',
+       [f"Effective tax rate of {pc(IN['tax_eff'])} for NOPAT",
         'Above the Egyptian statutory rate, between the FY2025 print and the historical average',
-        'Audited effective rates ran 31.3% (FY2023), 30.1% (FY2024) and 22.6% (FY2025); no '
-        'statutory-vs-effective reconciliation is disclosed, and the group pays tax in 15+ '
-        'jurisdictions plus Free-Zone entities on a revenue basis',
-        'A sustained repeat of the FY2025 low or the Q1-2026 print (25.75%) in either direction'],
+        f"Audited effective rates ran {pc(SN['tax_path']['fy23'])} (FY2023), "
+        f"{pc(SN['tax_path']['fy24'])} (FY2024) and {pc(SN['tax_path']['fy25'])} (FY2025), "
+        f"then {pc(SN['tax_path']['q1_26'])} (Q1-2026) and {pc(SN['tax_path']['h1_26'])} "
+        f"(H1-2026) — which implies {pc(SN['tax_path']['q2_26_implied'])} in the second "
+        f"quarter alone, so the adopted rate sits below all four of the most recent "
+        f"readings. No statutory-vs-effective reconciliation is disclosed, and the group "
+        f"pays tax in 15+ jurisdictions plus Free-Zone entities on a revenue basis",
+        f"A sustained repeat of the FY2025 low, or of the "
+        f"{pc(SN['tax_path']['h1_26'])} the reviewed half printed, in either direction"],
        ['Segment margins compressed rather than held at their FY2025 level',
         'Cables and Constructions margins recover PARTIALLY over the forecast; Electrical '
         'products holds closest to its FY2025 level',
@@ -279,10 +386,16 @@ P('This study was rebuilt once the company\'s own audited FY2023, FY2024 and FY2
 table([['What was sought', 'Outcome', 'How the study handled it'],
        ['An order book, backlog or unit-volume (tonnage, MVA, meter-count) disclosure for any '
         'segment, in any of the four filings including the Q1-2026 interim',
-        'Not disclosed. The company reports only segment revenue (Note 5-3) and segment profit '
-        '(Note 16) — no volumes, prices or backlog',
-        'The forecast is built as a taper on each segment\'s own recent revenue CAGR and, for '
-        'Cables, a copper-price and FX-translation driver, rather than a reconstructed unit model'],
+        'Not disclosed IN THE FILINGS. The company reports only segment revenue (Note 5-3) '
+        'and segment profit (Note 16) — no volumes, prices or backlog. Its own quarterly '
+        'earnings releases DO carry cable tonnage and an engineering backlog, and those '
+        'are read; they are the issuer\'s own publications but they are not audited',
+        'Cables is built on the disclosed tonnage series times a copper and currency '
+        'pass-through measured out of the segment\'s own audited revenue per tonne — a unit '
+        'model, on an unaudited issuer disclosure, labelled as such. Constructions and '
+        'Electrical products taper on their own recent revenue CAGR, because the releases '
+        'disclose no burn profile for the backlog and the segment aggregates products that '
+        'no filing splits'],
        ['A facility-by-facility or currency-by-currency breakdown of the debt book finer than the '
         'two-way EGP / hard-currency split disclosed in the FY2025 and Q1-2026 borrowings notes',
         'Not disclosed at finer granularity; the FY2024 filing\'s own three-way EGP/USD/EUR split '
@@ -294,18 +407,20 @@ table([['What was sought', 'Outcome', 'How the study handled it'],
         'corrected',
         'Not disclosed in the FY2025 annual filing or the Q1-2026 interim — but the interim '
         'covers a period ending 31 March and carries no subsequent-events note, so its silence '
-        'was never evidence. The dividend exists: EGP 1.85/share, ratified by the general '
-        'assembly 6 May 2026, rights through 1 June, paid from 4 June 2026 (EGX disclosure, '
-        'corroborated by financial-press coverage and the quoted trailing yield)',
-        'An earlier revision removed the dividend on absence-of-evidence grounds — an error, '
-        'flagged by external review and corrected: the model now carries EGP 1.85 and a 25% '
-        'forecast payout. Recorded here because reasoning from the silence of a document that '
+        f"was never evidence. The dividend exists: EGP {IN['dps_fy25']:.2f}/share, ratified "
+        f"by the general assembly 6 May 2026, rights through 1 June, paid from 4 June 2026 "
+        f"(EGX disclosure, corroborated by financial-press coverage and the quoted trailing "
+        f"yield)",
+        f"An earlier revision removed the dividend on absence-of-evidence grounds — an error, "
+        f"flagged by external review and corrected: the model now carries EGP "
+        f"{IN['dps_fy25']:.2f} and a {pc(SN['payout_forecast'], 0)} "
+        f"forecast payout. Recorded here because reasoning from the silence of a document that "
         'could not have contained the fact is exactly the failure mode this register exists to '
         'catch'],
        ['An explanation for the sharp single-session price move on 4 August 2026',
         'No corresponding company disclosure or news item was found',
-        'Not used. The study\'s anchor is the closing price on 5 August 2026 and no narrative is '
-        'attached to the move']],
+        'Not used. The study\'s anchor is the closing price on ' + M['asof'] + ' and no '
+        'narrative is attached to the move']],
       [1.55, 2.35, 3.10], size=7.8)
 
 H1('A note on aggregator and press data')
@@ -324,7 +439,7 @@ P('This document accompanies an educational valuation study. It is not investmen
   'verify the analysis independently. Where a figure is derived or estimated rather than '
   'disclosed, that is stated.', size=9.2, color=GREY)
 
-out = os.path.join(HERE, 'SWDY_Bibliography_05-08-2026.docx')
+out = os.path.join(HERE, _ed.BIBLIO_DOCX)
 doc.save(out)
 print(f'wrote {out} | {len(doc.paragraphs)} paragraphs | {len(doc.tables)} tables | '
       f'{len(INP)} inputs registered')

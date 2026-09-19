@@ -158,11 +158,23 @@
      "when": "2026-09-07",
      "outcome": "UNCHANGED AND NOW MEASURED RATHER THAN REPORTED. Index HTTP 200, 61 linked statement files, 19 on the live host and 42 on ece.allmediaegypt.com. All 19 live-host PDFs return HTTP 404, each serving the same 54,573-byte error page. The legacy host still does not resolve. All three EGX hosts fail to connect. THE ONE THING THAT CHANGED IS ON OUR SIDE: four filings are now committed under engine/elec_study/filings/ — FY2020 consolidated, FY2021, FY2022 and FY2023 standalone — of which only FY2021 is a complete PDF; the other three are truncated at 1/5/5 MiB with no xref and were read by recovering their raw JPEG page streams. FY2024 and FY2025 ARE STILL UNOBTAINABLE and the index does not even list an FY2025 annual, so the missing periods are unpublished rather than merely unserved. The walk-forward was therefore scoped SKIP (4 sourceable years) and the study was NOT rebuilt.",
      "rerun": true
+    },
+    {
+     "route": "the [R-SIGCM-03] FALLBACK SHELF, adopted 08-09-2026 — the company's OWN other documents where the statement itself cannot be reached: the ECE Company Profile 2025, the Telecom Services profile and the product catalogues, all listed by the same media API on the same live host",
+     "when": "2026-09-08",
+     "outcome": "HTTP 404 on every one of them, exactly as the statements do. THE FALLBACK ADOPTED TODAY DOES NOT HELP HERE and that is worth recording rather than leaving to be rediscovered: this host does not serve ANY pdf it lists, so the failure is not specific to financial statements and no company document of any kind is obtainable from it. A rule granting a new route is not evidence that the route exists on a particular name.",
+     "rerun": true
+    },
+    {
+     "route": "THE WEB ARCHIVE — a route no earlier pass tried. An archived copy of the company's OWN pdf is still the company's own document rather than a vendor's, so it satisfies SIGCM clause 1 in substance if it can be fetched",
+     "when": "2026-09-08",
+     "outcome": "THE DOCUMENTS ARE ARCHIVED AND THIS CONTAINER CANNOT FETCH THEM, which is a different fact from the ones above and points somewhere else. archive.org's availability API answers and reports a snapshot of this company's own separate financial statements for 30-09-2022 with status 200, available, captured 2026-02-07 — so at least part of the series survived the host's collapse and exists in a public archive. Fetching that snapshot returns HTTP 403 with a 24-byte body reading 'Blocked by egress policy', and the CDX index endpoint returns the same, so the archive's CONTENT is unreachable from this environment while its METADATA is not. EVERY OTHER ROUTE ON THIS ENTRY ENDS IN 'the document does not exist or the issuer will not serve it'; this one ends in 'the document exists and this container may not have it', which is answerable by an environment without that restriction and was not answerable before.",
+     "rerun": true
     }
    ],
    "refs_searched": 22,
-   "why_only_the_principal": "Pure access, and every free route is exhausted: the issuer publishes an index it does not serve, its old host is gone, and the exchange is unreachable through the relay. The principal has supplied primary filings before when a company site refused (the ARCC precedent, which this protocol records as the rule working rather than failing).",
-   "done_meanwhile": "ELEC's committed numbers were audited as far as vendor data allows and the findings written to engine/elec_study/SOURCE_BLOCK_04-09-2026.md: the retired g x IC terminal (return on capital 583bp BELOW its own cost of capital, 54.5% of profit reinvested at that spread), a terminal growth rate that is -1.87% real and stated nowhere, and terminal invested capital resting on a typed 0.05-of-revenue constant. Each is priced. The study stays HELD and no delivered figure was moved, because moving one would build further on the base that is the problem.  [07-09-2026] The four committed filings were read end to end off the rendered pixels, every subtotal re-added (15 footing checks, zero refusals), and the results committed to engine/elec_walkforward/: the filed record, the valuation-input block [R-FCAL-01 AMENDED], the basis-break register with the consolidated/standalone chain factor measured at the FY2020 overlap, and engine/elec_study/useful_lives.json. THE MATERIAL FINDING: the company has issued NO consolidated statement since FY2020 while holding a 99.99% subsidiary (note 5), and the study's committed consolidated historicals run 1.79x the parent's filed revenue and 3.09x its filed net profit in FY2023 against a measured consolidation wedge of 1.73x and 2.04x. Separately, the study's terminal EBITDA margin of 12.30% sits INSIDE the filed standalone range of 1.43-17.49%, which WITHDRAWS the premise of the 06-09-2026 audit's [R-ANCHOR-01] claim that it forecasts less than half the lowest filed year — that range was the study's own vendor hist_is, not a filing.",
+   "why_only_the_principal": "Pure access, and every free route is exhausted: the issuer publishes an index it does not serve, its old host is gone, and the exchange is unreachable through the relay. The principal has supplied primary filings before when a company site refused (the ARCC precedent, which this protocol records as the rule working rather than failing).  [08-09-2026] THE ASK IS NOW NARROWER AND CHEAPER THAN IT WAS. It is no longer 'these documents may be gone': at least part of the series is demonstrably held in a public archive and only this container's egress policy stands between the study and it. So the principal is asked for EITHER the FY2024 and FY2025 filings as before, OR simply for a fetch of the archived copies from any machine without that restriction — the second costs minutes and needs no access to anything the principal does not already have.",
+   "done_meanwhile": "ELEC's committed numbers were audited as far as vendor data allows and the findings written to engine/elec_study/SOURCE_BLOCK_04-09-2026.md: the retired g x IC terminal (return on capital 583bp BELOW its own cost of capital, 54.5% of profit reinvested at that spread), a terminal growth rate that is -1.87% real and stated nowhere, and terminal invested capital resting on a typed 0.05-of-revenue constant. Each is priced. The study stays HELD and no delivered figure was moved, because moving one would build further on the base that is the problem.  [07-09-2026] The four committed filings were read end to end off the rendered pixels, every subtotal re-added (15 footing checks, zero refusals), and the results committed to engine/elec_walkforward/: the filed record, the valuation-input block [R-FCAL-01 AMENDED], the basis-break register with the consolidated/standalone chain factor measured at the FY2020 overlap, and engine/elec_study/useful_lives.json. THE MATERIAL FINDING: the company has issued NO consolidated statement since FY2020 while holding a 99.99% subsidiary (note 5), and the study's committed consolidated historicals run 1.79x the parent's filed revenue and 3.09x its filed net profit in FY2023 against a measured consolidation wedge of 1.73x and 2.04x. Separately, the study's terminal EBITDA margin of 12.30% sits INSIDE the filed standalone range of 1.43-17.49%, which WITHDRAWS the premise of the 06-09-2026 audit's [R-ANCHOR-01] claim that it forecasts less than half the lowest filed year — that range was the study's own vendor hist_is, not a filing.  [08-09-2026] Every route on this entry was re-run rather than believed [R-ENF-04], the fallback shelf adopted the same day was tested and found to fail on this host for the same reason the statements do, and the web archive was tried for the first time and found to HOLD the documents while this environment is refused them. ELEC's own gate position was measured alongside: it carries no lens record, no bridge record, no cost-of-capital record and no sweep script, and NONE of those is repaired, because every one of them would be a record ABOUT numbers that are themselves the defect. Writing a conforming construction record over a vendor-sourced income statement makes four gates green and the study no more deliverable, which is the move this protocol forbids everywhere else.",
    "default_if_no_answer": "WITHDRAW ELEC FROM COVERAGE rather than re-issue it on aggregator data. A study nobody can source is not a study with a wide range; it is not a study. Withdrawal removes the name from the book and leaves the directory with this record in it.",
    "default_date": "2026-10-04",
    "status": "open",
@@ -383,15 +395,12 @@
    "done_meanwhile": "The 20 new sessions were spliced (closes exact), Step 0.0 passed, the whole ledger was swept and AMOC's matured 1-month cohort graded — the grade window's running max (14.13, 2026-09-02) and min (9.03, 2026-08-09) both fall on bars where the synthetic open does not bind, so the grade is uncontaminated. The materiality gate came back NOT MATERIAL on all nine markets: the new bars are too recent to be resolved 3-month window origins, so they do not reach the pooled EG fit at all. A grade_ledger writer bug that refused the twelve first-coverage rows was fixed.",
    "default_if_no_answer": "AMOC's cohort is NOT struck on the synthetic-open bars. Measured two independent ways, they understate the origin variance enough to publish a 90% band 16-19% too narrow (close-to-close route) or 13-16% (open-free Parkinson route) — past [R-CAL-01]'s own 5% materiality line, and a LEDGER row is permanent. The cone therefore stays at its 2026-08-06 strike, the divergence between asof.mc.data and the library is REPORTED rather than reconciled, and the cohort is struck the moment a real-open export arrives. Nothing publishes either way: [R-GAP-02] independently HOLDS AMOC at -15.8%. NOT REVERTED, deliberately: rolling dist back would republish a cone anchored on the 6-August close of 9.10 against a market at 13.54, which is a larger and more visible error than a band that is too tight. dist is rewritten at every pass, so a real-open export fixes it in one run — but until one arrives the LIVE cone is too narrow and nothing on the page says so.",
    "default_date": "2026-09-13",
-   "status": "resolved",
+   "status": "open",
    "resolves_when": {
-    "file": "engine/amoc_study/SYNTHETIC_OPEN_DEFAULT_17-09-2026.md",
-    "must_contain": "SYNTHETIC-OPEN DEFAULT TAKEN"
+    "file": "engine/raw_ohlc/EG/AMOC.csv",
+    "must_contain": "REAL-OPEN EXPORT RECEIVED"
    },
-   "resolves_when_note": "AMENDED 17-09-2026 when the default fired. The original marker named the ANSWER arriving (a real-open export in the library). No export arrived, so that marker can never be written truthfully by a default-taken close, and writing it anyway would be a false statement in the repository. The marker now names the DEFAULT being taken, in the artefact that records it. The original question, routes and default are unchanged above.",
-   "resolved_how": "default_taken",
-   "resolved_on": "2026-09-17",
-   "answer_written_to": "engine/amoc_study/SYNTHETIC_OPEN_DEFAULT_17-09-2026.md"
+   "resolves_when_note": "The marker goes in a comment line at the top of the library when a real-open export replaces the 20 synthetic-open sessions. A date marker would not do: the file ALREADY contains 09/06/2026, and the register's own history records a first marker refused for exactly that reason."
   },
   {
    "key": "EGCH-ohlc-refresh",
@@ -662,14 +671,10 @@
    "default_date": "2026-09-13",
    "resolves_when": {
     "file": "engine/egch_walkforward/valuation_inputs.json",
-    "must_contain": "fx_split_sourced_but_unread"
+    "must_contain": "drawn_usd"
    },
-   "status": "resolved",
-   "note": "Registered under [R-IND-01] rather than asked in a message. Twice tonight a 'cannot be obtained' on this same line turned out to be wrong on closer looking — the currency note itself, then the balance split — and both times the FIRST PROBE was what failed while its failure read like an absence. That is why five routes are listed with outcomes and why the sweep that succeeded is marked as a re-run.",
-   "resolved_how": "default_taken",
-   "resolved_on": "2026-09-17",
-   "answer_written_to": "engine/egch_walkforward/valuation_inputs.json",
-   "resolves_when_note": "AMENDED 17-09-2026 when the default fired. The original marker was `drawn_usd`, a field that exists only if the figures are READ; the default explicitly forbids estimating them, so that marker and the default were mutually unsatisfiable and the entry could only ever sit open. The marker now names the default-taken record, which carries the page reference so the next reader finds the page rather than the question."
+   "status": "open",
+   "note": "Registered under [R-IND-01] rather than asked in a message. Twice tonight a 'cannot be obtained' on this same line turned out to be wrong on closer looking — the currency note itself, then the balance split — and both times the FIRST PROBE was what failed while its failure read like an absence. That is why five routes are listed with outcomes and why the sweep that succeeded is marked as a re-run."
   },
   {
    "key": "PARTE-criterion-1-ratchet-clause",
@@ -971,271 +976,433 @@
    "answer_written_to": "engine/valuation_calibration/score_cashflow.py — the declared reading is unchanged and this ruling is why."
   },
   {
-   "key": "eg-terminal-erp-normalisation",
-   "opened": "2026-09-18",
-   "cls": "instruction",
-   "question": "engine/macro_paths/EG.json carries erp_terminal = 7.00% sourced to a RATIONALE ('normalised below the currently elevated crisis-era level toward the rating-class norm'), which names no institution, no date and no identity. [R-MACRO-01] requires every level to be published by a named institution on a named date or DERIVED by an identity from numbers that are. Measured 18-09-2026, EGYPT IS THE ONLY PATH OF SEVEN THAT NORMALISES: IN, KR, QA, SA and US cite Damodaran's country risk file with its publication date and hold the published ERP flat, and AE holds the market-basis UAE ERP flat while saying in terms that no structural convergence is assumed. Egypt's published figures are 9.41% (market basis) and 13.94% (rating basis), so the path retires 2.41 to 6.94 points of Egyptian country risk on no stated authority. Does the principal want (a) the house convention applied — hold the published market-basis ERP flat at 9.41%, sourced to Damodaran with its date — or (b) the normalisation kept as a declared house judgement at 7.00%?",
+   "key": "PHDC-landbank-current-vintage",
+   "opened": "2026-09-08",
+   "cls": "missing_data",
+   "question": "Palm Hills Development's land bank as at a date no earlier than 31 March 2026 — the figure the company states in its FY2025 and 1Q2026 earnings releases, if it states one. The study registers 33.0 million square metres dated 31 December 2024 from the FY2024 release, and its own information set ends 31 March 2026, so the quantity the whole present-value net asset view is built out of is fifteen months older than the information set. This is the defect [R-ASSET-01] was adopted on, in the principal's own words: a study that takes the current land bank of a developer and does not account for new land added to it.",
    "routes": [
     {
-     "route": "all seven engine/macro_paths/*.json read in full, erp_terminal compared field by field",
-     "when": "2026-09-18",
-     "outcome": "five cite Damodaran ctryprem with LAST UPDATED 5 January 2026; AE cites the DU study's registration of 1 August 2026 and states the held-flat convention explicitly; EG cites a rationale. Egypt is the only one.",
+     "route": "the company's own investor-relations page, www.palmhillsdevelopments.com/investor-relations/, fetched directly",
+     "when": "2026-09-08",
+     "outcome": "HTTP 200 and USELESS: the page is JavaScript-rendered and its raw HTML carries 27 links and ZERO pdfs, so nothing on it can be enumerated without executing the page.",
      "rerun": true
     },
     {
-     "route": "the identity the book's own Egyptian ERPs are built on, recovered from the committed study records",
-     "when": "2026-09-18",
-     "outcome": "ERP = mature_erp + default_spread x 1.52 reproduces both bases to the basis point (0.0423 + 0.0341 x 1.52 = 0.0941; 0.0423 + 0.0637 x 1.52 = 0.1394). Deriving a TERMINAL ERP by it needs a TERMINAL default spread, and no path in this repository carries one — so the derivation route is closed, not merely unrun.",
+     "route": "the same page through the headless browser this environment installs, which is the route that defeats a rendered source",
+     "when": "2026-09-08",
+     "outcome": "net::ERR_CONNECTION_RESET on navigation, repeatably, while plain curl reaches the same URL — so the block is on the browser's own connection rather than on the host. Reported, not routed around.",
      "rerun": true
     },
     {
-     "route": "every live ref searched for a sourced terminal or normalised Egyptian ERP",
-     "when": "2026-09-18",
-     "outcome": "none. The 7.00% appears only in EG.json and in what reads it.",
-     "rerun": true
+     "route": "the apex host without the www prefix, palmhillsdevelopments.com/investors/",
+     "when": "2026-09-08",
+     "outcome": "HTTP 525 — a TLS handshake failure at the edge, not a missing page.",
+     "rerun": false
     },
     {
-     "route": "engine/macro_path.py _validate read end to end",
-     "when": "2026-09-18",
-     "outcome": "it requires a per-step basis on every inflation rung and required NOTHING of erp_terminal. Closed in this pass: the field now declares a basis from a closed list and a house judgement must say what would source it. THAT CHANGE MOVES NO NUMBER.",
+     "route": "the study's own committed register, for a later land-bank figure it may already hold",
+     "when": "2026-09-08",
+     "outcome": "land_bank_sqm_mn is the ONLY land-bank quantity registered and it is the FY2024 release's. The register names a 1Q2026 earnings release as a source for other figures — exactly the document a developer restates a land bank in — and that release is not committed to this repository, so whether it carries an updated figure is not established from here.",
      "rerun": true
     }
    ],
-   "refs_searched": 262,
-   "why_only_the_principal": "It is not a defect with one right repair. The normalisation may well be correct — Egypt is the one market of the seven genuinely in transition, and a crisis-era premium arguably should not be capitalised into perpetuity — and it is unsourced, which is what the rule forbids. Choosing between a defensible house view and the house's own six-of-seven convention is a methodological position, and it moves EVERY Egyptian fair value in the book at once. Applying the convention LOWERS them, at a moment when seven forensic audits have just found the book leaning low — which is a reason to decide it deliberately rather than a reason to decline it.",
-   "done_meanwhile": "The field is DECLARED for what it is rather than left reading as a publication: engine/macro_path.py now requires erp_terminal to carry a basis from a closed list (published / derived / house_judgement) and requires a house judgement to state what would source it; all seven paths declare; EG carries house_judgement with the measurement and the route. Negative-controlled on 12 conditions, 8 red and 4 clean. NO VALUE MOVED and every macro gate is green.",
-   "default_if_no_answer": "Apply the house convention: erp_terminal = the published market-basis Egyptian ERP held flat, sourced to Damodaran with its date, with the change carried through the rebuild ledger of every Egyptian study at its next edition. Chosen as the default because it is the only option that needs no unsourced number, and because six of seven paths already do it.",
-   "default_date": "2026-10-31",
+   "refs_searched": 2,
+   "why_only_the_principal": "Pure access. The document is published by the issuer and the issuer's site cannot be read from this container by either available route. The principal has supplied primary filings before when a company site refused, and this protocol records that as the rule working rather than failing.",
+   "done_meanwhile": "The gap is MEASURED and already carried on the asset-base ratchet with its full figures rather than as a bare name, so the debt is countable. A ready-made generator sits in the study directory (asset_base_record.py) which writes the record the moment a sourced figure exists; it is deliberately NOT wired into the build, because running it today commits a record whose only content is that the base is stale, which the ratchet already says in more detail. A record that adds nothing and turns a gate red is not a repair.",
+   "default_if_no_answer": "Declare not_restated_since ONLY if the FY2025 and 1Q2026 releases can be read and neither restates the land bank — never on the assumption that they do not. Failing that, PHDC stays on the asset-base ratchet and the land bank is flagged in the study's own limitations as a quantity whose vintage the study cannot establish.",
+   "default_date": "2026-10-08",
    "status": "open",
-   "resolves_when": "engine/macro_paths/EG.json carries erp_terminal with basis 'published' or 'derived', or its house_judgement note records the principal's ruling with its date.",
-   "recommendation": "Keep 7.00% and its declaration, and revisit when a terminal default spread can be sourced. The reasoning is that the alternative is not more sourced than the current figure in the sense that matters: holding TODAY'S crisis-era premium flat into perpetuity is itself a strong claim about Egypt, published only in the sense that today's number is published. What the declaration buys is that a reader can now see which kind of number it is, which was the whole of the breach.",
-   "resolved": null,
-   "answer": null,
-   "answer_written_to": null
+   "resolves_when": {
+    "file": "engine/phdc_study/LANDBANK_SOURCE.md",
+    "must_contain": "LAND BANK RE-SOURCED"
+   },
+   "note": "The resolving marker is a file that does not exist yet, on the ELEC precedent, rather than a field that already does. A first draft keyed this on the land_bank_sqm_mn input, which is present today — so the entry read as already answered the moment it was written, and the escalation gate said so. What has to change is that input's DATE, and no checker can read an intention, so the close is a person writing down where the newer figure came from."
   },
   {
-   "key": "mechanical-lens-window-reseal",
-   "opened": "2026-09-18",
+   "key": "ORAS-regressor-dual-listing",
+   "opened": "2026-09-08",
    "cls": "instruction",
-   "question": "[R-VCAL-02 CLAUSE TWO] makes Phase 1 the backtest, and the backtest is criterion 3's clauses A, B, C and F ON THE MECHANICAL SERIES. Measured 18-09-2026 that series has ZERO admissible cells, and the cause is not a thin archive: the sealed declaration (MECHANICAL_LENS_3_06-09-2026.md section 1) fixes the explicit window at the walk-forward's own horizons 1-5 and says it 'is not re-derived here', while EVERY DELIVERED STUDY THAT COMMITS THE RECORD CONVERGES to its terminal -- PHDC on FIFTEEN explicit years, TMGH on ten. So the lens rebuilds a fifteen-year construction on five years, and every cell it ever scored breached [R-MACRO-01]'s 2pp convergence bound (3.8pp at best, 15.6pp at worst), six of seven carrying a terminal worth MORE than the whole enterprise value. Does the principal want the lens declaration RE-SEALED on a converging point-in-time inflation ladder, so that Phase 1 has a backtest it can actually run?",
+   "question": "Orascom Construction is listed twice — ADX primary in AED (ISIN AEE01702O253) and EGX secondary in EGP (ISIN EGS95001C011), same ticker — and on the sweep date the company's own page quoted both at once, EGP 855.85 against AED 60.30. SIGCM clause 6 says the regressor is the published index of the exchange the stock is LISTED on, and this stock is listed on two. Which exchange does ORAS strike on?",
    "routes": [
     {
-     "route": "every cell the lens had ever scored, measured against research_protocol.HORIZON_CONVERGENCE",
-     "when": "2026-09-18",
-     "outcome": "all seven breached; the refusal is now in the lens and the declared run scores none. Recorded in engine/valuation_calibration/CONVERGENCE_REFUSAL_18-09-2026.md",
-     "rerun": true
+     "route": "engine/raw_ohlc/EG/ORAS.csv held against both quoted prices",
+     "when": "2026-09-08",
+     "outcome": "closes 782.25 on 23-08-2026, the EGP magnitude, so the series this repository holds is the EGX line and is correctly filed under EG",
+     "rerun": false
     },
     {
-     "route": "every delivered study's committed explicit_years and growth_at_horizon_end",
-     "when": "2026-09-18",
-     "outcome": "nine studies commit the record and every one converges exactly; PHDC uses 15 explicit years, TMGH 10, the rest 5. The lens uses 5 for all of them.",
-     "rerun": true
-    },
-    {
-     "route": "the walk-forward projectors' own escalator rules, read in source",
-     "when": "2026-09-18",
-     "outcome": "they compound the LAST PUBLISHED inflation print flat at every horizon -- (1 + cpi(origin)) ** h -- so a 31-Dec-2019 Egyptian origin compounds at 13.87% for five straight years. That is a pre-registered DRIVER rule and may not move on the strength of a valuation result [R-FCAL-01].",
-     "rerun": true
-    },
-    {
-     "route": "engine/macro_history/ searched for a point-in-time FORWARD ladder",
-     "when": "2026-09-18",
-     "outcome": "FOUND. _extract_weo_egypt.json holds eleven IMF World Economic Outlook vintages with file names and sha256, each carrying a forward projection made at its own publication date. October 2019 projects 13.866 / 9.965 / 7.217 / 7.011 / 7.002 / 7.078 -- converging to the house terminal by year three, no fade, no free parameter. POINT-IN-TIME DISCIPLINE FORBIDS FORESIGHT, NOT A DECLINING FORECAST.",
-     "rerun": true
-    },
-    {
-     "route": "scripts/check_valuation_calibration.py, to see what a new declaration would have to satisfy",
-     "when": "2026-09-18",
-     "outcome": "it reads COMMIT TOPOLOGY -- the pre-registration's introducing commit must be an ANCESTOR of every score file's, and the document must still hash to its seal. A declaration written now is written with the gap in full view, so the evidence that no lever was fitted to it would be gone. That is why this is registered rather than done.",
+     "route": "www.adx.ae and api.adx.ae, for an ADX price series",
+     "when": "2026-09-08",
+     "outcome": "HTTP 403 and CONNECT tunnel failed 502 — no ADX series is obtainable here",
      "rerun": true
     }
    ],
-   "refs_searched": 262,
-   "why_only_the_principal": "It changes what the backtest IS, and the pre-registration exists precisely so that nobody changes it after seeing the results. Re-sealing is defensible -- the current seal does not reproduce the construction it grades, which is [R-VCAL-01]'s own stated falsifier arriving structurally rather than statistically -- but a desk that has just measured a series at a third of the delivered values cannot be the one that decides to rebuild the instrument, and say so credibly afterwards. The principal can.",
-   "done_meanwhile": "The refusal is IN the lens, imported from research_protocol.HORIZON_CONVERGENCE rather than typed, two-sided exactly as the study gate reads it, negative-controlled on eight conditions. criterion3.py now reports clause A as UNMEASURED rather than crashing or printing NOT MET on inadmissible cells, and names the convergence refusal as the largest drop class rather than burying it in 'other'. score_cashflow's typed header count is computed. No fair value moved and no publish decision changed -- the book was held before and is held now.",
-   "default_if_no_answer": "Leave the seal alone and leave Phase 1 blocked, with the state reported at every run. The honest default is inaction: a backtest that cannot produce a cell blocks the book, which is uncomfortable and true, whereas a re-sealed instrument that closes Phase 1 would be an instrument built after seeing what the old one said.",
-   "default_date": "2026-10-31",
+   "refs_searched": 3,
+   "why_only_the_principal": "Not an access problem. Both readings conform to a rule and they disagree: the EGX line is the series held and EGX30 is its conforming regressor, while ADX is where the stock is primarily listed. Picking one is a house judgement about which listing a beta should describe, and market AE deliberately RAISES rather than guessing between ADX and DFM, so nothing in the code would have chosen for us.",
+   "done_meanwhile": "the sweep closed all four rings without a regressor, and no beta was resolved — which is why this question could be asked before any number depended on it",
+   "default_if_no_answer": "hold ORAS off the queue rather than strike it on a regressor nobody chose; a beta measured against the wrong index is the FERTIGLB defect, where a non-conforming regressor understated beta by about 40%",
+   "default_date": "2026-09-15",
    "status": "resolved",
+   "resolved": "2026-09-08",
+   "answer_written_to": "engine/oras_study_pending/REGRESSOR_RULING.md",
    "resolves_when": {
-    "file": "engine/valuation_calibration/PRE_REGISTRATION_18-09-2026.md",
-    "must_contain": "SUPERSEDES"
+    "file": "engine/oras_study_pending/REGRESSOR_RULING.md",
+    "must_contain": "ruled_08_09_2026"
    },
-   "recommendation": "RE-SEAL, and state in the new declaration that it was written after the old one was measured and why -- which is the only honest way to do it. The argument is that the current seal fails [R-VCAL-01]'s own falsifier on its face: it does not rebuild the construction it grades, and a calibration of a method the house does not use tells nobody anything. The converging ladder is available from a source dated BEFORE each origin, so the new construction needs no free parameter and no foresight. What it cannot claim is that it was designed blind, and the record should say so plainly rather than imply otherwise.",
-   "resolved": "2026-09-18",
-   "answer": "ANSWERED BY THE PRINCIPAL, 18-09-2026, in these words: 'rebuild the lens and run Phase 1 and include SWDY because we are ready to republish SWDY if we find a need to.' The lens is rebuilt on the archive's own point-in-time forward inflation ladder, the terminal rate is read at the window's last year, SWDY and SCEM are wired, and PRE_REGISTRATION_18-09-2026.md supersedes the sealed first edition through the route that document itself prescribes.",
-   "answer_written_to": "engine/valuation_calibration/PRE_REGISTRATION_18-09-2026.md"
+   "note": "RULED: strike on EGX against engine/raw_indices/EG/EGX30.csv. The ADX primary listing is disclosed in the study, and so is the fact that the beta is measured on the secondary line. TWO COMPLICATIONS THE BUILD CARRIES: the ADX listing REPLACED Nasdaq Dubai inside the regression window — the January-2025 shareholding disclosure still names AEDFXA14NUL7 — and the pound moved from about 47.6 to about 52 to the dollar across it.",
+   "answered_by": "the principal, in session on 08-09-2026, answering a direct question put to them through the interactive question tool — one option selected per question, not inferred from anything they had said before"
   },
   {
-   "key": "mechanical-lens-terminal-real-growth",
-   "opened": "2026-09-18",
+   "key": "ORAS-OCI-combination-dual-frame",
+   "opened": "2026-09-08",
    "cls": "instruction",
-   "question": "The rebuilt lens escalates on the archive's own declining forward ladder and STILL scores nothing: 22 of 60 cells are refused because the explicit window ends growing materially above its terminal. The cause is now measured and is not the inflation path -- it is REAL growth. Running the window longer makes it WORSE, not better: asked for fifteen horizons rather than five, PHDC's projection ends growing at 20.66% and TMGH's at 39.37%, because these driver rules compound a population or intensity term that never decays. They were pre-registered to score three to five years of DRIVERS and were never built to reach a steady state. So a mechanical value cannot be built out of them under [R-MACRO-01] at ANY window length. Three constructions could close it and each is a methodological decision with a large, one-directional effect on every value: (a) let the terminal carry a STATED real growth equal to the window's own last real growth, charging the incremental capital behind it -- satisfies the bound by construction and capitalises a growth rate no economy sustains; (b) extend each run's projector with a declared decay of real growth to zero -- needs a fade rate nobody has tested, which is the free parameter the PROMOTION RULE forbids; (c) accept that series (a) is not constructible on these runs and move criterion 3's clauses A, B, C and F onto series (b), the fair values this house actually published, whose pooled interval already covers zero on 16 names across 4 markets.",
+   "question": "Orascom Construction carries a share issue that has NOT completed: 97,201,359 new shares at USD 1 plus USD 12.79 premium, taking issued capital from 110,243,935 to 207,445,294 — up 88.2% — per the shareholders' circular of 8 January 2026. The long stop is 30 December 2026, the OCI vote is pending and a rival all-cash NNS offer at EUR 4.10 is outstanding. A per-share value on either share count alone is a claim about which outcome happens. How is it framed?",
    "routes": [
     {
-     "route": "every run's projector asked for fifteen horizons instead of five, to test whether a longer explicit window converges on its own",
-     "when": "2026-09-18",
-     "outcome": "it does not. PHDC ends at 20.66% and TMGH at 39.37% at h=15; ARCC, EGCH and SWDY cap at five by their own HORIZONS constants and cannot be asked. The obvious repair was tested and refuted rather than assumed.",
+     "route": "the Step 2A sweep of 08-09-2026, which reached orascom.com's investor shelf in full and carried the circular's own terms",
+     "when": "2026-09-08",
+     "outcome": "the TERMS are established — ratio 0.4634, ORAS equity value USD 1,520.0mn against OCI USD 1,347.9mn, consideration about 47% — and the OUTCOME is not. The sweep recorded it as a base changer to be dual-framed and never smoothed.",
+     "rerun": false
+    }
+   ],
+   "refs_searched": 2,
+   "why_only_the_principal": "The question is not what the terms are but what a study may assert. Blending the two share counts by a probability would state a view on a shareholder vote, and this house publishes distributions rather than views on binary corporate events.",
+   "done_meanwhile": "the sweep closed and both share counts are registered, so either frame can be built",
+   "default_if_no_answer": "build standalone only and disclose the event with its terms, valuing nothing that depends on the vote",
+   "default_date": "2026-09-15",
+   "status": "resolved",
+   "resolved": "2026-09-08",
+   "answer_written_to": "engine/oras_study_pending/REGRESSOR_RULING.md",
+   "resolves_when": {
+    "file": "engine/oras_study_pending/REGRESSOR_RULING.md",
+    "must_contain": "ruled_08_09_2026"
+   },
+   "note": "RULED: DUAL-FRAME. The study is built on the standalone company and the combined case is carried as a fully separate valuation with its own share count. Neither is blended into the other and NO PROBABILITY IS APPLIED to the outcome — a weighted single number would be a view on a vote.",
+   "answered_by": "the principal, in session on 08-09-2026, answering a direct question put to them through the interactive question tool — one option selected per question, not inferred from anything they had said before"
+  },
+  {
+   "key": "AMOC-volume-history-series",
+   "opened": "2026-09-08",
+   "cls": "missing_data",
+   "question": "Alexandria Mineral Oils' total sales tonnage for FY2021-FY2025 by year, and its per-product-line tonnage over the same span. The study prints the annual series as 1,492 / 1,548 / 1,449 / 1,433 / 1,262 thousand tonnes and derives a five-year mean of 1,437 and a base-year annualisation of 1,616 from it. NOTHING IN THIS REPOSITORY CARRIES THAT SERIES. It matters because the BEAR CASE is anchored to it: the volume dial is set at -4.5% a year and its stated purpose is to return tonnage toward that mean.",
+   "routes": [
+    {
+     "route": "the three committed AMOC filings in engine/amoc_study/filings/",
+     "when": "2026-09-08",
+     "outcome": "two December-2025 statements and one June-2025. Note 14-A gives ONE half's tonnage by line with a VALUE-only comparative. Grepped all three for the five annual totals: none present. FY2022-FY2024 per-line tonnage would need filings this study does not hold.",
+     "rerun": false
+    },
+    {
+     "route": "engine/amoc_study/filings/AUDITED_EXTRACT.md, the committed extract",
+     "when": "2026-09-08",
+     "outcome": "carries note 14-A for the half only; no annual series of any kind",
+     "rerun": false
+    },
+    {
+     "route": "the company's own investor-relations shelf, www.amoc.com.eg/en/investor-relations",
+     "when": "2026-09-08",
+     "outcome": "curl (56) CONNECT tunnel failed, response 502 over https; plain http returns 'Could not resolve host: www.amoc.com.eg'. The company site is not reachable from this environment at all, by either scheme.",
      "rerun": true
     },
     {
-     "route": "the archive's forward ladder at every origin, to establish that the inflation half is fully closed (engine/valuation_calibration/pit_inflation.py)",
-     "when": "2026-09-18",
-     "outcome": "closed. A window ending at horizon h now carries the ladder's own rate for that year, so growth there and the terminal are the same number by construction and the residual is exactly the run's real growth.",
-     "rerun": true
-    },
-    {
-     "route": "delivered.py -- whether series (b) can answer what series (a) cannot",
-     "when": "2026-09-18",
-     "outcome": "16 readable single-central studies across 4 markets, mean log(FV/P) -0.1880, median -0.0958, 95% interval resampling NAMES -0.4633 to +0.0233 and resampling MARKETS -0.5618 to +0.0912 -- BOTH COVER ZERO. criterion3.py prints it beside clause A and refuses to count it, in its own words, because the criterion says AT EVERY ORIGIN and this is one origin per name.",
-     "rerun": true
-    },
-    {
-     "route": "every delivered study's committed explicit window, for what the house itself does",
-     "when": "2026-09-18",
-     "outcome": "every study committing the record converges exactly; PHDC on fifteen explicit years, TMGH on ten, the rest on five.",
-     "rerun": true
-    },
-    {
-     "route": "engine/terminal_value.py, whether it admits a stated real growth at all",
-     "when": "2026-09-18",
-     "outcome": "it does, and refuses real growth with no incremental capital behind it. Option (a) is therefore expressible without touching the sanctioned module.",
+     "route": "the Egyptian Exchange, www.egx.com.eg/en/HomePage.aspx",
+     "when": "2026-09-08",
+     "outcome": "curl (52) Empty reply from server after 1.5s — the same EGX block three other sweeps hit today (ORAS, HRHO and ISPH all logged it). Not a one-off and not this probe's fault.",
      "rerun": true
     }
    ],
-   "refs_searched": 262,
-   "why_only_the_principal": "All three options change what a mechanical value IS, and two of them move every value in one direction. A desk that has just measured the series at zero cells cannot choose the construction that makes it non-zero and be believed afterwards -- that is the same reason the first reseal was escalated rather than taken, and the reason has not weakened by the principal having answered the first question. Option (c) additionally decides what Phase 1 MEANS, which [R-VCAL-02 CLAUSE TWO] establishes is the principal's to state.",
-   "recommendation": "(c). Series (a) exists only because the pre-registration judged series (b) 'far too short to score' in September 2025 terms; it is now 16 names across 4 markets and its interval covers zero on both resamplings. Option (a) capitalises a growth rate no economy sustains and would raise every value, which is exactly the shape of a correction chosen because it helps. Option (b) is a free parameter. What (c) costs is stated rather than discovered later: one origin per name is a CROSS-SECTION and not the every-origin series the criterion names, so the evidence is weaker than the design asked for, the era split and the leave-one-out lose most of their power, and criterion 3 would have to be amended in terms rather than reinterpreted.",
-   "done_meanwhile": "The lens is rebuilt and committed; the inflation half of the problem is closed; SWDY and SCEM are wired; the unit-suspect refusal caught a cell reading +75,727.6% that every other gate passed; PRE_REGISTRATION_18-09-2026.md records the whole construction and states what it cost; the score record is dated and committed after it. No fair value moved and no publish decision changed.",
-   "default_if_no_answer": "Take (c) and amend criterion 3 in terms -- clauses A, B, C and F read on series (b), with the cross-section limitation stated in the criterion itself rather than in a footnote. The default is the option that changes no valuation construction: (a) and (b) both alter what every mechanical value IS and neither may be taken by default.",
-   "default_date": "2026-09-25",
+   "refs_searched": 6,
+   "why_only_the_principal": "Pure access to superseded filings. Four earlier annual reports would settle it and none is on disk; SIGCM forbids reconstructing a historical series from a vendor, a press summary or an interpolation, and these are the figures a bear case is anchored to.",
+   "done_meanwhile": "the four per-line compound rates that rested on the same series are NO LONGER PRINTED — the prose check caught one of the four and the other three were unflagged rather than verified, so under SIGCM a figure this desk cannot source is one it does not print. The DIRECTION survives, which is what the argument needs: six lines down, two up. The bear leg's own description was also corrected in the same pass: it claimed -4.5% a year returns tonnage to the five-year mean by year five, and it does not — it lands at 1,284, BELOW that mean and close to the last audited year. Reaching the mean would need only -2.3% a year. The dial is unchanged and now an assertion checks that the sentence describing it is true.",
+   "default_if_no_answer": "stop printing the five annual totals, the five-year mean and the base-year annualisation, and re-anchor the bear leg on something this repository holds — which would be a study act with its own ledger entry, not a record fix",
+   "default_date": "2026-09-22",
+   "status": "open",
    "resolves_when": {
-    "file": "engine/method_reassessment/criterion3.py",
-    "must_contain": "TERMINAL REAL GROWTH RULED ON"
-   },
-   "status": "open"
+    "file": "engine/amoc_study/filings/AUDITED_EXTRACT.md",
+    "must_contain": "annual_tonnage_FY2021_FY2025"
+   }
   },
   {
-   "key": "beta-estimator-gate-reads-half-the-book",
-   "opened": "2026-09-18",
-   "cls": "instruction",
-   "question": "[R-BETA-05] was adopted 18-09-2026 and its gate reads a beta record out of study_numbers.json ONLY. Measured the same evening, TWENTY-TWO studies commit a beta_result.json and the gate reaches TEN records of twenty-three. Widening the reader to the second location surfaces THIRTEEN more studies, of which twelve quote a testable diagnostic and name no estimator — the exact breach the rule was adopted on, in twelve more places. The gate is ratcheted at seven and [R-ENF-02] says a ratchet may only ever SHORTEN, so there are only two honest ways to widen it: re-seed the ratchet at nineteen, stating that these entries were outstanding ON ADOPTION DAY and invisible rather than deferred afterwards; or CONFORM the twelve, which means emitting the estimator sentence into twelve delivered documents and is a re-issue. Which?",
+   "key": "FERTIGLB-published-fair-value-no-current-review",
+   "opened": "2026-09-09",
+   "cls": "contradiction",
+   "question": "The LIVE SITE publishes a FERTIGLB fair value of AED 2.15, stamped fairAsof 2026-08-07. The study now asserts a TWO-SIDED answer — framing A at 1.8095 and framing B at 2.6831 — and 2.15 is NEITHER. compute.py's own print names it: 'the retired blend published 2.17, a number neither framing asserts'. Against a price that has risen to 2.84 the published number is 24.3% below, and check_published_gap reads that as a NEW breach because the ratchet records 15.4%. Does the published number stand until the batch publication, or is a site carrying a retired blend a thing to correct now?",
    "routes": [
     {
-     "route": "every engine/*_study for a beta record outside study_numbers.json",
-     "when": "2026-09-18",
-     "outcome": "22 studies carry beta_result.json; 13 of them are invisible to the gate. Named: ADNOCDIST, ADNOCDRILL, AIRARABIA, ARCC, DU, ELEC, EMPOWER, FERTIGLOBE, GBCO, PHAR, SCEM, STC, SWDY.",
-     "rerun": true
+     "route": "assets/data.js, read directly for the FERTIGLB record",
+     "when": "2026-09-09",
+     "outcome": "carries fair 2.15, fairAsof 2026-08-07, px 2.67 and its own stored gap -0.1948, which is internally consistent with ITS price but not with the study behind it",
+     "rerun": false
     },
     {
-     "route": "the delivered document of each, for diagnostics quoted and estimator named",
-     "when": "2026-09-18",
-     "outcome": "twelve quote at least one testable diagnostic and none names an estimator; ELEC quotes none and is out of scope by the rule's own narrowing.",
-     "rerun": true
+     "route": "engine/fertiglobe_study/study_numbers.json, the committed answer",
+     "when": "2026-09-09",
+     "outcome": "bridge_A ps_aed 1.8094690, bridge_B ps_aed 2.6830601 — 2.15 is neither",
+     "rerun": false
     },
     {
-     "route": "the gate's own reader, to establish this is LOCATION rather than SHAPE",
-     "when": "2026-09-18",
-     "outcome": "read_beta_record handles two shapes and refuses a third, correctly. The hole is that it is only ever handed one FILE. The rule's own text closes the shape problem in terms and says nothing about where the record lives.",
-     "rerun": true
-    },
-    {
-     "route": "engine/escalations.json and the lessons register, for whether this was asked and answered before",
-     "when": "2026-09-18",
-     "outcome": "not asked. [L-355] names the class — a reader that guesses a naming convention silently finds nothing and reports it as a result — and this is that class landing on a gate adopted to close a different instance of it the same day.",
+     "route": "engine/fertiglobe_study/GAP_REVIEW_04-09-2026.md",
+     "when": "2026-09-09",
+     "outcome": "audits central 1.8105 at -32.2% against AED 2.67 of 3 September. So an audit EXISTS and covers a LARGER gap on a LOWER fair value than the site publishes — the published breach is covered a fortiori by a review of a more extreme case, but no document says so and no gate can infer it",
      "rerun": true
     }
    ],
-   "refs_searched": 262,
-   "why_only_the_principal": "Both routes cost something the principal owns. Re-seeding a ratchet is the one thing [R-ENF-02] forbids in terms, and the argument for doing it here — that the debt predates the gate and was merely invisible — is exactly the argument anybody would make for growing any ratchet, so making it once weakens the rule everywhere. Conforming instead means re-issuing twelve delivered documents, which is not done in passing and is not done unattended.",
-   "recommendation": "Re-seed at nineteen WITH EACH ENTRY CARRYING ITS MEASUREMENT [R-ENF-08], and record in the ratchet file itself that this is a SEEDING CORRECTION rather than a deferral — the entries were outstanding on the day the rule was adopted and the gate could not see them, which is a different fact from work deferred after adoption. Then close them the ordinary way: the sentence is EMITTED from the record by beta_regression.estimator_note(), so conforming a study is one line in its builder at its next edition rather than twelve hand-written sentences.",
-   "done_meanwhile": "The hole is measured and named rather than left as a suspicion, and the count is in this entry so it is countable from a fresh clone. The gate is NOT widened, because widening it tonight would leave CI red on twelve studies with no route to green but a twelve-document re-issue — the permanently-red check [R-ENF-02] forbids.",
-   "default_if_no_answer": "Re-seed at nineteen with the measurements and the seeding-correction note. The default is the option that makes the book's real state VISIBLE; leaving a gate that reads under half its own population is the absent answer wearing a clean one's clothes [R-ENF-04], and it is worse than an honest ratchet.",
-   "default_date": "2026-09-25",
+   "refs_searched": 4,
+   "why_only_the_principal": "Two defensible readings and the house has already ruled once in this area. Publish_Protocol and build_publish_queue.py say the campaign publishes as ONE BATCH at the end and that until then assets/data.js deliberately carries the PRE-CALIBRATION range — on that reading 2.15 is correct-by-design and the widening gap is just the market. The other reading is that a retired blend is not a pre-calibration number, it is a WITHDRAWN one, and publishing a figure the study explicitly no longer asserts is different from publishing an older one it does. Correcting it would be a publish, which needs the explicit word.",
+   "done_meanwhile": "the study itself was re-struck onto the latest supplied price today with no change to fair value, its gap review already audits the more extreme case, and NOTHING was published. The ratchet was NOT widened to absorb the new magnitude: the breach is left red, because a magnitude ratchet that gets bumped whenever the measurement worsens is not a ratchet.",
+   "default_if_no_answer": "leave the site untouched and the gate red, with this entry as the reason. A red gate with a written cause is better than a green one bought by editing the ratchet it is measured against.",
+   "default_date": "2026-09-16",
+   "status": "open",
    "resolves_when": {
-    "file": "scripts/check_beta_estimator_disclosure.py",
-    "must_contain": "beta_result.json"
-   },
-   "status": "open"
+    "file": "engine/build_depth_audit/published_gap_outstanding.json",
+    "must_contain": "FERTIGLB_ruled_09_2026"
+   }
   },
   {
-   "key": "eg-currency-path-first-year-above-its-own-range",
-   "opened": "2026-09-18",
-   "cls": "instruction",
-   "question": "The house Egyptian currency path derives its first forward year to EGP 55.1141/USD, and the path file's OWN source field records the pound's 52-week range as 46.64-54.86 with a spot of 50.25 at 6 August 2026. 55.1141 is a full-year AVERAGE above the top of that range, so it requires the pound to spend most of the year beyond anything it has traded at in a year. The derivation is not hand-set and is not wrong in method — it is relative purchasing-power parity on this path's own inflation ladder against long-run US inflation, exactly as [R-MACRO-01] requires, and a study may not carry a currency of its own. So no study is at fault and every Egyptian study inherits it. Does the principal want the path's fx SPOT ANCHOR refreshed, the derivation re-examined against the observed range, or the path left as it is with the tension disclosed?",
+   "key": "HELI-primary-financial-statements",
+   "opened": "2026-09-09",
+   "cls": "missing_data",
+   "question": "Heliopolis Housing and Development (EGX: HELI) — audited annual statements for FY2022-FY2025 with BOTH the auditor's report and the Central Auditing Organization's separate report, the reviewed interims for Q1-2026 and H1-2026, the EGX results announcements for FY2025/Q1-2026/H1-2026 where the land and partnership anchors live, and the FY2025 governance report. Not one page of any statement was obtained, so SIGCM clause 1 blocks this study outright: zero fiscal years carry statement data and seven of thirteen drivers are top-down.",
    "routes": [
     {
-     "route": "engine/macro_paths/EG.json fx block and macro_path.MacroPath.fx_path(5)",
-     "when": "2026-09-18",
-     "outcome": "spot 50.25 (2026-08-06); derived path 55.1141 / 60.2223 / 64.0413 / 67.1652 / 70.1139; the source field's own 52-week range is 46.64-54.86. The first forward year is ABOVE the range high. Computed live, not quoted.",
+     "route": "https://www.heliopoliscompany.com/ — the domain aggregators print",
+     "when": "2026-09-09",
+     "outcome": "HTTP 200, 114 bytes, JS redirect to /lander then 302 to forsale.godaddy.com. THE DOMAIN IS EXPIRED AND PARKED FOR SALE. Anything citing it as this issuer's site is citing a parking page.",
      "rerun": true
     },
     {
-     "route": "the direction on the Egyptian book, because it is NOT one-signed",
-     "when": "2026-09-18",
-     "outcome": "a name net SHORT dollars is hurt and a dollar-linked one is helped. This book already records the second half: conforming AMOC's ladder LOWERED its value because a lower ladder means a stronger pound and on a dollar-linked slate the translation gain lost outweighs the pound costs saved. So a single input moves the Egyptian studies in OPPOSITE directions and no correction here is uniformly favourable.",
+     "route": "misr-algadida.com — the real corporate site",
+     "when": "2026-09-09",
+     "outcome": "https fails with 'certificate has expired'; plain http returns 200 and IS the real site. Seven governance PDFs and two docx were retrieved from it — but it carries no statement library.",
      "rerun": true
     },
     {
-     "route": "[R-MACRO-01 AMENDED 06-09-2026]'s anchor-age gate, in case this is the same finding under another name",
-     "when": "2026-09-18",
-     "outcome": "it is NOT. That rule bounds how STALE an anchor may be when a study is struck; this is about the derived path's first year sitting outside the range the anchor's own source records. Two different questions about one field, which is the shape [R-MACRO-01 AMENDED] itself names.",
+     "route": "ir.egidegypt.com:8080 — where the IR document library actually lives, named as baseUrl in the company's own assets/config.json",
+     "when": "2026-09-09",
+     "outcome": "https: 'Recv failure: Connection reset by peer' on four tries; http: timed out after 30s; the proxy log records ws_closed_mid_exchange, tunnel closed code 1006 after 6s. This port is the block.",
      "rerun": true
     },
     {
-     "route": "whether any study may fix this itself",
-     "when": "2026-09-18",
-     "outcome": "no. [R-MACRO-01] forbids a study carrying an inflation or currency number of its own, and assert_macro_coherence enforces it. The path is the only place this can be changed, and changing it moves every Egyptian study at once.",
+     "route": "www.egx.com.eg, with a browser user-agent as well as the default",
+     "when": "2026-09-09",
+     "outcome": "default UA gives 'Empty reply from server'; a BROWSER UA gives HTTP 200 carrying an F5/TSPD CAPTCHA — 'What code is in the image?'. Not solved. Same on static PDF paths. web.archive.org/save returns 520 trying to fetch EGX; the CDX index holds HELI docs only for 2011-2013 and no EGX PDF since 2024.",
      "rerun": true
     }
    ],
-   "refs_searched": 262,
-   "why_only_the_principal": "It moves every Egyptian study in the book simultaneously and in opposite directions by name, which is precisely the kind of change [R-VCAL-01]'s promotion guard exists to sequence. A desk that has just been told the book's valuations look too conservative cannot be the one that decides to soften a currency path, and say so credibly afterwards — on the names that are net short dollars, softening it RAISES the value.",
-   "recommendation": "Refresh the fx spot anchor first and re-derive, before touching the derivation. The anchor is dated 6 August and the path is stamped 2 September; a 27-day-old anchor is already the tension [R-MACRO-01 AMENDED 06-09-2026] registered, and a fresher spot may resolve the range question without anyone choosing a construction. If it does not, the honest next step is to DISCLOSE that the first forward year sits above the observed range rather than to damp the derivation, because damping purchasing-power parity to fit an observed range is fitting a path to a price.",
-   "done_meanwhile": "Measured and registered rather than acted on. No path, study or fair value moved. The figures are computed live by macro_path.fx_path(5) so a fresh clone can reproduce them rather than trusting this entry.",
-   "default_if_no_answer": "Leave the path exactly as it is and disclose the tension wherever the currency is quoted. The default is inaction because every alternative moves eight studies at once, and the direction is not uniform, so there is no version of this that is safe to take by default.",
-   "default_date": "2026-09-25",
+   "refs_searched": 15,
+   "why_only_the_principal": "Pure access, and every route is exhausted from here. The company's own document host refuses on both schemes, its aggregator-listed domain is for sale, the exchange serves a CAPTCHA and the Internet Archive cannot fetch the exchange either. SIGCM forbids taking the figures from a vendor or the press, and the press disagrees with itself here on the one number everyone quotes — FY2025 revenue growth printed as both +97% and +197%, where the arithmetic gives 197%.",
+   "done_meanwhile": "the sweep closed all four rings on 43 findings anyway, and the material it did reach is not marginal: the state auditor's count of about 2,074 feddans of encroachment, three land additions inside the window, an English/Arabic acre-versus-feddan unit trap worth 3.8%, about 2,500 feddans already committed under revenue-share contracts, and two bonus issues taking the share count from about 1.335bn to about 4.006bn. Both validator errors are left FIRING rather than suppressed.",
+   "default_if_no_answer": "HELI is not built. A developer valued on a land bank with no statement behind it, against a state auditor alleging encroachment larger than the stated portfolio, is not a study this house issues.",
+   "default_date": "2026-09-23",
+   "status": "open",
    "resolves_when": {
-    "file": "engine/macro_paths/EG.json",
-    "must_contain": "RANGE TENSION RULED ON"
-   },
-   "status": "open"
+    "file": "engine/heli_study_pending/sweep_register.json",
+    "must_contain": "HELI_statements_received"
+   }
   },
   {
-   "key": "artefact-currency-gate-misses-the-other-spelling",
-   "opened": "2026-09-18",
-   "cls": "instruction",
-   "question": "[R-ENF-06] requires any artefact a builder reads that carries a valuation figure to declare the central it was generated against. check_artefact_currency.py finds such an artefact by a key list that includes 'central' and NOT 'centre'. This house writes both: PHAR's audit_pricing.json and audit_pricing_2.json carry 'centre' and are therefore invisible to the gate, so they are never required to declare a vintage — which is the exact defect [R-ENF-06] was adopted on, in the artefact class it was adopted for. Widening the key list can only find MORE, never less, so it is not a weakening; but it may turn the gate red on studies whose artefacts then have to declare, and that is a re-issue rather than something done in passing. Widen and ratchet, or widen and conform?",
+   "key": "JBIG2-symbol-substitution-risk-on-30-filings",
+   "opened": "2026-09-09",
+   "cls": "contradiction",
+   "question": "Thirty committed filings are JBIG2 scans carrying a SYMBOL DICTIONARY — the coding mode in which a scanner replaces one digit's bitmap with a visually similar one AT SCAN TIME. Fifteen of the thirty name a XEROX device as producer (WorkCentre 7845/7835, AltaLink B8045/B8055/C8135/C8155, VersaLink C415), which is the exact family of the confirmed 2013 defect. They include five filings under scem_study, which is DELIVERED, and sixteen under swdy_walkforward and phdc_walkforward, which are completed runs feeding criterion 3. Does the book verify the load-bearing figures on those filings against a second route, and does SCEM hold until it is done?",
    "routes": [
     {
-     "route": "scripts/check_artefact_currency.py VALUE_KEYS against every study's JSON",
-     "when": "2026-09-18",
-     "outcome": "VALUE_KEYS = ('central', 'per_share', 'value_adopted', 'fair', 'end', 'value_per_share', 'weighted_central'). Two PHAR artefacts write 'centre' and carry no key from that tuple.",
+     "route": "engine/scanned_filing_integrity.py run across 400 committed filings",
+     "when": "2026-09-09",
+     "outcome": "29 generic-region-only and safe; 30 carrying a symbol dictionary with text regions; the rest not JBIG2. The module reproduces FWRY's own independent finding on the file that prompted it.",
      "rerun": true
     },
     {
-     "route": "whether this is the same class as the beta-gate hole registered the same night",
-     "when": "2026-09-18",
-     "outcome": "yes, and that is the point. That one is a LOCATION the reader never opens; this one is a SPELLING the reader does not know. Both are [L-355] — a reader that guesses a naming convention silently finds nothing and reports it as a result — and both sit in gates adopted to close other instances of it.",
+     "route": "each refusing file's /Producer string",
+     "when": "2026-09-09",
+     "outcome": "15 Xerox devices, 13 with no producer string, 2 iLovePDF. The Xerox ones are the confirmed-defect family.",
      "rerun": true
     },
     {
-     "route": "the lessons register, for whether the class was already registered",
-     "when": "2026-09-18",
-     "outcome": "[L-355] is registered and correct and binds nothing; these are the second and third re-violations found in one night, which is [R-LESSON-02]'s own subject rather than a new lesson.",
-     "rerun": true
+     "route": "the footing discipline itself, tested against this failure mode as a matter of reasoning rather than probe",
+     "when": "2026-09-09",
+     "outcome": "it CANNOT detect it. Symbol substitution is consistent — the same wrong bitmap is replayed everywhere that glyph occurred — so a column of substituted digits foots against a subtotal of substituted digits. The check this house leans on hardest is blind to exactly this.",
+     "rerun": false
     }
    ],
-   "refs_searched": 262,
-   "why_only_the_principal": "The choice between growing a ratchet and re-issuing studies is the same choice the beta entry raises, and answering one should answer both — which is why it is registered beside it rather than taken separately.",
-   "recommendation": "Widen the key list and ratchet with measurements, on the same terms as the beta gate. A gate that cannot see an artefact is worse than one with a countable debt.",
-   "done_meanwhile": "Measured and named. The gate is NOT widened and nothing moved.",
-   "default_if_no_answer": "Widen and ratchet with each entry carrying its measurement, recorded as a seeding correction rather than a deferral.",
-   "default_date": "2026-09-25",
+   "refs_searched": 3,
+   "why_only_the_principal": "It is a question about what to do with DELIVERED work and with the runs criterion 3 is scored on, not about how to read a file. Re-reading is not the remedy here and cannot be: the pixels are already wrong if the defect fired. The options are to verify the load-bearing figures against a second route, to obtain the documents in another form, or to accept the risk explicitly — and the third is a judgement this desk does not make about a delivered study.",
+   "done_meanwhile": "the test is written, committed and runs across the whole book in one command, so the population is countable rather than remembered. NOTHING was withdrawn, no figure was changed, and no study was re-issued on this — it establishes a RISK, not an error. FWRY's own FY2021 scan was cleared by the same test, which is why its seven re-reads were the correct remedy there.",
+   "default_if_no_answer": "run the check as a standing gate on every new sweep so no future filing enters the book unexamined, and leave the thirty recorded and unverified rather than silently trusted",
+   "default_date": "2026-09-16",
+   "status": "open",
    "resolves_when": {
-    "file": "scripts/check_artefact_currency.py",
-    "must_contain": "'centre'"
-   },
-   "status": "open"
+    "file": "engine/scanned_filing_integrity_RULING.md",
+    "must_contain": "JBIG2 RISK RULED ON"
+   }
+  },
+  {
+   "key": "OCDI-FY2025-statements-blocked-at-EGX",
+   "opened": "2026-09-09",
+   "cls": "missing_data",
+   "question": "SODIC's FY2025 consolidated financial statements exist, are dated, and cannot be reached. The 30-Jun-2026 review report states the FY2025 consolidated statements carry an unmodified opinion from the predecessor auditor dated 5 February 2026, and the file sits at the EGX as downloads/News/سوديك مجمعه انجليزى 08-02-2026.pdf. SODIC's own IR library holds NOTHING dated between 23-Oct-2025 and 27-Jul-2026 — no 31-Dec-2025 statements, no FY2025 earnings release, no 2025 annual board report, no 31-Mar-2026 quarterly. Can the principal supply the FY2025 consolidated statements (English) and the FY2025 earnings release or annual board report if they exist?",
+   "routes": [
+    {
+     "route": "www.sodic.com IR library, all 333 documents enumerated, and the Arabic IR page re-fetched separately to rule out an English-page truncation",
+     "when": "2026-09-09",
+     "rerun": true,
+     "outcome": "identical library on both languages, so the hole is real. Newest document before the gap 23-Oct-2025; next document 27-Jul-2026."
+    },
+    {
+     "route": "www.egx.com.eg, four paths including the named FY2025 attachment, over https and http, plus egx.com.eg and /en/homepage.aspx",
+     "when": "2026-09-09",
+     "rerun": true,
+     "outcome": "HTTP 200 with content-type text/html and an F5/BIG-IP body: 'Please enable JavaScript to view the page content. Your support ID is: 4562065020937510468.' The same URL through the fetch tool returned HTTP 503. Judging by status code alone would have stored the challenge page as the filing."
+    },
+    {
+     "route": "cms.sodic.com/api/* and disclosure.efsa.gov.eg",
+     "when": "2026-09-09",
+     "rerun": true,
+     "outcome": "403 ForbiddenError on the CMS API; CONNECT tunnel failed, response 502 on the FRA disclosure host. cms.sodic.com/uploads/ itself serves, so the block is the API and the regulator, not the transport."
+    },
+    {
+     "route": "ir.sodic.com — the IR host SODIC prints on its own releases",
+     "when": "2026-09-09",
+     "rerun": true,
+     "outcome": "https: curl (56) CONNECT tunnel failed, response 502. http: curl (6) could not resolve host. The address on the company's own paper does not resolve."
+    }
+   ],
+   "refs_searched": 8,
+   "why_only_the_principal": "It is an access problem and nothing else — SIGCM clause 1 forbids substituting a vendor or a press carry for the subject's own reported historicals, so there is no analytical route around it. Only someone who can reach the EGX behind its firewall, or who holds the file, can close it.",
+   "done_meanwhile": "the complete, footed 31-Dec-2025 BALANCE SHEET was recovered from SODIC's own documents (F19) and is in the register. What is not recoverable is the FY2025 income statement and every FY2025 operating anchor — contracted sales, units sold, units delivered, collections, capex and the 31-Dec-2025 backlog. Q4-2025 cannot be differenced out because 9M-2025 is filed and FY2025 is not. That is the single top-down row in an otherwise 16-of-18 bottom-up driver gate.",
+   "default_if_no_answer": "build OCDI on the FY2025 balance sheet that was recovered and on 9M-2025 plus H1-2026 for the income statement, carry the FY2025 income statement and the operating anchors as a NAMED hole rather than an interpolation, and retire the one top-down driver row the moment the filing is supplied",
+   "default_date": "2026-09-16",
+   "status": "open",
+   "resolves_when": {
+    "file": "engine/ocdi_study_pending/sweep_register.json",
+    "must_contain": "OCDI_FY2025_statements_received"
+   }
+  },
+  {
+   "key": "EMFD-publishes-nothing-after-Q2-2021",
+   "opened": "2026-09-09",
+   "cls": "missing_data",
+   "question": "Emaar Misr has published no financial statements of its own since Q2-2021. Its IR register AND its own WordPress media API — which lists every file the site hosts, linked or not — both stop there, and the newest press release is 26-Mar-2021, while marketing uploads continue through 01-Sep-2026. So the site is live and the filings are simply absent from it. Can the principal supply EMFD's FY2022, FY2023, FY2024 and FY2025 audited consolidated statements and the Q1-2026 and H1-2026 interims as filed, plus any results release alongside them?",
+   "routes": [
+    {
+     "route": "emaarmisr.com IR register and the site's own WordPress media API, enumerating hosted files rather than linked ones",
+     "when": "2026-09-09",
+     "rerun": true,
+     "outcome": "both stop at Q2-2021. The media API is the stronger evidence: an unlinked file would still appear in it, and none does."
+    },
+    {
+     "route": "ir.egidegypt.com:8080, the IR API named in the company's own assets/config.json",
+     "when": "2026-09-09",
+     "rerun": true,
+     "outcome": "curl (35) Recv failure: connection reset by peer, status 000. The proxy log records ws_closed_mid_exchange in the same second — tunnel closed after 6s, 517 B sent, 39 B received. Port 8080 is not permitted by egress policy, so this is OUR constraint, not the company's."
+    },
+    {
+     "route": "www.egx.com.eg over four paths including a known Emaar Misr /downloads/News/ attachment, plus disclosure.egx.com.eg and a headless Chromium attempt at the JS challenge",
+     "when": "2026-09-09",
+     "rerun": true,
+     "outcome": "HTTP 200 with 6,020 bytes of F5 Shape/TSPD interstitial, support ID 4562065020937468764. disclosure.egx.com.eg: SSL_ERROR_SYSCALL. Chromium: net::ERR_CONNECTION_RESET, and https://example.com fails identically from it, so the transport is the cause and the challenge cannot be solved here."
+    },
+    {
+     "route": "Wayback CDX over egx.com.eg filtered on Emaar, and archive.org/wayback/available",
+     "when": "2026-09-09",
+     "rerun": true,
+     "outcome": "CDX reachable, HTTP 200, ZERO rows. The availability API returned HTTP 429 separately. There is no archived copy to fall back on."
+    },
+    {
+     "route": "data.egidegypt.com and fra.gov.eg",
+     "when": "2026-09-09",
+     "rerun": true,
+     "outcome": "403 Forbidden with a credentials message; the FRA does not host listed-company statements."
+    }
+   ],
+   "refs_searched": 15,
+   "why_only_the_principal": "SIGCM clause 1 again: four years of the subject's own reported historicals cannot come from a press carry, and the sweep did not pretend otherwise — it left the two press-sourced 2026 rows as VALIDATOR ERRORS rather than downgrade is_fs_data to silence them. Closing this needs the filings.",
+   "done_meanwhile": "FY2022-FY2025 are carried from the CONTROLLING PARENT's audited note 35 (Emaar Properties PJSC), which is an official document but is the parent's account of the subsidiary, not the subsidiary's own filing, and it is presented in AED. FY2017-FY2020 come from EMFD's own audited filings. The two 2026 quarters are press-only and flagged as errors.",
+   "default_if_no_answer": "do not adopt any FY2026 base. The study year contradicts itself on the press numbers — Q1-2026 profit of EGP 7.768bn against H1-2026 of EGP 5.555bn implies a Q2-2026 LOSS of EGP 2.213bn, while the identical arithmetic reconciles exactly on 2025 — so the 2026 pair is the anomaly and no base may be built on it. Build the explicit window off FY2025 from the parent's note 35, state the AED presentation and the parent-account provenance in terms, and hold the study at that until the filings arrive",
+   "default_date": "2026-09-16",
+   "status": "open",
+   "resolves_when": {
+    "file": "engine/emfd_study_pending/sweep_register.json",
+    "must_contain": "EMFD_own_statements_received"
+   }
+  },
+  {
+   "key": "EMFD-walkforward-panel-rests-on-refused-scans",
+   "opened": "2026-09-09",
+   "cls": "instruction",
+   "question": "engine/emfd_walkforward_pending/ built its FY2012-FY2016 panel and its FY2016/FY2017 balance sheets on six filings that scanned_filing_integrity.py now REFUSES — JBIG2 scans carrying a symbol dictionary, from Xerox WorkCentre 7830/7835 and PDFlib producers. That run accepted them BECAUSE THEY FOOT, re-reading at higher resolution until the subtotals re-derived, which is the one check blind to this defect: the substitution is consistent, so a column of substituted digits foots against a subtotal of substituted digits. Today's sweep established what survives against safe second documents. FY2014, FY2015 and FY2016 survive; FY2012 and FY2013 DO NOT, and neither do the FY2016 and FY2017 balance-sheet rows of its valuation-input block. Does that run get rebuilt on the surviving years, or held?",
+   "routes": [
+    {
+     "route": "engine/scanned_filing_integrity.py across every EMFD filing held",
+     "when": "2026-09-09",
+     "rerun": true,
+     "outcome": "nine REFUSE. FS 2013-AR, FS 2014-AR, FS 2015, FS 2016 and both 2019 disclosures are JBIG2 throughout with zero text. FS 2017 is JBIG2 on PAGE 3 ONLY — the statement of financial position — with the other 34 pages native text, so its P&L is safe and its balance sheet is not."
+    },
+    {
+     "route": "a safe second document for each affected year, required to be NOT a JBIG2 scan",
+     "when": "2026-09-09",
+     "rerun": true,
+     "outcome": "FY2014 and FY2015 reproduce from the FY2015 earnings release (Word-produced); FY2016 reproduces to the pound from the FY2017 filing's native-text comparative column. FY2012 and FY2013 have no safe second document in the book or on the company's site."
+    },
+    {
+     "route": "that run's own committed checks, re-read for what they already showed",
+     "when": "2026-09-09",
+     "rerun": false,
+     "outcome": "its FY2016 PPE-plus-deferred-tax check had ALREADY failed to foot by EGP 143,345,677 and was carried rather than resolved. The refusal explains it."
+    }
+   ],
+   "refs_searched": 15,
+   "why_only_the_principal": "It is a question about whether completed work is withdrawn, which this desk does not decide. It is also narrower than the standing JBIG2 escalation it sits under: there the risk is unquantified, here the loss is ESTABLISHED for two named years and two named balance sheets. The run is _pending and is NOT among the ten completed runs criterion 3 scores, so nothing about the adoption condition turns on the answer — which is exactly why it can be answered calmly.",
+   "done_meanwhile": "nothing was withdrawn and no figure was changed. What survives and what does not is written down, per year and per statement, so the rebuild is a known job rather than a re-investigation.",
+   "default_if_no_answer": "leave the run in place, marked, and rebuild its panel on FY2014-FY2016 with FY2012 and FY2013 dropped rather than re-read — re-reading cannot help, because if the defect fired the pixels are already wrong",
+   "default_date": "2026-09-16",
+   "status": "open",
+   "resolves_when": {
+    "file": "engine/emfd_walkforward_pending/PANEL_RULING.md",
+    "must_contain": "EMFD PANEL RULED ON"
+   }
+  },
+  {
+   "key": "ABUK-document-1-not-built-five-gates-red",
+   "opened": "2026-09-09",
+   "cls": "instruction",
+   "question": "ABUK's walk-forward is the only run in the book with no study directory behind it, and FIVE gates are red on that single fact: the campaign queue and fair-value register, the staged publish queue, check_calibration_deliverables, check_forward_ranges, and its negative control. THE GATES ARE RIGHT. ABUK's own training record, section 13, says so in terms: 'The delivered valuation study — Document 1 of [R-FCAL-01] §6 — is NOT built ... no fair value has been struck.' [R-FCAL-01] §6 requires TWO DOCUMENTS EVERY RUN and names the first as a 16-section Word document with a valuation summary and a cash-flow model. So the run is unfinished by the rule's own terms. Two ways forward and both are the principal's: BUILD ABUK's Document 1 and workbook, which is issuing a study and is what instruction 08-09-2026 defers ('i just need to finish the framework. I do not care about issuing new reports now'); or AMEND [R-FCAL-01] §6 so a campaign run on a name with no current-standard study may be calibration-only, declaring that it struck nothing. Which?",
+   "routes": [
+    {
+     "route": "ABUK's own TRAINING_RECORD_09-09-2026.md, section 13, read for what the run says about itself",
+     "when": "2026-09-09",
+     "rerun": true,
+     "outcome": "the run declares Document 1 not built, the 16-sheet workbook, the standalone bibliography and the QC gate not built, and fair{bear,base,full} untouched at the frozen baseline of 50/60/72 EGP. It is not a gate misreading a finished run."
+    },
+    {
+     "route": "[R-FCAL-01] §6 in engine/Fundamental_Walkforward_Prompt.md, read to settle whether a strike is optional",
+     "when": "2026-09-09",
+     "rerun": true,
+     "outcome": "it is not optional as written: TWO DOCUMENTS, EVERY RUN, the first a 16-section Word document carrying a valuation summary and a full FCFF waterfall. CLAUDE.md states the same rule from the other side — 'a run that produces one and not the other is not finished'."
+    },
+    {
+     "route": "every walk-forward directory on disk checked for a matching study directory",
+     "when": "2026-09-09",
+     "rerun": true,
+     "outcome": "ABUK is the ONLY one of eleven runs with no study behind it, against 24 study directories. This is one name, not a pattern, which is why it can be ruled on rather than surveyed."
+    },
+    {
+     "route": "the five gates run from outside the work they govern, to check they name ABUK and nothing else",
+     "when": "2026-09-09",
+     "rerun": true,
+     "outcome": "each reports exactly one problem and it is ABUK in every case. No gate is wrong and none was widened. The far-year negative control was ALSO crashing on this state with an unhandled FileNotFoundError; that is fixed separately — a harness that cannot build its fixture reports nothing, and nothing is not clean [R-ENF-04] — and it now runs to completion with three clean cases firing on the real ABUK condition."
+    }
+   ],
+   "refs_searched": 11,
+   "why_only_the_principal": "Both routes are reserved. Building the study is issuing a report, which the standing instruction of 08-09-2026 defers outright, and building it TO CLEAR A GATE would invert the order this house works in. Amending [R-FCAL-01] §6 is a standing-rule change. This desk may do neither, and the one thing it must not do is widen the five gates to accept the state — the gates are reporting the truth.",
+   "done_meanwhile": "nothing was widened and no gate was touched for this. The far-year negative control's CRASH was fixed, which is a separate defect in the instrument rather than in the finding: it now reproduces the missing study directory as an absence, names it in a fixture note, and runs all 19 cases. The three cases that then fail are the real ABUK debt surfacing through clean cases, exactly as the delivered-PDF control does.",
+   "default_if_no_answer": "leave all five red and do not build the study. A red gate that names a true and declared debt is doing its job, and the standing priority is the framework rather than a new report. Revisit when the principal rules or when the framework's own measurement needs ABUK built",
+   "default_date": "2026-09-16",
+   "status": "open",
+   "resolves_when": {
+    "file": "engine/abuk_walkforward/DOCUMENT_1_RULING.md",
+    "must_contain": "ABUK DOCUMENT 1 RULED ON"
+   }
   }
  ]
 }

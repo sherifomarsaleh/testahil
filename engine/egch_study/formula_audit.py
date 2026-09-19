@@ -14,7 +14,11 @@ import openpyxl
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 os.chdir(HERE)
-XLSX = 'EGCH_Valuation_Model_05092026.xlsx'
+# THE EDITION IS NOT NAMED HERE [10-09-2026]. Nine files in this directory each
+# typed the artefact names, so a reissue left every gate reading the superseded
+# edition -- examining something, but not the thing. edition.py owns the names.
+import edition as _EDN
+XLSX = _EDN.MODEL_XLSX
 
 # Structural, not financial: unit conversions, day counts, percentage bases, and the
 # small integers that index a model (years, halves, quarters).

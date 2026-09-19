@@ -17,10 +17,12 @@ per share alone. A driver of the balance sheet, or of the cost of equity, is sti
 import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
+sys.path.insert(0, HERE)
 import openpyxl
 import xlcalc
 
-XLSX = os.path.join(HERE, 'ADNOCDIST_Valuation_Model_09082026.xlsx')
+XLSX = os.path.join(HERE, _ed.MODEL_XLSX)
 wb = openpyxl.load_workbook(XLSX)
 wa = wb['Assumptions']
 

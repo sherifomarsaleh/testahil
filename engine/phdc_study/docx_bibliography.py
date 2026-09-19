@@ -14,7 +14,7 @@ from docx.shared import Pt, Cm
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from docx_phdc import (_style, para, table, bullets, scrub, column_audit,
-                       fit_widths, MUTED, ACCENT)
+                       breakable, MUTED, ACCENT)
 
 N = json.load(open(os.path.join(HERE, "study_numbers.json")))
 REG, D, W = N["registry"], N["derived"], N["wacc"]
@@ -47,17 +47,8 @@ LAYER = {
     "units_": "Company — operating", "revenue_1q26": "Company — operating",
     "shares_": "Market", "spot": "Market",
 }
-# THE LAYER NAME IS BUILT FROM THE RECORD [17-09-2026]. It read "31 March 2026" after
-# the re-issue moved the bridge onto the reviewed half to 30 June, so the bibliography —
-# the one document whose whole job is to say where each figure came from — named the
-# wrong filing for every balance-sheet line in it. The _1q26 SUFFIX on the keys is left
-# alone deliberately: renaming several dozen committed registry keys is a re-issue of the
-# record, not a label fix, and the layer a reader is shown is what was wrong.
-_BSM = ["January", "February", "March", "April", "May", "June", "July", "August",
-        "September", "October", "November", "December"]
-_BSD = N["bridge_record"]["balance_sheet_date"]
-BRIDGE_BS_WORDS = "%d %s %d" % (int(_BSD[8:10]), _BSM[int(_BSD[5:7]) - 1], int(_BSD[0:4]))
-LAYER_1Q26 = "Company — balance sheet, %s (reviewed)" % BRIDGE_BS_WORDS
+# every line of the 31 March 2026 reviewed sheet is registered with a _1q26 suffix
+LAYER_1Q26 = "Company — balance sheet, 31 March 2026 (reviewed)"
 
 
 def layer_of(key):
@@ -79,7 +70,9 @@ def build(path):
 
     para(doc, "PALM HILLS DEVELOPMENTS", size=18, bold=True, color=ACCENT,
          space_after=2)
-    para(doc, "Sources, inputs and judgements · edition of 2 September 2026",
+    # TYPED, AND TWO EDITIONS STALE. edition.py is imported in this file already.
+    import edition as _ED0
+    para(doc, "Sources, inputs and judgements · edition of %s" % _ED0.WORDS,
          size=10.5, color=MUTED, space_after=14)
     para(doc, "This document accompanies the valuation study. It lists every "
               "document the study was built on, every input with its value, its "
@@ -96,17 +89,11 @@ def build(path):
             "Palm Hills Developments", "prior-year balance sheet and cash flow"],
            ["Consolidated financial statements", "FY2023",
             "Palm Hills Developments", "revenue and gross profit"],
-           ["Consolidated financial statements (reviewed)", "1H2026 — %s"
-            % BRIDGE_BS_WORDS,
-            "Palm Hills Developments", "the most recent reported period, and the "
-            "balance sheet the bridge, the book value and the borrowings stand on; "
-            "also the gross-margin anchor and the cash-conversion rate "
+           ["Consolidated financial statements (reviewed)", "1Q2026 — 31 March 2026",
+            "Palm Hills Developments", "the most recent reported quarter, and the "
+            "balance sheet the bridge, the book value and the borrowings stand on "
             "(a scan; figures read off the rendered pages and held to the "
             "statement's own subtotals)"],
-           ["Consolidated financial statements (reviewed)", "1Q2026 — 31 March 2026",
-            "Palm Hills Developments", "the prior reported quarter, superseded as the "
-            "bridge sheet and the anchor by the half above and retained as its "
-            "comparative"],
            ["Results release", "1Q2026", "Palm Hills Developments",
             "order book, new sales, the land-plot launch"],
            ["Results release", "FY2024", "Palm Hills Developments",
@@ -140,22 +127,11 @@ def build(path):
             sval = ("{:,.4f}".format(val).rstrip("0").rstrip(".")
                     if isinstance(val, float) else "{:,}".format(val))
             rows.append([k.replace("_", " "), sval, rec.get("unit", ""),
-                         rec["date"], rec["tier"], rec["source"][:200]])
-        # MEASURED, NOT TYPED. These six widths were chosen by eye and two of them were
-        # a tenth of a centimetre short of the widest figure they carry, so a date and a
-        # value wrapped -- which is how "2025-12-" ends up on one line and "31" on the
-        # next. fit_widths sizes on THIS register's own cells AT THE SIZE THEY ARE SET
-        # (7.5pt, not the document default) and raises rather than squeezing.
-        # THE FIGURE COLUMNS ARE SIZED ON THEIR WIDEST FIGURE; THE SOURCE COLUMN WRAPS BY
-        # DESIGN. fit_widths treats every column as must-not-wrap and so refuses this
-        # table outright -- it wants 10.5cm for a 200-character prose cell -- which is the
-        # right answer to the wrong question: a source sentence is meant to wrap and a
-        # figure is not, and only the second is what the width gate checks. So the five
-        # narrow columns carry their measured minima and the prose column takes the rest.
-        # Value and Date were a tenth of a centimetre short of the figures they print.
+                         rec["date"], rec["tier"],
+                         breakable(rec["source"][:200])])
         table(doc, ["Input", "Value", "Unit", "Date", "Tier",
                     "Source and construction"], rows,
-              [3.2, 2.35, 1.6, 2.0, 1.4, 6.05], size=7.5)
+              [3.2, 2.1, 1.6, 1.9, 1.4, 6.4], size=7.5)
 
     doc.add_heading("3  Judgements, and what would overturn each", level=1)
     table(doc, ["Judgement", "What was decided", "What would overturn it"],
@@ -187,20 +163,19 @@ def build(path):
             "Project-level disclosure of unit mix, area, price and cost."],
            ["The bridge stands on the latest disclosed balance sheet",
             "Net debt, associates, investment property and book equity are taken "
-            "from the reviewed statement of %s (net debt EGP %s million "
+            "from the reviewed statement of 31 March 2026 (net debt EGP %s million "
             "against %s million at 31 December 2025); the projected statements keep "
             "the audited full year 2025 as their base."
-            % (BRIDGE_BS_WORDS, "{:,.1f}".format(D["net_debt_bridge"]),
-               "{:,.1f}".format(D["net_debt"])),
-            "A later balance sheet than the one named here."],
+            % ("{:,.1f}".format(D["net_debt_bridge"]), "{:,.1f}".format(D["net_debt"])),
+            "A later balance sheet — the half-year 2026 statements, once published."],
            ["Minority interests deducted at their share of value",
             "The cash-flow model capitalises all of the subsidiaries' cash flow, so "
             "the minority's claim comes out at its share of the resulting value, "
             "proxied by its filed share of 2025 profit after tax (%s), applied to "
             "equity value. At book it would be EGP %s million (%s of equity); on the "
             "three-year mean profit share, %s. Both are shown as reference."
-            % ("{:.2%}".format(D["nci_value_share"]), "{:,.1f}".format(D["nci_book_bridge"]),
-               "{:.1%}".format(D["nci_book_share_bridge"]), "{:.2%}".format(D["nci_profit_share_3y"])),
+            % ("{:.2%}".format(D["nci_value_share"]), "{:,.1f}".format(D["nci_book_1q26"]),
+               "{:.1%}".format(D["nci_book_share_1q26"]), "{:.2%}".format(D["nci_profit_share_3y"])),
             "Disclosure of the subsidiaries that carry the minority with their own "
             "economics, which would let the minority be valued directly."],
            ["Normalised earnings capitalised at cost of equity less growth",
@@ -266,7 +241,8 @@ def build(path):
 
 
 if __name__ == "__main__":
-    out = os.path.join(HERE, "PHDC_Bibliography_17-09-2026.docx")
+    import edition as _EDN
+    out = os.path.join(HERE, _EDN.BIBLIO_DOCX)
     build(out).save(out)
     hits, chars = scrub(out)
     bad = column_audit(out)

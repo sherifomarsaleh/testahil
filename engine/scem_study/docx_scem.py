@@ -1,4 +1,4 @@
-"""SCEM_Valuation_Study_07-09-2026_public.docx — TMPV house structure.
+"""SCEM_Valuation_Study_{edition}_public.docx — TMPV house structure.
 
 16 headings: 7 top-level sections plus the 9 subsections of section 1, then three
 appendices. Reads study_numbers.json exclusively — no numeral is typed here.
@@ -8,6 +8,8 @@ process references appear anywhere in the output.
 """
 import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
 os.chdir(HERE)
 sys.path.insert(0, HERE)
 sys.path.insert(0, os.path.join(HERE, '..'))   # the shared instruments live in engine/
@@ -72,8 +74,19 @@ def sg(x, dp=1): return f"{x*100:+.{dp}f}%"
 # ============================== COVER ========================================
 masthead()
 P('Sinai Cement Company S.A.E.', size=22, bold=True, space_after=1)
-P('Egyptian Exchange · SCEM · Egyptian pounds · issued 7 September 2026, struck on the closing price of 2 September 2026', size=11, color=GREY,
-  space_after=10)
+# [R-DOC-03] THE TWO DATES, AT THE TOP, LABELLED — AND IN THE MASTHEAD.
+# This line TYPED "issued 7 September 2026" onto a 10-September edition, and the shared
+# two-date header that resolves both correctly sat at paragraph 11, below the masthead
+# and below the summary table. A reader meets the stale date first and the correct one
+# eight paragraphs later. Both are fixed by one move: the resolved header goes where the
+# masthead is, and this line stops typing a date at all.
+import sys as _sys_dd
+import os as _os_dd
+_sys_dd.path.insert(0, _os_dd.path.dirname(_os_dd.path.dirname(_os_dd.path.abspath(__file__))))
+import doc_dates as _DD
+P('Egyptian Exchange · SCEM · Egyptian pounds', size=11, color=GREY,
+  space_after=4)
+P(_DD.header_line('SCEM'), size=8, color=GREY, space_after=10)
 rich([(f'A single-plant cement producer, sitting on net cash worth '
        f'{pc(D["dcf"]["net_cash"] / (SPOT * SH), 0)} of its market '
        'capitalisation, at the top of the best year the Egyptian cement industry has had '
@@ -134,6 +147,7 @@ figure('fig1_football.png', 6.9,
 
 # ============================== 1 ============================================
 H1('1  Fundamental valuation')
+
 P('Sinai Cement is valued as a single operating company, not as a sum of parts, and the '
   'reason is worth stating before any number. Essentially all of its revenue is grey '
   'cement and clinker from one asset base. Its subsidiaries are a service arm and a '
@@ -592,21 +606,46 @@ P('The terminal rates are house views, and are labelled as such rather than pres
   'long-run corporate borrowing range. Neither is reverse-engineered from a target price.')
 
 H2('The beta, and why it is not the regression\'s answer')
-P('A five-year weekly regression of the shares against an equal-weight Egyptian composite '
-  f'returns a beta of {n2(BETA["beta"])} with an R-squared of {BETA["r2"]:.3f} over '
-  f'{BETA["n"]} observations and a standard error of {BETA["se"]:.3f}. That R-squared is '
-  'below the 5% floor this house requires, so the regression is not usable and its answer '
-  'is not used. No Egyptian listed cement peer carries a price history in the covered '
-  'library, so a re-levered peer beta is unavailable too.')
-P(f'A beta of 1.00 is therefore adopted, and it is corroborated rather than assumed. The '
-  f'shares trade with an unchanged closing price on 29.3% of sessions — three and a half '
-  f'times the Egyptian median and the second thinnest of 33 covered names — which biases '
-  f'any contemporaneous regression downward by construction. Correcting for that with a '
-  f'lead-and-lag estimator lifts the beta to {n2(BETA["dimson"]["sum_beta"])}, with a 90% '
-  f'interval of {n2(BETA["dimson"]["ci90"][0])} to {n2(BETA["dimson"]["ci90"][1])} that '
-  f'comfortably contains 1.00. A capital-intensive materials producer would normally sit '
-  f'between 1.0 and 1.5; this one sits at the bottom of that band because it carries no '
-  f'financial leverage at all.')
+# THIS PASSAGE DESCRIBED A REGRESSOR THAT HAS BEEN WITHDRAWN [rewritten 10-09-2026].
+# It said the beta came from "an equal-weight Egyptian composite" and quoted that
+# regression's figures, and it went on saying so after the beta had been re-derived
+# against the published index of the exchange the shares are listed on. SIGCM clause 6
+# calls a constituent composite a hard fail rather than a fallback, so the document was
+# describing, to a reader, a construction this house forbids. It also treated the
+# lead-and-lag correction as a separate step applied afterwards, when the estimator is
+# applied inside own_stock_beta() and its result IS the headline number -- and it read
+# BETA["dimson"]["sum_beta"], a shape the record has not carried since, so this builder
+# raised TypeError and the study could not be rebuilt at all. Every figure below is read
+# from beta_result.json.
+_WD = BETA['withdrawn_composite']
+P(f'The shares are regressed against {BETA["index_file"]} — the published index of the '
+  f'exchange they are listed on, read to {BETA["index_asof"]} — on {BETA["frequency"]} '
+  f'returns struck on that exchange\'s real trading week ({BETA["week_rule"]}), over '
+  f'{BETA["window_years"]} years from {BETA["first_obs"]} to {BETA["last_obs"]}. The '
+  f'estimator carries a lead and a lag alongside the contemporaneous term, because a '
+  f'thinly traded share responds to the market late and a same-week-only regression '
+  f'reads that delay as low sensitivity; the beta below is the SUM of the three and not '
+  f'a contemporaneous coefficient with a correction bolted on afterwards.')
+P(f'It returns {n2(BETA["beta"])} with an R-squared of {BETA["r2"]:.3f} over '
+  f'{BETA["n"]} observations and a standard error of {BETA["se"]:.3f}. '
+  f'THE REGRESSION IS NOT USABLE and its answer is not used: {BETA["gate_msg"]}. '
+  f'A same-country peer beta cannot be assembled either — the only other Egyptian cement '
+  f'issuer this house holds a price history for is ARCC, and its own conforming '
+  f'regression fails the same test, so a peer beta would be the same unusable number '
+  f'wearing another company\'s name.')
+P(f'A beta of 1.00 is therefore adopted, and it is corroborated rather than assumed. It '
+  f'sits inside the regression\'s own 90% interval of {n2(BETA["ci90"][0])} to '
+  f'{n2(BETA["ci90"][1])}. The Blume adjustment toward the market — the standard '
+  f'correction for the tendency of estimated betas to revert to one — carries the point '
+  f'estimate to {n2(BETA["blume_crosscheck"])} from the same direction. And a '
+  f'capital-intensive materials producer would normally sit between 1.0 and 1.5; this '
+  f'one sits at the bottom of that band because it carries no financial leverage at all. '
+  f'The point estimate of {n2(BETA["beta"])} is published beside the adopted figure and '
+  f'is not used.')
+P(f'A PREVIOUS EDITION REGRESSED AGAINST SOMETHING ELSE, and it is named here rather '
+  f'than quietly replaced. It used a {_WD["regressor"]}, which returned '
+  f'{n2(_WD["beta"])} on an R-squared of {_WD["r2"]:.3f} — {n2(abs(BETA["beta"] - _WD["beta"]))} '
+  f'below the conforming answer. {_WD["why_withdrawn"]}')
 rows = [['Beta', '0.60', '0.80', '1.00 (adopted)', '1.15', '1.30']]
 rows.append(['Fair value per share (EGP)'] + [n2(v) for v in SN['beta']])
 table(rows, [2.30, 0.88, 0.88, 1.15, 0.88, 0.88])
@@ -1042,6 +1081,6 @@ P('Testahil · Independent valuation research · Educational analysis, not inves
   'advice. No rating and no price target is expressed or implied.', size=8.6, italic=True,
   color=GREY)
 
-OUT = 'SCEM_Valuation_Study_07-09-2026_public.docx'
+OUT = _ed.STUDY_DOCX
 doc.save(OUT)
 print('wrote', OUT)

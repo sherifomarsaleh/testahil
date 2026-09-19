@@ -1,4 +1,4 @@
-"""ADNOCDIST_Valuation_Study_09-08-2026.docx — the 16-section study.
+"""ADNOCDIST_Valuation_Study_{edition}.docx — the 16-section study.
 
 Written for an EXTERNAL reader: no internal procedure vocabulary anywhere, no
 calibration appendix. The calibration evidence appears inside section 3 as plain-language
@@ -14,6 +14,8 @@ from table_residual import signed_column   # the shared check, not hand-rolled
 import json, os, re, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
 sys.path.insert(0, HERE)
 import docx_base as B
 from docx.shared import Pt, Inches
@@ -2040,7 +2042,7 @@ P(f"Figures are in {M['currency']} unless stated otherwise. Historical figures a
 P(f"Prepared {M['study_date']} · price data to {M['price_date']} · "
   f"{M['company']} · {M['exchange']} · {M['ticker']}", size=9, color=GREY)
 
-OUT = os.path.join(HERE, 'ADNOCDIST_Valuation_Study_09-08-2026.docx')
+OUT = os.path.join(HERE, _ed.STUDY_DOCX)
 doc.save(OUT)
 print(f'saved {OUT}')
 print(f'sections 16 · tables {_TN[0]} · figures {_FN[0]}')

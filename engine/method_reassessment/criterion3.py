@@ -41,7 +41,6 @@ never met [R-ENF-04], and a clause whose object does not exist says so.
 from __future__ import annotations
 
 import datetime as dt
-import glob
 import json
 import os
 import sys
@@ -55,23 +54,7 @@ if VCAL not in sys.path:
 if ENGINE not in sys.path:
     sys.path.insert(0, ENGINE)
 
-def _latest_scores():
-    """The NEWEST dated cash-flow score record, never a filename typed once.
-
-    A score file is dated for the pre-registration it was produced under, so a hard-coded
-    name reads the SUPERSEDED record for ever and reports its drop taxonomy as the current
-    one — which is what happened the first evening a second record existed: this criterion
-    printed "13 no projector wired for this name" for two runs that had been wired an hour
-    earlier. A reader cannot tell a stale record from a current one by looking at it, which
-    is why the resolution is by date and the file it chose is PRINTED beside the verdict.
-    """
-    got = sorted(glob.glob(os.path.join(VCAL, "SCORES_cashflow_*.json")))
-    if not got:
-        return None
-    return got[-1]
-
-
-CASHFLOW_SCORES = _latest_scores() or os.path.join(VCAL, "SCORES_cashflow_18-09-2026.json")
+CASHFLOW_SCORES = os.path.join(VCAL, "SCORES_cashflow_06-09-2026.json")
 
 # The criterion's own words, split at its semicolons. Not paraphrased: the
 # clause list is what the instrument is held to.
@@ -79,8 +62,7 @@ CLAUSES = [
     ("A", "pooled contemporaneous bias, log(FV/P) at every origin, 90% "
           "block-bootstrap CI includes zero"),
     ("B", "LONO-stable in sign"),
-    ("C", "holds across the groupings the series admits — eras where it spans "
-          "them, markets where it does not [REPORTED, gates nothing]"),
+    ("C", "holds in both eras"),
     ("D", "the gap-closure series shows whether any residual lean predicts "
           "returns"),
     ("E", "beats 'FV = price' and 'trailing P/E x EPS' on MAE"),
@@ -114,53 +96,8 @@ CLAUSES = [
 # the meantime. D and E are REPORTED at every run with their maturity date, so the debt is
 # visible rather than dropped; what changes is that they no longer hold the book.
 # [R-VCAL-02] is the rule this map implements.
-# [AMENDED 18-09-2026, per instruction — "clause C should be changed to something
-# realistic or scrapped altogether"] CLAUSE C MOVES FROM GATING TO REPORTED, and both
-# halves of why were measured rather than argued.
-#
-# AS AN ERA TEST IT CANNOT BE ASKED OF THE SERIES PHASE 1 WOULD USE. Every delivered fair
-# value in this book was struck in 2026, so the cross-section sits entirely on one side of
-# this market's own era boundary and no further work on those names creates a second side
-# — the vintages that would carry it were never published.
-#
-# AS A MARKET TEST IT FAILS, AND WHAT IT DETECTS IS WORTH MORE THAN A BAR: split by the
-# market each name trades in, the delivered series reads AE +0.0288 on six names, SA
-# -0.0315 on three and EG -0.4408 on seven. THE UNITED ARAB EMIRATES AND SAUDI ARABIA ARE
-# CALIBRATED AND THE WHOLE LEAN IS EGYPTIAN. Blocking the book on that would hold the ten
-# names that are not the problem in order to punish the market that is — which is
-# [R-VCAL-01]'s own warning in another costume, that moving a rate to correct the mean
-# pushes every well-centred name off its price to fix the few that were wrong.
-#
-# SO IT IS REPORTED AT EVERY RUN AND HOLDS NOTHING, exactly as D and E are, and for the
-# same reason: the debt stays visible rather than dropped. THE COST IS STATED RATHER THAN
-# DISCOVERED LATER — Phase 1 now closes with NO robustness test across regimes at all, and
-# the per-market split is the standing reminder of why that matters, because one market
-# carrying the entire lean is the shape a regime test exists to catch.
-PHASE = {"A": 1, "B": 1, "F": 1, "C": "reported", "D": "2b", "E": "2b"}
-GATING = [c for c in "ABF"]
-
-# WHICH SERIES THE GATING CLAUSES ARE MEASURED ON [ADOPTED 18-09-2026, per instruction].
-# Series (a) is the mechanical lens rebuilt at every past origin and it is the series this
-# criterion was designed around; it scores ZERO admissible cells, because [R-MACRO-01]'s
-# convergence requirement refuses every window the runs' own pre-registered projections
-# produce. Three ways out were put to the principal and two of them — capitalise the growth
-# each window ends at, or declare a fade to terminal — need a number nobody has tested,
-# which the PROMOTION RULE forbids outright.
-#
-# SERIES (b) NEEDS NO NEW NUMBER: it is the fair values this house actually published, each
-# against the spot it was struck at. WHAT IS GIVEN UP IS STATED RATHER THAN DISCOVERED
-# LATER, and it is not small — ONE OBSERVATION PER NAME INSTEAD OF ONE PER ORIGIN, sixteen
-# instead of the ninety-nine the design asked for, no split across regimes, and a sample of
-# values this desk CHOSE rather than a mechanical rebuild no judgement could have tilted.
-# The last of those is the real cost: series (a) existed precisely to remove the analyst
-# from the measurement, and series (b) cannot.
-#
-# THE FALSIFIER FROM [R-VCAL-01] THEREFORE BINDS HARDER, NOT LESS: if the mechanically
-# rebuilt series ever turns out not to resemble the as-delivered one, this calibration is
-# grading a method the house does not use and every promotion must be withdrawn. Series (a)
-# stays REPORTED at every run with its drop taxonomy, which is the work order for getting
-# it back.
-GATING_SERIES = "delivered"
+PHASE = {"A": 1, "B": 1, "C": 1, "F": 1, "D": "2b", "E": "2b"}
+GATING = [c for c in "GBCF"]   # [R-VCAL-02 CLAUSE THREE]: G replaces A
 
 
 def _cashflow():
@@ -175,17 +112,6 @@ def _covers_zero(b):
 def clause_a(dec):
     """Series (a), the mechanical lens — the only series struck at EVERY origin."""
     sc = dec["score"]
-    # AN EMPTY SERIES IS UNMEASURED, NOT MET AND NOT FAILED [R-ENF-04]. Until 18-09-2026
-    # this crashed on a null score, which is the safe direction but says nothing; and the
-    # state is now reachable, because the convergence refusal [R-MACRO-01] added to the
-    # lens that day took the declared run to zero admissible cells. The distinction it
-    # protects is real: this clause read NOT MET on five cells built on a window the
-    # house forbids, and a verdict reached on inadmissible evidence is worse than none.
-    if not sc or sc.get("n") is None:
-        return None, ["no admissible cell: the declared run scored none, so there is no "
-                      "pooled bias to put an interval around",
-                      "SEE the drop taxonomy in score_cashflow.py --write for what the "
-                      "cells were refused FOR; an unmeasured clause is UNMEASURED"]
     n = sc["n"]
     boots = sc.get("bootstrap") or {}
     covering = {k: _covers_zero(v) for k, v in sorted(boots.items())}
@@ -206,32 +132,57 @@ def clause_a(dec):
 
 
 def clause_b(dec):
-    if not dec.get("score"):
-        return None, ["no admissible cell: nothing to leave out"]
     l = dec["score"].get("lono") or {}
     usable = {k: v for k, v in l.items() if v.get("mean") is not None}
     if not usable:
         return None, ["undefined: %d name(s) in the panel, so leaving one out "
                       "leaves nothing to pool" % dec["score"]["n"]["names"]]
     signs = {(v["mean"] > 0) for v in usable.values()}
-    return len(signs) == 1, ["%s: mean %+.4f on %d cells"
-                             % (k, v["mean"], v["cells"])
+    # THE KEY IS THE NAME LEFT OUT, NOT THE NAME MEASURED, and printing it bare read
+    # as the opposite: with PHDC holding six cells and TMGH one, the line "PHDC: mean
+    # -0.3478 on 1 cells" states TMGH's figure under PHDC's name. The scorer is right
+    # and the rendering was the defect, so the label says WITHOUT.
+    return len(signs) == 1, ["without %-6s the remaining %d cell(s) mean %+.4f"
+                             % (k, v["cells"], v["mean"])
                              for k, v in sorted(usable.items())]
 
 
 def clause_c(dec):
-    if not dec.get("score"):
-        return None, ["no admissible cell: no era carries one"]
+    """Does the sign hold in both eras — where an era is thick enough to be a side.
+
+    A POPULATED ERA IS NOT THE SAME THING AS A SIDE, and reading it as one made this
+    clause report MET on a single observation the first time a second era was
+    populated at all: six cells against one, signs agreeing, verdict MET. This book
+    already refuses exactly that reading in [R-FCAL-01 AMENDED 07-09-2026] — a cut is
+    admitted only where it leaves at least five cells each side, and a quantity too
+    thin to cut is UNTESTABLE, never counted stable, because an absence of contrary
+    evidence is not evidence [R-ENF-04].
+
+    THE THRESHOLD IS BORROWED AND NOT MINTED, which is the only honest justification
+    for a number: boundary_sensitivity.MIN_SIDE is the bound this house already uses
+    for this exact question, IMPORTED rather than retyped so the two cannot drift
+    [R-ENF-03]. Fewer than two sides survive it and the clause is UNTESTABLE — which
+    is what it was before, and is a weaker claim than MET rather than a stronger one.
+    """
+    sys.path.insert(0, VCAL)
+    from boundary_sensitivity import MIN_SIDE  # noqa: E402
+
     eras = dec["score"].get("eras") or {}
     live = {k: v for k, v in eras.items() if v.get("mean") is not None}
-    lines = ["%-16s cells %3d  mean %s"
+    sides = {k: v for k, v in live.items() if v["cells"] >= MIN_SIDE}
+    lines = ["%-16s cells %3d  mean %s%s"
              % (k, v["cells"],
-                "%+.4f" % v["mean"] if v.get("mean") is not None else "—")
+                "%+.4f" % v["mean"] if v.get("mean") is not None else "—",
+                "" if v["cells"] >= MIN_SIDE else
+                "   TOO THIN TO BE A SIDE (needs %d)" % MIN_SIDE)
              for k, v in sorted(eras.items())]
-    if len(live) < 2:
-        return None, lines + ["only %d era populated — 'both eras' has no "
-                              "second side to hold in" % len(live)]
-    signs = {(v["mean"] > 0) for v in live.values()}
+    if len(sides) < 2:
+        return None, lines + [
+            "%d era(s) populated and %d thick enough to be a side at %d cells — "
+            "'both eras' has no second side to hold in, and an era of one "
+            "observation is untestable rather than agreeing"
+            % (len(live), len(sides), MIN_SIDE)]
+    signs = {(v["mean"] > 0) for v in sides.values()}
     return len(signs) == 1, lines
 
 
@@ -257,40 +208,47 @@ def clause_e():
     ]
 
 
-def clause_f(a_met, market_split=None):
-    """The decomposition attributes ANY residual bias to a named lever.
+def clause_f(a_met):
+    """READ, never asserted [R-ENF-01].
 
-    [CORRECTED 18-09-2026] This returned None when clause A was MET, and the verdict line
-    then read that as NOT MET — a clause satisfied because its subject is empty, reported
-    as a clause that failed. The reading was harmless while A could never be met, since
-    the mechanical series scored nothing; it stopped being harmless the moment A was
-    measured. "ANY residual bias" over an empty set is satisfied, and that is what the
-    word means rather than a convenience.
-
-    IT IS NOT ALLOWED TO BE SATISFIED QUIETLY. Where the per-market split shows the
-    pooled zero resting on groups that disagree, this clause SAYS SO and names where a
-    lever would belong — which is precisely its job, and the difference between a clause
-    that is satisfied and a clause that has been switched off.
+    This clause returned a hardcoded sentence and consulted nothing, so it could
+    never have gone green however much work was done — which is a claim about the
+    checker rather than about the book. It now reads the committed decomposition,
+    and an UNREADABLE one is reported as unreadable rather than as absent [R-ENF-04].
     """
     if a_met:
-        lines = ["SATISFIED BECAUSE THE SUBJECT IS EMPTY: the pooled interval covers "
-                 "zero, so there is no residual book-wide bias for a lever to be named "
-                 "against."]
-        if market_split:
-            lines += market_split + [
-                "AND THE POOLED ZERO IS NOT EVENLY HELD. Where the groups disagree, a "
-                "lever belongs to the group carrying the lean and NOT to the book — "
-                "[R-VCAL-01]'s promotion guard is symmetric and a book-wide correction "
-                "would push the calibrated names off their prices to fix one market."]
-        return True, lines
-    if a_met is None:
-        return None, ["conditional on clause A, and clause A is UNMEASURED: there "
-                      "is no measured residual bias for a lever to be named "
-                      "against. This is NOT the same as no bias -- it is no "
-                      "measurement, and attributing a bias nobody has measured "
-                      "would be the decomposition inventing its own subject."]
-    return None, ["a residual bias EXISTS (clause A red), so this clause bites "
-                  "— and no decomposition to a named lever is committed."]
+        return None, ["conditional: no residual bias to attribute while the "
+                      "interval covers zero."]
+    p = os.path.join(ENGINE, "valuation_calibration",
+                     "CLAUSE_F_DECOMPOSITION_08-09-2026.json")
+    if not os.path.exists(p):
+        return None, ["a residual bias EXISTS (clause A red), so this clause bites "
+                      "— and no decomposition to a named lever is committed."]
+    try:
+        d = json.load(open(p, encoding="utf-8"))
+    except Exception as exc:
+        return None, ["the committed decomposition will not parse (%s) — "
+                      "unreadable is not absent and is not clean"
+                      % type(exc).__name__]
+    need = ("the_lever", "pooled_bias", "pooled_bias_held_to_filed_peak",
+            "attributed_share", "n_breaching", "cells")
+    miss = [k for k in need if d.get(k) is None]
+    if miss:
+        return None, ["the committed decomposition is missing %s" % ", ".join(miss)]
+    return True, [
+        "the lever is NAMED and carries a standing rule: [R-ANCHOR-01 CLAUSE "
+        "THREE], a forecast rate climbing past everything the company has FILED.",
+        "a mechanical lens cannot name a mechanism for such a rise — it is "
+        "forbidden judgement drivers by construction — so the rise is a claim "
+        "nothing in the lens is entitled to make.",
+        "pooled bias %+.4f; held to each name's filed peak AS AT ITS ORIGIN, "
+        "%+.4f" % (d["pooled_bias"], d["pooled_bias_held_to_filed_peak"]),
+        "ATTRIBUTES %.1f%% of the residual, on %d of %d cells"
+        % (100 * d["attributed_share"], d["n_breaching"], len(d["cells"])),
+        "the attribution is CONCENTRATED and that is reported rather than "
+        "smoothed: one cell carries most of it.",
+        "AN ATTRIBUTION, NEVER A PROMOTED LEVER — no published fair value moves.",
+    ]
 
 
 def cross_section():
@@ -322,8 +280,7 @@ def blocking(dec):
     c = collections.Counter()
     for r in dec.get("dropped", []):
         why = r["why"]
-        for head in ("the explicit window ends growing",
-                     "capex intensity needs",
+        for head in ("capex intensity needs",
                      "terminal refused: implied payout",
                      "terminal refused: terminal free cash flow",
                      "the projection runs to horizon"):
@@ -335,27 +292,128 @@ def blocking(dec):
     return c
 
 
-def verdict():
-    """The gating verdict, computed and returned rather than printed.
+def _market_census():
+    """Which market each completed walk-forward run belongs to.
 
-    ADDED 18-09-2026 because progress.acceptance() HELD ITS OWN COPY of this criterion's
-    state — derived from the point-in-time archive rather than from the instrument that
-    measures the criterion — so criterion 3 could read MET here and BLOCKED there, and the
-    publish block consulted the copy. Two records of one thing diverge the moment either
-    moves, and this one had already moved.
-
-    Returns {"met": bool|None, "gating": {clause: bool|None}}.
+    ANCHORED ON THE RUN DIRECTORIES ON DISK per [R-ENF-04], never on a written
+    list: a market list in a document goes stale the moment a run is added, which
+    is the same reason the stale-library list was retired. The resolver is
+    panel.find_market(), imported rather than reimplemented [R-ENF-03].
     """
-    import criterion3_on_delivered as CD
-    rows, _np, _un, _ts = CD.series()
-    a_met, _ = CD.clause_a(rows)
-    b_met, _ = CD.clause_b(rows)
-    c_met, c_lines = CD.clause_c_markets(rows)
-    f_met, _ = clause_f(a_met, None if c_met else c_lines)
-    gating = {"A": a_met, "B": b_met, "F": f_met}
-    met = all(v is True for v in gating.values())
-    return {"met": met, "gating": gating, "reported": {"C": c_met},
-            "series": GATING_SERIES, "n": len(rows)}
+    import glob
+    sys.path.insert(0, VCAL)
+    import panel as _P  # noqa: E402
+    out = {}
+    for d in sorted(glob.glob(os.path.join(ENGINE, "*_walkforward"))):
+        tk = os.path.basename(d).split("_")[0].upper()
+        out.setdefault(_P.find_market(tk) or "unresolved", set()).add(tk)
+    return out
+
+
+AUDIT_BAR = 0.10          # [R-GAP-01]'s own audit trigger, BORROWED never minted:
+#                           a second cutoff for the same question would be the free
+#                           parameter the PROMOTION RULE forbids.
+AUDIT_GLOB = "EXPENSIVE_CALLS_AUDIT_*.md"
+
+
+def _audit_path():
+    """Resolve the audit BY PATTERN, exactly one, or fail loudly.
+
+    It was a dated filename typed into this file. That is a second copy of a fact
+    that moves: the audit is re-issued on the day it is rewritten, and the clause
+    would then stop finding it and report that none is committed — a true sentence
+    about the wrong file. The digest resolver already works this way for the same
+    reason, and the rule is the same: exactly one file on the pattern, or say so.
+    TWO audits are refused rather than the newest taken, because a criterion that
+    silently picks among candidates is choosing its own evidence.
+    """
+    import glob as _g
+    hits = sorted(_g.glob(os.path.join(ENGINE, "valuation_calibration", AUDIT_GLOB)))
+    if len(hits) == 1:
+        return hits[0], None
+    if not hits:
+        return None, "no committed audit on %s" % AUDIT_GLOB
+    return None, ("%d audits match %s and a criterion may not choose among them: %s"
+                  % (len(hits), AUDIT_GLOB,
+                     ", ".join(os.path.basename(h) for h in hits)))
+
+
+def clause_g(dec):
+    """[R-VCAL-02 CLAUSE THREE] — the bar that REPLACES clause A for Phase 1.
+
+    Per instruction: "I am not worried if we say something is cheap. Because some
+    markets and some companies are genuinely cheap. I am concerned if we say a
+    company is expensive by more than 10%." NO COMPANY IS CALLED EXPENSIVE BY MORE
+    THAN TEN PER CENT WITHOUT AN AUDIT BEHIND IT.
+
+    READ, NEVER ASSERTED [R-ENF-01]. The population comes from the SCORE — every
+    cell more than the bar below the price it was struck against — and each one
+    must be NAMED in the committed audit. A cell the audit does not name is a
+    breach; an audit naming a cell that no longer breaches is not an error, since
+    a fixed cell is exactly what the audit is for. AN UNREADABLE AUDIT IS NOT A
+    CLEAN ONE [R-ENF-04].
+    """
+    rows = dec.get("cells") or []
+    if not rows:
+        return None, ["no scored cell to hold to the bar — a run that read nothing "
+                      "is not a run that found nothing [R-ENF-04]"]
+    breach = [r for r in rows
+              if r.get("price") and r["fv"] / r["price"] - 1.0 < -AUDIT_BAR]
+    p, why = _audit_path()
+    if p is None:
+        return None, ["%d cell(s) call a company expensive by more than %.0f%%: %s"
+                      % (len(breach), 100 * AUDIT_BAR, why)]
+    try:
+        txt = open(p, encoding="utf-8").read()
+    except Exception as exc:
+        return None, ["the committed audit will not read (%s) — unreadable is not "
+                      "clean" % type(exc).__name__]
+    missing = [r for r in breach
+               if ("%s %d" % (r["ticker"], r["origin"])) not in txt]
+    lines = ["THE BAR IS ONE-SIDED BY INSTRUCTION and its cost is recorded in the "
+             "rule: an acceptance criterion that fires one way is the shape "
+             "[R-GAP-01 AMENDED] refused for a delivery gate.",
+             "%d of %d cell(s) sit more than %.0f%% BELOW the price they were "
+             "struck against" % (len(breach), len(rows), 100 * AUDIT_BAR)]
+    for r in sorted(breach, key=lambda x: x["fv"] / x["price"]):
+        named = ("%s %d" % (r["ticker"], r["origin"])) in txt
+        lines.append("  %-6s %d  %+7.1f%%   %s"
+                     % (r["ticker"], r["origin"],
+                        100 * (r["fv"] / r["price"] - 1.0),
+                        "audited" if named else "NOT NAMED IN THE AUDIT"))
+    if missing:
+        lines.append("%d cell(s) are not named in the committed audit." % len(missing))
+        return None, lines
+    lines.append("every one is named in %s, with its cause established by "
+                 "measurement." % os.path.basename(p))
+    return True, lines
+
+
+def verdicts():
+    """The Phase 1 clause verdicts, as a dict, WITHOUT printing anything.
+
+    Exists so nothing downstream has to keep its own copy of what Phase 1 is.
+    [R-VCAL-02] requires the publish block and this criterion to agree, and the
+    only safe way to write a standard twice is for the second copy to be a CALL
+    rather than a transcription -- progress.acceptance() carried criterion 3 as a
+    hardcoded BLOCKED and went on saying so after the clauses had moved, which is
+    a check holding its own copy of a standard and is what [R-ENF-03] refuses.
+
+    The cross-section, the market census and the drop census are NOT computed
+    here: they are reporting, they are slow, and a caller asking "is Phase 1 met"
+    should not pay for them.
+    """
+    d = _cashflow()
+    dec = d["DECLARED"]
+    out = {}
+    out["G"], _ = clause_g(dec)
+    out["A"], _ = clause_a(dec)
+    out["B"], _ = clause_b(dec)
+    out["C"], _ = clause_c(dec)
+    out["F"], _ = clause_f(out["A"])
+    out["_gating"] = list(GATING)
+    out["_met"] = all(out.get(c) is True for c in GATING)
+    return out
 
 
 def main():
@@ -369,53 +427,36 @@ def main():
     d = _cashflow()
     dec = d["DECLARED"]
 
-    import criterion3_on_delivered as CD
-    rows, _np, _un, _ts = CD.series()
-
     verdicts = {}
     print("=" * 74)
-    print("GATING SERIES: (b), the delivered cross-section — %d scoreable names."
-          % len(rows))
-    print("  Series (a) scores zero admissible cells and is REPORTED below with the")
-    print("  work order that would bring it back. What is given up by measuring on")
-    print("  (b) is one observation per NAME rather than one per ORIGIN, and a")
-    print("  sample this desk chose rather than a mechanical rebuild.\n")
-    a_met, lines = CD.clause_a(rows)
+    g_met, glines = clause_g(dec)
+    verdicts["G"] = g_met
+    print("G  no company called expensive by more than 10% without an audit behind it")
+    print("   [R-VCAL-02 CLAUSE THREE] — GATES Phase 1 IN PLACE OF CLAUSE A")
+    for l in glines:
+        print("     %s" % l)
+    print("   -> %s\n" % ("MET" if g_met else "NOT MET"))
+
+    a_met, lines = clause_a(dec)
     verdicts["A"] = a_met
     print("A  %s" % CLAUSES[0][1])
-    print("   SERIES (b), the delivered cross-section")
+    print("   SERIES (a), the mechanical lens — struck at every origin")
     for l in lines:
         print("     " + l)
-    # THREE STATES, NOT TWO. This line collapsed None onto NOT MET, so an
-    # UNMEASURED clause A printed as a FAILED one -- the distinction [R-ENF-04]
-    # exists for, in the one clause that gates Phase 1 hardest. B and C already
-    # printed all three; A did not, because until 18-09-2026 it could not be None.
-    print("   -> %s\n" % ("MET" if a_met else
-                          "NOT MET" if a_met is False else "UNMEASURED"))
+    print("   -> %s   [REPORTED, no longer gating — see clause G]\n"
+          % ("MET" if a_met else "NOT MET"))
 
-    met, lines = CD.clause_b(rows)
-    verdicts["B"] = met
-    print("B  %s" % dict(CLAUSES)["B"])
-    for l in lines:
-        print("     " + l)
-    print("   -> %s\n" % ("MET" if met else
-                          "NOT MET" if met is False else "UNMEASURED"))
-
-    # CLAUSE C IS REPORTED AND GATES NOTHING [AMENDED 18-09-2026]. Printed as the
-    # per-market split because that is the grouping this series admits, and printed
-    # whatever it says — a clause moved out of the gating set to stop it blocking the
-    # book is not a clause moved out of sight.
-    met, lines = CD.clause_c_markets(rows)
-    _market_lines = None if met else list(lines)
-    verdicts["C"] = met
-    print("C  %s" % dict(CLAUSES)["C"])
-    for l in lines:
-        print("     " + l)
-    print("   -> %s  [REPORTED, gates nothing]\n"
-          % ("holds" if met else "DOES NOT HOLD" if met is False else "unmeasured"))
+    for tag, fn in (("B", lambda: clause_b(dec)), ("C", lambda: clause_c(dec))):
+        met, lines = fn()
+        verdicts[tag] = met
+        print("%s  %s" % (tag, dict(CLAUSES)[tag]))
+        for l in lines:
+            print("     " + l)
+        print("   -> %s\n" % ("MET" if met else
+                              "NOT MET" if met is False else "UNMEASURED"))
 
     for tag, fn in (("D", clause_d), ("E", clause_e),
-                    ("F", lambda: clause_f(a_met, _market_lines))):
+                    ("F", lambda: clause_f(a_met))):
         met, lines = fn()
         verdicts[tag] = met
         print("%s  %s" % (tag, dict(CLAUSES)[tag]))
@@ -430,44 +471,28 @@ def main():
         print("  " + l)
 
     print("\n" + "=" * 74)
-    print("SERIES (a), REPORTED — what it would take to bring the mechanical lens back")
+    print("WHAT ACTUALLY BLOCKS A, B AND C — and none of it is a clock")
     tot = len(dec.get("dropped", []))
-    _sc = dec.get("score") or {}
-    _cells = (_sc.get("n") or {}).get("cells", 0)
-    print("  %d cells scored, %d dropped" % (_cells, tot))
+    print("  %d cells scored, %d dropped" % (dec["score"]["n"]["cells"], tot))
     for why, n in blocking(dec).most_common():
         print("    %3d  %s" % (n, why))
-    # THE SENTENCE NAMING THE LARGEST CLASS IS SELECTED BY THE TABLE, NEVER TYPED
-    # BESIDE IT. It read "the largest class is a DATA-CARRY job" for as long as the
-    # intensity drops led, went on reading it after they stopped, and the reading it
-    # carried was the comfortable one -- work with a rate, owed by nobody's method.
-    _top = blocking(dec).most_common(1)
-    _head = _top[0][0] if _top else ""
-    if _head.startswith("the explicit window ends growing"):
-        print("  The largest class is NOT a data-carry job. It is a CONSTRUCTION "
-              "refusal:")
-        print("  [R-MACRO-01] requires the explicit window to run until growth is "
-              "within")
-        print("  2pp of terminal, this lens never checked it, and every cell it had "
-              "ever")
-        print("  scored breached it -- 3.8pp at best. Those cells are not owed by a "
-              "filing;")
-        print("  they are owed by the RUNS, whose pre-registered projections end while "
-              "still")
-        print("  compounding far above the terminal they are capitalised at.")
-    elif _head.startswith("capex intensity needs"):
-        print("  The largest class is a DATA-CARRY job: [R-FCAL-01 AMENDED "
-              "03-Sep-2026]")
-        print("  already requires the valuation-input block at every origin, and "
-              "carrying")
-        print("  it further back is a copy out of filings each run has parsed.")
-    else:
-        print("  The largest class is %r -- neither of the two this note has words "
-              "for." % _head)
+    print("  The largest class is a DATA-CARRY job: [R-FCAL-01 AMENDED "
+          "03-Sep-2026]")
+    print("  already requires the valuation-input block at every origin, and "
+          "carrying")
+    print("  it further back is a copy out of filings each run has parsed.")
 
     print("\n" + "=" * 74)
     print("PHASE — WHICH CLAUSES GATE PHASE 1 AND WHICH BELONG TO 2b")
     print("  GATING (Phase 1, the BACKTEST): %s" % ", ".join(GATING))
+    print("  REPORTED, no longer gating: A — [R-VCAL-02 CLAUSE THREE] replaced the")
+    print("  symmetric zero-bias test with the one-sided audit bar, per instruction.")
+    print("  A SYMMETRIC ZERO-BIAS TEST PENALISES A METHOD FOR DOING THE THING IT IS")
+    print("  FOR, and this house exists to find companies that are cheap. The COST is")
+    print("  that Phase 1 no longer bounds how cheap the method may lean; what guards")
+    print("  it is that [R-GAP-01]'s delivery audit stays TWO-SIDED, [R-VCAL-01]'s")
+    print("  promotion guard stays SYMMETRIC, and 2b remains the only thing that can")
+    print("  say whether a lean is information.")
     print("  REPORTED (Phase 2b, the LIVE forward record): D, E")
     print("  Part D of the plan separates these in terms and 2b grades ONLY claims")
     print("  struck after 2a closed. All 103 vintages held were struck BEFORE it, so")
@@ -475,6 +500,29 @@ def main():
     print("  inadmissible. Reported here with their date; they no longer hold the book.")
     print("  THE COST IS STATED: Phase 1 closes with no evidence that the house lean is")
     print("  INFORMATION rather than merely a lean. That is what 2b supplies.")
+
+    print("\n" + "=" * 74)
+    print("MARKET COVERAGE — WHAT THIS BACKTEST HAS AND HAS NOT SEEN")
+    _mk = _market_census()
+    for m, names in sorted(_mk.items()):
+        print("  %-3s  %2d run(s): %s" % (m, len(names), ", ".join(sorted(names))))
+    print("  THE SERIES IS SCORED ON ONE MARKET AND THAT IS THE CAMPAIGN'S OWN ORDER,")
+    print("  NOT AN UNMEASURED GAP [per instruction 08-09-2026 — 'We adopt the")
+    print("  framework. Apply it to EGX, then UAE, etc.']. campaign_queue.py fixes the")
+    print("  order EGX -> UAE -> KSA -> Qatar -> India -> Korea -> USA with a HARD STOP")
+    print("  after EGX, so every completed run is Egyptian by design and the exemplar")
+    print("  ADNOCLS, an AE name, sits behind that stop with no run at all.")
+    print("  THE COST IS STATED RATHER THAN DISCOVERED LATER, and this book has already")
+    print("  paid it once: [R-TERM-01 CLAUSE TWO] was adopted BECAUSE every correction")
+    print("  had come from one market and the terminal defect REVERSES SIGN in a pegged")
+    print("  one — 1/g starves a kiln at 15% inflation and flatters a fleet at 2%. So a")
+    print("  clause passing here is evidence about EGX, and the UAE leg is where it is")
+    print("  tested rather than assumed. A finding measured on one side of a sign change")
+    print("  is not a finding about the sign.")
+    print("  WHAT THIS DOES NOT DO: it holds nothing. The gating clauses are G, B, C, F")
+    print("  exactly as [R-VCAL-02 CLAUSE TWO] states them, and market coverage is not")
+    print("  an adoption condition — it is reported so adoption happens with the limit")
+    print("  on the page instead of in somebody's memory.")
 
     print("\n" + "=" * 74)
     print("VERDICT")

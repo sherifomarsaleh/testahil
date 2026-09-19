@@ -51,11 +51,81 @@ from __future__ import annotations
 FLOAT_NOISE = 1e-9
 
 # CLOSED. A construction not on this list is not a construction.
-TERMINAL_CONSTRUCTIONS = ("same_beta", "relevered")
+TERMINAL_CONSTRUCTIONS = ("same_beta", "relevered", "split_premium",
+                          "beta_to_one_split")
+
+# `beta_to_one_split` WAS ADDED 10-09-2026 BECAUSE THE BOOK RUNS IT, not because a
+# study asked to be let through. Two names -- SWDY and EIPICO -- carry a terminal
+# beta of exactly 1.00 on the reasoning that a beta reverts to the market over a
+# perpetuity, alongside [R-COC-03]'s split premium. Both reproduce to 0.0000bp
+# under it. That is the same ground on which `relevered` was added when two studies
+# were found doing Hamada and nothing could tell a relevered beta from a typo.
+#
+# THE LIST STAYS CLOSED AND THE RECORD MUST PUBLISH `beta_terminal`. A study that
+# reverts its beta and does not say so is indistinguishable from one that typed the
+# wrong beta, which is the whole reason this module exists; and a construction is
+# admitted here on evidence that the book performs it, never on the grounds that a
+# study would otherwise fail.
+
+# THE EXPLICIT WINDOW HAS A CLOSED LIST TOO, FROM 10-09-2026, and until it did this
+# check tested the RETIRED identity and nothing else. That is worse than not testing:
+# rf* + beta x ERP_total multiplies the country premium by beta, which is the exact
+# double count [R-COC-03] was adopted to stop -- so the gate PASSED the construction
+# the standard forbids and FAILED all four studies in the book that had already been
+# rebuilt on the right one. A gate that is inverted is not a weak gate.
+#
+# `total_premium` is kept because a record struck before 10-09-2026 did that, and
+# rewriting history to match a later rule is not verification. It is reported as
+# SUPERSEDED rather than accepted silently.
+EXPLICIT_CONSTRUCTIONS = ("split_premium", "total_premium")
 
 
 class KeError(Exception):
     pass
+
+
+def ke_explicit_split(rf_star, beta, erp_mature, crp_effective):
+    """Ke under [R-COC-03]: beta on the MATURE premium, the country premium added flat.
+
+    THE SANCTIONED EXPLICIT-WINDOW CONSTRUCTION from 10-Sep-2026. `ke_explicit`
+    below reproduces the RETIRED one and is kept only so records struck before that
+    date still verify against what they actually did -- rewriting them to match a
+    later rule would be rewriting history. A record struck after that date and
+    reproducing only under `ke_explicit` is a defect, not an alternative.
+    """
+    return rf_star + beta * erp_mature + crp_effective
+
+
+def crp_effective(rec):
+    """The country premium a record actually charges, from components it PUBLISHES.
+
+    [R-COC-03] charges country risk once, at the weight of the operations: lambda of it
+    where the company operates, and the foreign country's own premium on the rest. Both
+    legs must be in the record. Nothing is solved here -- a check that solves lambda out
+    of the published answer reproduces whatever it is handed, which is the failure the
+    terminal side of this module already names.
+
+    Returns None when the record does not publish the split, which is a failure to be
+    REPORTED rather than a licence to fall back on the retired identity.
+    """
+    crp = rec.get("crp")
+    if crp is None:
+        return None
+    lam = rec.get("lambda_country")
+    if lam is None:
+        return None
+    if not 0.0 <= lam <= 1.0:
+        raise KeError("lambda_country %r is outside [0,1]" % lam)
+    if lam == 1.0:
+        return crp
+    foreign = rec.get("crp_foreign")
+    if foreign is None:
+        raise KeError("lambda_country is %.4f, so %.2f%% of the operations sit outside "
+                      "the country whose premium is charged, and the record states no "
+                      "crp_foreign for them. A lambda below one without a foreign "
+                      "premium charges nothing at all for that share of the business"
+                      % (lam, 100 * (1 - lam)))
+    return lam * crp + (1.0 - lam) * foreign
 
 
 def ke_explicit(rf_star, beta, erp):
@@ -92,6 +162,31 @@ def ke_terminal(rec, construction, tax_rate=None):
     rf_t, erp_t, beta = rec.get("rf_terminal"), rec.get("erp_terminal"), rec.get("beta")
     if None in (rf_t, erp_t, beta):
         raise KeError("record carries no rf_terminal, erp_terminal or beta")
+    if construction == "split_premium":
+        # [R-COC-03]: the terminal premium is a total and splits the same way. The
+        # record must carry the split it used -- solving for it here would make the
+        # check reproduce whatever it was handed.
+        em, ce = rec.get("erp_mature"), rec.get("crp_effective_terminal")
+        if None in (em, ce):
+            raise KeError("a split_premium terminal must record erp_mature and "
+                          "crp_effective_terminal; neither is derivable from the total "
+                          "without assuming the answer")
+        return rf_t + beta * em + ce
+    if construction == "beta_to_one_split":
+        em, ce = rec.get("erp_mature"), rec.get("crp_effective_terminal")
+        bt = rec.get("beta_terminal")
+        if None in (em, ce):
+            raise KeError("a beta_to_one_split terminal must record erp_mature and "
+                          "crp_effective_terminal")
+        if bt is None:
+            raise KeError("a beta_to_one_split terminal must record beta_terminal. A "
+                          "beta that reverts and does not say so cannot be told from a "
+                          "beta that was typed wrong")
+        if abs(bt - 1.0) > FLOAT_NOISE:
+            raise KeError("beta_to_one_split names a terminal beta of one and the record "
+                          "states %.6f. Reverting to something other than the market is a "
+                          "different construction and needs its own name" % bt)
+        return rf_t + bt * em + ce
     if construction == "same_beta":
         return rf_t + beta * erp_t
     if tax_rate is None:
@@ -133,6 +228,80 @@ def implied_relevering_tax(rec):
         return None
 
 
+def _check_explicit(rec, rs, b, ke):
+    """Reproduce the explicit-window Ke under the construction the record NAMES.
+
+    Same discipline as the terminal side: a closed list, and where the record declares
+    nothing the failure message says which construction it actually matches, so the fix
+    is one line rather than a puzzle.
+    """
+    cons = rec.get("ke_construction")
+    if cons is not None and cons not in EXPLICIT_CONSTRUCTIONS:
+        return ["ke_construction %r is not on the closed list %s"
+                % (cons, list(EXPLICIT_CONSTRUCTIONS))]
+
+    try:
+        ce = crp_effective(rec)
+    except KeError as exc:
+        return [str(exc)]
+    em = rec.get("erp_mature")
+    split = None
+    if ce is not None and em is not None:
+        split = ke_explicit_split(rs, b, em, ce)
+
+    e = rec.get("erp")
+    total = ke_explicit(rs, b, e) if e is not None else None
+
+    if cons == "split_premium":
+        if split is None:
+            return ["ke_construction says split_premium, so the record must publish "
+                    "erp_mature, crp and lambda_country (and crp_foreign where lambda "
+                    "is below one). It publishes %s"
+                    % ([k for k in ("erp_mature", "crp", "lambda_country", "crp_foreign")
+                        if rec.get(k) is not None] or "none of them")]
+        if abs(split - ke) > FLOAT_NOISE:
+            return ["ke_exp %.10f does not reproduce under its own declared "
+                    "split_premium construction = %.10f (%+.2f bp)"
+                    % (ke, split, (ke - split) * 1e4)]
+        return []
+
+    if cons == "total_premium":
+        if total is None:
+            return ["ke_construction says total_premium and the record publishes no erp"]
+        if abs(total - ke) > FLOAT_NOISE:
+            return ["ke_exp %.10f does not reproduce under its own declared "
+                    "total_premium construction = %.10f (%+.2f bp)"
+                    % (ke, total, (ke - total) * 1e4)]
+        return ["ke_construction is total_premium, the SUPERSEDED identity: it multiplies "
+                "the country premium by beta, which [R-COC-03] charges once and flat. The "
+                "arithmetic reproduces and the construction is retired; a record struck "
+                "after 10-09-2026 must be rebuilt on split_premium"]
+
+    # UNDECLARED. Name what it matches.
+    if split is not None and abs(split - ke) <= FLOAT_NOISE:
+        return ["ke_exp names no construction. It reproduces under 'split_premium' — "
+                "declare it, so a reader can tell the sanctioned construction from a "
+                "coincidence"]
+    if total is not None and abs(total - ke) <= FLOAT_NOISE:
+        return ["ke_exp names no construction. It reproduces under the SUPERSEDED "
+                "'total_premium' identity, which multiplies the country premium by beta"]
+    hint = ""
+    if e is not None and rec.get("default_spread") is not None:
+        try:
+            import cost_of_capital as _coc
+            _crp, _em = _coc.split_erp(e, rec["default_spread"])
+            if _crp:
+                lam = (ke - rs - b * _em) / _crp
+                hint = ("; splitting the committed erp gives a mature premium of %.4f and "
+                        "a country premium of %.4f, under which the published Ke implies "
+                        "lambda = %.4f. PUBLISH the components rather than leaving them to "
+                        "be solved out of the answer" % (_em, _crp, lam))
+        except Exception:                                            # noqa: BLE001
+            pass
+    return ["ke_exp %.10f reproduces under no construction on the closed list %s%s"
+            % (ke, list(EXPLICIT_CONSTRUCTIONS), hint)]
+
+
 def check(rec):
     """Return a list of failure strings. Empty means the record's Ke reproduces.
 
@@ -144,16 +313,33 @@ def check(rec):
     if not isinstance(rec, dict):
         return ["no cost_of_capital_record committed"]
 
-    rs, b, e, ke = (rec.get("rf_star"), rec.get("beta"),
-                    rec.get("erp"), rec.get("ke_exp"))
-    if None in (rs, b, e, ke):
-        fails.append("record carries no rf_star, beta, erp or ke_exp, so the explicit "
-                     "cost of equity cannot be reproduced at all")
+    rs, b, ke = rec.get("rf_star"), rec.get("beta"), rec.get("ke_exp")
+    # NAME WHAT IS ACTUALLY MISSING. This said "carries no rf_star, beta or ke_exp" whenever
+    # ANY ONE of the three was absent — so it reported two fields as missing that the record
+    # plainly carries, and a reader chasing it had to open the file to find out which of the
+    # three the gate meant. The wording is also a ratchet SIGNATURE, so a message that names
+    # a fixed list changes shape every time the list does: narrowing this check from four
+    # fields to three on 10-09-2026 turned a knowingly-outstanding study into a "new breach"
+    # without anything about that study changing [R-ENF-08]. Derived from the record, it
+    # only changes when the record does.
+    # THE LEGS MUST ADD BACK TO THE TOTAL THEY WERE SPLIT FROM. Under the split identity
+    # the rate is built from erp_mature and the country premium, so the published TOTAL
+    # premium stops being an input to anything a reader checks — and a total quietly raised
+    # sails through. The negative control caught it the moment the fixtures moved across:
+    # "an ERP quietly raised" went green. The identity is erp = erp_mature + crp, it is
+    # Damodaran's own, and it costs one line to hold [R-COC-03].
+    _em, _crp, _erp = rec.get("erp_mature"), rec.get("crp"), rec.get("erp")
+    if None not in (_em, _crp, _erp) and abs((_em + _crp) - _erp) > FLOAT_NOISE:
+        fails.append("the split does not add back: erp_mature %.6f + crp %.6f is %.6f "
+                     "against a published total premium of %.6f. A total that no longer "
+                     "feeds the rate is a number nothing checks"
+                     % (_em, _crp, _em + _crp, _erp))
+    _absent = [n for n, v in (("rf_star", rs), ("beta", b), ("ke_exp", ke)) if v is None]
+    if _absent:
+        fails.append("record carries no %s, so the explicit cost of equity cannot be "
+                     "reproduced at all" % " or ".join(_absent))
     else:
-        want = ke_explicit(rs, b, e)
-        if abs(want - ke) > FLOAT_NOISE:
-            fails.append("ke_exp %.10f does not reproduce from rf_star + beta x erp "
-                         "= %.10f (%+.2f bp)" % (ke, want, (ke - want) * 1e4))
+        fails.extend(_check_explicit(rec, rs, b, ke))
 
     fails.extend(check_weights(rec))
     fails.extend(check_beta_source(rec))
@@ -268,11 +454,48 @@ def other_tranches(rec):
     return out, bad
 
 
+#: grounds on which a record legitimately carries NO weights, because there is no
+#: weighted rate to build. CLOSED, and the same list and the same "<ground>: <why>"
+#: shape as NO_WACC_GROUNDS in scripts/check_cost_of_capital.py — one fact, one place
+#: to change it. An open list would let any study opt out of the weights clause by
+#: inventing a reason [R-ENF-03].
+NO_WEIGHTS_GROUNDS = {
+    "bank": ("deposits are raw material rather than financing; their cost is inside the "
+             "net interest margin and equity flows are discounted at the cost of equity"),
+}
+
+
+def _no_weights_ground(rec):
+    """(exempt, failure) — never exempt on the declared word alone."""
+    ground = rec.get("no_wacc_reason")
+    if not ground:
+        return False, None
+    key = str(ground).split(":", 1)[0].strip().lower()
+    if key not in NO_WEIGHTS_GROUNDS:
+        return False, ("no_wacc_reason names %r, which is not on the closed list %s"
+                       % (key, sorted(NO_WEIGHTS_GROUNDS)))
+    # THE CLAIM IS THAT THERE IS NO WEIGHTED RATE. A weighted rate says otherwise.
+    for f in ("wacc_exp", "wacc_terminal", "weight_debt", "weight_equity"):
+        if rec.get(f) is not None:
+            return False, ("claims the %r ground and still carries %s. The ground says "
+                           "there is nothing to weight" % (key, f))
+    return True, None
+
+
 def check_weights(rec):
     """Failures in the weights and the WACC they are supposed to build."""
     fails = []
     we, wd = rec.get("weight_equity"), rec.get("weight_debt")
     if not isinstance(we, (int, float)) or not isinstance(wd, (int, float)):
+        # RE-POINTED, NOT WIDENED [R-COC-01]. The population for this clause is every
+        # record that HAS a weighted rate, not every record. A deposit-funded bank has
+        # no market-value capital structure to weight — reporting it as "carries no
+        # weights" says the check could not find something that is not there.
+        exempt, why = _no_weights_ground(rec)
+        if exempt:
+            return []
+        if why:
+            return [why]
         return ["record carries no market-value weights"]
 
     extra, bad = other_tranches(rec)

@@ -1,0 +1,260 @@
+# SWDY — response to the external forensic audit of 13-09-2026
+
+**STEP 8 REPORT. Nothing has been implemented.** Procedure: `engine/Critique_Response_Prompt.md` v2.
+
+## Count reconciliation
+
+The audit's own summary strip declares **16 total fail + 23 partial + 3 unverifiable = 42**.
+The document carries **41 findings with identifiers** (F1-F41): 16 total, 23 partial, **2** unverifiable.
+One declared unverifiable is counted in the strip and carried as no numbered finding. **41 raised
+and enumerated, 41 answered, 0 unaddressed — plus one declared-but-unnumbered item flagged back
+to the auditor.**
+
+## How this response verified the audit rather than reading it
+
+Every price below marked REPRODUCES was re-run independently: the study's own `compute.py`,
+copied to a sandbox, one input patched, the central re-read. Seven of nine re-runs match the
+critique to four decimal places. **The audit's model reconstruction is accurate** and its
+arithmetic is its own, not asserted.
+
+Two prices do not match and are reported as mine rather than theirs (F4, F15); one matched only
+on the second construction (F8).
+
+**The harness itself had the defect it was built to price.** Its first run returned "no change"
+on every case because the sandbox carried the committed `study_numbers.json` and a failed
+`compute.py` left it in place — an absent result read as a clean one [R-ENF-04]. Fixed before any
+number below was taken.
+
+## The ledger — one row per finding, in the audit's own order
+
+| # | Sev | Finding | Price (EGP/share, % of 87.94) | Verification |
+|---|---|---|---|---|
+| F1 | total | The corporate cost load: the prose describes the retired path | **53.9962** (-33.9463, -38.6%) | CONFIRMED from the numbers file: opex_pct = 3.07% flat in all five years, BELOW FY2025's 3.16%. The prose says it "glides UP ... toward the FY2023-24 average, the single most conservative choice in the build". It does not. — REPRODUCES the critique exactly (it said 54.00 / -33.95 / -38.6%) |
+| F2 | total | Table 14's capital-expenditure row is the retired path; the model holds capex flat | **87.1387** (-0.8038, -0.9%) | CONFIRMED: model capex/revenue = 3.5742% in every year; the registered capex_pct taper [4.4, 4.0, 3.6, 3.3, 3.1] that the driver table prints drives nothing. — REPRODUCES exactly (critique: 87.14 / -0.80). Surfaced by compute.py's own scenario assert |
+| F3 | partial | “Holding capex at the FY2025 peak would cost roughly EGP 1.8” | **79.6549** (-8.2877, -9.4%) | REPRODUCES exactly (critique: 79.65 / -8.29). The study prints "roughly EGP 1.8" — understated 4.6x |
+| F4 | total | The published Cables FY2026 driver is read by no formula in the model | **81.2480** (-6.6945, -7.6%) | CONFIRMED AND WORSE THAN STATED: FY2026 Cables grows at 30.5683% (the H1-2026/H1-2025 ratio). compute.py carries an assertion that REFUSES the published 10.71% outright. The two rows are mine, added 13-09-2026. — MATERIAL, price differs: critique says 83.52 / -4.42. Mine applies volume x pass-through, theirs +10.7% flat. Both clear the 5% escalation bar |
+| F5 | total | The forecast is calibrated on the reviewed half, which the study never mentions and lists as a future catalyst | _no valuation effect claimed_ | price as the audit states it; not independently re-run in this pass |
+| F6 | total | Segment margins are inputs, not outputs | Impact: none on the central directly, but the margin row is the largest single sensitivity in the study (±15% = 74.00 a share, wider than any cost-of- | price as the audit states it; not independently re-run in this pass |
+| F7 | total | Table 18's cost-of-capital rows do not produce Table 18's cost of capital | Impact: the model run at the literally printed cost of capital gives EGP 56.97 — −30.97 / share, −35.2%. Correct method: print the two legs as separat | price as the audit states it; not independently re-run in this pass |
+| F8 | partial | The study's own stated country-premium arithmetic does not reproduce either | **96.2291** (+8.2865, +9.4%) | CONFIRMED: crp_eff = 3.984% committed, lambda = 0.5928, crp_home = 5.168%. 5.168 x 0.5928 = 3.064, not 3.984. The 2.26% non-Egypt leg is in no delivered page. — REPRODUCES exactly once applied to BOTH windows (critique: 96.23 / +8.29). Explicit window alone gives only +1.05 |
+| F9 | total | The terminal risk-free rate is published on a 5% inflation the terminal growth rate contradicts | Impact: applying the printed 5.5pp real convention to the study's own 7% inflation gives a terminal risk-free of 12.5% → EGP 66.62 (−21.33, −24.3%). M | price as the audit states it; not independently re-run in this pass |
+| F10 | total | The published headline range is generated on retired terminal-growth parameters, and its bear case is internally contradictory | Impact: the range a reader is given is not a range around the published answer under the published assumptions. Correct method: re-run both scenarios  | price as the audit states it; not independently re-run in this pass |
+| F11 | total | The published copper sensitivity is a mathematical no-op in the published model | _no valuation effect claimed_ | price as the audit states it; not independently re-run in this pass |
+| F12 | total | The bridge does not stand on the latest disclosed balance sheet | Impact: bridging on the 30-Jun-2026 sheet with a 65-day roll gives EGP 77.32 (−10.62, −12.1%) — an upper bound, since that construction should also dr | CONFIRMED FROM THE STUDY'S OWN REGISTER: h1_26_debt 84,005.21 less h1_26_cash 55,376.24 = 28,629.0 net debt, exactly the critique's figure, against the 20,560.0 the bridge subtracts. — price as the audit states it; not independently re-run in this pass |
+| F13 | total | The H1-2026 effective tax rate of 30.85% was read, registered, flagged as material — and not priced | **73.4550** (-14.4875, -16.5%) | CONFIRMED: the register's own h1 26 tax entry says "a material step this re-issue must price rather than average away". It is priced nowhere in the study. — REPRODUCES exactly (critique: 73.45 / -14.49 / -16.5%) |
+| F14 | partial | The register carries the same tax rate under two different periods | _no valuation effect claimed_ | price as the audit states it; not independently re-run in this pass |
+| F15 | partial | Copper is not “held near the current market level”; it escalates 2.5% a year | **85.2050** (-2.7375, -3.1%) | Critique says 85.87 / -2.07. Mine flattens from FY2027 on the house US-inflation term; same sign, same order |
+| F16 | partial | 19.67% working capital is an H1-2026 figure described as “the FY2025 disclosed level” | **87.1967** (-0.7458, -0.8%) | CONFIRMED: nwc_pct = 0.1967 committed; FY2025 disclosed = 55,852.5/281,049.1 = 19.873%, and Table 17 prints 19.9%. — REPRODUCES exactly (critique: 87.20 / -0.75) |
+| F17 | partial | A capital reduction the register denies exists is filed with the exchange | Impact on value: negligible — on the correct count the central is 88.00 rather than 87.94, and market capitalisation at the anchor is 278,116 rather t | price as the audit states it; not independently re-run in this pass |
+| F18 | partial | SWDY is not an EGX30 constituent, and the beta's stated justification depends on its being one | _no valuation effect claimed_ | price as the audit states it; not independently re-run in this pass |
+| F19 | total | Table 6, “The valuation, on one page”, does not foot | _no valuation effect claimed_ | price as the audit states it; not independently re-run in this pass |
+| F20 | total | The normalised-earnings row label omits a third deduction worth 14.62 a share | _no valuation effect claimed_ | price as the audit states it; not independently re-run in this pass |
+| F21 | total | The relative lens's interim cash-flow row has the wrong sign, and three statements about it are backwards | Impact: as printed the lens is 76.96 against the published 79.68 — the row misstates its own lens by 2.72 a share and inverts a fact the document esta | price as the audit states it; not independently re-run in this pass |
+| F22 | partial | The working-capital sensitivity row does not pass through the published central, against an explicit assertion that every grid does | _no valuation effect claimed_ | price as the audit states it; not independently re-run in this pass |
+| F23 | partial | Three of Table 20's six contested-choice valuations understate themselves by 2.5× to 8× | _no valuation effect claimed_ | price as the audit states it; not independently re-run in this pass |
+| F24 | partial | Nine prose claims contradicted by the tables printed beside them | _no valuation effect claimed_ | price as the audit states it; not independently re-run in this pass |
+| F25 | partial | The risk-free rate is not read on the anchor date, and the study says it is | _no valuation effect claimed_ | price as the audit states it; not independently re-run in this pass |
+| F26 | partial | The bibliography's judgements table publishes three retired values as adopted | _no valuation effect claimed_ | price as the audit states it; not independently re-run in this pass |
+| F27 | partial | The study and its register give two incompatible accounts of what the multiple rests on — and the study's account is the one that fails | _no valuation effect claimed_ | price as the audit states it; not independently re-run in this pass |
+| F28 | total | The price map's stated drift does not reproduce from its own published medians | _no valuation effect claimed_ | price as the audit states it; not independently re-run in this pass |
+| F29 | partial | The zone map omits 40% of the distribution it maps | _no valuation effect claimed_ | price as the audit states it; not independently re-run in this pass |
+| F30 | partial | The technical section is stale at the issue date the document carries, and mixes closing and intraday bases | Impact on the valuation gap: immaterial — at 127.10 the central sits −30.8% rather than −32%. | price as the audit states it; not independently re-run in this pass |
+| F31 | partial | Two register entries about the same reviewed half: a mis-sequenced backlog series and a misattributed transformer contract | _no valuation effect claimed_ | price as the audit states it; not independently re-run in this pass |
+| F32 | partial | Expert 1's earnings per share reproduces on no published combination; Expert 2's printed formula does not reach its own answer; Expert 3 drops a charge the central bridge makes | _no valuation effect claimed_ | price as the audit states it; not independently re-run in this pass |
+| F33 | partial | The terminal capitalises a return above every year in its own forecast, at the end of a window still compounding at twice the terminal rate | _no valuation effect claimed_ | price as the audit states it; not independently re-run in this pass |
+| F34 | unver | The beta triple is not self-consistent on the construction the study prints | Impact: small either way. Beta multiplies only the 4.24% mature leg, so the full tested 0.6–1.3 range moves the answer 4.87 a share. | price as the audit states it; not independently re-run in this pass |
+| F35 | partial | Minor foot-checks and citation slips | _no valuation effect claimed_ | price as the audit states it; not independently re-run in this pass |
+| F36 | total | The study's “single largest open question in the cost of capital” switches two things at once, and the data source alone moves the answer the other way | _no valuation effect claimed_ | price as the audit states it; not independently re-run in this pass |
+| F37 | partial | The risk-free rate on the anchor date is 22.97%, not the 22.31% adopted | Impact: at 22.97% the central is EGP 87.20 (−0.74); at 23.00%, 87.17. Immaterial on its own — but the study's own framing, that it chose the generous  | price as the audit states it; not independently re-run in this pass |
+| F38 | partial | The US risk-free rate is 4.68–4.77%, not 4.30%, so the currency-of-discounting alternative is struck too cheap | Impact: the published alternative of EGP 77.86 is struck 35bp too cheap and is therefore modestly too high. The study's conclusion from it — that the  | price as the audit states it; not independently re-run in this pass |
+| F39 | unver | The registered USD/EGP annual averages sit 3% below the market averages, and are cited to a note this audit could not read | Valuation impact: nil. Only year-on-year exchange-rate ratios enter the model, and FY2026 Cables revenue is hardcoded, so rebasing the entire path on  | price as the audit states it; not independently re-run in this pass |
+| F40 | partial | The employees' statutory charge is described against the wrong statutory base | _no valuation effect claimed_ | price as the audit states it; not independently re-run in this pass |
+| F41 | partial | The company profile understates the operating footprint by a factor of four | _no valuation effect claimed_ | price as the audit states it; not independently re-run in this pass |
+
+---
+
+## Independently reproduced, second pass
+
+Ten of the audit's findings have now been re-derived here from the study's own model and
+delivered files. Every one matches.
+
+| # | What was re-run | Result | The audit said |
+|---|---|---|---|
+| F1 | corporate cost load on the glide the prose describes | **53.9962** (−33.95, −38.6%) | 54.00, −33.95, −38.6% |
+| F2 | capex on the taper the driver table prints | **87.1387** (−0.80) | 87.14, −0.80 |
+| F3 | capex held at the FY2025 peak of 4.665% | **79.6549** (−8.29) | 79.65, −8.29 |
+| F8 | country premium with the non-Egypt leg removed, both windows | **96.2291** (+8.29) | 96.23, +8.29 |
+| F9 | terminal risk-free on the printed 5.5pp convention | **66.6163** (−21.33, −24.3%) | 66.62, −21.33, −24.3% |
+| F13 | effective tax at the H1-2026 rate of 30.85% | **73.4550** (−14.49, −16.5%) | 73.45, −14.49, −16.5% |
+| F16 | working capital at the FY2025 disclosed 19.873% | **87.1967** (−0.75) | 87.20, −0.75 |
+| F19 | the free-cash-flow table summed on its printed labels | 3,642 / 10,034 / 16,912 / 21,208 / 24,791 against a stated −319 / 5,227 / 11,402 / 15,010 / 17,889 — **the gap is the D&A row to the unit** | identical, row for row |
+| F20 | the normalised lens label | row reads "Less tax at 24.5% and minority interests at 9.7% \| (14,198)"; the model applies a **third** deduction of (1 − 12.193%) the label does not name | identical |
+| F21 | the relative lens's interim cash-flow row | committed `pv_interim` = **+3,106.381** (−252.3 and +3,358.6); the delivered row reads "Plus interim cash flows \| (-3,106) \| … net negative" — labelled Plus, printed bracketed AND signed negative, called negative in prose, **added** by the model | identical |
+
+Two prices are ours rather than theirs. **F4**: we get 81.2480 (−6.69, −7.6%) against their 83.52
+(−4.42, −5.0%); ours applies volume growth times the pass-through, theirs a flat +10.7%. Both clear
+the 5% escalation bar, so the difference changes the paragraph it earns, not the bucket it lands in.
+**F15**: we get 85.2050 (−2.74) against their 85.87 (−2.07), flattening from FY2027 on the house
+US-inflation term.
+
+**F4 is worse than the audit states.** `compute.py` carries an assertion that REFUSES the published
+10.71%: *"FY2026 cables growth is 10.7100% while the reviewed halves measure 30.5683%. The first
+forecast year is the year the half measures and it may not disagree with it."* The model would not
+run on the driver its own table publishes. Those two rows were added on 13-09-2026, in this session,
+as a repair to a different defect.
+
+---
+
+## Step 1 — the self-audit, run BLIND to this critique
+
+Launched before the critique was read in detail and given no access to it. 20 findings, every
+one priced by re-running the model. **What matters is not the overlap but the residue.**
+
+### Found by the self-audit and MISSED by the external audit
+
+| Ours | Finding | Price |
+|---|---|---|
+| **#2** | **Segment margins are set at FY2025 PLUS the measured half-on-half CHANGE, not at the half's LEVEL.** Adopted: cables 11.4341%, constructions 8.9871%, electrical 23.6221%. The reviewed half actually printed 12.4890%, 11.5934%, 24.9066%. The choice is in no sensitivity, no scenario and no contested-choices table. | **+30.38 (+34.5%)** → 118.3243, re-run and confirmed |
+| #4 | The terminal FCFF row is described as "FY2030E NOPAT grown 9.14%"; the model hands the module the UNGROWN NOPAT and the next row grows it. Following the printed words double-grows it. | +13.13 (+14.9%) |
+| #7 | Capex is measured flat in LEVEL (+0.91% y/y) and then modelled flat as a SHARE of a revenue line growing 2.3×, so capex rises 74% and runs 3.34× D&A for five years | +6.76 (+7.7%) |
+| #12 | Minority charged at the FY2025 profit share of 9.675% while the reviewed half prints 6.81% of profit and 7.47% of equity — both registered, both declined | +2.85 |
+| #11 | The explicit window ends at 11.37% growth against a terminal of 9.14% — 2.23pp, breaching the 2pp convergence rule, with 89.4% of value in the terminal | ≈+1.8 (estimate) |
+
+### THE REVERSE READ — the finding that governs the answer
+
+Reading the 30 June 2026 reviewed half — the one filing this edition says it re-anchored on — as
+a **LEVEL** rather than as a **CHANGE**, applied consistently to margins, capex and the minority
+share, gives **EGP 129.09 against a spot of 130.00. That is 97.8% of the gap, closed by one
+methodological choice.** The margin leg alone is re-run and confirmed here at 118.3243.
+
+**We do not call this gap genuine [R-GAP-04].** The half is not data the market holds and we
+lack; it is data we read and converted, and the conversion IS the disagreement. The study
+publishes both sides of the corporate cost load (−33.95) and of the pass-through (−5.86). It
+publishes neither side of this, and this one is worth more than both together.
+
+### Direction of the contested calls
+
+Twelve resolved toward the higher value, five toward the lower. **This study is not a stack of
+conservative choices.** It leaned generous on most contested calls and is still 32% below the
+market — which puts the entire gap on the five downward calls, and most of it on one.
+
+### Found by the external audit and MISSED by us
+
+F17 (a capital reduction IS filed — the company's own 23-April release, the EGM of 19 May,
+recorded in the commercial register 16 July, and H1 dividends of 3,957,808,075 = 1.85 ×
+2,139,355,716 exactly); F18 (SWDY was dropped from the EGX30 in February 2025 and the beta's
+stated economic justification depends on a constituency that ended nineteen months before the
+window closed); F5 (the H1 calibration is never named and is listed as a FUTURE catalyst);
+F11 (the copper sensitivity is a mathematical no-op because copper enters only as a ratio);
+F36, F37, F38, F41.
+
+**Neither audit alone was sufficient. Both were necessary.**
+
+---
+
+## Step 7 — the four buckets, plus the fifth
+
+### 5. YOUR DECISION — these move the answer and are judgements, not corrections
+
+Priced both ways. Recommendation given; the call is the principal's.
+
+| Finding | Branch A (as published) | Branch B (the alternative) | Recommendation |
+|---|---|---|---|
+| **Self-audit #2 — margins as a CHANGE or as a LEVEL** | 87.94 | **118.32** (+30.38) | **Publish BOTH, adopt neither silently.** The depth bar already requires this study's most consequential contested judgement to be computed both ways and shown side by side; it does that for the cost load and the pass-through and not for the one worth more than both. The seasonality case for a change is real but rests on a single year's H1/H2 split. |
+| F13 — forecast tax 24.5% or the half's 30.85% | 87.94 | **73.45** (−14.49) | **Price it and discuss it; do not adopt 30.85% outright.** One half's effective rate is not a five-year forecast. The defect is that the most recent, most adverse observation was read, flagged material in our own register, and then discussed nowhere. |
+| F12 / #10 — bridge at 31-Dec-2025 or 30-Jun-2026 | 87.94 | −3.37 (net debt only) to **−10.62** (audit's upper bound) | **Accept the defect, state the alternative in the bridge.** The protocol wants the latest disclosed sheet; the double-count argument against it is sound and is already stated. The audit concedes its own figure is an upper bound. |
+| Self-audit #7 — capex flat in LEVEL or flat as a SHARE | 87.94 | **+6.76** | **Your call.** Capex rises 74% in level and runs 3.34× D&A for five years against an announced programme of about EGP 11bn. |
+| Self-audit #12 — minority at the FY2025 share or the half's | 87.94 | **+2.85** | Same principle as the margin question — whatever is decided there should decide this. |
+
+### 1. ACCEPT AND IMPLEMENT — right finding, clear fix, no effect on the answer
+
+F1, F2, F4, F5, F6, F7, F9, F10, F11, F14, F15, F16, F19, F20, F21, F22, F23, F24, F25, F26,
+F27, F28, F29, F30, F31, F32, F33, F35, F36, F40, F41 — and self-audit #3, #4, #8, #13, #14,
+#15, #16, #17, #18, #19, #20.
+
+Every one is the same class: **the page describes a model the workbook does not run.** None
+changes a number; all change what a reader is told. F1 and F4 are the two I introduced or
+touched in this session.
+
+### 2. ACCEPT THE DEFECT, REJECT THE FIX
+
+- **F18 — the EGX30 constituency.** Premise right: SWDY was dropped from the EGX30 effective
+  1 February 2025 and the regression window straddles that. Fix rejected: the regressor is the
+  registered index for this market and changing it is a house-level act, not a study-level one
+  — and the audit concedes the regressor "still satisfies the protocol's literal rule". What
+  gets fixed is the JUSTIFICATION: the sentence claiming it is economically sensible because
+  the stock is "the largest industrial constituent of an index" is withdrawn.
+- **F17 — the capital reduction.** Premise right, and the arbiter is internal and checkable:
+  H1 dividends of 3,957,808,075 = 1.85 × 2,139,355,716 exactly, not × 2,140,777,876. The
+  register's reasoning — that no filing exists because an index does not list one — is the
+  error it congratulates itself for catching two entries earlier. Worth +0.06 a share. Fix
+  rejected in part: both readings are simultaneously true, and the register must say so rather
+  than swap one wrong account for another.
+
+### 3. UNPROVEN — RESEARCH REQUIRED
+
+F34 (the beta triple's internal consistency), F39 (the registered USD/EGP averages), F37 and
+F38 (the risk-free readings) — each needs a primary source this session has not opened.
+Parked is not a verdict; they move to bucket 1 or 4 once checked.
+
+### 4. REJECT — with receipts
+
+**None.** Not one finding of the 41 was rejected. That is itself a result and it is reported as
+one: a response that rejects nothing is as uncalibrated as one that accepts everything, and I
+looked for grounds. The nearest are F8 and F4, where the audit's PRICE does not reproduce here
+— and in both cases the defect is real and only the magnitude is contested, which is bucket 1
+with a corrected number, not a rejection.
+
+## Count reconciliation, final
+
+**41 findings raised, 41 answered, 0 unaddressed.** Plus one declared-but-unnumbered
+unverifiable flagged back to the auditor. Plus 20 from the blind self-audit, of which 5 are
+ours alone and 1 — the reverse read — governs the answer.
+
+---
+
+## Step 9 — what actually moved
+
+GENERATED by `response_delta.py` from the two committed numbers files, never typed. A
+response that states its own before-and-after in prose is the defect it is responding to.
+
+| Headline | Before | After | Change |
+|---|---|---|---|
+| Central — the cash-flow lens, the answer | 87.94 | 87.94 | **unchanged** |
+| Published range, low | 28.57 | 46.85 | +18.29 (+64.0%) |
+| Published range, high | 138.18 | 133.83 | -4.34 (-3.1%) |
+| Rating-basis cost of capital (alternative) | 33.67 | 68.18 | +34.51 (+102.5%) |
+| Currency-of-discounting (alternative) | 77.86 | 77.86 | **unchanged** |
+| Relative lens | 79.68 | 79.68 | **unchanged** |
+| Normalised lens | 103.30 | 103.30 | **unchanged** |
+| Book lens (disclosed floor) | 66.61 | 66.61 | **unchanged** |
+| Expert 1 — earnings power | 176.13 | 154.41 | -21.71 (-12.3%) |
+| Expert 2 — owner cash earnings | 97.72 | 85.56 | -12.15 (-12.4%) |
+| Expert 3 — cash returns vs cost of capital | 89.43 | 78.29 | -11.14 (-12.5%) |
+| Terminal share of enterprise value | 0.89 | 0.89 | **unchanged** |
+
+Baseline `b692be9bb` — the last commit before any finding was implemented. 6 of 12 headlines moved; the central is not among them.
+
+**The central did not move, and that is the finding, not the defence.** Forty-one external
+findings and twenty of our own were worked; the answer is where it was. Every one of them
+was a defect in what the study SAID, in what it PUBLISHED beside the answer, or in a
+construction the study's own rules already forbade — not in the cash flows.
+
+**The three experts each moved by almost exactly the same proportion**, -12.3%, -12.4% and
+-12.5%, and that is not a coincidence: it is the employees' statutory share of 12.193%,
+which every one of them was failing to charge. A per-share equity value that does not
+deduct a claim ranking ahead of the ordinary shares is valuing something other than the
+ordinary shares [L-294]. Three lenses, one omission, one number.
+
+**The rating-basis alternative doubled, and no input changed.** It was published on a
+construction that multiplies beta through the whole country premium, with a terminal
+carrying four and a half points of premium that appeared in no register — both of them
+things this study's own cost-of-capital section says it does not do. Rebuilt through the
+sanctioned module, EGP 68.18 rather than 33.67. It remains well below the primary; it is
+no longer below it for the wrong reason.
+
+**The range narrowed on both sides around an unchanged centre.** The old bounds were struck
+at terminal growth rates the study does not adopt — both BELOW the base case's own growth,
+so the "bull" grew slower than the central. The new ones move the cost of capital through
+the beta regression's own 90% confidence bounds, which is what the model report requires
+and what SWDY was not doing.

@@ -62,7 +62,7 @@ OWN_DOC = re.compile(
     r'(audited|reviewed|annual report|financial statements|interim (?:statements|financial)|'
     r'statement of (?:profit|financial position|cash)|note \d|balance sheet|income statement|'
     r'cash[- ]flow statement|results (?:announcement|release)|investor presentation|'
-    r'earnings (?:call|presentation)|MD&A|management (?:report|discussion)|prospectus|'
+    r'earnings (?:call|presentation|release)|MD&A|management (?:report|discussion)|prospectus|'
     r'FS_|AR20\d\d|disclosure)', re.I)
 
 # A DATED HISTORICAL: a reported figure for a NAMED past period, never a forward ratio.

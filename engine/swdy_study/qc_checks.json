@@ -1,0 +1,23 @@
+{
+ "scrub_hits": [],
+ "scrub_patterns": 43,
+ "table_problems": [],
+ "tables": 54,
+ "figures": 8,
+ "transparent": [],
+ "placeholder_hits": [],
+ "builders": [
+  "docx_swdy.py",
+  "docx_register.py"
+ ],
+ "typed_numerals": [
+  "docx_swdy.py:1678 0.55",
+  "docx_swdy.py:1678 2.60",
+  "docx_swdy.py:1679 0.55",
+  "docx_swdy.py:1679 2.60",
+  "docx_swdy.py:2058 0.09",
+  "docx_register.py:225 105.20",
+  "docx_register.py:226 130.00",
+  "docx_register.py:302 19.87"
+ ]
+}

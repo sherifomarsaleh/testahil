@@ -188,7 +188,7 @@ def sotp_per_share(mark, wacc_shift=0.0, tg=None):
         return None
     pv = sum(f * fac[i] for i, f in enumerate(fcffs))
     tv = fcffs[-1] * (1.0 + g) / (wt - g) * fac[-1]
-    auto_eq = (pv + tv - dcf['auto_nd']) * (1.0 - dcf['auto_nci_share'])
+    auto_eq = pv + tv - dcf['auto_nd'] - dcf['auto_nci']
     return (auto_eq + sotp['cap_val'] + mark + sotp['other_assoc']) / D['shares']
 
 
@@ -210,25 +210,3 @@ _sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)
 import site_data as _SITE                                             # noqa: E402
 
 BAND = _SITE.band_record('GBCO')
-
-def path_words(xs, dp=1, unit="of revenue"):
-    """How a driver path MOVES, read off the path rather than asserted.
-
-    THE STUDY SAID "GLIDES FROM 22.6% OF REVENUE TO 22.6%" FOUR TIMES [corrected
-    17-09-2026]. The array is five equal values -- the working-capital intensity is HELD
-    FLAT at the reviewed half's level, which is what lever L15's own evidence records,
-    and which it records BECAUSE the mechanism a glide would need is contradicted by the
-    company's own filings: days payable ran 112.7 to 83.3 and the cash cycle got WORSE,
-    61.3 to 69.3 days. Every figure printed was correct and computed; the VERB was typed.
-    One sentence then went further and asked a reader to consider "if the higher figure
-    is the new structural cost" -- of two identical numbers.
-
-    A verb is a claim about a path and it is now read off the path.
-    """
-    if not xs:
-        return "is not modelled"
-    lo, hi = xs[0], xs[-1]
-    if abs(hi - lo) < 0.5 * 10 ** (-dp - 2):          # equal at the precision printed
-        return "is held flat at %.*f%% %s" % (dp, 100 * lo, unit)
-    verb = "glides down from" if hi < lo else "rises from"
-    return "%s %.*f%% %s to %.*f%%" % (verb, dp, 100 * lo, unit, dp, 100 * hi)

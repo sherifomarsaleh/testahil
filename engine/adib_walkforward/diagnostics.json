@@ -1,0 +1,140 @@
+{
+ "share_check": 0.0,
+ "macro_split": {
+  "fin_customers": {
+   "mae_asreg": 0.32578790182433415,
+   "mae_perfect_macro": 0.1854777200573007,
+   "macro_share": 0.43067953408131504,
+   "company_share": 0.5693204659186849
+  },
+  "cust_deposits": {
+   "mae_asreg": 0.31460557078769424,
+   "mae_perfect_macro": 0.17269940801781838,
+   "macro_share": 0.4510605531064757,
+   "company_share": 0.5489394468935243
+  },
+  "total_assets": {
+   "mae_asreg": 0.35917160562042727,
+   "mae_perfect_macro": 0.17732681336758754,
+   "macro_share": 0.5062894432835913,
+   "company_share": 0.49371055671640873
+  },
+  "fin_income": {
+   "mae_asreg": 0.5268777219927044,
+   "mae_perfect_macro": 0.3783728452226982,
+   "macro_share": 0.28185833367246177,
+   "company_share": 0.7181416663275383
+  },
+  "cost_funds": {
+   "mae_asreg": 0.5186737623763835,
+   "mae_perfect_macro": 0.3968624143848414,
+   "macro_share": 0.2348515711175455,
+   "company_share": 0.7651484288824545
+  },
+  "net_funds": {
+   "mae_asreg": 0.5641670635358004,
+   "mae_perfect_macro": 0.3912912689790639,
+   "macro_share": 0.3064265990170946,
+   "company_share": 0.6935734009829053
+  },
+  "net_fees": {
+   "mae_asreg": 0.42714255605880497,
+   "mae_perfect_macro": 0.2714139053291851,
+   "macro_share": 0.36458238244044366,
+   "company_share": 0.6354176175595563
+  },
+  "other_nii": {
+   "mae_asreg": 0.5045019046034241,
+   "mae_perfect_macro": 0.4127473155906693,
+   "macro_share": 0.18187164047454044,
+   "company_share": 0.8181283595254596
+  },
+  "admin": {
+   "mae_asreg": 0.23303101383837788,
+   "mae_perfect_macro": 0.10874444290274911,
+   "macro_share": 0.5333477672711392,
+   "company_share": 0.46665223272886086
+  },
+  "other_op": {
+   "mae_asreg": 0.5120593780386802,
+   "mae_perfect_macro": 0.4137343632722952,
+   "macro_share": 0.19201877552364185,
+   "company_share": 0.8079812244763581
+  },
+  "ecl": {
+   "mae_asreg": 0.7337940150377983,
+   "mae_perfect_macro": 0.6996575062499659,
+   "macro_share": 0.046520560386519326,
+   "company_share": 0.9534794396134807
+  },
+  "pbt": {
+   "mae_asreg": 0.6300240201018045,
+   "mae_perfect_macro": 0.39738138272570783,
+   "macro_share": 0.3692599487532306,
+   "company_share": 0.6307400512467695
+  },
+  "np": {
+   "mae_asreg": 0.6703151612745124,
+   "mae_perfect_macro": 0.5171611459787889,
+   "macro_share": 0.22848060754663838,
+   "company_share": 0.7715193924533617
+  },
+  "np_parent": {
+   "mae_asreg": 0.677110141207428,
+   "mae_perfect_macro": 0.5227830715565055,
+   "macro_share": 0.2279201864791528,
+   "company_share": 0.7720798135208472
+  }
+ },
+ "one_offs": [
+  {
+   "year": "FY2012",
+   "item": "Cost of credit -978,291 on a EGP 5.1bn financing book",
+   "size_pct_pbt": null,
+   "kind": "company / legacy-book cleanup",
+   "effect": "Sets the FY2014 origin cost-of-risk driver to 6.25%, ten times any later reading, and drives that origin to a projected LOSS at every horizon. FY2014 is the only origin whose net-profit cells are sign-broken."
+  },
+  {
+   "year": "FY2013 and FY2014",
+   "item": "Cost of credit +69,144 and +65,290 (net releases)",
+   "kind": "company / reversal of the FY2012 cleanup",
+   "effect": "Cost of risk is NEGATIVE in the FY2015 origin window (-0.52%), so that origin projects an impairment CREDIT at every horizon. Two of the five sign-broken ecl cells come from here."
+  },
+  {
+   "year": "FY2015",
+   "item": "Tax 414,722 on PBT 633,961 - a 65.4% effective rate",
+   "kind": "company / deferred-tax-asset unwind from the loss era",
+   "effect": "Lifts the trailing effective tax rate at the FY2016-FY2018 origins to 52-57%, against a statutory 22.5%. R13 reports the statutory sensitivity beside it."
+  },
+  {
+   "year": "FY2016 Nov",
+   "item": "EGP float, 8.9 -> ~18 per USD",
+   "kind": "MACRO",
+   "effect": "The single largest source of the under-forecast at the FY2014-FY2016 origins."
+  },
+  {
+   "year": "FY2020",
+   "item": "COVID; CBE 300bp cut in March; payment moratoria",
+   "kind": "MACRO",
+   "effect": "The FY2019 origin is the only origin that OVER-forecasts net profit at h=1 (+0.356)."
+  },
+  {
+   "year": "FY2021",
+   "item": "Gain on sale of financial investments in subsidiaries 87,920",
+   "kind": "company / disposal",
+   "effect": "3.9% of FY2021 PBT. Inside the derived other_nii block; not separately forecast and not excluded."
+  },
+  {
+   "year": "FY2022-FY2024",
+   "item": "Three EGP devaluation steps, 19.2 -> 30.6 -> 45.3",
+   "kind": "MACRO",
+   "effect": "The FY2021-FY2023 origins under-forecast net profit by 0.03 to 0.70 in logs at h=1."
+  },
+  {
+   "year": "FY2022 and FY2021",
+   "item": "Discontinued operations -5,806 and -22,859",
+   "kind": "company",
+   "effect": "Below 0.2% of PBT. Left inside reported np, which is what a naive benchmark freezes."
+  }
+ ]
+}

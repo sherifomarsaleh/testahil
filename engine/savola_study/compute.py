@@ -65,6 +65,8 @@ published side by side; they are never averaged.
 """
 import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
 sys.path.insert(0, os.path.join(HERE, '..'))
 import numpy as np
 
@@ -1450,7 +1452,7 @@ OUT = dict(
         mktcap=mktcap,
         valuation_date='2025-12-31', anchor_date='2026-08-18',
         anchor_days=V['anchor_days'], div_between=V['div_between'],
-        study_date='2026-08-19', build='SAVOLA_Valuation_Study_19-08-2026',
+        study_date='2026-08-19', build=_ed.STUDY_DOCX[:-len('_public.docx')],
         edition=2, first_edition='SAVOLA_Valuation_Study_18-08-2026',
     ),
     # headline figures of the superseded first edition (historical record for the

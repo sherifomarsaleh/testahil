@@ -2583,57 +2583,57 @@
   "D2_cable_price_t": {
    "macro_share": 3.3005598578036106,
    "as_known_mae": 0.43349798752505925,
-   "perfect_mae": 0.43349798752505925
+   "perfect_mae": 0.11406755901381538
   },
   "D3_cable_cost_t": {
    "macro_share": 3.5524773159257497,
    "as_known_mae": 0.41006020572655155,
-   "perfect_mae": 0.41006020572655155
+   "perfect_mae": 0.10859220138668672
   },
   "D4_cables_revenue": {
    "macro_share": 0.1264531885114349,
    "as_known_mae": 0.6508050274763715,
-   "perfect_mae": 0.6508050274763715
+   "perfect_mae": 0.3660657754631233
   },
   "D5_contracting_revenue": {
    "macro_share": 0.18899600947338202,
    "as_known_mae": 0.3901593367257388,
-   "perfect_mae": 0.3901593367257388
+   "perfect_mae": 0.2945106465224601
   },
   "D6_other_revenue": {
    "macro_share": 0.19538388505094964,
    "as_known_mae": 0.5840880670139478,
-   "perfect_mae": 0.5840880670139478
+   "perfect_mae": 0.38005497593216736
   },
   "D7_cables_cost": {
    "macro_share": 0.41043915653890733,
    "as_known_mae": 0.6445565892620537,
-   "perfect_mae": 0.6445565892620537
+   "perfect_mae": 0.32793254478469475
   },
   "D8_contracting_cost": {
    "macro_share": 0.1723660610142574,
    "as_known_mae": 0.402373184432171,
-   "perfect_mae": 0.402373184432171
+   "perfect_mae": 0.32264353521323985
   },
   "D9_other_cost": {
    "macro_share": 0.19481898377297965,
    "as_known_mae": 0.5989972686200801,
-   "perfect_mae": 0.5989972686200801
+   "perfect_mae": 0.39628010046055007
   },
   "D10_sga": {
    "macro_share": -0.061998267357608966,
    "as_known_mae": 0.2837968525359701,
-   "perfect_mae": 0.2837968525359701
+   "perfect_mae": 0.21928082720286204
   },
   "D11_depreciation": {
    "macro_share": -0.010748935590920534,
    "as_known_mae": 0.9307569269903934,
-   "perfect_mae": 0.9307569269903934
+   "perfect_mae": 0.9407615732494162
   },
   "D12_capex": {
    "macro_share": 0.09072613150209219,
    "as_known_mae": 0.8261378462492437,
-   "perfect_mae": 0.8261378462492437
+   "perfect_mae": 0.7508235186169033
   },
   "D13_other_operating_income": {
    "macro_share": 0.0,
@@ -2658,17 +2658,17 @@
   "A_revenue": {
    "macro_share": 0.12737475989975594,
    "as_known_mae": 0.49444514368881615,
-   "perfect_mae": 0.49444514368881615
+   "perfect_mae": 0.21918709314165147
   },
   "A_cost_of_revenue": {
    "macro_share": 0.2419838341626929,
    "as_known_mae": 0.48861120543721986,
-   "perfect_mae": 0.48861120543721986
+   "perfect_mae": 0.20008107749466295
   },
   "A_gross_profit": {
    "macro_share": -0.6167281642881122,
-   "as_known_mae": 0.5634456641682458,
-   "perfect_mae": 0.5634456641682458
+   "as_known_mae": 0.5555260735159177,
+   "perfect_mae": 0.49671489743091307
   }
  },
  "_harvest_view": "emitted by harvest_view.py in the shape engine/lessons_harvest.py reads; nothing here is recomputed"

@@ -5,9 +5,12 @@ carry_log_h -> simulate_paths_v3, 50,000 paths, seed 42, live UAE fit read off
 the committed profile. Local CSV only, no site write.
 
 The dividend yield is SOURCED, not defaulted: the company's own reaffirmed FY2026
-guidance carries a dividend floor of $1.05 billion, 5% above the prior year. On
-15,992,651 thousand shares outstanding and the 07-Aug-2026 close of AED 5.94
-(USD 1.6175 at the peg) that is a 4.06% yield.
+guidance carries a dividend floor of $1.05 billion, 5% above the prior year, and the
+yield is that floor over the market capitalisation this study commits — so it moves with
+the price rather than carrying a figure of its own. THIS PARAGRAPH USED TO NAME THE PRICE
+AND THE YIELD (AED 5.94, 4.06%), and on 09-09-2026 the study was re-struck onto AED 5.80
+while the code below went on deriving both correctly. A docstring that states a number the
+code computes is a second copy of that number with nothing checking it.
 """
 import sys, os, json
 HERE = os.path.dirname(os.path.abspath(__file__))

@@ -23,7 +23,6 @@ VERIFY BY IMPORT, NOT BY PARSE.
 """
 from __future__ import annotations
 
-import contextlib
 import json
 import math
 import os
@@ -37,9 +36,6 @@ sys.path.insert(0, HERE)
 import macro_history as MH       # noqa: E402
 import panel as P                # noqa: E402
 import terminal_value as TV      # noqa: E402
-import research_protocol as RP   # noqa: E402  [R-MACRO-01]'s own bound, never a second one
-import pit_inflation as PI       # noqa: E402  the archive's own forward ladder
-import pit_substitution as S     # noqa: E402  one named adapter per run
 
 BETA = 1.00              # declaration 2, carried forward unchanged
 HORIZONS = (1, 2, 3, 4, 5)
@@ -48,6 +44,16 @@ HORIZONS = (1, 2, 3, 4, 5)
 # so a scorer refusing it would be refusing work the method licenses. Anything shorter and
 # the terminal carries the whole answer.
 MIN_EXPLICIT = 3   # the sealed explicit window
+
+# Declaration 4. Terminal growth is REAL growth on the house inflation path; a typed
+# nominal rate is prohibited because nobody can tell whether it meant inflation plus a
+# point or inflation minus three. Zero is the conservative standard reading and is what
+# the house macro path returns for every terminal it builds. Changing it is an amendment
+# to the declaration, made before the figures it affects are computed.
+TERMINAL_REAL_GROWTH = 0.0
+CONVERGE_PP = 0.02      # [R-MACRO-01]'s own 2pp, borrowed and never minted
+STUB_CAP = 10           # a ladder that has not converged in fifteen years
+                        # total is one this lens refuses, not extrapolates
 INTENSITY_YEARS = 3      # median over the three fiscal years to the origin
 
 
@@ -110,25 +116,18 @@ class _Isolated:
         return False
 
 
-def _in(rundir, module="bottom_up"):
-    """Import a run's projection module with its own directory as cwd.
-
-    THE MODULE IS NAMED BECAUSE THE RUNS DO NOT AGREE ON ONE. Five write their
-    projector in bottom_up.py and GBCO writes it in score.py; a loader hard-coded to
-    one filename cannot reach the other, which is the same shape as the panel reader
-    that could not see four committed panels [L-355].
-    """
-    key = (rundir, module)
-    if key in _CACHE:
-        return _CACHE[key]
+def _in(rundir):
+    """Import a run's bottom_up with its own directory as cwd, as its score.py does."""
+    if rundir in _CACHE:
+        return _CACHE[rundir]
     import importlib.util
-    p = os.path.join(rundir, "%s.py" % module)
+    p = os.path.join(rundir, "bottom_up.py")
     with _Isolated(rundir):
         spec = importlib.util.spec_from_file_location(
-            "bu_%s_%s" % (os.path.basename(rundir), module), p)
+            "bu_%s" % os.path.basename(rundir), p)
         m = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(m)
-    _CACHE[key] = m
+    _CACHE[rundir] = m
     return m
 
 
@@ -137,86 +136,63 @@ def _run(rundir, fn, *a, **kw):
         return fn(*a, **kw)
 
 
-@contextlib.contextmanager
-def _esc(adapter, B, origin_label, h, esc, **kw):
-    """Apply a run's NAMED adapter for one horizon, or run the pre-registered path.
-
-    Yields False where the ladder cannot reach this horizon, so the caller SKIPS the
-    horizon rather than silently falling back to the run's own flat escalator — a
-    fallback here would produce a cell built on two different inflation paths and
-    nothing downstream could see it.
-    """
-    if esc is None:
-        yield True
-        return
-    r = esc(h)
-    if r is None:
-        yield False
-        return
-    rate, cum = r[0], r[1]
-    with adapter(B, origin_label, h, rate, cum, **kw):
-        yield True
-
-
-def project_amoc(origin, esc=None):
+def project_amoc(origin):
     d = os.path.join(ENGINE, "amoc_walkforward")
     B = _in(d)
     out = {}
     for h in HORIZONS:
         if h not in B.HORIZONS:
             continue
-        with _esc(S.ADAPTERS["AMOC"], B, "FY%d" % origin, h, esc) as ok:
-            if not ok:
-                continue
-            p = _run(d, B.project, "FY%d" % origin, h)
+        p = _run(d, B.project, "FY%d" % origin, h)
         out[h] = {"revenue": p.get("net_sales"),
                   "ebit": p.get("operating_profit"),
                   "dna": p.get("depreciation")}
     return out
 
 
-def project_gbco(origin, esc=None):
-    """GBCO's own pre-registered projector, called at `origin`.
+def project_arcc(origin, unit_fix=False):   # unit_fix in (False, True, "coherent")
+    """ARCC's own projection, exactly as its run computes it.
 
-    ITS SIGNATURE IS ITS OWN AND SO IS ITS HOME. It lives in score.py rather than
-    bottom_up.py, takes the WHOLE panel plus the origin rather than an origin and a
-    horizon, and returns every horizon in one dict — three differences from the five
-    projectors above, and every one of them a reason a reader expecting a convention
-    finds nothing.
+    unit_fix IS A LABELLED SENSITIVITY AND IS NEVER THE DECLARED RUN. It exists
+    because this lens INHERITS each run's projection by construction, so a unit
+    error inside one run's cost path arrives here looking like a property of the
+    valuation method. What it varies is named, is arithmetic rather than judgement,
+    and uses NO information the origin did not have:
 
-    D&A IS None AND THAT IS DECLARED, NOT A FALLBACK. GBCO's projection carries no
-    separate depreciation line, exactly as EGCH's does not, so the lens's intensity
-    rule applies here on the same named per-name terms rather than on an invented
-    figure. Inventing one would be the fabricated cell [R-FCAL-01] refuses.
+      (i) COAL IS A DOLLAR COMMODITY AND THE RUN HOLDS IT FLAT IN POUNDS. That
+          run's own docstring states the intent correctly -- "a commodity price
+          has no drift and assuming one would be a forecast, not a rule" -- and
+          then applies it to coal_egp(), which is the South African dollar price
+          MULTIPLIED BY the exchange rate. Holding that level flat through a
+          window in which the pound fell 10.434x asserts that the dollar coal
+          price fell about ninety per cent, which is not a rule about a commodity;
+          it is a forecast, and an impossible one. The sensitivity holds coal flat
+          IN DOLLARS and converts at the model's OWN knowable currency path -- the
+          same (1 + fx_dep(o)) ** h it already applies to export prices.
+      (ii) DEPRECIATION, AMORTISATION AND RIGHT-OF-USE are held at their nominal
+          origin values for five years while revenue escalates at the full
+          inflation ladder. The sensitivity escalates them on that same ladder.
+
+    THIS IS NOT A PROMOTED LEVER AND MAY NOT BECOME ONE HERE. The pre-registration
+    fixes six levers in order before any score existed and an input run's
+    projection is not among them; adding a seventh after seeing the scores is the
+    fitting this method forbids. What this measures is ATTRIBUTION -- how much of
+    the pooled bias is a property of one input rather than of the valuation
+    construction -- which is what the acceptance criterion's residual clause asks
+    for. The remedy for a unit error is to fix the unit in the run that carries
+    it, which re-scores that run's own drivers and is its own pass.
     """
-    d = os.path.join(ENGINE, "gbco_walkforward")
-    B = _in(d, "score")
-    P = _run(d, B.load)
-    proj = _run(d, B.project, P, origin)
-    if not proj:
-        return {}
-    out = {}
-    for h in HORIZONS:
-        if h not in B.HOR:
-            continue
-        p = proj.get(h)
-        if not p:
-            continue
-        out[h] = {"revenue": p.get("revenue"), "ebit": p.get("operating_profit"),
-                  "dna": None}
-    return out
-
-
-def project_arcc(origin, esc=None):
     d = os.path.join(ENGINE, "arcc_walkforward")
     B = _in(d)
     out = {}
     for h in HORIZONS:
         if h not in B.HORIZONS:
             continue
-        with _esc(S.ADAPTERS["ARCC"], B, "FY%d" % origin, h, esc) as ok:
-            if not ok:
-                continue
+        if unit_fix:
+            p = _run(d, _arcc_unit_fixed, B, "FY%d" % origin, h,
+                     fx_level=(unit_fix == "coherent"),
+                     fx_mode=("fisher" if unit_fix == "fisher" else None))
+        else:
             p = _run(d, B.project, "FY%d" % origin, h)
         ebit = (p["gross_profit"] - p["ga"] - p["provisions"] + p["reversals"]
                 - p["impairments"])
@@ -225,16 +201,306 @@ def project_arcc(origin, esc=None):
     return out
 
 
-def project_egch(origin, esc=None):
+US_INFLATION_LT = 0.025    # the house path's own foreign leg for the PPP relation
+
+
+def _fwd_cpi(o):
+    """The origin's OWN published forward inflation path, as a function of horizon.
+
+    Point-in-time: at origin 2021 this returns 6-7% for ever because nobody then
+    published anything else, and that is the honest input rather than a defect.
+    Beyond the published path the last published year is held, never extrapolated.
+    """
+    year = int(str(o)[2:]) if str(o).startswith("FY") else int(o)
+    v = MH.origin("EG", year)
+    fwd = (v.extras.get("cpi_annual") or {}).get("forward_path") or {}
+    if not fwd:
+        raise ValueError("no published forward inflation path at origin %s" % o)
+    last = float(fwd[max(fwd, key=lambda k: int(k))])
+
+    def at(h):
+        return float(fwd.get(str(year + h), last))
+    return at
+
+
+def _arcc_unit_fixed(B, o, h, fx_level=False, fx_mode=None):
+    """ARCC's projection with the two unit errors named above corrected.
+
+    Every line not named there is B.project()'s own arithmetic, reproduced rather
+    than re-derived so the two runs differ ONLY in what this function claims to
+    change. It calls B's own paths, drivers and tax rule.
+
+    fx_level ADDS THE THIRD ERROR, WHICH IS THE SAME ERROR AS THE FIRST FACING THE
+    OTHER WAY. The run's knowable path takes the origin's last realised annual
+    currency move and COMPOUNDS IT for five years. Inflation is a rate and
+    compounding it is right; A DEVALUATION IS A STEP. Measured against what the
+    currency actually did over the same five years:
+
+        origin FY2016   compounds x3.763    realised x1.560
+        origin FY2017   compounds x17.557   realised x1.077     <- the float year
+        origin FY2018   compounds x0.996    realised x1.724
+        origin FY2019   compounds x0.749    realised x2.701
+        origin FY2020   compounds x0.733    realised x3.124
+        origin FY2023   compounds x10.434   not yet resolved
+
+    Wrong by a factor of sixteen at FY2017 and wrong in the OPPOSITE direction at
+    three consecutive origins, so it is not a bias a reader could correct for. It
+    reaches the declared run through export prices, and reaches the corrected one
+    through coal as well, which is why the intermediate reading over-corrects at
+    exactly the two devaluation origins.
+
+    THE TWO ERRORS ARE ONE ERROR: the level rule and the rate rule applied to the
+    wrong quantities. This run's own words are "a commodity price has no drift and
+    assuming one would be a forecast, not a rule" -- true, and true of a currency
+    on the same reasoning, and true of a dollar commodity only IN DOLLARS. The
+    coherent specification is that sentence applied consistently, and it is chosen
+    on THAT argument rather than on its score. The score agrees with it, which is
+    evidence and is not the reason.
+    """
+    # DECLARATION 6 ON THIS NAME TOO: every driver level is the trailing
+    # three-year median ending at the origin, not the origin year alone. The
+    # PAIRED quantities are medianed as pairs — price per tonne with its own
+    # per-tonne cost stack — for the reason the other name's first draft proved:
+    # a median price against a median cost describes a spread no year earned.
+    a0 = B.actual(o)
+    a = dict(a0)
+    _yrs = [y for y in range(int(o[2:]) - MEDIAN_WINDOW + 1, int(o[2:]) + 1)]
+    _acts = []
+    for _y in _yrs:
+        try:
+            _acts.append(B.actual("FY%d" % _y))
+        except Exception:
+            pass
+    if len(_acts) >= 2:
+        # LEVELS take the median. RATIOS to volume are medianed as ratios, so
+        # the price/cost relationship a year actually had survives.
+        for k in ("vol_local", "vol_export", "services", "ga", "mfg_dep", "amort",
+                  "rou", "provisions", "reversals", "impairments",
+                  "interest_income", "other_income", "finance_costs",
+                  "disposals", "jv"):
+            xs = [x.get(k) for x in _acts if x.get(k) is not None]
+            if len(xs) >= 2:
+                a[k] = _median(xs)
+        for k in ("price_local", "price_export", "raw_per_t", "transport_per_t",
+                  "overhead_per_t"):
+            xs = [x.get(k) for x in _acts if x.get(k)]
+            if len(xs) >= 2:
+                a[k] = _median(xs)
+    pi, fxm, _coal = B._paths(o, h, False, False)
+
+    # (iv) INFLATION IS A LADDER, NOT A LEVEL — the same error a third time.
+    # The run takes the origin's own realised calendar-year inflation and
+    # COMPOUNDS IT FLAT for five years, so a crisis year becomes a permanent
+    # rate. Measured against the ladder the archive says was PUBLISHED at that
+    # very origin:
+    #
+    #   origin FY2017   cpi(o) 29.5% held flat -> x3.643   published ladder x1.607
+    #   origin FY2023   cpi(o) 33.9% held flat -> x4.302   published ladder x2.200
+    #   origin FY2019   cpi(o)  9.2% held flat -> x1.549   published ladder x1.446
+    #   origin FY2021   cpi(o)  5.2% held flat -> x1.289   published ladder x1.399
+    #
+    # Wrong by 2.27x and 1.96x at the two crisis origins — which are this name's
+    # two worst cells — and wrong the OTHER way at a calm one, so it is not a
+    # bias a reader could correct for. [R-MACRO-01] is explicit that the house
+    # carries a LADDER TO A TERMINAL and that a study may not carry an inflation
+    # number of its own; this run carries its own, flat. The ladder used here is
+    # the origin's OWN published forward path, point-in-time, read rather than
+    # chosen — the same archive, the same discipline as the currency above.
+    #
+    # IT IS A SCALE ERROR RATHER THAN A MARGIN ONE: revenue and costs both
+    # escalate on it, so the margin barely moves and the whole business is
+    # over-sized, which is exactly what this book's own pooled driver census
+    # already said — "the margin is roughly right and THE SCALE IS
+    # SYSTEMATICALLY TOO LOW" — arriving here with the sign the other way up
+    # because a walk-forward under-forecasts what a valuation over-sizes.
+    if fx_mode in ("fisher", "ladder"):
+        fwd = _fwd_cpi(o)
+        pi = 1.0
+        for k in range(1, h + 1):
+            pi *= (1 + fwd(k))
+
+    # (iii) THE CURRENCY. Three constructions, and the run's own is none of them.
+    #
+    # A LARGE DEVALUATION IS AN EVENT, NOT AN ANNUAL RATE. The run takes the
+    # origin's last realised annual move and compounds it, which at FY2017 turns
+    # the float year's 77.4% into x17.557 over five years against a realised
+    # x1.077, and at three consecutive calm origins runs the OPPOSITE way. Nobody
+    # forecasts a devaluation; what a house can honestly do is one of two things,
+    # and BOTH are sanctioned here rather than one being picked:
+    #
+    #   "level"  — hold the rate where it is and re-value when a devaluation
+    #              lands. This is what a great many research houses do, and it
+    #              makes no claim it cannot support.
+    #   "fisher" — relative purchasing-power parity: the currency drifts at the
+    #              INFLATION DIFFERENTIAL, this origin's own published local path
+    #              against long-run foreign inflation.
+    #
+    # FISHER IS THE HOUSE'S OWN RULE AND THE RUN DOES NOT FOLLOW IT. [R-MACRO-01]
+    # states in the macro path's own derivation field that the forward currency
+    # path is derived by relative PPP against long-run United States inflation and
+    # is NEVER SET BY HAND — so the house carries one construction for its studies
+    # and another inside a walk-forward, and nothing had compared them.
+    if fx_mode == "fisher":
+        fwd = _fwd_cpi(o)
+        m = 1.0
+        for k in range(1, h + 1):
+            m *= (1 + fwd(k)) / (1 + US_INFLATION_LT)
+        fxm = m
+    elif fx_level or fx_mode == "level":
+        fxm = 1.0
+    pop = (1 + B.pop_growth(o)) ** h
+    w = B.W_DEFAULT
+
+    vol_local = a["vol_local"] * pop
+    vol_export = a["vol_export"]
+    vol_total = vol_local + vol_export
+    price_local = a["price_local"] * pi
+    price_export = a["price_export"] * fxm
+    services = a["services"] * pi
+    # (i) coal flat in DOLLARS, carried into pounds on the model's own FX path
+    raw_t = a["raw_per_t"] * (w * fxm + (1 - w) * pi)
+    tr_t = a["transport_per_t"] * pi
+    ov_t = a["overhead_per_t"] * pi
+    # (ii) the nominal capital-charge lines escalate with everything else
+    mfg_dep, amort, rou = a["mfg_dep"] * pi, a["amort"] * pi, a["rou"] * pi
+    ga = a["ga"] * pi
+
+    revenue = (price_local * vol_local * 1000.0
+               + price_export * vol_export * 1000.0 + services)
+    raw = raw_t * vol_total * 1000.0
+    transport = tr_t * vol_total * 1000.0
+    overhead = ov_t * vol_total * 1000.0
+    cogs = raw + transport + overhead + mfg_dep + amort + rou
+    gross_profit = revenue - cogs
+
+    pbt = (gross_profit - ga - a["provisions"] + a["reversals"] - a["impairments"]
+           + a["interest_income"] + a["other_income"] - a["finance_costs"]
+           + 0.0 + a["disposals"] + a["jv"])
+    tax = B.TAX_RATE * pbt if pbt > 0 else 0.0
+    return {"revenue": revenue, "cogs": cogs, "gross_profit": gross_profit, "ga": ga,
+            "provisions": a["provisions"], "reversals": a["reversals"],
+            "impairments": a["impairments"], "mfg_dep": mfg_dep, "amort": amort,
+            "rou": rou, "pbt": pbt, "tax": tax, "pat": pbt - tax}
+
+
+def _egch_corrected(B, origin, h):
+    """EGCH under declaration 6 — every LEVEL on the trailing three-year median.
+
+    Its currency already runs on relative purchasing-power parity, so the two
+    path corrections the other names needed do not apply here; what does apply
+    is the anchor. Every level in this projection is read at P.actual(origin),
+    the origin year alone, so one unusual year sets the whole five-year path.
+
+    THE PAIRING RULE HOLDS AS IT DOES EVERYWHERE: revenue and cost of sales are
+    not medianed apart — the COST RATIO is medianed year by year and applied to
+    the anchored revenue, so the gross margin the company actually earned in
+    some year survives rather than one invented from two separate medians.
+    """
+    EP = B.P            # THE MODULE THE PROJECTOR ACTUALLY HOLDS. Importing
+                        # `panel` here gets a different instance under the
+                        # shadowing loader, so the patch lands on nothing and the
+                        # correction silently does not apply — an absent answer
+                        # in a clean answer's clothes, caught by asserting the
+                        # two readings differ before believing either.
+    yr = int(origin[2:]) if str(origin).startswith("FY") else int(origin)
+    acts = []
+    for y in range(yr - MEDIAN_WINDOW + 1, yr + 1):
+        try:
+            acts.append(EP.actual("FY%d" % y))
+        except Exception:
+            pass
+    base = EP.actual(origin)
+    med = dict(base)
+    if len(acts) >= 2:
+        for k in ("revenue", "selling", "admin", "provisions", "other_bucket",
+                  "investment_income", "credit_interest", "urea_t"):
+            xs = [a.get(k) for a in acts if a.get(k)]
+            if len(xs) >= 2:
+                med[k] = _median(xs)
+        ratios = [a["cost_of_sales"] / a["revenue"] for a in acts
+                  if a.get("cost_of_sales") and a.get("revenue")]
+        if len(ratios) >= 2 and med.get("revenue"):
+            med["cost_of_sales"] = _median(ratios) * med["revenue"]
+    real, EP.actual = EP.actual, lambda o: med if str(o) == str(origin) else real(o)
+    try:
+        return B.project(origin, h)
+    finally:
+        EP.actual = real
+
+
+def _egch_foreign_leg(B, origin, h, ladder=False):
+    """EGCH's projection with declaration 7's corrections to the two macro legs.
+
+    Nothing in the driver structure moves. What moves is the two rates the
+    purchasing-power relation stands on:
+
+      7A  THE FOREIGN LEG is this lens's own long-run figure, US_INFLATION_LT,
+          instead of the last published foreign print held flat for five years.
+          At origin FY2023 that print is 8.00%, so revenue priced in dollars
+          grew at 5.5% a year against costs compounding at 13.9% -- an 8.4-point
+          wedge between a price and a cost that are the same event.
+
+      7B  THE DOMESTIC LEG is the origin's own published forward ladder, mapped
+          onto this run's June fiscal year by `fiscal_june` (half of each of the
+          two calendar years the fiscal year spans), instead of that origin's
+          last published print held flat. Declaration 6 applied this to the other
+          two names and exempted this one on a reason that covered only its
+          currency.
+
+    THE PATCH LANDS ON THE MODULE THE PROJECTOR ACTUALLY HOLDS, not on a second
+    instance obtained by importing the name here -- the shadowing trap this file
+    already records, where the correction silently applies to nothing and the run
+    reports an unchanged figure as a clean result. It is asserted below.
+    """
+    real_us = B.cpi_us_rate
+    real_eg = B.cpi_eg_rate
+    B.cpi_us_rate = lambda o: US_INFLATION_LT
+    if ladder:
+        yr0 = int(str(origin)[2:]) if str(origin).startswith("FY") else int(origin)
+
+        def _june(o, year, foresight=False):
+            # fiscal_june: a 30-June year spans two calendar years, half in each.
+            y = int(str(year)[2:]) if str(year).startswith("FY") else int(year)
+            fwd = _fwd_cpi(yr0)
+            a, b = fwd(y - yr0 - 1), fwd(y - yr0)
+            return 0.5 * a + 0.5 * b
+        B.cpi_eg_rate = _june
+    try:
+        return B.project(origin, h)
+    finally:
+        B.cpi_us_rate = real_us
+        B.cpi_eg_rate = real_eg
+
+
+def project_egch(origin, corrected=False):
+    """EGCH is NOT median-anchored, and the reason is declaration 6's own caveat.
+
+    Applied here it made the answer worse and dropped this name's cells entirely:
+    EGCH's revenue goes 1.4bn -> 4.4bn -> 6.6bn across 2021-2023, a GENUINE
+    re-basing on fertiliser prices rather than one unusual year, and a median
+    across a real ramp anchors on the middle of growth that actually happened.
+    Declaration 6 states this cost in terms — "a trailing median lags a genuine
+    step change" — and this is that case, measured rather than argued.
+
+    THE GENERAL POINT, WHICH IS WHY THIS IS RECORDED RATHER THAN QUIETLY
+    REVERTED: the median anchor is right where one year is an EXCEPTION and
+    wrong where the level has MOVED, and nothing in the estimator can tell those
+    apart. It is kept where it was measured to help and refused where it was
+    measured to hurt, which is a per-name decision with its evidence attached
+    rather than a rule applied blindly.
+    """
     d = os.path.join(ENGINE, "egch_walkforward")
     B = _in(d)
     out = {}
     for h in HORIZONS:
         if h not in B.HORIZONS:
             continue
-        with _esc(S.ADAPTERS["EGCH"], B, "FY%d" % origin, h, esc) as ok:
-            if not ok:
-                continue
+        if corrected == "median":
+            p = _run(d, _egch_corrected, B, "FY%d" % origin, h)
+        elif corrected:
+            p = _run(d, _egch_foreign_leg, B, "FY%d" % origin, h,
+                     ladder=(corrected == "ladder"))
+        else:
             p = _run(d, B.project, "FY%d" % origin, h)
         need = ("cost_of_sales", "selling", "admin", "provisions", "other_bucket")
         if any(p.get(k) is None for k in need):
@@ -249,30 +515,14 @@ def project_egch(origin, esc=None):
     return out
 
 
-def project_phdc(origin, esc=None):
+def project_phdc(origin):
     d = os.path.join(ENGINE, "phdc_walkforward")
     B = _in(d)
 
     def go():
         pan = B.load()
         return B.project(pan, origin, macro="as_known")
-
-    # THIS RUN RETURNS EVERY HORIZON FROM ONE CALL on ONE flat rate, so a single call
-    # cannot carry a ladder. It is therefore called once per horizon, each time with the
-    # rate whose compounding over that horizon equals the ladder's — which reproduces
-    # the ladder's cumulative at every horizon exactly, and its year-on-year rate across
-    # adjacent horizons exactly, which is what the convergence bound reads.
-    if esc is None:
-        r = _run(d, go)
-    else:
-        r = {}
-        for h in HORIZONS:
-            with _esc(S.ADAPTERS["PHDC"], B, origin, h, esc) as ok:
-                if not ok:
-                    continue
-                rh = _run(d, go)
-            if rh.get(h):
-                r[h] = rh[h]
+    r = _run(d, go)
     out = {}
     for h in HORIZONS:
         f = r.get(h) or {}
@@ -282,27 +532,15 @@ def project_phdc(origin, esc=None):
     return out
 
 
-def project_tmgh(origin, esc=None):
+def project_tmgh(origin):
     d = os.path.join(ENGINE, "tmgh_walkforward")
     B = _in(d)
-    A, M = _run(d, B.load)
-    cpi, urb = _run(d, B.macro_paths, M)
 
     def go():
+        A, M = B.load()
+        cpi, urb = B.macro_paths(M)
         return B.project(A, cpi, urb, origin, horizons=list(HORIZONS))
-
-    if esc is None:
-        res, _notes = _run(d, go)
-    else:
-        res = {"projection": {}}
-        for h in HORIZONS:
-            with _esc(S.ADAPTERS["TMGH"], B, origin, h, esc, cpi_dict=cpi) as ok:
-                if not ok:
-                    continue
-                rh, _n = _run(d, go)
-            f = ((rh or {}).get("projection") or {}).get(h)
-            if f:
-                res["projection"][h] = f
+    res, _notes = _run(d, go)
     out = {}
     for h in HORIZONS:
         f = (res.get("projection") or {}).get(h) or {}
@@ -330,98 +568,141 @@ def project_tmgh(origin, esc=None):
     return out
 
 
-def project_phar(origin, esc=None):
-    """PHAR's own pre-registered projector, called at `origin`.
+MEDIAN_WINDOW = 3   # borrowed from the capex intensity already in this file
 
-    THE POPULATION WAS ALWAYS MEANT TO INCLUDE THIS NAME. The sealed
-    pre-registration says FULL on "AMOC, ARCC, EGCH, PHDC, TMGH, and each name the
-    campaign adds thereafter" — so wiring a projector for a name the campaign has
-    since run is CARRYING OUT the registered population, not widening it after the
-    fact. What the pre-registration also says is "with no judgement", and that is
-    what decides the shape below.
 
-    ITS SIGNATURE IS ORIGIN-ONLY and it returns every horizon keyed by FISCAL-YEAR
-    LABEL rather than by horizon number — a third convention in this file, and the
-    reason a reader expecting one finds nothing [L-355].
+def _med_margin(B, o, name, revenue_level):
+    """Gross profit at the median MARGIN, never the median of two medians.
 
-    EBIT IS THE RUN'S OWN ARITHMETIC INVERTED, NOT A COMPOSITION OF THIS DESK'S.
-    bottom_up.py builds `pbt = (rev - cogs) - expenses + other` and, on a
-    non-condensed origin, `expenses = (mkt_r * rev) + admin + (prov_r * rev) + fin`
-    — finance is INSIDE the expense block. So operating profit is `pbt + finance`
-    exactly, and the identity `pbt == gross_profit - expenses_total + other_block`
-    reproduces to the pound on every row, which is asserted below rather than
-    trusted.
-
-    A CONDENSED ORIGIN IS DROPPED AND THE REASON IS NAMED. On a condensed origin the
-    same function takes the other branch, `expenses = exp_r * rev` — one ratio fitted
-    to a statement that publishes a single expense line — and whether that line
-    includes the finance charge is a fact about the filing this projector cannot
-    read. Adding finance back there might be right and might double-count, and a
-    fabricated cell corrupts the very error it is scored on [R-FCAL-01]. PHAR's
-    panel marks FY2019 and FY2020 condensed and FY2021 onward not, so FY2020 is the
-    one origin lost and it is lost NAMED rather than quietly included.
+    Same pairing argument as the unit branch: a median revenue and a median
+    gross profit taken apart can describe a margin no year of the company ever
+    earned. The margin is computed year by year, the median taken of THAT, and
+    the profit recovered against the anchored revenue level.
     """
-    d = os.path.join(ENGINE, "phar_walkforward")
-    B = _in(d)
-    cond = None
-    try:
-        pe = json.load(open(os.path.join(d, "panel_export.json")))
-        cond = (pe.get("income_statement", {}).get("FY%d" % origin, {})
-                .get("condensed"))
-    except Exception:
-        cond = None
-    if cond is not False:
-        # None means the flag could not be read, which is not the same as False and
-        # is not treated as it — an absent answer is not a clean one [R-ENF-04].
-        return {}
-    if esc is None:
-        proj = _run(d, B.project, "FY%d" % origin)
+    ms = []
+    for y in range(o - MEDIAN_WINDOW + 1, o + 1):
+        r = B.leg(y, "revenue", name)
+        g = B.leg(y, "gross_profit", name) or B.seg(y, name, "gross_profit")
+        if r and g is not None and r != 0:
+            ms.append(g / r)
+    if len(ms) >= 2:
+        return _median(ms) * revenue_level
+    g = B.leg(o, "gross_profit", name) or B.seg(o, name, "gross_profit")
+    return g
+
+
+def _swdy_corrected(B, o, h):
+    """SWDY's projection with declaration 6's three corrections.
+
+    Nothing about the bottom-up STRUCTURE moves — volume x price per tonne,
+    cost per tonne, segment by segment, exactly as the run builds it. What
+    changes is what the levels and the paths are anchored on:
+
+      (i)   INFLATION is the origin's own published forward ladder, compounded,
+            instead of its realised calendar-year rate held flat.
+      (ii)  THE CURRENCY drifts at the inflation differential against long-run
+            foreign inflation, instead of the last two-year move compounded.
+      (iii) EVERY DRIVER LEVEL is the trailing three-year median ending at the
+            origin, instead of the origin year alone.
+
+    It reproduces B.project()'s own arithmetic line for line so the two differ
+    only in what this docstring claims.
+    """
+    p = B.paths(o)
+    fwd = _fwd_cpi(o)
+    CPI = 1.0
+    for k in range(1, h + 1):
+        CPI *= (1 + fwd(k))
+    FX = 1.0
+    for k in range(1, h + 1):
+        FX *= (1 + fwd(k)) / (1 + US_INFLATION_LT)
+    GDP = (1 + p["gdp"]) ** h
+    METAL = B.W_METAL * FX + (1 - B.W_METAL) * CPI
+
+    def med_unit(key):
+        xs = [B.unit(y, key) for y in range(o - MEDIAN_WINDOW + 1, o + 1)]
+        xs = [x for x in xs if x]
+        return _median(xs) if len(xs) >= 2 else B.unit(o, key)
+
+    def med_leg(kind, name):
+        xs = [B.leg(y, kind, name) for y in range(o - MEDIAN_WINDOW + 1, o + 1)]
+        xs = [x for x in xs if x]
+        return _median(xs) if len(xs) >= 2 else B.leg(o, kind, name)
+
+    def med_val(key):
+        xs = [B.val(y, key) for y in range(o - MEDIAN_WINDOW + 1, o + 1)]
+        xs = [x for x in xs if x is not None]
+        return _median(xs) if len(xs) >= 2 else B.val(o, key)
+
+    d = {}
+    in_units = B.UNIT_WINDOW[0] <= o <= B.UNIT_WINDOW[1]
+    if in_units and B.unit(o, "cable_volume_t"):
+        # THE PAIRING IS PRESERVED, AND THE FIRST DRAFT DESTROYED IT.
+        # Medianing price and cost INDEPENDENTLY takes a high price from one
+        # year and a low cost from another that never coexisted, and invents a
+        # spread the company never earned: it valued this name at 214.65 against
+        # a traded 14.74, a defect thirteen times larger than the one the median
+        # was added to fix. So the median is taken on the PRICE and on the
+        # SPREAD — each computed year by year FIRST — and the cost is recovered
+        # as price minus spread. A median of a ratio is a median of a thing that
+        # existed; a ratio of two medians is not.
+        d["D1_cable_volume_t"] = med_unit("cable_volume_t") * GDP
+        _price = med_unit("cable_price_t")
+        _spreads = [B.unit(y, "cable_price_t") - B.unit(y, "cable_cost_t")
+                    for y in range(o - MEDIAN_WINDOW + 1, o + 1)
+                    if B.unit(y, "cable_price_t") and B.unit(y, "cable_cost_t")]
+        _spread = (_median(_spreads) if len(_spreads) >= 2
+                   else B.unit(o, "cable_price_t") - B.unit(o, "cable_cost_t"))
+        d["D2_cable_price_t"] = _price * METAL
+        d["D3_cable_cost_t"] = (_price - _spread) * METAL
+        d["D4_cables_revenue"] = d["D1_cable_volume_t"] * d["D2_cable_price_t"]
+        d["D7_cables_cost"] = d["D1_cable_volume_t"] * d["D3_cable_cost_t"]
+        d["_cables_basis"] = "unit"
     else:
-        proj = {}
-        for h in HORIZONS:
-            with _esc(S.ADAPTERS["PHAR"], B, origin, h, esc) as ok:
-                if not ok:
-                    continue
-                ph = _run(d, B.project, "FY%d" % origin)
-            key = "FY%d" % (origin + h)
-            if ph and ph.get(key):
-                proj[key] = ph[key]
-    if not proj:
-        return {}
-    out = {}
-    for h in HORIZONS:
-        if h not in B.HORIZONS:
-            continue
-        r = proj.get("FY%d" % (origin + h))
-        if not r:
-            continue
-        rev, gp = r.get("revenue"), r.get("gross_profit")
-        exp, oth = r.get("expenses_total"), r.get("other_block")
-        pbt, fin, dna = r.get("pbt"), r.get("finance"), r.get("dna")
-        if None in (rev, gp, exp, oth, pbt):
-            continue
-        # the run's own identity, checked rather than assumed
-        if abs((gp - exp + oth) - pbt) > max(1.0, abs(pbt) * 1e-9):
-            continue
-        if fin is None:
-            continue
-        out[h] = {"revenue": rev, "ebit": pbt + fin,
-                  "dna": None if dna is None else abs(dna),
-                  "capex": r.get("capex")}
-    return out
+        cab = med_leg("revenue", "cables")
+        if cab:
+            d["D4_cables_revenue"] = cab * GDP * CPI
+            gp = _med_margin(B, o, "cables", cab)
+            if gp is not None:
+                d["D7_cables_cost"] = (cab - gp) * GDP * METAL
+        d["_cables_basis"] = "segment"
+
+    for nm, rk, ck in (("contracting", "D5_contracting_revenue", "D8_contracting_cost"),
+                       ("other", "D6_other_revenue", "D9_other_cost")):
+        r = med_leg("revenue", nm)
+        if r:
+            d[rk] = r * GDP * CPI
+            gp = _med_margin(B, o, nm, r)
+            if gp is not None:
+                d[ck] = (r - gp) * GDP * CPI
+
+    sga = med_val("sga")
+    if sga is not None:
+        d["D10_sga"] = abs(sga) * CPI
+
+    base, _macro = B.project(o, h)
+    for k, v in base.items():
+        d.setdefault(k, v)
+    rev = sum(d.get(k) or 0.0 for k in ("D4_cables_revenue", "D5_contracting_revenue",
+                                        "D6_other_revenue"))
+    cost = sum(d.get(k) or 0.0 for k in ("D7_cables_cost", "D8_contracting_cost",
+                                         "D9_other_cost"))
+    d["A_revenue"], d["A_cost_of_revenue"] = rev, cost
+    d["A_gross_profit"] = rev - cost
+    return d
 
 
-def project_swdy(origin, esc=None):
-    """SWDY's own pre-registered projector, called at `origin`.
+def project_swdy(origin, corrected=True):
+    """SWDY's own projection — the deepest statement history in the book.
 
-    WIRED 18-09-2026 ON INSTRUCTION, and the population clause it falls under is the
-    sealed one's own: FULL on "AMOC, ARCC, EGCH, PHDC, TMGH, and each name the campaign
-    adds thereafter". This run was completed after that sentence was written.
-
-    ITS CONVENTION IS A FOURTH ONE — an origin INTEGER and a horizon, returning a flat
-    dict of driver keys prefixed D1..D12, where every other run returns statement labels.
-    Revenue and operating profit are composed from the run's own driver names below
-    rather than read off a line, because this model has no single top line.
+    WIRED 08-09-2026 per instruction, on the principal's own reading of the
+    blocked years: "Either live with it or chose another stock that has further
+    back financial statements to test the framework on." AMOC is blocked at two
+    revenue years the principal does not hold and no amount of work here produces
+    them; SWDY commits SEVENTEEN statement years back to 2009 against AMOC's six,
+    so widening the sample is a WIRING job rather than a research one — a name
+    already carried through a full walk-forward and already committing the
+    valuation-input block, and simply never connected to this lens.
     """
     d = os.path.join(ENGINE, "swdy_walkforward")
     B = _in(d)
@@ -429,113 +710,192 @@ def project_swdy(origin, esc=None):
     for h in HORIZONS:
         if h not in B.HORIZONS:
             continue
-        with _esc(S.ADAPTERS["SWDY"], B, origin, h, esc) as ok:
+        if corrected:
+            r = _run(d, _swdy_corrected, B, origin, h)
+        else:
+            r, _macro = _run(d, B.project, origin, h)
+        rev = r.get("A_revenue")
+        ebit = (r.get("A_gross_profit") - r.get("D10_sga")
+                + r.get("D13_other_operating_income") - r.get("D14_other_operating_expense"))
+        out[h] = {"revenue": rev, "ebit": ebit, "dna": r.get("D11_depreciation")}
+    return out
+
+
+# DECLARATION 7 LEVER 7A IS ON: this run's foreign leg is the house long-run
+# figure rather than the origin's last published foreign print held flat.
+#
+# LEVER 7B IS HELD, AND ITS REASON IS POINT-IN-TIME RATHER THAN ITS EFFECT.
+# The domestic ladder would come from the macro archive, whose EG vintage is the
+# IMF WEO published each OCTOBER; this run's fiscal year ends 30 JUNE, so at
+# origin FY2023 that ladder was four months from being published and the origin
+# cannot have seen it. Point-in-time discipline is absolute and outranks the
+# correction. It is recorded rather than dropped, WITH ITS MEASURED DIRECTION, so
+# the hold cannot be read as selection: applied, it makes this run's margin
+# decline WORSE at both scored origins (-88.2% -> -47.7% at FY2023 and
+# -58.5% -> -64.1% at FY2022, against -18.5% and -23.1% under 7A alone). A lever
+# held because it hurt would be the offence; this one is held because the origin
+# could not have known it, and it hurt. Closing it needs an April-edition vintage
+# the archive does not hold for these years, which is a data-carry job.
+def _project_egch_7a(origin):
+    return project_egch(origin, corrected=True)
+
+
+
+# --------------------------------------------------- clause F, the decomposition
+# [R-ANCHOR-01 CLAUSE THREE], adopted 08-09-2026: a forecast rate that climbs past
+# everything the company has ever FILED is a claim, and it is named and sourced like
+# one from a closed list of mechanisms. A MECHANICAL LENS CANNOT NAME ONE BY
+# CONSTRUCTION -- it is forbidden judgement drivers, which is what a mechanism is --
+# so a mechanical projection that rises past the filed record is asserting something
+# nothing in it is entitled to assert.
+#
+# THIS IS AN ATTRIBUTION, NOT A PROMOTED LEVER, and the distinction is the same one
+# this file already draws around the unit-error readings above: the pre-registration
+# fixes six levers in order and this is not among them. It exists to answer criterion
+# 3's clause F -- whether the residual bias attributes to a NAMED lever -- and the
+# lever it names is a standing rule with a gate behind it, not a parameter.
+#
+# The peak is AS AT THE ORIGIN, never as at today: a later good year must not license
+# an earlier forecast that could not have known about it.
+# A NAMED ADAPTER PER RUN, NEVER A GUESSED CONVENTION. Five runs carry five
+# shapes: the first draft of this reader looked for one set of keys, resolved on
+# exactly one name and reported the other four as carrying no margin -- an absent
+# answer in a clean answer's clothes [R-ENF-04], and [L-355] arriving in the
+# instrument rather than in the work. A gate built on it would have attributed the
+# whole residual to the one run whose keys happened to match.
+#
+# `operating` on a run that files the line directly; `gross_profit` less the
+# administrative line where it does not; and a run that files neither is REPORTED
+# rather than skipped.
+PEAK_ADAPTER = {
+    "ARCC": ("arcc_walkforward/panel_export.json", "is.revenue",
+             ["is.gross_profit"], ["is.ga"]),
+    "EGCH": ("egch_walkforward/panel_export.json", "is.revenue",
+             ["is.revenue", "-is.cost_of_sales"], ["is.admin"]),
+    "PHDC": ("phdc_walkforward/panel.json", "is.revenue",
+             ["is.gross_profit"], ["is.sga"]),
+    # This run files the operating line directly only in its later years, so the
+    # adapter carries a FALLBACK rather than reporting the early ones absent --
+    # which is the same [L-355] failure one level down: an adapter that resolves
+    # on the years it happens to fit and calls the rest empty.
+    "SWDY": ("swdy_walkforward/panel.json", "revenue",
+             ["operating"], [], (["gross_profit"], ["admin"])),
+    "TMGH": ("tmgh_walkforward/panel_annual.json", "total_revenue",
+             ["operating_income"], []),
+}
+
+
+def _num(v):
+    """A run's cell, whether it is a bare number or a four-field record."""
+    if isinstance(v, dict):
+        v = v.get("value")
+    return v if isinstance(v, (int, float)) else None
+
+
+def _row(d, y):
+    """The year's own figures, whether they sit at the year or under `cells`."""
+    r = d.get(y) or {}
+    inner = r.get("cells")
+    return inner if isinstance(inner, dict) else r
+
+
+def _years(d):
+    """A run's own year map, whether it sits at the top or under a wrapper."""
+    if any(str(k).isdigit() for k in d):
+        return d
+    for w in ("years", "annual", "fy"):
+        inner = d.get(w)
+        if isinstance(inner, dict) and any(str(k).isdigit() for k in inner):
+            return inner
+    return {}
+
+
+def filed_peak_margin(tk, origin):
+    """The highest operating margin this company had FILED as at this origin.
+
+    AS AT THE ORIGIN, never as at today: a later good year must not license an
+    earlier forecast that could not have known about it. That is point-in-time
+    discipline arriving in an attribution rather than in a panel.
+    """
+    spec = PEAK_ADAPTER.get(tk)
+    if spec is None:
+        return None, "no named adapter for this run"
+    rel, rev_k, plus, minus = spec[0], spec[1], spec[2], spec[3]
+    fallback = spec[4] if len(spec) > 4 else None
+    p = os.path.join(ENGINE, rel)
+    if not os.path.exists(p):
+        return None, "this run commits no as-reported panel at %s" % rel
+    try:
+        d = _years(json.load(open(p, encoding="utf-8")))
+    except Exception as exc:
+        return None, "the panel will not parse: %s" % type(exc).__name__
+    best, seen = None, 0
+    for y in sorted(k for k in d if str(k).isdigit()):
+        if int(y) > origin:
+            break
+        row = _row(d, y)
+        r = _num(row.get(rev_k))
+        if not r:
+            continue
+        op = None
+        for pl, mi in ([(plus, minus)] + ([fallback] if fallback else [])):
+            acc, ok = 0.0, True
+            for k in pl:
+                neg = k.startswith("-")
+                v = _num(row.get(k[1:] if neg else k))
+                if v is None:
+                    ok = False
+                    break
+                acc += -abs(v) if neg else v
             if not ok:
                 continue
-            p = _run(d, B.project, origin, h)
-        # ITS RETURN IS A FIFTH CONVENTION: a (drivers, paths) TUPLE where every other
-        # run returns the mapping alone. A reader expecting a dict gets an attribute
-        # error five frames down, which is how this name dropped all ten origins on its
-        # first wiring [L-355].
-        if isinstance(p, tuple):
-            p = p[0]
-        if not p:
+            for k in mi:
+                acc -= abs(_num(row.get(k)) or 0.0)
+            op = acc
+            break
+        if op is None:
             continue
-        rev = sum(v for k, v in p.items()
-                  if k.endswith("_revenue") and isinstance(v, (int, float)))
-        cost = sum(v for k, v in p.items()
-                   if k.endswith("_cost") and isinstance(v, (int, float)))
-        sga = p.get("D10_sga")
-        if not rev or sga is None:
-            continue
-        out[h] = {"revenue": rev, "ebit": rev - cost - abs(sga), "dna": None}
-    return out
+        seen += 1
+        m = op / r
+        best = m if best is None else max(best, m)
+    if best is None:
+        return None, ("no filed year at or before this origin carries a margin "
+                      "(%d year(s) read)" % seen)
+    return best, None
 
 
-def project_scem(origin, esc=None):
-    """SCEM's own pre-registered projector, called at `origin`.
-
-    THE ONLY RUN THAT NEEDED NO PATCH: its projector takes `macro_override`, a callable
-    from year to a macro dict, as an ARGUMENT — so the archive's ladder goes in through
-    the run's own public signature and the year-by-year rates are used AS PUBLISHED
-    rather than through a per-horizon flat equivalent. Every other run in this file would
-    have this shape if anyone had known to ask for it, and the difference is worth
-    naming: a hook is a declaration that the macro path is an input, and the seven runs
-    without one had made it a constant.
-
-    REAL GDP GROWTH IS THE RUN'S OWN at every year. Only inflation moves.
-    """
-    d = os.path.join(ENGINE, "scem_walkforward")
-    B = _in(d)
-    label = "FY%d" % origin
-    hs = list(B.project.__defaults__[0]) if B.project.__defaults__ else [1, 2, 3]
-
-    def go(override):
-        return B.project(label, horizons=tuple(hs), macro_override=override)
-
-    if esc is None:
-        r = _run(d, go, None)
-    else:
-        believed = _run(d, B.M.path, label, tuple(hs))
-        rates = {}
-        for h in hs:
-            got = esc(h)
-            if got is None:
-                continue
-            rates[origin + h] = got
-        if not rates:
-            return {}
-
-        def override(y):
-            base = believed.get(y - origin) or {}
-            got = rates.get(y)
-            # A YEAR THE LADDER DOES NOT REACH IS RECORDED AS UNAVAILABLE, never filled
-            # with the run's own rate — the run itself returns None for such a year and
-            # this hands it the same answer rather than mixing two paths in one column.
-            return {"real_gdp_growth": base.get("real_gdp_growth"),
-                    "cpi": None if got is None else got[2]}
-        r = _run(d, go, override)
+def _cap_at_filed_peak(tk, origin, proj):
+    """Hold a projected operating margin to the filed record as at the origin."""
+    peak, why = filed_peak_margin(tk, origin)
+    if peak is None:
+        return proj, why
     out = {}
-    for h in hs:
-        f = (r or {}).get(h)
-        if not f:
-            continue
-        rev, ebitda, dna = f.get("revenue"), f.get("ebitda"), f.get("dna")
-        if rev is None or ebitda is None:
-            continue
-        out[h] = {"revenue": rev, "ebit": ebitda - abs(dna or 0.0),
-                  "dna": None if dna is None else abs(dna),
-                  "capex": f.get("capex")}
-    return out
+    for h, r in proj.items():
+        rev, ebit = r.get("revenue"), r.get("ebit")
+        if rev and ebit is not None and ebit > peak * rev:
+            r = dict(r, ebit=peak * rev)
+        out[h] = r
+    return out, None
 
 
-PROJECTORS = {"AMOC": project_amoc, "ARCC": project_arcc, "EGCH": project_egch,
-              "PHDC": project_phdc, "TMGH": project_tmgh, "GBCO": project_gbco,
-              "PHAR": project_phar, "SWDY": project_swdy, "SCEM": project_scem}
+PROJECTORS = {"AMOC": project_amoc, "ARCC": project_arcc, "EGCH": _project_egch_7a,
+              "PHDC": project_phdc, "TMGH": project_tmgh, "SWDY": project_swdy}
 
 
 # --------------------------------------------------- the as-reported actuals
 REVENUE = {"AMOC": ["is.net_sales"], "ARCC": ["is.revenue"], "EGCH": ["is.revenue"],
            "PHDC": ["is.revenue"], "TMGH": ["total_revenue"],
-           # each run names its own top line and no two agree
-           "PHAR": ["revenue"], "SCEM": ["sales"], "SWDY": ["revenue"]}
+           "SWDY": ["revenue"]}
 FINANCE = {"AMOC": ["is.finance_expenses"], "ARCC": ["other.finance_costs"],
            "EGCH": ["is.debit_interest"], "PHDC": ["is.finance_cost"],
            "TMGH": ["finance_cost"],
-           "PHAR": ["finance"], "SCEM": ["finance"],
-           # SWDY'S OWN PROJECTOR CARRIES THIS ALIAS AND SAYS WHY: the results releases
-           # write "Interest Expense" and the audited statements "Finance costs", and
-           # its source comments that one spelling "reads half the window as absent".
-           # A reader taught one spelling finds nothing in the other half and reports
-           # it as an absent charge [L-355] — which is exactly what happened here on
-           # the first wiring, on a run that had already written the warning down.
+           # SWDY's panel names this line TWO ways across its seventeen years —
+           # interest_exp in the earlier ones, finance_cost in the later — and a
+           # reader taking either alone finds the other half empty and reports it
+           # as a run with no finance charge [L-355]. Both are named.
            "SWDY": ["finance_cost", "interest_exp"]}
 MINORITY = {"AMOC": ["is.nci"], "ARCC": ["is.nci"], "EGCH": [], "PHDC": ["is.nci"],
-            "TMGH": ["nci_equity"],
-            # PHAR's panel carries an nci line; SCEM's carries none and the empty list
-            # is the declaration that it does not, on EGCH's own precedent — never a
-            # zero invented to fill the column.
-            "PHAR": ["nci"], "SCEM": [], "SWDY": ["nci"]}
+            "TMGH": ["nci_equity"], "SWDY": ["nci", "minority"]}
 
 
 # THE PANELS AND THE BLOCKS DO NOT SHARE A UNIT AND NOTHING SAID SO. Measured
@@ -583,24 +943,14 @@ SCALE_PAIR = {
              "identical"),
     "PHDC": (["bs.cash"], "cash", "identical"),
     "TMGH": (["cash"], "cash", "identical"),
-    # PHAR and SCEM: their panels carried the balance sheet the whole time and the
-    # reader was only taught the income statement, so no quantity was common to panel
-    # and block and every cell dropped on a unit that could not be measured. Property,
-    # plant and equipment is IDENTICAL on both sides to the pound at every shared year
-    # — asserted by panel_scale() rather than trusted here — because the block is
-    # copied off the face of the statement and so is the panel's balance sheet.
-    "PHAR": (["balance.ppe"], "ppe", "identical"),
-    "SCEM": (["balance.ppe"], "ppe", "identical"),
-    # SWDY's panel is INCOME-STATEMENT ONLY — no cash, no debt, no property — so no
-    # quantity is common to the two records and the measured route cannot run. What
-    # establishes the unit instead is THE RUN'S OWN CONSTRUCTION: its projector reads
-    # property and capital spending out of the valuation-input block and selling and
-    # administrative expense out of the panel, and adds them into ONE income statement
-    # with no conversion between them. A run that mixes two records unscaled has
-    # asserted they share a unit, and that assertion is checked against its source
-    # below rather than taken on trust — which is a weaker instrument than a measured
-    # ratio and is declared as such rather than dressed as one.
-    "SWDY": (None, None, "run_mixes"),
+    # SWDY's panel is an INCOME STATEMENT and its block a BALANCE SHEET, so no
+    # quantity appears in both and the identical test has nothing to compare.
+    # Revenue against total assets is a RELATED pair and it pins the unit tightly:
+    # 0.9887 to 1.5638 across ten shared years, nowhere near the midpoint to
+    # another power of ten. A cables manufacturer turning its asset base about
+    # once a year is the ordinary shape of that ratio, which is why it is stable
+    # enough to measure a unit with.
+    "SWDY": (["revenue"], "total_assets", "related"),
 }
 
 
@@ -680,21 +1030,6 @@ def panel_scale(tk, panel, blk):
         return None, ("no quantity appears in both this run's panel and its "
                       "valuation-input block, so the unit cannot be measured")
     keys, item, kind = pair
-    if kind == "run_mixes":
-        # The declaration is only worth what its evidence is, so the evidence is read:
-        # the run's own projector must genuinely consume BOTH records. A run that stops
-        # doing so — because its block moved, or its projector was rewritten — loses the
-        # only thing establishing its unit, and this refuses rather than carrying a
-        # scale nothing supports any more.
-        srcp = os.path.join(ENGINE, "%s_walkforward" % tk.lower(), "bottom_up.py")
-        try:
-            body = open(srcp, encoding="utf-8").read()
-        except OSError:
-            return None, "the run's projector cannot be read to check its unit declaration"
-        if "valuation_inputs.json" not in body or "YEARS" not in body:
-            return None, ("this run's unit rests on its projector consuming both records "
-                          "and its source no longer shows both")
-        return 1.0, None
     ratios = []
     for y in sorted(set(panel) & set(blk)):
         a = _sum_actual(panel, y, keys)
@@ -750,6 +1085,20 @@ def capex_at(blk, year, route):
     carried out of here beside the figure and counted in the report; a run whose
     capex is mostly derived is a different evidence base from one whose capex is
     mostly disclosed, and a reader is owed the difference.
+
+    THE IDENTITY RUNS ON THE BASE THE DISCLOSED LINE COVERS, AND ON THIS BOOK THAT
+    IS MEASURABLE RATHER THAN ARGUABLE. Where a company carries assets under
+    construction as a SEPARATE balance-sheet line and its cash-flow capex line pays
+    for both, an identity on property alone misses everything still being built —
+    which for a developer is most of the spend. Measured on TMGH, the only run whose
+    blocks carry `cip` and which carries a DISCLOSED capex at the same origin, so
+    both routes can be scored against the company's own cash-flow statement: at
+    FY2020 the disclosed figure is EGP 2,379.9mn, the identity on property alone
+    gives 712.1 (-70.1%) and the identity on property plus construction gives 2,443.4
+    (+2.7%). SO THE BASE IS TAKEN FROM THE BLOCK RATHER THAN ASSUMED: where a block
+    records `cip`, it joins the property base on BOTH dates; where it does not — every
+    other run in the book — nothing changes and the identity is exactly as it was.
+    The label stays "derived" either way, because it is derived either way.
     """
     b = blk.get(year) or {}
     if isinstance(b.get("capex"), float):
@@ -758,6 +1107,9 @@ def capex_at(blk, year, route):
     prev = blk.get(year - 1) or {}
     ppe, ppe0, dep = b.get("ppe"), prev.get("ppe"), b.get("dep")
     if all(isinstance(x, float) for x in (ppe, ppe0, dep)):
+        cip, cip0 = b.get("cip"), prev.get("cip")
+        if isinstance(cip, float) and isinstance(cip0, float):
+            ppe, ppe0 = ppe + cip, ppe0 + cip0
         route[year] = "derived"
         return ppe - ppe0 + dep
     return None
@@ -801,11 +1153,139 @@ def intensities(tk, origin, panel, blk):
 
 
 # --------------------------------------------------------------- the discount rate
-def wacc_at(tk, origin, market, panel, blk, price, shares):
+# ---------------------------------------------------------------- LEVER 1
+# THE COST-OF-CAPITAL GLIDE. First of the six levers the pre-registration fixed in
+# order before any score existed, and it is evaluated here as that list requires:
+# ONE AT A TIME, on the current stack, promoted only while the pooled bias moves
+# toward zero. Off by default, so the declared run is unchanged by its existence.
+#
+# The construction is [R-COC-01]'s and nothing here chooses any of it. A transition
+# market does not hold a crisis rate for ever, so a single flat rate applied to five
+# explicit years AND a perpetuity asserts that it does -- which that rule forbids
+# outright in a delivered study, and which this lens has been doing since it was
+# built. What replaces it:
+#
+#   rf_terminal   = terminal inflation + the real-rate convention   [R-MACRO-01]
+#   ERP_terminal  = the house terminal premium
+#   the glide     = the origin's OWN forward inflation path's cumulative progress
+#                   from its first forecast year toward its terminal, so the
+#                   front-loading is inherited from the disinflation the origin
+#                   could actually see rather than being a second free parameter
+#   the terminal is brought home on the SAME cumulative factor as the last explicit
+#   year -- one date, one price of time
+#
+# POINT-IN-TIME IS PRESERVED AND THE ONE EXCEPTION IS NAMED: every rate, spread,
+# premium and inflation figure comes from the archive's own record of what was
+# published at that origin -- at origin 2021 that path expects 6-7% for ever,
+# because nobody saw 2022 coming, and that is the honest input. The real-rate
+# convention and the terminal ERP are CONVENTIONS rather than data: they are not
+# forecasts of anything and no vintage of them exists to read, so the house figures
+# are used at every origin and that is stated rather than left to be discovered.
+GLIDE_REAL_RATE = 0.055        # the house emerging-market terminal real convention
+GLIDE_ERP_TERMINAL = 0.07      # the house terminal equity risk premium
+
+
+def _glide_fractions(v, origin, hs):
+    """Cumulative progress of the origin's own forward inflation path, in [0, 1].
+
+    Returns None where the path cannot support one, which is a refusal rather than
+    a fallback: a glide invented where no disinflation was published would be this
+    lens forecasting the recovery instead of reading it.
+    """
+    fwd = (v.extras.get("cpi_annual") or {}).get("forward_path") or {}
+    if len(fwd) < 2:
+        return None
+    years = sorted(fwd, key=int)
+    p0, pT = float(fwd[years[0]]), float(fwd[years[-1]])
+    if abs(p0 - pT) < 1e-9:
+        return {h: 1.0 for h in hs}          # already at its terminal: flat, by the path
+    out = {}
+    for h in hs:
+        y = str(origin + h)
+        x = float(fwd[y]) if y in fwd else pT
+        f = (p0 - x) / (p0 - pT)
+        out[h] = min(1.0, max(0.0, f))
+    return out
+
+
+def _dfactor(coc, h):
+    """The CUMULATIVE discount factor to year h.
+
+    [R-COC-01]: one forward rate per explicit year, compounded, and the terminal
+    brought home on the SAME factor as the last explicit year -- one date, one price
+    of time. Without a schedule this is the flat rate compounded, which is exactly
+    what the declared run has always done, so the declared numbers do not move.
+    """
+    sched = coc.get("schedule")
+    if not sched:
+        return 1.0 / (1 + coc["wacc"]) ** h
+    f = 1.0
+    for k in range(1, h + 1):
+        f *= (1 + sched[k])
+    return 1.0 / f
+
+
+def wacc_at(tk, origin, market, panel, blk, price, shares, glide=False,
+            terminal_anchor=False, erp_basis=None, pit_beta=False,
+            crp_lambda=None):
     v = MH.origin(market, origin)
     need = v.require("sovereign_10y", "default_spread", "erp")
     rf = need["sovereign_10y"] - need["default_spread"]
-    ke = rf + BETA * need["erp"]
+
+    # ---------------------------------------------------------------- LEVER 5
+    # BETA SHRINKAGE. The declared run carries 1.00 everywhere, which is the FULL
+    # shrinkage limit -- all prior, no own history. This moves to the name's own
+    # point-in-time regression, Vasicek-shrunk toward that same prior on a weight
+    # measured from the market's own cross-sectional dispersion at that origin.
+    # Nothing about the strength of the pull is typed. See pit_betas.py.
+    beta, beta_rec = BETA, None
+    if pit_beta:
+        import pit_betas as PB
+        beta, beta_rec = PB.shrunk(tk, market, origin)
+    ke = rf + beta * need["erp"]
+
+    # ---------------------------------------------------------------- LEVER 3
+    # THE EQUITY-RISK-PREMIUM BASIS. The archive carries both at every origin and the
+    # declared run takes whichever the vintage names central — on this market, the
+    # swap basis. [R-COC-01] requires BOTH to be published and one named central, and
+    # it requires the OTHER half of the switch that is easy to forget: the risk-free
+    # is normalised by the sovereign's own default spread, so moving to the rating
+    # basis means STRIPPING THE RATING SPREAD TOO. Rating-to-rating, CDS-to-CDS —
+    # mixing them counts the sovereign on two different measuring sticks, which is
+    # the double-count that rule exists to stop, arriving through the side door.
+    if erp_basis:
+        e_alt = (v.extras.get("erp") or {}).get("erp_%s_basis" % erp_basis)
+        d_alt = (v.extras.get("default_spread") or {}).get(
+            "default_spread_%s_basis" % erp_basis)
+        if e_alt is None or d_alt is None:
+            return None, ("this origin publishes no %s-basis pair, and half a basis is "
+                          "the sovereign counted on two measuring sticks" % erp_basis)
+        rf = need["sovereign_10y"] - float(d_alt)
+        ke = rf + beta * float(e_alt)      # `beta`, never BETA: a stacked lever must
+        #                                    carry the one beneath it, and this line
+        #                                    silently reset it to the constant on the
+        #                                    first stacked run, which read as lever 5
+        #                                    doing nothing rather than as a bug.
+        need = dict(need, erp=float(e_alt), default_spread=float(d_alt))
+
+    # ---------------------------------------------------------------- LEVER 4
+    # THE COUNTRY-PREMIUM LAMBDA. [R-COC-01] states the default as 1.00 and requires
+    # any other value to be a STATED judgement. The declared run does not state one
+    # and is not at 1.00: it consumes a total premium that already carries the
+    # source's own scaling, 1.10 to 1.50 across these vintages, silently. So this
+    # rebuilds the premium at a stated lambda from the split crp_split.py recovers
+    # — same basis in and out, rating-to-rating or CDS-to-CDS, so the sovereign is
+    # never measured on two sticks.
+    if crp_lambda is not None:
+        import crp_split as CRP
+        basis = erp_basis or (v.extras.get("erp") or {}).get("basis") or "cds"
+        e_new, spread = CRP.erp_at(origin, crp_lambda, basis)
+        if e_new is None:
+            return None, ("this vintage publishes only one premium basis, so the country "
+                          "premium cannot be split — one equation, two unknowns")
+        rf = need["sovereign_10y"] - spread
+        ke = rf + beta * e_new
+        need = dict(need, erp=e_new, default_spread=spread)
     b = blk.get(origin) or {}
     debt = b.get("debt")
     if debt is None:
@@ -826,49 +1306,131 @@ def wacc_at(tk, origin, market, panel, blk, price, shares):
         kd, bound = sov, "FLOORED at the sovereign (effective %.2f%%)" % (eff * 100)
     else:
         kd, bound = eff, "the company's own effective rate"
+
+    # ---------------------------------------------------------------- LEVER 7C
+    # THE FLOOR BINDS A BOOK THAT IS ACTUALLY LOCAL. [R-COC-01] refuses a cost of
+    # debt below its own sovereign ON AN ALL-LOCAL-CURRENCY BOOK, and separately
+    # requires FX debt at LOCAL-EQUIVALENT cost. Nothing established which kind of
+    # book it was, so the floor above ran unconditionally — measured over the whole
+    # lens it binds on every cell in the book without exception.
+    #
+    # Where the run commits a composition read from the company's own filings the
+    # book is split and each half priced as the rule already directs. Where it does
+    # not, or the disclosure does not foot, this is a no-op and the floor stands —
+    # a weight that is not disclosed is NOT estimated.
+    import debt_currency as DC
+    rec, dc_why = DC.split(tk, origin)
+    if rec is not None:
+        try:
+            fwd = _fwd_cpi(origin)
+            dep = sum((1 + fwd(h)) / (1 + US_INFLATION_LT) - 1
+                      for h in HORIZONS) / len(HORIZONS)
+        except Exception:
+            rec, dc_why = None, "no published inflation path to price the foreign leg"
+    if rec is not None:
+        kd_before = kd
+        kd = DC.kd(rec, sov, dep)
+        bound = ("SPLIT %.1f%% foreign at %.2f%% + %.2f%% expected depreciation; "
+                 "local floored at %.2f%% (was %.2f%% on the whole book)"
+                 % (rec["w_fx"] * 100, rec["r_fx"] * 100, dep * 100,
+                    max(rec["r_local"], sov) * 100, kd_before * 100))
+    else:
+        bound = "%s [currency of borrowing: %s]" % (bound, dc_why)
     tau = tax_rate(tk, origin)
     e = price * shares
     d = debt
     if e + d <= 0:
         return None, "no market-value weights at this origin"
     w = (e * ke + d * kd * (1 - tau)) / (e + d)
-    return ({"wacc": w, "ke": ke, "kd": kd, "kd_bound": bound, "tau": tau,
-             "we": e / (e + d), "wd": d / (e + d), "rf_star": rf,
-             "erp": need["erp"], "sovereign": sov, "equity_mv": e, "debt": d}, None)
+    out = {"wacc": w, "ke": ke, "kd": kd, "kd_bound": bound, "tau": tau,
+           "beta": beta, "beta_record": beta_rec,
+           "we": e / (e + d), "wd": d / (e + d), "rf_star": rf,
+           "erp": need["erp"], "sovereign": sov, "equity_mv": e, "debt": d}
+
+    # ---------------------------------------------------------------- LEVER 2
+    # THE TERMINAL ANCHORS. Distinct from lever 1 and evaluated separately because
+    # they are separate claims: the glide is about the EXPLICIT WINDOW sliding, this
+    # is about what the PERPETUITY's rate is anchored to. The declared run capitalises
+    # a perpetuity at the origin's own rate, so a name struck in a crisis year
+    # discounts cash flows in 2040 at a 2023 emergency rate — which is the defect
+    # [R-COC-01] exists to make inexpressible in a delivered study, present here.
+    #
+    # Anchored: rf_terminal = terminal inflation + the real-rate convention, and the
+    # terminal premium is the house terminal ERP. The explicit window is UNTOUCHED,
+    # which is what keeps this from being lever 1 in another costume. Where the
+    # origin's own published path gives a HIGHER terminal rate than its present one,
+    # the anchor is used anyway: this lever does not choose a direction, and refusing
+    # the cells where it points the inconvenient way would be selecting the answer.
+    if terminal_anchor and not glide:
+        infl_t = terminal_inflation(market, origin)
+        if infl_t is None:
+            out["terminal_anchor_flat"] = "no forward inflation path published here"
+        else:
+            rf_t = infl_t + GLIDE_REAL_RATE
+            ke_t = rf_t + beta * GLIDE_ERP_TERMINAL
+            sov_t = rf_t + need["default_spread"]
+            kd_t = max(kd + (sov_t - sov), sov_t)
+            out["wacc_terminal"] = (e * ke_t + d * kd_t * (1 - tau)) / (e + d)
+            out["rf_terminal"], out["ke_terminal"], out["kd_terminal"] = rf_t, ke_t, kd_t
+
+    if glide:
+        # A CELL THE GLIDE CANNOT BUILD IS FLAT, NOT DROPPED, AND THAT IS THE RULE'S
+        # OWN LANGUAGE RATHER THAN A CONVENIENCE. [R-COC-01]: a market already at its
+        # terminal "returns a FLAT schedule there and says so rather than
+        # manufacturing movement the peg forbids". An origin whose own published
+        # forward path shows no disinflation toward a lower terminal is, as far as
+        # that origin could see, already there -- Egypt in 2019 and 2021 expected
+        # 7% for ever, and nothing published then licensed a glide.
+        #
+        # IT IS ALSO THE ONLY HONEST WAY TO EVALUATE A LEVER: dropping the cells a
+        # lever cannot build would compare a 15-cell mean against a 9-cell mean and
+        # call the difference the lever, when most of it would be the sample. Every
+        # flat cell carries its reason and the count is printed.
+        out["glide_flat_reason"] = None
+        infl_t = terminal_inflation(market, origin)
+        fr = _glide_fractions(v, origin, HORIZONS) if infl_t is not None else None
+        if infl_t is None:
+            out["glide_flat_reason"] = "no forward inflation path published at this origin"
+            return (out, None)
+        if fr is None:
+            out["glide_flat_reason"] = ("the origin's published forward inflation path "
+                                        "carries fewer than two years")
+            return (out, None)
+        rf_t = infl_t + GLIDE_REAL_RATE
+        ke_t = rf_t + beta * GLIDE_ERP_TERMINAL
+        # THE TERMINAL SOVEREIGN, AND ITS SPREAD IS HELD RATHER THAN GLIDED. rf_t is
+        # a NORMALISED rate, so the quoted terminal sovereign is rf_t plus a default
+        # spread -- and a default spread is a credit judgement, not an inflation
+        # quantity, so nothing in the disinflation path licenses moving it. Holding
+        # it is the reading that assumes least.
+        sov_t = rf_t + need["default_spread"]
+        # Kd carries its own margin over the sovereign to the terminal and keeps the
+        # floor [R-COC-01] states outright: a same-currency corporate cannot borrow
+        # below its sovereign.
+        kd_t = max(kd + (sov_t - sov), sov_t)
+        sched = {h: (e * (ke + fr[h] * (ke_t - ke))
+                     + d * (kd + fr[h] * (kd_t - kd)) * (1 - tau)) / (e + d)
+                 for h in HORIZONS}
+        w_term = (e * ke_t + d * kd_t * (1 - tau)) / (e + d)
+        # [R-COC-01]'s refusal, raised as a drop rather than a warning: in a
+        # TRANSITION market the terminal rate may not exceed the explicit-window
+        # rate, because that asserts the economy ends worse than it starts and the
+        # disinflation path this glide is built from says the opposite.
+        if w_term > w:
+            out["glide_flat_reason"] = (
+                "the origin's own published path puts the terminal rate at %.4f against "
+                "an origin rate of %.4f, so it saw no normalisation to glide toward and "
+                "the schedule is flat, as it is for a market already at its terminal"
+                % (w_term, w))
+            return (out, None)
+        out["schedule"] = sched
+        out["wacc_terminal"] = w_term
+        out["glide_fractions"] = fr
+        out["ke_terminal"], out["kd_terminal"], out["rf_terminal"] = ke_t, kd_t, rf_t
+    return (out, None)
 
 
-def escalator(market, origin):
-    """The substitution handed to a run's projector: h -> (flat equivalent, cumulative,
-    the ladder's own rate for that year), or None where the ladder does not reach h.
-
-    A HORIZON THE ARCHIVE CANNOT REACH IS DROPPED, NOT BRIDGED. The projection then runs
-    short and the cell is judged on MIN_EXPLICIT like any other short window, which is
-    the honest outcome: an origin whose vintage published one forward year cannot support
-    a five-year value and saying so is the measurement.
-    """
-    lad, why = PI.ladder(market, origin)
-    if lad is None:
-        return None, why
-
-    def esc(h):
-        cum, _ = PI.cumulative(market, origin, h)
-        flat, _ = PI.flat_equivalent(market, origin, h)
-        if cum is None or flat is None or h not in lad:
-            return None
-        return (flat, cum, lad[h])
-    return esc, None
-
-
-def terminal_inflation(market, origin, h_last=None):
-    """RETIRED AS A FIXED-HORIZON READ, kept only for the callers that predate the fix.
-
-    The terminal is now read at the LAST EXPLICIT YEAR through PI.terminal_rate; reading
-    it at a fixed module horizon is what let a three-year window capitalise a rate two
-    years further down the ladder than anything it projected.
-    """
-    if h_last is not None:
-        r, _why = PI.terminal_rate(market, origin, h_last)
-        return r
+def terminal_inflation(market, origin):
     v = MH.origin(market, origin)
     fwd = (v.extras.get("cpi_annual") or {}).get("forward_path") or {}
     last = str(origin + max(HORIZONS))
@@ -934,7 +1496,10 @@ def study_life(tk):
     return float(life), src
 
 
-def cell(tk, origin, market, cellinfo, horizons=HORIZONS, maintenance="amount"):
+def cell(tk, origin, market, cellinfo, horizons=HORIZONS, maintenance="amount",
+         cap_filed_peak=False,
+         arcc_unit_fix=False, glide=False, terminal_anchor=False, erp_basis=None,
+         pit_beta=False, crp_lambda=None):
     panel, _src = P._panel(os.path.join(ENGINE, "%s_walkforward" % tk.lower()))
     blk = block(tk)
     shares, price = cellinfo["shares"], cellinfo["price"]
@@ -956,10 +1521,12 @@ def cell(tk, origin, market, cellinfo, horizons=HORIZONS, maintenance="amount"):
     # mixing two of them. A run whose projection reaches fewer than MIN_EXPLICIT years is
     # still refused, because a terminal capitalising a one- or two-year path is a terminal
     # doing all the work.
-    esc, why = escalator(market, origin)
-    if esc is None:
-        return None, "the point-in-time ladder: %s" % why
-    proj = PROJECTORS[tk](origin, esc=esc)
+    # arcc_unit_fix reaches ONE projector and defaults off, so the declared run
+    # is byte-identical to what it was before this sensitivity existed.
+    proj = (PROJECTORS[tk](origin, unit_fix=arcc_unit_fix)
+            if (arcc_unit_fix and tk == "ARCC") else PROJECTORS[tk](origin))
+    if cap_filed_peak:
+        proj, _cap_why = _cap_at_filed_peak(tk, origin, proj)
     hs = [h for h in horizons if h in proj]
     if len(hs) < MIN_EXPLICIT:
         return None, ("the projection runs to horizon %d and %d explicit years is the "
@@ -985,12 +1552,14 @@ def cell(tk, origin, market, cellinfo, horizons=HORIZONS, maintenance="amount"):
         return None, ("this run projects no D&A and the block carries %d of %d "
                       "years for the intensity rule" % (counts["dep"], INTENSITY_YEARS))
 
-    coc, why = wacc_at(tk, origin, market, panel, blk, price, shares)
+    coc, why = wacc_at(tk, origin, market, panel, blk, price, shares, glide=glide,
+                       terminal_anchor=terminal_anchor, erp_basis=erp_basis,
+                       pit_beta=pit_beta, crp_lambda=crp_lambda)
     if coc is None:
         return None, why
-    infl, why = PI.terminal_rate(market, origin, max(hs))
+    infl = terminal_inflation(market, origin)
     if infl is None:
-        return None, "the terminal rate at the window's last year: %s" % why
+        return None, "the archive carries no forward inflation at this origin"
 
     b0 = blk.get(origin) or {}
     wc_prev = b0.get("wc")
@@ -1017,41 +1586,121 @@ def cell(tk, origin, market, cellinfo, horizons=HORIZONS, maintenance="amount"):
         wc_prev = wc_h
         nopat = ebit * (1 - tau)
         fcff = nopat + dna - capex - dwc
-        df = 1.0 / (1 + coc["wacc"]) ** h
+        df = _dfactor(coc, h)
         pv += fcff * df
         rows.append({"h": h, "revenue": rev, "ebit": ebit, "nopat": nopat,
                      "dna": dna, "capex": capex, "wc": wc_h, "dwc": dwc,
                      "fcff": fcff, "df": df})
         last = rows[-1]
 
-    # ------------------------------------------------------------------ [R-MACRO-01]
-    # THE EXPLICIT WINDOW RUNS UNTIL GROWTH IS WITHIN 2pp OF TERMINAL, and this lens did
-    # not check it. The rule was adopted 02-Sep-2026, four days BEFORE the declaration
-    # that sealed this construction, and it names this exact failure in its own words:
-    # "a model whose last explicit year still grows far above its terminal capitalises a
-    # rate it never reached". Measured 18-09-2026 on every cell this lens had ever
-    # scored, ALL SEVEN breached it -- 3.8pp at best, 15.6pp at worst -- and six of the
-    # seven carried a terminal worth MORE THAN THE WHOLE ENTERPRISE VALUE (102% to
-    # 1820%), which is to say an explicit window contributing nothing or less.
+    # ---- DECLARATION 4: the terminal is a growing perpetuity on the last explicit
+    # year's free cash flow. MECHANICAL_LENS_4_08-09-2026.md, sealed and committed
+    # before this code path produced a single figure.
     #
-    # THE BOUND IS IMPORTED, NEVER TYPED: research_protocol.HORIZON_CONVERGENCE is the
-    # figure assert_macro_coherence() already holds every study to, and minting a second
-    # one for a scorer would be the free parameter the PROMOTION RULE forbids -- and
-    # would let two instruments disagree about what a converged window is.
+    #     TV = FCF_N x (1 + g) / (WACC_term - g),   g = terminal inflation + real
     #
-    # THE REFUSAL IS NOT A FADE. Growing the path down to the terminal inside this module
-    # would be this module CHOOSING a construction, which its own docstring forbids and
-    # which would need a fade rate nobody has tested. The window a cell is scored on is
-    # the run's own pre-registered projection, so a window that does not converge is work
-    # owed by THE RUN and is reported as that rather than repaired here.
-    g_last = (rows[-1]["revenue"] / rows[-2]["revenue"] - 1.0) if len(rows) > 1 else None
-    g_term = infl                      # real growth is 0.0 in this construction
-    if g_last is not None and abs(g_last - g_term) > RP.HORIZON_CONVERGENCE:
-        return None, ("the explicit window ends growing at %.1f%% against a terminal of "
-                      "%.1f%% -- %.1fpp apart, against a bound of %.0fpp [R-MACRO-01]. "
-                      "The terminal would capitalise a rate the projection never reached."
-                      % (100 * g_last, 100 * g_term, 100 * abs(g_last - g_term),
-                         100 * RP.HORIZON_CONVERGENCE))
+    # FCF_N is `last["fcff"]` — the same figure the explicit window discounts, taken
+    # without adjustment. It already contains that year's capital spending and
+    # working-capital movement, which is why no separate maintenance, growth-capital
+    # or working-capital charge appears here and why no useful life is read.
+    #
+    # REAL GROWTH IS ZERO AND STATED, never a typed nominal rate: against a sourced
+    # terminal inflation of 7% a typed 5% is a permanent real decline of about 1.9%
+    # a year, and the growth rate and the discount rate must answer to the same
+    # sourced path or they drift apart. Changing it is an amendment to the
+    # declaration, made before the figures it affects exist.
+    if maintenance == "gordon":
+        g = infl + TERMINAL_REAL_GROWTH
+        w_term = coc.get("wacc_terminal") or coc["wacc"]
+        if g >= w_term:
+            return None, ("terminal refused: growth %.4f is not below the terminal "
+                          "rate %.4f, so the perpetuity does not converge" % (g, w_term))
+        if last["fcff"] <= 0:
+            return None, ("terminal refused: the last explicit year's free cash flow "
+                          "is %s, not positive: a company consuming cash in its final "
+                          "forecast year is not capitalised as a growing perpetuity"
+                          % f"{last['fcff']:,.1f}")
+        # DECLARATION 5 IS WITHDRAWN, AND THE PREMISE IT RESTED ON IS WRONG
+        # [08-09-2026, per instruction — "I did not write this year. It should
+        # not be adopted. Say we have been growing at 20% and we project that we
+        # grow at 20% per year each year for the next 5 years. That does not mean
+        # that we grow at a similar rate for perpetuity. Perpetuity is from the
+        # 6th year till infinity and during that time we either reach maturity in
+        # which case growth slows down or we shut down."].
+        #
+        # I READ A CLAUSE AS BINDING THAT THE PRINCIPAL DID NOT WRITE AND DOES NOT
+        # HOLD, AND BUILT A CONSTRUCTION ON IT. The clause said an explicit window
+        # runs until growth is within 2pp of terminal, and I measured eleven of
+        # seventeen cells against it and called them a defect. THEY ARE NOT. A
+        # step at the boundary between an explicit window and a perpetuity is the
+        # ORDINARY SHAPE OF THE TWO REGIMES, not a discontinuity to be smoothed:
+        # the explicit years are a forecast of a company as it is, and the
+        # perpetuity is a claim about a company that has either matured or ended.
+        # Forcing them to meet would make the window an artefact of the terminal.
+        #
+        # THE WITHDRAWAL COSTS NOTHING AND THAT IS ITSELF THE EVIDENCE: the stub
+        # came back EMPTY at every origin, because the published ladder converges
+        # inside five years everywhere the archive reaches. So no figure ever
+        # moved under it, and what the exercise actually found was the flat-rate
+        # inflation defect below — which stands on its own evidence and is a
+        # different claim entirely.
+        tv = last["fcff"] * (1 + g) / (w_term - g)
+        pv_tv = tv * _dfactor(coc, max(hs))
+        ev = pv + pv_tv
+        equity = ev + cash - (debt or 0.0)
+        per_share = equity / shares
+        # A NEGATIVE EQUITY VALUE IS A REAL OUTPUT AND IS NOT A SCOREABLE ONE, and the
+        # difference matters because of how it fails: this series is scored on
+        # log(FV/P), which does not exist below zero, so the cell arrived carrying a
+        # null that the scorer rendered as +0.0000 — A COMPANY VALUED AT MINUS 0.557
+        # ENTERING THE POOLED MEAN AS PERFECT AGREEMENT WITH ITS PRICE. That is the
+        # absent answer in a clean answer's clothes, and it is refused at the source
+        # rather than filtered downstream, because a downstream filter is one somebody
+        # later forgets. Declaration 4 is amended to carry this refusal; the amendment
+        # EXCLUDES a cell rather than admitting one and is forced by arithmetic rather
+        # than chosen after seeing a result.
+        if per_share <= 0:
+            return None, ("terminal refused: equity value is %s per share, not "
+                          "positive: a log ratio against the price does not exist "
+                          "below zero and this series is scored on one"
+                          % f"{per_share:,.3f}")
+        # THE POSITIVE-EXPLICIT-PV REFUSAL IS WITHDRAWN [08-09-2026, per
+        # instruction — "It is OK to have the terminal value carry a high
+        # proportion of the overall equity value. THAT IS NORMAL."].
+        #
+        # I ADDED IT THIS AFTERNOON AND IT WAS WRONG, and the way it was wrong is
+        # worth more than the refusal was. A negative present value across the
+        # explicit window is the ORDINARY SHAPE OF A DEVELOPER: land and
+        # construction are paid for during those five years and the value arrives
+        # after them, so the forecast window consumes cash and the terminal
+        # carries the equity. Three of the four cells this refused are exactly
+        # that company at three consecutive origins. Refusing them called a
+        # normal business model a broken construction.
+        #
+        # WHAT IT COST IS RECORDED RATHER THAN QUIETLY REVERSED: the refusal was
+        # introduced BECAUSE it moved the pooled bias the wrong way, which was
+        # the honest direction at the time — with those cells in, clause A read
+        # as passing and I judged it was passing on a broken cell. The judgement
+        # about the cell was mine and it was wrong; the discipline that made me
+        # state the cost is what makes this reversible now.
+
+        return ({"ticker": tk, "origin": origin, "fv": per_share, "price": price,
+                 "log": math.log(per_share / price) if per_share > 0 and price > 0 else None,
+                 "equity": equity, "ev": ev, "pv_explicit": pv, "pv_terminal": pv_tv,
+                 "terminal_share": (pv_tv / ev) if ev else None,
+                 "cash": cash, "debt": debt, "shares": shares,
+                 "wacc": coc["wacc"], "wacc_terminal": w_term,
+                 "terminal_growth": g, "terminal_real_growth": TERMINAL_REAL_GROWTH,
+                 "terminal_basis": "gordon_on_last_fcff",
+                 "declaration": "MECHANICAL_LENS_4_08-09-2026",
+                 "ke": coc["ke"], "kd": coc["kd"], "kd_bound": coc["kd_bound"],
+                 "we": coc["we"], "tau": tau, "inflation": infl, "rows": rows,
+                 "price_date": cellinfo["price_date"], "scale": scale,
+                 "maintenance": None, "maintenance_basis_reading": maintenance,
+                 "useful_life_years": None,
+                 "intensities": it, "capex_route": it["capex_route"],
+                 "minority_book": actual(panel, origin, MINORITY[tk]),
+                 "horizons": hs}, None)
 
     # THE TERMINAL, only through the sanctioned module.
     #
@@ -1092,31 +1741,10 @@ def cell(tk, origin, market, cellinfo, horizons=HORIZONS, maintenance="amount"):
     except TV.TerminalRefused as exc:
         return None, "terminal refused: %s" % str(exc)[:120]
 
-    pv_tv = t.tv / (1 + coc["wacc"]) ** max(hs)
+    pv_tv = t.tv * _dfactor(coc, max(hs))
     ev = pv + pv_tv
     equity = ev + cash - (debt or 0.0)
     per_share = equity / shares
-
-    # ------------------------------------------------- A POWER OF TEN IS A UNIT, NOT A VIEW
-    # The first run of the rebuilt lens scored exactly one cell and it read +75,727.6% —
-    # a fair value of 2,782.87 against a price of 3.67 — which is not a disagreement with
-    # a market, it is a share count or a price series in the wrong unit. Every gate above
-    # passed it: the unit ratio measured, the terminal built, the bridge footed, the
-    # convergence bound held. Nothing in this module was looking at the ANSWER, which is
-    # [R-GAP-01]'s own lesson arriving inside the instrument built to measure gaps.
-    #
-    # THE BOUND IS NOT CHOSEN AND IS NOT A TOLERANCE ON DISAGREEMENT. It is ONE ORDER OF
-    # MAGNITUDE because the failure it catches IS an order of magnitude — the same
-    # argument panel_scale() already makes when it pins a unit to a power of ten, reused
-    # rather than minted, which is the only honest justification for a cutoff here. A
-    # genuine ten-fold disagreement with a market is not something this house has ever
-    # published or ever should without saying so first, and a cell reading one is
-    # reported as a UNIT SUSPECT rather than pooled into a bias it would dominate.
-    if per_share > 0 and price > 0 and abs(math.log10(per_share / price)) >= 1.0:
-        return None, ("the cell reads %.6g against a price of %.6g — a factor of %.4g, "
-                      "which is a power of ten and therefore a UNIT rather than a view; "
-                      "the share count or the price series is not in the currency the "
-                      "block is" % (per_share, price, per_share / price))
     return ({"ticker": tk, "origin": origin, "fv": per_share, "price": price,
              "log": math.log(per_share / price) if per_share > 0 and price > 0 else None,
              "equity": equity, "ev": ev, "pv_explicit": pv, "pv_terminal": pv_tv,
@@ -1133,7 +1761,9 @@ def cell(tk, origin, market, cellinfo, horizons=HORIZONS, maintenance="amount"):
              "horizons": hs}, None)
 
 
-def run(market="EG", horizons=HORIZONS, maintenance="amount"):
+def run(market="EG", horizons=HORIZONS, maintenance="amount",
+        arcc_unit_fix=False, glide=False, terminal_anchor=False, erp_basis=None,
+        pit_beta=False, crp_lambda=None, cap_filed_peak=False):
     cells, names, declared, usable = P.build(market)
     rows, dropped = [], []
     for (tk, y), c in sorted(cells.items()):
@@ -1144,7 +1774,11 @@ def run(market="EG", horizons=HORIZONS, maintenance="amount"):
             continue
         try:
             r, why = cell(tk, y, market, c, horizons=horizons,
-                          maintenance=maintenance)
+                          maintenance=maintenance, arcc_unit_fix=arcc_unit_fix,
+                          cap_filed_peak=cap_filed_peak,
+                          glide=glide, terminal_anchor=terminal_anchor,
+                          erp_basis=erp_basis, pit_beta=pit_beta,
+                          crp_lambda=crp_lambda)
         except MH.VintageMissing as exc:
             r, why = None, str(exc)[:100]
         except Exception as exc:

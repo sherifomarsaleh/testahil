@@ -71,7 +71,12 @@ def main():
     # the employees' profit share reaches the answer through the operating charge,
     # so conceding it is a margin give-back rather than a bridge line
     _emp = V['emp_h2_25'] / M
-    row('no_emp', waterfall(build(gm_shift=_emp / B['rev'][0]))['ps'])
+    # the give-back sits ON TOP OF THE ADOPTED ANCHOR. Passing an explicit gm_shift
+    # overrides the anchor build() resolves by default, so without the addition this
+    # case is priced on the SUPERSEDED twelve-month base and reads BELOW the published
+    # central — which is impossible for a case that concedes a charge, and is what the
+    # file's own assertion caught.
+    row('no_emp', waterfall(build(gm_shift=g['ADOPTED_GM_SHIFT'] + _emp / B['rev'][0]))['ps'])
     # the terminal risk-free built on the central bank's 2028 target rather than the
     # target in force for the terminal horizon: a give-back on the single most
     # terminal-sensitive number in the model

@@ -24,7 +24,10 @@ L = RL.Ledger(
     started_at='the delivered edition of 05-08-2026 as it stood on 7 September 2026',
     start_value=55.482176,
     start_spot=105.20,
-    audit_after='terminal flows on the last-explicit-year basis')
+    audit_after='the beta re-derived against the published index of its own '
+                'exchange — DECLARED BEFORE THAT LEVER WAS BUILT: it is the last one '
+                'that moves the central, so the eight headings are run after it and '
+                'before any file is staged')
 
 L.apply(
     'the disclosed useful life at full precision', 'R-TERM-01', 55.479725,
@@ -84,6 +87,80 @@ L.apply(
              'reporting as mismatches rather than being fixed — Summary C12 is EMPTY and '
              'read as 0.0000, which the tolerance turned into a difference rather than an '
              'error [L-066/L-067].')
+
+L.apply(
+    'the beta re-derived against the published index of its own exchange', 'SIGCM-6',
+    43.510763,
+    why='The beta was regressed against an EQUAL-WEIGHT COMPOSITE of the 31 names that '
+        'happen to sit in the covered EGX library, and the study said so in its own '
+        'source field, calling it "the house pattern". It was the house pattern: every '
+        'study here once did it, each copying the last. A constituent composite is not a '
+        'weaker tier — it is a coverage artefact that changes whenever a stock is posted '
+        'and shares constituents with the panel it prices, which is why SIGCM clause 6 '
+        'calls it a hard fail. THE CORRECTION LOWERS THE VALUE AND WIDENS THE GAP, from '
+        '59.5% below the price to 66.5% below it, and that is the direction that shows '
+        'the discipline is not fitting.',
+    evidence='beta_regression.own_stock_beta("SWDY","EG","EGX") against '
+             'raw_indices/EG/EGX30.csv as at 2026-09-08: beta 1.2249, R-squared 0.368, '
+             'n 256, Dimson-corrected, conforming. The withdrawn composite gave 1.0087 at '
+             'an R-squared of 0.291 — 21.4% LOW and explaining less of the stock, the '
+             'FERTIGLB precedent again. Cost of equity 28.40% -> 30.44%, explicit cost of '
+             'capital 26.94% -> 28.84%, terminal 15.93% -> 17.22%. AND THE NUMBER WAS '
+             'TYPED: the input carried a literal 1.009 with a source describing the '
+             'composite, so re-running the regression to any answer at all would have '
+             'moved nothing. It now reads beta_result.json, which asserts the record is '
+             'conforming and its regressor registered.')
+
+# THE LEDGER STOPPED BEING FED AND THAT IS RECORDED HERE RATHER THAN QUIETLY CLOSED.
+# The last lever above ends at 43.5108. The study's committed central is 87.9425, and the
+# levers between the two were applied across several editions without being written down
+# — the terminal rebuilt on the house macro path, the segment margins re-anchored on the
+# reviewed half, the employees' statutory share, the minority basis, the share count
+# reverted. Reconstructing them now, from outside the sessions that applied them, would
+# be inventing a history rather than recording one, so the gap is carried as ONE lever
+# that names what it contains and is honest that it is a bundle. What is NOT bundled is
+# the change made on 13-09-2026, which is applied separately below with its own number.
+L.apply(
+    'UNRECORDED: the levers between the beta re-derivation and 13-09-2026',
+    'R-REBUILD-01', 87.763330,
+    why='This ledger records the value after each lever, and between the beta lever '
+        'above and the currency-path lever below it was not written to. The moves it '
+        'contains are known in kind and not in order: the terminal rebuilt so that its '
+        'growth and its discount rate read the same house inflation, the three segment '
+        'margins re-anchored on the H1-2026 reviewed half [R-ANCHOR-01], the employees\' '
+        'statutory share charged in the bridge, minorities charged at their profit share '
+        'rather than at book, and the share count reverted to the issued figure after a '
+        'pass cut it on a capital reduction that appears on no filing. EACH IS DOCUMENTED '
+        'IN compute.py AT ITS OWN SITE; none of them is documented HERE, which is the '
+        'defect. A ledger that stops mid-rebuild is worse than no ledger, because it '
+        'reads as complete.',
+    evidence='compute.py carries the reasoning for every lever named above at the input '
+             'or the construction it changed. The arithmetic of the bundle is the '
+             'difference between the two ends: 43.5108 to 87.7633.')
+
+# THE CURRENCY PATH, AND IT MOVES THE ANSWER TOWARD THE PRICE.
+L.apply(
+    'the currency path derived rather than hand-set', 'R-MACRO-01', 87.942530,
+    why='The model escalated its cost base on the house Egyptian inflation ladder, which '
+        'falls from 16% to 7%, while depreciating the pound at a flat ~6% a year. That '
+        'is two views of one economy [L-048]: a permanent REAL APPRECIATION of the pound, '
+        'assumed rather than argued and with no mechanism named. It survived because '
+        'this study\'s macro record was a stub that assert_macro_coherence could not run '
+        'on at all — the gate reported "\'\' is not a covered market" against SWDY, which '
+        'is an absent result being read as a clean one [R-ENF-04]. THE DIRECTION IS '
+        'UPWARD AND TOWARD THE PRICE, and that is the outcome rather than the aim: the '
+        'hand-set path was the more conservative of the two, because a stronger pound '
+        'translates less hard-currency revenue into pounds, so the incoherence had been '
+        'depressing the valuation. That is exactly why it lasted — nobody audits a number '
+        'that is already cautious. The rule is not "be conservative", it is "one view of '
+        'one economy".',
+    evidence='The path is now macro_path.load("EG").fx_path(5, base=47.69): the '
+             'company\'s own realised FY2025 average rate off the audited statements, '
+             'escalated on the house relative-purchasing-power depreciation ladder, which '
+             'is itself derived from that path\'s inflation against long-run US '
+             'inflation. Retired path 51.00/54.00/57.50/61.00/64.50; derived path '
+             '53.97/58.97/62.71/65.77/68.66. The ladder is registered as its own input '
+             'rather than quoted in a sentence. Central 87.7633 -> 87.9425, +0.20%.')
 
 rec = L.record()
 rec['workbook_answer'] = dict(before=59.313220, after=52.696890,

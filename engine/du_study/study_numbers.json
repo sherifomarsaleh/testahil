@@ -3637,5 +3637,6 @@
   "[Expert panel] Expert 1 11.54 [9.56-13.19]; Expert 2 16.36 [9.89-21.65]; Expert 3 16.84 [11.23-18.86]; panel median 16.36 (+44% vs spot)",
   "[EBITDA margin record] FY2022 40.32% \u00b7 FY2023 42.53% \u00b7 FY2024 44.21% \u00b7 FY2025 46.14% \u00b7 H1-2025 47.10% \u00b7 H1-2026 49.18% | highest H1-2026 at 49.18% | the full years rise monotonically",
   "[R-ANCHOR-01 forecast anchor] EBITDA margin: latest reviewed H1-2026 49.18% -> first forecast year 47.83% (-2.75% relative); path low 47.79% (-0.09% from the opening year); implied H2-2026 46.51% (-5.44% vs the reviewed half, against a filed FY2025 seasonal step of -3.97%; H2-on-H2 +1.29pp)"
- ]
+ ],
+ "spot_date": "2026-09-03"
 }

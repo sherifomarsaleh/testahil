@@ -24,7 +24,14 @@ import openpyxl
 import xlcalc
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-XLSX = os.path.join(HERE, 'SWDY_Valuation_Model_05082026_public.xlsx')
+# THE RECALCULATOR OPENS THE WORKBOOK THIS STUDY DELIVERS, NOT A NAME TYPED HERE.
+# It named SWDY_Valuation_Model_05082026_public.xlsx -- the 5-AUGUST edition -- and went on
+# naming it through the 09-September rebuild. So the one check whose whole job is to prove
+# the delivered workbook reproduces the model was opening a superseded file and reporting
+# ITS agreement as the current edition's. That is [L-066] exactly, and it is why edition.py
+# exists: the edition is written once and every artefact name derives from it.
+import edition as _ed
+XLSX = os.path.join(HERE, _ed.MODEL_XLSX)
 wb = openpyxl.load_workbook(XLSX)
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 XP = json.load(open(os.path.join(HERE, 'xlsx_expected.json')))

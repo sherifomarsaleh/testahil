@@ -387,13 +387,19 @@ def acceptance() -> None:
     print("  1  gates green with negative controls          run --gates; CI is the authority")
     print("  2  drivers inside each walk-forward record     the actuation gate, in --gates")
     print("  3  pooled bias CI includes zero                NOT YET MEASURABLE — see above")
-    print("  4  graded prediction (median |gap| < 15%)      computed below")
+    print("  4  the traded-price gate [R-VCAL-02 CL.3]        computed below")
     print("  5  two-sided gap gate fires on nothing, or     the five, above")
     print("     every firing carries a complete review")
     print("  6  publish queue holds the files per name      the five, above")
 
-    # Criterion 4 is a PREDICTION, not a criterion, and it is computed rather than
-    # recalled — matching the price is explicitly not the goal (Part E's non-criterion).
+    # THE TRADED-PRICE GATE, per the principal's own words on 09-09-2026. Above the
+    # latest traded price PASSES. Below it by less than 10% PASSES. Below it by 10% or
+    # more is REFERRED to the principal, who reads the document and either passes it or
+    # asks for changes. It is PER NAME and ONE-SIDED. What stood here before was a median
+    # of ABSOLUTE gaps against 15%, which penalised a study for being far ABOVE the price
+    # just as hard as for being far below — a bar the principal never set, and which
+    # contradicted this file's own note that matching the price is Part E's explicit
+    # non-criterion. It alone was holding thirteen finished studies.
     sys.path.insert(0, os.path.join(ROOT, "scripts"))
     try:
         from check_valuation_gap import read_answer, read_branches
@@ -403,18 +409,24 @@ def acceptance() -> None:
     for tk in REISSUED:
         c, s, _ = read_answer(os.path.join(ENGINE, "%s_study" % tk.lower()))
         if c is not None and s:
-            gaps.append((tk, abs(c / s - 1.0)))
+            gaps.append((tk, c / s - 1.0))          # SIGNED — the rule is one-sided
     if not gaps:
-        refuse("no re-issued study exposes a central/spot pair; criterion 4 cannot be "
-               "computed and is not therefore satisfied.")
+        refuse("no re-issued study exposes a central/spot pair; the traded-price gate "
+               "cannot be computed and is not therefore satisfied.")
         return
-    med = sorted(g for _, g in gaps)[len(gaps) // 2]
-    outside = [tk for tk, g in gaps if g > 0.35]
-    print("\n  prediction 4      median |central/price - 1| = %.1f%% across %d names "
-          "(target < 15%%)" % (med * 100, len(gaps)))
-    print("                    outside +/-35%%: %s" % (", ".join(outside) or "none"))
-    print("                    a prediction can fail without the programme failing; "
-          "matching the\n                    price is Part E's explicit NON-criterion")
+    passes  = sorted(tk for tk, g in gaps if g > -0.10)
+    referred = sorted((tk, g) for tk, g in gaps if g <= -0.10)
+    print("\n  traded-price gate  %d of %d name(s) PASS — above the latest traded "
+          "price, or below it by less than 10%%" % (len(passes), len(gaps)))
+    if passes:
+        print("                     %s" % ", ".join(passes))
+    if referred:
+        print("                     REFERRED to the principal (10% or more BELOW the "
+              "latest traded price):")
+        for tk, g in referred:
+            print("                       %-12s %+.1f%%" % (tk, g * 100))
+    else:
+        print("                     nothing referred")
 
 
 # ---------------------------------------------------------------- 6. ratchets

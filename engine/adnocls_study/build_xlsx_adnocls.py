@@ -118,6 +118,7 @@ from openpyxl.utils import get_column_letter
 
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 V = {k: v['value'] for k, v in D['inputs'].items()}
+COC = D['cost_of_capital_record']   # [R-COC-03] the split, as the study committed it
 
 BLUE = Font(color='0000FF'); GREEN = Font(color='008000'); BLACK = Font(color='000000')
 TITLE = Font(bold=True, size=13, color='F6F1E6'); SUB = Font(size=9, color='6E7B77')
@@ -483,16 +484,23 @@ FCFF_F = [NOPAT_F[i] + DNA_F[i] - CAPEX[i] - DNWC_F[i] for i in range(5)]
 # --- cost of capital ---------------------------------------------------------
 MKTCAP = SH * SPOT / PEG * 1000.0
 RF_STAR = V['rf_observed'] - V['sov_spread']
-KE = RF_STAR + V['beta'] * V['erp_total']
+# [R-COC-03] SEVEN COPIES OF ONE IDENTITY, AND THE MODEL MOVED WITHOUT THEM. Every line
+# below read rf* + beta x the WHOLE premium, which multiplies the UAE's country risk by
+# beta. compute.py moved onto the split and this builder did not, so the workbook's own
+# rebuild assertion fired on a discount factor 24bp out. The legs are read from the study's
+# committed record and never retyped, so the seven cannot drift apart again.
+_CRP = COC['crp_effective']
+_ERP_MATURE = COC['erp_mature']
+KE = RF_STAR + V['beta'] * _ERP_MATURE + _CRP
 # The alternative construction is the SAME regression measured against a different market:
 # an equal-weight composite of the exchange's own names rather than its published index.
-KE_A = RF_STAR + V['beta_composite'] * V['erp_total']
+KE_A = RF_STAR + V['beta_composite'] * _ERP_MATURE + _CRP
 # The regression's own 90% confidence interval, and the same slope shrunk toward the
 # market, priced through the same cost-of-equity construction so the reader sees the span
 # the estimate supports.
-KE_CI_LO = RF_STAR + V['beta_ci_lo'] * V['erp_total']
-KE_CI_HI = RF_STAR + V['beta_ci_hi'] * V['erp_total']
-KE_BLUME = RF_STAR + V['beta_blume'] * V['erp_total']
+KE_CI_LO = RF_STAR + V['beta_ci_lo'] * _ERP_MATURE + _CRP
+KE_CI_HI = RF_STAR + V['beta_ci_hi'] * _ERP_MATURE + _CRP
+KE_BLUME = RF_STAR + V['beta_blume'] * _ERP_MATURE + _CRP
 KD1 = V['sofr'] + V['shldr_margin']
 KD_BANK = (V['bank_loan_lo'] + V['bank_loan_hi']) / 2
 KD_OTHER = (V['other_borr_lo'] + V['other_borr_hi']) / 2
@@ -524,8 +532,8 @@ HYBRID_CAP = V['h1_26_hybrid']
 CAP_TOT = MKTCAP + DEBT_NOW + HYBRID_CAP
 WE = MKTCAP / CAP_TOT; WD = DEBT_NOW / CAP_TOT; WH = HYBRID_CAP / CAP_TOT
 W_EXP = WE * KE + WD * KD_AT + WH * KH
-KE_T = V['rf_terminal'] + V['beta'] * V['erp_total']
-KE_T_A = V['rf_terminal'] + V['beta_composite'] * V['erp_total']
+KE_T = V['rf_terminal'] + V['beta'] * _ERP_MATURE + _CRP
+KE_T_A = V['rf_terminal'] + V['beta_composite'] * _ERP_MATURE + _CRP
 KD_T = V['rf_terminal'] + (KD - RF_STAR)
 KD_T_AT = KD_T * (1 - TAXS)
 # the perpetual pays a floating coupon, so its cost normalises with the risk-free rate
@@ -1037,7 +1045,15 @@ block('Cost of capital', [
      'bear-case beta)', V['beta_ci_hi'], BETA),
     ('beta_blume', 'Beta — the measured slope shrunk toward the market: two-thirds of it '
      'plus one-third of 1.0', V['beta_blume'], BETA),
-    ('erp', 'Equity risk premium (mature premium plus country risk)', V['erp_total'], PCT2),
+    ('erp', 'Equity risk premium, TOTAL (the two legs below add to it)', V['erp_total'], PCT2),
+    # [R-COC-03] FOUR LIVE FORMULAS ON THE DCF SHEET READ rf* + beta x the WHOLE premium,
+    # which multiplies the UAE's country risk by beta. The model split and the cells did
+    # not, so the workbook's SOTP bridge came out 103 million dirhams light. The legs are
+    # read from the committed record; the cells recompute the rate from them.
+    ('erpm', '   of which the MATURE premium — beta applies to this leg only',
+     COC['erp_mature'], PCT2),
+    ('crp', 'Country premium — charged FLAT, once, never multiplied by beta',
+     COC['crp_effective'], PCT2),
     ('rf_term', 'Terminal risk-free rate', V['rf_terminal'], PCT2),
     ('tax_stat', 'Statutory corporate tax rate', TAXS, PCT)])
 block('Cost of debt — the evidence behind the three constructions', [
@@ -2588,7 +2604,7 @@ _coc = [(DF_['rfobs'], 'Observed government bond yield (dirham tranche, January 
          f"={a('beta')}", V['beta'], BETA, True),
         (DF_['erp'], 'Equity risk premium', f"={a('erp')}", V['erp_total'], PCT2, True),
         (DF_['ke'], 'Cost of equity',
-         f"=C{DF_['rfstar']}+C{DF_['beta']}*C{DF_['erp']}", KE, PCT2, False)]
+         f"=C{DF_['rfstar']}+C{DF_['beta']}*{a('erpm')}+{a('crp')}", KE, PCT2, False)]
 for rw, lab, fml, xp, fmt, gr in _coc:
     put(ws, f'A{rw}', lab, fmt=None)
     putf(ws, f'C{rw}', fml, xp, fmt, bold=(rw == DF_['ke']), green=gr)
@@ -2685,7 +2701,7 @@ _w = [(DF_['mktcap'], 'Market capitalisation (USD 000)',
       (DF_['rfterm'], 'Terminal risk-free rate', f"={a('rf_term')}", V['rf_terminal'], PCT2,
        True),
       (DF_['keterm'], 'Terminal cost of equity',
-       f"=C{DF_['rfterm']}+C{DF_['beta']}*C{DF_['erp']}", KE_T, PCT2, False),
+       f"=C{DF_['rfterm']}+C{DF_['beta']}*{a('erpm')}+{a('crp')}", KE_T, PCT2, False),
       (DF_['kdterm'], 'Terminal cost of debt — the same spread over the terminal rate',
        f"=C{DF_['rfterm']}+(C{DF_['kd']}-C{DF_['rfstar']})", KD_T, PCT2, False),
       (DF_['kdtermat'], 'Terminal cost of debt after tax',
@@ -2714,9 +2730,9 @@ for rw, lab, fml, xp, fmt, gr in [
          'the disclosed alternative construction', f"={a('beta_a')}", V['beta_composite'],
          BETA, True),
         (DF_['kea'], 'Cost of equity on the composite-index beta',
-         f"=C{DF_['rfstar']}+C{DF_['betaa']}*C{DF_['erp']}", KE_A, PCT2, False),
+         f"=C{DF_['rfstar']}+C{DF_['betaa']}*{a('erpm')}+{a('crp')}", KE_A, PCT2, False),
         (DF_['keta'], 'Terminal cost of equity on the composite-index beta',
-         f"=C{DF_['rfterm']}+C{DF_['betaa']}*C{DF_['erp']}", KE_T_A, PCT2, False),
+         f"=C{DF_['rfterm']}+C{DF_['betaa']}*{a('erpm')}+{a('crp')}", KE_T_A, PCT2, False),
         (DF_['wacca'], 'Cost of capital — explicit window, composite-index beta. Only the '
          'cost of EQUITY changes: the same three tranches of capital are carried, because '
          'how the market is measured does not change what the company is financed with',
@@ -2736,16 +2752,16 @@ for rw, lab, fml, xp, fmt, gr in [
         (DF_['cihi'], 'Beta — upper bound of the 90% confidence interval on the primary '
          'regression', f"={a('beta_ci_hi')}", V['beta_ci_hi'], BETA, True),
         (DF_['kecilo'], 'Cost of equity at the lower confidence bound — the bull-case '
-         'discount rate', f"=C{DF_['rfstar']}+C{DF_['cilo']}*C{DF_['erp']}", KE_CI_LO,
+         'discount rate', f"=C{DF_['rfstar']}+C{DF_['cilo']}*{a('erpm')}+{a('crp')}", KE_CI_LO,
          PCT2, False),
         (DF_['kecihi'], 'Cost of equity at the upper confidence bound — the bear-case '
-         'discount rate', f"=C{DF_['rfstar']}+C{DF_['cihi']}*C{DF_['erp']}", KE_CI_HI,
+         'discount rate', f"=C{DF_['rfstar']}+C{DF_['cihi']}*{a('erpm')}+{a('crp')}", KE_CI_HI,
          PCT2, False),
         (DF_['blume'], 'Beta — the measured slope shrunk toward the market, two-thirds of '
          'it plus one-third of 1.0',
          f"={a('beta_blume')}", V['beta_blume'], BETA, True),
         (DF_['keblume'], 'Cost of equity on the slope shrunk toward the market',
-         f"=C{DF_['rfstar']}+C{DF_['blume']}*C{DF_['erp']}", KE_BLUME, PCT2, False)]:
+         f"=C{DF_['rfstar']}+C{DF_['blume']}*{a('erpm')}+{a('crp')}", KE_BLUME, PCT2, False)]:
     put(ws, f'A{rw}', lab, fmt=None)
     putf(ws, f'C{rw}', fml, xp, fmt, green=gr)
 hdr(ws, DF_['ahdr'],
@@ -4097,7 +4113,8 @@ close(SN['grid_beta_g'][0][_gi], DA['fv_aed'], 1e-6)
 close(SN['anchor']['1.0'], DC['fv_aed'], 1e-6)
 close(SN['capex']['1.0'], DC['fv_aed'], 1e-6)
 for _bi, _b in enumerate(SN['betas']):
-    _kes = RF_STAR + _b * V['erp_total']; _ket = V['rf_terminal'] + _b * V['erp_total']
+    _kes = RF_STAR + _b * _ERP_MATURE + _CRP
+    _ket = V['rf_terminal'] + _b * _ERP_MATURE + _CRP
     close(SN['grid_beta_g'][_bi][_gi],
           dcf_legs(WE * _kes + WD * KD_AT + WH * KH,
                    WE * _ket + WD * KD_T_AT + WH * KH_T)['fv_aed'], 1e-6)

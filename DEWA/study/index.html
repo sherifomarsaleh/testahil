@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<script src="/assets/gate.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DEWA (Dubai Electricity and Water Authority) (DFM:DEWA) — 1–3 month odds &amp; study | testahil?</title>
 <meta name="description" content="Where could DEWA (Dubai Electricity and Water Authority) (DFM:DEWA) be in 1–3 months? A plain-language read of the odds, the published price bands, and the dated track record behind them.">
@@ -145,6 +147,7 @@
 <footer class="t-footer"><div class="wrap"><span>Educational studies, not investment advice — not licensed by Egypt’s FRA. <a href="/method.html#disclaimer">Full disclaimer</a></span><span>Data: <span class="num" id="tf-upd">…</span> · <a href="/legacy/">legacy site ↗</a></span></div></footer>
 
 <script src="/assets/data.js"></script>
+<script src="/assets/levers.js"></script>
 <script src="/assets/test.js"></script>
 <script>
 (function(){
@@ -218,6 +221,7 @@
   if(files.pdf) fl.push('<a class="t-btn" href="/'+files.pdf+'">Open the study (PDF)</a>');
   if(files.study && !files.pdf) fl.push('<a class="t-btn" href="/'+files.study+'">Open the study</a>');
   if(files.model) fl.push('<a class="t-btn ghost" href="/'+files.model+'">Open the model (Excel)</a>');
+  if(files.dissent) fl.push('<a class="t-btn ghost" href="/'+files.dissent+'">Why we differ from the market (PDF)</a>');
   document.getElementById("s-files").innerHTML = fl.join("") || '<span class="muted" style="font-size:var(--fs-small)">Study documents publish with the next edition.</span>';
   var ed = files.study||files.pdf||"";
   var edDate = (ed.match(/(\d{2})-(\d{2})-(\d{4})/)||[])[0];
@@ -262,18 +266,7 @@
     var T=(typeof TICKERS!=="undefined"&&TICKERS["DEWA"])||(typeof METALS!=="undefined"&&METALS["DEWA"])||null;
     if(!T)return;
     renderGauge("gauge", T.spot, T.fair, T.spotDate);
-    renderFairLevers("fl-lever-card", T, [
-  { name:'CBUAE / Fed policy-rate path', min:-3, max:3, step:0.1, def:0.1, impact:1,
-    lo:'tighter / rate headwind', hi:'easier / rate tailwind', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
-  { name:'Post-2027 dividend policy — probability of a frozen-or-cut signal', min:0, max:47, step:1, def:40, impact:0.02,
-    lo:'no surprise', hi:'upside surprise', fmt:v=>Math.round(v)+'% chance' },
-  { name:'Post-2027 dividend policy — probability of a growth signal', min:5, max:60, step:1, def:20, impact:0.05,
-    lo:'no surprise', hi:'upside surprise', fmt:v=>Math.round(v)+'% chance' },
-  { name:'2030 clean-energy build pace', min:-3, max:3, step:0.1, def:0.1, impact:1,
-    lo:'weaker', hi:'stronger', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' },
-  { name:'Regulatory deferral account swing', min:-3, max:3, step:0.1, def:0, impact:1,
-    lo:'weaker', hi:'stronger', fmt:v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1)+'% / quarter' }
-]);
+    renderFairLevers("fl-lever-card", T, (typeof LEVERS!=="undefined"&&LEVERS["DEWA"])||[]);
     renderStaticFan("mc-fan-static", T);
     if(T.levels){
       injectLevels("ta-chart-svg", T.levels.res, T.levels.sup);

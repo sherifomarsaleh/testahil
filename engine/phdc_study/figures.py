@@ -209,7 +209,10 @@ def fig3_cone(dist, spot, touch):
     ax.set_xticks(xs)
     ax.set_xticklabels(["today", "1 month", "3 months"])
     ax.set_ylabel("EGP per share")
-    ax.set_title("Published price cone — the engine's distribution, not a forecast",
+    # "THE ENGINE'S" IS A WORD FROM INSIDE THIS HOUSE and it reached a reader, because
+    # figure text is baked into the PNG and the document's scrub only scans paragraphs.
+    # Named in the 3-September gate and unfixed until now.
+    ax.set_title("Published price cone — a distribution of outcomes, not a forecast",
                  fontsize=10.5, pad=12, loc="left")
     ax.set_xlim(-0.08, 3.30)
     ax.set_ylim(min(p5) - 0.9, max(p95) + 0.9)

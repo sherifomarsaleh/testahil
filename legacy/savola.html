@@ -1,10 +1,11 @@
 <!doctype html>
 <html lang="en" dir="ltr">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<script src="/assets/gate.js"></script><meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="icon" type="image/png" href="/favicon.png?v=2">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
-<meta name="robots" content="max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="robots" content="noindex,nofollow">
 <title>Savola (SAVOLA) — is the stock worth it? | testahil?</title>
 <meta name="description" content="Where could Savola Group Company (TADAWUL:2050) be in 1–3 months? A plain-language read of the odds, plus the full study and open model.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -389,7 +390,7 @@
   </div>
 </div>
 
-<script src="assets/data.js?v=20260907borouge"></script><script src="assets/app.js?v=20260906silverprose"></script>
+<script src="assets/data.js?v=20260908fertiglb"></script><script src="assets/levers.js"></script><script src="assets/app.js?v=20260906silverprose"></script>
 <script>
 const T=TICKERS.SAVOLA;
 document.getElementById("upd").textContent=SITE.updated;
@@ -430,20 +431,7 @@ renderPeers("peers", "SAVOLA");
 renderTrackBadge("track-badge");
 
 renderStaticFan("mc-fan-static", T);
-renderFairLevers("fl-lever-card", T, [
-  { name:"Panda sales density \u2014 the crux", min:0, max:100, step:10, def:100, impact:0.109,
-    lo:"0 \u2014 the erosion never fades (Framing B)", hi:"100 \u2014 density stabilises (Framing A)",
-    fmt:v=>v.toFixed(0)+"% of the density recovery delivered. This is the study\u0027s central contested judgement and it is computed BOTH ways, never averaged: let density stabilise as the store-refresh programme and e-commerce mature and the cash-flow lens is SAR 24.99; hold the measured erosion forever \u2014 \u22126% then \u22123% a year \u2014 and it is 19.63" },
-  { name:"Panda store cadence (net new stores a year)", min:8, max:20, step:2, def:20, impact:0.924,
-    lo:"8 \u2014 the observed H1-2026 run-rate", hi:"20 \u2014 company guidance",
-    fmt:v=>v.toFixed(0)+" net new stores a year. Company guidance is 20-plus and FY2025 delivered 18 net, but only 4 opened in the first half of 2026 \u2014 so the guidance base needs 16 in the second half. At the observed run-rate the cash-flow lens is SAR 19.53 against 24.99 on guidance; fewer stores also raise less lease debt, which the model carries" },
-  { name:"Terminal growth", min:1.5, max:3.5, step:0.25, def:2.5, impact:3.10,
-    lo:"1.5%", hi:"3.5%",
-    fmt:v=>v.toFixed(2)+"% terminal growth. Across the study\u0027s own grid the cash-flow value runs SAR 23.50 at 1.5% to SAR 26.97 at 3.5% at the published cost of capital. Terminal value is 79% of enterprise value \u2014 higher than the first edition because charging the full lease additions back-loads the explicit years \u2014 so this input carries more of the answer than most operating assumptions" },
-  { name:"Terminal return on capital", min:9.5, max:11.0, step:0.25, def:10.07, impact:2.07,
-    lo:"9.5% \u2014 competition erodes the spread", hi:"11.0% \u2014 brands and shelf position hold",
-    fmt:v=>v.toFixed(2)+"% terminal return on invested capital. The base is not assumed \u2014 it is COMPUTED from the model\u0027s own fifth forecast year (10.07%), which is why the first edition\u0027s 10.5% input was retired to a labelled variant worth SAR 25.49 on the cash-flow lens. A terminal return only modestly above the 8.42% terminal cost of capital is the honest reading" }
-]);
+renderFairLevers("fl-lever-card", T, (typeof LEVERS!=="undefined"&&LEVERS["SAVOLA"])||[]);
 if (T.levels) {
   injectLevels("ta-chart-svg", T.levels.res, T.levels.sup);
   renderLevelList("level-list", T.levels.res, T.levels.sup);

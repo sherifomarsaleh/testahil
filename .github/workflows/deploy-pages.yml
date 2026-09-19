@@ -37,13 +37,21 @@ jobs:
         run: python3 scripts/inject_site_chrome.py --self-test
       - name: Inject site chrome on any page missing it
         run: python3 scripts/inject_site_chrome.py --write
+      # The invite gate rides the same path, for the same reason: the site is
+      # invitation-only (14-09-2026), so "every page under testahil.com/ is
+      # behind the rope" is a property of the DEPLOY. A new page that shipped
+      # open for a day would be the whole point, lost.
+      - name: Invite-gate injector self-test (negative control)
+        run: python3 scripts/inject_invite_gate.py --self-test
+      - name: Put the invite gate and a noindex on any page missing them
+        run: python3 scripts/inject_invite_gate.py --write
       - name: Commit injected chrome back to main, if anything changed
         run: |
           if [ -n "$(git status --porcelain '*.html')" ]; then
             git config user.name  "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add '*.html'
-            git commit -m "Auto-inject site favicon on new page(s) [skip ci]"
+            git commit -m "Auto-inject site chrome and invite gate on new page(s) [skip ci]"
             for i in 1 2 3 4 5; do
               git fetch origin main
               git rebase origin/main && git push origin HEAD:main && break
@@ -55,6 +63,8 @@ jobs:
           fi
       - name: Tab-chrome gate (blocks the deploy)
         run: python3 scripts/inject_site_chrome.py --check
+      - name: Invite-gate gate (blocks the deploy)
+        run: python3 scripts/inject_invite_gate.py --check
       - name: Configure Pages (switch source to GitHub Actions)
         uses: actions/configure-pages@v5
         with:

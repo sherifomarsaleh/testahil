@@ -3,7 +3,7 @@
   "ABUK": {
    "baseline": {
     "built_to": "(no study)",
-    "captured": "2026-09-17",
+    "captured": "2026-09-08",
     "fair": {
      "base": 60,
      "bear": 50,
@@ -19,6 +19,104 @@
    "exchange": "EGX",
    "market": "EG",
    "ticker": "ABUK",
+   "tier": "first-build"
+  },
+  "ADIB": {
+   "baseline": {
+    "built_to": "delivered 03-07-2026; no engine directory",
+    "captured": "2026-09-09",
+    "fair": {
+     "base": 54.3,
+     "bear": 31.6,
+     "full": 95.3
+    },
+    "note": "assets/data.js carries no date or standard stamp on fair{}; built_to is the study standard, not the strike date of these numbers, which is not recoverable.",
+    "spot": 54.4,
+    "spot_date": "close 23 Aug 2026",
+    "unrecoverable": null
+   },
+   "ccy": "EGP",
+   "editions": [
+    {
+     "delivered": "2026-09-09",
+     "edition": 1,
+     "fair": {
+      "base": 37.17789080747221,
+      "bear": 35.83842889391098,
+      "full": 38.58104520290892
+     },
+     "lessons": [
+      "L-383",
+      "L-384",
+      "L-385",
+      "L-386"
+     ],
+     "origins": "FY2014-FY2024, 11 origins",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": -31.5,
+      "bear": 13.4,
+      "full": -59.5
+     },
+     "vs_previous_pct": {
+      "base": -31.5,
+      "bear": 13.4,
+      "full": -59.5
+     }
+    },
+    {
+     "delivered": "2026-09-10",
+     "edition": 2,
+     "fair": {
+      "base": 43.388157797595056,
+      "bear": 42.095516615259555,
+      "full": 44.917954899147084
+     },
+     "lessons": [
+      "L-383",
+      "L-384",
+      "L-385",
+      "L-386"
+     ],
+     "origins": "FY2014-FY2024, 11 origins",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": -20.1,
+      "bear": 33.2,
+      "full": -52.9
+     },
+     "vs_previous_pct": {
+      "base": 16.7,
+      "bear": 17.5,
+      "full": 16.4
+     }
+    },
+    {
+     "delivered": "2026-09-10",
+     "edition": 3,
+     "fair": {
+      "base": 44.460978528259474,
+      "bear": 43.17228883751404,
+      "full": 46.01051880646089
+     },
+     "lessons": [],
+     "origins": "FY2014-FY2024, 11 origins",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": -18.1,
+      "bear": 36.6,
+      "full": -51.7
+     },
+     "vs_previous_pct": {
+      "base": 2.5,
+      "bear": 2.6,
+      "full": 2.4
+     }
+    }
+   ],
+   "exchange": "EGX",
+   "market": "EG",
+   "ticker": "ADIB",
    "tier": "first-build"
   },
   "AMOC": {
@@ -191,6 +289,50 @@
       "bear": 5.4,
       "full": -4.3
      }
+    },
+    {
+     "delivered": "2026-09-09",
+     "edition": 7,
+     "fair": {
+      "base": 17.6328667463,
+      "bear": 1.6731381005,
+      "full": 23.9270952037
+     },
+     "lessons": [],
+     "origins": "FY2021-FY2025, h=1-3, 9 cells",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": 196.4,
+      "bear": -59.1,
+      "full": 180.8
+     },
+     "vs_previous_pct": {
+      "base": 54.7,
+      "bear": -0.0,
+      "full": 0.1
+     }
+    },
+    {
+     "delivered": "2026-09-10",
+     "edition": 8,
+     "fair": {
+      "base": 20.0503,
+      "bear": 1.6639,
+      "full": 27.5238
+     },
+     "lessons": [],
+     "origins": "",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": 237.0,
+      "bear": -59.3,
+      "full": 223.0
+     },
+     "vs_previous_pct": {
+      "base": 13.7,
+      "bear": -0.6,
+      "full": 15.0
+     }
     }
    ],
    "exchange": "EGX",
@@ -360,6 +502,74 @@
       "base": 25.0,
       "bear": 118.0,
       "full": 34.2
+     }
+    },
+    {
+     "delivered": "2026-09-09",
+     "edition": 7,
+     "fair": {
+      "base": 69.22170258351841,
+      "bear": 27.303264382824587,
+      "full": 69.76773858796382
+     },
+     "lessons": [],
+     "origins": "FY2018-FY2025 h=1-5, 25 cells",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": 26.7,
+      "bear": -44.9,
+      "full": 13.1
+     },
+     "vs_previous_pct": {
+      "base": 4.0,
+      "bear": 10.9,
+      "full": -3.3
+     }
+    },
+    {
+     "delivered": "2026-09-10",
+     "edition": 8,
+     "fair": {
+      "base": 77.48543592414525,
+      "bear": 29.94612146115402,
+      "full": 78.10469032477832
+     },
+     "lessons": [
+      "L-386"
+     ],
+     "origins": "FY2014-FY2024, 11 origins",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": 41.8,
+      "bear": -39.5,
+      "full": 26.6
+     },
+     "vs_previous_pct": {
+      "base": 11.9,
+      "bear": 9.7,
+      "full": 11.9
+     }
+    },
+    {
+     "delivered": "2026-09-10",
+     "edition": 9,
+     "fair": {
+      "base": 77.17814396333017,
+      "bear": 29.834782868495065,
+      "full": 77.79484584533901
+     },
+     "lessons": [],
+     "origins": "FY2014-FY2024, 11 origins",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": 41.2,
+      "bear": -39.8,
+      "full": 26.1
+     },
+     "vs_previous_pct": {
+      "base": -0.4,
+      "bear": -0.4,
+      "full": -0.4
      }
     }
    ],
@@ -609,6 +819,124 @@
       "bear": 200.8,
       "full": 28.4
      }
+    },
+    {
+     "delivered": "2026-09-10",
+     "edition": 8,
+     "fair": {
+      "base": 4.899,
+      "bear": 0.9084,
+      "full": 8.9858
+     },
+     "lessons": [],
+     "origins": "",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": 34.6,
+      "bear": null,
+      "full": -41.9
+     },
+     "vs_previous_pct": {
+      "base": null,
+      "bear": -0.0,
+      "full": 11.8
+     }
+    },
+    {
+     "delivered": "2026-09-10",
+     "edition": 9,
+     "fair": {
+      "base": null,
+      "bear": 0.9084,
+      "branches": [
+       {
+        "label": "Cash-flow lens, capital programme carried through",
+        "value": 5.0224
+       },
+       {
+        "label": "Cash-flow lens, capital programme stopped",
+        "value": 9.1288
+       }
+      ],
+      "full": 9.1288
+     },
+     "lessons": [],
+     "origins": "",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": null,
+      "bear": null,
+      "full": -41.0
+     },
+     "vs_previous_pct": {
+      "base": null,
+      "bear": 0.0,
+      "full": 1.6
+     }
+    },
+    {
+     "delivered": "2026-09-10",
+     "edition": 10,
+     "fair": {
+      "base": null,
+      "bear": 0.9084,
+      "branches": [
+       {
+        "label": "Cash-flow lens, capital programme carried through",
+        "value": 5.0966
+       },
+       {
+        "label": "Cash-flow lens, capital programme stopped",
+        "value": 8.6284
+       }
+      ],
+      "full": 8.6284
+     },
+     "lessons": [],
+     "origins": "FY2014-FY2024, 11 origins",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": null,
+      "bear": null,
+      "full": -44.2
+     },
+     "vs_previous_pct": {
+      "base": null,
+      "bear": 0.0,
+      "full": -5.5
+     }
+    },
+    {
+     "delivered": "2026-09-10",
+     "edition": 11,
+     "fair": {
+      "base": null,
+      "bear": 0.9084,
+      "branches": [
+       {
+        "label": "Cash-flow lens, capital programme carried through",
+        "value": 8.0748
+       },
+       {
+        "label": "Cash-flow lens, capital programme stopped",
+        "value": 11.6065
+       }
+      ],
+      "full": 11.6065
+     },
+     "lessons": [],
+     "origins": "FY2014-FY2024, 11 origins",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": null,
+      "bear": null,
+      "full": -25.0
+     },
+     "vs_previous_pct": {
+      "base": null,
+      "bear": 0.0,
+      "full": 34.5
+     }
     }
    ],
    "exchange": "EGX",
@@ -652,6 +980,30 @@
       "base": -1.3,
       "bear": 1.4,
       "full": -0.1
+     }
+    },
+    {
+     "delivered": "2026-09-10",
+     "edition": 2,
+     "fair": {
+      "base": 0.32291115401779547,
+      "bear": 0.15793834545505386,
+      "full": 0.9555793571971434
+     },
+     "lessons": [
+      "L-386"
+     ],
+     "origins": "FY2014-FY2025, 12 origins",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": -5.0,
+      "bear": -12.3,
+      "full": 0.6
+     },
+     "vs_previous_pct": {
+      "base": -3.8,
+      "bear": -13.5,
+      "full": 0.7
      }
     }
    ],
@@ -699,7 +1051,7 @@
      }
     },
     {
-     "delivered": "2026-09-07",
+     "delivered": "2026-09-08",
      "edition": 2,
      "fair": {
       "base": null,
@@ -717,7 +1069,7 @@
       "full": 52.345259974418816
      },
      "lessons": [],
-     "origins": "FY2012-FY2025, h=1-5. RE-REGISTERED 17-09-2026 IN THE TWO-SIDED SHAPE THE DELIVERED STUDY ACTUALLY PUBLISHES. Edition 1 recorded a single base of 44.329 and an envelope of 27.400/67.649; the study's own committed numbers carry lenses.central.base = null, central_bear 19.291 and central_full 52.345, with central_two_sided.branches naming the two. GB Corp's largest single component is a minority interest in an unlisted company and the two bases the company itself puts on it differ by EGP 11.9bn, 27% of the answer; both are its own disclosures and the filings do not decide between them, so neither does the study. A register recording a single base describes a world nobody is proposing.",
+     "origins": "2016-2023",
      "scope": "full",
      "vs_baseline_pct": {
       "base": null,
@@ -731,35 +1083,57 @@
      }
     },
     {
-     "delivered": "2026-09-17",
+     "delivered": "2026-09-10",
      "edition": 3,
      "fair": {
-      "base": null,
-      "bear": 7.910718601367549,
-      "branches": [
-       {
-        "label": "MNT-Halan at its reviewed carrying value",
-        "value": 17.83311239606159
-       },
-       {
-        "label": "MNT-Halan at the June-2026 round price",
-        "value": 30.31502119385063
-       }
-      ],
-      "full": 30.31502119385063
+      "base": 45.7826,
+      "bear": 19.2911,
+      "full": 56.7795
      },
      "lessons": [],
-     "origins": "FY2012-FY2025, h=1-5. EDITION 3, THE 17-09-2026 EDITION, registered 18-09-2026. Same two-sided shape and the same two branch labels as edition 2; both branches fall, 41.3484 -> 17.8331 and 52.3453 -> 30.3150, on the edition that closed the six QC blockers and rebuilt the capex path.",
+     "origins": "",
      "scope": "full",
      "vs_baseline_pct": {
-      "base": null,
-      "bear": -66.0,
-      "full": -40.6
+      "base": 28.2,
+      "bear": -17.2,
+      "full": 11.3
      },
      "vs_previous_pct": {
       "base": null,
-      "bear": -59.0,
-      "full": -42.1
+      "bear": -0.0,
+      "full": 8.5
+     }
+    },
+    {
+     "delivered": "2026-09-10",
+     "edition": 4,
+     "fair": {
+      "base": null,
+      "bear": 19.2911,
+      "branches": [
+       {
+        "label": "MNT-Halan at its reviewed carrying value",
+        "value": 45.7826
+       },
+       {
+        "label": "MNT-Halan at the June-2026 round price",
+        "value": 56.7795
+       }
+      ],
+      "full": 56.7795
+     },
+     "lessons": [],
+     "origins": "",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": null,
+      "bear": -17.2,
+      "full": 11.3
+     },
+     "vs_previous_pct": {
+      "base": null,
+      "bear": 0.0,
+      "full": 0.0
      }
     }
    ],
@@ -814,6 +1188,170 @@
       "base": null,
       "bear": -43.1,
       "full": -32.0
+     }
+    },
+    {
+     "delivered": "2026-09-09",
+     "edition": 2,
+     "fair": {
+      "base": null,
+      "bear": 31.3738,
+      "branches": [
+       {
+        "label": "Frame A \u2014 provision charge permanent at 5.25% of revenue",
+        "value": 31.3738
+       },
+       {
+        "label": "Frame B \u2014 provision charge normalising to 2.5% of revenue",
+        "value": 47.6035
+       }
+      ],
+      "full": 47.6035
+     },
+     "lessons": [],
+     "origins": "FY2020-FY2024, 5 origins",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": null,
+      "bear": -45.9,
+      "full": -34.8
+     },
+     "vs_previous_pct": {
+      "base": null,
+      "bear": -4.9,
+      "full": -4.2
+     }
+    },
+    {
+     "delivered": "2026-09-09",
+     "edition": 3,
+     "fair": {
+      "base": null,
+      "bear": 31.29765587745293,
+      "branches": [
+       {
+        "label": "Frame A \u2014 provision charge permanent at 5.25% of revenue",
+        "value": 31.29765587745293
+       },
+       {
+        "label": "Frame B \u2014 provision charge normalising to 2.5% of revenue",
+        "value": 47.50628127175547
+       }
+      ],
+      "full": 47.50628127175547
+     },
+     "lessons": [],
+     "origins": "FY2020-FY2024, 5 origins",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": null,
+      "bear": -46.1,
+      "full": -34.9
+     },
+     "vs_previous_pct": {
+      "base": null,
+      "bear": -0.2,
+      "full": -0.2
+     }
+    },
+    {
+     "delivered": "2026-09-09",
+     "edition": 4,
+     "fair": {
+      "base": null,
+      "bear": 88.52006108866603,
+      "branches": [
+       {
+        "label": "Frame A \u2014 provision charge permanent at 5.25% of revenue",
+        "value": 88.52006108866603
+       },
+       {
+        "label": "Frame B \u2014 provision charge normalising to 2.5% of revenue",
+        "value": 106.68118434967789
+       }
+      ],
+      "full": 106.68118434967789
+     },
+     "lessons": [],
+     "origins": "FY2020-FY2024, 5 origins",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": null,
+      "bear": 52.5,
+      "full": 46.1
+     },
+     "vs_previous_pct": {
+      "base": null,
+      "bear": 182.8,
+      "full": 124.6
+     }
+    },
+    {
+     "delivered": "2026-09-10",
+     "edition": 5,
+     "fair": {
+      "base": null,
+      "bear": 112.79925543163876,
+      "branches": [
+       {
+        "label": "Frame A \u2014 provision charge permanent at 5.25% of revenue",
+        "value": 112.79925543163876
+       },
+       {
+        "label": "Frame B \u2014 provision charge normalising to 2.5% of revenue",
+        "value": 134.78928520851622
+       }
+      ],
+      "full": 134.78928520851622
+     },
+     "lessons": [
+      "L-386"
+     ],
+     "origins": "FY2015-FY2025, 11 origins",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": null,
+      "bear": 94.3,
+      "full": 84.6
+     },
+     "vs_previous_pct": {
+      "base": null,
+      "bear": 27.4,
+      "full": 26.3
+     }
+    },
+    {
+     "delivered": "2026-09-10",
+     "edition": 6,
+     "fair": {
+      "base": null,
+      "bear": 85.24648033266331,
+      "branches": [
+       {
+        "label": "Frame A \u2014 provision charge permanent at 5.25% of revenue",
+        "value": 85.24648033266331
+       },
+       {
+        "label": "Frame B \u2014 provision charge normalising to 2.5% of revenue",
+        "value": 102.89147925242756
+       }
+      ],
+      "full": 102.89147925242756
+     },
+     "lessons": [
+      "L-386"
+     ],
+     "origins": "FY2015-FY2025, 11 origins",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": null,
+      "bear": 46.9,
+      "full": 40.9
+     },
+     "vs_previous_pct": {
+      "base": null,
+      "bear": -24.4,
+      "full": -23.7
      }
     }
    ],
@@ -919,21 +1457,59 @@
      }
     },
     {
-     "delivered": "2026-09-17",
+     "delivered": "2026-09-09",
      "edition": 5,
      "fair": {
-      "base": 13.912894753552722,
-      "bear": 4.749040233013941,
-      "full": 38.89699689438268
+      "base": 17.8617,
+      "bear": 4.0171975691,
+      "full": 46.5342107227
      },
      "lessons": [],
-     "origins": "FY2015-FY2023, h=1-5. EDITION 5, THE 17-09-2026 RE-ISSUE, registered 18-09-2026 after check found the register behind the study: three levers on the reviewed half carried the central 17.8478 -> 13.9129, and a later pass closed eight of the nine defects that edition's own QC gate found. The movement was delivered and left unrecorded, which is the one thing this register exists to prevent.",
+     "origins": "FY2015-FY2025, 11 origins",
      "scope": "full",
      "vs_baseline_pct": null,
      "vs_previous_pct": {
-      "base": -22.0,
-      "bear": 18.4,
-      "full": -16.3
+      "base": 0.1,
+      "bear": 0.1,
+      "full": 0.1
+     }
+    },
+    {
+     "delivered": "2026-09-10",
+     "edition": 6,
+     "fair": {
+      "base": 21.08966329162309,
+      "bear": 4.981294104224145,
+      "full": 55.06632686478202
+     },
+     "lessons": [
+      "L-386"
+     ],
+     "origins": "FY2015-FY2025, 11 origins",
+     "scope": "full",
+     "vs_baseline_pct": null,
+     "vs_previous_pct": {
+      "base": 18.1,
+      "bear": 24.0,
+      "full": 18.3
+     }
+    },
+    {
+     "delivered": "2026-09-10",
+     "edition": 7,
+     "fair": {
+      "base": 21.0897,
+      "bear": 4.9813,
+      "full": 55.0663
+     },
+     "lessons": [],
+     "origins": "",
+     "scope": "full",
+     "vs_baseline_pct": null,
+     "vs_previous_pct": {
+      "base": 0.0,
+      "bear": 0.0,
+      "full": -0.0
      }
     }
    ],
@@ -1005,6 +1581,28 @@
       "bear": 25.6,
       "full": -4.5
      }
+    },
+    {
+     "delivered": "2026-09-10",
+     "edition": 3,
+     "fair": {
+      "base": 122.6685,
+      "bear": 22.2944,
+      "full": 122.6685
+     },
+     "lessons": [],
+     "origins": "",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": 130.9,
+      "bear": -52.4,
+      "full": 107.6
+     },
+     "vs_previous_pct": {
+      "base": 9.9,
+      "bear": -17.8,
+      "full": 9.9
+     }
     }
    ],
    "exchange": "EGX",
@@ -1055,6 +1653,188 @@
       "base": -24.4,
       "bear": -1.6,
       "full": -27.0
+     }
+    },
+    {
+     "delivered": "2026-09-09",
+     "edition": 2,
+     "fair": {
+      "base": 43.5107633816,
+      "bear": 16.1816200566,
+      "full": 83.7987634305
+     },
+     "lessons": [],
+     "origins": "2014-2025, 12 origins",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": -37.6,
+      "bear": -18.9,
+      "full": -39.6
+     },
+     "vs_previous_pct": {
+      "base": -17.4,
+      "bear": -17.6,
+      "full": -17.3
+     }
+    },
+    {
+     "delivered": "2026-09-09",
+     "edition": 3,
+     "fair": {
+      "base": 39.55403218844242,
+      "bear": 15.724005037913132,
+      "full": 71.71181857114279
+     },
+     "lessons": [],
+     "origins": "2014-2025, 12 origins",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": -43.3,
+      "bear": -21.2,
+      "full": -48.3
+     },
+     "vs_previous_pct": {
+      "base": -9.1,
+      "bear": -2.8,
+      "full": -14.4
+     }
+    },
+    {
+     "delivered": "2026-09-10",
+     "edition": 4,
+     "fair": {
+      "base": 59.28245930736961,
+      "bear": 21.607833064470228,
+      "full": 96.98568399661953
+     },
+     "lessons": [
+      "L-386"
+     ],
+     "origins": "2014-2025, 12 origins",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": -15.0,
+      "bear": 8.3,
+      "full": -30.1
+     },
+     "vs_previous_pct": {
+      "base": 49.9,
+      "bear": 37.4,
+      "full": 35.2
+     }
+    },
+    {
+     "delivered": "2026-09-10",
+     "edition": 5,
+     "fair": {
+      "base": 87.76327116068838,
+      "bear": 28.78407997537623,
+      "full": 133.77538500704136
+     },
+     "lessons": [
+      "L-386"
+     ],
+     "origins": "2014-2025, 12 origins",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": 25.9,
+      "bear": 44.3,
+      "full": -3.6
+     },
+     "vs_previous_pct": {
+      "base": 48.0,
+      "bear": 33.2,
+      "full": 37.9
+     }
+    },
+    {
+     "delivered": "2026-09-10",
+     "edition": 6,
+     "fair": {
+      "base": 87.8244467891,
+      "bear": 28.8051201823,
+      "full": 133.8678939303
+     },
+     "lessons": [
+      "L-386"
+     ],
+     "origins": "2014-2025, 12 origins",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": 25.9,
+      "bear": 44.4,
+      "full": -3.5
+     },
+     "vs_previous_pct": {
+      "base": 0.1,
+      "bear": 0.1,
+      "full": 0.1
+     }
+    },
+    {
+     "delivered": "2026-09-13",
+     "edition": 7,
+     "fair": {
+      "base": 87.763271,
+      "bear": 28.78,
+      "full": 133.78
+     },
+     "lessons": [],
+     "origins": "2014-2025, 12 origins",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": 25.9,
+      "bear": 44.3,
+      "full": -3.6
+     },
+     "vs_previous_pct": {
+      "base": -0.1,
+      "bear": -0.1,
+      "full": -0.1
+     }
+    },
+    {
+     "delivered": "2026-09-13",
+     "edition": 8,
+     "fair": {
+      "base": 87.763271,
+      "bear": 28.56,
+      "full": 137.73
+     },
+     "lessons": [],
+     "origins": "2014-2025, 12 origins",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": 25.9,
+      "bear": 43.2,
+      "full": -0.7
+     },
+     "vs_previous_pct": {
+      "base": 0.0,
+      "bear": -0.8,
+      "full": 3.0
+     }
+    },
+    {
+     "delivered": "2026-09-13",
+     "edition": 9,
+     "fair": {
+      "base": 87.94253,
+      "bear": 28.566916,
+      "full": 138.175135
+     },
+     "lessons": [],
+     "origins": "2014-2025, 12 origins",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": 26.1,
+      "bear": 43.2,
+      "full": -0.4
+     },
+     "vs_previous_pct": {
+      "base": 0.2,
+      "bear": 0.0,
+      "full": 0.3
      }
     }
    ],
@@ -1151,6 +1931,50 @@
       "base": 31.3,
       "bear": 35.2,
       "full": 25.3
+     }
+    },
+    {
+     "delivered": "2026-09-09",
+     "edition": 4,
+     "fair": {
+      "base": 91.9728,
+      "bear": 63.802349231,
+      "full": 123.1967553373
+     },
+     "lessons": [],
+     "origins": "FY2020-FY2025, 6 origins",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": -37.5,
+      "bear": -23.7,
+      "full": -35.0
+     },
+     "vs_previous_pct": {
+      "base": 0.2,
+      "bear": 0.2,
+      "full": 0.1
+     }
+    },
+    {
+     "delivered": "2026-09-10",
+     "edition": 5,
+     "fair": {
+      "base": 108.1943,
+      "bear": 77.13,
+      "full": 140.74
+     },
+     "lessons": [],
+     "origins": "",
+     "scope": "full",
+     "vs_baseline_pct": {
+      "base": -26.5,
+      "bear": -7.7,
+      "full": -25.8
+     },
+     "vs_previous_pct": {
+      "base": 17.6,
+      "bear": 20.9,
+      "full": 14.2
      }
     }
    ],

@@ -24,7 +24,11 @@ from openpyxl import load_workbook
 from openpyxl.styles import Font, PatternFill
 from openpyxl.utils import get_column_letter
 
-OUT = 'GBCO_Valuation_Model_17092026_public.xlsx'
+import json as _json_ed, os as _os_ed
+_ED = _json_ed.load(open(_os_ed.path.join(
+    _os_ed.path.dirname(_os_ed.path.abspath(__file__)),
+    'study_numbers.json'), encoding='utf-8'))['edition']
+OUT = 'GBCO_Valuation_Model_%s_public.xlsx' % ''.join(_ED.split('-')[::-1])
 wb = load_workbook(OUT)
 A = json.load(open('_asm_rows.json'))
 D = json.load(open('study_numbers.json'))
@@ -93,6 +97,20 @@ def ac(label, col):
     return "Assumptions!$%s$%d" % (col, A[label])
 
 
+# CROSS-SHEET REFERENCES BY NAME, NEVER BY A TYPED ROW NUMBER [10-09-2026]. Six formulas
+# on this sheet addressed Assumptions!$B$16, $B$17, $B$19 and $B$20 as literals. Splitting
+# the equity premium into its mature and country legs pushed those rows down by two, so
+# the terminal value started capitalising at the DEBT WEIGHT instead of the growth rate
+# and the bridge subtracted the wrong two lines: the DCF sheet returned an enterprise
+# value of -19,269 against a model figure of 89,266, and opened without complaint. The
+# workbook's own reconciliation caught it; the typed numbers are why there was anything
+# to catch.
+_G_CELL = ac('Terminal growth (nominal EGP, DERIVED)', 'B')
+_W1_CELL = ac('WACC — first forecast year', 'B')
+_ND_CELL = ac('GB Auto net debt (30 June 2026, reviewed)', 'B')
+_NCI_CELL = ac('GB Auto non-controlling interests (30 June 2026)', 'B')
+
+
 YH = ['FY23', 'FY24', 'FY25']; YF = ['FY26E', 'FY27E', 'FY28E', 'FY29E', 'FY30E']
 FCOLS = ['E', 'F', 'G', 'H', 'I']; ACOLS = ['C', 'D', 'E', 'F', 'G']
 
@@ -154,14 +172,8 @@ r = srow(r, 'Trading revenue (tires + parts)', H_TR_REV + [TR_REV_FY25],
                                         ac('Trading revenue growth', ACOLS[j])), NUM0)
 # 'Other Auto' is the RESIDUAL against the disclosed segment total, so the column foots to
 # the figure the company published rather than to the four lines this study models.
-# CARRIED, NOT ZEROED [audit finding 5]. This row existed in the delivered workbook and was
-# set to zero for every forecast year, while the gross margin applied to that forecast is
-# struck by the company on the WHOLE of total revenue. It is EGP 682.8mn of external revenue
-# outside the four published lines plus EGP 444.8mn of inter-segment revenue, held flat
-# because the company publishes no volume, price or growth rate for either.
-_OF = D['forecast']['FY26E']['of_rev']
 r = srow(r, 'Other Auto / after-sales & regional adj.',
-         [None, None, None], lambda j, c: _OF, NUM0)
+         [None, None, None], lambda j, c: '=0', NUM0)
 OTH = SR['Other Auto / after-sales & regional adj.']
 # THE FIVE REVENUE LINES BY NAME, never a range: the volume and average-price rows sit
 # between them, and a contiguous SUM would add units to pounds. It evaluates perfectly and
@@ -271,30 +283,15 @@ r = drow(r, '- Capex', lambda j, c: "=-%s" % ac('Auto capex (EGP mn)', ACOLS[j])
 r = drow(r, '- Increase in net working capital',
          lambda j, c: "='Balance Sheet'!%s40*-1" % FCOLS[j])   # re-pointed in part 3
 DWC = DC['- Increase in net working capital']
-# THE FIRST FORECAST YEAR IS A STUB, AND THE WORKBOOK HAS TO SAY SO TOO. The bridge is
-# struck at 30 June 2026 and already reflects the cash the first half produced, so a FULL
-# calendar-2026 free cash flow beside it counts that half twice. The profit, depreciation
-# and capital expenditure are scaled to the part of the year still unearned; the change in
-# working capital needs no scaling because it already runs from the 30-June stock.
-_UNEARNED = D['dcf']['unearned_fraction']
-r = drow(r, 'x the part of FY2026 still unearned',
-         lambda j, c: (_UNEARNED if j == 0 else 1.0), '0.0000', font=BLUE)
-UNE = DC['x the part of FY2026 still unearned']
-r = drow(r, 'FCFF', lambda j, c: "=SUM(%s%d:%s%d)*%s%d+%s%d*(1-%s%d)"
-         % (c, DC['NOPAT = EBIT x (1 - tax)'], c, DWC, c, UNE, c, DWC, c, UNE), bold=True)
+r = drow(r, 'FCFF', lambda j, c: "=SUM(%s%d:%s%d)"
+         % (c, DC['NOPAT = EBIT x (1 - tax)'], c, DWC), bold=True)
 FCFF = DC['FCFF']
 # ONE FORWARD RATE PER YEAR, NOT ONE RATE COMPOUNDED FIVE TIMES. Discounting a five-year
 # forecast and a perpetuity alike at one crisis-level rate asserts that this economy's cost
 # of capital never normalises, against the central bank's own published disinflation path.
 _SCH = D['cost_of_capital_record']
-# ONE FORWARD RATE PER YEAR, AND EVERY ONE OF THEM A FORMULA [audit finding 18]. These
-# five cells were constants, so a reader changing the beta or the premium on the
-# Assumptions sheet moved the first year of the schedule and nothing else.
-_GF = A['Glide fractions']
-_WT = A['WACC — terminal (DERIVED)']
 r = drow(r, "Cost of capital — this year's forward rate",
-         lambda j, c: "=Assumptions!$B$16-(Assumptions!$B$16-Assumptions!$B$%d)*Assumptions!%s%d"
-                      % (_WT, get_column_letter(2 + j), _GF), PCT2)
+         lambda j, c: _SCH['forward_wacc'][j], PCT2, font=BLUE)
 FWD = DC["Cost of capital — this year's forward rate"]
 r = drow(r, 'Discount factor (cumulative on the schedule)',
          lambda j, c: ("=1/(1+%s%d)" % (c, FWD) if j == 0
@@ -315,39 +312,35 @@ def dline(r, label, f, fmt=NUM0, bold=False, note=None, font=BLACK):
 
 r = dline(r, 'Sum of the present values, FY26-30E', "=SUM(B%d:F%d)" % (PVR, PVR), bold=True)
 SPV = r - 1
-r = dline(r, 'Cost of capital — terminal (norm-built)', '=Assumptions!$B$%d' % _WT, PCT2,
+r = dline(r, 'Cost of capital — terminal (norm-built)', _SCH['wacc_terminal'], PCT2,
+          font=BLUE,
           note='the norm-built terminal rate the schedule glides to; the terminal is brought '
                'home on the SAME cumulative factor as the last explicit year — one date, one '
                'price of time.')
 WTR = r - 1
 r = dline(r, 'Terminal value (on the terminal rate)',
-          "=F%d*(1+Assumptions!$B$17)/(B%d-Assumptions!$B$17)" % (FCFF, WTR))
+          "=F%d*(1+%s)/(B%d-%s)" % (FCFF, _G_CELL, WTR, _G_CELL))
 TVR = r - 1
 r = dline(r, 'PV of the terminal value', "=B%d*F%d" % (TVR, DF))
 PVT = r - 1
 r = dline(r, 'Enterprise value — GB Auto leg', "=B%d+B%d" % (SPV, PVT), bold=True)
 EVR = r - 1
 r = dline(r, 'Terminal share of enterprise value', "=B%d/B%d" % (PVT, EVR), PCT2)
-r = dline(r, 'less: GB Auto net debt (30 June 2026)', '=-Assumptions!$B$19')
-r = dline(r, 'less: GB Auto non-controlling interests, at their share of this value',
-          "=-(B%d-Assumptions!$B$19)*Assumptions!$B$21" % EVR,
-          note='the minority is deducted at its SHARE OF THE LEG\'S EQUITY VALUE rather '
-               'than at its book, because the model capitalises 100%% of the segment\'s '
-               'cash flow. Its book of EGP %s mn is on the Assumptions sheet as the '
-               'reference framing.' % format(D['dcf']['auto_nci'], ',.1f'))
-NCIR = r - 1
-r = dline(r, 'GB Auto equity value',
-          "=(B%d-Assumptions!$B$19)*(1-Assumptions!$B$21)" % EVR, bold=True)
+r = dline(r, 'less: GB Auto net debt (30 June 2026)', '=-' + _ND_CELL)
+r = dline(r, 'less: GB Auto non-controlling interests', '=-' + _NCI_CELL)
+r = dline(r, 'GB Auto equity value', "=B%d-%s-%s" % (EVR, _ND_CELL, _NCI_CELL),
+          bold=True)
 AEQ = r - 1
 r += 1
 r = dline(r, 'check: year-1 forward rate less the WACC built on Assumptions',
-          "=B%d-Assumptions!$B$16" % FWD, PCT2,
+          "=B%d-%s" % (FWD, _W1_CELL), PCT2,
           note='ZERO by construction: the schedule\'s first year and rf* + beta x ERP blended '
                'with after-tax debt are the same rate, and this row is what says so.')
 r = dline(r, 'Enterprise value per +1pp of Auto gross margin (helper)',
-          "=0.01*(1-Assumptions!$B$7)*(SUMPRODUCT(B%d:F%d,B%d:F%d)"
-          "+F%d*(1+Assumptions!$B$17)/(B%d-Assumptions!$B$17)*F%d)"
-          % (DC['Auto revenue'], DC['Auto revenue'], DF, DF, DC['Auto revenue'], WTR, DF),
+          ("=0.01*(1-Assumptions!$B$7)*(SUMPRODUCT(B%d:F%d,B%d:F%d)"
+           "+F%d*(1+%s)/(B%d-%s)*F%d)"
+           % (DC['Auto revenue'], DC['Auto revenue'], DF, DF,
+              DC['Auto revenue'], _G_CELL, WTR, _G_CELL, DF)),
           note='EXACT rather than approximate: a margin shift moves cost only, so it moves '
                'every year\'s free cash flow by revenue x shift x (1 - tax) and nothing else. '
                'The Sensitivity sheet is built on this row.')

@@ -49,6 +49,18 @@ _FIXTURE_ENV = dict(os.environ, TESTAHIL_FIXTURE_POPULATION='1')
 
 GATE = os.path.join("scripts", "check_macro_coherence.py")
 
+# THE FIXTURE'S TERMINAL RATE IS DERIVED, NOT TYPED. It was typed once — 12.5%, which
+# was terminal inflation of 7% plus the 5.5% real-rate convention of the day — and on
+# 10-09-2026 that convention was revised to 3.5%. Six of this control's own cases went
+# red overnight, including every CLEAN one, and a negative control that cannot pass its
+# clean cases proves nothing about the red ones beside them. The house path is the source
+# for the fixture exactly as it is for a study.
+_EG = json.load(open(os.path.join(ROOT, "engine", "macro_paths", "EG.json"),
+                     encoding="utf-8"))
+_REAL = _EG["real_rate_convention"]["value"]
+_TERM_INFL = 0.07
+_TERM_RF = round(_TERM_INFL + _REAL, 10)
+
 GOOD = {
     "market": "EG",
     "path_as_of": "2026-09-02",
@@ -65,7 +77,8 @@ GOOD = {
         {"key": "cost_index", "mapping": "calendar", "first_year": 2026,
          "values": [0.16, 0.12, 0.09, 0.075, 0.07]},
     ],
-    "terminal": {"g_nominal": 0.07, "real": 0.0, "rf": 0.125, "inflation_in_rf": 0.07},
+    "terminal": {"g_nominal": _TERM_INFL, "real": 0.0, "rf": _TERM_RF,
+                 "inflation_in_rf": _TERM_INFL},
     "explicit_years": 5,
     "growth_at_horizon_end": 0.07,
 }
@@ -98,11 +111,18 @@ def put_study(tmp, ticker, record, extra=None, raw=None):
     json.dump(doc, open(p, "w"), indent=1)
 
 
-def put_list(tmp, tickers):
-    json.dump({"why": "negative control", "adopted": "2026-09-02",
-               "outstanding": sorted(tickers)},
-              open(os.path.join(tmp, "engine", "build_depth_audit",
-                                "macro_outstanding.json"), "w"), indent=1)
+def put_list(tmp, tickers, declared=None):
+    d = {"why": "negative control", "adopted": "2026-09-02",
+         "outstanding": sorted(tickers)}
+    if declared is not None:
+        d["declared_open"] = declared
+    json.dump(d, open(os.path.join(tmp, "engine", "build_depth_audit",
+                                   "macro_outstanding.json"), "w"), indent=1)
+
+
+RULED = {"breach": "the window ends 5pp from the terminal",
+         "ruling": "do not extend the horizon", "ruled_by": "the principal",
+         "ruled_on": "2026-09-10"}
 
 
 def run(tmp):
@@ -147,7 +167,11 @@ def main():
         rec["fx_path"] = [51.0, 52.0, 53.0, 54.0, 55.0]   # hand-set, ~3.5%/yr not ~13%
 
     def m_rf(rec):
-        rec["terminal"]["rf"] = 0.105                      # quoted, not derived
+        # QUOTED, NOT DERIVED — two points off whatever the house path derives, so this
+        # case stays broken through every revision of the real-rate convention instead of
+        # accidentally becoming the correct answer, which is what a typed 10.5% did the
+        # day the convention moved to 3.5%.
+        rec["terminal"]["rf"] = round(_TERM_RF + 0.02, 10)
 
     def m_horizon(rec):
         rec["growth_at_horizon_end"] = 0.44                # nowhere near terminal
@@ -297,11 +321,56 @@ def main():
         rec["growth_lines"][0]["nominal"] = [round((1 + i) * 1.02 - 1, 6)
                                              for i in (0.16, 0.12, 0.09, 0.075, 0.07)]
         rec["terminal"]["real"] = 0.02
-        rec["terminal"]["g_nominal"] = 0.09
-        rec["growth_at_horizon_end"] = 0.0914
+        # COMPOUNDED, NOT ADDED. The typed 0.09 was 7% + 2%, and the gate compounds:
+        # (1.07)(1.02) - 1 = 9.14%. The clean case failed on its own arithmetic.
+        rec["terminal"]["g_nominal"] = round((1 + _TERM_INFL) * 1.02 - 1, 10)
+        rec["growth_at_horizon_end"] = rec["terminal"]["g_nominal"]
         put_study(tmp, "NCA", rec)
         put_list(tmp, [])
     case("clean: stated real growth of 2%", c_real, False, results)
+
+    # ------------------------------------------------------------------------------
+    # THE DECLARED-OPEN LIST. It excuses a MEASURED breach that the study states in its
+    # own record and a person has ruled to keep open. Every way it could become a place
+    # to put things is a case here, and the one that matters is 4: it must never reach
+    # across to cover an ABSENT record, which is the other list's job and the weaker
+    # state of the two [R-ENF-04].
+    def _open_rec():
+        rec = json.loads(json.dumps(GOOD))
+        rec["growth_at_horizon_end"] = 0.44                  # nowhere near terminal
+        rec["note"] = ("THIS RECORD DECLARES A BREACH rather than clearing one: the "
+                       "window ends far from the terminal.")
+        return rec
+
+    def d_clean(tmp):
+        put_study(tmp, "NCA", _open_rec()); put_list(tmp, [], {"NCA": RULED})
+    case("declared open: measured, stated in the record, ruled — allowed",
+         d_clean, False, results)
+
+    def d_silent(tmp):
+        rec = _open_rec(); rec["note"] = "the window is long enough."
+        put_study(tmp, "NCA", rec); put_list(tmp, [], {"NCA": RULED})
+    case("declared open: the study's own record does NOT declare it",
+         d_silent, True, results)
+
+    def d_noruling(tmp):
+        e = dict(RULED); e.pop("ruled_by")
+        put_study(tmp, "NCA", _open_rec()); put_list(tmp, [], {"NCA": e})
+    case("declared open: the entry names no author", d_noruling, True, results)
+
+    def d_no_record(tmp):
+        # THE CASE THAT MATTERS: an entry claiming a measured, ruled-open breach on a
+        # study that carries no macro record at all. The measurement it points at does
+        # not exist, and an absent answer must never be excused by a list written for a
+        # stated one.
+        put_study(tmp, "NCA", None, raw='{"meta": {"ticker": "NCA"}}')
+        put_list(tmp, [], {"NCA": RULED})
+    case("declared open: no record at all — cannot be excused here",
+         d_no_record, True, results)
+
+    def d_both(tmp):
+        put_study(tmp, "NCA", _open_rec()); put_list(tmp, ["NCA"], {"NCA": RULED})
+    case("declared open: a name on BOTH lists", d_both, True, results)
 
     # ------------------------------------------------------------------------------
     # THE IDENTITIES ARE GUARDED BY REGIME, NOT APPLIED UNCONDITIONALLY. Both defects

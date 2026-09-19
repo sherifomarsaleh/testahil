@@ -120,10 +120,86 @@ MECHANISMS = {
     'one_off_in_the_latest_period':
         'a non-recurring item inside the latest reviewed period, quantified from '
         'the filing that discloses it',
+    # ADDED 13-09-2026, per instruction. THE SIX ABOVE ARE ALL INDUSTRIAL -- input
+    # costs, contracted prices, commissioning, subsidies, mix, one-offs -- because the
+    # three studies this rule was written on were all industrial. ADIB is the book's
+    # first bank and what compresses its forecast margin is none of them: the reviewed
+    # half was earned at the top of an Egyptian tightening cycle and the central bank is
+    # easing, so a deposit-funded bank whose assets reprice faster than its funding
+    # cannot hold a spread struck at the peak. THE LIST WAS CLOSED AND CORRECT AND
+    # POINTED AT ONE KIND OF COMPANY; the answer is to extend the list by rule amendment,
+    # which is what the closed list has always said the answer is, and NOT to widen the
+    # tolerance or re-anchor a forecast that is right [R-COC-01].
+    #
+    # IT CARRIES THE SAME DISCIPLINE AS THE OTHER SIX AND NOT A WEAKER ONE: the rate must
+    # be PUBLISHED by whoever administers it, the disclosure must name that publication,
+    # and the like-for-like measurement below still has to run the declared way in the
+    # company's OWN filings. An administered rate is the easiest thing in this list to
+    # assert and the easiest to be wrong about -- "rates are coming down" is not a
+    # mechanism any more than "the rate looked wrong" was.
+    'administered_rate_cycle_down':
+        'a published policy or administered rate on a disclosed downward path, whose '
+        'move the company\'s own filings already show reaching its realised rate',
 }
+
+# THE MIRROR LIST. A forecast that climbs above everything the company has ever filed
+# is the same kind of claim as one that opens below what it just filed, and until
+# 08-09-2026 this rule fired on one and said in its own text that it does NOT fire on
+# the other. That one-sidedness was inherited from the incident it was written on -- the
+# first occurrence was a margin COLLAPSING -- and the identical arithmetic running the
+# other way had no owner. MEASURED ON THE BOOK RATHER THAN ASSERTED: ARCC expands its
+# operating margin at EIGHT of eight origins, monotonically, reaching 55.81% at origin
+# FY2017 and 60.14% at FY2023, against a company whose filed operating margin over
+# FY2014-FY2025 runs -2.81% to 37.55% and swings both ways, and whose peak AS AT either
+# of those origins was 26.23% (FY2016). The overstatement of fair value tracks that
+# terminal margin almost monotonically.
+RISE_MECHANISMS = {
+    'capacity_commissioning_completing':
+        'a disclosed programme whose revenue arrives after costs already incurred',
+    'contracted_price_step_up':
+        'a contracted or administered price that steps up on a disclosed date',
+    'input_cost_normalising':
+        'a disclosed input whose price falls back from a level named in the filings',
+    'mix_shift_to_higher_margin':
+        'a disclosed shift in product or geographic mix, measured in the filings',
+    'one_off_depressing_the_latest_period':
+        'a non-recurring charge inside the latest reviewed period, quantified from '
+        'the filing that discloses it',
+    # THE MIRROR OF administered_rate_cycle_down, ADDED IN THE SAME AMENDMENT AND ON
+    # PURPOSE. Five of the six fall mechanisms already have their opposite here, and the
+    # general lesson this whole clause was written on is that A RULE WRITTEN ON AN
+    # INCIDENT INHERITS THE INCIDENT'S DIRECTION. Adding a fall-only entry for a policy
+    # cycle would commit that error one level down, in the list instead of in the clause:
+    # a tightening cycle expanding a deposit-funded margin is the identical arithmetic
+    # running the other way, and it would have had no owner.
+    'administered_rate_cycle_up':
+        'a published policy or administered rate on a disclosed upward path, whose move '
+        'the company\'s own filings already show reaching its realised rate',
+}
+
+# THE ONE RISE MECHANISM THAT ALSO OWES A LIKE-FOR-LIKE MEASUREMENT, AND THE REASON IS
+# WRITTEN INTO THE CLAUSE IT EXCEPTS. Clause three excuses the rise side from the
+# measurement on a stated ground: "a rise past the filed record is a claim about something
+# the company has NOT yet done, which by construction has no like-for-like pair in its own
+# history -- demanding one would be demanding evidence that cannot exist", and it recorded
+# the revisit condition in terms: "IF A FUTURE CASE SHOWS A RISE MECHANISM THAT COULD HAVE
+# BEEN MEASURED AND WAS NOT, THAT IS THE EVIDENCE TO TIGHTEN THIS."
+#
+# An administered rate cycle IS that case. Cycles repeat, so a company has filed through
+# previous turns and its realised rate moved then; the evidence is not impossible, it is
+# in the accounts. So the exemption's stated ground does not reach this entry, and the
+# entry carries the measurement while the other five keep the exemption for the reason it
+# was given. It binds FORWARD only -- no study in this book declares this mechanism today,
+# so nothing goes red and no ratchet grows.
+RISE_MEASURED = {'administered_rate_cycle_up'}
 
 REQUIRED = ('latest_reviewed_period', 'latest_reviewed_date', 'latest_reviewed_rate',
             'first_forecast_rate', 'rate_name')
+# filed_peak_rate is NOT in REQUIRED, on forecast_path's own precedent: it is being
+# introduced onto studies that predate it and the ratchet carries those. A record that
+# HAS one is tested on it. It is the highest rate the company had FILED as at the
+# origin — not as at today, which would let a later good year license an earlier
+# forecast that could not have known about it.
 # forecast_path is not in REQUIRED: it is being introduced onto studies that
 # predate it, and the ratchet carries those. A record that HAS one is tested on it.
 
@@ -198,6 +274,84 @@ def check(record, ticker='?'):
                         'would have passed EGCH, whose forecast opened seven points '
                         'ABOVE its latest audited year and then fell below it.'
                         % (p0, pmin, -100 * drop))
+
+    # THE MIRROR CLAUSE. Tested against what the company has ever FILED rather than
+    # against the forecast's own opening year, and that distinction was forced by the
+    # data rather than chosen: ARCC at origin FY2020 opens at an operating margin of
+    # -1.15% and recovers to 5.49%, which is ordinary mean reversion out of a
+    # loss-making year and must NOT fire -- it never approaches the 26.23% this company
+    # had already filed -- while the same name at FY2023 climbs to 60.14% against that
+    # same 26.23% and must. A test on the OPENING YEAR alone cannot tell those apart,
+    # because BOTH of them rise; a test against the filed record separates them by a
+    # wide margin (+129.3% against -79.1%).
+    peak_filed = _f(r.get('filed_peak_rate'))
+    r['_path_rise'] = None
+    if peak_filed and path:
+        try:
+            pmax = max(float(x) for x in path)
+        except (TypeError, ValueError):
+            pass
+        else:
+            rise = (pmax - peak_filed) / abs(peak_filed)
+            r['_path_rise'] = rise
+            if rise > TOL_REL:
+                rm = r.get('rise_mechanism') or {}
+                rname = str(rm.get('name') or '').strip()
+                if not rname:
+                    fails.append(
+                        'the forecast reaches %.4f against a filed peak of %.4f -- %.1f%% '
+                        'ABOVE anything this company has ever reported -- and names no '
+                        'mechanism. A forecast that exceeds the whole filed record is the '
+                        'same claim about the world as one that reverses what was just '
+                        'filed, and this rule fired on only one of those for a month '
+                        'because it was written on an incident that ran the other way.'
+                        % (pmax, peak_filed, 100 * rise))
+                elif rname not in RISE_MECHANISMS:
+                    fails.append(
+                        'rise mechanism %r is not on the closed list (%s). An open list '
+                        'lets any study opt out by inventing a reason, and adding to the '
+                        'list is a rule amendment.'
+                        % (rname, ', '.join(sorted(RISE_MECHANISMS))))
+                elif not str(rm.get('disclosure') or '').strip():
+                    fails.append('rise mechanism %r carries no disclosure. It must come '
+                                 'from the filings, not be asserted.' % rname)
+                elif rname in RISE_MEASURED:
+                    # the mirror of the clause that does the work, and the ONLY rise
+                    # mechanism it applies to: see RISE_MEASURED above for why the
+                    # blanket exemption does not reach here
+                    pair = rm.get('like_for_like') or {}
+                    need = ('period_a', 'period_b', 'value_a', 'value_b', 'measures')
+                    missing = [k for k in need if pair.get(k) in (None, '')]
+                    if missing:
+                        fails.append(
+                            'rise mechanism %r supplies no like-for-like measurement (%s). '
+                            'The blanket exemption for rise mechanisms rests on there being '
+                            'no pair in the company\'s own history to measure; an '
+                            'administered rate cycle has turned before and the accounts '
+                            'carry it, so the exemption does not reach this entry.'
+                            % (rname, ', '.join(missing)))
+                    else:
+                        a, b = _f(pair['value_a']), _f(pair['value_b'])
+                        if a is None or b is None:
+                            fails.append('the rise like-for-like values do not parse as '
+                                         'numbers')
+                        else:
+                            # higher_is_worse keeps ONE meaning across both clauses: a
+                            # higher value of this measure pushes the forecast rate DOWN.
+                            # A rise therefore needs the OPPOSITE move to a decline.
+                            hw = pair.get('higher_is_worse', True)
+                            measured_up = b < a if hw else b > a
+                            if not measured_up:
+                                fails.append(
+                                    'rise mechanism %r says the forecast rate climbs past '
+                                    'the whole filed record, and the like-for-like '
+                                    'measurement in the company\'s own filings runs the '
+                                    'OTHER WAY: %s moved from %.6f (%s) to %.6f (%s). AMOC\'s '
+                                    'lesson does not change direction -- a mechanism '
+                                    'contradicted by the filings is not a mechanism, it is '
+                                    'the assumption wearing one.'
+                                    % (rname, pair['measures'], a, pair['period_a'],
+                                       b, pair['period_b']))
 
     if gap >= -tol:
         if fails:

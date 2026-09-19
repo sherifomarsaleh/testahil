@@ -25,6 +25,7 @@ sys.path.insert(0, os.path.join(HERE, '..'))
 import numpy as np
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 import terminal_value as TV   # [R-TERM-01] the only sanctioned way to build a terminal
+import cost_of_capital as _coc
 import macro_path as MP       # [R-MACRO-01] the ONE house path; a study carries no inflation of its own
 
 # [R-MACRO-01] EVERY INFLATION-CLASS INPUT IS DERIVED HERE, FROM THE HOUSE LADDER, AND
@@ -50,6 +51,19 @@ def say(s):
 
 def I(value, source, date, ring):
     return dict(value=value, source=source, date=date, ring=ring)
+
+
+# THE BETA IS READ, NOT TYPED, AND THE TIER IS READ WITH IT. This study already adopts
+# 1.00 and already says why -- the own-stock regression fails the usability gate -- and it
+# reached that conclusion on the WRONG MEASUREMENT, quoting the composite regression's
+# R-squared of 0.038. The conforming regression against the exchange's own published
+# index gives 0.024 and fails the same gate harder, so the ANSWER does not move and the
+# EVIDENCE does. A fallback justified by the wrong statistic is a fallback nobody can
+# check, even when the fallback is correct.
+_BETA = json.load(open(os.path.join(HERE, 'beta_result.json'), encoding='utf-8'))
+assert _BETA.get('conforming'), 'beta_result.json is not a conforming regression'
+assert str(_BETA.get('index_file', '')).startswith('raw_indices/'), \
+    'the regressor is not a registered published index'
 
 FY24 = "Audited independent balance sheet as of 31 December 2024, printed page 5 of the FY2024 audited statements (SCC-AFS-E-1224.pdf), read from the company's own website. ROUTE: OCR off the rendered pixels — that filing carries no text layer at all (zero bytes across its 36 pages), so no extraction confidence exists to trust and ARITHMETIC IS THE ARBITER: the page's own total liabilities of EGP 1,959,808,479 plus its own total equity of EGP 3,735,799,731 foot to its printed total assets of EGP 5,695,608,210 exactly, and its non-current total of 1,703,837,097 plus current total of 3,991,771,113 foot to the same figure. Cross-checked against the FY2025 filing's own comparative column at printed page 2, committed in filings_extract.py, which agrees to the pound on liabilities and prints total assets one pound higher at 5,695,608,211 — the filings' own additive rounding, disclosed rather than reconciled away"
 
@@ -221,8 +235,15 @@ INP = dict(
                 "split and nothing downstream", "2026-08-06", "House"),
 
     # ---- BOTTOM-UP PLANT AND COST STACK ----------------------------------
-    cap_cement_mt=I(3.80, "Cement grinding capacity, El Hassana, two lines", "2025-03-23",
-                    "Company"),
+    cap_cement_mt=I(3.80, "Cement grinding capacity, El Hassana, two lines. NOT THE SAME "
+                    "THING AS THE 2.9 MILLION TONNES THE COMPANY'S OWN WEBSITE QUOTES, and "
+                    "the distinction is stated here because a reader who finds that page "
+                    "will otherwise think this study overstated capacity by a third. The "
+                    "website says the plant PRODUCES an average of 2.9 million tonnes of "
+                    "packed and bulk cement: that is output, not nameplate. It sits exactly "
+                    "where it should between the 2.57 million tonnes of kiln clinker below "
+                    "and the 3.80 of grinding, which is 76% of the mills running",
+                    "2025-03-23", "Company"),
     cap_clinker_mt=I(2.57, "Kiln clinker capacity. The PAIR with cement capacity OBSERVES "
                      "the clinker factor rather than assuming it, and settles which base "
                      "a USD-per-tonne benchmark is quoted on", "2025-03-23", "Company"),
@@ -257,6 +278,24 @@ INP = dict(
                            "away", "2026-08-06", "House"),
     domestic_share=I([0.88, 0.87, 0.86, 0.85, 0.84, 0.83], "Domestic share of despatches",
                      "2026-01-01", "Industry"),
+    egy_new_licence_mt=I(3.5, "SECTOR SUPPLY THIS STUDY DID NOT CARRY: two Egyptian cement "
+                         "licences planned from October 2025 at 1.5-2.0 million tonnes a "
+                         "year each, 3.5 at the midpoint, on top of the dormant capacity "
+                         "already returning. Nothing was located awarding either to this "
+                         "company, so it is sector supply and never this company's volume. "
+                         "It bears on the price path rather than on the volume build, and "
+                         "the direction is against this study's answer rather than for it",
+                         "2025-10-19", "Industry"),
+    price_dom_market_forecast_egp_t=I(3600.0, "A FORECAST, LABELLED AS ONE AND FEEDING "
+                         "NOTHING. Industry commentary of 1 February 2026 put the domestic "
+                         "market price easing toward EGP 3,600 a tonne as the returning "
+                         "supply arrives, against roughly EGP 4,000 in March 2026 and a "
+                         "2025 peak near 5,000. THIS STUDY DOES NOT ASSUME IT: the realised "
+                         "ex-works price escalates on the house inflation ladder at zero "
+                         "real growth, so a fall to 3,600 in NOMINAL terms would be a real "
+                         "decline this study has not taken. Registered so the reader can "
+                         "see which way the unmodelled risk runs, and it runs against us",
+                         "2026-02-01", "Industry"),
     price_dom_egp_t=I([3503.0 * c for c in _CUM],
                       "Domestic realised price ex-works. FY2025 is the level the disclosed "
                       "revenue implies given the volume build \u2014 13.9% below the ~EGP "
@@ -347,11 +386,20 @@ INP = dict(
               "3.40% x (9.71/6.37) = 9.4127%. Revision 1 cited 'Damodaran, Egypt row' "
               "without naming the variant; a checker following that citation lands on the "
               "rating-based 13.94%", "2026-01-05", "Country"),
-    beta=I(1.00, "Adopted beta. The own-stock regression FAILS the usability gate "
-           "(R-squared 0.038 against a 0.05 floor) though n=256 and SE 0.153 both pass. "
-           "The lead-lag corrected estimate is 0.837 and its 90% interval contains 1.00. "
-           "Rounding up to 1.00 COSTS 1.84% of the central; that price is now stated "
-           "rather than left implicit", "2026-08-06", "House"),
+    beta=I(float(_BETA['adopted_beta']),
+           "ADOPTED AT TIER %d. The own-stock regression against %s as at %s -- the "
+           "published index of the exchange this stock is listed on, resolved by "
+           "beta_regression.own_stock_beta() -- gives %.4f with an R-squared of %.3f over "
+           "%d weekly observations, and FAILS the usability gate: the index barely "
+           "explains this stock's returns. %s The point estimate is published beside the "
+           "adopted figure and is not used, and the price of adopting 1.00 rather than the "
+           "point estimate is computed in the beta sensitivity rather than asserted here. "
+           "SUPERSEDED: the previous edition justified the same fallback on a 32-name "
+           "equal-weight COMPOSITE of the covered library (R-squared 0.038) -- the right "
+           "conclusion reached on a regression against something that is not a market."
+           % (_BETA['tier'], _BETA['index_file'], _BETA['index_asof'], _BETA['beta'],
+              _BETA['r2'], _BETA['n'], _BETA['tier_reason']),
+           str(_BETA['index_asof']), "House"),
     kd=I(0.0, "PLACEHOLDER — replaced below by the sovereign-plus-spread construction, "
          "because a marginal cost of debt is not a free-standing input once the "
          "sovereign it must sit above comes from the house path", "2026-09-04", "House"),
@@ -370,18 +418,18 @@ INP = dict(
               "inherits its SHAPE from this", "2026-08-06", "House"),
     kd_term=I(0.150, "Terminal cost of debt, the Egyptian long-run corporate norm",
               "2026-08-06", "House"),
-    # DERIVED, NOT TYPED [R-MACRO-01]: "TERMINAL RISK-FREE = terminal inflation + the
-    # real-rate convention, DERIVED AND NEVER QUOTED". This was the literal 0.125, so a
-    # revision to the house real-rate convention reached every other Egyptian study and
-    # stopped dead here — the study went on discounting its terminal at a rate the house
-    # path no longer holds, and nothing could see it because the number looked committed.
-    # Found 19-09-2026 when the convention moved to 2.0% and this study alone did not move.
-    rf_term=I(MP.load("EG").terminal_rf,
-              "Terminal risk-free rate, DERIVED from the house path as the inflation "
-              "target in force plus the real-rate convention, never typed here "
-              "[R-MACRO-01]. Read engine/macro_paths/EG.json for both components and the "
-              "dated reason each carries.",
-              "2026-09-19", "House"),
+    rf_term=I(_PATH.terminal_rf, "Terminal risk-free rate, READ LIVE from the house macro "
+              "path (engine/macro_paths/EG.json) rather than typed here: the central bank's "
+              "operative Q4-2026 inflation target plus the house real-rate convention. TWO "
+              "EDITIONS OF THIS LINE ARE RETIRED. Revision 1 used the later 5% target while "
+              "its own text cited 'the 7% and then 5% targets'. Revision 3 typed 12.5% into "
+              "this file, built on a 5.5pp real convention, and flagged the alternative in "
+              "its own note as a 'REVIEWABLE CHOICE' worth about 1.8% — which is a defect "
+              "recorded rather than fixed. The house convention is 3.5%: the retired 5.5pp "
+              "was a restrictive policy stance, not a long-run real rate, and a perpetuity "
+              "does not live inside a policy stance. Two readers of one economy must not "
+              "disagree",
+              "2026-09-10", "House"),
     erp_term=I(0.070, "Terminal equity risk premium, normalised below the crisis level",
                "2026-08-06", "House"),
     wd_term=I(0.20, "Terminal debt weight, normalised", "2026-08-06", "House"),
@@ -574,7 +622,17 @@ say(f"\n[FY2025, AS FILED] operating profit "
 
 # ============ 3. COST OF CAPITAL — Hamada re-levered terminal ==============
 rf_star = V['rf'] - V['sov_spread_cds']
-ke_exp = rf_star + V['beta'] * V['erp_cds']
+# [R-COC-03] BETA APPLIES TO THE MATURE LEG AND TO NOTHING ELSE. The retired line was
+# rf* + beta x the WHOLE premium, which charges Egypt's country risk (beta - 1) times over.
+# THIS COMPANY'S BETA IS EXACTLY 1.000, so the two identities give the same number to the
+# last decimal and NOTHING MOVES HERE — which is the reason to fix it on this name first:
+# the change is a declaration of what the rate is made of, provable to be nothing else.
+# The components are published beside the rate because a leg that is computed and not
+# published is a leg nothing can verify.
+_crp, _erp_mature = _coc.split_erp(V['erp_cds'], V['sov_spread_cds'])
+ke_exp = rf_star + V['beta'] * _erp_mature + _crp
+assert abs(ke_exp - (rf_star + V['beta'] * V['erp_cds'])) < 1e-12, \
+    'beta is 1.000 here, so the split and the retired identity must agree exactly'
 kd_at = V['kd'] * (1 - TAX)
 mktcap = V['spot'] * V['shares_mn']
 wd_exp = V['debt_fy25'] / (V['debt_fy25'] + mktcap)
@@ -886,7 +944,7 @@ sens_nc = [reval(nc=x) for x in nc_grid]
 wacc_grid = [wacc_exp - 0.03, wacc_exp - 0.015, wacc_exp, wacc_exp + 0.015, wacc_exp + 0.03]
 g_grid = [0.03, 0.04, 0.05, 0.06, 0.07]
 sens_wg = [[reval(we=x, g=gg) for gg in g_grid] for x in wacc_grid]
-beta_grid = [0.6, 0.8, 0.837, 1.0, 1.3]
+beta_grid = sorted({0.6, 0.8, round(float(_BETA['beta']), 4), 1.0, 1.3})
 sens_beta = [reval(beta_=b) for b in beta_grid]
 mgn_grid = [-0.04, -0.02, 0.0, 0.02, 0.04]
 sens_mgn = [reval(mgn_shift=m) for m in mgn_grid]
@@ -1121,6 +1179,17 @@ COC_RECORD = dict(
     market='EG', regime=_PATH.regime, years=5,
     rf_observed=V['rf'], default_spread=V['sov_spread_cds'], rf_star=rf_star,
     erp=V['erp_cds'], erp_basis='cds', beta=V['beta'],
+    erp_mature=_erp_mature, crp=_crp, crp_effective=_crp,
+    lambda_country=1.0, crp_foreign=0.0,
+    ke_construction='split_premium',
+    ke_construction_note=(
+        'rf* + beta x the MATURE premium + the country premium charged FLAT and once. '
+        'Every plant, every tonne and every customer is in Egypt, so lambda is 1.00 and '
+        'the whole country premium is the Egyptian one. The premium splits by Damodaran\'s '
+        'identity: the sovereign default spread scaled to equity volatility is the country '
+        'leg, the remainder is the mature leg, and beta multiplies only the mature leg. '
+        'This company\'s beta is exactly 1.000, so this construction and the retired '
+        'total-premium one agree to the last decimal and the rate is unchanged.'),
     ke_exp=ke_exp, kd_pretax=V['kd'], kd_aftertax=kd_at,
     weight_equity=1 - wd_exp, weight_debt=wd_exp, wacc_exp=wacc_exp,
     rf_terminal=V['rf_term'], erp_terminal=V['erp_term'], ke_terminal=ke_term,
@@ -1693,5 +1762,10 @@ OUT = dict(
         prior_fy26_margin=0.305, prior_fy25_margin=0.280,
         corrections_applied=69),
 )
+# NO STANDARD STAMP HERE, AND THAT IS THE HONEST STATE [13-09-2026]. One was added
+# earlier today so the campaign queue would stop listing this study as needing a
+# reissue. It made the study CLAIM 2026.09.10, which it does not meet: it is
+# ratcheted against [R-ASSET-01] and commits no asset-base record. An unstamped
+# study reading as outstanding is the queue telling the truth.
 json.dump(OUT, open(os.path.join(HERE, 'study_numbers.json'), 'w'), indent=1, default=float)
 say("\nwrote study_numbers.json (revision 2)")

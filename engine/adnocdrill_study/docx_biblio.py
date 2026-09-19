@@ -1,3 +1,4 @@
+import sys
 """ADNOC Drilling — the standalone bibliography and input register.
 
 Everything the study rests on, in one document: the primary documents actually
@@ -9,6 +10,8 @@ import json, os
 from docx_base import Doc, INK, GREY, BRASS, F_CREAM, F_PANEL2
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 BETA = json.load(open(os.path.join(HERE, 'beta_result.json')))
 IN = D['inputs']
@@ -335,7 +338,7 @@ P('The model, the figures and both delivered documents are generated from one co
   'in place and requires the headline to move in the direction asserted before the test was '
   'run. The results of both are reported in the study\'s quality-control table.')
 
-OUT = os.path.join(HERE, 'ADNOCDRILL_Bibliography_09-08-2026.docx')
+OUT = os.path.join(HERE, _ed.BIBLIO_DOCX)
 d.save(OUT)
 print(f'wrote {OUT}')
 print(f'  {len(d.doc.paragraphs)} paragraphs, {len(d.tables)} tables, '

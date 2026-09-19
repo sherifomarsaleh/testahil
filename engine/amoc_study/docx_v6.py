@@ -7,6 +7,7 @@ the adversarial give-back stack.
 
 Every number is read from study_numbers.json or case_adversarial.json. Nothing is typed.
 """
+import datetime as _dt
 import json
 import math
 import os
@@ -17,6 +18,8 @@ from docx_base import (P, H1, H2, rich, caption, bullet, table, figure, box, mas
                        INK, GREY)                                      # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 CENSUS = json.load(open(os.path.join(HERE, 'workbook_census.json')))
 ADV = json.load(open(os.path.join(HERE, 'case_adversarial.json')))
@@ -93,62 +96,50 @@ def grid_vals(name):
     return [(p['label'], SC[f'{name}|{i}']['ps']) for i, p in enumerate(g[2])]
 
 
-# ---- probability partition, computed and asserted to sum to one -------------
-def cdf3m(x):
-    """Log-linear interpolation on the published 3-month percentiles."""
-    q = [0.05, 0.25, 0.50, 0.75, 0.95]
-    v = [H3M['pct'][k] for k in ('p5', 'p25', 'p50', 'p75', 'p95')]
-    lx = math.log(x)
-    if lx <= math.log(v[0]):
-        return q[0] * math.exp((lx - math.log(v[0])) * 6)
-    if lx >= math.log(v[-1]):
-        return 1 - (1 - q[-1]) * math.exp(-(lx - math.log(v[-1])) * 6)
-    for i in range(4):
-        a, b = math.log(v[i]), math.log(v[i + 1])
-        if a <= lx <= b:
-            return q[i] + (q[i + 1] - q[i]) * (lx - a) / (b - a)
-    return 0.5
+# ---- probability partition, READ from the strike ----------------------------
+# It used to be computed here, in the document builder, from a log-linear
+# interpolation on the published percentiles -- and printed straight out of this
+# file, so nothing else in the repository could see it. The prose check reports
+# every printed figure it cannot reach and reported 66.9% unmatched through every
+# edition, which means it could not have told a correct partition from a wrong one.
+# The arithmetic now lives in compute.py, where the level-touch ladder already
+# lives, and this builder READS the published block. Same corollary as the
+# valuation table: a line that is computed and not published is a line the
+# document cannot print.
+_Z = D['zones']
+CUTS = _Z['cuts']
+ZP = _Z['p']
+assert abs(sum(ZP) - 1.0) < 1e-6, 'published zones do not sum to one: %s' % sum(ZP)
 
-
-# THE ZONE CUTS MUST ASCEND, AND THE GUARD THAT WAS HERE COULD NOT SEE THAT THEY
-# DID NOT [corrected 03-Sep-2026]. The list was written [C, 7.50, SPOT, 11.00] --
-# the central first, then a low level, then spot, then a level below spot -- and
-# once the central moved to 11.83 the sequence read 11.83, 7.50, 13.50, 11.00.
-# Differences of a decreasing cumulative distribution are NEGATIVE, so the table
-# published probabilities of -74.6% and -16.0% under a caption promising a
-# partition.
-#
-# The assert could not catch it: consecutive differences of a cumulative function
-# TELESCOPE, so the sum is 1.0 for any ordering whatever, ascending or not. It is
-# a check that cannot fail, which is the [R-ENF-04] species -- a green light that
-# examined nothing. Both are fixed: the cuts are SORTED, and the guard now tests
-# what actually matters, which is that no zone is negative.
-_CUTSET = (C, 7.50, SPOT, 11.00)
-CUTS = sorted(_CUTSET)
-ZP = [cdf3m(CUTS[0])]
-for i in range(len(CUTS) - 1):
-    ZP.append(cdf3m(CUTS[i + 1]) - cdf3m(CUTS[i]))
-ZP.append(1 - cdf3m(CUTS[-1]))
-assert abs(sum(ZP) - 1.0) < 1e-9, f'probability zones do not sum to one: {sum(ZP)}'
-assert all(z >= -1e-9 for z in ZP), (
-    'a probability zone is NEGATIVE: %s at cuts %s. Consecutive differences of a '
-    'cumulative distribution telescope, so the sum-to-one assert above is 1.0 for '
-    'any ordering and cannot see this.' % ([round(z, 4) for z in ZP], CUTS))
 
 # ============================ FRONT MATTER ===================================
 masthead()
 P('Alexandria Mineral Oils Company S.A.E.', size=19, bold=True, space_after=0)
-rich([('EGX: AMOC  ·  Egyptian Exchange  ·  EGP  ·  Valuation study as of 6 August 2026, '
-       'issued 3 September 2026', dict(size=10, color=GREY))], space_after=10)
+# THE MASTHEAD TYPED BOTH ITS DATES AND BOTH WENT STALE [corrected 13-09-2026].
+# It said "as of 6 August 2026, issued 3 September 2026" on a file this builder names
+# 10-09-2026 from edition.py one screen above. edition.py exists so the date is written
+# ONCE and it was doing that job for the FILENAME while the page a reader actually looks
+# at carried two hand-typed dates from two superseded editions. check_edition_date
+# caught it; nothing inside this study could, because the study is internally consistent
+# with either date.
+#
+# AND THE TWO DATES ARE NOT ONE DATE. "As of" is the market date the answer is struck
+# against, which is the study's own committed spot_date; "issued" is the edition. Both
+# now come from the record rather than from this line.
+_ASOF = _dt.date.fromisoformat(D['spot_date'])
+rich([('EGX: AMOC  \u00b7  Egyptian Exchange  \u00b7  EGP  \u00b7  Valuation study as of %d %s %d, '
+       'issued %s' % (_ASOF.day, _ASOF.strftime('%B'), _ASOF.year, _ed.WORDS),
+       dict(size=10, color=GREY))], space_after=10)
 
 box([
     ('READ FIRST.  ',
      'This is an educational valuation study, not investment advice, and it makes no '
      'recommendation to buy, sell or hold. What it publishes is a fair-value RANGE and a '
      'probability distribution for the price — never a target. Three things are worth knowing '
-     'before the numbers: the estimate sits well below the market price, which means the burden '
-     'of proof is on this study and Section 1.14 states exactly what a buyer at the market price '
-     'would have to believe; the forecasting method behind it has been tested against this '
+     f'before the numbers: the estimate sits well {"ABOVE" if GAP > 0 else "BELOW"} the market '
+     f'price, which means the burden of proof is on this study and Section 1.14 states exactly '
+     f'what a buyer at the market price would have to believe; the forecasting method behind it '
+     f'has been tested against this '
      'company’s own past and did NOT beat a simple no-change rule, which is why the range is wide '
      'and why Section 7 leads with that rather than burying it; and the second half of the base '
      'year is reviewed rather than fully audited. Everything here is reproducible from the '
@@ -506,8 +497,14 @@ H2('1.6  The cost of capital, built rather than asserted')
 table([['Component', 'Explicit window', 'Terminal', 'Construction'],
        ['Risk-free rate', pc(IN['rf'], 2), pc(RT['rf_term'], 2),
         'Egypt 10-year local currency. The TERMINAL rate is DERIVED, not typed: the central '
-        'bank’s inflation target IN FORCE for the terminal horizon (7%) plus a 5.5% real '
-        'convention'],
+        # THE CONVENTION IS READ, NOT TYPED. This said "a 5.5% real convention" and the
+        # register carries 3.5% -- the retired figure being a restrictive policy stance
+        # rather than a long-run real rate. Worse, the typed pair did not produce the
+        # number printed beside it: 7% + 5.5% is 12.5%, and the terminal rate is 10.50%.
+        # THE CHANGE FROM 5.5 TO 3.5 IS THE REASON THIS EDITION EXISTS.
+        f'bank’s inflation target IN FORCE for the terminal horizon '
+        f'({pc(IN["cbe_target"], 0)}) plus a {pc(IN["real_rate_term"], 1)} real '
+        f'convention, which is the {pc(RT["rf_term"], 2)} beside it'],
        ['less sovereign default spread', f"−{pc(IN['sov_spread_cds'], 2)}", '—',
         'netted out of the risk-free rate so country risk is not counted in both the rate and '
         'the equity premium'],
@@ -782,23 +779,50 @@ table([['Give-back', 'Central', 'vs price', 'What is being conceded'],
         pc(ADV['ALL_GIVEBACKS']['central'] / SPOT - 1),
         'every contested charge conceded simultaneously']],
       [2.2, 0.85, 0.85, 3.0], band_rows={7}, size=8.7, left_cols=(3,))
-caption('Table 18 — the adversarial stack. Concede everything and the price is still '
-        f'{pc(-(ADV["ALL_GIVEBACKS"]["central"]/SPOT-1))} above the model.')
+# THE DIRECTION IS COMPUTED, NOT TYPED. Both of these sentences were written when the
+# model sat BELOW the market and read correctly then: negating the gap made it positive
+# and "the price is still X above the model" was true. The moment the model crossed the
+# price the arithmetic went on being right and the words went backwards — the caption
+# printed a NEGATIVE per cent followed by the word "above". A direction word beside a
+# signed figure is a claim, and it has to be produced by the same arithmetic as the
+# figure or it is a sentence nobody is checking.
+_ALL_GB = ADV["ALL_GIVEBACKS"]["central"]
+_GB_GAP = _ALL_GB / SPOT - 1.0
+caption('Table 18 — the adversarial stack. Concede every contested charge at once and the '
+        f'cash-flow lens reaches EGP {p2(_ALL_GB)}, '
+        + (f'{pc(_GB_GAP)} above the market price of EGP {p2(SPOT)}.'
+           if _GB_GAP > 0 else
+           f'still {pc(-_GB_GAP)} below the market price of EGP {p2(SPOT)}.'))
 figure(os.path.join(HERE, 'fig4_adversarial.png'), 6.9,
-       'Figure 4 — the same stack drawn. No single concession, and not all of them together, '
-       'reaches the price.')
+       'Figure 4 — the same stack drawn. '
+       + ('Every concession moves the answer further above the price rather than toward '
+          'it, which is what makes this table adversarial in the direction that matters: '
+          'the case against this valuation is not that it has been generous.'
+          if _GB_GAP > 0 else
+          'No single concession, and not all of them together, reaches the price.'))
 P(f'Two further contested choices are computed rather than conceded. On the RATING-BASIS equity '
   f'risk premium instead of the CDS basis, the cash-flow lens is EGP '
   f'{p2(DCF["ps_rating_basis"])}; two independent reviewers reached for that column, so it is '
   f'promoted here rather than buried. And discounting the export leg in DOLLARS at a dollar cost '
   f'of capital before translating back — rather than discounting a pound cash flow already '
   f'inflated by the depreciation path at a dollar rate, which would count the currency benefit '
-  f'twice — gives EGP {p2(DCF["ccy_alt_ps"])}. Both are below the market price.')
+  f'twice — gives EGP {p2(DCF["ccy_alt_ps"])}. '
+  # COMPUTED, NOT TYPED, on the principle the Headline already carries: a number stated in
+  # prose must be computed, and so must the word that gives it its sign. This read "Both are
+  # below the market price" through an edition in which both moved above it.
+  + (lambda _a, _b: (
+      'Both are above the market price.' if min(_a, _b) > SPOT else
+      'Both are below the market price.' if max(_a, _b) < SPOT else
+      f'One sits above the market price of EGP {p2(SPOT)} and one below it.'
+    ))(DCF['ps_rating_basis'], DCF['ccy_alt_ps']))
 P('What survives the give-backs is the part of the verdict that cannot be negotiated away by '
   f'accounting choices: a pass-through processor earning a {pc(TTM["gm"])} gross margin, '
   f'discounted at an Egyptian cost of equity of {pc(W["ke_exp"], 1)} falling to '
-  f'{pc(W["ke_term"], 1)}, is worth less than EGP {p2(SPOT)} a share on any internally '
-  'consistent arithmetic this study can construct.')
+  f'{pc(W["ke_term"], 1)}, is worth '
+  # THE VERDICT'S OWN DIRECTION, COMPUTED. This asserted the company is worth LESS than the
+  # market price while the study published a central 48.5% above it.
+  + (f'more than EGP {p2(SPOT)}' if C > SPOT else f'less than EGP {p2(SPOT)}')
+  + ' a share on any internally consistent arithmetic this study can construct.')
 
 H2(f'1.14  What a buyer at EGP {p2(SPOT)} must believe')
 P('The model is inverted at the market price rather than argued with. Every other driver is held '
@@ -1123,10 +1147,17 @@ P(f'READ THE LAST FILED COLUMN AGAINST THE FIRST FORECAST COLUMN. The most recen
   f'weakness is seasonal or a superseded level is this study\u2019s largest contested '
   f'judgement: the same quarter a year apart runs {pc(HIS[PERIODS[1]]["gm"], 2)} against '
   f'{pc(HIS[PERIODS[3]]["gm"], 2)}, which no seasonal pattern produces. Anchoring on the '
-  f'latest half and holding it flat gives EGP {p2(DCF["ps_h1_anchor"])} a share against the '
-  f'published EGP {p2(C)}. It is priced here and NOT taken, because corrections are made one '
-  f'at a time and this study has already made one this edition; taking a second would carry '
-  f'it from below the traded price to well above it in a single step.')
+  # THIS PARAGRAPH DESCRIBED THE EDITION BEFORE THIS ONE. It said anchoring on the latest
+  # half was "priced here and NOT taken". It WAS taken -- ps_h1_anchor IS the published
+  # central -- and the base it describes as adopted is the one this edition superseded.
+  # A paragraph that survives the change it describes is worse than none.
+  f'latest half and holding it flat gives EGP {p2(DCF["ps_h1_anchor"])} a share, and '
+  f'THAT IS THE BASIS THIS EDITION ADOPTS: the published EGP {p2(C)} is struck on the '
+  f'reviewed half at a gross margin of {pc(DCF["gm_h1_filed"], 3)}, not on the '
+  f'twelve-month blend of {pc(DCF["gm_ttm_base"], 3)}. The superseded blend is retained '
+  f'and priced rather than deleted: it gives EGP {p2(DCF["ps_ttm_base_superseded"])} a '
+  f'share. THE CORRECTION CROSSES THE TRADED PRICE, from below it to well above, and it '
+  f'is taken on the filed evidence rather than withheld for where it lands.')
 
 H2('A.2  Balance sheet — as filed at 31 December 2025, and the forecast (EGP mn)')
 table([['', 'Filed 31-Dec-2025', *YRS],
@@ -1351,8 +1382,11 @@ _below = sum(1 for k in ('e1', 'e2', 'e3') if EXP[k]['base'] < SPOT)
 P(f'Put in one room the three methods land between EGP {p2(_lo3)} and EGP {p2(_hi3)}, a spread '
   f'of {pc(_hi3 / _lo3 - 1)} of the lower number, with a median of EGP {p2(D["panel_centre"])} '
   f'against a market price of EGP {p2(SPOT)} — {pc(D["panel_centre"] / SPOT - 1)}. '
-  f'{"All three" if _below == 3 else ("Two of the three" if _below == 2 else "One of the three")} '
-  f'sit below the price.')
+  # THE COUNT WAS COMPUTED AND THE WORD BELOW IT WAS NOT, so a study with none below the
+  # price still printed "One of the three sit below the price".
+  + (f'{["None", "One", "Two", "All three"][_below]} of the three '
+     f'sit below the price of EGP {p2(SPOT)}.' if _below else
+     f'None of the three sits below the price of EGP {p2(SPOT)}.'))
 P('Where they agree is more informative than where they differ, because the agreement is not '
   'built in. All three are struck on the same audited base year and the same house macro path, '
   'and none of them is allowed to set an inflation rate of its own — so the disagreement between '
@@ -1505,6 +1539,6 @@ box([
      'turn out wrong.'),
 ])
 
-OUT = os.path.join(HERE, 'AMOC_Valuation_Study_03-09-2026_public.docx')
+OUT = os.path.join(HERE, _ed.STUDY_DOCX)
 doc.save(OUT)
 print('wrote', OUT)

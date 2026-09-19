@@ -1,0 +1,73 @@
+{
+ "central": 44.460978528259474,
+ "spot": 52.05,
+ "gap": -0.14580252587397735,
+ "h1_cost_of_risk": 2.5777935001594375e-05,
+ "central_if_h1_cor_holds_2026": 45.1411251347628,
+ "central_if_h1_cor_holds_throughout": 57.22106316901048,
+ "rf_held": 0.23,
+ "rf_apr_may_2026_market": 0.2129,
+ "central_at_rf_2129": 53.98500405465003,
+ "central_at_rf_1929": 71.0521076964959,
+ "rf_that_reaches_spot": 0.21591439753289599,
+ "ke_that_reaches_spot": 0.21274440129798045,
+ "market_pb_on_jun26_book": 1.7924404675593872,
+ "market_implied_ke_gordon": 0.24615077251782339,
+ "central_rf2129_and_h1cor": 54.67439764722828,
+ "implied_pb_2026": 1.370037401869127,
+ "implied_pe_2026": 4.922445181470941,
+ "implied_pb_on_jun26_book": 1.5310981199104954,
+ "implied_pe_trailing_fy25": 5.297778635447231,
+ "gordon_pb_at_terminal": 1.634876284670705,
+ "gordon_pb_at_ke0_on_fy26_roe": 1.2466493103644725,
+ "ri_book0": 34596.28,
+ "ri_capital_added": 3000.0,
+ "fy26_fcfe": -533.8515765403317,
+ "fy26_dividend": 2466.1484234596683,
+ "equity_assets_path": [
+  0.105,
+  0.105,
+  0.105,
+  0.105,
+  0.105
+ ],
+ "terminal_growth": 0.07,
+ "terminal_rf": 0.10500000000000001,
+ "terminal_inflation": 0.07,
+ "terminal_ke": 0.1782252545648532,
+ "terminal_roe": 0.24693490209052843,
+ "tv_share_ddm": 0.7382863816392847,
+ "tv_share_fcfe": 0.7668123120078978,
+ "tv_share_ri": 0.31076389413249783,
+ "nominal_gdp_growth": [
+  0.21219999999999994,
+  0.1704000000000001,
+  0.1390499999999999,
+  0.12337499999999979,
+  0.11814999999999998
+ ],
+ "financing_growth": [
+  0.48,
+  0.26,
+  0.19,
+  0.15,
+  0.12
+ ],
+ "growth_multiple_of_nominal_gdp": [
+  2.262016965127239,
+  1.5258215962441306,
+  1.3664149586479695,
+  1.215805471124622,
+  1.0156580617858655
+ ],
+ "share_of_system_credit_fy2025": 0.03141412121316315,
+ "share_of_system_credit_path": [
+  0.0383541489815884,
+  0.041290351774437274,
+  0.04313727984862856,
+  0.04415967226075251,
+  0.04423273526096036
+ ],
+ "published_central": 44.460978528259474,
+ "published_spot": 52.05
+}

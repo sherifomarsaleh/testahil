@@ -153,35 +153,33 @@ def company_named_not_ticker_named(tmp):
 
 
 def ratcheted_breach_stays_green(tmp):
-    """A breach that IS on the list must not turn the build red.
+    """A ratcheted breach must not turn the build red.
 
-    THE BREACH IS PLANTED, NOT BORROWED [L-403]. This case used to take the first
-    entry off the live ratchet and assert that study was genuinely breaching — correct
-    the day it was written, and dead the day the debt was PAID: the list was pruned to
-    empty, the fixture had nothing to stand on, and the control refused. A control whose
-    condition is supplied by a debt somebody is working to remove has an expiry date
-    nobody sets, and the more diligently the debt is cleared the sooner the control
-    stops proving anything.
-
-    So the case builds its own: a study directory carrying a delivered document and NO
-    bibliography, named on the ratchet in the same breath. It tests the ratchet
-    MECHANISM, which is what the case is for, and it keeps testing it whether the book
-    owes this debt or not.
+    THE BREACH AND ITS RATCHET ENTRY ARE BOTH CONSTRUCTED HERE, and that is the
+    correction. This case used to read the LIVE ratchet and take its first name, so
+    the day that list was finally emptied -- the debt being PAID, which is the whole
+    point of a ratchet -- the case had nothing to prove and refused, and the control
+    reported a gate that was fine as broken. That is the third fixture in one session
+    whose subject was live state, and the discipline is the same each time: build the
+    condition, never borrow it. A control that only works while somebody still owes
+    something is a control that stops working when the work is done.
     """
-    tk = "NCRATCHET"
-    d = _dir(tmp, tk.lower() + "_study")
+    tk = "ZZZTEST"
+    d = os.path.join(tmp, "engine", "%s_study" % tk.lower())
     os.makedirs(d, exist_ok=True)
-    open(os.path.join(d, "%s_Valuation_Study_01-01-2026_public.docx" % tk), "w").close()
-    assert not _biblio_of(tmp, tk.lower() + "_study"), \
-        "fixture: the planted study is not actually breaching"
+    # a delivered study document and deliberately NO bibliography beside it
+    open(os.path.join(d, "%s_Valuation_Study_08-09-2026.docx" % tk), "wb").write(b"x")
+    assert not _biblio_of(tmp, "%s_study" % tk.lower()), \
+        "fixture: the constructed study is not actually breaching"
     p = os.path.join(tmp, "engine", "build_depth_audit",
                      "bibliography_outstanding.json")
     o = json.load(open(p))
     o.setdefault("outstanding", [])
-    assert tk not in o["outstanding"], "fixture: the planted ticker was already listed"
-    o["outstanding"].append(tk)
-    json.dump(o, open(p, "w"))
-    assert tk in json.load(open(p))["outstanding"], "fixture: the ratchet entry did not land"
+    if tk not in o["outstanding"]:
+        o["outstanding"].append(tk)
+    json.dump(o, open(p, "w"), indent=1)
+    assert tk in json.load(open(p))["outstanding"], \
+        "MUTATION DID NOT LAND: the ratchet does not name the constructed study"
     return None
 
 

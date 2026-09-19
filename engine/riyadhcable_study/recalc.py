@@ -1,3 +1,4 @@
+import sys
 """Recalculate the delivered xlsx and reconcile it against study_numbers.json.
 Independent evaluator (xlcalc.py) over the formula set the builder emits; anything it
 cannot parse is a FAILURE, never a skip. Three gates, increasing strength:
@@ -11,7 +12,9 @@ import openpyxl
 import xlcalc
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-XLSX = os.path.join(HERE, 'RIYADHCABLE_Valuation_Model_18082026_public.xlsx')
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
+XLSX = os.path.join(HERE, _ed.MODEL_XLSX)
 wb = openpyxl.load_workbook(XLSX)
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 XP = json.load(open(os.path.join(HERE, 'xlsx_expected.json')))

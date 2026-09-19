@@ -3,6 +3,15 @@ import json
 import os
 import numpy as np
 import pandas as pd
+import sys
+# ENGINE IS ON THE PATH EXPLICITLY. This imported primitives with nothing to find
+# it by, so the file only ran from engine/ -- and the declared build runs each step
+# from the STUDY directory, where it died on import. A module that resolves only
+# from one working directory is a build that works only when someone remembers
+# where to stand.
+import os as _os_enginepath, sys as _sys_enginepath
+_sys_enginepath.path.insert(0, _os_enginepath.path.dirname(
+    _os_enginepath.path.dirname(_os_enginepath.path.abspath(__file__))))
 import primitives as m
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -27,23 +36,6 @@ HISTORY = dict(
                         route=_PANEL['years'][y]['route'],
                         foots=_PANEL['years'][y]['foots'])
                 for y in HIST_YEARS})
-
-# EVERY TOTAL A READER SEES IS REPRODUCIBLE FROM THE ROWS PRINTED ABOVE IT [audit
-# finding 6]. Appendix A.2 printed GB Corp's own "Operating Profit" line and the rows above
-# it do not sum to it in two of the three years -- by 269.0 in FY2023 and 355.7 in FY2024,
-# which are those years' PROVISIONS to the pound. The company's own presentation changed:
-# operating profit EXCLUDED provisions in FY2023 and INCLUDES them from FY2024, and the
-# study's own committed EBIT proves which is which (FY2023's 4,769.7 less associates of
-# 1,061.7 is 3,708.0, not the printed 3,977.0). The line the table prints is computed here
-# from the rows above it, on ONE basis across the three years, and the as-reported figures
-# are carried beside it rather than replaced -- a restatement is noted, never substituted.
-_FOOTED_OP = {y: round(
-    _is['gross_profit'] + _is['selling'] + _is['admin'] + _is['other_income']
-    + _is['provisions'], 1)
-    for y, _is in ((yy, HISTORY['income_statement'][yy]) for yy in HIST_YEARS)}
-for _y in HIST_YEARS:
-    _ebit_implied = HISTORY['income_statement'][_y]['ebit'] - HISTORY['income_statement'][_y]['associates']
-    assert abs(_FOOTED_OP[_y] - _ebit_implied) < 0.15, (_y, _FOOTED_OP[_y], _ebit_implied)
 
 # THE EXCHANGE LIBRARY, NOT A STUDY-LOCAL COPY. The study-local extract stops at 7 July
 # 2026 while engine/raw_ohlc/EG/GBCO.csv — the persistent library every cone in this
@@ -212,27 +204,6 @@ cv_vg = [0.25, 0.18, 0.12, 0.10, 0.08]; cv_ag = [0.05]*5
 lm_vol = {'FY25': 33906}; lm_rev = {'FY25': 2203.8}
 lm_vg = [0.30, 0.20, 0.15, 0.12, 0.10]; lm_ag = [0.05]*5
 tr_rev = {'FY25': 4242.8}; tr_g = [0.18, 0.15, 0.12, 0.10, 0.10]
-# THE FIFTH LINE, WHICH THE DELIVERED EDITION ZEROED FOR EVERY FORECAST YEAR [audit
-# finding 5]. GB Auto's FY2025 total revenue is EGP 66,358.3mn and the four lines above
-# sum to 65,230.7 -- the base year carried a fifth line of 1,127.6 that the forecast did
-# not. It is two disclosed components, and both are named rather than merged:
-#   * 682.8 of revenue outside the four published business lines. The 4Q25 release gives
-#     GB Auto's external revenue as 65,913.5 against those four lines' 65,230.7, and its
-#     line tables are headed "Sales AND AFTER-SALES Activity" without publishing the
-#     after-sales revenue separately.
-#   * 444.8 of inter-segment revenue (Table 8, "Inter-Segment Revenue"), which is real
-#     revenue to this segment and is removed again at group level by the elimination line.
-# IT MATTERS BECAUSE THE MARGIN IS STRUCK ON THE WHOLE. Table 8's gross margin of 14.8%
-# is computed on TOTAL revenue of 66,358.3, so applying that margin to a forecast revenue
-# that omits the fifth line understates gross profit by construction.
-# HELD FLAT, per [R-ANCHOR-01]'s discipline on an observable the company does not break
-# out: the company publishes no volume, price or growth rate for it, so it is carried at
-# its own filed level rather than grown at a rate nothing measures.
-os_rev = {'FY25': 682.8}      # outside the four published lines
-is_rev = {'FY25': 444.8}      # inter-segment
-of_rev = {'FY25': os_rev['FY25'] + is_rev['FY25']}
-assert abs(pc_rev['FY25'] + cv_rev['FY25'] + lm_rev['FY25'] + tr_rev['FY25']
-           + of_rev['FY25'] - 66358.3) < 0.05
 yrs = ['FY26E', 'FY27E', 'FY28E', 'FY29E', 'FY30E']
 fc = {}
 pv_, pa_ = pc_vol['FY25'], pc_rev['FY25']/pc_vol['FY25']
@@ -245,9 +216,58 @@ for i, y in enumerate(yrs):
     lmv *= (1+lm_vg[i]); lma *= (1+lm_ag[i])
     trr *= (1+tr_g[i])
     fc[y] = dict(pc_vol=pv_, pc_asp=pa_, pc_rev=pv_*pa_/1,  # ASP in mn
-                 cv_rev=cvv*cva, lm_rev=lmv*lma, tr_rev=trr, of_rev=of_rev['FY25'])
-    fc[y]['auto_rev'] = (fc[y]['pc_rev'] + fc[y]['cv_rev'] + fc[y]['lm_rev']
-                         + fc[y]['tr_rev'] + fc[y]['of_rev'])
+                 cv_rev=cvv*cva, lm_rev=lmv*lma, tr_rev=trr)
+    fc[y]['auto_rev'] = fc[y]['pc_rev'] + fc[y]['cv_rev'] + fc[y]['lm_rev'] + fc[y]['tr_rev']
+# ---- CAPACITY: THE TEST THIS FORECAST HAD NO WAY TO FAIL [R-ASSET-01], 13-09-2026 ----
+# This study forecasts passenger-car volumes off a FY2025 base of 56,548 units at
+# 12/14/10/8/6% a year and carried NO capacity figure of any kind. An assembler's volume
+# forecast with no asset base behind it could have run to two hundred thousand units and
+# nothing in this file would have noticed. The forecast peak is computed here rather than
+# asserted, and what is and is not disclosed is separated, because the separation is the
+# finding.
+pc_vol_path = []
+_v = pc_vol['FY25']
+for _g in vol_g:
+    _v *= (1 + _g); pc_vol_path.append(_v)
+PC_VOL_PEAK = pc_vol_path[-1]                  # FY2030E, ~90,921 units
+#
+# WHAT GB CORP ITSELF PUBLISHES, read live from gb-corporation.com/gb-auto/
+# manufacturing-facilities on 13-09-2026: GB Bus, 285,000 sqm, 5,000 units a year; the
+# Citi two- and three-wheeler plant, 12,000 sqm, 80,000 units a year; and Prima, "nearly
+# 58,000 square metres", for passenger cars.
+#
+# PRIMA'S CAPACITY IS NOT ON THAT PAGE. The one number this forecast needs is the one the
+# company does not publish. The page lists three plants and a total area "over 350,000
+# square metres", does not mention the Sadat City facility at all, and carries a 2022
+# copyright line -- so it is also stale against a plant the company has since built.
+CAP_DISCLOSED = dict(bus_bodies=5000, two_three_wheelers=80000)
+CAP_PASSENGER_DISCLOSED = None                 # NOT DISCLOSED. Stated, not guessed.
+#
+# WHAT IS IN CIRCULATION AND IS NOT A DISCLOSURE. A market-research primer gives Prima
+# 70,000-80,000 passenger cars a year on a multi-shift setup, Sadat City 50,000, and a
+# group total of about 110,000 vehicles. The 110,000 traces to the State Information
+# Service reporting GB Corp's leadership at an April 2026 meeting with the Minister of
+# Industry -- a government press office reporting a company statement, which is second
+# hand, and the plant-level splits trace to trade press. NONE of it is a filing and none
+# of it is on the company's own site. Registered as press, never as an input.
+CAP_PRESS = dict(prima_pc=(70000, 80000), sadat_pc=50000, group_total=110000,
+                 status='press and a government press office, not a company disclosure')
+#
+# THE CONSEQUENCE, WHICH IS A DEPENDENCY RATHER THAN A BREACH. Against the press figures
+# the FY2030E peak of ~90,900 cars is roughly 70-76% of a 120,000-130,000 passenger-car
+# nameplate, so the forecast does not run past the plant. BUT IT RUNS PAST PRIMA ALONE
+# FROM FY2028E (79,421 units against 70,000-80,000), so from the third forecast year this
+# valuation depends on Sadat City being built, commissioned and running. That dependency
+# was carried silently and is now stated. It is NOT tested, because the number that would
+# test it is the one GB Corp does not publish.
+CAP_NOTE = ('the passenger-car forecast peaks at %.0f units in FY2030E. GB Corp publishes '
+            'capacity for its bus plant (5,000) and its two- and three-wheeler plant '
+            '(80,000) and publishes NONE for passenger cars. Against press figures the '
+            'peak is 70-76%% of nameplate, but it exceeds the Prima complex alone from '
+            'FY2028E, so from the third forecast year the answer depends on the Sadat City '
+            'plant running. Stated rather than tested: the disclosure that would test it '
+            'does not exist.' % PC_VOL_PEAK)
+
 # ---- GROUP-LEVEL FORECAST DRIVERS ------------------------------------------------
 # THESE LIVED ONLY INSIDE THE WORKBOOK BUILDER AND THE DOCUMENT TYPED THE RESULT. The
 # consolidated forecast income statement a reader receives was transcribed by hand from an
@@ -262,89 +282,15 @@ grp_opex = [0.080, 0.079, 0.078, 0.0775, 0.077]
 grp_oth = [0.011]*5
 grp_prov = [-0.003]*5
 assoc_inc = [1250.0, 1430.0, 1630.0, 1830.0, 2030.0]
-# fin_cost IS DERIVED BELOW, once the cost-of-capital schedule exists [audit finding 9].
-# The delivered edition typed a ladder falling -4,100 -> -3,100 while its own balance-sheet
-# markers grew group borrowings 38,041 -> 66,241: a finance cost falling while the debt
-# behind it rises, with no derivation anywhere and nothing that could have reconciled them.
+fin_cost = [-4100.0, -3800.0, -3500.0, -3300.0, -3100.0]
 mi_pct = [-0.02]*5
 cap_dna = [560.0, 640.0, 730.0, 830.0, 940.0]
 gpm = [0.138, 0.142, 0.145, 0.145, 0.145]
 gsa = [0.073, 0.072, 0.071, 0.070, 0.070]
 oth = 0.012; prov = -0.003
 dna_pct = [0.011, 0.011, 0.011, 0.011, 0.011]
-# CAPITAL EXPENDITURE: THE LEVEL IS OUTSTANDING AND THE PATH IS NOW FLAT IN INTENSITY
-# [R-ANCHOR-01 CLAUSE TWO, corrected 17-09-2026]. The ladder read
-# [3000, 2400, 2500, 2600, 2800] and its INTENSITY against this leg's own revenue fell
-# 3.765% -> 1.919%, a 49.0% RELATIVE FALL FROM ITS OWN OPENING YEAR WITH NO MECHANISM
-# NAMED -- and the gate could not see it, because forecast_anchor declares the gross
-# margin and a rule only reaches the quantity a study declares.
-#
-# THE RULE'S DEFAULT IS WHAT APPLIES: hold the rate flat unless a NAMED mechanism from the
-# closed list has a MEASURED like-for-like direction in the company's own period pair.
-# This study's own sweep register carries the dated negative search that settles it -- GB
-# Corp publishes NO capital-expenditure figure, maintenance-capex disclosure or costed
-# investment plan in any release or in the FY2025 annual report -- so there is no
-# disclosure a mechanism could be measured in, and a declining ladder asserts one anyway.
-#
-# THE OPENING LEVEL REMAINS OUTSTANDING AND IS NOT DRESSED UP. It rests on the company's
-# DESCRIBED investment plans, which [R-FCAL-01] forbids as an input; the delivered
-# documents called it "the EGP 3,000 mn guided for the first year" while the same study's
-# negative search says no guidance is published anywhere. Both cannot be true. The word is
-# corrected and the exposure is priced rather than repaired, because repairing it needs a
-# disclosure that does not exist.
-# AND THE LEVEL IS ANCHORED ON THE ONE CAPEX FIGURE THIS COMPANY HAS FILED, not on the
-# typed opening year. Holding the TYPED 3,000 flat in intensity was tried first and is
-# recorded because it is instructive: 3,000 is an investment-PEAK year on the described
-# Ain Sokhna expansion, so holding a peak for ever is not holding a rate flat, it is
-# projecting a peak -- terminal value went to 97% of enterprise value and free cash flow
-# turned negative in two of five years, which is a worse model rather than a stricter one.
-# The FY2025 consolidated cash-flow statement discloses payment for property, plant and
-# equipment of EGP 3,664.2mn against group revenue of EGP 80,229.8mn: 4.567%, a FILED
-# actual on a like-for-like group numerator and denominator, applied to this leg and held
-# flat. It is higher than the typed opening year, and adopting it LOWERS the answer --
-# which is the direction that shows the anchor was not chosen to suit it.
-CAPEX_Y1 = 3000.0
-CAPEX_FY25_DISCLOSED = 3664.2
-GROUP_REV_FY25 = 80229.8
-CAPEX_INTENSITY_ANCHOR = CAPEX_FY25_DISCLOSED / GROUP_REV_FY25
-CAPEX_LADDER_RETIRED = [3000, 2400, 2500, 2600, 2800]
-# THE WORKING-CAPITAL ANCHOR [audit finding 2 -- the largest finding in that audit and
-# the one this study's own self-audit missed]. The delivered edition ran the cash-flow
-# walk from the 31-Dec-2025 stock while the bridge deducted 30-June-2026 net debt: TWO
-# BALANCE-SHEET DATES IN ONE CALCULATION. It then glided the intensity down a typed ladder
-# to 21.5% on a stated mechanism -- the stock build unwinding and payables re-extending.
-#
-# THE MECHANISM IS MEASURED IN THE COMPANY'S OWN PERIOD PAIR AND ONLY HALF OF IT HOLDS.
-# From this study's own conversion-cycle record (asset_cycle.json, built from the disclosed
-# segment tables with every table footed):
-#     stock build unwinding    DIO 149.0 -> 127.1 days   MEASURED, HOLDS
-#     payables re-extending    DPO 112.7 ->  83.3 days   CONTRADICTED, they SHORTENED
-# and the net cash cycle got WORSE, 61.3 -> 69.3 days. [R-ANCHOR-01] permits a drift away
-# from the latest reviewed actual only where a named mechanism has a MEASURED like-for-like
-# direction; a mechanism contradicted by the company's own filings is not a mechanism, so
-# the intensity is HELD FLAT at the level the latest reviewed period actually filed.
-#
-# ONE BASIS THROUGHOUT, which is what makes the two numbers comparable: working capital as
-# the release's Table 6 defines it, over GB Auto's TOTAL REVENUE as its Table 8 defines it
-# -- the same revenue line this model forecasts.
-WC_TOTAL_REV_FY25 = 66358.3     # 4Q25 release Table 8, GB Auto Total Revenue FY25
-WC_TOTAL_REV_1H25 = 30672.7     # 2Q26 release Table 8, prior-year column
-WC_TOTAL_REV_1H26 = 40021.5     # 2Q26 release Table 8
-WC_TTM_REV = WC_TOTAL_REV_FY25 - WC_TOTAL_REV_1H25 + WC_TOTAL_REV_1H26
-# THE ANCHOR IS THE SUM OF THE FOUR DISCLOSED COMPONENTS, NOT THE TABLE'S STATED TOTAL,
-# and the difference between them is a tenth of a million -- the release's own rounding,
-# five rows printed to one decimal place. Both are GB Corp's own figures; the components
-# are the ones the workbook projects its balance sheet from, so taking the anchor from
-# them is what stops the model and the workbook carrying two numbers for one quantity.
-WC_COMPONENTS_2Q26 = 22959.1 + 5873.5 + 1153.7 + 2598.9 - 15492.5   # Table 6, 30-Jun-2026
-assert abs(WC_COMPONENTS_2Q26 - 17092.8) <= 0.25   # 5 rows x 0.5 x 10^-1, the printed rounding
-WC_BASE_INTENSITY = 18917.0 / WC_TOTAL_REV_FY25          # 28.51% at 31-Dec-2025
-WC_ANCHOR = WC_COMPONENTS_2Q26 / WC_TTM_REV               # 22.58% at 30-Jun-2026
-# THE FOUR COMPONENTS REPRODUCE THE NET FIGURE, asserted rather than assumed: the workbook
-# projects its balance sheet from them and the cash-flow model from the net intensity, and
-# nothing compared the two until the recalculation gate did.
-assert abs(WC_COMPONENTS_2Q26 / WC_TTM_REV - WC_ANCHOR) < 1e-12
-wc_pct = [WC_ANCHOR] * 5
+capex = [3000, 2400, 2500, 2600, 2800]
+wc_pct = [0.265, 0.250, 0.235, 0.225, 0.215]
 # THE OPENING WORKING CAPITAL, CAPTURED BEFORE THE LOOP CONSUMES THE NAME. The record
 # committed `working_capital_fy2025=wc_prev` four hundred lines below, and wc_prev is the
 # loop's running variable — so the field named for the base year carried FY2030E's
@@ -353,56 +299,9 @@ wc_pct = [WC_ANCHOR] * 5
 # FIELD WHOSE NAME SAYS ONE YEAR AND WHOSE VALUE IS ANOTHER IS WORSE THAN A MISSING
 # FIELD: this author read it as the filed actual and drew a conclusion from it before
 # checking what wrote it, which is [R-ENF-06]'s lesson arriving through a variable name.
-# THE WALK NOW STARTS WHERE THE BRIDGE STANDS. 17,092.8 is GB Auto's working capital at
-# 30 June 2026 on Table 6's own definition, the same date the net-debt bridge below is
-# struck at.
-WC_OPENING = WC_COMPONENTS_2Q26
+WC_OPENING = 18917.0
 wc_prev = WC_OPENING
-# ...AND THE FIRST FORECAST YEAR IS THEREFORE A STUB. This is the same defect one layer
-# down, and it is not one the audit raised. A bridge struck at 30 June 2026 already
-# reflects the cash the first half of 2026 produced -- GB Auto's net debt fell from
-# 15,210.0 at 31 December 2025 to 14,493.6 at 30 June 2026 -- so discounting a FULL
-# calendar-2026 free cash flow beside it counts that half twice: once in the debt it has
-# already paid down, and once in the cash flow. The working-capital delta needs no
-# correction because it now runs from the 30-June stock and is already the second half's
-# alone; the profit, depreciation and capital expenditure are full-year figures and are
-# scaled to the part of the year still unearned.
-#
-# THE FRACTION IS MEASURED, NOT HALVED: GB Auto's first-half total revenue is a disclosed
-# actual and the share of the model's own FY2026E revenue it represents is what has been
-# earned. IT IS A PROPORTIONALITY ASSUMPTION ACROSS THE THREE LINES and is labelled as one
-# -- a second half is not a pro-rata copy of a first half, and replacing the first half
-# with its actual income statement would be the better construction. What it replaces is
-# not a better approximation but a double count.
-AUTO_1H26_TOTAL_REV = 40021.5      # 2Q26 release Table 8, GB Auto Total Revenue 1H26
-STUB_EARNED = AUTO_1H26_TOTAL_REV / (fc['FY26E']['pc_rev'] + fc['FY26E']['cv_rev']
-                                     + fc['FY26E']['lm_rev'] + fc['FY26E']['tr_rev']
-                                     + fc['FY26E']['of_rev'])
-STUB_FRACTION = 1.0 - STUB_EARNED
-assert 0.0 < STUB_FRACTION < 1.0, (
-    "the model forecasts a full year at or below what the company has already filed for "
-    "six months, which is a finding about the forecast rather than a stub: %r" % STUB_EARNED)
 auto_rev_fy25 = 66358.3
-# CAPEX INTENSITY, HELD FLAT AT THE OPENING YEAR, so the path asserts no mechanism.
-# Built here rather than typed because it needs the revenue path this loop reads.
-# THE ADOPTED ANCHOR IS THE OPENING YEAR, HELD FLAT, AND THE FILED INTENSITY IS PRICED
-# RATHER THAN ADOPTED -- with the reason, because the reason is the finding. Anchoring on
-# CAPEX_INTENSITY_ANCHOR (the FY2025 filed 4.567%) was built and run: THE AUTO LEG'S
-# EQUITY VALUE GOES NEGATIVE and the market-value weight solver has no root. That is not
-# a bug to route around, and it is not quite a finding either -- the filed numerator is
-# GROUP capital expenditure, which carries the lender leg and the corporate centre, while
-# the denominator here is the AUTO leg alone, so the mismatch inflates the intensity by an
-# amount nothing discloses. Adopting a construction that breaks the model on a ratio this
-# house cannot decompose would be worse than declaring it.
-#
-# WHAT IT ESTABLISHES IS STRONGER THAN THE NUMBER: this leg's free cash flow is a thin
-# residual and capital expenditure dominates it entirely, so the capex path is not a
-# detail of the answer, it IS the answer. That is now priced in the contested-judgements
-# register instead of sitting behind a declining ladder nothing supported.
-CAPEX_Y1_INTENSITY = CAPEX_Y1 / fc[yrs[0]]['auto_rev']
-CAPEX_INTENSITY = CAPEX_Y1_INTENSITY
-capex = [CAPEX_INTENSITY * fc[y]['auto_rev'] for y in yrs]
-
 rows = []
 prev_rev = auto_rev_fy25
 for i, y in enumerate(yrs):
@@ -414,11 +313,9 @@ for i, y in enumerate(yrs):
     nopat = op * (1 - TAX)
     wc = r * wc_pct[i]
     dwc = wc - wc_prev
-    _earned = STUB_FRACTION if i == 0 else 1.0
-    fcff = (nopat + dna - capex[i]) * _earned - dwc
+    fcff = nopat + dna - capex[i] - dwc
     rows.append(dict(year=y, rev=r, gp=gp, ebitda=ebitda, ebit=op, dna=dna,
-                     nopat=nopat, capex=capex[i], dwc=dwc, fcff=fcff, wc=wc,
-                     unearned_fraction=_earned))
+                     nopat=nopat, capex=capex[i], dwc=dwc, fcff=fcff, wc=wc))
     wc_prev = wc; prev_rev = r
 # ===== COST OF CAPITAL — v2, through the ONE sanctioned module [R-COC-01/R-COC-02] =====
 # REBUILT 07-09-2026. What this replaces, and why it is a rebuild and not a patch: the
@@ -466,215 +363,11 @@ _book = _COC.DebtBook(
         "FY25 average 30,325.1mn, FY24 average 17,463.2mn. Customer balances, trade payables "
         "and lease liabilities are excluded because they bear no interest."))
 
-# THE BRIDGE STANDS ON THE LATEST DISCLOSED BALANCE SHEET [R-BRIDGE-01]. The delivered
-# edition stood on 31-Dec-2025 while GB Corp's reviewed 30-June-2026 consolidated statements
-# and its 2Q26 earnings release (13 August 2026) were both published and on its own IR site.
-#
-# THE COMPANY'S OWN DEFINITION IS THE ONE THE COMPANY PRINTS, AND THE DELIVERED EDITION
-# DID NOT REPRODUCE IT [audit finding 24, and self-audit S-2 reached independently]. It
-# claimed "the COMPANY'S OWN definition" in a comment and came out at 14,623.7 against a
-# published 14,493.6, because it took only the NON-CURRENT portion of the notes payable to
-# leasing (1,333.3 of 2,345.8) and omitted the due-FROM-related-parties balance the
-# company's own table nets. A definition asserted in a comment is not a definition; the
-# five rows below are Table 7's own, in its own order, and they foot to its own total.
-#
-#   Total debt                                   22 733.1   (20,943.0 short + 1,790.1 long)
-#   Notes payable (due to leasing)                2 345.8
-#   less Cash                                    (9 445.0)
-#   Due to related parties - inter segment            1.8
-#   less Due from related parties - inter segment (1 142.1)
-#   NET DEBT                                     14 493.6
-#
-# THESE INPUTS SIT HERE, ABOVE THE SCHEDULE, BECAUSE THE SCHEDULE NOW DEPENDS ON THEM:
-# the Auto leg is discounted at the Auto leg's OWN cost of capital and the equity weight
-# in it is this leg's own equity value, which the bridge produces.
-AUTO_TOTAL_DEBT_ST   = 20943.0
-AUTO_TOTAL_DEBT_LT   = 1790.1
-AUTO_LEASE_NOTES     = 2345.8
-AUTO_CASH            = 9445.0
-AUTO_DUE_TO_RELATED  = 1.8
-AUTO_DUE_FROM_RELATED = 1142.1
-auto_nd = (AUTO_TOTAL_DEBT_ST + AUTO_TOTAL_DEBT_LT + AUTO_LEASE_NOTES - AUTO_CASH
-           + AUTO_DUE_TO_RELATED - AUTO_DUE_FROM_RELATED)
-assert abs(auto_nd - 14493.6) < 0.05, auto_nd   # GB Corp 2Q26 earnings release, Table 7
-# THE MINORITY AT ITS SHARE OF VALUE, NOT AT BOOK [R-BRIDGE-01 defect (ii); self-audit
-# S-1]. The delivered edition deducted EGP 590.7mn -- the minority's BOOK equity in GB
-# Auto's segment balance sheet -- from a leg valued by capitalising 100% of that segment's
-# cash flow. The minority's claim is on the VALUE those cash flows produce, not on what its
-# share historically cost, and [R-BRIDGE-01] does not allow book to be the adopted basis.
-#
-# THE BASIS IS value_share AND THE PROXY IS NAMED, because GB Corp does not disclose which
-# subsidiaries carry the minority or what they earn: the minority's proportion of the
-# segment's own disclosed book equity, applied to the segment's equity VALUE. Both figures
-# are the company's own, from Table 12 of the 2Q26 earnings release as at 30 June 2026.
-AUTO_EQUITY_BOOK_BEFORE_NCI = 12998.3   # "Total Shareholders' Equity Before NCI", GB Auto
-AUTO_NCI_BOOK               = 590.7     # "Total NCI", GB Auto
-assert abs((AUTO_EQUITY_BOOK_BEFORE_NCI + AUTO_NCI_BOOK) - 13589.0) < 0.05   # "Total Equity"
-AUTO_NCI_SHARE = AUTO_NCI_BOOK / (AUTO_EQUITY_BOOK_BEFORE_NCI + AUTO_NCI_BOOK)
-# The three reference framings [R-BRIDGE-01] requires published beside the adopted basis:
-AUTO_NCI_AT_BOOK = AUTO_NCI_BOOK
-AUTO_NCI_PROFIT_SHARE = 246.8           # GB Auto segment NCI in 1H26 profit, Table 8
-auto_nci = AUTO_NCI_BOOK                # superseded below; kept so the book framing is
-                                        # committed rather than described
-
-# ===== ONE CAPITAL STRUCTURE THROUGHOUT [audit finding 11] ============================
-# THE DELIVERED EDITION RAN THREE OF THEM IN ONE CALCULATION: the GROUP's borrowings and
-# the GROUP's market capitalisation in the weights, a GROUP cost of debt whose numerator
-# deliberately included GB CAPITAL'S cost of funds, and then the AUTO SEGMENT's net debt
-# in the bridge. The published 22.88% landed within 0.3pp of one internally consistent
-# pairing -- right by offsetting errors rather than by construction, and no reader could
-# have told. The leg being valued is GB Auto's and the bridge deducts GB Auto's net debt,
-# so the rate that discounts it is GB Auto's.
-#
-# THE EFFECTIVE RATE IS COMPUTED HERE FROM THE COMPANY'S OWN QUARTERLY TABLE rather than
-# from an opening/closing average, because this book grew 77% in FY2025 and an average of
-# two year-ends describes a balance that existed for none of it. On this book the two
-# constructions agree to four basis points, which is worth recording: the re-basing
-# mechanism [R-COC-01 AMENDED] names is real here and its effect on the rate is not.
-# DENOMINATOR: total debt PLUS the notes payable due to leasing, because the release states
-# in its own footnote that the finance cost INCLUDES the leasing expense -- the numerator
-# and the denominator have to be the same book [R-FCAL-01 trap (i), facing the other way].
-AUTO_DEBT_Q      = [12119.3, 14466.7, 18092.2, 18208.0, 21486.3]  # 4Q24..4Q25, Table 7
-AUTO_LEASE_Q     = [752.7, 722.9, 1600.1, 2160.3, 2576.2]         # same table
-AUTO_FIN_COST_FY25 = 3689.4                                        # Table 8, FY25
-AUTO_DEBT_Q26    = [21486.3, 21452.2, 22733.1]                     # 4Q25, 1Q26, 2Q26
-AUTO_LEASE_Q26   = [2576.2, 2464.1, 2345.8]
-AUTO_FIN_COST_1H26 = 2206.7                                        # Table 8, 1H26
-
-def _quarter_weighted(xs):
-    return sum((a + b) / 2.0 for a, b in zip(xs[:-1], xs[1:])) / (len(xs) - 1)
-
-AUTO_EFF_FY25 = AUTO_FIN_COST_FY25 / (_quarter_weighted(AUTO_DEBT_Q)
-                                      + _quarter_weighted(AUTO_LEASE_Q))
-AUTO_EFF_1H26 = (AUTO_FIN_COST_1H26 * 2.0) / (_quarter_weighted(AUTO_DEBT_Q26)
-                                              + _quarter_weighted(AUTO_LEASE_Q26))
-# THE BOOK IS NOT ALL LOCAL CURRENCY AND THE DELIVERED EDITION ASSERTED THAT IT WAS
-# [audit finding 4]. Note 26 to the FY2025 audited statements states two average rates for
-# the year -- EGP 21.91% and USD 8.30% (EGP 29.19% and USD 8.40% in 2024) -- so a single-
-# currency shortcut is contradicted by the company's own note. THE SPLIT ITSELF IS NOT
-# DISCLOSED, so it is DERIVED by identity from the two disclosed rates and this segment's
-# own measured rate, and LABELLED as derived: an identity is not an assumption and the
-# label is what keeps the two apart. The rates are the GROUP's, applied to the SEGMENT's
-# measured rate, which is the only currency evidence the filings carry; SIGCM clause 8 is
-# met by naming that rather than by asserting a split.
-NOTE26_KD_EGP, NOTE26_KD_USD = 0.2191, 0.0830
-AUTO_PCT_LOCAL = (AUTO_EFF_FY25 - NOTE26_KD_USD) / (NOTE26_KD_EGP - NOTE26_KD_USD)
-AUTO_KD = AUTO_EFF_1H26     # the latest independently computed rate, per [R-ANCHOR-01]
-
-# A DOLLAR TRANCHE INSIDE A POUND-NOMINAL WACC IS CARRIED AT ITS LOCAL-EQUIVALENT COST
-# [R-COC-01], AND IT WAS NOT [corrected 17-09-2026]. AUTO_KD is the BLENDED rate the
-# company actually paid, dollar tranche included at its dollar coupon, and it was passed
-# as `kd_local_pretax` with no `kd_fx_local_equivalent` beside it -- so cost_of_capital's
-# blended() returned it unchanged and the model discounted pound cash flows at a rate
-# part of which is priced in a currency that is expected to appreciate against them. The
-# standing rule is explicit: FX debt at LOCAL-EQUIVALENT cost (FX coupon plus expected
-# local depreciation), NEVER a raw FX coupon in a local-nominal WACC.
-#
-# THE LOCAL LEG IS RECOVERED FROM THE BLEND RATHER THAN ASSUMED: the currency split is
-# already DERIVED from note 26's two disclosed rates and the FY2025 measured rate, so the
-# same split applied to the adopted blend gives the local tranche's own rate by identity.
-# Nothing here is a new assumption; what is added is the expected depreciation, taken
-# from the house path's own purchasing-power-parity derivation and never hand-set.
-_AUTO_FX_SHARE = 1.0 - AUTO_PCT_LOCAL
-AUTO_KD_LOCAL_LEG = (AUTO_KD - _AUTO_FX_SHARE * NOTE26_KD_USD) / AUTO_PCT_LOCAL
-# The path is loaded here rather than reused from below, because this block runs before
-# _PATH is bound; macro_path.load is cached and the two are the same object.
-_DEP1 = _MP.load("EG").depreciation_path(1, 2026)[0]
-AUTO_KD_FX_LOCAL_EQ = (1 + NOTE26_KD_USD) * (1 + _DEP1) - 1.0
-
-_auto_book = _COC.DebtBook(
-    gross_debt=AUTO_TOTAL_DEBT_ST + AUTO_TOTAL_DEBT_LT + AUTO_LEASE_NOTES,
-    pct_local_currency=AUTO_PCT_LOCAL,
-    currency_source=("GB Corp FY2025 audited consolidated statements, note 26 (loans, "
-                     "borrowings and overdrafts): the average interest rate of the current "
-                     "EGP and USD loans and borrowings was 21.91% and 8.30% respectively "
-                     "during the year (29.19% and 8.40% during 2024). The note states the "
-                     "two RATES and not the two BALANCES, so the split carried here is "
-                     "DERIVED by identity from those rates and GB Auto's own measured "
-                     "effective rate, and is labelled derived wherever it is quoted."),
-    # THE LOCAL-EQUIVALENT GROSS-UP IS MEASURED, PRICED AND NOT APPLIED, AND THE REASON
-    # IS A RULE RATHER THAN A DOUBT [17-09-2026]. Passing AUTO_KD_LOCAL_LEG with
-    # AUTO_KD_FX_LOCAL_EQ beside it is the construction [R-COC-01] describes for a mixed
-    # book, and it RAISES the adopted rate to 20.18% — 198bp from the independently
-    # computed 18.20%, so the module's own Kd gate (iii) refuses it against the 150bp
-    # bound. [R-COC-01 AMENDED] permits that bound to be RE-POINTED only on a mechanism
-    # from a CLOSED list — capitalised interest, a book re-based in period, a facility
-    # drawn mid-period — and a foreign-currency tranche is not on it. Adding one is a
-    # rule amendment, and amending a rule to let one's own change through is the
-    # weakening [R-REPAIR-01] forbids outright.
-    #
-    # THE SUBSTANCE IS NOT IN DOUBT AND THAT IS WHY IT IS RECORDED RATHER THAN DROPPED:
-    # this issuer reports currency movement in its OWN `fx` line, not in finance cost, so
-    # the measured effective rate genuinely excludes the pound cost of the dollar
-    # tranche — the same species as the mechanisms the list already names, where "the
-    # numerator is not the interest actually incurred". It is registered as a priced
-    # exposure and referred for a rule decision.
-    kd_local_pretax=AUTO_KD,
-    kd_source=("GB Auto's OWN effective borrowing rate over the latest reviewed period, "
-               "computed independently from GB Corp's 2Q26 earnings release, Tables 7 and "
-               "8, on the borrowings that actually bear the charge."),
-    effective_rates=(AUTO_EFF_FY25, AUTO_EFF_1H26),
-    effective_rate_periods=("FY2025", "1H2026 annualised"),
-    interest_bearing_note=(
-        "GB Auto's SEGMENT finance cost (FY25 EGP 3,689.4mn; 1H26 EGP 2,206.7mn, "
-        "annualised) over a QUARTER-WEIGHTED average of that segment's own total debt plus "
-        "its notes payable due to leasing (Table 7, five quarters to 4Q25 and three to "
-        "2Q26). The leasing notes are inside the denominator because the release's own "
-        "footnote says the finance cost includes the leasing expense. Trade payables, "
-        "advances from customers, debtors and other credit balances are excluded because "
-        "they bear no interest, and GB CAPITAL'S COST OF FUNDS IS EXCLUDED ALTOGETHER -- "
-        "it is a different entity's funding and putting it here is what finding 11 named."))
-
 _ERP = {"rating": 0.1394, "market": 0.0941}   # Damodaran country-risk file, Egypt row
-# MARKET-VALUE EQUITY WEIGHTS ON A LEG WITH NO QUOTED PRICE. [R-COC-01] requires the
-# equity weight to be a MARKET value and never book, and a SEGMENT has no market price --
-# which is why the delivered edition reached for the group's market capitalisation and so
-# weighted GB Auto's cash flows by GB Corp's equity. The weight is instead taken to a FIXED
-# POINT: the leg is valued, its own equity value becomes the weight, and the map is solved
-# to convergence. It is reproducible arithmetic rather than a chosen number, the map is
-# monotone decreasing in the weight (more equity weight, higher cost of capital, lower
-# value), so it is BISECTED rather than iterated -- a damped iteration converges here too
-# and bisection cannot fail to.
-_PATH = _MP.load("EG")
-TG_REAL = 0.0
-TG = _PATH.terminal_inflation + TG_REAL
-
-
-def _auto_schedules(mcap):
-    return {b: _COC.schedule("EG", _beta, _auto_book, market_cap=mcap, tax_rate=TAX,
-                             years=5, erp_basis=b, erp_explicit=_ERP[b],
-                             build_date=spot_date, allow_stale_sovereign=True)
-            for b in ("rating", "market")}
-
-
-def _auto_equity_at(sch):
-    """The leg's TOTAL equity value -- before the minority's share of it.
-
-    That is the quantity the capital structure is made of: the weight is what the
-    whole of this leg's equity is worth against what it owes, and the minority owns
-    a slice of that equity rather than sitting outside it.
-    """
-    pv = sum(rw['fcff'] * df for rw, df in zip(rows, sch.discount_factors))
-    tv_ = rows[-1]['fcff'] * (1 + TG) / (sch.wacc_terminal - TG)
-    return pv + tv_ * sch.terminal_discount_factor - auto_nd
-
-
-def _f(mcap):
-    return _auto_equity_at(_auto_schedules(mcap)["market"]) - mcap
-
-
-_lo, _hi = 1.0, 1.0e6
-assert _f(_lo) > 0 and _f(_hi) < 0, (_f(_lo), _f(_hi))
-for _AUTO_W_ITERS in range(1, 201):
-    _mid = 0.5 * (_lo + _hi)
-    if _f(_mid) > 0:
-        _lo = _mid
-    else:
-        _hi = _mid
-    if _hi - _lo < 1e-9 * _hi:
-        break
-AUTO_EQUITY_WEIGHT = 0.5 * (_lo + _hi)
-_SCHED = _auto_schedules(AUTO_EQUITY_WEIGHT)
+_SCHED = {b: _COC.schedule("EG", _beta, _book, market_cap=spot*SH, tax_rate=TAX, years=5,
+                           erp_basis=b, erp_explicit=_ERP[b], build_date=spot_date,
+                           allow_stale_sovereign=True)
+          for b in ("rating", "market")}
 _sch = _SCHED["market"]          # CENTRAL: the market (CDS) basis, per [R-COC-01]
 WACC = _sch.wacc_exp
 WACC_RATING = _SCHED["rating"].wacc_exp
@@ -686,12 +379,15 @@ WE, WD = _sch.weight_equity, _sch.weight_debt
 # The delivered edition typed a nominal 11.5% against a discount rate that never normalised;
 # a typed nominal rate is unfalsifiable — nobody can tell whether it meant inflation plus four
 # points or minus three.
+_PATH = _MP.load("EG")
 # THE ANCHOR DATE IS READ FROM THE PATH FILE, NEVER TYPED — it is the date the staleness
 # disclosure below is measured from, and a typed copy of it goes stale the day the path is
 # refreshed while the sentence quoting it does not.
 import json as _json_path
 _ANCHOR_DATE = _json_path.load(open(os.path.join(
     HERE, '..', 'macro_paths', 'EG.json'), encoding='utf-8'))['fx']['spot']['date']
+TG_REAL = 0.0
+TG = _PATH.terminal_inflation + TG_REAL
 for i, rw in enumerate(rows):
     rw['wacc_y'] = _sch.forward_wacc[i]
     rw['df'] = _sch.discount_factors[i]
@@ -700,11 +396,15 @@ pv_sum = sum(rw['pv'] for rw in rows)
 tv = rows[-1]['fcff'] * (1 + TG) / (_sch.wacc_terminal - TG)
 pv_tv = tv * _sch.terminal_discount_factor
 ev_auto = pv_sum + pv_tv
-auto_total_eq = ev_auto - auto_nd            # the WHOLE of this leg's equity
-auto_nci_value = AUTO_NCI_SHARE * auto_total_eq
-AUTO_NCI_PROPORTIONAL = auto_nci_value      # the proportional framing IS the adopted one
-                                            # here, the proxy being a proportion
-auto_eq = auto_total_eq - auto_nci_value    # the parent's share
+# THE BRIDGE STANDS ON THE LATEST DISCLOSED BALANCE SHEET [R-BRIDGE-01]. The delivered
+# edition stood on 31-Dec-2025 while GB Corp's reviewed 30-June-2026 consolidated statements
+# and its 2Q26 earnings release (13 August 2026) were both published and on its own IR site.
+# Auto-leg net debt on the COMPANY'S OWN definition (short- and long-term debt plus lease
+# obligations and due-to-related-parties, less cash), as at 30 June 2026:
+#   20,943.0 + 1,790.1 + 1,333.3 + 2.3 - 9,445.0
+auto_nd = 20943.0 + 1790.1 + 1333.3 + 2.3 - 9445.0
+auto_nci = 590.7        # GB Auto segment "Total NCI", 2Q26 release Table 12, 30-Jun-2026
+auto_eq = ev_auto - auto_nd - auto_nci
 # ---- GB CAPITAL: A LENDER IS WORTH ITS OWN EQUITY TIMES WHAT IT EARNS ON IT --------
 # THE DELIVERED EDITION CARRIED `cap_book = 9500.0` WITH THE COMMENT "adjusted operating
 # equity, from company's adjusted-ROAE basis", TIMES A MULTIPLE OF 1.0. Two defects sat
@@ -744,20 +444,8 @@ cap_operating_equity = CAPITAL_SEG_EQUITY - ASSOC_CARRYING
 # of tax and outside NCI, so the subtraction is clean.
 CAP_FY25_NP_AFTER_NCI = 1365.9    # 4Q25 release Table 13
 CAP_FY25_ASSOC        = 986.4     # same table, "Investment Gains from Associates"
-# A RESTATED FIGURE MINUS AN UNRESTATED ONE IS NOT A BASE [audit finding 8]. The
-# delivered edition subtracted the associates at their RESTATED 31-Dec-2025 carrying value
-# from GB Capital's segment equity as the 4Q25 release printed it -- a release of 26
-# February 2026, four months BEFORE the restatement appeared. Note 34's adjustment of
-# +2,460,218 thousand raises the associate AND the equity that carries it by the same
-# amount, so netting one restated against the other unrestated HALVED the operating base
-# and doubled every return struck on it. Both sides are moved onto the restated basis
-# here; the unrestated equity is kept beside it so the reader can see the step.
-CAP_FY25_EQ_BEFORE_NCI_AS_RELEASED = 18312.6   # 4Q25 release Table 12, GB Capital column
-ASSOC_RESTATEMENT_DEC25 = 2460.218             # note 34, "adjustments on the beginning
-                                               # balance", the only adjustment in the table
-CAP_FY25_EQ_BEFORE_NCI = CAP_FY25_EQ_BEFORE_NCI_AS_RELEASED + ASSOC_RESTATEMENT_DEC25
-ASSOC_CARRYING_DEC25   = 15732.426  # reviewed BS 30-Jun-2026, comparative column, and
-                                    # note 34's own restated total: 13,272.208 + 2,460.218
+CAP_FY25_EQ_BEFORE_NCI = 18312.6  # 4Q25 release Table 12, GB Capital column
+ASSOC_CARRYING_DEC25   = 15732.426  # reviewed BS 30-Jun-2026, comparative column
 CAP_H126_NP_AFTER_NCI = 649.6     # 2Q26 release Table 13
 CAP_H126_ASSOC        = 426.2     # same table
 cap_fy25_ex_assoc = CAP_FY25_NP_AFTER_NCI - CAP_FY25_ASSOC
@@ -790,32 +478,6 @@ cap_book = cap_operating_equity   # the DISCLOSED FLOOR, published as such, neve
 # current, dated, company-disclosed figure — not an estimate and not a stale prior-round number. It supersedes both
 # the original ~20% placeholder (unsourced, wrong) and the interim 42.58% correction (correct as of mid-2024/pre-this
 # transaction, but superseded by this more recent, confirmed print). Applying 41.61% to the June-2026 USD 1.4bn round
-# ---- THE FINANCE COST, DERIVED FROM THE MODEL'S OWN COST OF DEBT [audit finding 9] ----
-# A rate ladder times a book, rather than five typed numbers. Both come from somewhere the
-# model already holds: the forward cost of debt is the sanctioned schedule's own glide
-# between the adopted rate and the norm-built terminal, and the book is GB Auto's own
-# interest-bearing borrowings at 30 June 2026.
-#
-# WHY GB AUTO'S BOOK AND NOT THE GROUP'S, on a GROUP income-statement line: GB Capital's
-# cost of funds is booked inside that segment's COST OF REVENUE and never reaches the
-# group finance-cost line. The arithmetic says so rather than the reasoning -- GB Auto's
-# own FY2025 finance cost is EGP 3,689.4mn against a group net finance cost of 3,702.1mn,
-# a difference of 0.3%, so the group's expensed charge IS essentially the Auto leg's. That
-# ratio is carried forward as the small non-Auto residual rather than assumed away.
-#
-# THE BOOK IS HELD FLAT AND THAT IS A STATED LIMITATION, NOT A FORECAST. This model has no
-# projected balance sheet -- capital expenditure, depreciation and working capital are
-# three independent ratios with nothing joining them (self-audit S-5) -- so there is no
-# sourced borrowings path to multiply. Holding the latest disclosed book flat is the
-# least-invented choice available and it is named wherever the line is published; building
-# the roll-forward that would replace it is a rebuild of the forecast, not a repair.
-GROUP_FIN_COST_FY25 = 3702.1        # 4Q25 release Table 1, "Net Finance Cost", FY25
-GROUP_TO_AUTO_FIN = GROUP_FIN_COST_FY25 / AUTO_FIN_COST_FY25
-AUTO_GROSS_DEBT = AUTO_TOTAL_DEBT_ST + AUTO_TOTAL_DEBT_LT + AUTO_LEASE_NOTES
-KD_FORWARD = [_sch.kd_pretax - (_sch.kd_pretax - _sch.kd_terminal_pretax) * f
-              for f in _sch.glide_fractions]
-fin_cost = [-(AUTO_GROSS_DEBT * k * GROUP_TO_AUTO_FIN) for k in KD_FORWARD]
-
 # ---- THE CONSOLIDATED FORECAST, COMPUTED ONCE -------------------------------------
 GROUP = []
 _capr = CAP_REV_FY25
@@ -854,16 +516,7 @@ mnt_halan_stake = 0.4161
 # from the record rather than typed into a builder.
 mnt_halan_stake_prior = 0.4258
 mnt_halan_round_usd = 1400.0
-# THE EXCHANGE RATE IS THE HOUSE PATH'S, READ FROM IT, WITH ITS DATE [audit finding 32;
-# [R-MACRO-01]]. The delivered edition typed 47.5 with no source and no date, on a line
-# worth roughly half of the upper branch -- and the audit's complaint is exactly right that
-# four different dates were in play for one rate. A study may not carry a currency of its
-# own: engine/macro_paths/EG.json holds one dated sourced anchor for the market and every
-# study reads it, which is what stops two studies valuing the same economy differently.
-egp_usd = _PATH.fx_spot
-EGP_USD_DATE = _json_path.load(open(os.path.join(
-    HERE, '..', 'macro_paths', 'EG.json'), encoding='utf-8'))['fx']['spot']['date']
-EGP_USD_TYPED_BEFORE = 47.5      # committed so the move is countable rather than described
+egp_usd = 47.5
 mnt_halan_value = mnt_halan_stake * mnt_halan_round_usd * egp_usd
 # THE REVIEWED STATEMENTS STATE A DIFFERENT PERCENTAGE FOR THE SAME TRANSACTION AND THE
 # STUDY REGISTERED ONLY ONE OF THEM. Note 34 to the 30-June-2026 reviewed consolidated
@@ -878,27 +531,12 @@ mnt_halan_value = mnt_halan_stake * mnt_halan_round_usd * egp_usd
 # one of two disclosed figures for the same fact has decided something silently.
 mnt_stake_statements = 0.4293
 mnt_stake_statements_prior = 0.4401
-# THE ASSOCIATES NOTE, RE-READ OFF THE RENDERED PIXELS AND FOOTED IN EVERY DIRECTION
-# [audit finding 16]. The delivered edition carried 15,733,523 with a comment that
-# reconstructed it as "restated 15,315,532 + 8,006 of other comprehensive income +
-# 409,985 of period profit", and recorded a "ten-thousand OCR ambiguity" in the three
-# smaller rows. THE AMBIGUITY WAS IN THE MNT ROW ITSELF and the reconstruction was wrong
-# in two cells: MNT's restated opening is 15,313,538, and MNT has NO other comprehensive
-# income at all -- the 32,119 in that column is Bedaia's. Note 34 as filed:
-#
-#   row (EGP 000)      31-Dec-25    adjustment   restated    div      OCI     profit    add'ns   30-Jun-26
-#   MNT Investment BV  12 853 320    2 460 218  15 313 538     -        -    409 985        -   15 723 523
-#   Misr E-commerce       125 701            -     125 701     -        -    (16 060)       -      109 641
-#   Bedaia                152 983            -     152 983 (21 220) 32 119     12 959       -      176 841
-#   Kaf for life          140 204            -     140 204     -        -      3 256   77 000      220 460
-#   TOTAL              13 272 208    2 460 218  15 732 426 (21 220) 32 119    410 140   77 000   16 230 465
-#
-# EVERY COLUMN AND EVERY ROW FOOTS EXACTLY on this reading and the delivered figure foots
-# on none of them, which is the arbitration the four-field rule asks for: ARITHMETIC IS
-# THE ARBITER, NOT THE EXTRACTOR'S CONFIDENCE. Route: 500-dpi render of page 34 of the
-# reviewed consolidated interim statements, read as an image, the filing carrying no text
-# layer at all (0 characters across 51 pages).
-MNT_CARRYING = 15723.523
+# Other associates by IDENTITY off the note's own total rather than by summing its rows:
+# the total (16,230,465) and the MNT row (15,733,523) each foot -- restated 15,315,532 +
+# 8,006 of other comprehensive income + 409,985 of period profit -- while the three
+# smaller rows carry a ten-thousand OCR ambiguity in one cell, so the residual is the
+# figure that can be reproduced.
+MNT_CARRYING = 15733.523
 other_assoc = ASSOC_CARRYING - MNT_CARRYING
 # ---- THE CONTESTED JUDGEMENT, COMPUTED BOTH WAYS AND NEVER AVERAGED ------------------
 # Depth-bar standard 8 requires the study's single most consequential contested judgement
@@ -922,6 +560,63 @@ other_assoc = ASSOC_CARRYING - MNT_CARRYING
 #
 # THE HOUSE CANNOT SAY WHICH IS RIGHT, SO IT PUBLISHES BOTH AND SAYS SO. Averaging them
 # would be the blend [R-LENS-03] retired, arriving through a different door.
+# ---- THE EVENT THAT WOULD SETTLE THE BRANCH, REGISTERED RATHER THAN PRICED ----------
+# [13-09-2026, from a market-research primer, TRACED BEFORE IT WAS BELIEVED.] On 8
+# September 2026 the Egyptian Exchange published an application by MNT Tech Holding for
+# Financial Investments to list 1.6 billion ordinary shares on the EGX main market, par
+# value EGP 0.10, issued capital EGP 160 million. The announcement stands for five working
+# days from 8 September. It is AN APPLICATION: the company is still assembling the
+# documents for the EGX Listing Committee, and it is not approval and not the start of
+# trading.
+#
+# WHY IT MATTERS HERE AND NOWHERE ELSE IN THIS STUDY. This study's one contested judgement
+# is the basis on which the MNT-Halan stake is carried, and it is published as two branches
+# because the house cannot choose between a private round price and a qualified accounting
+# carrying value. A LISTING WOULD LET THE MARKET CHOOSE. That is the only thing in this
+# file that could retire the branch, and it has not happened yet.
+#
+# NOTHING MOVES ON IT, AND THE REASON IS A RULE RATHER THAN CAUTION. An application is not
+# a price. Neither branch changes, the two centrals stand at EGP 45.78 and EGP 56.78, and
+# the day this lists is the day one of them is tested against a quote.
+mnt_listing = dict(
+    event='application to list on the EGX main market, published by the exchange',
+    applicant='MNT Tech Holding for Financial Investments',
+    shares_bn=1.6, par_egp=0.10, issued_capital_egp_mn=160.0,
+    filed='2026-09-08', window='five working days from 8 September 2026',
+    status=('APPLICATION ONLY -- documents still being finalised for the EGX Listing '
+            'Committee; not listing approval and not the start of trading'),
+    source=('the exchange disclosure, reported by Arab Finance 9 September 2026 09:43 '
+            '("MNT-Halan applies to list 1.6B shares on EGX"). The EGX news page itself '
+            'is behind a bot wall and could not be read directly on 13-09-2026; that is '
+            'recorded rather than papered over'),
+    # THE VALUATION FIGURE IN CIRCULATION IS NOT A DISCLOSURE AND IS NOT A MARKDOWN.
+    # A market-research primer put "a domestic valuation targeted between $900 million and
+    # $1.0 billion" beside the listing as though the two were one announcement. They are
+    # not. Arab Finance attributes that range to a BLOOMBERG REPORT OF SOURCES in June,
+    # about an IPO, not to any disclosure by anyone.
+    press_valuation_usd_mn=(900.0, 1000.0),
+    press_valuation_status=('UNATTRIBUTED PRESS REPORT OF SOURCES, June 2026, via '
+                            'Bloomberg -- not a disclosure, not a transaction, and not a '
+                            'price anything has traded at'),
+    # AND THE COMPARISON A CARELESS READER WOULD MAKE IS WRONG. $0.9-1.0bn is BELOW the
+    # $1.4bn June round this study prices the stake on, and it is tempting to read the
+    # lower number as the round marked down. IT IS A DIFFERENT PERIMETER: the reported
+    # listing covers the EGYPTIAN operating activities -- microfinance, consumer credit,
+    # merchant payments, nano-lending -- while Turkey, Pakistan and the UAE stay offshore.
+    # The $1.4bn round priced the group WITH those. A smaller number on a smaller business
+    # is not a lower valuation of the same business.
+    perimeter_note=('the reported listing perimeter is the Egyptian operating activities '
+                    'only; the June-2026 round at USD 1.4bn priced the group including '
+                    'Turkey, Pakistan and the UAE. The two are not the same asset and the '
+                    'difference between them is NOT a markdown'),
+    # GB CORP HAS SAID NOTHING. Its investor news room, read live on 13-09-2026, carries
+    # nothing after the 9 June 2026 release on the Al Ahly round. So the company has not
+    # disclosed the listing, has not said what it does to its 41.61%, and has not said
+    # whether it would sell into it. A DATED NEGATIVE SEARCH, not an omission.
+    issuer_silence=('GB Corp has published no press release on this. ir.gb-corporation.com '
+                    'news room read live 13-09-2026: latest release 9 June 2026'),
+    consequence='none -- registered, not priced. Neither branch moves.')
+
 assoc_round    = mnt_halan_value + other_assoc     # branch A
 assoc_carrying = ASSOC_CARRYING                    # branch B
 assoc = assoc_round        # retained for the cross-checks that read one number
@@ -942,119 +637,20 @@ disc = 0.0
 sotp_eq = sotp_A
 sotp_ps = sotp_A_ps
 prediscount_ps = sotp_A_ps
-# ---- THE BRIDGE AS A RECORD OF CHOICES, NOT ONLY AS ARITHMETIC [R-BRIDGE-01] --------
-# The delivered edition committed NO bridge record at all -- check_bridge.py reported
-# "GBCO carries no bridge record" and the study sits on that ratchet (self-audit S-1).
-# The bridge is where the whole two-sided answer lands and its construction was unrecorded,
-# which is the point of the rule: the number a bridge produces cannot be checked by
-# recomputing it, so the CHOICES are what get checked -- which sheet, on what basis the
-# minority comes out, and whether the cash is charged for once or twice.
-BRIDGE_RECORD = dict(
-    _rule="[R-BRIDGE-01]",
-    branch="the associate at its carrying value -- the branch every committed artefact in "
-           "this study declares as its central; the round-price branch differs in ONE line "
-           "and is published beside it",
-    balance_sheet_date="2026-06-30",
-    latest_disclosed_date="2026-06-30",
-    latest_disclosed_source=(
-        "engine/gbco_study/sweep_register.json, Company ring, 'official financial "
-        "statements': GB Corp's REVIEWED consolidated interim statements at 30 June 2026 "
-        "and its 2Q/1H26 earnings release of 13 August 2026, both obtained from the "
-        "company's own investor-relations filings page (attempted and reachable, logged "
-        "in the register's primary-access record)."),
-    nci=dict(
-        basis="value_share",
-        applied_to="equity_value",
-        deduction=auto_nci_value,
-        proxy_source=(
-            "GB Corp does not disclose which subsidiaries carry the GB Auto minority or "
-            "what they earn, so the minority's SHARE is proxied by its proportion of the "
-            "segment's own disclosed book equity -- EGP 590.7mn of 13,589.0mn, 2Q26 "
-            "earnings release Table 12 as at 30 June 2026 -- and applied to the segment's "
-            "equity VALUE. Both figures are the company's own and the segment balance "
-            "sheet foots: 12,998.3 before minorities plus 590.7 is the stated 13,589.0."),
-        share=AUTO_NCI_SHARE,
-        book=AUTO_NCI_AT_BOOK,
-        profit_share=AUTO_NCI_PROFIT_SHARE,
-        proportional=AUTO_NCI_PROPORTIONAL,
-        note=("BOOK IS PUBLISHED AS A REFERENCE FRAMING AND IS NOT THE ADOPTED BASIS. The "
-              "delivered edition deducted book from a leg valued by capitalising 100% of "
-              "that segment's cash flow, which hands the parent the minority's share of "
-              "everything the model expects the segment to earn.")),
-    cash=dict(
-        treatment="added_at_face",
-        weights_basis="gross",
-        note=("The operations are discounted at a GROSS-debt-weighted rate and the cash is "
-              "then netted inside the company's own net-debt figure. That is the "
-              "value-the-whole-firm-and-add-the-cash construction, and it is the one this "
-              "record names: the prohibited pair is cash added at face beside NET weights, "
-              "which discounts the operations as though holding a deposit made them "
-              "riskier and then counts the deposit at par as well.")),
-    associates=dict(
-        basis="book", listed=False,
-        note=("MNT-Halan is UNLISTED, so no market price exists and 'book' here is the "
-              "reviewed equity-accounted carrying value, EGP 15,723.523mn at 30 June 2026 "
-              "on note 34's own arithmetic. The June-2026 round price is published as the "
-              "SECOND BRANCH rather than as this line's basis, because it is a "
-              "third-party mark GB Corp has never adopted -- and KPMG's review conclusion "
-              "on these very statements is qualified on this investment.")),
-    dividend=dict(deducted=False,
-                  note="No dividend is declared after the balance-sheet date, so none is "
-                       "deducted; the FY2025 distribution proposal is stated in note 10 as "
-                       "awaiting the general assembly."),
-    lines=[
-        dict(name="GB Auto, enterprise value on its own cash flows", value=ev_auto),
-        dict(name="less GB Auto net debt at 30 June 2026", value=-auto_nd),
-        dict(name="less the minority's share of GB Auto equity value", value=-auto_nci_value),
-        dict(name="plus GB Capital, the operating lender", value=cap_val),
-        dict(name="plus the associates at their reviewed carrying value", value=assoc_carrying),
-    ],
-    equity_value=sotp_B,
-    shares_mn=SH,
-    per_share=sotp_B_ps,
-)
-import research_protocol as _RP_bridge                                 # noqa: E402
-_RP_bridge.assert_bridge(BRIDGE_RECORD, 'GBCO')
-
 # ---- THE RELATIVE MULTIPLE, NON-CIRCULAR AND OFF THE COMPANY'S OWN HISTORY ----------
 # The delivered edition typed `np26 = 3300.0` with the comment "FY26E group NP" while the
 # model's own consolidated forecast computes 3,297.5 four hundred lines above -- a hand
 # rounded copy of a figure the model already had, which is exactly the typed financial
 # numeral depth-bar standard 3 forbids in a builder. It is read from the forecast now.
 np26 = GROUP[0]['net_profit']
-# EARNINGS PER SHARE IS WHAT THE COMPANY PUBLISHES AS EARNINGS PER SHARE [audit finding
-# 26]. The delivered edition divided profit attributable to the parent by the share count
-# and captioned the row as the company's own reporting. It is not: note 10 to the audited
-# statements deducts the employees' share of profit and the board of directors' bonus
-# before dividing, and publishes 2.635 for FY2025 and 2.609 for FY2024 against 2.653 and
-# 2.697 on the attributable line. A MULTIPLE AND ITS EARNINGS MUST BE ON ONE BASIS, so the
-# historical multiples below are struck on the company's OWN published basic figure and
-# the forecast earnings carry the same deduction.
-#
-#   note 10 (EGP 000)            FY2025      FY2024 reclassified
-#   attributable to the parent   2 880 046   2 928 121
-#   employees' share of profit           -     (76 549)
-#   board of directors' bonus      (19 470)    (19 016)
-#                                2 860 576   2 832 556
-#   over 1,085,500 thousand shares   2.635       2.609
-EPS_DEDUCTION_FY25 = (2880.046 - 2860.576) / 2880.046     # 0.676%
-EPS_DEDUCTION_FY24 = (2928.121 - 2832.556) / 2928.121     # 3.264%, published beside it
-# [R-ANCHOR-01]: the latest full year is the anchor and the earlier one is the other
-# framing. The two differ by a factor of five because the employees' share follows the
-# DISTRIBUTION and none was made in FY2025 -- so this is a contested judgement and both
-# values are carried rather than averaged.
-eps26 = np26 * (1 - EPS_DEDUCTION_FY25) / SH
-eps26_fy24_framing = np26 * (1 - EPS_DEDUCTION_FY24) / SH
+eps26 = np26 / SH
 # The multiple was three typed judgement figures (8.0 / 9.5 / 11.0) sourced to nothing.
 # [R-LENS-03] requires a relative multiple to be NON-CIRCULAR -- forward earnings times a
 # multiple from peers or from the company's OWN HISTORY, never one read off the current
 # price. GB Corp's own trailing multiple at its last three year-end closes, from its own
 # reported net profit attributable and its own share price:
-# year-end close against the company's OWN published basic earnings per share (FY2023
-# annual report note 9; FY2024 and FY2025 annual report note 10), never a figure this
-# desk constructed from the attributable line.
-REL_HIST = {2023: (7.90, 1.682), 2024: (17.13, 2.609), 2025: (27.00, 2.635)}
-_rel_pes = sorted(px / eps for px, eps in REL_HIST.values())
+REL_HIST = {2023: (7.90, 1890.8), 2024: (17.13, 2928.1), 2025: (27.00, 2880.0)}
+_rel_pes = sorted(px / (npv / SH) for px, npv in REL_HIST.values())
 REL_PE_OWN = _rel_pes[len(_rel_pes) // 2]      # the median of three, and the COUNT is
                                                # published with it, because a percentage
                                                # without its count is the number that
@@ -1064,7 +660,7 @@ rel = dict(bear=rel_ps, base=rel_ps, bull=rel_ps)
 # THE TRADED MULTIPLE, COMMITTED SO THE CIRCULARITY CLAIM IS ARITHMETIC RATHER THAN PROSE
 # [R-LENS-03]: a lens whose multiple IS the traded one values the company at what it
 # already trades at, and a sentence saying otherwise is an attestation.
-rel_traded_pe = spot / eps26
+rel_traded_pe = (spot * SH + 0.0) / np26
 # ---- NORMALISED EARNINGS POWER IS REMOVED, NOT RE-SOURCED ---------------------------
 # It carried a quarter of the retired blend on six typed figures -- three mid-cycle profit
 # levels and three through-cycle multiples, none of them sourced to anything. It is absent
@@ -1082,9 +678,6 @@ norm = None
 LENS_INPUTS = dict(
     relative=dict(np_fy26e=np26, eps_fy26e=eps26, pe=REL_PE_OWN,
                   observations=len(REL_HIST), history=REL_HIST,
-                  eps_deduction_fy25=EPS_DEDUCTION_FY25,
-                  eps_deduction_fy24_framing=EPS_DEDUCTION_FY24,
-                  eps26=eps26, eps26_fy24_framing=eps26_fy24_framing,
                   pe_observed=sorted(_rel_pes), traded_pe=rel_traded_pe,
                   basis=("FY2026E group net profit attributable, READ from this model's "
                          "own consolidated forecast rather than typed; the multiple is "
@@ -1097,14 +690,6 @@ LENS_INPUTS = dict(
                          "the count is published with the median for that reason.")),
     capital=dict(segment_equity_before_nci=CAPITAL_SEG_EQUITY,
                  associates_carried_within=ASSOC_CARRYING,
-                 # RESTATED AGAINST RESTATED [audit finding 8] -- both figures committed
-                 # so the workbook cannot quietly carry the as-released one.
-                 segment_equity_before_nci_dec2025_as_released=(
-                     CAP_FY25_EQ_BEFORE_NCI_AS_RELEASED),
-                 associates_restatement_dec2025=ASSOC_RESTATEMENT_DEC25,
-                 segment_equity_before_nci_dec2025=CAP_FY25_EQ_BEFORE_NCI,
-                 associates_carried_within_dec2025=ASSOC_CARRYING_DEC25,
-                 operating_equity_dec2025=cap_eq_dec25,
                  operating_equity=cap_operating_equity,
                  roe_h126=cap_roe_h126, roe_fy25=cap_roe_fy25,
                  roe_adopted=cap_roe_adopted, justified_pb=cap_pb,
@@ -1119,18 +704,12 @@ LENS_INPUTS = dict(
 # SOTP bear/bull (auto margin/multiple + discount + marks)
 def sotp_case(gpm_shift, wacc, tg, cap_m, assoc_m, d):
     rws = []
-    # THE OPENING WORKING CAPITAL IS READ, NOT RETYPED. This line carried a literal
-    # 18917.0 -- a second copy of WC_OPENING, correct on the day it was written and
-    # silently wrong the moment the anchor moved to the 30-June-2026 stock. The grid's
-    # own reproduction assertion is what caught it, which is the check working: the
-    # carrying rung stopped reproducing the published branch within the same run.
-    wcp = WC_OPENING
+    wcp = 18917.0
     for i, y in enumerate(yrs):
         r = fc[y]['auto_rev']
         op = r*(gpm[i]+gpm_shift) - r*gsa[i] + r*oth + r*prov
         dna = r*dna_pct[i]
-        fcff = ((op*(1-TAX)+dna-capex[i]) * (STUB_FRACTION if i == 0 else 1.0)
-                - (r*wc_pct[i]-wcp))
+        fcff = op*(1-TAX)+dna-capex[i]-(r*wc_pct[i]-wcp)
         wcp = r*wc_pct[i]
         rws.append(fcff)
     _shift = wacc - WACC                      # move the WHOLE ladder, never one rate
@@ -1141,12 +720,7 @@ def sotp_case(gpm_shift, wacc, tg, cap_m, assoc_m, d):
         _fac.append(_c)
     pvs = sum(f*_fac[i] for i, f in enumerate(rws))
     tv_ = rws[-1]*(1+tg)/((_sch.wacc_terminal + _shift)-tg)*_fac[-1]
-    # THE MINORITY IS A SHARE OF THIS LEG'S EQUITY VALUE, AND THE GRID HAS TO SAY SO TOO.
-    # This line deducted the minority at BOOK while the bridge above deducts its share of
-    # value, so the grid stopped reproducing the published branch the moment the basis
-    # changed -- caught, again, by the grid's own reproduction assertion rather than by a
-    # reader.
-    ae = (pvs + tv_ - auto_nd) * (1.0 - AUTO_NCI_SHARE)
+    ae = pvs+tv_-auto_nd-auto_nci
     # THE LENDER LEG IS cap_val, NOT cap_book. This line read cap_book, which was 9,500
     # when the case function was written and is now the leg's DISCLOSED BOOK FLOOR of
     # 6,267.3 — so every case built here was valuing the lender at book while the study
@@ -1192,15 +766,8 @@ BRANCHES = [
                "the subject of the review's qualified conclusion.")),
     dict(label="MNT-Halan at the June-2026 round price",
          value=sotp_A_ps,
-         # THE RATE IS READ, AND IT WAS TYPED AT THE SUPERSEDED FIGURE [17-09-2026].
-         # This note said "translated at EGP 47.5" beside a mark of 29,272.6, which is
-         # 0.4161 x 1,400 x 50.25 — at 47.5 the row gives 27,670.6. The study's own
-         # audit record names 47.5 as the rate this rebuild RETIRED, and the same
-         # document says 50.2 four rows below. A rate quoted beside the figure it did
-         # not produce is a claim a reader can check on the page and find false.
-         note=("41.61%% of the USD 1.4bn primary round completed with Al Ahly Capital "
-               "Holding, translated at EGP %.2f, the house path's own spot. The "
-               "market-mark branch." % egp_usd)),
+         note=("41.61% of the USD 1.4bn primary round completed with Al Ahly Capital "
+               "Holding, translated at EGP 47.5. The market-mark branch.")),
 ]
 # THE ENVELOPE IS THE RANGE OF THE PRESENT-VALUE READS ON ONE CLOCK, which is [R-LENS-03]
 # in its own words -- never an average and never a spread invented around a central. The
@@ -1369,23 +936,6 @@ _DL = [
                   "It is grown on a stated rate; that rate is not measured against "
                   "anything the company publishes.")),
     _RP.DriverLine(
-        name="other and inter-segment auto revenue", level="topdown",
-        share_of_revenue=fc['FY26E']['of_rev'] / _REV26,
-        cost_basis=("the auto leg's gross margin, which is the margin this line is ALREADY "
-                    "inside: the release strikes GB Auto's 14.8% on TOTAL revenue of "
-                    "66,358.3, so applying that margin to a revenue figure that omits this "
-                    "line is what understated gross profit in the delivered edition"),
-        gap_note=("NEITHER A UNIT NOR A SEGMENT IS DISCLOSED FOR IT, and it is not one "
-                  "activity: EGP 682.8mn is GB Auto's external revenue outside its four "
-                  "published business lines (65,913.5 less 65,230.7), which the release's "
-                  "own tables head 'Sales AND AFTER-SALES Activity' without ever publishing "
-                  "the after-sales revenue separately; EGP 444.8mn is inter-segment revenue, "
-                  "real to this segment and removed again by the group elimination line. It "
-                  "is HELD FLAT at its own filed level rather than grown, because the "
-                  "company publishes no volume, price or growth rate for it and a growth "
-                  "rate nothing measures is worse than no growth rate. THE DELIVERED "
-                  "EDITION ZEROED IT for every forecast year [audit finding 5].")),
-    _RP.DriverLine(
         name="GB Capital (the financing businesses)", level="segment",
         share_of_revenue=_F26['capital_revenue'] / _REV26,
         cost_basis=("the segment's own gross margin, which its income-statement table "
@@ -1436,31 +986,22 @@ _LENS_RECORD = dict(
             driver=("the basis on which GB Corp's minority interest in MNT-Halan is "
                     "carried -- its reviewed carrying value against the June-2026 "
                     "primary round"),
-            # READ, NOT TYPED. Both ends were typed literals and both went stale in this
-            # pass: the carrying value moved when note 34 was re-read off the pixels and
-            # the round value moved when the currency came from the house path.
-            low=MNT_CARRYING, high=mnt_halan_value,
+            low=15733.523, high=27670.65,
             units="EGP million, the associate holding",
             macro_held=True,
-            evidence=("THE TWO ENDS ARE NOT THE SAME KIND OF NUMBER, AND AN EARLIER "
-                      "EDITION OF THIS RECORD SAID THEY WERE. The low end is GB Corp's "
-                      "OWN: note 34 to the reviewed consolidated interim statements at 30 "
-                      "June 2026, EGP %s thousand, every column and row of which foots on "
-                      "this reading and on no other. The high end is a THIRD-PARTY MARK "
-                      "the company has never adopted as its own carrying value -- %.2f%% "
-                      "of the USD %s mn primary round completed with Al Ahly Capital "
-                      "Holding, which GB Corp's 9 June 2026 release names for the STAKE "
-                      "and not for the round figure, translated at the house path's own "
-                      "USD/EGP %.2f of %s. The macro path stood still across the range: "
-                      "nothing in it moves inflation, the currency or the price of time. "
-                      "THE REVIEW CONCLUSION ON THOSE STATEMENTS IS QUALIFIED AT EXACTLY "
-                      "THIS LINE -- the reviewers were not provided with the associate's "
-                      "own financial statements and could not verify the EGP %s mn share "
+            evidence=("BOTH ENDS ARE THE COMPANY'S OWN DISCLOSURES AND NEITHER IS THIS "
+                      "DESK'S. The low end is note 34 to the reviewed consolidated "
+                      "interim statements at 30 June 2026, EGP 15,733,523 thousand, "
+                      "which foots to that balance sheet's own associates line. The high "
+                      "end is 41.61% of the USD 1.4bn primary round GB Corp announced on "
+                      "9 June 2026, at EGP 47.5. The macro path stood still across the "
+                      "range: nothing in it moves inflation, the currency or the price of "
+                      "time, and the currency used is the path's own. THE REVIEW "
+                      "CONCLUSION ON THOSE STATEMENTS IS QUALIFIED AT EXACTLY THIS LINE "
+                      "-- the reviewers were not provided with the associate's own "
+                      "financial statements and could not verify the EGP 409.9mn share "
                       "of profit recorded in the period -- so the low end is not a safe "
-                      "harbour either, and the study says so rather than resting on it."
-                      % (format(MNT_CARRYING * 1000, ',.0f'), 100 * mnt_halan_stake,
-                         format(mnt_halan_round_usd, ',.0f'), egp_usd, EGP_USD_DATE,
-                         format(409.985, ',.3f'))),
+                      "harbour either, and the study says so rather than resting on it."),
         ),
     ),
     cross_checks=[
@@ -1473,32 +1014,10 @@ _LENS_RECORD = dict(
                               "net profit attributable and its own share price. Never a "
                               "multiple from the current price. THREE OBSERVATIONS, and "
                               "the count is published with the median."),
-             # THE METRIC IS THE EARNINGS THE MULTIPLE IS ACTUALLY APPLIED TO, WHICH IS
-             # NOT THE ATTRIBUTABLE LINE. The multiples in REL_HIST are struck on the
-             # company's OWN PUBLISHED BASIC EPS, whose numerator is net profit
-             # attributable LESS the employees' and board statutory share of profit
-             # (EPS_DEDUCTION_FY25, 0.676% on the FY2025 framing). This block committed
-             # the raw attributable figure while the lens multiplied the EPS-basis one,
-             # so the two disagreed by exactly that deduction and NOTHING SAID SO -- the
-             # committed operand named a different quantity from the one in use, which is
-             # the same shape as an artefact declaring a vintage it was not built at.
-             # It broke twice from one cause: `multiple x metric_value / shares` gave
-             # 18.2024 against a published 18.0794, and research_protocol's own derived
-             # `_traded_multiple` came out 10.4533 against the 10.52x this study PRINTS.
-             # Committing the operand the lens uses closes both; no printed figure moves.
-             circularity=dict(spot=spot, shares=SH, net_debt=0.0,
-                              metric_value=np26 * (1 - EPS_DEDUCTION_FY25),
-                              metric_basis=("FY2026E net profit attributable LESS the "
-                                            "employees' and board statutory share of "
-                                            "profit -- the SAME basis as the company's "
-                                            "own published basic earnings per share, "
-                                            "which is the denominator every multiple in "
-                                            "this lens's own history was struck on"),
-                              net_profit_attributable=np26),
+             circularity=dict(spot=spot, shares=SH, net_debt=0.0, metric_value=np26),
              note=("earnings multiple, so the enterprise adjustment is nil by "
                    "construction and the traded multiple is simply market "
-                   "capitalisation over the same forward earnings -- on the earnings "
-                   "basis the multiple is struck on, never the attributable line.")),
+                   "capitalisation over the same forward earnings.")),
         dict(kind="book_value",
              value=GRP_EQ_BEFORE_NCI_JUN26 / SH,
              present_value=False,
@@ -1609,9 +1128,6 @@ out = dict(
     dcf=dict(rows=rows, pv_sum=pv_sum, tv=tv, pv_tv=pv_tv, ev=ev_auto,
              tv_pct=pv_tv/ev_auto, wacc=WACC, tg=TG,
              auto_nd=auto_nd, auto_nci=auto_nci, auto_eq=auto_eq,
-             auto_total_eq=auto_total_eq, auto_nci_share=AUTO_NCI_SHARE,
-             working_capital_opening=WC_OPENING, working_capital_anchor=WC_ANCHOR,
-             auto_nci_value=auto_nci_value, unearned_fraction=STUB_FRACTION,
              wacc_terminal=_sch.wacc_terminal,
              forward_wacc=list(_sch.forward_wacc),
              discount_factors=list(_sch.discount_factors),
@@ -1631,6 +1147,18 @@ out = dict(
                              kd_source=_book.kd_source,
                              debt_currency_evidence=_book.currency_source,
                              beta_source=_beta.source)),
+    # WHAT THE 13-09-2026 PRIMER PASS ADDED, AND WHAT IT DID NOT MOVE. Both records are
+    # developments and tests, not inputs: the two branches stand at EGP 45.78 and EGP 56.78
+    # exactly as they did before the pass, which is what a lead that was traced and found
+    # not to bear on the arithmetic is supposed to look like.
+    mnt_listing=mnt_listing,
+    capacity=dict(pc_vol_path=pc_vol_path, pc_vol_peak=PC_VOL_PEAK,
+                  disclosed=CAP_DISCLOSED,
+                  passenger_disclosed=CAP_PASSENGER_DISCLOSED,
+                  press=CAP_PRESS, note=CAP_NOTE,
+                  source=('gb-corporation.com/gb-auto/manufacturing-facilities, read live '
+                          '13-09-2026 -- the company publishes bus and two/three-wheeler '
+                          'capacity and publishes none for passenger cars')),
     sotp=dict(auto_eq=auto_eq, cap_val=cap_val, assoc=assoc, total=sotp_sum,
               disc=disc, eq=sotp_eq, ps=sotp_ps, prediscount_ps=prediscount_ps,
               bear=sotp_bear, bull=sotp_bull,
@@ -1665,9 +1193,7 @@ out = dict(
         cost_stack=dict(gross_margin=gpm, gsa_pct=gsa, other_income_pct=oth,
                         provisions_pct=prov, dna_pct=dna_pct, capex=capex,
                         working_capital_pct=wc_pct, working_capital_opening=WC_OPENING,
-                        working_capital_opening_intensity=WC_OPENING / WC_TTM_REV,
-                        working_capital_base_intensity=WC_BASE_INTENSITY,
-                        working_capital_ttm_revenue=WC_TTM_REV,
+                        working_capital_opening_intensity=WC_OPENING / auto_rev_fy25,
                         working_capital_closing_fy30e=wc_prev,
                         tax_rate=TAX)),
     history=HISTORY,
@@ -1684,110 +1210,45 @@ out = dict(
                      capital_dna=cap_dna,
                      capital_loanbook_growth=[0.35, 0.28, 0.24, 0.20, 0.18],
                      rental_and_other_capex=[700.0, 800.0, 900.0, 1000.0, 1100.0],
-                     # THE WORKBOOK'S WORKING CAPITAL IS THE MODEL'S WORKING CAPITAL,
-                     # COMPONENT BY COMPONENT. These four ratios were a typed glide and
-                     # they are a SECOND IMPLEMENTATION of the quantity L15 re-anchored --
-                     # the delivered workbook projected its balance sheet from them while
-                     # the cash-flow model used wc_pct, and the study's own recalculation
-                     # gate is what caught the two disagreeing after the anchor moved.
-                     # They are now the company's OWN disclosed components at 30 June 2026
-                     # over the same trailing-twelve-month revenue, held flat on the same
-                     # [R-ANCHOR-01] reasoning, and they reproduce WC_ANCHOR by identity:
-                     #   30.326 + 7.758 + 4.957 - 20.463 = 22.578%
-                     auto_inventory_pct=[22959.1 / WC_TTM_REV] * 5,
-                     auto_receivables_pct=[5873.5 / WC_TTM_REV] * 5,
-                     auto_advances_pct=[(1153.7 + 2598.9) / WC_TTM_REV] * 5,
-                     auto_payables_pct=[15492.5 / WC_TTM_REV] * 5,
-                     auto_working_capital_pct=wc_pct,
-                     auto_unearned_fraction=STUB_FRACTION,
+                     auto_inventory_pct=[0.36, 0.338, 0.32, 0.308, 0.296],
+                     auto_receivables_pct=[0.08]*5,
+                     auto_advances_pct=[0.07, 0.069, 0.0675, 0.066, 0.0645],
+                     auto_payables_pct=[0.245, 0.237, 0.2325, 0.229, 0.2255],
                      net_new_borrowings=[5500.0, 5200.0, 5600.0, 5800.0, 6100.0],
                      dividend_payout=[0.14, 0.15, 0.16, 0.18, 0.20])),
-    bridge_record=BRIDGE_RECORD,
     lens_inputs=LENS_INPUTS,
-    # THE EDITION IS THE DAY THE WORK WAS DONE. This re-issue answers the forensic
-    # audit of the 07-09-2026 edition and moves the published answer, so it is a new
-    # edition rather than a restamp of the old one.
-    edition='2026-09-17',
+    # RECALIBRATION EDITION [R-DOC-03]. The terminal risk-free rate came off the
+    # house Egyptian macro path when the structural real rate moved from 5.5% to
+    # 3.5%, and the cost-of-capital record now publishes the [R-COC-03] split it
+    # was already using. Supersedes 07-09-2026 (EGP 41.35 / 52.35).
+    edition='2026-09-10',
+    supersedes=('2026-09-07',),
     experts=dict(e1=exp1, e2=exp2, e3=exp3, e3_roce=roce, e3_ce=ce),
-    # ---- WHAT THIS STUDY COMMITS ABOUT THE ANSWER ITSELF, beyond the answer ----------
-    audit_2026_09_17=dict(
-        _what="the figures the 17-09-2026 audit response needed and the study did not carry",
-        # finding 6 -- the historical operating-profit line and the basis break beneath it
-        operating_profit_basis_break=dict(
-            what="GB Corp's own 'Operating Profit' line EXCLUDED provisions in its FY2023 "
-                 "presentation and INCLUDES them from FY2024. Both years' figures are the "
-                 "company's own and they are not on one basis.",
-            fy2023_as_reported=HISTORY['income_statement']['2023']['operating_profit'],
-            fy2023_on_the_current_basis=_FOOTED_OP['2023'],
-            fy2024_as_first_reported=HISTORY['income_statement']['2024']['operating_profit'],
-            fy2024_as_restated=_FOOTED_OP['2024'],
-            fy2025=_FOOTED_OP['2025'],
-            footed_operating_profit=_FOOTED_OP,
-            evidence="The study's own committed EBIT proves which basis is which: FY2023 "
-                     "EBIT of 4,769.7 less associates of 1,061.7 is 3,708.0, and FY2024's "
-                     "6,688.5 less 867.6 is 5,820.9 -- the footed figures, not the printed "
-                     "ones. GB Corp's 4Q/FY25 release prints FY2024 operating profit as "
-                     "5,820.8 in its own Table 1."),
-        # finding 12 -- the life the terminal's own capital charge implies
-        terminal_capex_to_dna=capex[-1] / rows[-1]['dna'],
-        terminal_capex=capex[-1],
-        terminal_dna=rows[-1]['dna'],
-        disclosed_life_range=[10.9, 17.1],
-        implied_life_note=(
-            "The asset-life refusal is honest and the construction pins a charge anyway. "
-            "In the terminal year this model spends %.2f times its own book depreciation "
-            "on capital expenditure. A company replacing its asset base over the 10.9-to-"
-            "17.1-year composite the filings support would spend about book depreciation "
-            "grossed for cost inflation, so the terminal is charging ABOVE replacement "
-            "rather than below it -- which is the one direction [R-TERM-01 CLAUSE TWO]'s "
-            "inference runs without a sourced life."),
-        # finding 25 -- the company's own return for the same segment
-        capital_return_disclosed=dict(
-            fy2025=0.151, h1_2026=0.135,
-            basis="GB Corp's own adjusted return on average equity for the GB Capital "
-                  "segment, as published in its 4Q25 and 2Q26 earnings releases.",
-            why_not_adopted=(
-                "Its numerator includes EGP 986.4mn of investment gains from associates and "
-                "its denominator is an equity base those associates sit inside. Importing it "
-                "would count MNT-Halan once in the lender leg and again as the sum of the "
-                "parts' largest single line. The study's 10.10% takes the associate out of "
-                "both, which is why the two figures differ and why the company's is printed "
-                "here rather than adopted.")),
-        # finding 32 -- the currency, and what it was before
-        egp_usd=egp_usd, egp_usd_date=EGP_USD_DATE,
-        egp_usd_typed_before=EGP_USD_TYPED_BEFORE,
-        # finding 21 -- the scenario span the workbook prints and the document did not
-        # finding 21 -- the scenario span the workbook prints and the document did not
-        scenario_span=dict(
-            low=sotp_bear, high=sotp_bull,
-            what="the study's own committed scenario reads on the primary: a gross-margin "
-                 "shift, the WHOLE cost-of-capital ladder moved together, terminal growth "
-                 "shifted in REAL terms, and the marks on the lender and the associates "
-                 "moved with them -- a stress on the model at once rather than one driver "
-                 "at a time.",
-            why_it_is_not_the_envelope=(
-                "[R-LENS-03]'s envelope is the RANGE OF THE PRESENT-VALUE READS, which is a "
-                "different object: the two branches and the relative cross-check. This span "
-                "is a stress on ONE of those reads and sits outside the envelope on both "
-                "sides, which is why the delivered workbook printed it and the document did "
-                "not. It is published in both from this edition rather than in one.")),
-    ),
     cap_hist=cap_hist,
     cost_of_capital_record=dict(
         _rule="[R-COC-01] built through engine/cost_of_capital.py; [R-COC-02] Ke reproduces "
               "from rf* + beta x ERP under a NAMED construction",
         central_basis="market",
-        beta_source="own_stock_regression",
+        # beta_source IS NOT ASSERTED HERE. It came from _sch.as_record() already, and
+        # writing it again as a literal made this dict() raise
+        #     TypeError: dict() got multiple values for keyword argument 'beta_source'
+        # -- so compute.py DID NOT RUN AT ALL, and the committed answer could not be
+        # regenerated by its own builder. Found 09-09-2026 while challenging the answer;
+        # no gate caught it, because every gate reads the committed study_numbers.json and
+        # that file was written before the line was added.
+        #
+        # Removing the literal rather than renaming it is the point. The schedule's
+        # beta_source is DERIVED from the construction that actually produced the beta;
+        # a literal beside it is a claim about that construction, and the two can
+        # disagree without anything saying so. That is the shape assert_beta_provenance()
+        # exists to close -- it inspects the record instead of trusting a boolean the
+        # study set on itself, because every study in this book set that boolean True
+        # while regressing on a composite.
         beta_source_note=_beta.source,
         **_sch.as_record()),
     cost_of_capital_rating_basis=_SCHED["rating"].as_record(),
     macro=dict(path="EG", path_asof=_PATH.as_of,
                terminal_inflation=_PATH.terminal_inflation,
-               # THE TERMINAL ANCHORS, COMMITTED SO THE WORKBOOK CAN BUILD THE TERMINAL
-               # RATE AS A FORMULA RATHER THAN CARRY IT AS A CONSTANT [audit finding 18].
-               real_rate_convention=_PATH.real_rate_convention,
-               erp_terminal=_PATH.erp_terminal,
-               kd_terminal=_PATH.kd_terminal,
                terminal_growth_real=TG_REAL, terminal_growth_nominal=TG,
                anchor_staleness_accepted=(
                    # COMPUTED, NOT TYPED. This sentence stated the wrong strike date and the
@@ -1888,6 +1349,16 @@ res.to_csv(os.path.join(HERE, 'backtest_rows.csv'), index=False)
 np.save(os.path.join(HERE, 'fan.npy'), np.array([fan[p] for p in [5, 25, 50, 75, 95]]))
 np.save(os.path.join(HERE, 'pT20.npy'), pT20[:20000])
 np.save(os.path.join(HERE, 'pT60.npy'), pT60[:20000])
+# THE STANDARD STAMP IS READ, NOT TYPED [added 13-09-2026]. engine/campaign_queue.py
+# reads `standard_version` to decide whether a study is built to the LIVE standard, and a
+# study that carries none reads as needing a reissue however recently it was rebuilt.
+# Measured on 13-09-2026: of 24 studies, TWO were stamped at the live 2026.09.10, four at
+# a superseded standard and EIGHTEEN carried no stamp at all -- so the campaign queue
+# listed eight names as outstanding that had just been reissued. Read from the protocol
+# rather than typed, so running a study is what stamps it.
+import research_protocol as _RP_STD
+out['standard_version'] = _RP_STD.STANDARD_VERSION
+
 with open(os.path.join(HERE, 'study_numbers.json'), 'w') as f:
     json.dump(out, f, indent=1, default=float)
 print('spot', spot, spot_date, '| anchor_vol', round(anchor_vol, 3),

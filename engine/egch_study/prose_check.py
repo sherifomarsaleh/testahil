@@ -12,7 +12,50 @@ fixed HERE by widening the rendering set, never by deleting the figure from the 
 import json, os, re, sys
 from docx import Document
 HERE = os.path.dirname(os.path.abspath(__file__)); os.chdir(HERE)
-DOCS = ['EGCH_Valuation_Study_05-09-2026.docx', 'EGCH_Bibliography_05-09-2026.docx']
+# THE DOCUMENTS THIS CHECK READS WERE NAMED BY HAND, so it went on grading the
+# SUPERSEDED 5 September edition after the study was re-struck and reissued -- the
+# third check in this directory pointed at a file nobody writes any more. It
+# reported eight failures, every one of them a figure that was correct in the
+# document it was written for. A gate aimed at the wrong artefact does not go
+# quiet; it goes WRONG, which is worse.
+import edition as _EDN
+DOCS = [_EDN.STUDY_DOCX, _EDN.BIBLIO_DOCX]
+
+
+def latest_ddmmyyyy(pat):
+    """The workbook names its edition DDMMYYYY with no separators, so the date is PARSED
+    rather than the filenames sorted as text — 03092026 sorts below 09082026 as a string and
+    a text sort silently picks a superseded edition [L-067]. Copied from the ADNOCLS resolver."""
+    c = []
+    for f in os.listdir('.'):
+        if re.match(pat, f) and not f.startswith('~$'):
+            m = re.findall(r'_(\d{2})(\d{2})(\d{4})\.', f)
+            c.append(((m[-1][2] + m[-1][1] + m[-1][0]) if m else '', f))
+    return sorted(c)[-1][1] if c else None
+
+
+# THE WORKBOOK IS A DELIVERED DOCUMENT AND WAS IN NO STUDY'S POPULATION IN THE BOOK [L-350].
+# A reader receives three files and this list named two, so the third was read by nothing.
+# Only STRING cells are read: a numeric cell is a model output the recalculation already
+# reconciles, and a numeral inside a label, caption or source note is prose that happens to
+# live in a spreadsheet — the shape this check exists for. Formulas are skipped for the same
+# reason. [EXTENDED 05-Sep-2026]
+_WB = latest_ddmmyyyy(r'^EGCH_Valuation_Model_\d{8}\.xlsx$')
+if _WB:
+    DOCS.append(_WB)
+
+
+def _xlsx_texts(path):
+    import openpyxl
+    wb = openpyxl.load_workbook(path, data_only=False, read_only=True)
+    out = []
+    for ws in wb.worksheets:
+        for row in ws.iter_rows(values_only=True):
+            for v in row:
+                if isinstance(v, str) and not v.startswith('='):
+                    out.append(v)
+    wb.close()
+    return out
 
 
 def latest_ddmmyyyy(pat):

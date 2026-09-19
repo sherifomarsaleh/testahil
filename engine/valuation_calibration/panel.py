@@ -41,8 +41,29 @@ sys.path.insert(0, ENGINE)
 import macro_history as MH  # noqa: E402
 
 
+# These records state their unit in the field name and the reader ignored it, which
+# put a factor of a million into the denominator of a per-share value. The files hold
+# `shares_mn` — MILLIONS — and the counts landed in the same slot as the blocks'
+# counts in UNITS, so a name drawing some origins from each ran two units in one
+# series. MEASURED RATHER THAN INFERRED FROM THE NAME: ARCC records 2015-2017 in both
+# places and 378.7397 x 1e6 is 378,739,700 exactly, the footed count its own block
+# commits for those same years; PHDC's 2308.949726 is likewise its committed
+# 2,308,949,726. Two independent records agreeing to the unit is what settles it.
+#
+# IT REACHED A NUMBER AND NOT A CRASH, which is why nothing caught it: ARCC scores no
+# cell in the declared run, so the defect only ever surfaced in the disclosed-life
+# SENSITIVITY, where it printed a fair value of EGP 201,953,701 per share against a
+# price of 7.63 and was read as evidence against that basis. A unit error one million
+# wide is not subtle in its output and is invisible in its input [R-TERM-01: where a
+# quantity carries a UNIT, the unit is the thing to check].
+SHARES_MN_TO_UNITS = 1e6
+
+
 def _shares():
-    """Point-in-time share counts, per name, from the committed OCR records."""
+    """Point-in-time share counts, per name, from the committed OCR records.
+
+    Returned in UNITS, converted from the millions these files state.
+    """
     out = {}
     for p in sorted(glob.glob(os.path.join(HERE, "shares_*.json"))):
         try:
@@ -52,9 +73,10 @@ def _shares():
         tk = (d.get("ticker") or "").upper()
         if not tk:
             continue
-        out[tk] = {y: rec.get("shares_mn")
+        out[tk] = {y: rec["shares_mn"] * SHARES_MN_TO_UNITS
                    for y, rec in (d.get("shares_mn") or {}).items()
-                   if rec.get("shares_mn")}
+                   if isinstance(rec.get("shares_mn"), (int, float))
+                   and rec["shares_mn"] > 0}
     return out
 
 
@@ -81,8 +103,26 @@ def _block_shares():
             doc = json.load(open(p, encoding="utf-8"))
         except Exception:
             continue
-        for key, block in (doc.get("origins") or {}).items():
-            rec = (block or {}).get("shares")
+        # BOTH KEYS, AND READING ONLY THE FIRST WAS THE SAME READER DEFECT THE LENS
+        # NEXT DOOR ALREADY FIXED [L-355]: a run's `origins` are the years it TESTED
+        # and `prior_year_anchor` holds years committed to feed a window reaching back
+        # past the first origin. cashflow_lens.block() reads both and says so in its
+        # own comment; this reader did not, so every anchor year's FOOTED count was
+        # invisible here and the year fell through to the millions file above — which
+        # is how one name came to run two units across one series.
+        # `origins` WINS on a collision, the same precedence the lens uses, because
+        # what a run tested is what it tested.
+        blocks = {}
+        for src in ("prior_year_anchor", "origins"):
+            blocks.update(doc.get(src) or {})
+        for key, block in blocks.items():
+            # An anchor mapping carries narrative keys beside its years — `_`,
+            # `source_class`, `basis` — and those are strings, so the year filter
+            # cannot wait until after the lookup the way it did when this read one
+            # key whose members happened to be uniform.
+            if not isinstance(block, dict):
+                continue
+            rec = block.get("shares")
             if not isinstance(rec, dict) or "missing" in rec:
                 continue
             v, cap, par = (rec.get("value"), rec.get("issued_capital"),
@@ -105,9 +145,6 @@ def _block_shares():
 SHARES = _shares()
 BLOCK_SHARES = _block_shares()
 
-# ticker -> the artefact that answered for its panel, or a SKIPPED/UNREADABLE sentinel
-PANEL_SOURCE = {}
-
 OHLC = os.path.join(ENGINE, "raw_ohlc")
 
 
@@ -118,147 +155,12 @@ def runs():
     return out
 
 
-# ONE NAMED ADAPTER PER RUN, BECAUSE A READER THAT GUESSES A SHAPE FINDS NOTHING AND
-# REPORTS THAT AS A RESULT [L-355].
-#
-# WHAT THE GUESSING COST, MEASURED 17-09-2026. The search below used to be "by SHAPE" —
-# try six filenames, accept the first whose TOP LEVEL is keyed by four-digit years — and
-# it reported FIVE runs as having committed no as-reported panel at all. FOUR OF THE FIVE
-# COMMIT ONE. GBCO and SWDY nest theirs one level down under `years`; SCEM and PHAR key
-# theirs "FY2021" under `income_statement`. Every one of those files was on disk, tracked,
-# and full of footed figures with their sources.
-#
-# AND THE TOOL DID NOT GO QUIET ABOUT IT — IT EXPLAINED. It printed that their statements
-# "came from engine/*_walkforward/filings/, which is gitignored", which is a specific,
-# confident and WRONG account of why a number was zero, and it is the reason nobody looked
-# for three weeks: an absence with a plausible story attached stops being a question.
-#
-# So the route is NAMED per run rather than inferred. A run this table does not name and
-# whose file is not top-level year-keyed is REPORTED as unreadable [R-ENF-04] — never
-# silently empty, which is the state this whole comment is about.
-def _years_top(d):
-    """{year: cell} where the years ARE the top-level keys — PHDC, TMGH."""
-    return {int(k): v for k, v in d.items() if k.isdigit() and len(k) == 4}
-
-
-def _years_nested(key):
-    """{year: cell} from a dict nested one level under `key` — GBCO, SWDY."""
-    def read(d):
-        inner = d.get(key) or {}
-        return {int(k): v for k, v in inner.items()
-                if isinstance(k, str) and k.isdigit() and len(k) == 4}
-    return read
-
-
-def _years_fy(key):
-    """{year: cell} from FY-prefixed keys under `key` — SCEM, PHAR."""
-    def read(d):
-        inner = d.get(key) or {}
-        out = {}
-        for k, v in inner.items():
-            digits = "".join(ch for ch in str(k) if ch.isdigit())
-            if len(digits) == 4:
-                out[int(digits)] = v
-        return out
-    return read
-
-
-def _years_fy_sections(primary, *extra):
-    """{year: cell} from FY-prefixed keys, MERGING further sections under a prefix.
-
-    THE INCOME STATEMENT WAS THE WHOLE PANEL AND THE BALANCE SHEET WAS SITTING BESIDE
-    IT. `_years_fy` reads one named section, which was right for every question asked
-    of these panels until the cash-flow lens needed to measure the unit a run's
-    valuation-input BLOCK is written in — and that measurement works by finding a
-    quantity present in BOTH the panel and the block. Every block item is a
-    balance-sheet or cash-flow line (cash, debt, ppe, dep, wc, shares), and an
-    income-statement-only panel shares none of them, so the scale could not be
-    measured and every cell on those names dropped. The file carried the balance sheet
-    the whole time.
-
-    EXTRA SECTIONS ARE PREFIXED, never merged flat: `bs.cash` rather than `cash`. Two
-    sections of one statement set can legitimately carry the same word — "dep" as a
-    charge and as accumulated depreciation are different quantities — and silently
-    letting one overwrite the other is the unit error this book keeps paying for. The
-    prefix convention is not invented here either: PHDC's panel already writes
-    `bs.cash` and the lens already reads it under that name.
-    """
-    def read(d):
-        out = {}
-        for section, prefix in [(primary, "")] + [(x, "%s." % x.split("_")[0])
-                                                  for x in extra]:
-            inner = d.get(section) or {}
-            for k, v in inner.items():
-                digits = "".join(ch for ch in str(k) if ch.isdigit())
-                if len(digits) != 4 or not isinstance(v, dict):
-                    continue
-                y = int(digits)
-                cell = out.setdefault(y, {})
-                for kk, vv in v.items():
-                    cell["%s%s" % (prefix, kk)] = vv
-        return out
-    return read
-
-
-PANEL_ADAPTER = {
-    "PHDC": ("panel.json", _years_top),
-    "TMGH": ("panel_annual.json", _years_top),
-    "GBCO": ("panel.json", _years_nested("years")),
-    "SWDY": ("panel.json", _years_nested("years")),
-    "SCEM": ("panel_export.json",
-             _years_fy_sections("income_statement", "balance_sheet")),
-    "PHAR": ("panel_export.json",
-             _years_fy_sections("income_statement", "balance_sheet")),
-}
-
-
-def _skip_reason(rundir):
-    """The run's own recorded reason for not running, or None.
-
-    A SKIP IS NOT A MISSING PANEL AND MUST NOT BE COUNTED AS ONE. ELEC records
-    "walk-forward not run — insufficient sourceable history (4 years)" in the words
-    [R-FCAL-01] prescribes; reporting that as an absent artefact would turn a correct
-    refusal into an outstanding debt, which is how a clean result gets manufactured in
-    the other direction.
-    """
-    p = os.path.join(rundir, "skip_record.json")
-    if not os.path.exists(p):
-        return None
-    try:
-        d = json.load(open(p, encoding="utf-8"))
-    except Exception:
-        return "skip_record.json will not parse"
-    return d.get("scope_words") or "recorded as skipped"
-
-
 def _panel(rundir):
-    """The walk-forward's as-reported panel, keyed by year, or {}.
-
-    Returns (panel, source) where source is the filename that answered, or one of
-    the sentinels "SKIPPED: ..." / "UNREADABLE: ..." so a caller can tell a run that
-    correctly did not run from one this reader cannot open.
-    """
-    tk = os.path.basename(rundir.rstrip(os.sep)).replace("_walkforward", "").upper()
-    skip = _skip_reason(rundir)
-    if skip:
-        return {}, "SKIPPED: %s" % skip
-    named = PANEL_ADAPTER.get(tk)
-    if named:
-        fn, route = named
-        p = os.path.join(rundir, fn)
-        if not os.path.exists(p):
-            return {}, "UNREADABLE: %s names %s and it is not on disk" % (tk, fn)
-        try:
-            d = json.load(open(p, encoding="utf-8"))
-        except Exception as e:
-            return {}, "UNREADABLE: %s will not parse (%s)" % (fn, e)
-        got = route(d) if isinstance(d, dict) else {}
-        if not got:
-            return {}, ("UNREADABLE: %s adapter found no year-keyed cells in %s — the "
-                        "shape moved and the adapter did not" % (tk, fn))
-        return got, fn
-    # No named adapter: the top-level convention is still accepted, and anything else
-    # is reported rather than returned empty.
+    """The walk-forward's as-reported panel, keyed by year, or {}."""
+    # The runs do not agree on a filename — PHDC writes panel.json, TMGH
+    # panel_annual.json — so the search is by SHAPE (a dict keyed by
+    # four-digit years) across the candidates, and the file that answered
+    # is recorded so a reader knows which artefact a cell stands on.
     for fn in ("panel.json", "panel_annual.json", "panel_export.json",
                "panel_kpi_verified.json", "bottom_up.json", "fs_parsed.json"):
         p = os.path.join(rundir, fn)
@@ -270,8 +172,21 @@ def _panel(rundir):
             continue
         if isinstance(d, dict) and any(k.isdigit() and len(k) == 4 for k in d):
             return {int(k): v for k, v in d.items() if k.isdigit()}, fn
-    return {}, ("UNREADABLE: %s commits no panel this reader is taught to read — add a "
-                "named adapter rather than letting the name drop out" % tk)
+        # A RUN MAY NEST ITS YEARS UNDER A NAMED KEY, and the shape search above
+        # only looks at the top level — so SWDY, which wraps its seventeen years
+        # in {"years": {...}} beside its own provenance fields, read as a run with
+        # no panel at all and every one of its cells reported NOT READY. That is
+        # [L-355] on this very module: a reader that guesses a shape silently
+        # finds nothing and reports it as a result. The wrapper keys are NAMED
+        # rather than searched for, because a search that descends into any dict
+        # would eventually find a four-digit key somewhere that is not a year.
+        for wrap in ("years", "annual", "fy"):
+            inner = d.get(wrap) if isinstance(d, dict) else None
+            if isinstance(inner, dict) and any(
+                    k.isdigit() and len(k) == 4 for k in inner):
+                return ({int(k): v for k, v in inner.items() if k.isdigit()},
+                        "%s[%s]" % (fn, wrap))
+    return {}, None
 
 
 def _forward(rundir):
@@ -284,11 +199,51 @@ def _forward(rundir):
         return None
 
 
+def _registry():
+    """scripts/build_market_registry.py — the repo's existing market/name registry.
+
+    Loaded by path because scripts/ is not a package, exactly as band_record.py
+    loads it. Imported rather than reimplemented [R-ENF-03]: the stem-collision
+    mapping below is the registry's, not a second copy of it.
+    """
+    import importlib.util
+    path = os.path.join(ROOT, "scripts", "build_market_registry.py")
+    spec = importlib.util.spec_from_file_location("_bmr_panel", path)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+def markets_for(ticker):
+    """Every market library holding a file under this exact stem."""
+    return [m for m in (sorted(os.listdir(OHLC)) if os.path.isdir(OHLC) else [])
+            if os.path.exists(os.path.join(OHLC, m, "%s.csv" % ticker))]
+
+
+# A STEM IS NOT A COMPANY. "ADIB" names two different banks -- the Egyptian one
+# (EGP) and the Abu Dhabi one (AED) -- and both libraries hold ADIB.csv, so the
+# old sorted()-first scan returned AE for every caller that meant Egypt and did
+# it silently. That is the failure band_record.py already warns about in full:
+# "keying a record by bare name would silently hand one bank the other's
+# coverage". The registry settled it at scripts/build_market_registry.py:51
+# ("AE/ADIB" -> "ADIBUAE") and REFUSES any unaliased collision outright at its
+# line 97, so the resolution is read from there rather than minted here: a
+# market whose stem is aliased to a DIFFERENT ledger name does not answer to the
+# bare stem. Where that still leaves two, this RAISES rather than picking, the
+# same way wacc_builder.market_index_path('AE') raises rather than composing an
+# index -- a wrong answer delivered silently is worse than no answer.
 def find_market(ticker):
-    for m in sorted(os.listdir(OHLC)) if os.path.isdir(OHLC) else []:
-        if os.path.exists(os.path.join(OHLC, m, "%s.csv" % ticker)):
-            return m
-    return None
+    hits = markets_for(ticker)
+    if len(hits) <= 1:
+        return hits[0] if hits else None
+    alias = _registry().ALIAS
+    owned = [m for m in hits if alias.get("%s/%s" % (m, ticker), ticker) == ticker]
+    if len(owned) == 1:
+        return owned[0]
+    raise ValueError(
+        "ambiguous ticker %r: held by %s and the registry does not resolve it. "
+        "Add an ALIAS to scripts/build_market_registry.py naming the other "
+        "market's distinct ledger name." % (ticker, ", ".join(hits)))
 
 
 def close_at(ticker, year):
@@ -325,15 +280,9 @@ def close_at(ticker, year):
 def build(market="EG"):
     usable = set(MH.usable_origins(market))
     declared = [int(o["year"]) for o in MH.load(market).get("origins", [])]
-    # WHICH ARTEFACT ANSWERED, PER NAME, so the report can say WHY a name is empty
-    # instead of offering one explanation for three different facts. Module-level rather
-    # than a fifth return value: build() has ten callers and changing its arity to carry
-    # a diagnostic would be a breaking change for a message.
-    PANEL_SOURCE.clear()
     cells, names = {}, runs()
     for tk, rundir in names.items():
         panel, panel_src = _panel(rundir)
-        PANEL_SOURCE[tk] = panel_src
         fwd = _forward(rundir)
         for y in declared:
             px, pxdate = close_at(tk, y)
@@ -441,25 +390,15 @@ def report(market="EG"):
     nostate = [t for t in names
                if not any(cells[(t, y)]["statements"] for y in declared)]
     if nostate:
-        # A NAME WITH NO STATEMENTS IS THREE DIFFERENT FACTS AND THIS PRINTED ONE
-        # EXPLANATION FOR ALL OF THEM [corrected 17-09-2026]. It said their statements
-        # "came from engine/*_walkforward/filings/, which is gitignored" — true of
-        # nobody, as it turned out. Each name now says which of the three it is, read
-        # off the source sentinel _panel returned rather than assumed.
-        print("\n  NO USABLE AS-REPORTED PANEL (%d): %s"
+        print("\n  NO AS-REPORTED PANEL COMMITTED (%d): %s"
               % (len(nostate), ", ".join(nostate)))
-        for t in nostate:
-            why = PANEL_SOURCE.get(t) or "no panel artefact found"
-            if str(why).startswith("SKIPPED:"):
-                print("     %-8s CORRECTLY DID NOT RUN — %s" % (t, why[8:].strip()))
-            elif str(why).startswith("UNREADABLE:"):
-                print("     %-8s %s" % (t, why[11:].strip()))
-            else:
-                print("     %-8s panel read from %s and it yielded no origin in the "
-                      "declared window" % (t, why))
-        print("     A SKIP IS NOT A DEBT and an unreadable panel is not an absent one.")
-        print("     Where a run commits a panel this reader cannot open, the fix is a")
-        print("     NAMED ADAPTER in PANEL_ADAPTER — not a re-run of the walk-forward.")
+        print("     These walk-forwards ran and scored, but they left no year-keyed")
+        print("     panel of as-reported figures in the repository — their statements")
+        print("     came from engine/*_walkforward/filings/, which is gitignored. So a")
+        print("     later job cannot rebuild a value at their past origins from what")
+        print("     is committed, and the calibration cannot use them however good the")
+        print("     original run was. That is a REPRODUCIBILITY gap, not a data one:")
+        print("     the fix is for those runs to commit the panel PHDC and TMGH did.")
 
     noshares = sum(1 for c in cells.values() if not c["shares"])
     if noshares == len(cells):

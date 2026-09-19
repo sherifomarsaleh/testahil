@@ -27,9 +27,28 @@ company's own issued financial statements and full disclosures. No data vendors,
 brokers, no press coverage used as a numbers source, no third-party estimates, for the
 subject's own reported historicals. The Step 2A sweep's Global/Country/Industry rings
 remain valid for external context and forecast drivers — never as the source of the
-company's own reported numbers. If required official data is inaccessible, STOP AND
-INFORM. Never substitute unofficial data. Never issue a report built on unofficial
-company information.
+company's own reported numbers.
+
+**Where the statement itself cannot be reached, the company's own other documents are the
+named fallback** [R-SIGCM-03, adopted 08-09-2026]. The audited or reviewed statement is
+tried FIRST, by name, and the attempt is logged in the sweep register with its outcome
+whether it succeeded or failed. Where that statement cannot be obtained, the figure may be
+taken from the company's OWN other documents — its earnings release, its results
+announcement, its investor presentation, its annual report — and the principal is told in
+the turn that uses it which figure, which document it came from, and which statement could
+not be reached. The four fields name the document type, so a reader can tell a figure read
+off an audited balance sheet from one read off a release's balance-sheet table; arithmetic
+remains the arbiter, a released figure being accepted only if it foots against that
+document's own printed subtotals. Whether a particular comparative column satisfies
+point-in-time discipline at a given origin is [R-FCAL-01]'s question and is not settled
+here.
+
+**The prohibition this clause exists for is NOT amended.** A data vendor, a broker or
+press-as-a-numbers-source remains a HARD FAIL for a figure the company reported about
+itself, and the fallback shelf holds the company's own documents and does not widen by one
+name. Where no document of the company's own carries the figure, STOP AND INFORM — never
+substitute unofficial data, and never issue a report built on unofficial company
+information.
 
 **2. Forecast from the ground up.**
 Product-by-product / service-by-service wherever segments are disclosed. Revenue is

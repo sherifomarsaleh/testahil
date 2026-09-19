@@ -1,4 +1,5 @@
-"""SAVOLA_Bibliography_19-08-2026.docx — the companion bibliography document (second edition).
+import sys
+"""SAVOLA_Bibliography_{edition}.docx — the companion bibliography document (second edition).
 Every input in the model: value, source, date and research layer — emitted from
 study_numbers.json (the compute script's own INPUTS block), plus the document
 bibliography, the judgements table and the negative results."""
@@ -11,6 +12,8 @@ from docx.oxml.ns import qn
 from docx.oxml import OxmlElement
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
 D = json.load(open(os.path.join(HERE, 'study_numbers.json')))
 INP = D['inputs']
 INK = RGBColor(0x1C, 0x3A, 0x36); GREY = RGBColor(0x6E, 0x7B, 0x77)
@@ -305,6 +308,6 @@ P('Four are on record. (1) The uploaded price export\'s 18-Aug-2026 row carried 
   'settlement (FY2025 FS note 16) and SR 12.75bn for the in-kind dividend leg alone.',
   size=9)
 
-doc.save(os.path.join(HERE, 'SAVOLA_Bibliography_19-08-2026.docx'))
+doc.save(os.path.join(HERE, _ed.BIBLIO_DOCX))
 n_inputs = len(INP)
 print(f'bibliography written · {n_inputs} inputs in the register')

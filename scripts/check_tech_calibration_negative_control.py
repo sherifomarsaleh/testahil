@@ -13,9 +13,11 @@ a generated file hand-drifted from its generator (the digest species), and an
 id in a delivered document that resolves to nothing (the T-013 defect the
 checker's orphan test caught on the day it was written).
 """
+import glob
 import json
 import os
 import shutil
+import signal
 import subprocess
 import sys
 import tempfile
@@ -42,6 +44,66 @@ def main():
         return 1
     print("  precondition: the check is green before any injection")
 
+    # A STALE BACKUP MEANS A PREVIOUS RUN DID NOT FINISH RESTORING, AND THE TREE MAY
+    # STILL CARRY AN INJECTED DEFECT. Refusing here is the difference between a defect
+    # that announces itself and one that gets committed: on 09-09-2026 a run of this
+    # control was killed between injecting "(edited by hand)" into register_payload.json
+    # and restoring it, `git add -A` swept the injected fixture into a commit, and CI
+    # went red on a hand-edit nobody had made. The tell was there -- the backup
+    # directory was still on disk -- and nothing read it.
+    # ONE INSTANCE AT A TIME. This control INJECTS DEFECTS INTO REAL TRACKED FILES and
+    # restores them, so two instances interleave catastrophically: A backs up the clean
+    # file, B injects, A restores its backup, B restores ITS backup -- which is A's
+    # injected state -- and the tree keeps a defect nobody wrote. It is not a
+    # hypothetical: on 09-09-2026 register_payload.json came back carrying
+    # "(edited by hand)" twice, once from a killed run and once while a subagent was
+    # running gates in parallel, and the second time the control had already reported
+    # "green again after every restore" on its own postcondition. A postcondition can
+    # only speak for the instant it ran.
+    lock = os.path.join(ROOT, ".git", "tcal_nc.lock")
+    try:
+        _fd = os.open(lock, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+        os.write(_fd, str(os.getpid()).encode())
+        os.close(_fd)
+    except FileExistsError:
+        try:
+            _held = open(lock).read().strip()
+        except OSError:
+            _held = ""
+        _alive = False
+        if _held.isdigit():
+            try:
+                os.kill(int(_held), 0)
+                _alive = True
+            except OSError:
+                pass
+        if _alive:
+            print("REFUSED — another run of this control is live (pid %s). It injects "
+                  "defects into real tracked files; two runs interleave and leave a "
+                  "defect in the tree that neither one wrote." % _held)
+            return 1
+        os.unlink(lock)          # stale: the holder is gone
+        _fd = os.open(lock, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+        os.write(_fd, str(os.getpid()).encode())
+        os.close(_fd)
+
+    stale = sorted(glob.glob(os.path.join(tempfile.gettempdir(), "tcal-nc-*")))
+    if stale:
+        print("REFUSED — %d backup directory/ies from an earlier run are still on "
+              "disk:" % len(stale))
+        for d in stale:
+            print("    %s   holding: %s" % (d, ", ".join(sorted(os.listdir(d))) or "(empty)"))
+        print("  A run that did not finish may have left an INJECTED DEFECT in the "
+              "tree. Check `git status`, restore from the directory above or "
+              "regenerate (engine/lab/ta_calibration/build_register.py), then delete "
+              "it and re-run. An injected fixture that reaches a commit reads as a "
+              "real defect and costs a CI cycle to diagnose.")
+        try:
+            os.unlink(lock)
+        except OSError:
+            pass
+        return 1
+
     backup = tempfile.mkdtemp(prefix="tcal-nc-")
     originals = {}
     for p in (RECORDS, PAYLOAD, DOCX):
@@ -49,6 +111,43 @@ def main():
         shutil.copy2(p, dst)
         originals[p] = dst
 
+    # EVERY INJECTION IS UNDONE EVEN IF THE RUN DIES. The body below mutates real
+    # files in the working tree and restores them line by line, so any exception --
+    # or a SIGTERM, or a Ctrl-C -- between an injection and its restore used to leave
+    # the defect behind. It is wrapped now, and the signals are caught so the same
+    # unwind runs. SIGKILL still cannot be caught by anything; for that case the
+    # stale-backup refusal above is the backstop.
+    def _unwind(*_a):
+        for src in originals:
+            try:
+                shutil.copy2(originals[src], src)
+            except OSError:
+                pass
+        raise SystemExit("interrupted — every injected defect was restored")
+
+    for _sig in (signal.SIGINT, signal.SIGTERM):
+        try:
+            signal.signal(_sig, _unwind)
+        except (ValueError, OSError):
+            pass          # not the main thread, or the platform will not take it
+
+    try:
+        return _body(backup, originals)
+    except BaseException:
+        for src in originals:
+            try:
+                shutil.copy2(originals[src], src)
+            except OSError:
+                pass
+        raise
+    finally:
+        try:
+            os.unlink(lock)
+        except OSError:
+            pass
+
+
+def _body(backup, originals):
     misses = []
 
     def restore(p):

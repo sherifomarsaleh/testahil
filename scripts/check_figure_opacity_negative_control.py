@@ -83,6 +83,15 @@ def _sandbox(studies=None):
                 os.path.join(tmp, "scripts", "check_calibration_deliverables.py"))
     shutil.copy(os.path.join(os.path.dirname(TARGET), "check_bibliography.py"),
                 os.path.join(tmp, "scripts", "check_bibliography.py"))
+    # AND THE DEPENDENCY'S OWN DEPENDENCY. On 09-09-2026 check_calibration_deliverables
+    # gained `import calibration_only` for [R-FCAL-01 §6 AMENDED], and every one of this
+    # control's ten sandboxed sub-runs died on ModuleNotFoundError — the gate itself was
+    # fine against the real repository, so the control proved NOTHING in either
+    # direction while still being counted. The rule above is not "copy these three
+    # files", it is that what the gate imports travels with the fixture, one level down
+    # as much as at the top.
+    shutil.copy(os.path.join(ROOT, "engine", "calibration_only.py"),
+                os.path.join(eng, "calibration_only.py"))
     return tmp
 
 

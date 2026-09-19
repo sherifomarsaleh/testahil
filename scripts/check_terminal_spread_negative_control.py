@@ -35,6 +35,11 @@ CASES = 11
 sys.path.insert(0, ROOT)
 from engine.control_tally import Tally          # noqa: E402
 
+# The gate itself, so the control can ask what the GATE will see rather than
+# keeping a second copy of its field resolution that can drift from it [R-ENF-03].
+sys.path.insert(0, HERE)
+import check_terminal_spread as TS               # noqa: E402
+
 T = Tally(CASES, subject="check_terminal_spread.py")
 
 
@@ -98,6 +103,37 @@ def flat(doc, key, val):
     return d
 
 
+def force(doc, key, val):
+    """Set every `key` at any depth, honouring the {"value": x} shape.
+
+    A NEGATIVE CONTROL MUST INJECT THE CONDITION IT TESTS. Cases 1, 6 and 9 used
+    to read the undeclared negative spread straight off the real PHAR study, and
+    when PHAR was corrected — its terminal ROIC now sits ABOVE its terminal WACC,
+    19.17% against 15.47% — all three silently expected RED and got GREEN. The
+    gate was right every time; the control was asserting a fact about another
+    study that had stopped being true. A control that depends on a real study
+    staying broken decays the moment somebody fixes it, which is the opposite of
+    what it is for.
+    """
+    d = copy.deepcopy(doc)
+
+    def walk(o):
+        if isinstance(o, dict):
+            for k, v in o.items():
+                if k.lower() == key.lower():
+                    if isinstance(v, dict) and isinstance(v.get("value"), (int, float)):
+                        v["value"] = val
+                    elif isinstance(v, (int, float)):
+                        o[k] = val
+                walk(v)
+        elif isinstance(o, list):
+            for x in o:
+                walk(x)
+
+    walk(d)
+    return d
+
+
 def main():
     results = []
     ARCC, PHAR, MODON, SAV = (real(t) for t in ("arcc", "phar", "modon", "savola"))
@@ -106,10 +142,21 @@ def main():
         return json.dumps(doc).find('"%s"' % k) >= 0
 
     # ---------- RED ----------
-    case("1 PHAR's undeclared negative spread, exactly as it stands",
-         {"AAA": PHAR}, set(), set(), True,
-         lambda r: (has(PHAR, "roic_term") and has(PHAR, "reinvest_rate"),
-                    "PHAR lacks the terminal fields"), results)
+    # PHAR's shape, with the terminal return driven BELOW its terminal cost of
+    # capital. PHAR itself no longer earns a negative spread, so the condition is
+    # injected rather than borrowed — see force().
+    PHAR_NEG = force(PHAR, "roic_term", 0.05)
+
+    def spread_is_negative(doc):
+        _, cv = TS._find(doc, TS.RETURN_KEYS)
+        _, wv = TS._find(doc, TS.COST_KEYS)
+        return cv is not None and wv is not None and cv < wv
+
+    case("1 an undeclared negative spread",
+         {"AAA": PHAR_NEG}, set(), set(), True,
+         lambda r: (spread_is_negative(PHAR_NEG) and has(PHAR_NEG, "reinvest_rate"),
+                    "INJECTION DID NOT LAND: the terminal return is not below its cost"),
+         results)
 
     case("2 ARCC's reinvestment of -191.88 — not a rate",
          {"BBB": ARCC}, set(), set(), True,
@@ -134,8 +181,10 @@ def main():
                     "study directories present"), results)
 
     case("6 a study MOVED between the two groups",
-         {"AAA": PHAR}, set(), {"AAA"}, True,
-         lambda r: (has(PHAR, "roic_term"), "PHAR lacks the terminal fields"), results)
+         {"AAA": PHAR_NEG}, set(), {"AAA"}, True,
+         lambda r: (spread_is_negative(PHAR_NEG),
+                    "INJECTION DID NOT LAND: the terminal return is not below its cost"),
+         results)
 
     # ---------- CLEAN ----------
     case("7 MODON: a negative spread reinvesting NOTHING must not fire",
@@ -153,12 +202,14 @@ def main():
          {"GGG": DECL}, set(), set(), False,
          lambda r: (bool(DECL.get("terminal_spread_reason")), "no reason set"), results)
 
-    EMPTY = copy.deepcopy(PHAR)
+    EMPTY = copy.deepcopy(PHAR_NEG)
     EMPTY["terminal_spread_reason"] = "   "
     case("9 an EMPTY reason has switched the check off, not declared it",
          {"HHH": EMPTY}, set(), set(), True,
-         lambda r: (EMPTY.get("terminal_spread_reason", "x").strip() == "",
-                    "the reason is not empty"), results)
+         lambda r: (EMPTY.get("terminal_spread_reason", "x").strip() == ""
+                    and spread_is_negative(EMPTY),
+                    "INJECTION DID NOT LAND: the reason is not empty, or the "
+                    "terminal return is not below its cost"), results)
 
     case("10 SAVOLA: reinvesting at a POSITIVE spread must not fire",
          {"III": SAV}, set(), set(), False,

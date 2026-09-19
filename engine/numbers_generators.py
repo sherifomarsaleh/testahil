@@ -99,6 +99,26 @@ def writes_numbers(path):
             names = {x.id for x in ast.walk(n.args[0]) if isinstance(x, ast.Name)}
             if ('study_numbers' in tgt or (names & tainted)) and 'w' in mode:
                 return True
+
+    # A WRITE THROUGH A SHARED HELPER IS STILL A WRITE. numbers_file.write_preserving()
+    # was adopted 09-09-2026 so a primary generator stops destroying records that later
+    # steps own [R-REPAIR-01]; it opens the file itself, so five generators stopped
+    # containing an open(..., 'w') and this detector reported that NO SCRIPT IN THE
+    # DIRECTORY WRITES THE NUMBERS FILE. The gate above then failed correctly — a rebuild
+    # it cannot attempt is not a rebuild that passed [R-ENF-04] — but the reason it gave
+    # was wrong, and a detector that only knows one spelling of an act will go blind again
+    # the next time the spelling changes.
+    for n in ast.walk(tree):
+        if not (isinstance(n, ast.Call) and n.args):
+            continue
+        fn = (n.func.id if isinstance(n.func, ast.Name)
+              else n.func.attr if isinstance(n.func, ast.Attribute) else None)
+        if fn != 'write_preserving':
+            continue
+        tgt = ast.dump(n.args[0])
+        names = {x.id for x in ast.walk(n.args[0]) if isinstance(x, ast.Name)}
+        if 'study_numbers' in tgt or (names & tainted):
+            return True
     return False
 
 

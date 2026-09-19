@@ -10,21 +10,14 @@ from openpyxl import load_workbook
 from openpyxl.utils import get_column_letter, column_index_from_string
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
 N = json.load(open(os.path.join(HERE, "study_numbers.json")))
-# THE DELIVERED WORKBOOK IS RESOLVED, NOT NAMED [L-066/L-067]. This line carried the
-# 03-09-2026 filename, so the 17-09-2026 re-issue left this check reading the SUPERSEDED
-# file: it reported 46 mismatches that were nothing but the old edition's answers, and a
-# check that opens a delivered file by name must move with the re-issue or it silently
-# audits a file nobody receives. Resolving the newest by edition date cannot go stale.
-import glob as _glob, re as _re
-def _latest_workbook():
-    c = _glob.glob(os.path.join(HERE, "PHDC_Valuation_Model_*.xlsx"))
-    assert c, "no delivered workbook in this study directory"
-    def key(f):
-        m = _re.search(r"(\d{2})(\d{2})(\d{4})", os.path.basename(f))
-        return (m.group(3), m.group(2), m.group(1)) if m else ("", "", "")
-    return max(c, key=key)
-XL = _latest_workbook()
+# IT RECALCULATED THE 3-SEPTEMBER WORKBOOK. The delivered file had therefore never been
+# independently recalculated by anything, and the reason this went unnoticed is worse
+# than the typo: the 3-September file had been REBUILT over with this edition's answer,
+# so the stale target held the current numbers and the check came back clean.
+XL = os.path.join(HERE, _ed.MODEL_XLSX)
 
 
 def evaluate(wb, sheet, ref, depth=0):
@@ -199,10 +192,37 @@ def main():
     chk("the study's discounted cash flow is the one in the statements",
         ST["dcf_b"]["per_share"], base["per_share"], 0.01)
 
-    for k, want in (("B5", D["cfo_mid"]), ("B12", N["wacc"]["wacc_rating"]),
-                    ("B13", D["net_debt_bridge"]), ("B16", D["nci_value_share"]),
-                    ("B17", D["shares_mn"])):
-        chk("assumption %s" % k, evaluate(wb, "Assumptions", k), want, 0.01)
+    # BY LABEL, NOT BY ROW, AND AT A TOLERANCE THAT MEANS SOMETHING. This block
+    # addressed five cells by row number at an ABSOLUTE tolerance of 0.01 -- one
+    # hundred basis points on a rate -- and checked the cost-of-capital cell against
+    # wacc_RATING, which is the basis the model does not discount at. The gross margin
+    # and the terminal growth were not checked at all, and both were publishing the
+    # superseded edition's numbers: 38.32% against a model running 35.48%, and 12%
+    # against 7% -- 12% being the alternative this study's own contested record marks
+    # rejected. A row number moves the moment a driver is inserted; a label does not.
+    def at(label):
+        ws = wb["Assumptions"]
+        for row in ws.iter_rows(min_col=1, max_col=1):
+            v = row[0].value
+            if isinstance(v, str) and v.strip().lower().startswith(label.lower()):
+                return "B%d" % row[0].row
+        raise SystemExit("the workbook has no assumption row starting %r. A check "
+                         "that cannot find its subject has not passed, it has not "
+                         "run." % label)
+
+    import valuation_v2 as _V2
+    for label, want, tol in (
+            ("Cash conversion — central", D["cfo_mid"], 1e-6),
+            ("Gross margin", N["bottom_up"]["anchors"]["gross_margin_forward"], 1e-6),
+            ("Terminal growth", _V2.TG, 1e-6),
+            ("Cost of capital — ADOPTED", N["wacc"]["wacc_cds"], 1e-6),
+            ("Cost of capital — alternative", N["wacc"]["wacc_rating"], 1e-6),
+            ("Net debt (EGP mn)", D["net_debt_bridge"], 0.01),
+            ("Minority interests, share of equity value", D["nci_value_share"], 1e-6),
+            ("Shares outstanding (mn)", D["shares_mn"], 0.01)):
+        k = at(label)
+        chk("assumption %s (%s)" % (k, label[:34]),
+            evaluate(wb, "Assumptions", k), want, tol)
 
     json.dump(checks, open(os.path.join(HERE, "recalc_result.json"), "w"), indent=1)
     for c in checks:

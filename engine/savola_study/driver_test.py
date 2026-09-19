@@ -12,7 +12,9 @@ import openpyxl
 import xlcalc
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-wb = openpyxl.load_workbook(os.path.join(HERE, 'SAVOLA_Valuation_Model_19082026_public.xlsx'))
+sys.path.insert(0, HERE)
+import edition as _ed        # the edition date, written once
+wb = openpyxl.load_workbook(os.path.join(HERE, _ed.MODEL_XLSX))
 ANCH = json.load(open(os.path.join(HERE, 'xlsx_expected.json')))['anchors']
 A = {}
 for row in wb['Assumptions'].iter_rows(min_col=1, max_col=1):

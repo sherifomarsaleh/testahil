@@ -13,17 +13,38 @@ import market_profiles as MP
 import horizons as HZ
 import adaptive_width as AW
 
+MOVE_THRESHOLD = 0.10   # the move the probability table is struck on, recorded with it
 Q_ANNUAL = 0.0095   # FY24 DPS EGP 1.00 paid 2025; none declared on FY25 profits per available record
 
 prof = MP.PROFILES['EG']
-raw = load_ohlc(os.path.join(HERE, 'SWDY_Stock_Price_History.csv'))
-df, rep = clean_ohlc(raw, 'SWDY', verbose=False, market='EG')
-df = df.reset_index(drop=True)
+# THE REPOSITORY'S OWN LIBRARY, NOT THE STUDY-LOCAL FILE.
+#
+# SWDY_Stock_Price_History.csv ends 5 August 2026 at 105.20, and this study's own
+# compute.py records why that file cannot be trusted: the supplied figure "first arrived
+# as 90.50 and was CORRECTED to 130.00 on 6 September 2026 after it disagreed with this
+# name's own price library on all 35 overlapping sessions after 14 June 2026, including
+# the 5 August close of 105.20". The study acted on that finding for its SPOT and left
+# the strike reading the same discredited file.
+#
+# WHAT IT COST, and it is six findings with one cause. The whole price map was struck on
+# the 5-August anchor: section 2's moving-average stack, section 3's cone, the percentile
+# table, the one-month band whose check date of 6 September had already passed, and a
+# "probability above spot" of 56% and 61% which is the probability above 105.20 — against
+# the 130.00 the study publishes it is 5.7% and 18.1%. Figure 5 drew a cone opening at
+# 105.20 under a line labelled "spot 130.00".
+#
+# The library is the source every other name in this book strikes on, and it carries the
+# study's own valuation date. NOTHING HERE TOUCHES THE FAIR VALUE: the cone, the technical read and
+# the percentile map are the price lens, and [R-LENS-01] keeps them out of the
+# fundamentals entirely.
+import price_series
+df, rep = price_series.frame()
 dates = pd.to_datetime(df['Date'])
 close = df['Price'].to_numpy(dtype=float)
 i = len(df) - 1
 anchor_date = dates.iloc[i]
 spot = float(close[i])
+
 v_ = __import__('primitives').yz_variance_proxy(df)
 plan = HZ.cohort_plan('EG', anchor_date)
 width_mult = AW.live_width_mult(df, prof)
@@ -49,13 +70,24 @@ for short, hz in plan['horizons'].items():
     out['horizons'][short] = dict(
         h=h, target_date=hz['target_date'], grade_date=hz['grade_date'],
         anchor_vol_ann=float(np.sqrt(dvar * 252)), sigma_h=sigma_h,
-        drift_log_h=float(drift),
+        # THE DRIFT THE ENGINE ACTUALLY USES IS drift + alpha, AND ONLY drift WAS RECORDED.
+        # A reader reproducing the median from the published drift could not: at one month
+        # the record said 0.01406 log while the published median of 133.06 implies 0.02328,
+        # two thirds higher again. The whole difference is the signal term, which the
+        # simulator is handed on the line below and which nothing wrote down. Both legs and
+        # their sum are recorded now, so the median is reproducible from the page.
+        drift_log_h=float(drift), alpha_log_h=float(alpha), signal_z=float(z),
+        drift_total_log_h=float(drift + alpha),
         pct={f'p{p}': float(np.percentile(term, p)) for p in (5, 25, 50, 75, 95)},
         p_above=float(np.mean(term > spot)),
-        p_up10=float(np.mean(term >= spot * 1.10)),
-        p_dn10=float(np.mean(term <= spot * 0.90)),
-        touch_up10=float(np.mean(paths.max(axis=1) >= spot * 1.10)),
-        touch_dn10=float(np.mean(paths.min(axis=1) <= spot * 0.90)),
+        # THE THRESHOLD IS RECORDED, not left for the page to name in prose. The four rows
+        # this feeds were labelled "10% or more above spot" as typed text beside numbers
+        # computed here — one threshold, two places, and nothing comparing them.
+        move_threshold=MOVE_THRESHOLD,
+        p_up10=float(np.mean(term >= spot * (1 + MOVE_THRESHOLD))),
+        p_dn10=float(np.mean(term <= spot * (1 - MOVE_THRESHOLD))),
+        touch_up10=float(np.mean(paths.max(axis=1) >= spot * (1 + MOVE_THRESHOLD))),
+        touch_dn10=float(np.mean(paths.min(axis=1) <= spot * (1 - MOVE_THRESHOLD))),
     )
 
 np.save(os.path.join(HERE, 'paths_1M.npy'), paths_store['1M'][:20000])

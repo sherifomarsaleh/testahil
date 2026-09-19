@@ -9,21 +9,21 @@
   "fx": 3.6725,
   "asof": "2026-09-04",
   "price_date": "2026-08-07",
-  "spot_aed": 2.54,
-  "spot_usd": 0.6916269571136828,
+  "spot_aed": 2.67,
+  "spot_usd": 0.7270251872021783,
   "shares_mn": 8249.6,
-  "mktcap_usd": 5705.645745405038,
-  "mktcap_aed": 20953.984,
-  "ev_trailing": 6326.845745405038,
+  "mktcap_usd": 5997.666984343091,
+  "mktcap_aed": 22026.432,
+  "ev_trailing": 6618.866984343091,
   "klass": "operating company \u2014 nitrogen fertilisers",
   "sector": "Commodity chemicals \u2014 nitrogen fertilisers",
   "reference_pattern": "SWDY (operating company)"
  },
  "inputs": {
   "spot_aed": {
-   "value": 2.54,
-   "source": "ADX closing price, FERTIGLB, from the study price history",
-   "date": "2026-08-07",
+   "value": 2.67,
+   "source": "ADX closing price, FERTIGLB, from the study price history \u2014 the latest supplied to this repository (SUPPLIED_03-09-2026.json). Superseded: AED 2.54 of 7 August 2026, on which every edition before this one was struck",
+   "date": "2026-09-03",
    "ring": "MARKET"
   },
   "fx_aed_usd": {
@@ -2087,23 +2087,23 @@
  },
  "dcf_A": {
   "df": [
-   0.894938742346248,
-   0.8020460510852401,
-   0.7198116184511799,
-   0.6469233392242392,
-   0.5822400522336486
+   0.894724078477784,
+   0.8017092045224906,
+   0.7194227623936162,
+   0.6465349146425361,
+   0.5818904646781727
   ],
   "pv": [
-   791.8663889768538,
-   669.5614600783197,
-   479.68179108873886,
-   393.5248169353101,
-   345.4741089825755
+   791.6764484878336,
+   669.2802549329647,
+   479.42265777470703,
+   393.2885374518845,
+   345.2666800213144
   ],
-  "pv_explicit": 2680.1085660617982,
+  "pv_explicit": 2678.9345786687045,
   "tv": 5941.638263145378,
-  "pv_tv": 3459.4597726872103,
-  "ev": 6139.568338749008,
+  "pv_tv": 3457.3826498912754,
+  "ev": 6136.317228559979,
   "tv_retired": 5667.02756294269,
   "terminal_record": {
    "rule": "R-TERM-01",
@@ -2149,7 +2149,7 @@
    "published": true,
    "published_note": "the answer is two-sided, so TWO terminals are published \u2014 one per price framing \u2014 and the pair struck on the alternative CDS premium basis is a cross-check rather than the answer. Marked here because a reader of the committed record finds four and cannot otherwise tell which is which, and picking by position would make the answer depend on dictionary order."
   },
-  "tv_share": 0.5634695440807009,
+  "tv_share": 0.563429581801889,
   "roic_term": 0.13515129548755028,
   "rr_term": 0.14798230329832346,
   "roic_book": 0.22212352590803675,
@@ -2158,29 +2158,29 @@
   "ic_replacement": 8693.243938169058,
   "nopat_term": 605.8927425379914,
   "g": 0.020000000000000018,
-  "wacc_exp": 0.11897018221623164,
+  "wacc_exp": 0.1193052915544646,
   "wacc_term": 0.11109384650273706,
   "tv_ebitda_implied": 5.803126338434641
  },
  "dcf_B": {
   "df": [
-   0.894938742346248,
-   0.8020460510852401,
-   0.7198116184511799,
-   0.6469233392242392,
-   0.5822400522336486
+   0.894724078477784,
+   0.8017092045224906,
+   0.7194227623936162,
+   0.6465349146425361,
+   0.5818904646781727
   ],
   "pv": [
-   791.8663889768538,
-   776.8244037135668,
-   663.4366844595173,
-   583.4957916590546,
-   525.4589967828052
+   791.6764484878336,
+   776.4981498408662,
+   663.0782832237646,
+   583.1454501347057,
+   525.1435016094941
   ],
-  "pv_explicit": 3341.0822655917977,
+  "pv_explicit": 3339.541833296664,
   "tv": 9382.19754174831,
-  "pv_tv": 5462.691186773945,
-  "ev": 8803.773452365744,
+  "pv_tv": 5459.4112872703345,
+  "ev": 8798.953120567,
   "tv_retired": 9048.96888167549,
   "terminal_record": {
    "rule": "R-TERM-01",
@@ -2226,7 +2226,7 @@
    "published": true,
    "published_note": "the answer is two-sided, so TWO terminals are published \u2014 one per price framing \u2014 and the pair struck on the alternative CDS premium basis is a cross-check rather than the answer. Marked here because a reader of the committed record finds four and cannot otherwise tell which is which, and picking by position would make the answer depend on dictionary order."
   },
-  "tv_share": 0.6204942933085148,
+  "tv_share": 0.62046145859208,
   "roic_term": 0.18167622224488436,
   "rr_term": 0.11008595265175468,
   "roic_book": 0.32680749502900525,
@@ -2235,107 +2235,107 @@
   "ic_replacement": 8797.739876668431,
   "nopat_term": 926.2752787998412,
   "g": 0.020000000000000018,
-  "wacc_exp": 0.11897018221623164,
+  "wacc_exp": 0.1193052915544646,
   "wacc_term": 0.11109384650273706,
   "tv_ebitda_implied": 6.771788893687127
  },
  "bridge_A": {
-  "ev": 6139.568338749008,
+  "ev": 6136.317228559979,
   "net_debt": 621.2,
-  "eq_total": 5518.368338749008,
-  "nci_earnings": 1451.3308730909891,
+  "eq_total": 5515.11722855998,
+  "nci_earnings": 1450.4758311112746,
   "nci_book": 443.3,
-  "nci_used": 1451.3308730909891,
+  "nci_used": 1450.4758311112746,
   "nci_basis": "earnings",
-  "eq_attr": 4067.037465658019,
-  "ps_usd": 0.4929981412017575,
-  "ps_aed": 1.8105356735634544,
-  "tv_share": 0.5634695440807009
+  "eq_attr": 4064.641397448705,
+  "ps_usd": 0.4927076946092786,
+  "ps_aed": 1.8094690084525755,
+  "tv_share": 0.563429581801889
  },
  "bridge_B": {
-  "ev": 8803.773452365744,
+  "ev": 8798.953120567,
   "net_debt": 621.2,
-  "eq_total": 8182.573452365744,
-  "nci_earnings": 2152.016817972191,
+  "eq_total": 8177.753120566999,
+  "nci_earnings": 2150.749070709121,
   "nci_book": 443.3,
-  "nci_used": 2152.016817972191,
+  "nci_used": 2150.749070709121,
   "nci_basis": "earnings",
-  "eq_attr": 6030.556634393553,
-  "ps_usd": 0.7310120047509641,
-  "ps_aed": 2.6846415874479153,
-  "tv_share": 0.6204942933085148
+  "eq_attr": 6027.004049857878,
+  "ps_usd": 0.7305813675642308,
+  "ps_aed": 2.683060072379637,
+  "tv_share": 0.62046145859208
  },
  "bridge_A_book": {
-  "ev": 6139.568338749008,
+  "ev": 6136.317228559979,
   "net_debt": 621.2,
-  "eq_total": 5518.368338749008,
-  "nci_earnings": 1451.3308730909891,
+  "eq_total": 5515.11722855998,
+  "nci_earnings": 1450.4758311112746,
   "nci_book": 443.3,
   "nci_used": 443.3,
   "nci_basis": "book",
-  "eq_attr": 5075.068338749008,
-  "ps_usd": 0.61518962601205,
-  "ps_aed": 2.2592839015292534,
-  "tv_share": 0.5634695440807009
+  "eq_attr": 5071.817228559979,
+  "ps_usd": 0.6147955329422007,
+  "ps_aed": 2.257836594730232,
+  "tv_share": 0.563429581801889
  },
  "bridge_B_book": {
-  "ev": 8803.773452365744,
+  "ev": 8798.953120567,
   "net_debt": 621.2,
-  "eq_total": 8182.573452365744,
-  "nci_earnings": 2152.016817972191,
+  "eq_total": 8177.753120566999,
+  "nci_earnings": 2150.749070709121,
   "nci_book": 443.3,
   "nci_used": 443.3,
   "nci_basis": "book",
-  "eq_attr": 7739.273452365744,
-  "ps_usd": 0.9381392373406884,
-  "ps_aed": 3.445316349133678,
-  "tv_share": 0.6204942933085148
+  "eq_attr": 7734.453120566999,
+  "ps_usd": 0.9375549263681874,
+  "ps_aed": 3.443170467087168,
+  "tv_share": 0.62046145859208
  },
  "bridge_A_cds": {
-  "ev": 6867.288425351166,
+  "ev": 6864.204801347389,
   "net_debt": 621.2,
-  "eq_total": 6246.088425351166,
-  "nci_earnings": 1642.7212558673566,
+  "eq_total": 6243.004801347389,
+  "nci_earnings": 1641.9102627543634,
   "nci_book": 443.3,
-  "nci_used": 1642.7212558673566,
+  "nci_used": 1641.9102627543634,
   "nci_basis": "earnings",
-  "eq_attr": 4603.367169483809,
-  "ps_usd": 0.5580109544079481,
-  "ps_aed": 2.0492952300631893,
-  "tv_share": 0.5993205819960781
+  "eq_attr": 4601.094538593025,
+  "ps_usd": 0.5577354706401553,
+  "ps_aed": 2.04828351592597,
+  "tv_share": 0.5992882915341566
  },
  "bridge_B_cds": {
-  "ev": 9936.625380031022,
+  "ev": 9932.024328351705,
   "net_debt": 621.2,
-  "eq_total": 9315.425380031022,
-  "nci_earnings": 2449.9568749481587,
+  "eq_total": 9310.824328351704,
+  "nci_earnings": 2448.7467983564984,
   "nci_book": 443.3,
-  "nci_used": 2449.9568749481587,
+  "nci_used": 2448.7467983564984,
   "nci_basis": "earnings",
-  "eq_attr": 6865.468505082863,
-  "ps_usd": 0.8322183505967395,
-  "ps_aed": 3.0563218925665256,
-  "tv_share": 0.6540394262994742
+  "eq_attr": 6862.077529995206,
+  "ps_usd": 0.8318073033838254,
+  "ps_aed": 3.0548123216770984,
+  "tv_share": 0.6540133537724641
  },
  "dcf_A_cds": {
   "df": [
-   0.9043786692557585,
-   0.8188678262128944,
-   0.7423198927384174,
-   0.6737252009895482,
-   0.6121946060758664
+   0.9041969420609199,
+   0.8185797460357391,
+   0.7419840031606615,
+   0.6733863946569973,
+   0.6118867425597215
   ],
   "pv": [
-   800.2190956821663,
-   683.6045593496661,
-   494.68128407782143,
-   409.8284453642465,
-   363.24774506087465
+   800.0582984669531,
+   683.3640651987696,
+   494.4574475765259,
+   409.62234876529936,
+   363.06507319980915
   ],
-  "pv_explicit": 2751.581129534775,
+  "pv_explicit": 2750.5672332073573,
   "tv": 6722.874156304393,
-  "pv_tv": 4115.707295816391,
-  "ev": 6867.288425351166,
+  "pv_tv": 4113.637568140031,
+  "ev": 6864.204801347389,
   "tv_retired": 6412.156287313833,
   "terminal_record": {
    "rule": "R-TERM-01",
@@ -2381,7 +2381,7 @@
    "published": false,
    "published_note": "the answer is two-sided, so TWO terminals are published \u2014 one per price framing \u2014 and the pair struck on the alternative CDS premium basis is a cross-check rather than the answer. Marked here because a reader of the committed record finds four and cannot otherwise tell which is which, and picking by position would make the answer depend on dictionary order."
   },
-  "tv_share": 0.5993205819960781,
+  "tv_share": 0.5992882915341566,
   "roic_term": 0.13515129548755028,
   "rr_term": 0.14798230329832346,
   "roic_book": 0.22212352590803675,
@@ -2390,29 +2390,29 @@
   "ic_replacement": 8693.243938169058,
   "nopat_term": 605.8927425379914,
   "g": 0.020000000000000018,
-  "wacc_exp": 0.10703734220925211,
+  "wacc_exp": 0.1073151321987773,
   "wacc_term": 0.10050822778085154,
   "tv_ebitda_implied": 6.566150000821249
  },
  "dcf_B_cds": {
   "df": [
-   0.9043786692557585,
-   0.8188678262128944,
-   0.7423198927384174,
-   0.6737252009895482,
-   0.6121946060758664
+   0.9041969420609199,
+   0.8185797460357391,
+   0.7419840031606615,
+   0.6733863946569973,
+   0.6118867425597215
   ],
   "pv": [
-   800.2190956821663,
-   793.1171906617254,
-   684.1821329675049,
-   607.6698670099901,
-   552.492330801352
+   800.0582984669531,
+   792.8381696360156,
+   683.8725499292507,
+   607.3642789174845,
+   552.2144906669969
   ],
-  "pv_explicit": 3437.680617122738,
+  "pv_explicit": 3436.347787616701,
   "tv": 10615.815131998894,
-  "pv_tv": 6498.944762908284,
-  "ev": 9936.625380031022,
+  "pv_tv": 6495.676540735003,
+  "ev": 9932.024328351705,
   "tv_retired": 10238.771924767769,
   "terminal_record": {
    "rule": "R-TERM-01",
@@ -2458,7 +2458,7 @@
    "published": false,
    "published_note": "the answer is two-sided, so TWO terminals are published \u2014 one per price framing \u2014 and the pair struck on the alternative CDS premium basis is a cross-check rather than the answer. Marked here because a reader of the committed record finds four and cannot otherwise tell which is which, and picking by position would make the answer depend on dictionary order."
   },
-  "tv_share": 0.6540394262994742,
+  "tv_share": 0.6540133537724641,
   "roic_term": 0.18167622224488436,
   "rr_term": 0.11008595265175468,
   "roic_book": 0.32680749502900525,
@@ -2467,11 +2467,11 @@
   "ic_replacement": 8797.739876668431,
   "nopat_term": 926.2752787998412,
   "g": 0.020000000000000018,
-  "wacc_exp": 0.10703734220925211,
+  "wacc_exp": 0.1073151321987773,
   "wacc_term": 0.10050822778085154,
   "tv_ebitda_implied": 7.662177084677967
  },
- "dcf_ps_aed": 2.247588630505685,
+ "dcf_ps_aed": 2.2462645404161066,
  "wacc": {
   "ust10": 0.0469,
   "ad_cds": 0.0046,
@@ -2504,12 +2504,12 @@
   "kd_at": 0.04920654728091304,
   "tax": 0.13139369318776625,
   "kd_cap_rate_rejected": 0.0662,
-  "mktcap_usd": 5705.645745405038,
+  "mktcap_usd": 5997.666984343091,
   "net_debt": 621.2,
-  "we": 0.9018152132994304,
-  "wd": 0.09818478670056963,
-  "wacc_rating": 0.11897018221623164,
-  "wacc_cds": 0.10703734220925211,
+  "we": 0.906147079028866,
+  "wd": 0.09385292097113396,
+  "wacc_rating": 0.1193052915544646,
+  "wacc_cds": 0.1073151321987773,
   "wd_term": 0.2,
   "wacc_term_rating": 0.11109384650273706,
   "wacc_term_cds": 0.10050822778085154,
@@ -2521,10 +2521,10 @@
    1.0
   ],
   "wacc_path": [
-   0.11739491507353272,
-   0.11581964793083381,
-   0.11424438078813488,
-   0.11266911364543597,
+   0.11766300254411909,
+   0.11602071353377358,
+   0.11437842452342807,
+   0.11273613551308256,
    0.11109384650273706
   ],
   "debt_usd": 1651.9,
@@ -2595,8 +2595,8 @@
   ],
   "eq_total": 6285.536582290133,
   "ps_aed": 2.0622378774201655,
-  "ev_ebitda_trailing": 4.436156040811273,
-  "pe_trailing": 9.131955418381944
+  "ev_ebitda_trailing": 4.640910800969773,
+  "pe_trailing": 9.599338963417239
  },
  "norm": {
   "margin": 0.3616117717268225,
@@ -2613,8 +2613,8 @@
   "dcf": {
    "value": null,
    "branches": {
-    "A \u2014 normalisation to a marginal-cost anchor": 1.8105356735634544,
-    "B \u2014 structurally tight market": 2.6846415874479153
+    "A \u2014 normalisation to a marginal-cost anchor": 1.8094690084525755,
+    "B \u2014 structurally tight market": 2.683060072379637
    },
    "weight": null,
    "note": "Five-year free cash flow to the firm with an explicit terminal block \u2014 THE PRIMARY, and two-sided: it has no single value, and the midpoint of its two framings is published only as the number the study refuses"
@@ -2640,12 +2640,12 @@
   "branches": [
    {
     "label": "A \u2014 normalisation to a marginal-cost anchor",
-    "value": 1.8105356735634544,
+    "value": 1.8094690084525755,
     "condition": "nitrogen prices normalise toward the marginal cost of the high-cost swing supplier, which is where they have spent most of the past decade"
    },
    {
     "label": "B \u2014 structurally tight market",
-    "value": 2.6846415874479153,
+    "value": 2.683060072379637,
     "condition": "the tightness in the current market persists, on curtailed European capacity and the gas cost that caused it"
    }
   ],
@@ -2660,24 +2660,24 @@
    "branches": [
     {
      "label": "A \u2014 normalisation to a marginal-cost anchor",
-     "value": 1.8105356735634544,
+     "value": 1.8094690084525755,
      "condition": "nitrogen prices normalise toward the marginal cost of the high-cost swing supplier, which is where they have spent most of the past decade"
     },
     {
      "label": "B \u2014 structurally tight market",
-     "value": 2.6846415874479153,
+     "value": 2.683060072379637,
      "condition": "the tightness in the current market persists, on curtailed European capacity and the gas cost that caused it"
     }
    ],
    "range": {
-    "low": 1.8105356735634544,
-    "high": 2.6846415874479153
+    "low": 1.8094690084525755,
+    "high": 2.683060072379637
    },
    "range_note": "the cash-flow lens under the two framings of the nitrogen-price question, with the macro path, the cost of capital and terminal growth held still across both",
    "range_basis": {
     "driver": "the nitrogen price basis the forecast is anchored on",
-    "low": 1.8105356735634544,
-    "high": 2.6846415874479153,
+    "low": 1.8094690084525755,
+    "high": 2.683060072379637,
     "units": "AED per share, the present-value read under each framing",
     "macro_held": true,
     "evidence": "both framings are built on the same tonnes, the same cost stack and the same discount schedule; what differs is the price anchor, and neither is a chosen percentage band around the other \u2014 A anchors on the marginal cost of swing supply and B on the currently prevailing tightness."
@@ -2692,7 +2692,7 @@
     "multiple": 5.8,
     "multiple_source": "the median enterprise-to-EBITDA multiple of the named nitrogen peer set, cross-read against this company's own trailing multiple \u2014 from peers and own history, never one read off the current price",
     "circularity": {
-     "spot": 0.6916269571136828,
+     "spot": 0.7270251872021783,
      "shares": 8249.6,
      "net_debt": 621.2,
      "metric_value": 1190.8166521189885
@@ -2714,15 +2714,15 @@
     "normalised": 0.2,
     "book": 0.15
    },
-   "blend_value": 2.17298984481644,
+   "blend_value": 2.17239400427613,
    "why": "the weights were typed and had never cleared an out-of-sample test, and the blend also averaged the primary's own two framings \u2014 so it published a single number that disagreed with the market by roughly a fifth while neither framing behind it asserted that, one disagreeing by about a third and the other agreeing almost exactly."
   }
  },
  "span": [
-  1.8105356735634544,
-  2.6846415874479153
+  1.8094690084525755,
+  2.683060072379637
  ],
- "spot": 2.54,
+ "spot": 2.67,
  "sens": {
   "g_grid": [
    0.0,
@@ -2740,39 +2740,39 @@
   ],
   "grid_wacc_g": [
    [
-    1.994253312995301,
-    1.9846316204812722,
-    1.9740779532551795,
-    1.9624952357023075,
-    1.9497724252514108
+    1.9930728283315942,
+    1.9834569336824477,
+    1.9729096259130205,
+    1.9613338879046762,
+    1.9486187439984979
    ],
    [
-    1.897152412635113,
-    1.8859374176609047,
-    1.8737512675933252,
-    1.8604992534552571,
-    1.846073937548967
+    1.8960320931154777,
+    1.884823843938417,
+    1.8726450238158399,
+    1.8594009807378906,
+    1.8449843416303957
    ],
    [
-    1.8105356735634544,
-    1.7981974571673254,
-    1.7848812835859742,
-    1.7704974952499124,
-    1.754945129561518
+    1.8094690084525755,
+    1.7971382001467908,
+    1.7838300218391288,
+    1.7694548697921435,
+    1.7539118420279987
    ],
    [
-    1.732768442099322,
-    1.7196573649411857,
-    1.7055818603727229,
-    1.6904585097053528,
-    1.6741939881785255
+    1.7317499356349733,
+    1.7186467165135726,
+    1.704579648004987,
+    1.689465361417073,
+    1.673210587922852
    ],
    [
-    1.6625394276391683,
-    1.6489187906633795,
-    1.6343597865134118,
-    1.6187855935562687,
-    1.6021107693261003
+    1.661564398258687,
+    1.6479519101452478,
+    1.6334016162575808,
+    1.6178367409230154,
+    1.6011718927936411
    ]
   ],
   "pt_grid": [
@@ -2783,11 +2783,11 @@
    0.65
   ],
   "grid_pt": [
-   3.0685883153022666,
-   2.373080187426109,
-   1.8105356735634544,
-   1.3298179956118734,
-   0.6343098677357158
+   3.0668142945794323,
+   2.371697224725087,
+   1.8094690084525755,
+   1.3290216199435692,
+   0.6339045500892233
   ],
   "px_grid": [
    -0.2,
@@ -2797,11 +2797,11 @@
    0.2
   ],
   "grid_px": [
-   1.0737210044176482,
-   1.4421283389905515,
-   1.8105356735634544,
-   2.178943008136358,
-   2.5473503427092616
+   1.0730619236205399,
+   1.441265466036558,
+   1.8094690084525755,
+   2.177672550868594,
+   2.5458760932846127
   ],
   "beta_grid": [
    0.4654135566227273,
@@ -2811,11 +2811,11 @@
    1.3975638921849216
   ],
   "grid_beta": [
-   2.7756234232573513,
-   2.9992305515647093,
-   1.8105356735634544,
-   2.406165356345159,
-   1.336849722458352
+   2.774798551696315,
+   2.9984669065704272,
+   1.8094690084525755,
+   2.4052426058459857,
+   1.3356924873666955
   ],
   "tax_grid": [
    0.08,
@@ -2825,11 +2825,11 @@
    0.2
   ],
   "grid_tax": [
-   1.9344897926185403,
-   1.8621341524417074,
-   1.8105356735634544,
-   1.741541418813652,
-   1.645067231911208
+   1.9333567365462982,
+   1.8610398507129915,
+   1.8094690084525755,
+   1.7405117076574808,
+   1.644089193213072
   ]
  },
  "experts": {
@@ -2842,10 +2842,10 @@
   },
   "e2": {
    "method": "Discounted cash flow with an explicit gas pass-through",
-   "ps_aed": 1.8105356735634544,
+   "ps_aed": 1.8094690084525755,
    "passthrough": 0.48088252190243597,
-   "ev": 6139.568338749008,
-   "tv_share": 0.5634695440807009
+   "ev": 6136.317228559979,
+   "tv_share": 0.563429581801889
   },
   "e3": {
    "method": "Replacement cost of installed nitrogen capacity",
@@ -3263,11 +3263,11 @@
   "nci": {
    "basis": "value_share",
    "proxy_source": "the minority's disclosed share of group profit (note 15 of the annual report and the FY2025 statements), used as the proxy for its share of equity value because the two subsidiaries' own enterprise values are not separately disclosed",
-   "deduction": 1451.3308730909891,
+   "deduction": 1450.4758311112746,
    "applied_to": "equity_value",
    "book": 443.3,
    "profit_share": 0.263,
-   "proportional": 1451.3308730909891,
+   "proportional": 1450.4758311112746,
    "note": "The ownership percentages are 49.01% of Sorfert and 25.0% of Egypt Basic Industries; the minority takes 26.3% of group profit, which is the figure used, because those two are the most profitable assets in the group and an ownership-weighted deduction would understate the claim."
   },
   "cash": {
@@ -3275,8 +3275,8 @@
    "weights_basis": "net",
    "note": "There is no separate cash line: the bridge deducts NET debt, so cash is inside that figure rather than added back at face. The company is net DEBT, not net cash, so the equity weight stays below one and the operating rate below the cost of equity \u2014 the inversion this clause exists for cannot arise here.",
    "finding_for_the_cost_of_capital_pass": {
-    "wacc_on_net_weights": 0.11897018221623164,
-    "wacc_on_gross_weights": 0.10848255991410902
+    "wacc_on_net_weights": 0.1193052915544646,
+    "wacc_on_gross_weights": 0.10916496756479355
    }
   },
   "associates": {
@@ -3291,7 +3291,7 @@
   "lines": [
    {
     "label": "Enterprise value of the operations, framing A",
-    "value": 6139.568338749008
+    "value": 6136.317228559979
    },
    {
     "label": "less net debt at 30 June 2026",
@@ -3299,17 +3299,17 @@
    },
    {
     "label": "less non-controlling interests at their share of equity value",
-    "value": -1451.3308730909891
+    "value": -1450.4758311112746
    }
   ],
-  "equity_value": 4067.037465658019,
+  "equity_value": 4064.641397448705,
   "shares_mn": 8249.6,
-  "per_share": 0.4929981412017575,
+  "per_share": 0.4927076946092786,
   "per_share_currency": "USD",
   "other_framing": {
    "label": "B",
-   "equity_value": 6030.556634393553,
-   "per_share": 0.7310120047509641
+   "equity_value": 6027.004049857878,
+   "per_share": 0.7305813675642308
   }
  },
  "forecast_anchor": {
@@ -3357,13 +3357,13 @@
   "default_spread": 0.0042,
   "rf_star": 0.047299999999999995,
   "rf_terminal": 0.047299999999999995,
-  "wacc_exp": 0.11897018221623164,
+  "wacc_exp": 0.1193052915544646,
   "wacc_terminal": 0.11109384650273706,
   "forward_wacc": [
-   0.11739491507353272,
-   0.11581964793083381,
-   0.11424438078813488,
-   0.11266911364543597,
+   0.11766300254411909,
+   0.11602071353377358,
+   0.11437842452342807,
+   0.11273613551308256,
    0.11109384650273706
   ],
   "glide_fractions": [
@@ -3374,23 +3374,23 @@
    1.0
   ],
   "discount_factors": [
-   0.894938742346248,
-   0.8020460510852401,
-   0.7198116184511799,
-   0.6469233392242392,
-   0.5822400522336486
+   0.894724078477784,
+   0.8017092045224906,
+   0.7194227623936162,
+   0.6465349146425361,
+   0.5818904646781727
   ],
-  "terminal_discount_factor": 0.5822400522336486,
+  "terminal_discount_factor": 0.5818904646781727,
   "erp_basis": "rating",
   "erp_rating": 0.08514035586272078,
   "erp_cds": 0.07135730172485086,
   "sensitivity": {
    "other_basis": "cds",
    "other_basis_erp": 0.07135730172485086,
-   "other_basis_wacc": 0.10703734220925211,
+   "other_basis_wacc": 0.1073151321987773,
    "other_basis_per_share_aed": [
-    2.0492952300631893,
-    3.0563218925665256
+    2.04828351592597,
+    3.0548123216770984
    ],
    "note": "The CDS basis prices the sovereign's credit off the market's own live quote rather than an agency judgement updated in steps; it is the narrower premium here, so it raises both framings."
   },
@@ -3398,8 +3398,8 @@
   "beta_r2": 0.09960762477978735,
   "beta_se": 0.2833283694717916,
   "weights_basis": "net",
-  "equity_weight": 0.9018152132994304,
-  "debt_weight": 0.09818478670056963,
+  "equity_weight": 0.906147079028866,
+  "debt_weight": 0.09385292097113396,
   "kd_pretax": 0.05665,
   "kd_after_tax": 0.04920654728091304,
   "kd_integrity": {

@@ -1,0 +1,54 @@
+Juhayna Food Industries Company (S.A.E.)                                                   Translated from Arabic
+Notes to the Interim Consolidated Financial Statements
+for the period ended 31 March 2026
+         19-Inventories
+                                                                      31/3/2026                31/12/2025
+                                                                         L.E                      L.E
+             Raw materials                                            2 134 612 693            1 685 638 677
+             Packaging and packing materials                           1 530 292 409            1 422 590 941
+             Finished goods                                            2 669 272 451            1 875 097 271
+             Consumables and miscellaneous supplies                     263 872 851               752 291 463
+             Goods in transit - L/C’s for goods purchase                105 496 249                80 125 869
+                                                                       6 703 546 652            5 815 744 221
+
+
+         20-Trade and other receivables
+
+                                                                       31/3/2026               31/12/2025
+                                                                          L.E                      L.E
+             Trade receivables                                         1 448 746 438            1 117 763 513
+
+             Less: Expected credit losses                                (32 950 573)            (32 646 907)
+
+                                                                        1 415 795 865           1 085 116 606
+
+             Suppliers – advance payments                               1 027 425 387             377 552 041
+             Prepaid expenses                                               1 349 810               8 761 756
+             Export subsidy*                                             254 549 525              270 492 189
+             Customs Authority                                           121 902 981              143 655 397
+             Tax Authority                                                 55 362 160              13 970 625
+             Trade discounts from suppliers                                            -           77 867 443
+             Deposits with others                                          39 500 567              40 841 163
+             Debtors of fixed assets                                        9 614 181               9 614 181
+             Other debit balances                                          40 342 784              20 765 885
+
+                                                                      2 965 843 261             2 048 637 286
+
+             Less: Impairment in other debit balances                   (14 732 000)             (14 732 000)
+                                                                        2 951 111 261           2 033 905 286
+
+
+        * The company collect 31 257 458 ECL during the period from January 1, 2026 to 31 March, 2026 compared
+          to an amount of 71 227 932 EGP during the year 2025.
+
+       21-Cash and cash equivalent
+                                                                        31/3/2026             31/12/2025
+                                                                          L.E                    L.E
+             Banks – current accounts                                   1 215 877 706           946 747 711
+             Cash on hand                                                    5 112 727             5 379 509
+             Time deposits                                                163 989 000           143 214 000
+           Cash and cash equivalent                                      1 384 979 433        1 095 341 220
+          Less: impairment on cash                                          (4 498 112)          (3 585 478)
+                                                                         1 380 481 321        1 091 755 742
+                                                           39
+

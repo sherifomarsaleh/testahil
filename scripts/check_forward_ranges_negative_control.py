@@ -22,6 +22,7 @@ import glob
 import json
 import os
 import re
+import io
 import shutil
 import subprocess
 import sys
@@ -32,12 +33,13 @@ ROOT = os.path.dirname(HERE)
 sys.path.insert(0, ROOT)
 TARGET = os.path.join(HERE, "check_forward_ranges.py")
 SRC_ENGINE = os.path.join(ROOT, "engine")
+import sys as _sys_nc
+_sys_nc.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import nc_sandbox as _nc          # the sandbox's engine-module list, derived
+
 
 from engine import range_disclosure as RD          # noqa: E402
 
-CASES_EXPECTED = 19
-RED_EXPECTED = 10
-CLEAN_EXPECTED = 9
 
 STUDY_DOC = re.compile(r'valuation[_ ]study.*\.docx$', re.I)
 DATE = re.compile(r'(\d{2})-(\d{2})-(\d{4})')
@@ -92,8 +94,19 @@ def _sandbox():
                        "forward_ranges_outstanding.json")
     if os.path.exists(rat):
         shutil.copy(rat, os.path.join(eng, "build_depth_audit"))
-    shutil.copy(os.path.join(SRC_ENGINE, "range_disclosure.py"), eng)
+    # THE SANDBOX MUST REPRODUCE EVERY PIECE OF STATE THE GATE READS. Since
+    # [R-FCAL-01 §6 AMENDED 09-09-2026] the gate consults calibration_only.declared(),
+    # so the module and each run's declaration are part of the fixture. Without them
+    # a declared run reads as no_study in here and three CLEAN cases fire on a
+    # condition the book is not in — the control failing for a reason that is about
+    # the harness rather than the gate.
+    #
+    # SO THE MODULE LIST IS NO LONGER TYPED [13-09-2026] -- see scripts/nc_sandbox.py
+    # for what went wrong and why a control must never pass by crashing.
+    _nc.copy_engine_modules(TARGET, SRC_ENGINE, eng,
+                            required=("range_disclosure", "calibration_only"))
     open(os.path.join(eng, "__init__.py"), "w").close()
+    missing_study = []
     for run in sorted(glob.glob(os.path.join(SRC_ENGINE, "*_walkforward"))):
         if not os.path.exists(os.path.join(run, "forward_ranges.json")):
             continue
@@ -101,12 +114,33 @@ def _sandbox():
         os.makedirs(os.path.join(eng, os.path.basename(run)))
         open(os.path.join(eng, os.path.basename(run), "forward_ranges.json"),
              "w").write("{}")
+        _decl = os.path.join(run, "CALIBRATION_ONLY.json")
+        if os.path.exists(_decl):
+            shutil.copy(_decl, os.path.join(eng, os.path.basename(run)))
         src = os.path.join(SRC_ENGINE, "%s_study" % tk)
         dst = os.path.join(eng, "%s_study" % tk)
+        # A RUN WITH NO STUDY DIRECTORY IS A REAL STATE AND THE SANDBOX MUST REPRODUCE IT,
+        # not crash on it and not paper over it. This block assumed every walk-forward has
+        # a matching _study and called os.listdir on the path unconditionally; ABUK is the
+        # first run where that is false — its own training record says Document 1 of
+        # [R-FCAL-01] §6 is not built — and the control died with FileNotFoundError before
+        # a single case ran. A harness that cannot build its own fixture reports nothing,
+        # and nothing is not clean [R-ENF-04].
+        #
+        # Creating an EMPTY dst would be worse than crashing: the gate under test would
+        # then see a study directory holding no document, which is a different condition
+        # from no study directory at all, and every case would be scored against a state
+        # the book is not in. So the absence is copied through as an absence.
+        if not os.path.isdir(src):
+            missing_study.append(tk.upper())
+            continue
         os.makedirs(dst)
         f = _latest(src)
         if f:
             shutil.copy(os.path.join(src, f), os.path.join(dst, f))
+    if missing_study:
+        print("  fixture note: %d run(s) carry no study directory and are reproduced "
+              "that way — %s" % (len(missing_study), ", ".join(sorted(missing_study))))
     os.makedirs(os.path.join(tmp, "scripts"))
     shutil.copy(TARGET, os.path.join(tmp, "scripts", "check_forward_ranges.py"))
     return tmp
@@ -135,14 +169,52 @@ def _unratchet(tmp, tk):
 
 # ------------------------------------------------------------------- red cases
 
-def amoc_unratcheted(tmp):
-    _unratchet(tmp, "AMOC")
-    return "AMOC"
+# THE RATCHETED NAMES ARE READ OFF THE RATCHET, NOT TYPED, AND THE REASON IS THAT
+# FIXING A STUDY USED TO BREAK THIS CONTROL. There were two cases here, one naming
+# AMOC and one naming ARCC, each removing that name's allowance and requiring the gate
+# to notice. On 09-09-2026 ARCC was made to publish the band its run committed, so its
+# entry was pruned -- a ratchet may only ever SHORTEN -- and the ARCC case could no
+# longer land its mutation. The control failed, and it failed BECAUSE THE WORK IT
+# GUARDS GOT BETTER, which is the worst reason for a control to fail: it punishes the
+# repair it exists to encourage.
+#
+# So the cases are generated from whatever the list actually holds. Every entry gets a
+# case, an empty list REFUSES rather than reporting no failures [R-ENF-04], and the
+# next name to be fixed shortens this control instead of breaking it.
+
+def _ratcheted_names():
+    """Every name currently excused by the far-year ratchet."""
+    p = os.path.join(ROOT, "engine", "build_depth_audit",
+                     "forward_ranges_outstanding.json")
+    names = sorted(json.load(open(p, encoding="utf-8")).get("outstanding") or {})
+    assert names, (
+        "the far-year ratchet is EMPTY, so there is no excused name whose allowance "
+        "could be removed. That is a good state for the book and it leaves this "
+        "control testing nothing, which is not a pass [R-ENF-04]. Delete these cases "
+        "deliberately, or keep them until an entry exists.")
+    return names
 
 
-def arcc_unratcheted(tmp):
-    _unratchet(tmp, "ARCC")
-    return "ARCC"
+def _unratchet_case(tk):
+    def go(tmp):
+        _unratchet(tmp, tk)
+        return tk
+    go.__name__ = "%s_unratcheted" % tk.lower()
+    return go
+
+
+# THE COUNTS CARRY THE RATCHET'S LENGTH RATHER THAN A FIXED TOTAL, and that is not a
+# loosening. The guard exists so a case LOST TO AN EDIT cannot quietly reduce coverage,
+# which has happened in this repository before. But one red case is generated per name
+# on the far-year ratchet, so the honest total moves when a study is FIXED and its name
+# is pruned — and a typed total turned that repair into a failure. The fixed part is
+# still asserted exactly; only the generated part is counted from the list it comes from.
+_RATCHET_CASES = len(_ratcheted_names())
+RED_FIXED_EXPECTED = 8
+RED_EXPECTED = RED_FIXED_EXPECTED + _RATCHET_CASES
+CLEAN_EXPECTED = 9
+
+CASES_EXPECTED = RED_EXPECTED + CLEAN_EXPECTED
 
 
 def new_run_prints_points(tmp):
@@ -317,8 +389,9 @@ def detector_history_range_not_a_range():
 # ------------------------------------------------------------------------ main
 
 GATE_RED = [
-    (amoc_unratcheted, "AMOC unratcheted — points while its own run commits a band"),
-    (arcc_unratcheted, "ARCC unratcheted — points, band committed two days earlier"),
+    *[(_unratchet_case(_tk),
+       "%s unratcheted — points while its own run commits a band" % _tk)
+      for _tk in _ratcheted_names()],
     (new_run_prints_points, "a NEW run whose study publishes far-year points"),
     (phantom_ratchet, "the ratchet names a run that does not exist"),
     (emptied_population, "ZERO runs — an empty result is not a clean result"),

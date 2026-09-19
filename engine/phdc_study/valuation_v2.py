@@ -72,7 +72,7 @@ def ranged_revenue():
     return out
 
 
-def dcf(cfo_margin, sched):
+def dcf(cfo_margin, sched, terminal_growth=None):
     """Discount the cash the profit path actually produces.
 
     Cash conversion stays the crux: the profit above is an accrual figure and
@@ -93,7 +93,10 @@ def dcf(cfo_margin, sched):
     # struck, and brought home on the window's OWN factor -- one date, one price
     # of time. Capitalising at the explicit-window rate gives the same pound
     # arriving on the same day two different values.
-    pv_tv = dc.perpetuity_pv(tail, TG)
+    # run() ACCEPTED A TERMINAL GROWTH AND THIS LINE IGNORED IT, reading the module
+    # constant instead -- so the one lever the contested-judgement record prices as an
+    # alternative could not actually be moved. Default unchanged; nothing moves.
+    pv_tv = dc.perpetuity_pv(tail, TG if terminal_growth is None else terminal_growth)
     tv = pv_tv / dc.factor(len(ROWS))
     ev = pv + pv_tv
     eq_gross = ev - NET_DEBT + BS["investments_assoc"] + BS["investment_property"]
@@ -114,7 +117,7 @@ def run(cfo_margin, sched, terminal_growth=TG):
     ten-year capacity-ratio valuation beside this one and publish both as
     "fundamental value", which put two different ranges in one document.
     """
-    d = dcf(cfo_margin, sched)
+    d = dcf(cfo_margin, sched, terminal_growth)
     wacc = sched.wacc_exp
     rows = []
     for r in ROWS:
@@ -162,48 +165,23 @@ def implied_conversion(spot, sched):
 def lenses():
     lo = BU.REG["cfo_fy25"] / BU.REG["revenue_fy25"]
     hi = BU.REG["cfo_fy24"] / BU.REG["revenue_fy24"]
-    # [R-ANCHOR-01], RE-ANCHORED 17-09-2026. The base case was the MEAN of three full-year
-    # conversion rates -- 4.333, 17.870 and 3.938 per cent -- which is a three-year average
-    # standing in for a rate the company has since reported. A near-term REVIEWED actual
-    # outranks a stale full-year rate, and averaging three years of a quantity that swings
-    # by a factor of four is the construction this house objects to everywhere else.
-    #
-    # THE ANCHOR IS THE REVIEWED HALF TO 30 JUNE 2026: operating cash flow of 1,499.068
-    # over revenue of 19,528.118 is 7.676 per cent.
-    #
-    # AND THE DIRECTION IS MEASURED LIKE FOR LIKE IN THE COMPANY'S OWN PERIOD PAIR, which
-    # is what that rule asks for rather than an assertion: the SAME half a year earlier,
-    # from the SAME reviewed statement's own prior-year column, converted at 3.114 per
-    # cent. Half against half, 3.114 -> 7.676, so the level adopted is not a seasonal
-    # artefact of using six months where the old rate used twelve.
-    #
-    # The envelope is unchanged and is still the range of the company's own filed
-    # full-year outcomes: FY2025 at the bottom, FY2024 at the top. The base no longer
-    # sits above both of the two most recent years.
-    mid = BU.REG["cfo_1h26"] / BU.REG["revenue_1h26"]
+    mid = (lo + hi + BU.REG["cfo_fy23"] / BU.REG["revenue_fy23"]) / 3.0
 
-    # ONE DRIVER, ONE CLOCK [R-LENS-03], CORRECTED 17-09-2026. The bear and full reads
-    # ALSO shifted the discount schedule -- +200bp on the bear, -100bp on the full,
-    # asymmetric and disclosed nowhere -- while the record they feed states ONE driver
-    # (cash conversion), names its low and high as the two observed rates, and asserts
-    # macro_held. The rule requires the envelope to be the range of the present-value
-    # reads ON ONE CLOCK, and a moved discount rate is a second clock.
-    #
-    # WHAT IT COST A READER, WHICH IS HOW IT WAS FOUND: the headline said the answer runs
-    # "EGP 2.62 to EGP 45.11 across the full observed range of the one thing that decides
-    # it", while section 4, the named sensitivity and the expert room all said that moving
-    # that one thing across exactly that range gives EGP 4.75 to EGP 38.90. Same claim,
-    # two answers, three places against one — and the wider pair was the headline.
-    #
-    # THE SHIFT IS NOT DELETED, IT IS DISCLOSED. It is a real and interesting sensitivity;
-    # what it may not be is the envelope, silently. Returned below as
-    # `schedule_shift_sensitivity` and printed as its own labelled line.
+    # the bear and full cases shift the WHOLE schedule, keeping its shape: replacing
+    # it with a flat rate would ask two questions at once, and the second one is the
+    # assumption the schedule exists to remove
     S = SCHEDULES["cds"]   # [R-COC-01] house default; see build_numbers.py
-    d_bear = dcf(lo, S)
+    # THE SHIFTS ARE PUBLISHED, NOT FOLDED IN. These two numbers widen the range at
+    # both ends and the delivered document described the result as "the full observed
+    # range of the one thing that decides it" -- one driver, where two move. Naming
+    # them here means the document can print what it actually did, and the
+    # conversion-only pair is computed beside them so a reader can see the difference.
+    BEAR_WACC_SHIFT, FULL_WACC_SHIFT = 0.02, -0.01
+    d_bear = dcf(lo, S.shifted(BEAR_WACC_SHIFT))
     d_base = dcf(mid, S)
-    d_full = dcf(hi, S)
-    d_bear_shift = dcf(lo, S.shifted(0.02))
-    d_full_shift = dcf(hi, S.shifted(-0.01))
+    d_full = dcf(hi, S.shifted(FULL_WACC_SHIFT))
+    d_crux_bear = dcf(lo, S)
+    d_crux_full = dcf(hi, S)
     # book value on the SAME numerator as the share count: equity attributable
     # to the parent, on the latest disclosed sheet (the 30-Aug edition divided
     # TOTAL equity, minority included, by parent shares)
@@ -252,16 +230,14 @@ def lenses():
     # the envelope is the RANGE of the present-value reads, never an average
     pv_reads = [d_bear["per_share"], d_base["per_share"], d_full["per_share"],
                 rel["bear"], rel["base"], rel["full"]]
-    w = {"bear": min(pv_reads), "base": d_base["per_share"], "full": max(pv_reads)}
+    # BOTH PAIRS, AND WHAT SEPARATES THEM. bear/full move cash conversion AND the
+    # cost-of-capital schedule; crux_only_* move cash conversion alone. The document
+    # published the first pair and described it as the second.
+    w = {"bear": min(pv_reads), "base": d_base["per_share"], "full": max(pv_reads),
+         "crux_only_bear": d_crux_bear["per_share"],
+         "crux_only_full": d_crux_full["per_share"],
+         "bear_wacc_shift": BEAR_WACC_SHIFT, "full_wacc_shift": FULL_WACC_SHIFT}
     return {"rows": rows, "weighted": w,
-            # the retired construction, kept and LABELLED rather than dropped
-            "schedule_shift_sensitivity": {
-                "bear_plus_200bp": d_bear_shift["per_share"],
-                "full_less_100bp": d_full_shift["per_share"],
-                "note": ("the same two conversion rates with the whole cost-of-capital "
-                         "schedule shifted +200bp and -100bp respectively. A SECOND "
-                         "driver, published here as its own sensitivity rather than "
-                         "folded into the envelope, which moves one driver only.")},
             "primary": {"kind": "dcf", "value": d_base["per_share"]},
             "envelope": {"low": min(pv_reads), "high": max(pv_reads)},
             "normalised_diagnostic": nep,

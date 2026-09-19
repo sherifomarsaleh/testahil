@@ -6,6 +6,16 @@ Ticker: {TICKER} · Exchange: {EXCHANGE} · Market code: {MARKET} · Update date
 
 Train the fundamental method on this company's own history and carry the result into the update.
 
+**[R-PRIME-01] THE RESEARCH PRIMER COMES FIRST.** This exercise rebuilds the study, so the
+primer rule binds: generate the prompt with `python3 engine/research_primer_prompt.py {TICKER}`,
+hand it to the principal, and read what comes back before the rebuild starts. If the
+generator refuses the name, STOP AND SAY SO rather than hand-writing the prompt. What comes
+back is a LEAD AND NEVER AN INPUT — traced to the primary source it cites and read there
+before it moves anything, historicals still from the company's own issued statements alone,
+and anything that does not survive tracing written into the sweep register as a dated
+negative search rather than dropped.
+
+
 **TWO DIFFERENT TESTS ARE BOTH CALLED A WALK-FORWARD. THIS IS ONE OF THEM.** The FUNDAMENTAL walk-forward, below, tests the forecasting method: drivers projected from a past origin, scored against what the company actually reported. The PRICE-ENGINE walk-forward (`{ticker}_study/backtest_5y.py`, `backtest_rows.csv`) tests the probability cone: band coverage and a proper score against a naive rule. They test different machinery on different evidence and neither substitutes for the other. Say which one you mean, every time — conflating them once already understated the evidence base badly.
 
 The worked pattern is the PHDC run of 30-Aug-2026 (`engine/phdc_walkforward/`: `panel.py`, `bottom_up.py`, `score.py`, `diagnose.py`, `corrections.py`, `forward.py`, and `TRAINING_RECORD_30-08-2026.md`) — replicate its structure, never its numbers. An earlier du reference run is named in previous editions of this prompt (`du_panel.py`, `du_IS_projected_vs_actual_all_origins.md`); those files are not in this repository, so locate them before relying on them and do not assume their contents.
@@ -70,11 +80,36 @@ Expanding window only (errors resolved before the origin). Corrections per drive
 
 Every walk-forward run ends by producing both of the following. A run that produces one and not the other is not finished.
 
+**[R-FCAL-01 §6 AMENDED 09-Sep-2026] A RUN ON A NAME WITH NO CURRENT-STANDARD STUDY MAY BE
+CALIBRATION-ONLY — AND HAS TO DECLARE THAT IT STRUCK NOTHING.** Document 1 below says the
+UPDATED fundamental analysis, and you cannot update what does not exist: the campaign runs
+this walk-forward across the whole book and most covered names have no current-standard
+study behind them. Such a run still produces the lessons register, its own run records, the
+study document (.docx) and the Excel model — **what is optional is the STRUCK FAIR VALUE,
+never the work.** Three conditions, all three:
+
+1. **Declare it machine-readably.** Write `CALIBRATION_ONLY.json` in the run's own
+   directory with `ticker`, `declared_on`, `struck_no_fair_value: true`, `why` (the name
+   has no current-standard study to update) and `produced` (what the run did deliver).
+   **Silence is not a declaration** — a run that just omits a fair value is unfinished
+   exactly as it was before. `engine/calibration_only.py`'s `declared(ticker)` returns a
+   PAIR, so unpack it; the gate that reads it is `python3 engine/fv_movement.py check`.
+2. **Not available where a study already exists.** If the name carries a current-standard
+   study, this section binds unchanged: the analysis is an UPDATE and must be one. The test
+   reads whether the study publishes a central, not whether a directory exists — the
+   directory appears as soon as the docx and workbook are built, while the run correctly
+   still strikes nothing.
+3. **The deliverable standard is not reduced.** Per instruction of 09-Sep-2026 — *"we need
+   a study in docx and the model in excel format as well"* — Document 1's docx, its
+   workbook, its bibliography and its QC gate are all still owed. A calibration-only run
+   builds every one of them; it simply does not strike `fair{bear,base,full}`, and the
+   published numbers stay exactly where they stood.
+
 ### Document 1 — the updated fundamental analysis, at full model-report depth
 
-The delivered valuation study, rebuilt to carry this run's results. **The depth standard is THE MODEL REPORT** — `engine/model_report/MODEL_REPORT_09-08-2026.docx` — and the reference set is CLOSED at ADNOCLS, ADCB and ALPHADHABI; no other company is a template or an exemplar. The PHDC run of 30-Aug-2026 (`engine/phdc_study/`) is a WORKED EXAMPLE of a study built to that standard, useful to read beside it, and is not itself the standard. Match it exactly:
+The delivered valuation study, rebuilt to carry this run's results — or, on a run declared calibration-only above, built to the same depth without a struck fair value. **The depth standard is the PHDC study of 30-Aug-2026** (`engine/phdc_study/`), which was itself built to the model report and passes `assert_model_study()`. Match it exactly:
 
-- **16-section Word document**, in this order: Masthead + READ FIRST · Headline · Valuation summary · Company overview · §1 Fundamental valuation (1.1 cash-flow model with the full FCFF waterfall and the EV→equity bridge; 1.2 book value and sustainable return; 1.3 relative multiples; 1.4 normalised earnings power; 1.5 synthesis — **the CLASS PRIMARY IS the central [R-LENS-03]**, every other lens published beside it as a cross-check and the bear/full envelope the RANGE of the present-value reads; **NEVER a weighted blend and never a set of typed weights — that construction is RETIRED**; 1.6 drivers — each disclosed segment on its own driver, margins as OUTPUTS; 1.7 the crux; 1.8 macro and cost of capital; 1.9 sensitivity) · §2 Technical and price structure · §3 Probabilistic price map · §4 Comparison of the lenses · §5 Catalysts · §6 Reading the probability zones · §7 Caveats and what would change our mind · Appendix A financial statements (A.1 income statement, 3 years reported + 5 forecast; A.2 balance sheet as reported; A.3 the FULL projected balance sheet and cash flow) · Appendix B peers, risk register, research register · Appendix C expert panel (C.1–C.3 by method, C.4 cross-examination, C.5 the three in one room, C.6 divergence table) · About · Disclosure.
+- **16-section Word document**, in this order: Masthead + READ FIRST · Headline · Valuation summary · Company overview · §1 Fundamental valuation (1.1 cash-flow model with the full FCFF waterfall and the EV→equity bridge; 1.2 book value and sustainable return; 1.3 relative multiples; 1.4 normalised earnings power; 1.5 synthesis; 1.6 drivers — each disclosed segment on its own driver, margins as OUTPUTS; 1.7 the crux; 1.8 macro and cost of capital; 1.9 sensitivity) · §2 Technical and price structure · §3 Probabilistic price map · §4 Comparison of the lenses · §5 Catalysts · §6 Reading the probability zones · §7 Caveats and what would change our mind · Appendix A financial statements (A.1 income statement, 3 years reported + 5 forecast; A.2 balance sheet as reported; A.3 the FULL projected balance sheet and cash flow) · Appendix B peers, risk register, research register · Appendix C expert panel (C.1–C.3 by method, C.4 cross-examination, C.5 the three in one room, C.6 divergence table) · About · Disclosure.
 - **16-sheet workbook**, same order: READ FIRST, Summary, Fundamental Valuation, Assumptions, SOTP Bridge, Segments, Relative & Normalized, DCF, Income Statement, Balance Sheet, Cash Flow, Summary Financials, Monte Carlo, Sensitivity, Per-Share & Ratios, Peer & Sector. Live formulas throughout — change a blue input and the value per share recomputes.
 - **Standalone bibliography document**: primary documents · the full input register, every entry four-field · judgements with what would overturn each · negative results · where two sources disagree · what is not disclosed.
 - **Carried in from this run**: the corrected drivers that passed §5; years 3–5 published as RANGES built from this record's own driver-error distribution, never as points; the graded maturities of earlier forecasts on an incremental run; and a one-line statement in §7 where the run was light or skipped, in those words.
@@ -88,16 +123,6 @@ The delivered valuation study, rebuilt to carry this run's results. **The depth 
   This is the walk-forward's own finding turned into a gate: the exercise exists to test whether the
   forecasting method is any good, and a method that quietly walks a rate back toward a longer average
   is making an untested claim in the direction that always lowers value.
-
-- **[R-REAL-01] Every per-unit money path says what it does in REAL terms.**
-  Build price paths through `engine/real_terms.py`'s `nominal_from_real()` — state the REAL rate
-  and let the house inflation ladder supply the nominal — and commit a `real_terms_block` naming
-  each price-class path with its kind, its measured `real_change`, a mechanism from the closed
-  list and the disclosure behind it. `python3 scripts/check_real_terms_paths.py` must clear. The
-  gate does not decide that a real decline is wrong; it catches SILENCE. It matters most here for
-  the same reason [R-ASSET-01] does: a run rebuilds the drivers at every origin, and a price path
-  drifting below the ladder manufactures a margin collapse the scoring then reads as a finding
-  about the company — the error being measured is then the method's own.
 
 - **[R-ASSET-01] The operating asset base is as at the latest disclosure the study read.**
   Where the class carries an asset-based lens, commit an `asset_base_record` naming the quantity,
@@ -115,7 +140,24 @@ The delivered valuation study, rebuilt to carry this run's results. **The depth 
   basis points are indistinguishable from a typing error until the record says which arithmetic
   produced them.
 
+- **[R-COC-03] Country risk is charged once and is never multiplied by beta.**
+  `Ke = rf* + beta x ERP_mature + lambda x CRP`, built through `engine/cost_of_capital.py`,
+  both halves derived from the registered total so no new number enters, lambda taken from an
+  audited geographic disclosure with a stated `crp_foreign` wherever it drops below 1.0. A
+  terminal struck this way declares `split_premium` and records its split.
+
+- **[R-MACRO-02] The terminal real growth is below the economy's, and the Fisher identity is exact.**
+  Read `terminal_growth()` off the market's own path; it refuses a real rate at or above
+  `real_gdp_lt`, and the gap is the share of the economy the company is assumed to cede — state
+  it. Every inversion uses `(1+g)/(1+pi)-1` exactly, or the two readers of one number disagree
+  by construction and agree only while real growth is zero. **This matters most here:** a run
+  strikes a terminal at every origin, so an inexact converter compounds across all of them.
+
 - **[R-GAP-01] If the central fair value lands more than 10% from the latest known market price in EITHER direction, the study is not finished.** (The rule was one-sided at adoption and became TWO-SIDED on 02-Sep-2026: a gate that can only fire in one direction teaches the work to drift in the other, and it does so while looking rigorous. And per the 03-Sep-2026 amendment, the price it is measured against is the LATEST KNOWN one — a study audited against a month-old quote is audited against its own past.) Write `GAP_REVIEW_{DD-MM-YYYY}.md` in the study's own directory covering all eight headings — LATEST FILINGS · BASE YEAR · MACRO COHERENCE · DISCOUNT RATE · TERMINAL · BALANCE SHEET · CLAIMS AGAINST THE RECORD · MULTIPLE CROSS-CHECK — and clear `python3 scripts/check_valuation_gap.py`. The answer does not have to change; it has to be audited. Errors in a DCF are not symmetric — nearly all of them push value DOWN — so a large discount is where the defects are, and every gate above checks the PROCESS while none of them looks at the ANSWER. Worked precedent: `engine/amoc_study/GAP_REVIEW_01-09-2026.md`.
+- **[R-GAP-04] A gap is not genuine, does not stand, and is not referred to me until an exhaustive, recorded hunt for OUR OWN ERROR has come back empty.** Referral is a last resort that must be earned and evidenced, and it carries the search: what was examined, WHAT EACH CANDIDATE IS WORTH IN CURRENCY PER SHARE, and what would falsify each. At minimum, each priced — the study's own arithmetic worked BACKWARDS from the price through `engine/reverse_read.py` [R-ENF-05]; every typed constant against the model's own derived equivalent; every source string against what the filings actually disclose (a study saying a disclosure does not exist while the issuer publishes it has a hole in its SWEEP); standalone against consolidated on every ratio; each lens against the model's own forecast of the quantity that lens consumes; the contested register tested for a lean INSIDE a category and not only across the file. **This does not weaken the absolute prohibition on moving a fair value toward the price** — closing the gap is the OUTCOME of finding a real defect, never the aim, and a defect is corrected identically whether it moves the answer toward the market or away from it.
+- **[R-DCF-01] The valuation is assembled on ONE PAGE, and [R-SENS-01] the grid is centred on the adopted case.** Build both through `engine/dcf_table.py`. The table is READ from the run's own committed numbers, owns no arithmetic, and raises where the present values do not reproduce the published enterprise value and value per share. The grid's centre cell must EQUAL the central, and a list axis is sorted with the adopted value marked in its place. One valuation function only. Anything the document will print is committed at the moment it is computed.
+- **[R-STAR-01] A central below the traded price carries an air-tight written case; a central above it does not.** Clear `engine/northern_star.py`; `from_numbers(TICKER)` names the rung and what is missing. The burden rises with the gap and [R-GAP-04]'s hunt is where the case's material comes from. The fix is never to move the number toward the price.
+- **[R-NEWS-01] The sweep looks at what the company says it will do, and pins it to the listed issuer.** Mandatory announced-projects category on the Company ring, closed by a finding or a dated negative search; every forward-looking item names the legal entity and whether it is the listed issuer, and one that is not drives nothing. Never touches historicals.
 - **No rating, no price target, no buy/sell language.** A range and the reasoning behind it.
 
 ### Document 2 — the updated lessons-learnt document
@@ -139,3 +181,31 @@ python3 scripts/check_lessons_register.py      confirm the gate is green
 ### Also produced, and internal
 
 The scope decision and its reason; the training-record files (panel with provenance, error cells, the per-origin side-by-side income statements); the pre-registration text; the basis-break register; the corrections proposed with their test results; the caveats stated plainly (span obtained, provisional inputs, single-name limits); and an appended entry in the Fundamental Driver Ledger. None of this is shown to a reader.
+
+---
+
+## AFTER ANY CHANGE TO A PUBLISHED FAIR VALUE, THE RECORDS MOVE WITH IT
+
+    python3 scripts/check_records_follow_the_answer.py
+
+Correcting a study is not one edit. The answer lives in the study's own committed
+numbers, and it is ALSO recorded in the fair-value half of the calibration register and
+staged in the publish queue's manifest. The study-local gates — recalc, prose, footing,
+the gap gate — do not read either of those files, so all of them stay green while both
+records describe a number the study no longer publishes.
+
+**This was got wrong twice in one evening on the same name**, 09-09-2026, PHAR: once when
+its cost of debt was corrected and once when its price path was, each time with the
+study's own gates green and CI red on a register nobody had touched. Both times the check
+that would have caught it existed and was in CI; the failure was choosing which gates to
+run by hand.
+
+**Append, never retype.** The register is append-only so a correction leaves the
+superseded figure visible beside the new one:
+
+    python3 engine/fv_movement.py record TICKER ...   # a new EDITION, not an edit
+    python3 engine/fv_movement.py build
+    python3 scripts/build_publish_queue.py            # re-stage
+
+The complete answer is `python3 scripts/run_ci_gates.py`, which runs CI's own step list by
+parsing the workflow. Use it before any push that moves a number.

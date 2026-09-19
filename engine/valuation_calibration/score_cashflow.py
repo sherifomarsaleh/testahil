@@ -130,13 +130,6 @@ def drop_taxonomy(dropped):
         w = (why or "").lower()
         if "declared window" in w:
             return "the run projects a shorter window than the declared five years"
-        # NAMED RATHER THAN LEFT IN "other". Added 18-09-2026 with the refusal itself:
-        # this became the LARGEST single cause the moment it existed (21 of 60), and a
-        # table reporting it inside a bucket called "other" would have hidden the one
-        # finding the run actually produced.
-        if "explicit window ends growing" in w:
-            return ("the explicit window never converges to the terminal "
-                    "[R-MACRO-01]")
         if "capex intensity" in w or "working-capital intensity" in w \
                 or "intensity rule" in w:
             return "the block carries fewer than three years for a trailing intensity"
@@ -158,7 +151,29 @@ def drop_taxonomy(dropped):
 
 
 READINGS = (
-    ("DECLARED", dict(horizons=CL.HORIZONS, maintenance="amount")),
+    # DECLARATION 4 (MECHANICAL_LENS_4_08-09-2026.md) is the declared run from
+    # 08-09-2026: the terminal is a growing perpetuity on the LAST EXPLICIT YEAR'S free
+    # cash flow, at terminal inflation plus a stated real growth of zero. It supersedes
+    # declaration 3's trailing-capex upkeep charge, which refused 17 of 32 answers
+    # because a three-year capex window at a past origin is frequently not a steady
+    # state. The declaration was sealed and committed BEFORE this line was changed.
+    # THE CURRENCY IS ON THE HOUSE'S OWN RELATION FROM 08-09-2026, and this is a
+    # RULE THAT ALREADY BOUND rather than a lever seeking promotion [R-REBUILD-01]:
+    # [R-MACRO-01]'s macro path derives its forward currency by relative
+    # purchasing-power parity against long-run US inflation and says in terms that
+    # it is NEVER SET BY HAND, and EGCH's own walk-forward already computes exactly
+    # that ("knowable: relative PPP on the last published CPI differential at the
+    # origin"). ARCC alone compounded the origin's last realised annual move, which
+    # at FY2017 asserts x17.557 over five years against a realised x1.077. Same
+    # house, same market, one run on the rule and one not — which is what settles
+    # it, rather than anyone's judgement about currencies.
+    ("DECLARED", dict(horizons=CL.HORIZONS, maintenance="gordon",
+                      arcc_unit_fix="fisher")),
+    # Declaration 3's terminal, kept as the SUPERSEDED run rather than deleted: a
+    # construction that is replaced is evidence about the replacement, and dropping it
+    # would leave nothing to compare against.
+    ("declaration 3's terminal — SUPERSEDED, kept for comparison",
+     dict(horizons=CL.HORIZONS, maintenance="amount")),
     ("maintenance read as intensity x origin revenue",
      dict(horizons=CL.HORIZONS, maintenance="intensity")),
     # A SENSITIVITY, NOT THE DECLARED RUN, AND THE LABEL IS LOAD-BEARING. The sealed
@@ -176,6 +191,96 @@ READINGS = (
     # rather than chosen between. Nothing here promotes anything.
     ("maintenance on the DISCLOSED LIFE — A SENSITIVITY, NOT THE DECLARED RUN",
      dict(horizons=CL.HORIZONS, maintenance="disclosed_life")),
+    # ATTRIBUTION, NOT PROMOTION, AND THE LABEL IS LOAD-BEARING. This lens inherits
+    # every input run's projection by construction, so a UNIT ERROR inside one run
+    # arrives here looking like a property of the valuation method. ARCC holds an
+    # imported dollar commodity flat IN POUNDS and three nominal capital-charge
+    # lines flat at zero, while escalating revenue at the full inflation ladder,
+    # through a window in which the pound fell 10.434x — and it is the largest
+    # single contributor to the pooled bias. This reading measures how much of that
+    # bias is the INPUT rather than the CONSTRUCTION.
+    #
+    # IT IS NOT AND MAY NOT BECOME A PROMOTED LEVER: the pre-registration fixes six
+    # levers in order before any score existed and an input run's projection is not
+    # among them. The remedy for a unit error is to fix the unit in the run that
+    # carries it, which re-scores that run's own drivers and is its own pass.
+    ("ARCC's two unit errors corrected — ATTRIBUTION SENSITIVITY, NOT THE DECLARED RUN",
+     dict(horizons=CL.HORIZONS, maintenance="gordon", arcc_unit_fix=True)),
+    # AND THE THIRD, WHICH IS THE FIRST FACING THE OTHER WAY: the run compounds the
+    # origin's last realised currency move for five years, which at FY2017 asserts
+    # x17.557 against a realised x1.077. Coherent = the level rule applied to a
+    # price in its OWN currency and to the currency itself, which is this run's own
+    # stated principle applied consistently. STILL AN ATTRIBUTION, STILL NOT A LEVER.
+    ("ARCC coherent — level rule applied consistently — ATTRIBUTION, NOT THE DECLARED RUN",
+     dict(horizons=CL.HORIZONS, maintenance="gordon", arcc_unit_fix="coherent")),
+    # THE CURRENCY, ON THE HOUSE'S OWN RELATION [per instruction, 08-09-2026 — "we
+    # can do one of 2 things, a - assume stable exchange rates or b assume the
+    # fischer effect, whereby the annual devaluation can be the differential
+    # between the country interest rates and the US interest rate or the
+    # differential between the country inflation rate and the [US] inflation
+    # rate. A lot of research houses assume stable exchange rates and then redo
+    # the valuation when a major devaluation happens."]. Both are printed. Fisher
+    # is not a new construction: [R-MACRO-01]'s own macro path derives its forward
+    # currency by relative purchasing-power parity against long-run US inflation
+    # and says in terms that it is NEVER SET BY HAND — so the house already runs
+    # this for its studies and the walk-forward runs something else.
+    # The run's own construction, kept beside the declared one rather than deleted,
+    # so the size of the correction stays readable.
+    ("ARCC's own compounded currency — SUPERSEDED, kept for comparison",
+     dict(horizons=CL.HORIZONS, maintenance="gordon")),
+    # ---------------------------------------------------------------- LEVER 1
+    # THE COST-OF-CAPITAL GLIDE, the first of the six the pre-registration fixed in
+    # order before any score existed. It is EVALUATED here, which is not the same as
+    # promoted: the rule promotes a lever only while the stacked pooled bias moves
+    # TOWARD zero and stops the moment it would not. Printed either way, because a
+    # lever that is tried and rejected is evidence and a lever tried in silence is not.
+    ("LEVER 1 — the cost-of-capital glide (EVALUATED, promotion decided by the rule)",
+     dict(horizons=CL.HORIZONS, maintenance="gordon", glide=True)),
+    # ---------------------------------------------------------------- LEVER 2
+    # THE TERMINAL ANCHORS, on the CURRENT STACK — which is still empty, because
+    # lever 1 moved the bias away from zero and the rule promotes a lever only while
+    # it moves toward it. The reading taken of "promotion stops the moment it would"
+    # is that the STOP condition is the overshoot the rule names in its own next
+    # sentence — "stacking five individually-justified moves into an overshoot" —
+    # so a lever that simply points the wrong way is NOT promoted and the sequence
+    # continues. Recorded here because it is a reading, not a reading-off.
+    ("LEVER 2 — the terminal anchors (EVALUATED on an empty stack)",
+     dict(horizons=CL.HORIZONS, maintenance="gordon", terminal_anchor=True)),
+    # ---------------------------------------------------------------- LEVER 3
+    ("LEVER 3 — the rating-basis equity risk premium (EVALUATED on an empty stack)",
+     dict(horizons=CL.HORIZONS, maintenance="gordon", erp_basis="rating")),
+    # ---------------------------------------------------------------- LEVER 4
+    # THE COUNTRY-PREMIUM LAMBDA IS UNBUILDABLE AT THESE ORIGINS AND IS RECORDED AS
+    # THAT RATHER THAN SKIPPED [R-ENF-04]. Lambda scales the COUNTRY premium inside
+    # the equity premium, and the point-in-time archive holds only the TOTAL premium
+    # per vintage -- mature plus country, in one figure. Splitting it needs the
+    # mature-market premium at each vintage, which nothing in this repository holds:
+    # the Damodaran extract carries Egypt's rating, its default spread and both of
+    # its total premiums, and no US row. Backing the mature figure out of the total
+    # by subtracting the default spread ASSUMES the equity-to-bond scaling is 1.00,
+    # which is the very quantity lambda is an alternative to -- so it would assume
+    # the answer. Buildable only by sourcing the implied mature premium by year,
+    # which is a sourcing job and not a lever evaluation.
+    # ---------------------------------------------------------------- LEVER 5
+    # ---------------------------------------------------------------- LEVER 4
+    # BUILDABLE AFTER ALL, and the correction matters more than the lever. The first
+    # pass recorded this unbuildable because the archive stores no mature-market
+    # premium; it stores TWO BASES, which is two equations in two unknowns, and the
+    # recovered mature premium reproduces Damodaran's own published figure to four
+    # decimals at eight of eleven vintages. See crp_split.py.
+    ("LEVER 4 — the country premium at the house lambda of 1.00, ON THE STACK {3}",
+     dict(horizons=CL.HORIZONS, maintenance="gordon", erp_basis="rating",
+          crp_lambda=1.00)),
+    # Lever 5 is evaluated ON THE CURRENT STACK, which after lever 3 is {3} and not
+    # empty. The rule says "one at a time on the current stack" and a lever measured
+    # against the declared run once something has been promoted is measuring the
+    # wrong difference. Both are printed: the stacked reading is the one the rule
+    # decides on, the empty-stack reading is kept because it isolates the lever.
+    ("LEVER 5 — point-in-time betas, Vasicek-shrunk, ON THE STACK {3}",
+     dict(horizons=CL.HORIZONS, maintenance="gordon", pit_beta=True,
+          erp_basis="rating")),
+    ("LEVER 5 in isolation — same betas on an EMPTY stack (not the decision reading)",
+     dict(horizons=CL.HORIZONS, maintenance="gordon", pit_beta=True)),
 )
 
 
@@ -224,16 +329,9 @@ def report():
         print()
     # the drop taxonomy is the same for every reading's shared causes; print the
     # declared run's
-    # COMPUTED, NOT TYPED. This line read "WHY 28 OF 33 READY CELLS" as a literal and
-    # went on reading it after the population had moved twice -- the defect the standing
-    # rule "a number stated in prose must be computed, not typed" names, sitting in the
-    # calibration's own reporter where nothing was checking it.
-    _tax = drop_taxonomy(out["DECLARED"]["dropped"])
-    _drops = sum(len(v) for v in _tax.values())
-    _scored = len(out["DECLARED"]["rows"])
-    print("  ---- WHY %d OF %d CELLS PRODUCED NO VALUE (declared run) ----"
-          % (_drops, _drops + _scored))
-    for cause, cells in sorted(_tax.items(), key=lambda kv: -len(kv[1])):
+    print("  ---- WHY 28 OF 33 READY CELLS PRODUCED NO VALUE (declared run) ----")
+    for cause, cells in sorted(drop_taxonomy(out["DECLARED"]["dropped"]).items(),
+                               key=lambda kv: -len(kv[1])):
         print("    %2d  %s" % (len(cells), cause))
         print("        %s" % ", ".join(cells))
     return out
@@ -253,12 +351,6 @@ if __name__ == "__main__":
                 "dropped": [{"ticker": t, "origin": y, "why": w}
                             for t, y, w in v["dropped"]],
             }
-        # A SCORE FILE IS DATED FOR THE PRE-REGISTRATION IT WAS PRODUCED UNDER, not
-        # overwritten in place. The 06-09 record stands as the evidence of what the
-        # superseded construction produced — its seven cells are what the convergence
-        # measurement was made ON — and deleting it to make a directory tidy would
-        # delete the only thing showing that the rebuild made the result worse rather
-        # than better, which is this rebuild's own argument that nothing was fitted.
-        p = os.path.join(HERE, "SCORES_cashflow_18-09-2026.json")
+        p = os.path.join(HERE, "SCORES_cashflow_06-09-2026.json")
         json.dump(payload, open(p, "w"), indent=1, default=str)
         print("\n  written %s" % os.path.relpath(p, os.path.dirname(ENGINE)))

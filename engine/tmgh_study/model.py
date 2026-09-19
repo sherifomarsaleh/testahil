@@ -43,7 +43,9 @@ RECOVERY_YEARS = 10   # the build programme catches up and the conversion rate
                       # moves back toward its pre-2023 level. Eight years was
                       # tried and rejected: it drove development revenue to
                       # EGP 325bn a year by 2035, six times the FY2026 level,
-                      # on a landbank of about 20mn sqm. A crux has to be a
+                      # on a landbank of about 20mn sqm REMAINING — not the 115mn
+                      # the company reports as its gross group total, which counts
+                      # ground it has already sold. A crux has to be a
                       # question a reader can weigh, not an extreme
 # How fast handovers converge on the rate the book supports.
 CAPACITY_RAMP = 0.25   # a quarter of the gap closed each year
@@ -105,6 +107,17 @@ def ratios():
              + _v(IN.IS, "govt_donations_fy25"))
             / (_v(IN.IS, "dev_revenue_fy25") + _v(IN.IS, "hosp_revenue_fy25")
                + _v(IN.IS, "other_revenue_fy25")))
+    # THE IMPLIED FINANCE RATE IS COMMITTED, BECAUSE THE DOCUMENT QUOTES IT TWICE.
+    # It was computed inside the document and published there and committed nowhere, so
+    # the prose check had no committed figure to reconcile it against -- a number shown to
+    # a reader that nothing in the model could confirm. The study's argument turns on it:
+    # the charge implies a rate far above what this model charges on borrowings, and the
+    # excess is contract financing the statements do not separate out. An argument that
+    # rests on a figure deserves the figure in the record.
+    implied_finance_rate_fy25 = (
+        _v(IN.IS, "finance_cost_fy25")
+        / (_v(IN.BS, "loans_noncurrent_fy25") + _v(IN.BS, "loans_current_fy25")
+           + _v(IN.BS, "credit_facilities_fy25")))
     d_adv = _v(IN.BS, "customer_advances") - _v(IN.BS, "customer_advances_fy25")
     d_pud = (_v(IN.BS, "properties_under_development")
              - _v(IN.BS, "properties_under_development_fy25"))
@@ -122,6 +135,7 @@ def ratios():
         "annualised_build_h1_26": build * 2,
         "d_advances_h1_26": d_adv, "d_pud_h1_26": d_pud,
         "kd": 0.2550,
+        "implied_finance_rate_fy25": implied_finance_rate_fy25,
         "note": ("Collections are the increase in customer advances plus the revenue "
                  "recognised out of them; build spend is the increase in properties "
                  "under development plus the cost recognised out of it. Both are "

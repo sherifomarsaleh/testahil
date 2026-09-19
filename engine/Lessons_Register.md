@@ -56,9 +56,9 @@ tested.
 
 ## What is in here, and what is honestly missing
 
-**329 lessons**, of which 284 bind on every study, 34 on a class of company, and 11 on a single name.
+**305 lessons**, of which 262 bind on every study, 33 on a class of company, and 10 on a single name.
 
-By how they were learned: 62 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 31 from outside critiques, 37 from self-audits, 197 found while building.
+By how they were learned: 69 from fundamental walk-forward testing, 2 from price-engine walk-forward testing, 14 from outside critiques, 26 from self-audits, 194 found while building.
 
 ### Two different tests are both called a walk-forward
 
@@ -66,10 +66,10 @@ They test different machinery on different evidence, and the first edition of th
 
 | | what it tests | names | resolved forecasts |
 |---|---|---|---|
-| **Fundamental** | the forecasting method — project each driver from a past origin, score revenue, cost and profit against what happened | 10 (AMOC, ARCC, EGCH, ELEC, GBCO, PHAR, PHDC, SCEM, SWDY, TMGH) | 10 origins x 5 horizons |
+| **Fundamental** | the forecasting method — project each driver from a past origin, score revenue, cost and profit against what happened | 12 (ABUK, ADIB, AMOC, ARCC, EGCH, ELEC, GBCO, PHAR, PHDC, SCEM, SWDY, TMGH) | 10 origins x 5 horizons |
 | **Price engine** | the probability cone — strike it at a past origin and score band coverage and a proper score against a naive rule | 20 | 414 |
 
-**The price engine is well tested; the fundamental method is not.** 20 names carry price-engine evidence, including DU (18 forecasts) and GBCO (56). The fundamental method has been through a full training run on AMOC and ARCC and EGCH and ELEC and GBCO and PHAR and PHDC and SCEM and SWDY and TMGH alone, and that run's own record states its corrections rest on two starting points, its intervals are wide with several straddling zero, and its observations are not independent. **Every lesson from the fundamental method is therefore marked PROVISIONAL**; price-engine lessons are not, because they rest on 414 forecasts across 20 names.
+**The price engine is well tested; the fundamental method is not.** 20 names carry price-engine evidence, including DU (18 forecasts) and GBCO (56). The fundamental method has been through a full training run on ABUK and ADIB and AMOC and ARCC and EGCH and ELEC and GBCO and PHAR and PHDC and SCEM and SWDY and TMGH alone, and that run's own record states its corrections rest on two starting points, its intervals are wide with several straddling zero, and its observations are not independent. **Every lesson from the fundamental method is therefore marked PROVISIONAL**; price-engine lessons are not, because they rest on 414 forecasts across 20 names.
 
 **Not yet acted on (2):** L-104 (Deliveries must be constrained by what has actually been sold), L-203 (Palm Hills' 2025 balance sheet and cash-flow statement disagree by 47% of revenue). These are recorded as open rather than quietly carried as done.
 
@@ -2635,7 +2635,7 @@ Re-running every forecast with perfect foresight of inflation barely improves it
 
 **Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, SWDY walk-forward, date not recorded  ·  **status: provisional**
 
-> **What it cost, or how we know.** Average miss 0.563 as known, 0.563 with perfect foresight of inflation — the macro share is only -61.7%.
+> **What it cost, or how we know.** Average miss 0.556 as known, 0.497 with perfect foresight of inflation — an 11% improvement — while the BIAS moves the other way, macro share -61.7%. CORRECTED 08-09-2026: this clause read '0.563 as known, 0.563 with perfect foresight' beside that same -61.7%, which is self-contradictory on its face and was one number printed twice — that run's harvest view filled both fields from the as-known error, so every draft it produced asserted the strongest possible form of this claim by a copy rather than by a measurement. The finding survives the correction and the evidence for it is weaker than it looked.
 
 > **What would overturn it.** A market or period where the same decomposition puts most of the error on the macro path.
 
@@ -2649,275 +2649,55 @@ It runs one way in one period and the other way in the next. Averaging them prod
 
 > **What would overturn it.** A longer record in which one sign dominates across all regimes.
 
-### L-378 · A charge conceded in a give-back table must be conceded at its own line, or the concession understates itself.
+### L-379 · The method under-forecasts nominal revenue wherever a currency steps.
 
-A give-back table asks what the value would be if a contested charge were surrendered. Adding the charge back as a MARGIN improvement is not the same thing: it then flows down through tax, through the employees' profit share and through every rate struck on profit, so part of what was conceded is taken away again on the way down. Concede it where the model charges it.
+Every origin holds the exchange rate flat because that is all that is knowable then. In a stepping currency that is a systematic downward lean on every nominal line, and it compounds with the horizon. Read any nominal forecast in such a market as a floor rather than a central until the currency leg is carried explicitly.
 
-**Applies to:** every study  ·  *Learned from:* outside critique, AMOC critique response, 18-09-2026
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, ABUK walk-forward, date not recorded  ·  **status: provisional**
 
-> **What it cost, or how we know.** AMOC's adversarial.py conceded the employees' profit share as gm_shift and published EGP 11.6888. Setting the rate itself to zero and re-running the same waterfall gives 12.0632 — the published row understates the concession by EGP 0.3744, 3.3% of the central. An outside auditor reached 12.0632 independently.
+> **What it cost, or how we know.** Bias -0.469 log (about 60% too low), average miss 0.497, wrong in the same direction in 85% of cases, and the sign holds across every bootstrap block tested (n=20).
 
-> **What would overturn it.** A model where the conceded charge sits outside every rate struck below it, so the two routes coincide.
+> **What would overturn it.** A market whose currency did not step showing the same lean — the UAE leg is the test, and the mechanism predicts a macro share near zero there. A peg that shows -0.30 log of revenue bias refutes this.
 
-### L-379 · A sensitivity row that moves the answer by exactly zero is re-running nothing.
+### L-381 · Test whether the macro path explains an error before assuming it does.
 
-Every row of a give-back or sensitivity table is a claim that some input was changed and the model re-run. A row printing the base case to the last decimal is almost never a finding about the input; it is a row that never re-ran. Exact zero is the signature, and it is easy to read as reassurance.
+Substitute the actual macro path and re-measure. If the error falls, it is macro; if it does not move, it is the company; if it RISES, the macro path is wired into that line the wrong way round and no correction factor will fix it.
 
-**Applies to:** every study  ·  *Learned from:* outside critique, AMOC critique response, 18-09-2026
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, ABUK walk-forward, date not recorded  ·  **status: provisional**
 
-> **What it cost, or how we know.** AMOC's adversarial.py line 83 reads row('effective_tax', waterfall(B)) — the row IS the base case by construction, and it is excluded from the assertion loop that would have caught it. The delivered table publishes it as a tested alternative.
+> **What it cost, or how we know.** Average miss 0.646 as known, 0.585 with perfect foresight of inflation — the macro share is only 9.4%.
 
-> **What would overturn it.** A sensitivity genuinely insensitive to its input over the range tested, demonstrated by re-running it at a second value.
+> **What would overturn it.** A line where substituting the actual macro path never changes the error in either direction, making the test uninformative rather than diagnostic.
 
-### L-380 · A row labelled 'all of the above at once' that runs a subset is a defect no arithmetic check can see.
+### L-382 · A driver defined as another driver's denominator is not independent evidence about either.
 
-Every figure in such a row is computed and individually correct, so recalculation, provenance and prose-figure checks all pass. What is wrong is the relationship between the label and the set — which is a claim about the table rather than about any number in it.
+Check the definitions before scoring two drivers as two findings. If one is computed from the other, their errors will mirror and cancel, and a correction factor applied to either hides the wiring instead of fixing it.
 
-**Applies to:** every study  ·  *Learned from:* outside critique, AMOC critique response, 18-09-2026
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, ABUK walk-forward, date not recorded  ·  **status: provisional**
 
-> **What it cost, or how we know.** AMOC's ALL_GIVEBACKS is case(nci=0.0, prov=0.0, divp=0.0) — three concessions — published under a table listing six, in a document that passed 6,069 formula cells with zero disagreements.
+> **What it cost, or how we know.** ABUK's volume proxy is defined as revenue divided by the urea price and the exchange rate. Across 20 cells the volume leg and the commodity-price leg correlate at -0.578 with a slope of -1.28 against an exact-cancellation -1.00, and the two legs SUM to -0.0013 log — they cancel to within a tenth of a percent. Two of this run's drafts were two readings of that one defect.
 
-> **What would overturn it.** A label that enumerates the cases it runs, so the set and the claim cannot drift apart.
+> **What would overturn it.** A run where two drivers are definitionally linked and their error legs do NOT cancel — which would mean the linkage is not load-bearing and the two can be scored apart after all.
 
-### L-381 · A registered, sourced, four-field input that no arithmetic reads is a dead input, and the register cannot tell it from a live one.
+### L-383 · Fin customers forecasts run about 37% too low for ADIB.
 
-The four-field discipline proves where a number came from. It says nothing about whether the model uses it. An input can be sourced to a named document, dated, layered and described as the anchor for a driver while the driver is built another way entirely — and every provenance check passes, because provenance is not consumption.
+The method misses this driver in the same direction almost every time, not at random. That is a fixable defect rather than noise — find what is wired wrong before adding any correction factor.
 
-**Applies to:** every study  ·  *Learned from:* outside critique, AMOC critique response, 18-09-2026
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, ADIB walk-forward, date not recorded  ·  **status: provisional**
 
-> **What it cost, or how we know.** AMOC registers capex_pct at 1.45% tapering to 1.25%, sourced to the approved EGP 580.19mn capital budget and described in the bibliography as 'the anchor for the capital-expenditure driver'. waterfall() builds capex as MAINT_CAPEX0 x inflation + growth capital; capex_pct is read by nothing. TMGH carries the same shape in two sensitivity rows that move the answer by 1.00x and 0.0%.
+> **What it cost, or how we know.** Bias -0.311 log (about 37% too low), average miss 0.326, wrong in the same direction in 84% of cases, and the sign holds across every bootstrap block tested (n=45).
 
-> **What would overturn it.** A check that reads consumption rather than presence, which [R-ASSET-02] now does for the operating asset base and nothing yet does for an ordinary driver.
+> **What would overturn it.** A later run of the same name where the sign no longer holds across bootstrap blocks.
 
-### L-382 · A declared absence is re-searched before it is published, because a gap that is not a gap is load-bearing in the wrong direction.
+### L-386 · Apply every rate to the AVERAGE balance, never the closing one. On anything growing fast the closing base inflates every projected profit.
 
-Saying 'the company does not disclose this' is a claim about the world, and it is the one kind of claim a study makes that nothing downstream can test — every other figure is checkable and an absence is not. It is also the most consequential, because a declared gap is what licenses a judgement in its place.
+A bank earns its yield on the assets it held through the year, not on the ones it finished with. Put a full year of yield on a closing balance sheet that grew a third and you have credited twelve months of income to assets the bank owned for six. The error is large, it looks like evidence, and it survives every check that does not go looking for it. WIDENED FROM THE BANK CLASS TO EVERY COMPANY by the principal, 10-09-2026: "For non banks when they borrow apply the average debt as well." That is right and it is the same arithmetic. A cost of debt is interest paid over the debt that bore it, and an industrial that drew down a facility in November did not pay a full year on it either. The bank case is where the error is biggest, not where it is unique.
 
-**Applies to:** every study  ·  *Learned from:* outside critique, TMGH critique response, 18-09-2026
+**Applies to:** every study  ·  *Learned from:* fundamental walk-forward test, ADIB walk-forward, date not recorded  ·  **status: provisional**
 
-> **What it cost, or how we know.** TMGH declares four gaps and all four are disclosed. Its crux rests on 'one number that the company does not publish: how long its order book takes to convert' and adopts fourteen years; TMG has published 'the backlog will be delivered over the coming 4-5 years' in every earnings release since FY2018. Its cost of debt rests on 'TMG does not disclose the rate on any of its own facilities'; note 25 of the interim statements states 28.6%. Both documents were fetched from the company's own archive on the first request.
+> **What it cost, or how we know.** ADIB-Egypt grew customer financing 54% in FY2025 and total assets 33%, and 19.5% again in the first half of 2026. This is the bank-shaped form of the recognition-clock trap that produced a net-profit forecast several times too high on the first name in this campaign. In this run every rate reaches its base through _avg() and by no other route, which is why the rate drivers came out close to unbiased (net fees 0.984x actual, other income 1.106x, admin 0.897x at the FY2024 origin) while the volume anchor carried the whole miss.
 
-> **What would overturn it.** A study whose declared gap survives a fresh search of the company's own channel, logged with its date.
-
-### L-383 · A study's own diagnostic can be right while the page prints the sign backwards, and nothing compares the two.
-
-Diagnostics are generated and pages are written. Where both state the same quantity, only the generated one is checked — so a page can reverse it and every instrument still reports the study clean, because each is correct about its own half.
-
-**Applies to:** every study  ·  *Learned from:* outside critique, AMOC critique response, 18-09-2026
-
-> **What it cost, or how we know.** AMOC's reverse_read.json commits shift = +0.009264 and its diagnostics.json reads it correctly in words — 'the price is 87 basis points ABOVE the study's own forecast'. The delivered page states 'a REDUCTION of -0.93%', in the headline box, and builds the direction of proof on it.
-
-> **What would overturn it.** A page that reads its direction words from the committed sign rather than stating them, which is the prose-figure discipline applied to a direction instead of to a figure.
-
-### L-384 · A panel median computed over a set containing a figure the study has already withdrawn is not the panel's read.
-
-An expert panel earns its place by disagreeing. When the cross-examination concedes that one expert's number is wrong and restates it, the median must be taken over the restated set — otherwise the concession is published two pages before a headline that ignores it.
-
-**Applies to:** every study  ·  *Learned from:* outside critique, AMOC critique response, 18-09-2026
-
-> **What it cost, or how we know.** AMOC's Appendix C concedes Expert 1 is an undiscounted 2028 number worth 8.10 rather than 14.50, and prints the panel median as 12.32 over the set containing 14.50. The median of the discounted set (8.10, 9.34, 12.32) is 9.34 — the panel read moves from -8.8% against the price to -30.8%.
-
-> **What would overturn it.** A panel whose concessions are all immaterial to its own median, demonstrated rather than assumed.
-
-### L-385 · A cross-check lens struck on a different capital basis does not walk through the same bridge, and the difference is invisible until somebody walks it.
-
-Two lenses can be individually correct, individually reconciled and still not comparable, because the enterprise value each produces stands on a different definition of invested capital. A study that claims the lenses reconcile has made a testable claim, and the test is to put the second lens's enterprise value through the first lens's own bridge.
-
-**Applies to:** every study  ·  *Learned from:* outside critique, AMOC critique response, 18-09-2026
-
-> **What it cost, or how we know.** AMOC's section 1.9 declares 'one view is now applied across the model'. Its terminal runs on GROSS capital at 30.3%, Table A.3 carries a net-book memo at 42.3%, and Expert 3 runs wholly on net book. Expert 3's enterprise value of 13,536 walked through the study's own bridge gives EGP 11.9144, against a published 12.3183 — reproduced here and independently by an outside auditor.
-
-> **What would overturn it.** A study whose lenses genuinely share one capital basis, shown by the walk rather than by the sentence.
-
-### L-386 · A spread quoted across 'N consecutive filed periods' must name which N, because the subset chosen can exclude the period that matters.
-
-A range over filed history is a fact, and which periods it spans is part of the fact. Quoting a spread over a subset without naming it is not a rounding difference — the excluded period is usually the extreme one, which is why the subset was convenient.
-
-**Applies to:** every study  ·  *Learned from:* outside critique, AMOC critique response, 18-09-2026
-
-> **What it cost, or how we know.** AMOC's section 5 states 'the filed record spans 514 basis points' while Table 6 and section 1.2 state 737 basis points across five periods. 514bp is the spread of the FIRST FOUR — it excludes the 12.43% half the company had just reported, which is the best period in the record and the one the margin thesis turns on. The defect was already recorded in this house's own standing digest as a worked example and shipped anyway.
-
-> **What would overturn it.** A quoted spread that reproduces from the full filed set.
-
-### L-387 · A source claim in the delivered bibliography is read by no gate, because the source gate reads the committed input register.
-
-The two artefacts make the same kind of claim about where numbers came from, and only one of them is checked. A bibliography can tell a reader that an aggregator supplied figures the model in fact takes from the filings, and the study passes the source-integrity check because that check never opens the bibliography.
-
-**Applies to:** every study  ·  *Learned from:* outside critique, AMOC critique response, 18-09-2026
-
-> **What it cost, or how we know.** AMOC's bibliography cites stockanalysis.com, Investing.com and TradingView for total assets, total liabilities, cash and equivalents and total debt — every one of which exists in the statements the study holds and takes them from. check_source_integrity.py reads the input register, where every AMOC source names a filing, and passes the study.
-
-> **What would overturn it.** A source gate whose population is the delivered documents as well as the committed register.
-
-### L-392 · A rule about how a model is BUILT binds every instrument that builds one, and the gates for it were all pointed at studies.
-
-The house requires a forecast's explicit window to run until growth has converged to the terminal, because a model whose last year still compounds far above its terminal capitalises a rate it never reached. That rule was enforced on studies by a gate reading each study's committed record. The valuation calibration's own mechanical lens builds a value at every past origin and is not a study, so nothing held it to the rule — and every cell it had ever produced broke it.
-
-**Applies to:** every study  ·  *Learned from:* self-audit, valuation calibration, 18-09-2026
-
-> **What it cost, or how we know.** Measured on all seven cells the mechanical cash-flow lens had scored: the gap between the last explicit year's growth and the terminal ran 3.8pp at best and 15.6pp at worst against a bound of 2pp, and six of the seven carried a terminal worth MORE than the whole enterprise value (102% to 1820%), meaning an explicit window contributing nothing or less. PHDC 2019 showed an explicit present value of -EGP 2.28bn against a terminal of +EGP 32.52bn. The rule had been adopted four days before the declaration that sealed the lens.
-
-> **What would overturn it.** An instrument found to build a forecast value while being genuinely outside the rule's subject — which would mean the rule is narrower than its own reasoning, not that the instrument escaped it.
-
-### L-393 · A larger pool of inadmissible cells is not closer to an answer than a small one.
-
-The plan for the valuation calibration was to wire more names until the pooled sample could answer its acceptance clause. The defect that was actually blocking it sat in the construction rather than in any name, so every name added would have added more cells of the same broken kind — while the count rose and the table looked healthier.
-
-**Applies to:** every study  ·  *Learned from:* self-audit, valuation calibration, 18-09-2026
-
-> **What it cost, or how we know.** The convergence refusal dropped 21 cells spanning six of the nine names (AMOC, ARCC, EGCH, PHAR, PHDC, TMGH) and became the largest single drop class in the run at a stroke. Before it, five cells scored and the work in front of the desk was wiring three more projectors; after it, the declared run scores none and the work is in the runs' own pre-registered windows.
-
-> **What would overturn it.** A pooled sample whose defect is genuinely name-specific, where adding names dilutes it rather than reproducing it.
-
-### L-394 · A verdict printed in two states hides the third, and the hidden one is always 'we did not measure this'.
-
-A clause that can be met, failed or unmeasured must print all three. Where the printer collapses unmeasured onto failed, a criterion reports a conclusion it has no evidence for; where it collapses onto met, worse. The collapse survives because it is invisible until the third state first occurs, which may be months after the line was written.
-
-**Applies to:** every study  ·  *Learned from:* self-audit, criterion 3 reporter, 18-09-2026
-
-> **What it cost, or how we know.** criterion3.py printed clause A as 'MET if a_met else NOT MET' while clauses B and C printed all three states correctly. The line was right for as long as the series could not be empty, and the moment the convergence refusal emptied it, an UNMEASURED clause printed as a FAILED one — in the clause that gates Phase 1 hardest. The same run found the reporter crashing on the empty series and a header count typed as a literal (28 of 33) that had gone on printing through two population changes.
-
-> **What would overturn it.** A clause genuinely binary by construction, where no third state can arise — which must then be argued rather than assumed from the printer.
-
-### L-395 · An instrument built to grade a method must reproduce the method, and sharing its inputs is not reproducing it.
-
-The mechanical valuation lens takes the same drivers, the same audited statements, the same point-in-time macro archive and the same sanctioned terminal module as the studies it grades. It still is not those studies, because it stops the forecast where the driver walk-forward stops rather than where a valuation converges — and nothing about the shared inputs made that visible.
-
-**Applies to:** every study  ·  *Learned from:* self-audit, valuation calibration, 18-09-2026
-
-> **What it cost, or how we know.** Every delivered study committing the record converges exactly to its terminal: PHDC on FIFTEEN explicit years, TMGH on ten, the rest on five. The mechanical lens runs five for every name, because its sealed declaration fixes the window at the walk-forward's own horizons 1-5. On PHDC it therefore rebuilds a fifteen-year construction on five years, and produced 6.08, 2.49, 8.81, 6.37, 6.46 and 7.51 across six origins against a delivered central of 17.85. Every input agreed and the answer was a third of the size.
-
-> **What would overturn it.** A rebuild on the study's own window landing in the same place as the five-year one, which would make the window immaterial to the comparison rather than the whole of it.
-
-### L-396 · Point-in-time discipline forbids foresight, not a declining forecast — and the difference decides whether a past origin can converge at all.
-
-A mechanical rule that compounds the LAST PUBLISHED inflation print flat at every horizon looks like the strictest possible reading of 'only what was known at the origin'. It is stricter than the rule requires and wrong in a way that compounds: a forecast PUBLISHED at the origin was known at the origin, and published forecasts decline where a realised print does not.
-
-**Applies to:** every study  ·  *Learned from:* self-audit, valuation calibration, 18-09-2026
-
-> **What it cost, or how we know.** The walk-forward projectors escalate on (1 + cpi(origin)) ** h, so a 31-December-2019 Egyptian origin compounds at the 13.87% realised print for five straight years and ends still growing at four times its terminal. The IMF World Economic Outlook of October 2019 — already extracted in engine/macro_history/ with its file name and sha256, and in existence at that origin — projects 13.866, 9.965, 7.217, 7.011, 7.002, 7.078, converging to the house terminal by year three with no fade and no free parameter.
-
-> **What would overturn it.** An origin where no forecast had been published by the origin date, which is the case the flat rule is actually right for — and which must then be named rather than assumed.
-
-### L-397 · A rule cited as a reason is not checked the way a number is.
-
-Every figure in a committed record is computed, sourced and dated, and the one sentence carrying a rule identifier is simply believed — by the record that wrote it, by the standing digest that repeated it, and by every reader since. Where a record gives a standing rule as the reason something was not done, read the rule.
-
-**Applies to:** every study  ·  *Learned from:* outside critique, AMOC forecast anchor, 18-09-2026
-
-> **What it cost, or how we know.** AMOC's forecast-anchor record gave [R-VCAL-01]'s one-lever-at-a-time guard as the reason a correction priced at +55% was not applied. That guard governs levers promoted from the valuation calibration, never corrections to defects, and the standing digest had repeated the same false reason in its own [R-ANCHOR-01] paragraph. Measured the day the clause was adopted, the misreading had reached SIX passages across two study builders and one ratchet, and EVERY ONE OF THEM DEFERRED A CORRECTION THAT RAISES THE VALUE — so an interpretation that always ran one way was behaving exactly like a house lean while every individual step in it was defensible. All six carried their own measurement already, so correcting them was rewriting the reason and keeping the number; no value moved.
-
-> **What would overturn it.** A deferral citing a rule that genuinely does govern it — which would make the citation a fact to check rather than a reason to believe.
-
-### L-398 · A pile of individually-correct lists has a total, and nobody who maintains one of them can see it.
-
-Every ratchet entry in this repository was a correct decision to carry a known defect rather than fix it in passing, and every list may only ever shorten. What no list can show is how many there are altogether, because each is maintained by whoever wrote the rule it belongs to.
-
-**Applies to:** every study  ·  *Learned from:* self-audit, recorded debt census, 18-09-2026
-
-> **What it cost, or how we know.** [R-REPAIR-01] was adopted on '47 ratchet entries accumulated on five studies', read off the lists somebody happened to open. Counted across all 67 ratchets the figure is 386 entries across 94 names — 274 on the 24 studies that exist on disk and 112 on 70 names the site publishes with no study directory at all. The gap between 47 and 386 is not an error in either number; it is what a total looks like when nothing computes it.
-
-> **What would overturn it.** A census finding the total close to what the separate lists suggested, which would mean the lists were being read together already.
-
-### L-399 · A reader that classifies by pattern finds what the pattern was written for; one that REFUSES what it cannot place finds what nobody thought of.
-
-The difference is not strictness, it is what happens to the residue. A pattern-based reader silently absorbs anything it does not recognise into whichever bucket it falls through to, and reports a number. A reader that names every category and refuses the rest reports a QUESTION, and the questions are where the findings are.
-
-**Applies to:** every study  ·  *Learned from:* self-audit, recorded debt census, 18-09-2026
-
-> **What it cost, or how we know.** The first run of the ratchet census refused eleven keys across 67 files and every one needed a decision a pattern could not make — an unrunnable figure script is a debt, a resolved-and-kept entry is not, an [R-ENF-08] failure signature sitting beside its entry is not, a walk-forward run owing a valuation-input block is. It also refused two NAMES that turned out to be index series rather than studies, which resolve against a different population entirely. And it found 2POINTZERO — a ticker starting with a digit, which the first draft's ticker pattern silently dropped, and which this protocol already records as having been dropped from three separate tools by a regex written the same way.
-
-> **What would overturn it.** A residue that turns out to be uniform, where one rule really does cover every case the reader could not place.
-
-### L-400 · Re-running a generator re-asserts every claim its stamps are taken from, and a comment change is enough to do it.
-
-A study's committed record carries claims about the standard it was built to and the day the work was done. Where those are read from a live constant or a clock rather than frozen to a fact, ANY rebuild moves them — and a rebuild happens for reasons that have nothing to do with the claim, such as correcting a comment.
-
-**Applies to:** every study  ·  *Learned from:* self-audit, AMOC rebuild, 18-09-2026
-
-> **What it cost, or how we know.** Re-running amoc_study/compute.py to correct a COMMENT moved the committed standard claim from 2026.09.01 to 2026.09.07, silently asserting conformance to four standards nobody had checked the study against — one of which, [R-ASSET-01], it is ratcheted as not meeting. check_standard_claim went red the same evening, on the first rebuild after [R-STD-02] was written, having been green before it. The fix is the one that rule prescribes and the one another generator had already taken for its study DATE: freeze the claim to the version the edition was actually built to.
-
-> **What would overturn it.** A generator whose stamps are all frozen to facts, where a rebuild genuinely changes nothing but what was rebuilt.
-
-### L-401 · A convention adopted to AVOID making a forecast can be a forecast, and saying it is not is a false statement about the model.
-
-Holding a traded price flat in nominal terms is legitimate and often sensible. Describing it as 'no forecast of a traded commodity price is defensible' is not a wording problem: the model IS forecasting a price that falls in real terms every year for ever, and the reader is told the opposite. The genuinely view-free choice — the one with no forecast in it — is flat in REAL terms.
-
-**Applies to:** every study  ·  *Learned from:* outside critique, flat-nominal price convention, 18-09-2026
-
-> **What it cost, or how we know.** Measured across 898 study builders and committed records carrying 407 quantities held flat: TWO studies name the consequence ('flat in nominal terms, which is a REAL DECLINE across the window'; 'holding earnings flat in NOMINAL terms while discounting at a NOMINAL rate') and TWO deny it. In both deniers the costs escalate at full domestic inflation while revenue does not, so the convention manufactures a margin decline the forecast then reports as a finding; closing the wedge is worth +17.8% on one and +68.7% on the other, measured independently by two outside auditors.
-
-> **What would overturn it.** A market with no inflation in it, where flat nominal and flat real are the same path and the claim costs nothing.
-
-### L-402 · A judgement declared 'not contested' is removed from the instrument that counts which way judgements go.
-
-[R-ENF-05]'s sign test exists because any single contested choice is defensible and what is not is a study resolving every one of them the same way without noticing. A study that declares a material choice settled convention does not merely mislead a reader about that choice — it takes the choice out of the count, and the count is the only instrument that can see a lean.
-
-**Applies to:** every study  ·  *Learned from:* outside critique, flat-nominal price convention, 18-09-2026
-
-> **What it cost, or how we know.** One study records 'Holding a traded commodity price flat rather than forecasting it is settled house convention and IS NOT CONTESTED', of a choice worth +68.7% of its own central. The sign test then runs on the judgements that remain, correctly, and reports on a population the largest item is missing from.
-
-> **What would overturn it.** A declaration of settled convention on a choice worth less than the 5% materiality line the sign test already applies, where nothing is being removed from the count.
-
-### L-403 · [L-278] WAS ALREADY REGISTERED, IS CORRECT, AND SIX CONTROLS BROKE ITS WAY ANYWAY — a fixture pinned to live repository state has an expiry date nobody sets.
-
-[L-278] says it in its own words — 'plant the starting state; do not assume it' — after THREE controls broke this way on one day in September. This is the same lesson, registered, correct, cited nowhere that binds, and re-violated by six more controls a fortnight later. THE LESSON IS NOT THE FINDING; THE RE-VIOLATION IS. What survives of the original claim is unchanged: a control that finds its condition in the repository is correct the day it is written and is invalidated by ordinary legitimate work elsewhere, and the gate it protects is then unevidenced. What is added is that saying so once did not stop it.
-
-**Applies to:** every study  ·  *Learned from:* self-audit, full negative-control sweep, 18-09-2026
-
-> **What it cost, or how we know.** Running every check including the controls — which the ordinary sweep excludes — found SIX red, all in CI, none caused by that day's work and all green at a commit eleven days earlier. THE FIRST COUNT WAS FOUR AND CAME FROM A PARTIAL SWEEP, which is this lesson's own subject arriving in its own evidence. Five fail for one reason: the bibliography ratchet had been PRUNED TO EMPTY so the 'a ratcheted breach stays green' case had no breach to use; the asp driver no longer carried an applied correction so the mutation removing one removed nothing; and PHDC's applied count moved off the 6 a fixture was pinned to; and a terminal-record control counts 38 markers in a tree its fixture pins at 37. Each REFUSED rather than reporting green, which is the opposite of the failure caught five times the same session.
-
-> **What would overturn it.** A sweep finding no control pinned to live state, which would mean [L-278] had reached the work after all and this entry is about a fortnight rather than about a pattern.
-
-### L-404 · POINT-IN-TIME DISCIPLINE FORBIDS FORESIGHT, NOT A DECLINING FORECAST — and every run in this book had quietly read it as forbidding both.
-
-Nine walk-forward runs escalate their drivers on the last published inflation print at the origin, held FLAT at every horizon. That reads like the cautious choice and it is not a neutral one: holding a rate flat is itself a forecast — the forecast that inflation never changes — and it is the only forecast on the table that NO institution published. The archive held the alternative the whole time. A cautious-sounding convention is still a claim about the world and is audited like one, which is [R-CAL-02]'s lesson arriving in a macro path.
-
-**Applies to:** every study  ·  *Learned from:* found while building, the mechanical lens rebuild, 18-09-2026
-
-> **What it cost, or how we know.** The point-in-time archive carries, at every origin, the IMF World Economic Outlook vintage's own forward projection for that year and the four after it, published at the origin and declining on its own with no fade: origin 2017 runs 16.92 / 10.91 / 8.09 / 7.18 / 6.96 and origin 2023 runs 32.18 / 19.88 / 13.77 / 11.47 / 9.50. A forecaster standing there could have used exactly that. Under the flat convention NO window of ANY length can satisfy [R-MACRO-01]'s 2pp convergence bound, because a constant rate converges to nothing; under the published ladder a window ending at horizon h carries the ladder's own rate for that year and the bound measures what is actually left, which is real growth.
-
-> **What would overturn it.** An archive origin whose vintage published no forward path, where the flat print genuinely is the only knowable figure — which is why pit_inflation refuses such an origin rather than extending a ladder this desk would have invented.
-
-### L-405 · AN INSTRUMENT ASSEMBLED FROM ANOTHER PROCESS'S PARTS INHERITS THAT PROCESS'S PURPOSE, AND NOBODY CHECKS THE FIT BECAUSE THE PARTS ARE KNOWN TO BE GOOD.
-
-The mechanical valuation lens builds a fair value at every past origin out of the walk-forward runs' projections. Those projections are careful, pre-registered, point-in-time clean and correct — for the question they were built for, which is whether a forecaster could have got three to five years of DRIVERS right. Nothing in them was ever required to reach a steady state, because a driver score does not need one. A VALUE does. The parts were sound and the assembly was never tested against the new question.
-
-**Applies to:** every study  ·  *Learned from:* found while building, the mechanical lens rebuild, 18-09-2026
-
-> **What it cost, or how we know.** Asked for fifteen horizons instead of the pre-registered five, PHDC's projection ends GROWING AT 20.66% and TMGH's at 39.37% — they accelerate, because each compounds a population or intensity term that never decays. So the obvious repair, running the explicit window longer, makes it worse rather than better, and was tested rather than assumed. Meanwhile every delivered study that commits the record converges exactly, PHDC on fifteen explicit years and TMGH on ten, on drivers that genuinely mature. 22 of 60 cells are refused on this and the lens scores none.
-
-> **What would overturn it.** A run whose pre-registered driver rules reach a steady state on their own, which would make this a property of these particular models rather than of borrowing a driver-scoring instrument to build values.
-
-### L-406 · A POWER OF TEN IS A UNIT, NOT A VIEW — and the instrument built to measure gaps was not looking at its own answer.
-
-Every gate in the valuation lens examined how a number was BUILT. The first run of the rebuilt lens scored exactly one cell and it read plus seventy-five thousand per cent. No method disagrees with a market by a factor of ten; a share count or a price series was in the wrong unit. This is [R-GAP-01]'s own lesson — when a result is surprising, that is evidence, and evidence gets a gate — arriving INSIDE the instrument written to apply it elsewhere.
-
-**Applies to:** every study  ·  *Learned from:* found while building, the mechanical lens rebuild, 18-09-2026
-
-> **What it cost, or how we know.** SWDY 2015: a fair value of 2,782.87 against a price of 3.67, +75,727.6%. The unit ratio measured, the terminal built, the bridge footed, the convergence bound held, and the cell would have been pooled into a bias it would have dominated on its own. The refusal's bound is not chosen: one order of magnitude, because the failure it catches IS an order of magnitude — the same argument panel_scale already makes when it pins a unit to a power of ten, reused rather than minted.
-
-> **What would overturn it.** A cell genuinely reading a tenfold disagreement that survives an audit of its share count and price series, which would make the bound a bound on views rather than on units and would have to be withdrawn.
-
-### L-407 · A GATE THAT CANNOT EXPRESS A CORRECTION FORBIDS THE CORRECTION ITS OWN DOCUMENT REQUIRES.
-
-The valuation pre-registration says in terms that it may never be edited and that a correction is a NEW dated document superseding it. The gate enforcing it held every score against the LATEST pre-registration — so the moment a second one was committed, every score correctly produced under the first became 'a score that predates the design it claims to follow'. The rule and the gate disagreed, and the gate was what bound. Nobody could have discovered it without actually superseding, which is why it survived from the day both were written.
-
-**Applies to:** every study  ·  *Learned from:* self-audit, the mechanical lens rebuild, 18-09-2026
-
-> **What it cost, or how we know.** check_valuation_calibration.py now pairs each score with the pre-registration in force AT THAT SCORE'S OWN COMMIT, read off topology, and verifies EVERY sealed document rather than only the current one — the superseded one being exactly where a rationalisation would go, since it is the design the earlier scores claim to follow and nobody opens it again. Negative-controlled on twelve conditions, the decisive pair being a score under design 1 with design 2 committed later, which must PASS and which the old gate condemned, and a superseded document edited after its seal, which must FAIL and which the old gate could not see.
-
-> **What would overturn it.** A supersession the changed gate lets through that the old one would have caught, which would mean the pairing weakened the order test rather than sharpening it.
-
-### L-408 · AN INFRASTRUCTURE FAILURE WEARING A REPOSITORY FAILURE'S CLOTHES IS WORSE THAN EITHER — a full disk turned every gate in the book red with an empty message.
-
-Two harnesses copy the whole repository into a sandbox and remove it in a `finally`, which runs exactly as often as the process finishes. A kill, a timeout or an out-of-space error skips it. Twenty-five abandoned copies accumulated, the session's disk allowance ran out, and a sweep of 172 checks reported 66 consecutive RED results — not one of them true. The first thing a false catastrophe costs is the reader's belief that anything is working, and the second is the hours spent looking for a defect in the work rather than under it.
-
-**Applies to:** every study  ·  *Learned from:* self-audit, the full gate sweep, 18-09-2026
-
-> **What it cost, or how we know.** The sandboxes ran 1.4 to 1.6 GB each. Every RED line carried an EMPTY message, which is what an unwritable output file looks like and is indistinguishable on the page from a gate that failed silently — including check_valuation_calibration, which had returned OK minutes earlier and returned OK again once space was freed. engine/sandbox_reclaim.py now RECLAIMS BEFORE MAKING: a process that died cannot clean up after itself and the next one can. The test is exact and carries no threshold — each sandbox records its making process and one whose process is gone is finished with, whatever its age. An age cutoff would be a free parameter and would be wrong in both directions, deleting a long run's live sandbox and keeping a short run's dead one.
-
-> **What would overturn it.** A harness that leaves a sandbox behind while its process is still alive, which would mean the ownership stamp is not the right test and reclamation needs something other than liveness.
+> **What would overturn it.** A company whose balance sheet grows slowly enough that the average and the closing base give the same answer, in which case the distinction is real and immaterial.
 
 
 ---
@@ -3113,6 +2893,26 @@ For a bank, debt is raw material rather than financing, so the usual enterprise-
 
 > **What would overturn it.** Nothing for a deposit-taking institution.
 
+### L-384 · The ecl bias changes direction between regimes.
+
+It runs one way in one period and the other way in the next. Averaging them produces a correction that is wrong in both. Record it, do not correct for it.
+
+**Applies to:** every bank  ·  *Learned from:* fundamental walk-forward test, ADIB walk-forward, date not recorded  ·  **status: provisional**
+
+> **What it cost, or how we know.** By era: E1 recapitalisation and the 2016 float (origins FY2014-FY2017) +0.089; E2 the 2022-24 devaluation sequence (origins FY2018-FY2024) -0.351.
+
+> **What would overturn it.** A longer record in which one sign dominates across all regimes.
+
+### L-385 · For a bank, the cost of funds is divided by the deposits — the industrial rule says exclude them and it inverts.
+
+The house rule says a borrowing cost is divided by the borrowings that actually bear it, and it names customer deposits as the thing to LEAVE OUT. For a bank that is backwards: depositors are who the bank is paying. Divide the cost of deposits by customers' deposits plus money owed to banks plus subordinated financing, and by nothing wider. The principle travels; the example does not.
+
+**Applies to:** every bank  ·  *Learned from:* fundamental walk-forward test, ADIB walk-forward, date not recorded  ·  **status: provisional**
+
+> **What it cost, or how we know.** At ADIB-Egypt's FY2025 the balances that bear the charge are EGP 293.7 billion against total liabilities of EGP 312.1 billion. Reading the industrial rule literally would have excluded customers' deposits — 94% of the correct denominator — and dividing by total liabilities instead understates the funding rate by about a sixth of itself. The build obeys it structurally: bottom_up.interest_bearing() is the only route to that denominator and total liabilities appears nowhere.
+
+> **What would overturn it.** A deposit-taking institution whose disclosed funding charge is levied on something other than its deposits, bank borrowings and subordinated debt.
+
 
 ## Holding company
 
@@ -3185,26 +2985,6 @@ A population-based volume driver runs low for every developer, but not by a fixe
 
 > **What would overturn it.** A third developer whose miss lands close to one of the first two, which would suggest a stable offset after all.
 
-### L-389 · A partial-adjustment conversion model cannot reach the period it is labelled with, and the label is what the study sensitises.
-
-Where revenue moves a fraction of the way toward a target each year and the target itself compounds, realised conversion never reaches the rate the target was built from. The cell carrying the period is then a label rather than a driver — and it is the label the crux grid, the headline and the sensitivity all move.
-
-**Applies to:** every real-estate developer, off-plan, point-in-time on handover  ·  *Learned from:* outside critique, TMGH critique response, 18-09-2026
-
-> **What it cost, or how we know.** TMGH commits CAPACITY_YEARS 14 and CAPACITY_RAMP 0.25. Revenue moves a quarter of the way to (opening book + sales) / 14 each year while the book compounds at 15%, so the committed book cover runs 15.03 to 20.97 to 19.75 years and never 14. The 2027 recursion reproduces the workbook to ten decimals. The words ramp, partial adjustment and adjustment speed appear zero times in the delivered document.
-
-> **What would overturn it.** A conversion model whose realised rate reaches its stated period within the explicit window, shown by the committed series.
-
-### L-390 · Contracted sales earned as a development fee never enter the backlog, and must not drive the collections line.
-
-A developer can sell on its own balance sheet and sell for somebody else on a commission. Only the first creates a deliverable obligation and only the first is collected against. Feeding total reported sales into an advances driver treats fee volume as if it were an order book, and the company usually says so in a footnote on the same page as the backlog chart.
-
-**Applies to:** every real-estate developer, off-plan, point-in-time on handover  ·  *Learned from:* outside critique, TMGH critique response, 18-09-2026
-
-> **What it cost, or how we know.** TMG discloses that SouthMed sales sit outside the backlog under an asset-light model earning a c.8% fee; SouthMed was EGP 93.9bn of the 219.1bn of 1H2026 sales, 43%. The FY2023 release separately states EGP 47.8bn of third-party commission volume, which the study's register characterises as a land transaction. TMGH's model injects EGP 300bn of new sales a year at face into the collections driver, and by 2035 that line supplies 152,135 against total free cash flow of 137,742.
-
-> **What would overturn it.** A company of this class whose fee-based volume does create a collectable obligation, disclosed as such.
-
 
 ## Refiner, commodity pass-through on a thin spread
 
@@ -3217,16 +2997,6 @@ When profit is a small difference between two very large numbers, an error that 
 > **What it cost, or how we know.** Average miss 0.504 as known, 0.519 with perfect foresight of inflation — the macro share is only -2.8%.
 
 > **What would overturn it.** A pass-through business with a comparably thin margin where independent revenue and cost forecasts of similar accuracy produce a proportionate, not amplified, profit error.
-
-### L-388 · Holding a dollar-linked price flat in nominal dollars while domestic costs escalate at full inflation is a real-terms price decline, not the absence of a forecast.
-
-On a pass-through processor the slate is priced off a dollar benchmark and the conversion costs are domestic. Declining to forecast the benchmark is right; holding it flat in NOMINAL dollars is not the way to decline, because it forecasts the price falling in real terms at foreign inflation every year for ever, against domestic costs that do not. The neutral assumption is flat in REAL terms.
-
-**Applies to:** every refiner, commodity pass-through on a thin spread  ·  *Learned from:* outside critique, AMOC critique response, 18-09-2026
-
-> **What it cost, or how we know.** AMOC derives realisation growth as (1 + Egyptian inflation) / 1.025 - 1 while operating expense and capital expenditure take the full Egyptian ladder — an undisclosed 2.5%-a-year wedge that drifts opex/revenue from 3.795% to 4.189% where parity holds it at 3.703%. Closing it, re-run through the study's own compute.py, is +17.84%: EGP 11.4012 to 13.4350. Four studies in the book carry the convention.
-
-> **What would overturn it.** Evidence that the real dollar price of this slate has in fact declined at foreign inflation over a long enough record to measure, which would make the nominal convention the right one.
 
 
 ## Marine logistics and shipping, chartered fleet on global day rates
@@ -3427,19 +3197,6 @@ The method misses this driver in the same direction almost every time, not at ra
 > **What it cost, or how we know.** Bias -0.241 log (about 27% too low), average miss 0.241, wrong in the same direction in 100% of cases, and the sign holds across every bootstrap block tested (n=9).
 
 > **What would overturn it.** A later run of the same name where the sign no longer holds across bootstrap blocks.
-
-
-## TMGH
-
-### L-391 · TMG publishes its own discount rate, projection period and terminal growth in its goodwill note, and no study here has read them.
-
-The goodwill impairment test is a discounted cash flow the company runs on itself and discloses annually. It is the one place a filing states what the company believes about its own cost of capital and horizon — a free cross-check on the two inputs a study argues hardest about.
-
-**Applies to:** TMGH only  ·  *Learned from:* outside critique, TMGH critique response, 18-09-2026
-
-> **What it cost, or how we know.** Note 9 of TMG's 30 June 2026 interim consolidated statements: a pre-tax discount rate of 33.9% applied to cash-flow projections, a 20-year period, and a terminal growth rate of 5%. The study runs a terminal WACC of 21.93% and terminal growth of 7%. Neither the study nor either outside audit found it.
-
-> **What would overturn it.** A year in which the note stops disclosing the rate, or discloses one built on a basis the study's own rate cannot be compared with.
 
 
 ---

@@ -44,6 +44,9 @@ import glob
 import json
 import os
 import re
+import sys as _sys
+_sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'engine'))
+import calibration_only as _cal            # [R-FCAL-01 §6 AMENDED]
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -150,13 +153,33 @@ def check_study(sdir):
         dates[label] = (os.path.basename(p), dt)
     if bad:
         return bad, dates
-    newest = max(dt for _, dt in dates.values())
-    behind = {k: v for k, v in dates.items() if v[1] != newest}
-    if behind:
-        stamp = "%04d-%02d-%02d" % newest
-        for k, (fn, dt) in sorted(behind.items()):
-            bad.append("the %s is dated %04d-%02d-%02d while the edition is %s (%s)"
-                       % (k, dt[0], dt[1], dt[2], stamp, fn))
+    # THE EDITION IS SET BY WHAT A READER RECEIVES, NOT BY WHEN WE AUDITED IT.
+    #
+    # This took max() across all four, and the QC gate is one of the four -- so auditing
+    # a delivered study a few days after issuing it moved the "edition" forward and
+    # reported the report, the PDF, the workbook and the bibliography as four separate
+    # failures. Three studies went red that way on 13-09-2026 for having been audited
+    # that morning, and the remedy the message implies -- re-date the artefacts -- would
+    # mean re-issuing an edition to a reader because this desk looked at it again. That
+    # is exactly backwards.
+    #
+    # A QC GATE IS INTERNAL EVIDENCE ABOUT A DELIVERED EDITION. It may be dated later
+    # than the edition, because auditing takes time. It may NOT be dated EARLIER: a gate
+    # older than the study it certifies certifies a document nobody received, which is
+    # the L-066/L-067 failure and is checked below rather than dropped.
+    delivered = {k: v for k, v in dates.items() if k != "QC gate"}
+    newest = max(dt for _, dt in delivered.values())
+    stamp = "%04d-%02d-%02d" % newest
+    behind = {k: v for k, v in delivered.items() if v[1] != newest}
+    for k, (fn, dt) in sorted(behind.items()):
+        bad.append("the %s is dated %04d-%02d-%02d while the edition is %s (%s)"
+                   % (k, dt[0], dt[1], dt[2], stamp, fn))
+    qc = dates.get("QC gate")
+    if qc and qc[1] < newest:
+        bad.append("the QC gate is dated %04d-%02d-%02d and the edition it certifies is "
+                   "%s (%s) — a gate older than the study it passes has measured a "
+                   "document nobody received"
+                   % (qc[1][0], qc[1][1], qc[1][2], stamp, qc[0]))
     return bad, dates
 
 
@@ -185,6 +208,12 @@ def main(argv):
     stale = [tk for tk in outstanding if tk not in found]
     ok, failed = [], {}
     for tk in sorted(found):
+        # [R-FCAL-01 §6 AMENDED 09-09-2026] — a run that DECLARES it struck no fair
+        # value ships no edition to be complete, so there is nothing here to check.
+        # Only a declaration is honoured; a run merely missing its study still fails.
+        _ok, _why = _cal.declared(tk)
+        if _ok:
+            continue
         sdir = os.path.join(engine, "%s_study" % tk.lower())
         bad, dates = check_study(sdir)
         if bad:
